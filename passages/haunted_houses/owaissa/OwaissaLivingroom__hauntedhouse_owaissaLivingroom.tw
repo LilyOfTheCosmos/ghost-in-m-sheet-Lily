@@ -1,0 +1,126 @@
+:: OwaissaLivingroom [hauntedhouse owaissaLivingroom] {"position":"1750,450","size":"100,100"}
+<<nobr>>
+<div class="room">
+	<div class="room-wrapper">
+		<div class="content">
+          	<div id="actionLivingroom" class="action">
+
+          	</div>
+        </div>
+        <div class="furnitureSearch">
+            <span id="livingroom_table"><<link [img[assets/img/furniture/table.png][furnitureSearch]]>><<set $currentFurniture to "livingroom_table">><<includeTimeEventClothesHunt>><</link>></span>
+			 <span id="livingroom_sofa"><<link [img[assets/img/furniture/sofa.png][furnitureSearch]]>><<set $currentFurniture to "livingroom_sofa">><<includeTimeEventClothesHunt>><</link>></span>
+        </div>
+		<div class="footer">
+        	<div class="footertools">
+         	<div class="footer-card">
+            	<div class="cardimg">
+                	<img src="assets/img/emf.png" class="icon" id="owaissaLivingroomPicEMF">
+                </div>
+                <div class="cardlink">
+                	<<include "searchEmfLivingroom">>
+                </div>
+            </div>
+            <div class="footer-card">
+            	<div class="cardimg">
+                	<img src="assets/img/glass.png" class="icon"  id="owaissaLivingroomPicPlasm">               
+                </div>
+                <div class="cardlink">
+                	<<include "searchPlasmLivingroom">>
+                </div>
+            </div>
+            <div class="footer-card">
+            	<div class="cardimg">
+                	<img src="assets/img/gwb.png" class="icon" id="owaissaLivingroomPicGWB">                
+                </div>
+                <div class="cardlink">
+                <<include "searchGwbLivingroom">>
+                </div>
+            </div>
+            <div class="footer-card">
+            	<div class="cardimg">
+                	<img src="assets/img/spiritbox.png" class="icon" id="owaissaLivingroomPicSB">                
+                </div>
+                <div class="cardlink">
+                	<<include "searchSbLivingroom">>
+                </div>
+            </div>
+            <div class="footer-card">
+            	<div class="cardimg">
+                	<img src="assets/img/thermometr.png" class="icon" id="owaissaLivingroomPicThermometr">                
+                </div>
+                <div class="cardlink">
+                	<<include "searchThermometrLivingroom">>
+                </div>
+            </div>
+            <div class="footer-card">
+            	<div class="cardimg">
+                	<img src="assets/img/uvl.png" class="icon" id="owaissaLivingroomPicUVL">                
+                </div>
+                <div class="cardlink">
+                	<<include "searchUVLLivingroom">>
+                </div>
+            </div>
+            <<if $showComp eq 1>>
+            <div class="footer-card">
+            	<div class="cardimg">
+               <<compLinks>>
+                </div>
+            </div>
+            <<elseif $showComp eq 2>>
+            <div class="footer-card">
+            	<div class="cardimg">
+                <a data-passage="failedComp">
+                	<img src="assets/img/questionMark.png" class="companion-image"> </a>     
+                </div>
+            </div>
+            <<elseif $showComp eq 3>>
+            <div class="footer-card">
+            	<div class="cardimg">
+<<compLinksSuccess>>
+                </div>
+            </div>
+            <</if>>
+            <div class="footer-card footer-light">
+           <span class="cursedHuntLinkDisable"><<link [img[assets/img/lighton.png][OwaissaLivingroom]]>><<set $livingroom.background to 1>><</link>>
+             <<link [img[assets/img/lightoff.png][OwaissaLivingroom]]>><<set $livingroom.background to 2>><</link>>
+			<<if $mc.lust gte 80 and $weakenTheGhostQuest and $isWeakenGhost neq 1>> 
+<<link [img[assets/img/hearth.png][minigame]]>>
+<<set $minigameVideo to "start">>
+<<set $ghostOrgasmMeter to 0>>
+<<set $mcOrgasmMeter to 0>><</link>>
+<</if>></span>
+            </div>
+         </div>
+         <div class="footeraction">
+			@@.adaptiveLink;<<link "Kitchen" "OwaissaKitchen">><<includeTimeEventClothesHunt>><<set $stepCount += 1>><</link>>@@
+         </div>
+		</div>
+	</div>
+</div>
+<</nobr>>
+<<script>>
+$(document).ready(function() {
+    $('#owaissaLivingroomPicEMF').on('click', function() {
+        $('#searchEmfL a').click();
+    });
+    $('#owaissaLivingroomPicPlasm').on('click', function() {
+        $('#searchPlasmLivingroom a').click();
+    });
+    $('#owaissaLivingroomPicGWB').on('click', function() {
+        $('#searchGwbLivingroom a').click();
+    });
+    $('#owaissaLivingroomPicSB').on('click', function() {
+        $('#searchSpiritboxLivingroom a').click();
+    });
+    $('#owaissaLivingroomPicThermometr').on('click', function() {
+        $('#addsearchThermometrLivingroom a').click();
+    });
+    $('#owaissaLivingroomPicUVL').on('click', function() {
+        $('#searchUvlL a').click();
+    });
+});
+<</script>>
+
+
+

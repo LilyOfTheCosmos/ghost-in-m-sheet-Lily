@@ -1,0 +1,48 @@
+:: ToolsEventChurchEnd [event] {"position":"1975,1800","size":"100,100"}
+<<nobr>>
+<video autoplay controls muted loop>
+ <source src="assets/church/8.mp4" type="video/mp4">
+ </video>
+ @@.mc-speech; Holy~ so much cum@@<br>
+ 
+ <<if $eventToolsOneStart eq 0>>
+ @@.notmc-speech; I think you deserve it, here you go. If you want, you can come to me sometimes for special confessions@@<br>
+@@.mc-speech; Thanks, i'll think about that@@<br>
+ <<set $equipment.thermometer to 3>>
+@@.mc-action; You get a lvl 3 Thermometr @@<img src="assets/img/thermometr.png" style="max-width:5%">
+<br>
+<br>
+<<set $eventToolsOneStart to 1>>
+<<else>>
+@@.notmc-speech; You are the best. I need to go now, bye@@<br>
+<</if>>
+<<if $mc.lust gte 100>>
+ <<set $mc.lust to 0>>
+ <<set $mc.corruption += 0.2>>
+ <</if>>
+ <<set $mc.lust to Number($mc.lust.toFixed(2))>>
+<<updatemeter 'mclust' `$mc.lust / 100`>>
+<<set $churchSexCD to 1>>
+
+<div class="wrapperGain">
+<span>You gain:</span><br>
+<span>Experience: +10 exp</span><br>
+<<if $mc.corruption lt 10>>
+<<set $mc.corruption += 0.5>>
+<span><img src="assets/img/corruption.png" style="position: relative; top: 0.375em; width:3%; display: inline; margin: 0;">: +0.5 </span>
+<</if>>
+<span class="reachedNewLvl"></span><br>
+</div>
+<span id="expBar"><<showmeter 'xpBar'>></span><br>
+<<set $mc.exp += 10>><<set $percentageOfLevel to Math.floor(($mc.exp / $neededForNextLevel) *100)>><<updatemeter 'xpBar' `$mc.exp / $neededForNextLevel`>>
+<<if $mc.exp gte $neededForNextLevel>>
+<<done>><<replace ".reachedNewLvl">>You reached a new level - $mc.lvl !<</replace>><</done>>
+<<set $mc.exp to $mc.exp - $neededForNextLevel>>
+ <<set $mc.lvl += 1>>
+ <<set $percentageOfLevel -= 100>>
+ <<set $neededForNextLevel += Math.ceil(0.3 * $neededForNextLevel)>>
+<<updatemeter 'xpBar' `$mc.exp / $neededForNextLevel`>><</if>>
+@@.backbtn;[[Leave|CityMap]]@@ <br>
+ <</nobr>>
+
+

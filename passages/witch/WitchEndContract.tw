@@ -1,0 +1,77 @@
+:: WitchEndContract {"position":"1450,25","size":"100,100"}
+<<nobr>>
+<img src="assets/img/witchGirl.jpg" width="100%">
+<br>
+@@.notmc-speech;Tell me the type of ghost:@@<br>
+<<if $saveMimic eq 1>>
+<<set $ghost.name to "Mimic">>
+<<set $saveMimic to 0>><</if>>
+<<set _ghostTypes = ["Shade", "Spirit", "Poltergeist", "Phantom", "Goryo", "Demon", "Deogen", "Jinn", "Moroi", "Myling", "Oni", "Mimic", "The Twins", "Wraith", "Mare", "Cthulion", "Banshee", "Raiju"]>>
+@@.mc-speech;I guess it was:@@<br>
+<<listbox "$ghostTypeSelected">>
+	<<optionsfrom _ghostTypes>>
+<</listbox>><br>
+<<linkreplace "@@.usebtn;Choose@@">>
+<<done>>
+<<addclass ".linkselector" "disabled-link">>
+<</done>>
+<video autoplay muted>
+        <source src="assets/witch/witchResult.mp4" type="video/mp4" width="100%">
+</video>
+@@.notmc-speech;Let's find out, give me some time...@@
+<<timed 6s>>
+<<if ($ghost.name == $ghostTypeSelected)>>
+@@.notmc-speech; Yes, you're right, good girl@@<br>
+
+<div class="wrapperGain">
+<span>You gain:</span><br>
+<span> Money: +$moneyFromContract $ </span><br>
+<span>Experience: +$expFromContract exp</span><br>
+<span><<if $weakenTheGhostQuest eq 1>> Extra money for completing the task: weaken the ghost: + $moneyFromWeakenTheGhost $<</if>></span>
+<span class="reachedNewLvl"></span><br>
+</div>
+
+<span id="expBar"><<showmeter 'xpBar'>></span><br>
+<<set $mc.exp += $expFromContract>><<set $percentageOfLevel to Math.floor(($mc.exp / $neededForNextLevel) *100)>><<updatemeter 'xpBar' `$mc.exp / $neededForNextLevel`>><<set $mc.money += $moneyFromContract + $moneyFromWeakenTheGhost>>
+<<if $mc.exp gte $neededForNextLevel>>
+<<done>><<replace ".reachedNewLvl">>You reached a new level - $mc.lvl !<</replace>><</done>>
+<<set $mc.exp to $mc.exp - $neededForNextLevel>>
+ <<set $mc.lvl += 1>>
+ <<set $percentageOfLevel -= 100>>
+ <<set $neededForNextLevel += Math.ceil(0.3 * $neededForNextLevel)>>
+<<updatemeter 'xpBar' `$mc.exp / $neededForNextLevel`>><</if>>
+
+@@.backbtn;[[Back|WitchInside]]@@ <<else>> @@.notmc-speech;No, you are wrong. Maybe you'll get it right next time.@@<br>
+
+<div class="wrapperGain">
+<span>You gain:</span><br>
+<span> Money: +0$ </span><br>
+<span>Experience: +10 exp</span><br>
+<span><<if $weakenTheGhostQuest eq 1>> Extra money for completing the task: weaken the ghost: + $moneyFromWeakenTheGhost $<</if>></span>
+<span class="reachedNewLvl"></span><br>
+</div>
+
+<span id="expBar"><<showmeter 'xpBar'>></span><br>
+
+<<set $mc.exp += 10>><<set $percentageOfLevel to Math.floor(($mc.exp / $neededForNextLevel) *100)>><<updatemeter 'xpBar' `$mc.exp / $neededForNextLevel`>><<set $mc.money += 0 + $moneyFromWeakenTheGhost>>
+<<if $mc.exp gte $neededForNextLevel>>
+<<done>><<replace ".reachedNewLvl">>You reached a new level - $mc.lvl !<</replace>><</done>>
+<<set $mc.exp to $mc.exp - $neededForNextLevel>>
+ <<set $mc.lvl += 1>>
+ <<set $percentageOfLevel -= 100>>
+ <<set $neededForNextLevel += Math.ceil(0.3 * $neededForNextLevel)>>
+<<updatemeter 'xpBar' `$mc.exp / $neededForNextLevel`>><</if>>
+
+@@.backbtn;[[Back|WitchInside]]@@<</if>>
+<<set $ghostHuntingMode to 0>>
+<<unset $hiddenEvidence>>
+<<unset $hiddenEvidence1>>
+<<unset $hiddenEvidence2>>
+<<unset $deleteSecondEvidence>>
+<<unset $deleteThirdEvidence>>
+<<unset $deleteOneEvidence>>
+<</timed>>
+<</linkreplace>>
+<</nobr>>
+
+

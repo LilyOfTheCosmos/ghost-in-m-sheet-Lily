@@ -1,0 +1,139 @@
+:: elmHallway [hauntedhouse elmHallway] {"position":"2250,750","size":"100,100"}
+<<nobr>>
+<div class="room">
+	<div class="room-wrapper">
+		<div class="content">
+          	<div id="actionHallwayElm" class="action">
+
+          	</div>
+        </div>
+        <div class="furnitureSearch">
+             <span id="hallway_carpet"><<link [img[assets/img/furniture/carpet.png][furnitureSearch]]>><<set $currentFurniture to "hallway_carpet">><<includeTimeEventClothesHunt>><</link>></span>
+			 <span id="hallway_coatrack"><<link [img[assets/img/furniture/coatrack.png][furnitureSearch]]>><<set $currentFurniture to "hallway_coatrack">><<includeTimeEventClothesHunt>><</link>></span>
+        </div>
+		<div class="footer">
+        	<div class="footertools">
+         	<div class="footer-card">
+            	<div class="cardimg">
+                	<img src="assets/img/emf.png" class="icon" id="elmHallwayPicEMF">
+                </div>
+                <div class="cardlink">
+                	<<include "searchEMFHallwayElm">>
+                </div>
+            </div>
+            <div class="footer-card">
+            	<div class="cardimg">
+                	<img src="assets/img/glass.png" class="icon" id="elmHallwayPicPlasm">                
+                </div>
+                <div class="cardlink">
+                	<<include "searchPlasmHallwayElm">>
+                </div>
+            </div>
+            <div class="footer-card">
+            	<div class="cardimg">
+                	<img src="assets/img/gwb.png" class="icon" id="elmHallwayPicGWB">                
+                </div>
+                <div class="cardlink">
+                	<<include "searchGwbHallwayElm">>
+                </div>
+            </div>
+            <div class="footer-card">
+            	<div class="cardimg">
+                	<img src="assets/img/spiritbox.png" class="icon" id="elmHallwayPicSB">                
+                </div>
+                <div class="cardlink">
+                	<<include "searchSbHallwayElm">>
+                </div>
+            </div>
+            <div class="footer-card">
+            	<div class="cardimg">
+                	<img src="assets/img/thermometr.png" class="icon" id="elmHallwayPicThermometr">                
+                </div>
+                <div class="cardlink">
+                	<<include "searchThermometrHallwayElm">>
+                </div>
+            </div>
+            <div class="footer-card">
+            	<div class="cardimg">
+                	<img src="assets/img/uvl.png" class="icon" id="elmHallwayPicUVL">                
+                </div>
+                <div class="cardlink">
+                	<<include "searchUVLHallwayElm">>
+                </div>
+            </div>
+              <<if $showComp eq 1>>
+            <div class="footer-card">
+            	<div class="cardimg">
+				<<compLinks>>
+            </div>
+            <<elseif $showComp eq 2>>
+            <div class="footer-card">
+            	<div class="cardimg">
+                <a data-passage="failedComp">
+                	<img src="assets/img/questionMark.png" class="companion-image"> </a>     
+                </div>
+            </div>
+            <<elseif $showComp eq 3>>
+            <div class="footer-card">
+            	<div class="cardimg">
+<<compLinksSuccess>>
+                </div>
+            </div>
+            <</if>>
+            <div class="footer-card footer-light">
+            	<span class="cursedHuntLinkDisable"><<link [img[assets/img/lighton.png][elmHallway]]>><<set $hallway.background to 1>><</link>>
+             <<link [img[assets/img/lightoff.png][elmHallway]]>><<set $hallway.background to 2>><</link>>
+			<<if $mc.lust gte 80 and $weakenTheGhostQuest and $isWeakenGhost neq 1>> 
+<<link [img[assets/img/hearth.png][minigame]]>>
+<<set $minigameVideo to "start">>
+<<set $ghostOrgasmMeter to 0>>
+<<set $mcOrgasmMeter to 0>><</link>>
+<</if>></span>
+            </div>
+         </div>
+         <div class="footeraction">
+         	@@.adaptiveLink;<<link "bedroom" "elmBedroom">>
+<<includeTimeEventClothesHunt>>
+<<set $stepCount += 1>><</link>>@@
+            @@.adaptiveLink;<<link "bathroom" "elmBathroom">>
+<<includeTimeEventClothesHunt>>
+<<set $stepCount += 1>><</link>>@@
+            @@.adaptiveLink;<<link "kitchen" "elmKitchen">>
+<<includeTimeEventClothesHunt>>
+<<set $stepCount += 1>><</link>>@@
+            @@.adaptiveLink;<<link "upstairs" "elmHallwayUpstairs">>
+<<includeTimeEventClothesHunt>><<set $stepCount += 1>><</link>>@@
+            @@.adaptiveLink;<<link "basement" "elmBasement">>
+<<includeTimeEventClothesHunt>><<set $stepCount += 1>><</link>>@@
+            <br>
+            <span class="cursedHuntLinkDisable">@@.adaptiveLink;[[leave|Elm Street]]@@</span>
+         </div>
+		</div>
+	</div>
+</div>
+<</nobr>>
+
+<<script>>
+$(document).ready(function() {
+    $('#elmHallwayPicEMF').on('click', function() {
+        $('#elmHallwayEMF a').click();
+    });
+    $('#elmHallwayPicPlasm').on('click', function() {
+        $('#elmHallwayPlasm a').click();
+    });
+    $('#elmHallwayPicGWB').on('click', function() {
+        $('#elmHallwayGWB a').click();
+    });
+    $('#elmHallwayPicSB').on('click', function() {
+        $('#elmHallwaySpiritbox a').click();
+    });
+    $('#elmHallwayPicThermometr').on('click', function() {
+        $('#elmHallwayTemperature a').click();
+    });
+    $('#elmHallwayPicUVL').on('click', function() {
+        $('#elmHallwayUVL a').click();
+    });
+});
+<</script>>
+
+

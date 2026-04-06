@@ -1,0 +1,105 @@
+:: rescueMap {"position":"2175,1600","size":"100,100"}
+<img src="assets/rescue/down.png" class="upPointer clickable" onclick="SugarCube.Engine.play('CityMap');">
+<div class="flexwrapper">
+<div class="housecard rescuehousecard">
+<img src="assets/rescue/house/1.jpg" class="iconRescuePx">
+@@.icontextcity; [[Move|rescueHouse][$rescueHouse to 1]]@@
+</div>
+<div class="housecard rescuehousecard">
+<img src="assets/rescue/house/2.jpg" class="iconRescuePx">
+@@.icontextcity; [[Move|rescueHouse][$rescueHouse to 2]]@@
+</div>
+<div class="housecard rescuehousecard">
+<img src="assets/rescue/house/3.jpg" class="iconRescuePx">
+@@.icontextcity; [[Move|rescueHouse][$rescueHouse to 3]]@@
+</div>
+<div class="housecard rescuehousecard">
+<img src="assets/rescue/house/4.jpg" class="iconRescuePx">
+@@.icontextcity; [[Move|rescueHouse][$rescueHouse to 4]]@@
+</div>
+<div class="housecard rescuehousecard">
+<img src="assets/rescue/house/5.jpg" class="iconRescuePx">
+@@.icontextcity; [[Move|rescueHouse][$rescueHouse to 5]]@@
+</div>
+<div class="housecard rescuehousecard">
+<img src="assets/rescue/house/6.jpg" class="iconRescuePx">
+@@.icontextcity; [[Move|rescueHouse][$rescueHouse to 6]]@@
+</div>
+<div class="housecard rescuehousecard">
+<img src="assets/rescue/house/7.jpg" class="iconRescuePx">
+@@.icontextcity; [[Move|rescueHouse][$rescueHouse to 7]]@@
+</div>
+<div class="housecard rescuehousecard">
+<img src="assets/rescue/house/8.jpg" class="iconRescuePx">
+@@.icontextcity; [[Move|rescueHouse][$rescueHouse to 8]]@@
+</div>
+<div class="housecard rescuehousecard">
+<img src="assets/rescue/house/9.jpg" class="iconRescuePx">
+@@.icontextcity; [[Move|rescueHouse][$rescueHouse to 9]]@@
+</div>
+<div class="housecard rescuehousecard">
+<img src="assets/rescue/house/10.jpg" class="iconRescuePx">
+@@.icontextcity; [[Move|rescueHouse][$rescueHouse to 10]]@@
+</div>
+<div class="housecard rescuehousecard">
+<img src="assets/rescue/house/11.jpg" class="iconRescuePx">
+@@.icontextcity; [[Move|rescueHouse][$rescueHouse to 11]]@@
+</div>
+<div class="housecard rescuehousecard">
+<img src="assets/rescue/house/12.jpg" class="iconRescuePx">
+@@.icontextcity; [[Move|rescueHouse][$rescueHouse to 12]]@@
+</div>
+<div class="housecard rescuehousecard">
+<img src="assets/rescue/house/13.jpg" class="iconRescuePx">
+@@.icontextcity; [[Move|rescueHouse][$rescueHouse to 13]]@@
+</div>
+<div class="housecard rescuehousecard">
+<img src="assets/rescue/house/14.jpg" class="iconRescuePx">
+@@.icontextcity; [[Move|rescueHouse][$rescueHouse to 14]]@@
+</div>
+<div class="housecard rescuehousecard">
+<img src="assets/rescue/house/15.jpg" class="iconRescuePx">
+@@.icontextcity; [[Move|rescueHouse][$rescueHouse to 15]]@@
+</div>
+<div class="housecard rescuehousecard">
+<img src="assets/rescue/house/16.jpg" class="iconRescuePx">
+@@.icontextcity; [[Move|rescueHouse][$rescueHouse to 16]]@@
+</div>
+</div>
+<style>
+	body {
+    background-image: url('assets/rescue/house/rescueMap.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.iconRescuePx {
+	width: 80px;
+    height: auto;
+  	border-radius: 30%;
+}
+.rescuehousecard {
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+</style>
+
+<<if ($hours gte 22) or ($hours gte 0 and $hours lte 5)>>
+ <style>
+ body:before {
+ content: '';
+	display: block;
+	width: 100vw;
+	height: 100vh;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color:rgba(0, 0, 0, .4);
+    z-index: 1;
+ }
+ </style>
+ 		<</if>>
+
+

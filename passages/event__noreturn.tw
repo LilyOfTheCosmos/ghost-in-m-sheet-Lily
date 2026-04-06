@@ -1,0 +1,171 @@
+:: event [noreturn] {"position":"1400,1050","size":"100,100"}
+<<nobr>>
+<<set _totalWeight to 0>>
+<<set $multiplier to 3>>
+<<set _videoList to []>>
+<<if $ghost.name neq "Shade">>
+<<set $decreasingSanity to {
+stage1: 4,
+stage2: 5,
+stage3: 5,
+stage4: 6,
+stage5: 7,
+stage6: 8,
+stage7: 9,
+}>>
+<<else>>
+<<set $decreasingSanity to {
+stage7: 9,
+stage6: 8,
+stage5: 7,
+stage4: 6,
+stage3: 5,
+stage2: 5,
+stage1: 4,
+}>><</if>>
+
+
+
+
+
+<<set _random = random(1, _totalWeight)>>
+<<set _chance = random(0, 100)>>
+<<set _checkRandomBanshee to random(1,10)>>
+<<set _checkRandomCthulion to random(1,10)>>
+
+<<if _chance <= $decreasingSanity.stage2 and _checkRandomBanshee eq 1 and $ghost.name eq "Banshee">>
+
+<<set $bansheeAbility to 1>>
+<<set $tempCorr += 0.015>>
+<<if $isIronclad eq 1>>
+<<set _videoList to ["prison/banshee1.mp4", "prison/banshee2.mp4"]>>
+<<else>>
+<<set _videoList to ["ghosts/banshee/1.mp4", "ghosts/banshee/2.mp4", "ghosts/banshee/3.mp4", "ghosts/banshee/4.mp4", "ghosts/banshee/5.mp4", "ghosts/banshee/6.mp4", "ghosts/banshee/7.mp4", "ghosts/banshee/8.mp4", "ghosts/banshee/9.mp4", "ghosts/banshee/10.mp4"]>>
+<</if>>
+
+<<elseif _chance <= $decreasingSanity.stage2 and _checkRandomCthulion eq 1 and $ghost.name eq "Cthulion">>
+<<set $cthulionAbility to 1>>
+<<set $tempCorr += 0.015>>
+<<if ($mc.lust >= 60 and $mc.lust < 75)>>
+<<cthulionAbility 1>>
+<<elseif ($mc.lust >= 75 and $mc.lust < 90)>>
+<<cthulionAbility 2>>
+<<elseif ($mc.lust >= 90)>>
+<<cthulionAbility 3>>
+<</if>>
+
+<<else>>
+<<if $mc.lust >= 90 and _chance <= $decreasingSanity.stage7>> 
+<<set $tempCorr += 0.015>>
+<<set _totalWeight = $sensualBodyPart.brain + $sensualBodyPart.tits + $sensualBodyPart.ass + $sensualBodyPart.bottom + $sensualBodyPart.mouth + $sensualBodyPart.pussy + $sensualBodyPart.anal * $multiplier>>
+<<set _randomChosenPart = random(1, _totalWeight)>> 
+    <<if _randomChosenPart <= $sensualBodyPart.brain>>  
+        <<eventRandomizer1>>  
+    <<elseif _randomChosenPart <= ($sensualBodyPart.brain + $sensualBodyPart.tits)>> 
+        <<eventRandomizer2>>  
+    <<elseif _randomChosenPart <= ($sensualBodyPart.brain + $sensualBodyPart.tits + $sensualBodyPart.ass)>> 
+        <<eventRandomizer3>>  
+    <<elseif _randomChosenPart <= ($sensualBodyPart.brain + $sensualBodyPart.tits + $sensualBodyPart.ass + $sensualBodyPart.bottom)>>  
+        <<eventRandomizer4>>  
+    <<elseif _randomChosenPart <= ($sensualBodyPart.brain + $sensualBodyPart.tits + $sensualBodyPart.ass + $sensualBodyPart.bottom + $sensualBodyPart.mouth)>>  
+        <<eventRandomizer5>>  
+    <<elseif _randomChosenPart <= ($sensualBodyPart.brain + $sensualBodyPart.tits + $sensualBodyPart.ass + $sensualBodyPart.bottom + $sensualBodyPart.mouth + $sensualBodyPart.pussy)>> 
+    <<eventRandomizer6>>
+    <<else>>  
+        <<eventRandomizer7>>  
+    <</if>>
+
+<<elseif ($mc.lust >= 75 and $mc.lust < 90) and _chance <= $decreasingSanity.stage6>> 
+<<set $tempCorr += 0.015>>
+<<set _totalWeight = $sensualBodyPart.brain + $sensualBodyPart.tits + $sensualBodyPart.ass + $sensualBodyPart.bottom + $sensualBodyPart.mouth + $sensualBodyPart.pussy * $multiplier>>
+<<set _randomChosenPart = random(1, _totalWeight)>> 
+    <<if _randomChosenPart <= $sensualBodyPart.brain>>  
+        <<eventRandomizer1>>  
+    <<elseif _randomChosenPart <= ($sensualBodyPart.brain + $sensualBodyPart.tits)>> 
+        <<eventRandomizer2>>  
+    <<elseif _randomChosenPart <= ($sensualBodyPart.brain + $sensualBodyPart.tits + $sensualBodyPart.ass)>> 
+        <<eventRandomizer3>>  
+    <<elseif _randomChosenPart <= ($sensualBodyPart.brain + $sensualBodyPart.tits + $sensualBodyPart.ass + $sensualBodyPart.bottom)>>  
+        <<eventRandomizer4>>  
+    <<elseif _randomChosenPart <= ($sensualBodyPart.brain + $sensualBodyPart.tits + $sensualBodyPart.ass + $sensualBodyPart.bottom + $sensualBodyPart.mouth)>>  
+        <<eventRandomizer5>>  
+    <<else>>  
+        <<eventRandomizer6>>  
+    <</if>>
+
+
+
+<<elseif ($mc.lust >= 60 and $mc.lust < 75) and _chance <= $decreasingSanity.stage5>> 
+<<set $tempCorr += 0.015>>
+<<set _totalWeight = $sensualBodyPart.brain + $sensualBodyPart.tits + $sensualBodyPart.ass + $sensualBodyPart.bottom + $sensualBodyPart.mouth * $multiplier>>
+<<set _randomChosenPart = random(1, _totalWeight)>> 
+    <<if _randomChosenPart <= $sensualBodyPart.brain>>  
+        <<eventRandomizer1>>  
+    <<elseif _randomChosenPart <= ($sensualBodyPart.brain + $sensualBodyPart.tits)>> 
+        <<eventRandomizer2>>  
+    <<elseif _randomChosenPart <= ($sensualBodyPart.brain + $sensualBodyPart.tits + $sensualBodyPart.ass)>> 
+        <<eventRandomizer3>>  
+    <<elseif _randomChosenPart <= ($sensualBodyPart.brain + $sensualBodyPart.tits + $sensualBodyPart.ass + $sensualBodyPart.bottom)>>  
+        <<eventRandomizer4>>   
+    <<else>> 
+        <<eventRandomizer5>>  
+    <</if>>
+
+<<elseif ($mc.lust >= 45 and $mc.lust < 60) and _chance <= $decreasingSanity.stage4>>
+<<set $tempCorr += 0.015>>
+<<set _totalWeight = $sensualBodyPart.brain + $sensualBodyPart.tits + $sensualBodyPart.ass + $sensualBodyPart.bottom * $multiplier>>
+<<if _randomChosenPart <= $sensualBodyPart.brain>>
+<<eventRandomizer1>>
+<<elseif _randomChosenPart <=$sensualBodyPart.brain + $sensualBodyPart.tits>> 
+<<eventRandomizer2>>
+<<elseif _randomChosenPart <=$sensualBodyPart.brain + $sensualBodyPart.tits + $sensualBodyPart.ass>>
+<<eventRandomizer3>>
+<<else>>
+<<eventRandomizer4>>
+<</if>>
+
+<<elseif ($mc.lust >= 30 and $mc.lust < 45) and _chance <= 
+$decreasingSanity.stage3>>
+<<set $tempCorr += 0.015>>
+<<set _totalWeight = $sensualBodyPart.brain + $sensualBodyPart.tits + $sensualBodyPart.ass*$multiplier>>
+<<set _randomChosenPart = random(1, _totalWeight)>>
+<<if _randomChosenPart <= $sensualBodyPart.brain>>
+<<eventRandomizer1>>
+<<elseif _randomChosenPart <=$sensualBodyPart.brain + $sensualBodyPart.tits>> 
+<<eventRandomizer2>>
+<<else>>
+<<eventRandomizer3>>
+<</if>>
+
+<<elseif ($mc.lust >= 15 and $mc.lust < 30) and _chance <= $decreasingSanity.stage2>>
+<<set $tempCorr += 0.015>>
+<<set _totalWeight = $sensualBodyPart.brain + $sensualBodyPart.tits*$multiplier>>
+<<set _randomChosenPart = random(1, _totalWeight)>>
+<<if _randomChosenPart <= $sensualBodyPart.brain>>
+<<eventRandomizer1>>
+<<else>>  
+<<eventRandomizer2>>
+<</if>>
+
+<<elseif ($mc.lust >= 0 and $mc.lust < 15) and _chance <= $decreasingSanity.stage1>>
+<<set $tempCorr += 0.015>>
+<<set _totalWeight = $sensualBodyPart.brain * $multiplier>>
+<<eventRandomizer1>>
+
+<</if>>
+<</if>>
+
+
+<<set _randomIndex to random(0, _videoList.length - 1)>>
+<<set _selectedVideo to _videoList[_randomIndex]>>
+<<set $videoEvent to _selectedVideo>>
+
+
+<<if _selectedVideo>>
+<<goto "eventMC">>
+<</if>>
+
+
+<</nobr>>		
+
+

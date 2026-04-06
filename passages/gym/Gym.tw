@@ -1,0 +1,23 @@
+:: Gym {"position":"3050,1225","size":"100,100"}
+<<nobr>>
+<img src="assets/img/gym.jpg" width="85%">
+<br>
+@@.location; Gym@@<br>
+@@.mc-thoughts; This gym is the only one in the city. It is well-equipped and suitable for both beginners and professionals. Overall, it has everything needed to achieve a fit and athletic body.
+@@<br>
+<br>
+<<if $hours lte 7 or $hours gte 22>>
+@@.mc-thoughts; The gym is not open right now (open from 8 AM to 10 PM)@@
+<<else>>
+@@.enterbtn;[[Inside|GymInside]]@@
+<</if>>
+<br>
+<br>
+@@.backbtn;[[Leave|CityMap]]@@ <br>
+<<if previous(2) is "Gym">><<include "add1">>
+<<elseif previous() is "CityMap">><<include "add20">>
+<<else>><<include "add1">><</if>>
+
+<</nobr>>
+
+

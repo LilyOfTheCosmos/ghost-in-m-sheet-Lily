@@ -1,0 +1,30 @@
+:: DeliveryBurgerEvent1 [event] {"position":"1425,1850","size":"100,100"}
+<<nobr>>
+ <<set _randomIndex to random(1,2)>>
+<<if _randomIndex is 1>>
+<video autoplay controls muted loop>
+ <source src="assets/deliveryhub/burgerevent/5.mp4" type="video/mp4">
+ </video>
+ <<elseif _randomIndex is 2>>
+ <video autoplay controls muted loop>
+ <source src="assets/deliveryhub/burgerevent/6.mp4" type="video/mp4">
+ </video>
+ <</if>>
+ @@.notmc-speech; Now I'll fuck you, slut@@<br>
+@@.mc-speech; I don't want this to <<linkappend "ever end">><br>
+ <<set _check to random(1,2)>>
+<<if _check eq 1>>
+<video autoplay controls muted loop>
+ <source src="assets/deliveryhub/burgerevent/7.mp4" type="video/mp4">
+ </video><</if>>
+ <<if _check eq 2>>
+<video autoplay controls muted loop>
+ <source src="assets/deliveryhub/burgerevent/8.mp4" type="video/mp4">
+ </video><</if>>
+@@.mc-speech; ~God~ Don't stop please, I'm cumming@@<br>
+@@.notmc-speech; I'm cumming too@@<br>
+@@.mc-speechLink; [[Cum|DeliveryBurgerEvent2]]@@<br>
+<</linkappend>>@@
+<</nobr>>
+
+

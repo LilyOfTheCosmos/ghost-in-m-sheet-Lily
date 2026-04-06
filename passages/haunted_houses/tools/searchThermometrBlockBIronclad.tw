@@ -1,0 +1,32 @@
+:: searchThermometrBlockBIronclad {"position":"5700,125","size":"100,100"}
+<<nobr>>
+<span id="ironcladBlockBTemperatureButton">@@.adaptiveLink;<<linkreplace "Use @@color:yellow;T@@hermometer">><<addclass ".cardlink" "disabled-link">>
+<span id="ironcladBlockBTemperature">
+<<showmeter  'searchBlockBIroncladTemperature' ` $currentsearchBlockBIronclad.temperature / $equipment.thermometer`>>
+</span>
+
+<<repeat `$timerToolsDecreased`>>
+<<if $hotAct eq 1>><<set $mc.sanity -= $sanityIfHot>><</if>>
+<<if $BlockB.background eq 2>><<set $mc.sanity -= $sanityInTheDark>><</if>>
+
+<<include "add1">>
+<<if $currentsearchBlockBIronclad.temperature neq $equipment.thermometer>><<if $cursedHuntActive eq 1>>
+<<else>>
+<<include "lightPassageGhost">><<include "event">>
+<<if _eventTriggered is false>>
+<<include "huntStart">>
+<</if>><</if>><</if>>
+
+<<if $currentsearchBlockBIronclad.temperature lte ($equipment.thermometer - 1)>> 
+<<set $currentsearchBlockBIronclad.temperature += 1>>
+<<updatemeter 'searchBlockBIroncladTemperature' ` $currentsearchBlockBIronclad.temperature / $equipment.thermometer`>>
+<<elseif $currentsearchBlockBIronclad.temperature gte $equipment.thermometer>> 
+<<replace "#ironcladBlockBTemperature">><<include "temperatureHigh">><</replace>>
+<<set $currentsearchBlockBIronclad.temperature to 0>> <<removeclass ".cardlink" "disabled-link">>
+<<stop>>
+<</if>>
+<</repeat>>
+<</linkreplace>>@@
+<</nobr>>
+
+

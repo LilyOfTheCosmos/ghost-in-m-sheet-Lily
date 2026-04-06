@@ -1,0 +1,115 @@
+:: BeautySalonTattoos [nobr] {"position":"2600,2200","size":"100,100"}
+<div class="flexwrapper backgroundForText">
+<div class="housecard">
+<<if ndef $tattooFace>>
+<img src="assets/img/tattoos/tattooFace.jpg" class="iconPx"><br>
+<span class="priceAmount">100$</span><br>
+<span class="mc-thoughts">+2 <img src="assets/img/beauty.png" style="position: relative; top: 0.375em; width:30px; display: inline; margin: 0;"></span><br>
+<<if $mc.money gte 100>>
+@@.buyItemLink;<<link "Buy" "BeautySalonTattoos">>
+<<set $tattooFace to "worn">>
+<<set $mc.beauty += 2>>
+<<set $mc.money -= 100>>
+<</link>>@@<br>
+<<else>>@@.mc-thoughts; I don't have enough money@@<</if>><</if>>
+</div>
+<div class="housecard">
+<<if ndef $tattooNeck>>
+<img src="assets/img/tattoos/tattooNeck.webp" class="iconPx"><br>
+<span class="priceAmount">80$</span><br>
+<span class="mc-thoughts">+2 <img src="assets/img/beauty.png" style="position: relative; top: 0.375em; width:30px; display: inline; margin: 0;"></span><br>
+<<if $mc.money gte 80>>
+@@.buyItemLink;<<link "Buy" "BeautySalonTattoos">>
+<<set $tattooNeck to "worn">>
+<<set $mc.beauty += 2>>
+<<set $mc.money -= 80>>
+<</link>>@@<br>
+<<else>>@@.mc-thoughts; I don't have enough money@@<</if>><</if>>
+</div>
+<div class="housecard">
+<<if ndef $tattooHand>>
+<img src="assets/img/tattoos/tattooHand.jpg" class="iconPx">
+<span class="priceAmount">50$</span><br>
+<span class="mc-thoughts">+1 <img src="assets/img/beauty.png" style="position: relative; top: 0.375em; width:30px; display: inline; margin: 0;"></span><br>
+<<if $mc.money gte 50>>
+@@.buyItemLink;<<link "Buy" "BeautySalonTattoos">>
+<<set $tattooHand to "worn">>
+<<set $mc.beauty += 1>>
+<<set $mc.money -= 50>>
+<</link>>@@<br>
+<<else>>@@.mc-thoughts; I don't have enough money@@<</if>><</if>>
+</div>
+<div class="housecard">
+<<if ndef $tattooChest>>
+<img src="assets/img/tattoos/tattooChest.jpg" class="iconPx"><br>
+<<if $mc.corruption gte 5>>
+<span class="priceAmount">150$</span><br>
+<span class="mc-thoughts">+3 <img src="assets/img/beauty.png" style="position: relative; top: 0.375em; width:30px; display: inline; margin: 0;"></span><br>
+<<if $mc.money gte 150>>
+@@.buyItemLink;<<link "Buy" "BeautySalonTattoos">>
+<<set $tattooChest to "worn">>
+<<set $mc.money -= 150>>
+<<set $mc.beauty += 3>>
+<</link>>@@<br>
+<<else>>@@.mc-thoughts; I don't have enough money@@<</if>>
+<<else>>
+@@.warningtext; Req. 5+ <img src="assets/img/corruption.png" style="position: relative; top: 0.375em; width:30px; display: inline; margin: 0;">@@<br>
+<</if>>
+<</if>>
+
+</div>
+<div class="housecard">
+<<if ndef $tattooPussy>>
+
+<img src="assets/img/tattoos/tattooPussy.webp" class="iconPx"><br>
+<<if $mc.corruption gte 5>>
+<span class="priceAmount">200$</span><br>
+<span class="mc-thoughts">+3 <img src="assets/img/beauty.png" style="position: relative; top: 0.375em; width:30px; display: inline; margin: 0;"></span><br>
+<<if $mc.money gte 200>>
+@@.buyItemLink;<<link "Buy" "BeautySalonTattoos">>
+<<set $tattooPussy to "worn">>
+<<set $mc.money -= 200>>
+<<set $mc.beauty += 3>>
+<</link>>@@<br>
+<<else>>@@.mc-thoughts; I don't have enough money@@<</if>>
+<<else>>
+@@.warningtext; Req. 5+ <img src="assets/img/corruption.png" style="position: relative; top: 0.375em; width:30px; display: inline; margin: 0;">@@<br>
+<</if>>
+<</if>>
+
+</div>
+
+<div class="housecard">
+<<if ndef $tattooAss>>
+
+<img src="assets/img/tattoos/tattooAss.jpg" class="iconPx"><br>
+<<if $mc.corruption gte 5>>
+<span class="priceAmount">350$</span><br>
+<span class="mc-thoughts">+3 <img src="assets/img/beauty.png" style="position: relative; top: 0.375em; width:30px; display: inline; margin: 0;"></span><br>
+<<if $mc.money gte 350>>
+@@.buyItemLink;<<link "Buy" "BeautySalonTattoos">>
+<<set $tattooAss to "worn">>
+<<set $mc.money -= 350>>
+<<set $mc.beauty += 3>>
+<</link>>@@<br>
+<<else>>@@.mc-thoughts; I don't have enough money@@<</if>>
+<<else>>
+@@.warningtext; Req. 5+ <img src="assets/img/corruption.png" style="position: relative; top: 0.375em; width:30px; display: inline; margin: 0;">@@<br>
+<</if>>
+<</if>>
+</div>
+
+
+</div>
+<br>
+
+@@.backbtn;[[Leave|BeautySalonInside]] @@<br>
+<style>
+body {
+    background-image: url('assets/img/beautySalonInside.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+</style>
+
+

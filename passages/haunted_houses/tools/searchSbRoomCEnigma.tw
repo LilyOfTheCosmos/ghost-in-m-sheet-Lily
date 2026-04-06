@@ -1,0 +1,33 @@
+:: searchSbRoomCEnigma {"position":"5225,1300","size":"100,100"}
+<<nobr>>
+<span id="enigmaRoomCSpiritboxButton">@@.adaptiveLink;<<linkreplace "Use @@color:yellow;S@@piritbox">>
+<<if $roomC.background eq 1>>
+<<replace "#actionRoomCEnigma">><div class="spiritbox-container mc-thoughts">
+I need to turn off the light first</div><</replace>>
+<<else>><<addclass ".cardlink" "disabled-link">>
+<span id="enigmaRoomCSpiritbox">
+<<showmeter  'searchRoomCSpiritbox' ` $currentsearchRoomC.spiritbox / $equipment.sb`>>
+</span>
+<<repeat `$timerToolsDecreased`>>
+<<if $hotAct eq 1>><<set $mc.sanity -= $sanityIfHot>><</if>>
+<<if $roomC.background eq 2>><<set $mc.sanity -= $sanityInTheDark>><</if>>
+<<include "add1">>
+<<if $currentsearchRoomC.spiritbox neq $equipment.sb>><<include "lightPassageGhost">><<include "eventArt">>
+<</if>>
+
+
+<<if $currentsearchRoomC.spiritbox lte ($equipment.sb - 1)>> 
+<<set $currentsearchRoomC.spiritbox += 1>>
+<<updatemeter 'searchRoomCSpiritbox' ` $currentsearchRoomC.spiritbox / $equipment.sb`>>
+<<elseif $currentsearchRoomC.spiritbox gte $equipment.sb>>
+<<replace "#actionRoomCEnigma">><<include "SpiritboxCheck">><</replace>> 
+<<replace "#enigmaRoomCSpiritbox">><</replace>>
+<<set $currentsearchRoomC.spiritbox to 0>> <<removeclass ".cardlink" "disabled-link">>
+<<stop>>
+<</if>>
+<</repeat>>
+<</if>>
+<</linkreplace>>@@</span>
+<</nobr>>
+
+

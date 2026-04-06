@@ -1,0 +1,127 @@
+:: Internet {"position":"400,800","size":"100,100"}
+<<nobr>>
+<img src="assets/img/browserSearch.png" width="100%"><br>
+@@.mc-speech; What should I look for on the internet?@@<br>
+<br>
+
+<<linkreplace "@@.usebtn; Find a partner for ghost hunting@@ @@color:red; (Content with trans)@@">>
+<b>Someone responded to your offer:</b>
+<div class="flexwrapper">
+<div class="housecard">
+<img src="assets/trans/alex.jpg" width="100px"><br>
+</div>
+<div>
+<b>$alex.name</b>:<br>
+<em>Chance to find a cursed Item</em>: $alex.chanceOfSuccessCI: <br>
+<em>Chance to find evidence</em>: $alex.chanceOfSuccessAnyEvidence: <br>
+<em>Chance to find the ghost's favorite room</em>: $alex.chanceOfSuccessGR: <br>
+</div>
+<div style="display:flex; align-items: center;">
+<<link"@@.usebtn; Choose Alex@@">>
+<<set $companion to clone($alex)>>
+<<set $isCompChosenBrook to 0>>
+<<set $isCompChosenAlice to 0>>
+<<set $isCompChosenBlake to 0>>
+<<set $isCompChosenAlex to 1>>
+<<set $isCompChosenTaylor to 0>>
+<<set $isCompChosenCasey to 0>>
+<<set $chosenPlan to 0>>
+<<set $transStart to 0>>
+<<set $transPicture to 0>>
+<<unset $transFirstStage>>
+<<replace "#internetConfirm">>
+@@.mc-speech; Okay, I think I've found a partner for the next ghost hunt@@ - @@color:red;<b>$companion.name </b>@@. @@.mc-speech; He said he would wait for me at the haunted house.@@
+<</replace>>
+<</link>>
+</div>
+</div>
+
+
+<<if $prefssubscribers gte 5>><div class="flexwrapper">
+<div class="housecard">
+<img src="assets/trans/taylor.jpg" width="100px"><br>
+</div>
+<div>
+<b>$taylor.name</b>:<br>
+<em>Chance to find a cursed Item</em>: $taylor.chanceOfSuccessCI: <br>
+<em>Chance to find evidence</em>: $taylor.chanceOfSuccessAnyEvidence: <br>
+<em>Chance to find the ghost's favorite room</em>: $taylor.chanceOfSuccessGR: <br>
+</div>
+<div style="display:flex; align-items: center;">
+<<link "@@.usebtn; Choose Taylor@@">><<set $companion to clone($taylor)>>
+<<set $companion to clone($taylor)>>
+<<set $isCompChosenBrook to 0>>
+<<set $isCompChosenAlice to 0>>
+<<set $isCompChosenBlake to 0>>
+<<set $isCompChosenAlex to 0>>
+<<set $isCompChosenTaylor to 1>>
+<<set $isCompChosenCasey to 0>>
+<<set $chosenPlan to 0>>
+<<set $transStart to 0>>
+<<set $transPicture to 0>>
+<<unset $transFirstStage>>
+<<replace "#internetConfirm">>
+@@.mc-speech; Okay, I think I've found a partner for the next ghost hunt@@ - @@color:red;<b>$companion.name </b>@@. @@.mc-speech; He said he would wait for me at the haunted house.@@
+<</replace>>
+<</link>>
+</div>
+</div>
+<</if>>
+
+<<if $prefssubscribers gte 10>><div class="flexwrapper">
+<div class="housecard">
+<img src="assets/trans/casey.jpg" width="100px"><br>
+</div>
+<div>
+<b>$casey.name</b>:<br>
+<em>Chance to find a cursed Item</em>: $casey.chanceOfSuccessCI: <br>
+<em>Chance to find evidence</em>: $casey.chanceOfSuccessAnyEvidence: <br>
+<em>Chance to find the ghost's favorite room</em>: $casey.chanceOfSuccessGR: <br>
+</div>
+<div style="display:flex; align-items: center;">
+<<link "@@.usebtn; Choose Casey@@">><<set $companion to clone($casey)>>
+<<set $companion to clone($casey)>>
+<<set $isCompChosenBrook to 0>>
+<<set $isCompChosenAlice to 0>>
+<<set $isCompChosenBlake to 0>>
+<<set $isCompChosenAlex to 0>>
+<<set $isCompChosenTaylor to 0>>
+<<set $isCompChosenCasey to 1>>
+<<set $chosenPlan to 0>>
+<<set $transStart to 0>>
+<<set $transPicture to 0>>
+<<unset $transFirstStage>>
+<<replace "#internetConfirm">>
+@@.mc-speech; Okay, I think I've found a partner for the next ghost hunt@@ - @@color:red;<b>$companion.name </b>@@. @@.mc-speech; He said he would wait for me at the haunted house.@@
+<</replace>>
+<</link>>
+</div>
+</div><</if>>
+<span id="internetConfirm"></span>
+
+
+<</linkreplace>>
+
+<<if $ghostMareEventStart eq 2 or $ghostMareEventStart eq 3>>
+<br><<linkreplace "Feeling unwell after sleep">>
+@@.mc-thoughts; You find many articles about bad habits, congenital diseases, all stages of cancer, etc. But that's not what you need. After some time, something more interesting appears. Someone suggests that you should check how you sleep. It might be a good idea to buy a video camera and record your sleep.@@<br>
+@@.mc-speech; This sounds strange, what could be happening to me during sleep? Although, a camera might come in handy in the future. So, I need to go to the store and buy a video camera.@@
+<<set $ghostMareEventStart to 3>>
+<<include "add30">>
+<</linkreplace>>
+<<elseif $ghostMareEventStart eq 4>>
+<br><<linkreplace "Someone's whisper during sleep">>
+@@.mc-thoughts; I found information explaining what’s happening. It turns out that this behavior is @@@@.notmc-speech; caused by a Mare.@@ @@.mc-speech;To get rid of it, I just need to sprinkle some holy water in the room.@@ @@.mc-thoughts; It's best to do this as soon as possible, or the ghost will become more persistent with each passing night. However, there's also some information suggesting that I don’t have to do anything at all—the ghost might leave on its own.@@
+<<set $ghostMareInfoCollected to 1>>
+<</linkreplace>>
+<<include "add30">>
+<</if>>
+<br>
+<br>
+@@.backbtn; [[Back|Use PC]]@@
+<<done>>
+<<addclass ".linkselector" "disabled-link">>
+<</done>>
+<</nobr>> 
+
+

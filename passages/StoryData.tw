@@ -1,0 +1,19 @@
+:: StoryData
+{
+  "ifid": "a09f9953-1446-42af-ba7b-f37190024cfa",
+  "format": "SugarCube",
+  "format-version": "2.37.3",
+  "start": "Intro",
+  "tag-colors": {
+    "street": "red",
+    "GhostStreetMap": "red",
+    "Ghoststreetmap": "red",
+    "ghoststreet": "red",
+    "city": "orange",
+    "deliverymap": "yellow",
+    "event": "green"
+  },
+  "zoom": 0.6
+}
+
+

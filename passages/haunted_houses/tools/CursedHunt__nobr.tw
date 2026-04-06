@@ -1,0 +1,81 @@
+:: CursedHunt [nobr] {"position":"2800,1100","size":"100,100"}
+<<set $cursedHuntActive to 1>>
+<<script>>
+
+(function() {
+    if (State.variables.cursedHuntActive === 1) {
+   
+        let duration = 20;
+        let interval = 1;
+        let lightCycle = 0;
+        let endTime = Date.now() + duration * 1000;
+        function toggleLights() {
+            let isDark = lightCycle % 2 === 0;
+			if (State.variables.isOwaissa === 1) {
+            if (isDark) {
+                $('body.owaissakitchen').addClass('smooth-transition owaissaKitchenDark').removeClass('owaissaKitchenLight');
+                $('body.owaissahallway').addClass('smooth-transition owaissaHallwayDark').removeClass('owaissaHallwayLight');
+                $('body.owaissabathroom').addClass('smooth-transition owaissaBathroomDark').removeClass('owaissaBathroomLight');
+                $('body.owaissabedroom').addClass('smooth-transition owaissaBedroomDark').removeClass('owaissaBedroomLight');
+                $('body.owaissalivingroom').addClass('smooth-transition owaissaLivingroomDark').removeClass('owaissaLivingroomLight');
+            } else {
+                $('body.owaissakitchen').addClass(' smooth-transition owaissaKitchenLight').removeClass('owaissaKitchenDark');
+                $('body.owaissahallway').addClass('smooth-transition owaissaHallwayLight').removeClass('owaissaHallwayDark');
+                $('body.owaissabathroom').addClass('smooth-transition owaissaBathroomLight').removeClass('owaissaBathroomDark');
+                $('body.owaissabedroom').addClass('smooth-transition owaissaBedroomLight').removeClass('owaissaBedroomDark');
+                $('body.owaissalivingroom').addClass('smooth-transition owaissaLivingroomLight').removeClass('owaissaLivingroomDark');
+            }
+			} else if (State.variables.isElm === 1) {
+            if (isDark) {
+                $('body.elmkitchen').addClass('smooth-transition elmKitchenDark').removeClass('elmKitchenLight');
+                $('body.elmhallway').addClass('smooth-transition elmHallwayDark').removeClass('elmHallwayLight');
+                $('body.elmhallwayupstairs').addClass('smooth-transition elmHallwayTwoDark').removeClass('elmHallwayTwoLight');
+                $('body.elmbathroom').addClass('smooth-transition elmBathroomDark').removeClass('elmBathroomLight');
+                $('body.elmbathroomtwo').addClass('smooth-transition elmBathroomTwoDark').removeClass('elmBathroomTwoLight');
+                $('body.elmbedroom').addClass('smooth-transition elmBedroomDark').removeClass('elmBedroomLight');
+                $('body.elmbedroomtwo').addClass('smooth-transition elmBedroomTwoDark').removeClass('elmBedroomTwoLight');
+                $('body.elmbasement').addClass('smooth-transition elmBasementDark').removeClass('elmBasementLight');
+                $('body.elmnursery').addClass('smooth-transition elmNurseryDark').removeClass('elmNurseryLight');
+            } else {
+                $('body.elmkitchen').addClass('smooth-transition elmKitchenLight').removeClass('elmKitchenDark');
+                $('body.elmhallway').addClass('smooth-transition elmHallwayLight').removeClass('elmHallwayDark');
+                $('body.elmhallwayupstairs').addClass('smooth-transition elmHallwayTwoLight').removeClass('elmHallwayTwoDark');
+                $('body.elmbathroom').addClass('smooth-transition elmBathroomLight').removeClass('elmBathroomDark');
+                $('body.elmbathroomtwo').addClass('smooth-transition elmBathroomTwoLight').removeClass('elmBathroomTwoDark');
+                $('body.elmbedroom').addClass('smooth-transition elmBedroomLight').removeClass('elmBedroomDark');
+                $('body.elmbedroomtwo').addClass('smooth-transition elmBedroomTwoLight').removeClass('elmBedroomTwoDark');
+                $('body.elmbasement').addClass('smooth-transition elmBasementLight').removeClass('elmBasementDark');
+                $('body.elmnursery').addClass('smooth-transition elmNurseryLight').removeClass('elmNurseryDark');
+            }
+			}
+            lightCycle++;
+
+            if (Date.now() < endTime) {
+                setTimeout(toggleLights, interval * 1000);
+            } else {
+                  $('.cursedHuntLinkDisable').removeClass('disabled-linkSpecial');
+if (State.variables.ghost.name === "Deogen") {
+    if (State.variables.isInHideSpot === 1 && State.variables.cursedHuntActive === 1) {
+        State.variables.cursedHuntActive = 0;
+        Engine.play("cursedHuntStart");
+    }
+    else if ((State.variables.isInHideSpot === 0 || State.variables.isInHideSpot == null) && State.variables.cursedHuntActive === 1) {
+        State.variables.cursedHuntActive = 0;
+    }
+} else {
+    if ((State.variables.isInHideSpot === 0 || State.variables.isInHideSpot == null) && State.variables.cursedHuntActive === 1) {
+        State.variables.cursedHuntActive = 0;
+        Engine.play("cursedHuntStart");
+    } else {
+        State.variables.cursedHuntActive = 0;
+    }
+}
+            }
+        }
+
+        toggleLights();
+    }
+})();
+<</script>>
+
+

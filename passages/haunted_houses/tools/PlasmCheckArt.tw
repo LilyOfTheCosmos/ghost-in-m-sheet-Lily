@@ -1,0 +1,47 @@
+:: PlasmCheckArt {"position":"3625,525","size":"100,100"}
+<<nobr>>
+<<set _glassChance = random(1, 100)>>
+<<if ($ghost.evidence.includes("glass") or $saveMimic eq 1) and (
+    (_glassChance lte 15 and $equipment.glass eq 5) or
+    (_glassChance lte 25 and $equipment.glass eq 4) or
+    (_glassChance lte 35 and $equipment.glass eq 3)
+)>>
+    <<set _check to random(1, 14)>>
+    <<if _check gte 1 and _check lte 14 and (
+        
+        ($ghostRoom.name === "hallway" and (passage() === "enigmaHallway")) or
+        ($ghostRoom.name === "kitchen" and (passage() === "enigmaKitchen")) or
+        ($ghostRoom.name === "bedroom" and (passage() === "enigmaBedroom")) or
+        ($ghostRoom.name === "bathroom" and (passage() === "enigmaBathroom")) or
+        ($ghostRoom.name === "livingroom" and passage() === "enigmaLivingroom") or
+        ($ghostRoom.name === "roomA" and (passage() === "enigmaRoomA")) or
+        ($ghostRoom.name === "roomB" and (passage() === "enigmaRoomB")) or
+        ($ghostRoom.name === "roomC" and (passage() === "enigmaRoomC")) or
+        ($ghostRoom.name === "basement" and (passage() === "enigmaBasement")) 
+    )>>
+        <<if _check eq 1>><img src="assets/art/plasm/1.png" class="displayCentredImgs"><</if>>
+        <<if _check eq 2>><img src="assets/art/plasm/2.png" class="displayCentredImgs"><</if>>
+        <<if _check eq 3>><img src="assets/art/plasm/3.png" class="displayCentredImgs"><</if>>
+        <<if _check eq 4>><img src="assets/art/plasm/4.png" class="displayCentredImgs"><</if>>
+        <<if _check eq 5>><img src="assets/art/plasm/5.png" class="displayCentredImgs"><</if>>
+        <<if _check eq 6>><img src="assets/art/plasm/6.png" class="displayCentredImgs"><</if>>
+        <<if _check eq 7>><img src="assets/art/plasm/7.png" class="displayCentredImgs"><</if>>
+        <<if _check eq 8>><img src="assets/art/plasm/8.png" class="displayCentredImgs"><</if>>
+        <<if _check eq 9>><img src="assets/art/plasm/9.png" class="displayCentredImgs"><</if>>
+        <<if _check eq 10>><img src="assets/art/plasm/10.png" class="displayCentredImgs"><</if>>
+        <<if _check eq 11>><img src="assets/art/plasm/11.png" class="displayCentredImgs"><</if>>
+        <<if _check eq 12>><img src="assets/art/plasm/12.png" class="displayCentredImgs"><</if>>
+        <<if _check eq 13>><img src="assets/art/plasm/13.png" class="displayCentredImgs"><</if>>
+        <<if _check eq 14>><img src="assets/art/plasm/14.png" class="displayCentredImgs"><</if>>
+        <br>
+      @@.evidenceshadowtext; It seems I've found ectoplasm... Except somehow I managed to get myself completely covered in this mysterious substance. I don't even remember how it happened. Oh well, at least I've found another piece of evidence..@@<br>
+    <<else>>
+    <div class="notFound-container">
+    <div class="mc-thoughts">I didn't find any ectoplasm stains</div></div><</if>>
+<<else>>
+     <div class="notFound-container"><div class="mc-thoughts">I didn't find any ectoplasm stains</div></div>
+<</if>>
+<</nobr>>
+
+
+

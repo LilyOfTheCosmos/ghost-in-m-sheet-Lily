@@ -1,0 +1,30 @@
+:: libraryGirl {"position":"2925,2000","size":"100,100"}
+<<nobr>>
+You wander from shelf to shelf, searching for something interesting. Suddenly, you notice a beautiful girl.
+<<set _checkComic to random(1,5)>>
+<<if _checkComic eq 1>><img src="assets/library/woman1.jpg" class="libraryGirlImg"><</if>>
+<<if _checkComic eq 2>><img src="assets/library/woman2.jpg" class="libraryGirlImg"><</if>>
+<<if _checkComic eq 3>><img src="assets/library/woman3.jpg" class="libraryGirlImg"><</if>>
+<<if _checkComic eq 4>><img src="assets/library/woman4.jpg" class="libraryGirlImg"><</if>>
+<<if _checkComic eq 5>><img src="assets/library/woman5.jpg" class="libraryGirlImg"><</if>><br>
+@@.mc-thoughts;All your attention is focused on her. @@<br>
+@@.mc-speech; You watch until she leaves.@@<br>
+<<include "add30lust">>
+<<if $mc.corruption lt 3>><<set $mc.corruption += 0.1>>
++ 0.1 <img src="assets/img/corruption.png" style="position: relative; top: 0.375em; width:3%; display: inline; margin: 0;"><br><</if>>
++ 30 <img src="assets/img/hearth.png" style="position: relative; top: 0.375em; width:3%; display: inline; margin: 0;"><br> 
+<br>
+@@.backbtn; [[Leave|LibraryInside]]@@ <br>
+<<done>>
+<<addclass ".linkselector" "disabled-link">>
+<</done>>
+<</nobr>>
+<style>
+.libraryGirlImg {
+	width:50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+</style>
+
+

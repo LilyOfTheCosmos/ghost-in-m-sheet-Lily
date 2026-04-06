@@ -1,0 +1,140 @@
+:: PassageReady {"position":"200,200","size":"100,100"}
+<<if $ghostHuntingMode eq 2>>
+
+
+<<if $chosenPlanActivated eq 1 and (($hours * 60 + $minutes) gte $chosenPlanActivatedTime) and $showComp neq 2 and $showComp neq 3>>
+<<set _checkChance to random(1,100)>>
+<<if _checkChance gte $chanceToAttack>>
+<<set $showComp to 3>>
+<<else>>
+<<set $showComp to 2>>
+<<include "CompRandomRoom">>
+<<set $stepCount = 0>>
+<</if>>
+<</if>>
+
+
+<</if>>
+
+
+<<if passage() eq $randomGhostPassage>>
+<<goto "compEvent">>
+<</if>>
+
+<<if $changeToolsActivated eq 1>>
+<<include "changeTimer">>
+<</if>>
+
+
+<<set $stealChance to (1 + (Math.log(101 - $mc.sanity) / Math.log(101)) * 1) * $stealChanceMult>>
+
+<<if ndef $ghostSpecialEventSpiritCD>><<set $ghostSpecialEventSpiritCD to 0>><</if>>
+
+<<if ndef $ghost16>>
+<<set $ghost16 to {
+name: "Cthulion",
+evidence: ["spiritbox", "glass", "temperature"],
+}>>
+<</if>>
+
+<<if $ghost17fixed neq 0>>
+<<set $ghost17 to {
+name: "Banshee",
+evidence: ["glass", "gwb", "uvl"],
+}>>
+<<set $ghost17fixed to 0>>
+<</if>>
+
+<<if ndef $ghost18>>
+<<set $ghost18 to {
+name: "Raiju",
+evidence: ["emf", "spiritbox", "uvl"],
+}>>
+<</if>>
+
+<<if ndef $relationshipBlake>><<set $relationshipBlake to 0>><</if>>
+<<if ndef $crucifixAmount>><<set $crucifixAmount to 0>><</if>>
+<<if ndef $sanityPillsAmount>><<set $sanityPillsAmount to 0>><</if>>
+
+<<set $tornStyles to [
+    "torn-style-1 torn-effect",
+    "torn-style-2 torn-effect",
+    "torn-style-3 torn-effect",
+    "torn-style-4 torn-effect",
+    "torn-style-5 torn-effect",
+    "torn-style-6 torn-effect",
+    "torn-style-7 torn-effect",
+    "torn-style-8 torn-effect",
+    "torn-style-9 torn-effect",
+    "torn-style-10 torn-effect"
+]>>
+
+<<if $ghostHuntingMode eq 3>>
+<<set $tarotCardsStage to 2>>
+<<set $MonkeyPawStage to 2>>
+<</if>>
+
+
+<<if ndef $mc.fit>>
+<<set $mc.fit to 0>>
+<</if>>
+
+<<if ndef $sensualBodyPart>>
+<<set $sensualBodyPart to {
+	brain:1,
+    tits:1,
+    ass:1,
+    bottom:1,
+    mouth:1,
+    pussy:1,
+    anal:1, 
+}>>
+<</if>>
+
+<<if $sensualBodyPart.brain gte 6>><<set $sensualBodyPart.brain to 6>><</if>>
+<<if $sensualBodyPart.tits gte 6>><<set $sensualBodyPart.tits to 6>><</if>>
+<<if $sensualBodyPart.ass gte 6>><<set $sensualBodyPart.ass to 6>><</if>>
+<<if $sensualBodyPart.bottom gte 6>><<set $sensualBodyPart.bottom to 6>><</if>>
+<<if $sensualBodyPart.mouth gte 6>><<set $sensualBodyPart.mouth to 6>><</if>>
+<<if $sensualBodyPart.pussy gte 6>><<set $sensualBodyPart.pussy to 6>><</if>>
+<<if $sensualBodyPart.anal gte 6>><<set $sensualBodyPart.anal to 6>><</if>>
+
+<<if $hasPSprayCharges lte 0>>
+<<set $hasPSpray to 0>>
+<</if>>
+
+<<if ndef $updatePiercingBodyPartSens>>
+<<set $piercingTitsAddSens to 0>>
+<<set $piercingTongueAddSens to 0>>
+<<set $piercingPussyAddSens to 0>>
+<<set $updatePiercingBodyPartSens to 1>>
+<</if>>
+
+
+<<if $updateIronclad neq 2>>
+<<include "updateIronclad">>
+<</if>>
+
+<<if ndef $mc.exhib>><<set $mc.exhib to 0>><</if>>
+<<if ndef $fixSave>><<include "fixSaveFile">><</if>>
+<<if ndef $moneyFromWeakenTheGhost>>
+<<set $moneyFromWeakenTheGhost to 0>>
+<</if>>
+
+<<if ndef $succubusEventCD and def $succubus>>
+<<set $succubusEventCD to 0>>
+<</if>>
+
+<<if ndef $gotCursedItemEventCD and def $gotCursedItem>>
+<<set $gotCursedItemEventCD to 0>>
+<</if>>
+
+<<if ndef $tentaclesEventStageSleep>>
+<<set $tentaclesEventStageSleep to 0>>
+<</if>>
+
+<<if ndef $addedTransInit>>
+<<include "transInit">>
+<</if>>
+
+

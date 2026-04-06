@@ -1,0 +1,32 @@
+:: searchThermometrKitchenIronclad {"position":"6600,125","size":"100,100"}
+<<nobr>>
+<span id="ironcladKitchenTemperatureButton">@@.adaptiveLink;<<linkreplace "Use @@color:yellow;T@@hermometer">><<addclass ".cardlink" "disabled-link">>
+<span id="ironcladKitchenTemperature">
+<<showmeter  'searchKitchenIroncladTemperature' ` $currentsearchKitchenIronclad.temperature / $equipment.thermometer`>>
+</span>
+
+<<repeat `$timerToolsDecreased`>>
+<<if $hotAct eq 1>><<set $mc.sanity -= $sanityIfHot>><</if>>
+<<if $kitchen.background eq 2>><<set $mc.sanity -= $sanityInTheDark>><</if>>
+
+<<include "add1">>
+<<if $currentsearchKitchenIronclad.temperature neq $equipment.thermometer>><<if $cursedHuntActive eq 1>>
+<<else>>
+<<include "lightPassageGhost">><<include "event">>
+<<if _eventTriggered is false>>
+<<include "huntStart">>
+<</if>><</if>><</if>>
+
+<<if $currentsearchKitchenIronclad.temperature lte ($equipment.thermometer - 1)>> 
+<<set $currentsearchKitchenIronclad.temperature += 1>>
+<<updatemeter 'searchKitchenIroncladTemperature' ` $currentsearchKitchenIronclad.temperature / $equipment.thermometer`>>
+<<elseif $currentsearchKitchenIronclad.temperature gte $equipment.thermometer>> 
+<<replace "#ironcladKitchenTemperature">><<include "temperatureHigh">><</replace>>
+<<set $currentsearchKitchenIronclad.temperature to 0>> <<removeclass ".cardlink" "disabled-link">>
+<<stop>>
+<</if>>
+<</repeat>>
+<</linkreplace>>@@
+<</nobr>>
+
+

@@ -1,0 +1,102 @@
+:: IroncladReception [hauntedhouse IroncladReception] {"position":"2600,425","size":"100,100"}
+<<nobr>>
+<div class="room">
+	<div class="room-wrapper">
+		<div class="content">
+          	<div id="actionironcladReception" class="action">
+				
+          	</div>
+        </div>
+        
+		<div class="footer">
+        	<div class="footertools">
+         	<div class="footer-card">
+            	<div class="cardimg">
+                	<img src="assets/img/emf.png" class="icon" id="ironcladReceptionPicEMF">
+                </div>
+                <div class="cardlink">
+                	<<include "searchEMFReceptionIronclad">>
+                </div>
+            </div>
+            <div class="footer-card">
+            	<div class="cardimg">
+                	<img src="assets/img/glass.png" class="icon" id="actionironcladReceptionPicPlasm">                
+                </div>
+                <div class="cardlink">
+                	<<include "searchPlasmReceptionIronclad">>
+                </div>
+            </div>
+            <div class="footer-card">
+            	<div class="cardimg">
+                	<img src="assets/img/gwb.png" class="icon" id="actionironcladReceptionPicGWB">                
+                </div>
+                <div class="cardlink">
+                	<<include "searchGwbReceptionIronclad">>
+                </div>
+            </div>
+            <div class="footer-card">
+            	<div class="cardimg">
+                	<img src="assets/img/spiritbox.png" class="icon" id="actionironcladReceptionPicSB">                
+                </div>
+                <div class="cardlink">
+                	<<include "searchSbReceptionIronclad">>
+                </div>
+            </div>
+            <div class="footer-card">
+            	<div class="cardimg">
+                	<img src="assets/img/thermometr.png" class="icon" id="actionironcladReceptionPicThermometr">                
+                </div>
+                <div class="cardlink">
+                	<<include "searchThermometrReceptionIronclad">>
+                </div>
+            </div>
+            <div class="footer-card">
+            	<div class="cardimg">
+                	<img src="assets/img/uvl.png" class="icon" id="actionironcladReceptionPicUVL">                
+                </div>
+                <div class="cardlink">
+                	<<include "searchUvlReceptionIronclad">>
+                </div>
+            </div>
+              <<if $showComp eq 1>>
+            <div class="footer-card">
+            	<div class="cardimg">
+					<<compLinks>>              
+                </div>
+            </div>
+            <<elseif $showComp eq 2>>
+            <div class="footer-card">
+            	<div class="cardimg">
+                <a data-passage="failedComp">
+                	<img src="assets/img/questionMark.png" class="companion-image"> </a>     
+                </div>
+            </div>
+            <<elseif $showComp eq 3>>
+            <div class="footer-card">
+            	<div class="cardimg">
+<<compLinksSuccess>>
+                </div>
+            </div>
+            <</if>>
+            <div class="footer-card footer-light">
+            	<span class="cursedHuntLinkDisable"><<link [img[assets/img/lighton.png][IroncladReception]]>><<set $reception.background to 1>><</link>>
+             <<link [img[assets/img/lightoff.png][IroncladReception]]>><<set $reception.background to 2>><</link>>
+			<<if $mc.lust gte 80 and $weakenTheGhostQuest and $isWeakenGhost neq 1>> 
+<<link [img[assets/img/hearth.png][minigame]]>>
+<<set $minigameVideo to "start">>
+<<set $ghostOrgasmMeter to 0>>
+<<set $mcOrgasmMeter to 0>><</link>>
+<</if>></span>
+            </div>
+         </div>
+         <div class="footeraction">
+         <br><br><br>
+			@@.adaptiveLink;<<link "Entrance" "IroncladHallway">>
+<<includeTimeEventHunt>><<set $stepCount += 1>><</link>>@@        
+		 </div>
+		</div>
+	</div>
+</div>
+<</nobr>>
+
+

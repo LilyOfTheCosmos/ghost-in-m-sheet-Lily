@@ -1,0 +1,35 @@
+:: DeliveryBurgerEventStart [event] {"position":"1425,1750","size":"100,100"}
+<<nobr>>
+<<set $mc.lust to 100>>
+@@.mc-thoughts; You've been smoking weed for a while and are just relaxing. At first you are having a friendly conversation, but after 10 minutes you find yourself on your knees with a dick in your mouth, getting endless pleasure just from  @@@@.mc-speech;<<linkreplace " a blowjob">>
+ <<set _randomIndex to random(1,2)>>
+<<if _randomIndex is 1>>
+<video autoplay controls muted loop>
+ <source src="assets/deliveryhub/burgerevent/1.mp4" type="video/mp4">
+ </video>
+ <<elseif _randomIndex is 2>>
+ <video autoplay controls muted loop>
+ <source src="assets/deliveryhub/burgerevent/2.mp4" type="video/mp4">
+ </video>
+ <</if>>
+ @@.mc-thoughts; It seems that I will cum just from the dick in my mouth, why does it feel so good@@<br>
+@@.notmc-speech; Take off your clothes and show me your pussy@@<br>
+ <<linkreplace "@@.mc-speechLink; Take off your clothes@@">>
+ <<set _check to random(1,2)>>
+<<if _check eq 1>>
+<video autoplay controls muted loop>
+ <source src="assets/deliveryhub/burgerevent/3.mp4" type="video/mp4">
+ </video><</if>>
+ <<if _check eq 2>>
+<video autoplay controls muted loop>
+ <source src="assets/deliveryhub/burgerevent/4.mp4" type="video/mp4">
+ </video><</if>>
+@@.mc-speech; ~Mm~ my pussy is all yours@@<br>
+@@.notmc-speech; Ha~ i know, suck a little more baby@@<br>
+@@.mc-thoughts; I'll do whatever you want@@<br>
+@@.mc-speechLink; [[Suck his cock|DeliveryBurgerEvent1]]@@<br>
+<</linkreplace>>
+<</linkreplace>>@@
+<</nobr>>
+
+

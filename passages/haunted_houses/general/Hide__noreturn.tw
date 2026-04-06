@@ -1,0 +1,55 @@
+:: Hide [noreturn] {"position":"2600,1225","size":"100,100"}
+<<nobr>>
+<<set _check to random(1,2)>>
+<<if _check eq 1>>
+<img src="assets/hunting/hid1.jpg" width="100%"><br>
+<</if>>
+<<if _check eq 2>>
+<img src="assets/hunting/hid2.jpg" width="100%"><br>
+<</if>>
+&emsp;&emsp;You quickly hide, holding your breath and trying not to make a sound. Your heart is pounding wildly, almost drowning out all other noises. You feel the fear tightening around your throat, but you try to stay calm.<br>
+&emsp;&emsp;Outside, you hear footsteps, heavy and menacing. The ghost is nearby. Several agonizing seconds, maybe minutes, pass as you struggle with the urge to peek out and check <<linkappend "@@.usebtn; if it has gone away.@@">><br>
+<<set _checkH to random(1,100)>>
+<<if $ghost.name eq "Deogen">>
+<<set _checkH to 100>>
+<<elseif $ghost.name eq "Jinn">>
+<<set _checkH to 0>>
+<</if>>
+<<if _checkH lte 50>>
+&emsp;&emsp;Finally, you decide to take a look. You carefully lift your head and peek out from your hiding place. The ghost's shadow has vanished, and the room is silent again. It seems 
+@@.usebtn;[[you got lucky|$return]]@@
+ Now the main thing is to act cautiously and not reveal yourself again.
+<<else>>
+<video autoplay muted>
+<source src="assets/hunting/huntEnd.mp4" type="video/mp4">
+</video>
+&emsp;&emsp; You slowly peek out from your hiding place, hoping the ghost has left. But your eyes meet its hollow sockets. 
+A chill grips your body, and you realize you've made a fatal mistake.<br>
+You have a little time to 
+<<if $crucifixAmount gte 1>>
+@@.usebtn; [[use the Crucifix|Crucifix]]@@
+. Or perhaps, it might be best 
+<<done>><<if $mc.corruption lte 4>>
+<<addclass ".checkForCorruptionHunt" "disabled-link">>
+<</if>><</done>>
+<span class="checkForCorruptionHunt">
+@@.usebtn;[[not to resist...|huntEnd]]@@ <<if $mc.corruption lte 4>>@@.warningtext; (Req. <img src="assets/img/corruption.png" style="position: relative; top: 0.375em; width:3%; display: inline; margin: 0;"> ≥ 5)@@<</if>></span>
+<<else>>
+use the Crucifix, but unfortunately, @@.enterbtn;[[you don’t have it...|huntEnd]]@@
+<</if>>
+
+
+
+
+
+
+
+
+<</if>>
+<</linkappend>>
+<<done>>
+<<addclass ".linkselector" "disabled-link">>
+<</done>>
+<</nobr>>
+
+

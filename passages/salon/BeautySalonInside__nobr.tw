@@ -1,0 +1,8 @@
+:: BeautySalonInside [nobr] {"position":"2700,2100","size":"100,100"}
+<img src="assets/img/beautySalonInside.jpg" width="85%"><br>
+@@.enterbtn; [[Piercing|BeautySalonPiercing]]@@ <br>
+@@.enterbtn; [[Tattoos|BeautySalonTattoos]]@@<br>
+<br>
+@@.backbtn; [[Leave|BeautySalon]] @@<br>
+
+

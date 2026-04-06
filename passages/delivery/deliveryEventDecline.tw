@@ -1,0 +1,17 @@
+:: deliveryEventDecline {"position":"600,1600","size":"100,100"}
+<<nobr>>
+<<set _randomIndex to either(0, 1, 2)>>
+ <img src="assets/img/deliverygirlhappy.jpg" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
+<<set $earnedMoney += $jobMoneySuccessed>>
+<<if _randomIndex is 0>>
+    @@.notmc-speech; Great, thank you so much!@@
+<<elseif _randomIndex is 1>>
+    @@.notmc-speech; Awesome! Thank you very much.@@
+<<else>>
+    @@.notmc-speech; Just in time, thank you!@@
+<</if>>
+    <br><br>
+  @@.backbtn;  [[Back|DeliveryMap]] @@
+<</nobr>>
+
+

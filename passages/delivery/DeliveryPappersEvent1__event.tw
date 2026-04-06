@@ -1,0 +1,40 @@
+:: DeliveryPappersEvent1 [event] {"position":"1550,1850","size":"100,100"}
+<<nobr>>
+<<set $deliveryPappersEvent to 1>>
+<<include "add45lust">>
+<<set _check to random(1,2)>>
+<<if _check eq 1>>
+<video autoplay controls muted loop>
+ <source src="assets/deliveryhub/papersevent/4.mp4" type="video/mp4">
+ </video><</if>>
+ <<if _check eq 2>>
+<video autoplay controls muted loop>
+ <source src="assets/deliveryhub/papersevent/5.mp4" type="video/mp4">
+ </video><</if>>
+ +45 <img src="assets/img/hearth.png" style="position: relative; top: 0.375em; width:3%;"><br>
+ @@.mc-speech; Oh~i'm cumming~@@<br>
+ @@.notmc-speech; On your knees bitch,@@ <<linkappend "@@.notmc-speechLink; quickly@@">><br>
+ <video autoplay controls muted loop>
+ <source src="assets/deliveryhub/papersevent/6.mp4" type="video/mp4">
+ </video>
+@@.mc-speech; Oh~so much cum@@<br>
+@@.notmc-speech; Wow, you are the best. I think you deserve a little bonus@@<br>
+@@.mc-thoughts; I feel like I'm a prostitute. I’ve probably already made more money with my body than with delivery.@@<br>
+<br>
+You earned an extra $15<br>
+<<set $mc.money += 15>>
+<<if $mc.corruption lt 10>>
+<<set $mc.corruption += 0.2>>
++0.2 <img src="assets/img/corruption.png" style="position: relative; top: 0.375em; width:3%; display: inline; margin: 0;"><br>
+<</if>>
+<br>
+@@.backbtn;[[Leave|DeliveryMap]]@@ <br>
+<<if $mc.lust gte 100>>
+ <<set $mc.lust to 0>>
+ <<set $mc.lust to Number($mc.lust.toFixed(2))>>
+<<updatemeter 'mclust' `$mc.lust / 100`>>
+ <</if>>
+<</linkappend>>
+<</nobr>>
+
+

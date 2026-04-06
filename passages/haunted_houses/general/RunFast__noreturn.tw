@@ -1,0 +1,49 @@
+:: RunFast [noreturn] {"position":"2500,1225","size":"100,100"}
+<<nobr>>
+<<if $jeansState eq "worn" or $shortsState eq "worn" or $skirtState eq "worn">>
+<<else>>
+<<if $pantiesState eq "worn">>
+<video autoplay controls muted loop>
+ <source src="assets/hunting/run.mp4" type="video/mp4">
+ </video>
+ <</if>>
+ <</if>>
+&emsp;&emsp;You decide that your only chance to survive is to run. A surge of adrenaline fills your body, and you dash forward without looking back. Your legs carry you through corridors, dark rooms, and narrow passages.<br>
+
+&emsp;&emsp;The ghost's footsteps grow louder and closer, and you realize that every second counts. Your heart pounds wildly in your chest, and your breathing becomes more labored.<br>
+
+&emsp;&emsp;Finally, after running some distance, you decide to look back. Your heart skips a beat. Did you manage to <<linkappend "@@.usebtn; escape the pursuit, or is the ghost still close behind?@@">><br>
+<<set _check to random(1,100)>>
+<<if $ghost.name eq "Jinn">>
+<<set _check to 0>>
+<<elseif $ghost.name eq "Deogen">>
+<<set _check to 100>>
+<</if>>
+<<if _check lte 30>>
+
+You decide to look back, and your heart freezes with terror. The ghost is still there, closer than you thought. 
+Cold air surrounds you, and you feel an icy hand reaching for you. You have a little time to 
+<<if $crucifixAmount gte 1>>
+@@.usebtn; [[use the Crucifix|Crucifix]]@@
+. Or perhaps, it might be best 
+<<done>><<if $mc.corruption lte 4>>
+<<addclass ".checkForCorruptionHunt" "disabled-link">>
+<</if>><</done>>
+<span class="checkForCorruptionHunt">
+@@.usebtn;[[not to resist...|huntEnd]]@@ <<if $mc.corruption lte 4>>@@.warningtext; (Req. <img src="assets/img/corruption.png" style="position: relative; top: 0.375em; width:3%; display: inline; margin: 0;"> ≥ 5)@@<</if>></span>
+<<else>>
+use the Crucifix, but unfortunately, @@.enterbtn;[[you don’t have it...|huntEnd]]@@
+<</if>>
+
+
+<<else>>
+You decide to look back, and to your relief, you see that the ghost has disappeared. The footsteps are no longer audible, and the shadows have stopped closing in around you. You slow down, trying to catch your breath, and feel the adrenaline slowly leaving your body. You managed to escape, and @@.enterbtn;[[you are safe — for now.|$return]]@@<br>
+<br>
+<</if>>
+<</linkappend>>
+<<done>>
+<<addclass ".linkselector" "disabled-link">>
+<</done>>
+<</nobr>>
+
+

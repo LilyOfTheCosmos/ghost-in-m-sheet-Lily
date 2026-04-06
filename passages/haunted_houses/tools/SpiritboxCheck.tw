@@ -1,0 +1,105 @@
+:: SpiritboxCheck {"position":"3725,625","size":"100,100"}
+<<nobr>>
+<<set _spiritboxChance = random(1, 100)>>
+	<<if $ghost.name eq "Moroi" and _spiritboxChance lte 30>>
+      <<if $companion.name eq "Brook" and $brook.lvl gte 2 and $isCompChosen eq 1>>
+          <<set $isBrookePossessed to 1>>
+          
+      <</if>>
+      <<if $sensualBodyPart.brain gte 3>>
+              <div class="spiritbox-container">
+          <b>Something's wrong, I think I’m losing consciousness...</b>
+              </div>
+                  <<timed 2s>>
+                  <<goto "CityMapPossessed">>
+                  <</timed>>
+      <<else>>
+      
+<span class="spiritbox-question">You ask through the Spiritbox: "What do you want?"</span>
+      <span class="spiritbox-answer">
+      
+<b>I will be able to subdue you... sooner or later, but you will surrender.</b></span>
+	  <</if>>
+     <<elseif $ghost.name eq "Raiju" and _spiritboxChance lte 20>>
+<span class="spiritbox-question">You ask through the Spiritbox: "What do you want?"</span>
+      <span class="spiritbox-answer">
+      
+<b>The response is interrupted... static and crackling in the speaker... then silence.</b></span>
+    <<else>>
+<<if $ghost.evidence.includes("spiritbox")>>
+    <<if 
+ ($ghostRoom.name === "hallway" and (passage() === "OwaissaHallway" or passage() === "elmHallway" or passage() === "enigmaHallway")) or
+        ($ghostRoom.name === "kitchen" and (passage() === "OwaissaKitchen" or passage() === "elmKitchen" or passage() === "enigmaKitchen")) or
+        ($ghostRoom.name === "bedroom" and (passage() === "OwaissaBedroom" or passage() === "elmBedroom" or passage() === "enigmaBedroom")) or
+        ($ghostRoom.name === "bathroom" and (passage() === "OwaissaBathroom" or passage() === "elmBathroom" or passage() === "enigmaBathroom")) or
+        ($ghostRoom.name === "livingroom" and passage() === "OwaissaLivingroom" or passage() === "enigmaLivingroom") or
+        ($ghostRoom.name === "bedroomTwo" and (passage() === "elmBedroomTwo")) or
+        ($ghostRoom.name === "bathroomTwo" and (passage() === "elmBathroomTwo")) or
+        ($ghostRoom.name === "hallwayUpstairs" and (passage() === "elmHallwayUpstairs")) or
+        ($ghostRoom.name === "basement" and (passage() === "elmBasement" or passage() === "enigmaBasement")) or
+        ($ghostRoom.name === "roomA" and (passage() === "enigmaRoomA")) or
+        ($ghostRoom.name === "roomB" and (passage() === "enigmaRoomB")) or
+        ($ghostRoom.name === "roomC" and (passage() === "enigmaRoomC")) or 
+        ($ghostRoom.name === "nursery" and (passage() === "elmNursery")) or
+        ($ghostRoom.name === "Reception" and (passage() === "IroncladReception")) or
+		($ghostRoom.name === "BlockA" and (passage() === "IroncladBlockA")) or
+		($ghostRoom.name === "BlockB" and (passage() === "IroncladBlockB")) or
+		($ghostRoom.name === "BlockACellA" and (passage() === "IroncladBlockACellA")) or
+		($ghostRoom.name === "BlockACellB" and (passage() === "IroncladBlockACellB")) or
+		($ghostRoom.name === "BlockACellC" and (passage() === "IroncladBlockACellC")) or
+		($ghostRoom.name === "BlockBCellA" and (passage() === "IroncladBlockBCellA")) or
+		($ghostRoom.name === "BlockBCellB" and (passage() === "IroncladBlockBCellB")) or
+		($ghostRoom.name === "BlockBCellC" and (passage() === "IroncladBlockBCellC")) or
+		($ghostRoom.name === "Kitchen" and (passage() === "IroncladKitchen")) or
+		($ghostRoom.name === "Hallway" and (passage() === "IroncladHallway"))
+    >>
+        <<if _spiritboxChance lte 15 and $equipment.sb eq 5>>
+            <<set _questions = ["Where are you?", "Are you here?", "What do you want?"]>>
+            <<set _answers = ["I am hiding.", "I am here.", "I want revenge."]>> 
+            <<set _currentQuestion = random(_questions.length - 1)>>
+            <div class="spiritbox-container">
+                <span class="spiritbox-question">You ask through the Spiritbox: "_questions[_currentQuestion]"</span>
+                <span class="spiritbox-answer">The ghost responds: "_answers[_currentQuestion]"</span>
+            </div>
+            <<set $EmfActivated to 1>>
+            <<set $EmfActivationTime = $hours * 60 + $minutes>>
+        <<elseif _spiritboxChance lte 25 and $equipment.sb eq 4>>
+            <<set _questions = ["Where are you?", "Are you here?", "What do you want?"]>>
+            <<set _answers = ["I am hiding.", "I am here.", "I want revenge."]>> 
+            <<set _currentQuestion = random(_questions.length - 1)>>
+            <div class="spiritbox-container">
+                <span class="spiritbox-question">You ask through the Spiritbox: "_questions[_currentQuestion]"</span>
+                <span class="spiritbox-answer">The ghost responds: "_answers[_currentQuestion]"</span>
+            </div>
+            <<set $EmfActivated to 1>>
+            <<set $EmfActivationTime = $hours * 60 + $minutes>>
+        <<elseif _spiritboxChance lte 35 and $equipment.sb eq 3>>
+            <<set _questions = ["Where are you?", "Are you here?", "What do you want?"]>>
+            <<set _answers = ["I am hiding.", "I am here.", "I want revenge."]>> 
+            <<set _currentQuestion = random(_questions.length - 1)>>
+            <div class="spiritbox-container">
+                <span class="spiritbox-question">You ask through the Spiritbox: "_questions[_currentQuestion]"</span>
+                <span class="spiritbox-answer">The ghost responds: "_answers[_currentQuestion]"</span>
+            </div>
+            <<set $EmfActivated to 1>>
+            <<set $EmfActivationTime = $hours * 60 + $minutes>>
+        <<else>>
+            <div class="spiritbox-container">
+                <span class="spiritbox-no-response">No one responds. Silence...</span>
+            </div>
+        <</if>>
+    <<else>>
+        <div class="spiritbox-container">
+            <span class="spiritbox-no-response">No one responds. Silence...</span>
+        </div>
+    <</if>>
+<<else>>
+    <div class="spiritbox-container">
+        <span class="spiritbox-no-response">No one responds. Silence...</span>
+    </div>
+<</if>>
+<</if>>
+<</nobr>>
+
+
+

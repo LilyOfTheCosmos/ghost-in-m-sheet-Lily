@@ -1,0 +1,22 @@
+:: DeliveryPackageEventEnd1 [event] {"position":"1200,1950","size":"100,100"}
+<<nobr>>
+<<include "add15lust">>
+<video autoplay controls muted loop>
+ <source src="assets/deliveryhub/packageevent/7.mp4" type="video/mp4">
+ </video>
+ @@.notmc-speech; Ohhh~ maybe you should pay me instead@@<br>
+ @@.mc-speech; We had another agreement@@<br>
+ @@.notmc-speech; Haha, of course I'm kidding. Here's your money@@<br>
+
+You earned an extra $15<br>
+<<set $mc.money += 15>>
+<<if $mc.corruption lt 10>>
+<<set $mc.corruption += 0.2>>
++0.2 <img src="assets/img/corruption.png" style="position: relative; top: 0.375em; width:3%; display: inline; margin: 0;"><br>
+<</if>>
+<br>
+@@.backbtn;[[Leave|DeliveryMap]]@@<br>
+<</nobr>>
+
+
+

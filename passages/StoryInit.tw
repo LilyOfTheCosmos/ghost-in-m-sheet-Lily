@@ -1,0 +1,365 @@
+:: StoryInit {"position":"100,100","size":"100,100"}
+<<set $sanityIfHot to 0.3>>
+<<set $sanityInTheDark to 0.5>>
+<<set $tempCorr to 0>>
+<<set $percentageOfLevel to 0>>
+<<set $neededForNextLevel to 100>>
+<<set $makeupAmount to 0>>
+<<set $makeupApplied to 0>>
+<<set $energyDrinkAmount to 0>>
+<<set $uvlActivated = 0>>
+<<set $uvlActivationTime = 0>>
+<<set $EmfActivated = 0>>
+<<set $EmfActivationTime = 0>>
+<<set $ghostHuntingMode to 0>>
+<<set $temperature to 0>>
+<<set $meridiem to "AM">>
+<<set $hours to 12>>
+<<set $minutes to 0>>
+<<set $ghostActivity to 0>>
+<<set $spiritboxLvl to 1>>
+<<set $deliveryActiveIcon1 to true>>
+<<set $deliveryActiveIcon2 to true>>
+<<set $deliveryActiveIcon3 to true>>
+<<set $earnedMoney to 0>>
+<<set $firstVisitDeliveryHub = true>>
+<<set $firstVisitWitchShop = true>>
+<<set $jobMoneySuccessed to 10>>
+<<set $jobMoneyFailed to 3>>
+<<set $equipment to {
+	emf:5,
+    sb:5,
+    gwb:5,
+    glass:5,
+    thermometer:5,
+    uvl:5, 
+}>>
+<<set $mc to {
+name: "",
+makeupImg: 0,
+money: 100,
+sanity:100,
+corruption:0,
+lust:0,
+energy:10,
+energyMax:10,
+lvl: 0,
+exp: 0,
+dirty:0,
+beauty: 30,
+}>>
+
+/*CLOTHES*/
+<<set $jeansState to "worn">>
+<<set $tshirtState to "worn">>
+<<set $pantiesState to "worn">>
+<<set $braState to "worn">>
+<<set $skirtState to "not bought">>
+
+<<set $ghost1 to {
+name: "Shade",
+evidence: ["emf", "gwb", "temperature"],
+}>>
+
+<<set $ghost2 to {
+name: "Spirit",
+evidence: ["emf", "spiritbox", "gwb"],
+}>>
+
+<<set $ghost3 to {
+name: "Poltergeist",
+evidence: ["spiritbox", "gwb", "uvl"],
+}>>
+
+<<set $ghost4 to {
+name: "Phantom",
+evidence: ["glass", "uvl", "spiritbox"],
+}>>
+
+<<set $ghost5 to {
+name: "Goryo",
+evidence: ["glass", "uvl", "emf"],
+}>>
+
+<<set $ghost6 to {
+name: "Demon",
+evidence: ["gwb", "uvl", "temperature"],
+}>>
+
+<<set $ghost7 to {
+name: "Deogen",
+evidence: ["glass", "gwb", "spiritbox"],
+}>>
+
+<<set $ghost8 to {
+name: "Jinn",
+evidence: ["emf", "uvl", "temperature"],
+}>>
+
+<<set $ghost9 to {
+name: "Moroi",
+evidence: ["gwb", "temperature", "spiritbox"],
+}>>
+
+<<set $ghost10 to {
+name: "Myling",
+evidence: ["gwb", "emf", "uvl"],
+}>>
+
+<<set $ghost11 to {
+name: "Oni",
+evidence: ["glass", "emf", "temperature"],
+}>>
+
+<<set $ghost12 to {
+name: "Mimic",
+evidence: ["uvl", "temperature", "spiritbox"],
+}>>
+
+<<set $ghost13 to {
+name: "The Twins",
+evidence: ["emf", "temperature", "spiritbox"],
+}>>
+
+<<set $ghost14 to {
+name: "Wraith",
+evidence: ["glass", "emf", "spiritbox"],
+}>>
+
+----------------------------------------------------------------------------------------
+
+
+----------
+
+<<set $kitchen to {
+name:"kitchen",
+emf:"",
+glass:"",
+uvl:"",
+temperature:"",
+spiritbox:"",
+gwb:"",
+background: 2,
+}>>
+
+<<set $bathroom to {
+name:"bathroom",
+emf:"",
+glass:"",
+uvl:"",
+temperature:"",
+spiritbox:"",
+gwb:"",
+background: 2,
+}>>
+
+<<set $bedroom to {
+name:"bedroom",
+emf:"",
+glass:"",
+uvl:"",
+temperature:"",
+spiritbox:"",
+gwb:"",
+background: 2,
+}>>
+
+<<set $hallway to {
+name:"hallway",
+emf:"",
+glass:"",
+uvl:"",
+temperature:"",
+spiritbox:"",
+gwb:"",
+background: 2,
+}>>
+
+<<set $livingroom to {
+name:"livingroom",
+emf:"",
+glass:"",
+uvl:"",
+temperature:"",
+spiritbox:"",
+gwb:"",
+background: 2,
+}>>
+
+
+<<newmeter 'energy'>>
+    <<sizing '220px'>>
+    <<colors #d8f22c>>
+    <<label '$mc.energy'>>
+<</newmeter>>
+
+<<newmeter 'sanity'>>
+    <<sizing '220px'>>
+    <<label '$mc.sanityUp'>>
+ <</newmeter>>
+ ------------------------------------------------------------
+ /*Tools meters (kitchen)*/
+<<newmeter 'searchKitchenEmf'>>
+<<sizing '50%'>>
+<<label '$currentsearchKitchen.emf'>>
+<</newmeter>>
+
+<<newmeter 'searchKitchenPlasm'>>
+<<sizing '50%'>>
+<<label '$currentsearchKitchen.plasm'>>
+<</newmeter>>
+
+<<newmeter 'searchKitchenUvl'>>
+<<sizing '50%'>>
+<<label '$currentsearchKitchen.uvl'>>
+<</newmeter>>
+
+<<newmeter 'searchKitchenTemperature'>>
+<<sizing '50%'>>
+<<label '$currentsearchKitchen.temperature'>>
+<</newmeter>>
+
+<<newmeter 'searchKitchenGwb'>>
+<<sizing '50%'>>
+<<label '$currentsearchKitchen.gwb'>>
+<</newmeter>>
+
+<<newmeter 'searchKitchenSpiritbox'>>
+<<sizing '50%'>>
+<<label '$currentsearchKitchen.spiritbox'>>
+<</newmeter>>
+
+
+<<newmeter 'searchHallwayEmf'>>
+<<sizing '50%'>>
+<<label '$currentsearchHallway.emf'>>
+<</newmeter>>
+
+<<newmeter 'searchHallwayPlasm'>>
+<<sizing '50%'>>
+<<label '$currentsearchHallway.plasm'>>
+<</newmeter>>
+
+<<newmeter 'searchHallwayUvl'>>
+<<sizing '50%'>>
+<<label '$currentsearchHallway.uvl'>>
+<</newmeter>>
+
+<<newmeter 'searchHallwayTemperature'>>
+<<sizing '50%'>>
+<<label '$currentsearchHallway.temperature'>>
+<</newmeter>>
+
+<<newmeter 'searchHallwayGwb'>>
+<<sizing '50%'>>
+<<label '$currentsearchHallway.gwb'>>
+<</newmeter>>
+
+<<newmeter 'searchHallwaySpiritbox'>>
+<<sizing '50%'>>
+<<label '$currentsearchHallway.spiritbox'>>
+<</newmeter>>
+
+
+<<newmeter 'searchBathroomEmf'>>
+<<sizing '50%'>>
+<<label '$currentsearchBathroom.emf'>>
+<</newmeter>>
+
+<<newmeter 'searchBathroomPlasm'>>
+<<sizing '50%'>>
+<<label '$currentsearchBathroom.plasm'>>
+<</newmeter>>
+
+<<newmeter 'searchBathroomUvl'>>
+<<sizing '50%'>>
+<<label '$currentsearchBathroom.uvl'>>
+<</newmeter>>
+
+<<newmeter 'searchBathroomTemperature'>>
+<<sizing '50%'>>
+<<label '$currentsearchBathroom.temperature'>>
+<</newmeter>>
+
+<<newmeter 'searchBathroomGwb'>>
+<<sizing '50%'>>
+<<label '$currentsearchBathroom.gwb'>>
+<</newmeter>>
+
+<<newmeter 'searchBathroomSpiritbox'>>
+<<sizing '50%'>>
+<<label '$currentsearchBathroom.spiritbox'>>
+<</newmeter>>
+
+
+
+<<newmeter 'searchLivingroomEmf'>>
+<<sizing '50%'>>
+<<label '$currentsearchLivingroom.emf'>>
+<</newmeter>>
+
+<<newmeter 'searchLivingroomPlasm'>>
+<<sizing '50%'>>
+<<label '$currentsearchLivingroom.plasm'>>
+<</newmeter>>
+
+<<newmeter 'searchLivingroomUvl'>>
+<<sizing '50%'>>
+<<label '$currentsearchLivingroom.uvl'>>
+<</newmeter>>
+
+<<newmeter 'searchLivingroomTemperature'>>
+<<sizing '50%'>>
+<<label '$currentsearchLivingroom.temperature'>>
+<</newmeter>>
+
+<<newmeter 'searchLivingroomGwb'>>
+<<sizing '50%'>>
+<<label '$currentsearchLivingroom.gwb'>>
+<</newmeter>>
+
+<<newmeter 'searchLivingroomSpiritbox'>>
+<<sizing '50%'>>
+<<label '$currentsearchLivingroom.spiritbox'>>
+<</newmeter>>
+
+
+
+<<newmeter 'searchBedroomEmf'>>
+<<sizing '50%'>>
+<<label '$currentsearchBedroom.emf'>>
+<</newmeter>>
+
+<<newmeter 'searchBedroomPlasm'>>
+<<sizing '50%'>>
+<<label '$currentsearchBedroom.plasm'>>
+<</newmeter>>
+
+<<newmeter 'searchBedroomUvl'>>
+<<sizing '50%'>>
+<<label '$currentsearchBedroom.uvl'>>
+<</newmeter>>
+
+<<newmeter 'searchBedroomTemperature'>>
+<<sizing '50%'>>
+<<label '$currentsearchBedroom.temperature'>>
+<</newmeter>>
+
+<<newmeter 'searchBedroomGwb'>>
+<<sizing '50%'>>
+<<label '$currentsearchBedroom.gwb'>>
+<</newmeter>>
+
+<<newmeter 'searchBedroomSpiritbox'>>
+<<sizing '50%'>>
+<<label '$currentsearchBedroom.spiritbox'>>
+<</newmeter>>
+
+<<newmeter 'xpBar' $mc.exp>>
+    <<label '$percentageOfLevel %'>>
+    <<colors 'green'>>
+    <<sizing '50%' 20px>>
+    <<animation 2s swing>>
+<</newmeter>>
+
+

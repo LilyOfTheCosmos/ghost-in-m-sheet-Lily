@@ -1,0 +1,34 @@
+:: searchThermometrBathroomElm {"position":"4925,125","size":"100,100"}
+<<nobr>>
+<span id="elmBathroomTemperatureButton">@@.adaptiveLink;<<linkreplace "Use @@color:yellow;T@@hermometer">><<addclass ".cardlink" "disabled-link">>
+<span id="elmBathroomTemperature">
+<<showmeter 'searchBathroomTemperature' ` $currentsearchBathroom.temperature / $equipment.thermometer`>>
+</span>
+<<repeat `$timerToolsDecreased`>>
+<<if $hotAct eq 1>><<set $mc.sanity -= $sanityIfHot>><</if>>
+<<if $bathroom.background eq 2>><<set $mc.sanity -= $sanityInTheDark>><</if>>
+
+<<include "add1">>
+<<if $currentsearchBathroom.temperature neq $equipment.thermometer>><<if $cursedHuntActive eq 1>>
+<<else>>
+<<include "lightPassageGhost">><<include "event">>
+<<if _eventTriggered is false>>
+<<include "stealClothesEvent">>
+<</if>>
+<<if _stealClothesTriggered is false and _eventTriggered is false>>
+<<include "huntStart">>
+<</if>><</if>><</if>>
+
+<<if $currentsearchBathroom.temperature lte ($equipment.thermometer - 1)>> 
+<<set $currentsearchBathroom.temperature += 1>>
+<<updatemeter 'searchBathroomTemperature' ` $currentsearchBathroom.temperature / $equipment.thermometer`>>
+<<elseif $currentsearchBathroom.temperature gte $equipment.thermometer>> 
+<<replace "#elmBathroomTemperature">><<include "temperatureHigh">><</replace>>
+<<set $currentsearchBathroom.temperature to 0>><<removeclass ".cardlink" "disabled-link">>
+<<stop>>
+<</if>>
+<</repeat>>
+<</linkreplace>>@@</span>
+<</nobr>>
+
+

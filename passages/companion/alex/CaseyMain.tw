@@ -1,0 +1,98 @@
+:: CaseyMain {"position":"2900,3800","size":"100,100"}
+<<nobr>>
+<div class="flexwrapperCompanionMain">
+<div class="companionImageMain">
+<img @src="`assets/trans/`+$transPicture+`.jpg`" width=100% >
+</div>
+<div class="companionTextMain">
+<span style="color: yellow; font-weight: bold; font-size: 1.2em;">$casey.name :</span><br>
+
+
+
+<<set $chanceToAttackAlex to 50>>
+<<set $chanceToAttack to $chanceToAttackAlex>>
+@@.warningtext; Chance of ghost encounter: $chanceToAttack %@@
+<br>
+</div>
+</div>
+@@.notmc-speech; Oh~, I'm feeling a bit nervous. What's our plan?@@<br>
+
+<br>
+
+<<linkreplace "@@.usebtn; Give the sanity pills.@@">>
+<<if $sanityPillsAmount gte 1>>
+<<if $companion.sanity lt 100>>
+@@.mc-speech; I want you to take these sanity pills. Don't worry, they will help you.@@<br>
+@@.notmc-speech; Thank you, I feel a bit better.@@<br>
+<<set $sanityPillsAmount -= 1>>
+<b>-1 sanity pills</b><br>
+<b>$companion.name's sanity has increased by 30!</b><br>
+<<set $companion.sanity += 30>>
+<<if $companion.sanity gte 100>>
+<<set $companion.sanity to 100>>
+<</if>>
+<<else>>
+@@.mc-thoughts; I don't think that's needed right now.@@
+<</if>>
+<<else>>
+@@.mc-thoughts; I don't have those pills.@@
+<</if>>
+<</linkreplace>>
+<br>
+@@.usebtn;<<link "Let's stick together for now">> 
+<<set $chosenPlan to "Plan1">>
+<<set $chosenPlanActivated to 0>>
+<<set $showComp to 1>>
+<<replace "#compResponse">>
+    @@.notmc-speech;Good, I'll stay close to you.@@<</replace>>
+<</link>>@@<br>
+<span id="checkQuestForCursedItem">@@.usebtn;<<link "I need you to find the cursed item @@.warningtext; ($companion.chanceOfSuccessCI %, $companion.plan2TimeReq min)@@" >>
+<<if $gotCursedItem eq 0>>
+<<set $chosenPlan to "Plan2">>
+<<set $chanceToSuccess to $companion.chanceOfSuccessCI>>
+<<set $showComp to 0>>
+<<set $chosenPlanActivated to 1>>
+<<set $chosenPlanActivatedTime = $hours * 60 + $minutes + $companion.plan2TimeReq>>
+
+<<replace "#compResponse">>
+    @@.notmc-speech;Alright, I'll look for the cursed item.@@<</replace>>
+<<else>>
+<<replace "#compResponse">>
+    @@.notmc-speech; We already have a cursed item.@@<</replace>>
+<</if>>
+<</link>>@@</span> <<if ndef $gotCursedItem>>@@.warningtext; Req. quest from the witch@@<</if>><br>
+@@.usebtn;<<link "I want you to look for any ghost evidence @@.warningtext; ($brook.chanceOfSuccessAnyEvidence %, $companion.plan3TimeReq min@@)">>
+<<set $chosenPlan to "Plan3">>
+<<set $chanceToSuccess to $companion.chanceOfSuccessAnyEvidence>>
+<<set $showComp to 0>>
+<<set $chosenPlanActivated to 1>>
+<<set $chosenPlanActivatedTime = $hours * 60 + $minutes + $companion.plan3TimeReq>>
+<<replace "#compResponse">>
+    @@.notmc-speech;Sure, I'll search for any ghost evidence.@@<</replace>>
+<</link>>@@<br>
+@@.usebtn;<<link "It would be nice if you found the ghost's favorite room @@.warningtext; 
+($companion.chanceOfSuccessGR %, $companion.plan4TimeReq min@@)">>
+<<set $chosenPlan to "Plan4">>
+<<set $chanceToSuccess to $companion.chanceOfSuccessGR>>
+<<set $showComp to 0>>
+<<set $chosenPlanActivated to 1>>
+<<set $chosenPlanActivatedTime = $hours * 60 + $minutes + $companion.plan4TimeReq>>
+<<replace "#compResponse">>
+   @@.notmc-speech; Got it, I'll try to find the ghost's favorite room.@@<</replace>>
+<</link>>@@<br>
+
+
+<span id="compResponse"></span>
+<br>
+<br>
+@@.backbtn; [[Continue|previous()]]@@<br>
+
+<<done>>
+<<addclass ".linkselector" "disabled-link">>
+<<if ndef $gotCursedItem>>
+<<addclass "#checkQuestForCursedItem" "disabled-link">>
+<</if>>
+<</done>>
+<</nobr>>
+
+

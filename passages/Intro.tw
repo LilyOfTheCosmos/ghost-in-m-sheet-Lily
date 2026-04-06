@@ -1,0 +1,27 @@
+:: Intro {"position":"700,0","size":"100,100"}
+<<nobr>>
+The Ghost Hunter<br>
+<br>
+<b>What’s your extra sensitive spot?</b><br>
+<em>The chosen one will occur more frequently during the ghost hunt than the other body parts, bringing more lust.</em><br>
+<label><<radiobutton "$sensualBodyPart.brain" 3 autocheck>> Mind</label><br>
+<label><<radiobutton "$sensualBodyPart.tits" 3 autocheck>> Boobs</label><br>
+<label><<radiobutton "$sensualBodyPart.ass" 3 autocheck>> Ass</label><br>
+<label><<radiobutton "$sensualBodyPart.mouth" 3 autocheck>> Tongue</label><br>
+<label><<radiobutton "$sensualBodyPart.pussy" 3 autocheck>> Pussy</label><br>
+<label><<radiobutton "$sensualBodyPart.anal" 3 autocheck>> Anus</label><br>
+Enter your name here: <<textbox "$mc.name" "Mary" "Intro1">>and press "Enter".
+<br>
+Or just click @@.enterbtn;<<link "here" "Intro1">><<set $mc.name to "Mary">><</link>>@@ 
+
+<br>
+<br>
+<br>
+@@.mc-thoughts;This game is similar to games like Phasmophobia, Demonologist, etc., so if you've played such games, there shouldn't be any difficulties. Nevertheless, here's a brief guide to the game:@@
+<br>
+@@.enterbtn;[[Player guide -> Evidence]]@@ 
+<</nobr>>
+
+
+
+

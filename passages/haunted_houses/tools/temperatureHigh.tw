@@ -1,0 +1,96 @@
+:: temperatureHigh {"position":"3725,125","size":"100,100"}
+<<nobr>>
+<<set _checkRaiju to random(1,8)>>
+<<set _validPassages = {
+    "hallway": ["OwaissaHallway", "elmHallway", "enigmaHallway"],
+    "kitchen": ["OwaissaKitchen", "elmKitchen", "enigmaKitchen"],
+    "bedroom": ["OwaissaBedroom", "elmBedroom", "enigmaBedroom"],
+    "bathroom": ["OwaissaBathroom", "elmBathroom", "enigmaBathroom"],
+    "livingroom": ["OwaissaLivingroom", "enigmaLivingroom"],
+    "basement": ["elmBasement", "enigmaBasement"],
+    "bedroomTwo": ["elmBedroomTwo"],
+    "bathroomTwo": ["elmBathroomTwo"],
+    "nursery": ["elmNursery"],
+    "hallwayUpstairs": ["elmHallwayUpstairs"],
+    "roomA": ["enigmaRoomA"],
+    "roomB": ["enigmaRoomB"],
+    "roomC": ["enigmaRoomC"],
+    "Reception": ["IroncladReception"],
+    "BlockA": ["IroncladBlockA"],
+	"BlockB": ["IroncladBlockB"],
+	"BlockACellA": ["IroncladBlockACellA"],
+	"BlockACellB": ["IroncladBlockACellB"],
+	"BlockACellC": ["IroncladBlockACellC"],
+	"BlockBCellA": ["IroncladBlockBCellA"],
+	"BlockBCellB": ["IroncladBlockBCellB"],
+	"BlockBCellC": ["IroncladBlockBCellC"],
+	"Kitchen": ["IroncladKitchen"],
+	"Hallway": ["IroncladHallway"],
+}>>
+
+<<if _validPassages[$ghostRoom.name] && _validPassages[$ghostRoom.name].includes(passage())>>
+    <<if $ghost.evidence.includes("temperature")>>
+        <span class="toolsTextCentered boldText">
+<<if $equipment.thermometer eq 5>>
+<<if $ghost.name eq "Raiju" and _checkRaiju eq 8>>
+<<print random(0, 50)>>
+<<else>>
+<<print random(13, 16) + $temperature + 8>>
+<</if>>
+<<elseif $equipment.thermometer eq 4>>
+<<if $ghost.name eq "Raiju" and _checkRaiju eq 8>>
+@@color:red;<<print random(0, 50)>>@@
+<<else>>
+@@color:red;<<print random(13, 16) + $temperature + 8>>@@
+<</if>>
+<<elseif $equipment.thermometer eq 3>>
+<<if $ghost.name eq "Raiju" and _checkRaiju eq 8>>
+@@color:red;<<print random(0, 50)>>@@
+<<else>>
+@@color:red;<<print random(13, 16) + $temperature + 8>>@@<</if>>
+<</if>></span>
+    <<else>>
+    <span class="toolsTextCentered boldText">
+<<if $equipment.thermometer eq 5>>
+<<if $ghost.name eq "Raiju" and _checkRaiju eq 8>>
+<<print random(0, 50)>>
+<<else>>
+<<print random(13, 16) + $temperature + 5>>
+<</if>>
+<<elseif $equipment.thermometer eq 4>>
+<<if $ghost.name eq "Raiju" and _checkRaiju eq 8>>
+@@color:red;<<print random(0, 50)>>@@
+<<else>>
+@@color:red;<<print random(13, 16) + 5>>@@
+<</if>>
+<<elseif $equipment.thermometer eq 3>>
+<<if $ghost.name eq "Raiju" and _checkRaiju eq 8>>
+@@color:yellow;<<print random(0, 50)>>@@
+<<else>>
+@@color:yellow;<<print random(13, 16) + $temperature + 5>>@@<</if>>
+<</if>></span>
+    <</if>>
+<<else>>
+    <span class="toolsTextCentered boldText">
+    <<if $equipment.thermometer eq 5>>
+<<if $ghost.name eq "Raiju" and _checkRaiju eq 8>>
+<<print random(0, 50)>>
+<<else>>
+    <<print random(13, 16) + $temperature>>
+    <</if>>
+<<elseif $equipment.thermometer eq 4>>
+<<if $ghost.name eq "Raiju" and _checkRaiju eq 8>>
+@@color:green;<<print random(0, 50)>>@@
+<<else>>
+@@color:green;<<print random(13, 16) + $temperature>>@@<</if>>
+<<elseif $equipment.thermometer eq 3>>
+<<if $ghost.name eq "Raiju" and _checkRaiju eq 8>>
+@@color:green;<<print random(0, 50)>>@@
+<<else>>
+@@color:green;<<print random(13, 16) + $temperature>>@@<</if>><</if>>
+    </span>
+<</if>>
+<</nobr>>
+
+
+

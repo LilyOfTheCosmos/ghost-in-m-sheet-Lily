@@ -1,0 +1,49 @@
+:: HuntOverTime {"position":"1500,1350","size":"100,100"}
+<<nobr>>
+<<if $ghost.name eq "The Twins">>
+<<set $thetwinsevent to 1>>
+<</if>>
+<<if $ghost.name eq "Spirit">>
+<<set $ghostSpiritEventStage to 0>>
+<</if>>
+<img src="assets/img/dawn.jpg" width="100%">
+<br>
+@@.mc-thoughts; Ah, dawn. The ghostly activity has ceased. I need to summarize the gathered information and identify the type of ghost.@@<br>
+<<if $isClothesStolen eq 1>>
+@@.mc-thoughts; Now that you're no longer in danger, you can retrieve your clothes. After finding them, you head away from this cursed place.@@
+    <<if $isPantiesStolen eq 1>><<include "findStolenPanties">><</if>>
+    <<if $isBottomStolen eq 1>><<include "findStolenBottom">><</if>>
+    <<if $isShirtStolen eq 1>><<include "findStolenShirt">><</if>>
+    <<if $isBraStolen eq 1>><<include "findStolenBra">><</if>>
+	<<set $isClothesStolen to 0>>
+<</if>>
+
+<<set $mc.corruption += $tempCorr>>
+
+
+Corruption is increased (+ <<= $tempCorr.toFixed(2)>>) : <<= $mc.corruption.toFixed(2)>><br>
+<<set $tempCorr to 0>>
+<<set $EmfActivationTime to 0>>
+<<set $uvlActivationTime to 0>>
+<<set $EmfActivated to 0>>
+<<set $uvlActivated to 0>>
+    <<set $ghostHuntingMode to 3>>
+<<if $isCompChosen eq 1 and $companion.name eq "Blake" and $gotCursedItem eq 1>>
+<<set $gotCursedItem to 0>>
+<</if>>
+@@.movebtn;[[Leave|CityMap][$hours += 1]]@@<br>
+<<done>>
+<<addclass ".linkselector" "disabled-link">>
+<</done>>
+<<set $chosenPlan to 0>>
+<<set $chosenPlanActivated to 0>>
+<<set $randomGhostPassage to 0>>
+<<set $isCompRoomChosen to 0>>
+<<set $showComp to 0>>
+<<set $isCompChosen to 0>>
+<<if $companion.name eq "Alice" and $isAliceGoingForHuntingAlone eq 0>>
+<<set $aliceWorkDone to 0>>
+<</if>>
+<</nobr>>
+
+

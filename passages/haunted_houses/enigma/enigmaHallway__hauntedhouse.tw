@@ -1,0 +1,103 @@
+:: enigmaHallway [hauntedhouse] {"position":"2300,300","size":"100,100"}
+<<nobr>>
+<div class="room">
+	<div class="room-wrapper">
+		<div class="content">
+          	<div id="actionHallwayEnigma" class="action">
+
+          	</div>
+        </div>
+		<div class="footer">
+        	<div class="footertools">
+         	<div class="footer-card">
+            	<div class="cardimg">
+                	<img src="assets/img/emf.png" class="icon" id="enigmaHallwayPicEMF">
+                </div>
+                <div class="cardlink">
+                	<<include "searchEMFHallwayEnigma">>
+                </div>
+            </div>
+            <div class="footer-card">
+            	<div class="cardimg">
+                	<img src="assets/img/glass.png" class="icon" id="enigmaHallwayPicPlasm">                
+                </div>
+                <div class="cardlink">
+                	<<include "searchPlasmHallwayEnigma">>
+                </div>
+            </div>
+            <div class="footer-card">
+            	<div class="cardimg">
+                	<img src="assets/img/gwb.png" class="icon" id="enigmaHallwayPicGWB">                
+                </div>
+                <div class="cardlink">
+                	<<include "searchGwbHallwayEnigma">>
+                </div>
+            </div>
+            <div class="footer-card">
+            	<div class="cardimg">
+                	<img src="assets/img/spiritbox.png" class="icon" id="enigmaHallwayPicSB">                
+                </div>
+                <div class="cardlink">
+                	<<include "searchSbHallwayEnigma">>
+                </div>
+            </div>
+            <div class="footer-card">
+            	<div class="cardimg">
+                	<img src="assets/img/thermometr.png" class="icon" id="enigmaHallwayPicThermometr">                
+                </div>
+                <div class="cardlink">
+                	<<include "searchThermometrHallwayEnigma">>
+                </div>
+            </div>
+            <div class="footer-card">
+            	<div class="cardimg">
+                	<img src="assets/img/uvl.png" class="icon" id="enigmaHallwayPicUVL">                
+                </div>
+                <div class="cardlink">
+                	<<include "searchUVLHallwayEnigma">>
+                </div>
+            </div>
+            <div class="footer-card footer-light">
+            	<<link [img[assets/img/lighton.png][enigmaHallway]]>><<set $hallway.background to 1>><</link>>
+             <<link [img[assets/img/lightoff.png][enigmaHallway]]>><<set $hallway.background to 2>><</link>>
+             
+            </div>
+         </div>
+         <div class="footeraction">
+            @@.adaptiveLink;[[livingroom|enigmaLivingroom]]@@
+         	@@.adaptiveLink;[[bedroom|enigmaBedroom]]@@
+            @@.adaptiveLink;[[bathroom|enigmaBathroom]]@@
+            @@.adaptiveLink;[[kitchen|enigmaKitchen]]@@
+            @@.adaptiveLink;[[basement|enigmaBasement]]@@
+            <br>
+            @@.adaptiveLink;[[leave|Enigma Street]]@@
+         </div>
+		</div>
+	</div>
+</div>
+<</nobr>>
+
+<<script>>
+$(document).ready(function() {
+    $('#enigmaHallwayPicEMF').on('click', function() {
+        $('#enigmaHallwayEMF a').click();
+    });
+    $('#enigmaHallwayPicPlasm').on('click', function() {
+        $('#enigmaHallwayPlasm a').click();
+    });
+    $('#enigmaHallwayPicGWB').on('click', function() {
+        $('#enigmaHallwayGWB a').click();
+    });
+    $('#enigmaHallwayPicSB').on('click', function() {
+        $('#enigmaHallwaySpiritbox a').click();
+    });
+    $('#enigmaHallwayPicThermometr').on('click', function() {
+        $('#enigmaHallwayTemperature a').click();
+    });
+    $('#enigmaHallwayPicUVL').on('click', function() {
+        $('#enigmaHallwayUVL a').click();
+    });
+});
+<</script>>
+
+

@@ -1,0 +1,23 @@
+:: CompanionLeaving [noreturn] {"position":"2350,3125","size":"100,100"}
+<<nobr>>
+@@.notmc-speech; $mc.name, wait, I don't feel well... This place is driving me crazy, I don't feel like myself."@@<br>
+@@.mc-thoughts; She nervously looks around, as if afraid the ghost might return at any moment.@@<br>
+@@.notmc-speech; I'm sorry, but I can't stay with you. I have to get out of here, or I'll break...@@<br>
+@@.mc-speech; Yes, of course, I understand.@@<br>
+<br>
+@@.mc-thoughts; $companion.name leaves the house.@@ <<if $companion.sanity lte 0>><<else>>@@.warningtext; Req. higher level of $companion.name .@@<</if>><br>
+@@.mc-speech; Well, I'm alone now...@@<br>
+<br>
+<<set $chosenPlan to 0>>
+<<set $chosenPlanActivated to 0>>
+<<set $randomPassageOwaissa to 0>>
+<<set $showComp to 0>>
+<<set $isCompRoomChosen to 0>>
+<<set $isCompChosen to 0>>
+@@.backbtn; [[Continue|$return]]@@<br>
+<<done>>
+<<addclass ".linkselector" "disabled-link">>
+<</done>>
+<</nobr>>
+
+

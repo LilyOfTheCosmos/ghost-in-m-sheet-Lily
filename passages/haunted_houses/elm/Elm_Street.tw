@@ -1,0 +1,38 @@
+:: Elm Street {"position":"2050,450","size":"100,100"}
+<<nobr>>
+<<set $isCompChosenBrook to 0>>
+<<set $isCompChosenAlice to 0>>
+<<set $isCompChosenBlake to 0>>
+<<set $isCompChosenAlex to 0>>
+<<set $isCompChosenTaylor to 0>>
+<<set $isCompChosenCasey to 0>>
+<img src="assets/img/ElmHouse.jpg" width="90%"><br>
+@@.location; Elm Street@@<br>
+@@.mc-thoughts;Elm Street - quite a creepy place. It must be teeming with ghosts. Although, because of such locations, I'll always have a job@@<br>
+<br>
+<<if $isCompChosen eq 1 and ($chosenPlan neq "Plan1" and $chosenPlan neq 
+"Plan2" and $chosenPlan neq "Plan3" and $chosenPlan neq "Plan4")>>
+You see $companion.name. 
+
+<<if $companion.name eq "Brook">>
+@@.usebtn; [[Talk to her|BrookMain]]@@<br>
+<<elseif $companion.name eq "Alice">>
+@@.usebtn; [[Talk to her|AliceMain]]@@<br>
+<<elseif $companion.name eq "Blake">>
+@@.usebtn; [[Talk to her|BlakeMain]]@@<br>
+<<elseif $companion.name eq "Alex">>
+@@.usebtn; [[Talk to him|AlexMain]]@@<br>
+<<elseif $companion.name eq "Taylor">>
+@@.usebtn; [[Talk to him|TaylorMain]]@@<br>
+<<elseif $companion.name eq "Casey">>
+@@.usebtn; [[Talk to him|CaseyMain]]@@<br><</if>>
+<<else>>
+@@.movebtn;[[Go inside|elmHallway][$ghostHuntingMode to 2]]@@<br>
+<</if>>
+<br>
+<br>
+<<if $ghostHuntingMode eq 2>><span class="movebtn">[[End the hunt|HuntOverManual][$ghostHuntingMode to 3]]</span><<else>><</if>>
+<</nobr>>
+
+
+

@@ -1,0 +1,98 @@
+:: enigmaLivingroom [hauntedhouse] {"position":"2200,200","size":"100,100"}
+<<nobr>>
+<div class="room">
+	<div class="room-wrapper">
+		<div class="content">
+          	<div id="actionLivingroomEnigma" class="action">
+
+          	</div>
+        </div>
+		<div class="footer">
+        	<div class="footertools">
+         	<div class="footer-card">
+            	<div class="cardimg">
+                	<img src="assets/img/emf.png" class="icon" id="enigmaLivingroomPicEMF">
+                </div>
+                <div class="cardlink">
+                	<<include "searchEmfLivingroomEnigma">>
+                </div>
+            </div>
+            <div class="footer-card">
+            	<div class="cardimg">
+                	<img src="assets/img/glass.png" class="icon" id="enigmaLivingroomPicPlasm">                
+                </div>
+                <div class="cardlink">
+                	<<include "searchPlasmLivingroomEnigma">>
+                </div>
+            </div>
+            <div class="footer-card">
+            	<div class="cardimg">
+                	<img src="assets/img/gwb.png" class="icon" id="enigmaLivingroomPicGWB">                
+                </div>
+                <div class="cardlink">
+                <<include "searchGwbLivingroomEnigma">>
+                </div>
+            </div>
+            <div class="footer-card">
+            	<div class="cardimg">
+                	<img src="assets/img/spiritbox.png" class="icon" id="enigmaLivingroomPicSB">                
+                </div>
+                <div class="cardlink">
+                	<<include "searchSbLivingroomEnigma">>
+                </div>
+            </div>
+            <div class="footer-card">
+            	<div class="cardimg">
+                	<img src="assets/img/thermometr.png" class="icon" id="enigmaLivingroomPicThermometr">                
+                </div>
+                <div class="cardlink">
+                	<<include "searchThermometrLivingroomEnigma">>
+                </div>
+            </div>
+            <div class="footer-card">
+            	<div class="cardimg">
+                	<img src="assets/img/uvl.png" class="icon" id="enigmaLivingroomPicUVL">                
+                </div>
+                <div class="cardlink">
+                	<<include "searchUVLLivingroomEnigma">>
+                </div>
+            </div>
+            <div class="footer-card footer-light">
+           <<link [img[assets/img/lighton.png][enigmaLivingroom]]>><<set $livingroom.background to 1>><</link>>
+             <<link [img[assets/img/lightoff.png][enigmaLivingroom]]>><<set $livingroom.background to 2>><</link>>
+             
+			</div>
+           
+         </div>
+         <div class="footeraction">
+         	@@.adaptiveLink;[[hallway|enigmaHallway]]@@
+         </div>
+		</div>
+	</div>
+</div>
+<</nobr>>
+
+<<script>>
+$(document).ready(function() {
+    $('#enigmaLivingroomPicEMF').on('click', function() {
+        $('#enigmaLivingroomEMF a').click();
+    });
+    $('#enigmaLivingroomPicPlasm').on('click', function() {
+        $('#enigmaLivingroomPlasm a').click();
+    });
+    $('#enigmaLivingroomPicGWB').on('click', function() {
+        $('#enigmaLivingroomGWB a').click();
+    });
+    $('#enigmaLivingroomPicSB').on('click', function() {
+        $('#enigmaLivingroomSpiritbox a').click();
+    });
+    $('#enigmaLivingroomPicThermometr').on('click', function() {
+        $('#enigmaLivingroomTemperature a').click();
+    });
+    $('#enigmaLivingroomPicUVL').on('click', function() {
+        $('#enigmaLivingroomUVL a').click();
+    });
+});
+<</script>>
+
+

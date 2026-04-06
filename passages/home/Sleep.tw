@@ -1,0 +1,51 @@
+:: Sleep {"position":"700,1000","size":"100,100"}
+<<nobr>>
+<img src="assets/img/sleeping.jpg" width="100%">
+<br>
+<br>
+<<if $gotCursedItem eq 1 and $gotCursedItemEventCD gte 1 and previous() is "Bedroom" and $hours gte 18 and $hours lte 23>>
+<<set $hours +=8>><<if $hours >=24>><<set $hours -=24>><<include "resetCD">><</if>>
+<<goto "tentaclesEventSleep">>
+
+<</if>>
+<<if (previous() is "HuntOverSanity" or previous() is "huntEnd" or previous() is "cursedHuntStart")>>
+<<set $isPenaltyOn to 1>>
+<</if>>
+
+<<if (previous() is "HuntOverSanity" or previous() is "huntEnd" or previous() is "cursedHuntStart") and $ghost.name eq "Wraith">>
+<<set $isPenaltyOn to 1>>
+@@.backbtn;<<link "Wake up" "ghostSpecialEventWraith">><<set $hours +=3>><<if $hours >=24>><<set $hours -=24>><<include "resetCD">><</if>><</link>>@@
+<<set $mc.sanity to 40>>
+<<set $mc.lust to 0>>
+
+<<elseif $ghostMareEventStage gte 4>>
+@@.backbtn;<<link "Wake up" "ghostSpecialEventMareEnd">><<set $hours +=3>><<if $hours >=24>><<set $hours -=24>><<include "resetCD">><</if>><</link>>@@
+<<elseif $ghostSpiritEventStage eq 0 and $ghostSpecialEventSpiritCD eq 0>>
+@@.backbtn;<<link "Wake up" "ghostSpecialEventSleepSpirit">><<set $hours +=3>><<if $hours >=24>><<set $hours -=24>><<include "resetCD">><</if>><</link>>@@
+<<else>>
+@@.backbtn;<<link "Wake up" "Bedroom">><<set $hours +=8>><<if $hours >=24>><<set $hours -=24>><<include "resetCD">><</if>><</link>>@@
+<<if $isPenaltyOn eq 1>>
+<<set $mc.sanityMax to 70>>
+<<set $mc.sanity to random(40,70)>>
+<<set $mc.energy to $mc.energyMax>>
+<<set $mc.lust to random(30,60)>>
+<<else>>
+<<set $mc.sanityMax to 100>>
+<<set $mc.sanity to $mc.sanityMax>>
+<<set $mc.energy to $mc.energyMax>>
+<<set $mc.lust to 0>>
+<</if>>
+
+<<if previous() eq "ghostSpecialEventMareEnd">>
+<<set $mc.energy to 30>>
+<</if>>
+<</if>>
+<<if $isCameraBought eq 1>><<set $mcSleptWithCameraOn to 1>><</if>>
+<</nobr>>
+<<if $mc.makeupImg eq 1>><<set $mc.beauty  -= 5>>
+<<elseif $mc.makeupImg eq 2>><<set $mc.beauty  -= 10>>
+<<elseif $mc.makeupImg eq 3>><<set $mc.beauty  -= 15>><</if>>
+<<set $makeupApplied to 0>>
+<<set $mc.makeupImg to 0>> 
+
+

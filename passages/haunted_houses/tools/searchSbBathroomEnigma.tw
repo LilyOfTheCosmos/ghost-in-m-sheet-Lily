@@ -1,0 +1,32 @@
+:: searchSbBathroomEnigma {"position":"4825,1300","size":"100,100"}
+<<nobr>>
+<span id="enigmaBathroomSpiritboxButton">@@.adaptiveLink;<<linkreplace "Use @@color:yellow;S@@piritbox">>
+<<if $bathroom.background eq 1>>
+<<replace "#actionBathroomEnigma">><div class="spiritbox-container mc-thoughts">
+I need to turn off the light first</div><</replace>>
+<<else>><<addclass ".cardlink" "disabled-link">>
+<span id="enigmaBathroomSpiritbox">
+<<showmeter  'searchBathroomSpiritbox' ` $currentsearchBathroom.spiritbox / $equipment.sb`>>
+</span>
+<<repeat `$timerToolsDecreased`>>
+<<if $hotAct eq 1>><<set $mc.sanity -= $sanityIfHot>><</if>>
+<<if $bathroom.background eq 2>><<set $mc.sanity -= $sanityInTheDark>><</if>>
+<<include "add1">>
+<<if $currentsearchBathroom.spiritbox neq $equipment.sb>><<include "lightPassageGhost">><<include "eventArt">>
+<</if>>
+
+<<if $currentsearchBathroom.spiritbox lte ($equipment.sb - 1)>> 
+<<set $currentsearchBathroom.spiritbox += 1>>
+<<updatemeter 'searchBathroomSpiritbox' ` $currentsearchBathroom.spiritbox / $equipment.sb`>>
+<<elseif $currentsearchBathroom.spiritbox gte $equipment.sb>>
+<<replace "#actionBathroomEnigma">><<include "SpiritboxCheck">><</replace>> 
+<<replace "#enigmaBathroomSpiritbox">><</replace>>
+<<set $currentsearchBathroom.spiritbox to 0>> <<removeclass ".cardlink" "disabled-link">>
+<<stop>>
+<</if>>
+<</repeat>>
+<</if>>
+<</linkreplace>>@@</span>
+<</nobr>>
+
+

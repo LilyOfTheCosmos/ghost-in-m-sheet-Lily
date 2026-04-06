@@ -1,0 +1,58 @@
+:: Mirror {"position":"700,1200","size":"100,100"}
+<<nobr>>
+<<set _checkBeauty to random(30,100)>>
+<<if $thetwinsevent eq 1 and _checkBeauty gt $mc.beauty and $thetwinseventCD eq 0>>
+<video autoplay controls muted loop>
+ <source src="assets/ghosts/specials/twins1.mp4" type="video/mp4">
+ </video>
+@@.mc-thoughts;You're looking in the mirror, admiring your reflection, when suddenly two strangers appear, observing you. They assess every curve of your body @@
+<<linkappend "@@.mc-thoughtsLink; through the glass@@">>
+@@.mc-thoughts; You watch them, captivated by their sudden arrival, but they disappear just as quickly as they appeared.@@<br>
+@@.mc-speech; It was... strange @@<br><br>
+@@.backbtn;[[Back|Bathroom]] @@<br>
+<<set $thetwinseventCD to 1>>
+<</linkappend>>
+<<elseif $thetwinsevent eq 1 and _checkBeauty lte $mc.beauty and $thetwinseventCD eq 0>>
+<video autoplay controls muted loop>
+ <source src="assets/ghosts/specials/twins.mp4" type="video/mp4">
+ </video>
+@@.mc-thoughts;You're looking in the mirror, admiring your reflection, when suddenly two strangers appear, observing you. They assess every curve of your body @@<<linkappend "@@.mc-thoughtsLink; through the glass@@">>
+<video autoplay controls muted loop>
+ <source src="assets/ghosts/specials/twins2.mp4" type="video/mp4">
+ </video>
+@@.mc-thoughts;But they don't disappear. They're here, in reality. They approach closer, and you feel their breath on your skin. Their hands start to caress you, stripping off your clothes, their fingers lightly touching your nipples, making you shiver with desire.@@<br>
+@@.mc-speech;Oh... this is so... mmm...@@<br>
+@@.mc-thoughts;You feel your arousal building, your body responding to every touch with incredible pleasure. You can't resist, [[giving in to their desires|TheTwinsEvent]]@@<br>
+
+<</linkappend>>
+
+<<else>>
+<span id="mirrorImage"><img src="assets/img/mc.jpg"></span><br>
+
+@@.mc-speech; Looking pretty good. I'm ready to take on the world!@@<br>
+<b>Beauty: </b> $mc.beauty
+<br>
+<<if $makeupApplied eq 0>>
+<<if $makeupAmount gte 1>>
+@@.usebtn;<<link "Apply regular makeup (1 charge)" "Mirror">><<set $mc.makeupImg to 1>><<set $makeupApplied to 1>><<set $mc.beauty += 5>><<set $makeupAmount -= 1>><</link>>@@<br><<else>>@@.mc-speech;I don't have enough makeup@@<br><</if>>
+<<if $makeupAmount gte 2>>
+@@.usebtn;<<link "Apply stylish makeup (2 charges)" "Mirror">><<set $mc.makeupImg to 2>><<set $makeupApplied to 1>><<set $makeupAmount -= 2>><<set $mc.beauty += 10>><</link>>@@<br>
+<<else>>@@.mc-speech;I don't have enough makeup@@<br><</if>>
+<<if $makeupAmount gte 3>>
+<<if $mc.corruption gte 10>>
+@@.usebtn;<<link "Apply slutty makeup (3 charges)" "Mirror">><<set $mc.makeupImg to 3>><<set $makeupApplied to 1>><<set $makeupAmount -= 3>><<set $mc.beauty += 15>><</link>>@@<br>
+<<else>>@@.usebtn;<<linkreplace "Apply slutty makeup (3 charges)">>@@.mc-speech; Why should I do this makeup?@@<</linkreplace>>@@<br><</if>>
+<<else>>@@.mc-speech;I don't have enough makeup@@<br><</if>>
+<<else>>@@.mc-thoughts; I need to remove my makeup first<</if>>
+<br>
+@@.backbtn;[[Back|Bathroom]] @@<br>
+<</if>>
+<<done>>
+<<addclass ".linkselector" "disabled-link">>
+<</done>>
+<</nobr>>
+
+
+
+
+

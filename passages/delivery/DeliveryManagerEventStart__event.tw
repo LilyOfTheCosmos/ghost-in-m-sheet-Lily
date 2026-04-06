@@ -1,0 +1,38 @@
+:: DeliveryManagerEventStart [event] {"position":"1200,1300","size":"100,100"}
+<<nobr>>
+<video autoplay controls muted loop>
+ <source src="assets/deliveryhub/manager/bj.mp4" type="video/mp4">
+ </video><br>
+@@.notmc-speech;  Perhaps this job is more suitable for you? Ha-ha@@<br>
+@@.mc-thoughts; Shut up~ You wanted to say, but instead all you could say was:<br>@@
+@@.mc-speech;~Hmng~ulrp~@@<br>
+@@.mc-thoughts; A big hot dick fills your entire mouth, making your pussy wet. <br>Another 10 minutes pass until he cums in your mouth@@<br>
+@@.notmc-speech; Ooof, you sucked the last out of me. Enough for today. You may go now@@<br>
+<br>
+<<include "add30lust">>
+<div class="wrapperGain">
+<span>You gain:</span><br>
+<span> Money: +10$ </span><br>
+<span>Experience: +10 exp</span><br>
+<<if $mc.corruption lt 10>>
+<<set $mc.corruption += 0.5>>
+<span><img src="assets/img/corruption.png" style="position: relative; top: 0.375em; width:3%; display: inline; margin: 0;">: +0.5 </span>
+<</if>>
+<span class="reachedNewLvl"></span><br>
+</div>
+<br>
+<span id="expBar"><<showmeter 'xpBar'>></span><br>
+<br>
+<<set $mc.exp += 10>><<set $percentageOfLevel to Math.floor(($mc.exp / $neededForNextLevel) *100)>><<updatemeter 'xpBar' `$mc.exp / $neededForNextLevel`>><<set $mc.money += 10>>
+<<if $mc.exp gte $neededForNextLevel>>
+<<done>><<replace ".reachedNewLvl">>You reached a new level - $mc.lvl !<</replace>><</done>>
+<<set $mc.exp to $mc.exp - $neededForNextLevel>>
+ <<set $mc.lvl += 1>>
+ <<set $percentageOfLevel -= 100>>
+ <<set $neededForNextLevel += Math.ceil(0.3 * $neededForNextLevel)>>
+<<updatemeter 'xpBar' `$mc.exp / $neededForNextLevel`>><</if>>
+@@.backbtn;[[Leave|DeliveryHub]] @@
+<<set $deliveryBJCD to 1>>
+ <</nobr>>
+
+

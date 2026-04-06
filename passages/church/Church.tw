@@ -1,0 +1,34 @@
+:: Church {"position":"1975,1400","size":"100,100"}
+<<nobr>>
+<img src="assets/img/church.jpg" width="100%">
+@@.location; Church@@<br>
+@@.mc-thoughts; You are standing in front of an old church. Near the entrance, there is a fountain with crystal-clear water. The church is a place of tranquility and humility. Here, one can find solace and peace, achieve inner harmony and worship. Perhaps I should visit here more often.@@<br>
+<br>
+<<if $hours lte 5 or $hours gte 22>>
+  @@.mc-thoughts; I came at an inappropriate time (open from 6 AM to 10 PM)@@<br>
+<<else>>
+<<if $hasQuestForRescue eq 0 and ndef $relationshipWithRain>>
+@@.enterbtn;<<link "Confess your sins" "ChurchNunQuest">><<set $hasQuestForRescue to 0>><</link>>@@
+<<else>>
+@@.enterbtn;[[Confess your sins|ChurchPray]]@@<br><</if>>
+<</if>>
+<<if def $hasQuestForRescue and def $relationshipWithRain>>
+@@.enterbtn; [[Missing persons board|rescueTaskBoard]]@@<br>
+<</if>>
+<br>
+<<if $ghostMareInfoCollected eq 1 or def $relationshipWithRain>>
+<<if $holyWaterIsCollected neq 1>>
+@@.usebtn; <<linkreplace "Take holy water">>
+<<set $holyWaterIsCollected to 1>>
+@@.mc-thoughts; Now you have holy water in your bag.@@
+<</linkreplace>>@@<</if>><</if>>
+<br>
+<br>
+@@.backbtn;[[Leave|CityMap]] @@
+<<if previous(2) is "Church">><<include "add1">>
+<<elseif previous() is "CityMap">><<include "add20">>
+<<else>><<include "add1">><</if>>
+
+<</nobr>>
+
+

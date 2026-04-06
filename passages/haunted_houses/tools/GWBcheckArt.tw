@@ -1,0 +1,54 @@
+:: GWBcheckArt {"position":"3625,325","size":"100,100"}
+<<nobr>>
+<<set _gwbChance = random(1, 100)>>
+
+<<if $ghost.evidence.includes("gwb") and (
+    (_gwbChance lte 15 and $equipment.gwb eq 5) or
+    (_gwbChance lte 25 and $equipment.gwb eq 4) or
+    (_gwbChance lte 35 and $equipment.gwb eq 3)
+)>>
+    <<set _check to random(1, 18)>>
+    <<if _check gte 1 and _check lte 18 and (
+          ($ghostRoom.name === "hallway" and (passage() === "enigmaHallway")) or
+        ($ghostRoom.name === "kitchen" and (passage() === "enigmaKitchen")) or
+        ($ghostRoom.name === "bedroom" and (passage() === "enigmaBedroom")) or
+        ($ghostRoom.name === "bathroom" and (passage() === "enigmaBathroom")) or
+        ($ghostRoom.name === "livingroom" and passage() === "enigmaLivingroom") or
+        ($ghostRoom.name === "roomA" and (passage() === "enigmaRoomA")) or
+        ($ghostRoom.name === "roomB" and (passage() === "enigmaRoomB")) or
+        ($ghostRoom.name === "roomC" and (passage() === "enigmaRoomC")) or
+        ($ghostRoom.name === "basement" and (passage() === "enigmaBasement")) 
+    )>>
+        <<if _check eq 1>><img src="assets/gwb/1.jpg" class="evidenceImgs"><</if>>
+        <<if _check eq 2>><img src="assets/gwb/2.jpg" class="evidenceImgs"><</if>>
+        <<if _check eq 3>><img src="assets/gwb/3.jpg" class="evidenceImgs"><</if>>
+        <<if _check eq 4>><img src="assets/gwb/4.jpg" class="evidenceImgs"><</if>>
+        <<if _check eq 5>><img src="assets/gwb/5.jpg" class="evidenceImgs"><</if>>
+        <<if _check eq 6>><img src="assets/gwb/6.jpg" class="evidenceImgs"><</if>>
+        <<if _check eq 7>><img src="assets/gwb/7.jpg" class="evidenceImgs"><</if>>
+        <<if _check eq 8>><img src="assets/gwb/8.jpg" class="evidenceImgs"><</if>>
+        <<if _check eq 9>><img src="assets/gwb/9.jpg" class="evidenceImgs"><</if>>
+        <<if _check eq 10>><img src="assets/gwb/10.jpg" class="evidenceImgs"><</if>>
+        <<if _check eq 11>><img src="assets/gwb/11.jpg" class="evidenceImgs"><</if>>
+        <<if _check eq 12>><img src="assets/gwb/12.jpg" class="evidenceImgs"><</if>>
+        <<if _check eq 13>><img src="assets/gwb/13.jpg" class="evidenceImgs"><</if>>
+        <<if _check eq 14>><img src="assets/gwb/14.jpg" class="evidenceImgs"><</if>>
+        <<if _check eq 15>><img src="assets/gwb/15.jpg" class="evidenceImgs"><</if>>
+        <<if _check eq 16>><img src="assets/gwb/16.jpg" class="evidenceImgs"><</if>>
+        <<if _check eq 17>><img src="assets/gwb/17.jpg" class="evidenceImgs"><</if>>
+        <<if _check eq 18>><img src="assets/gwb/18.jpg" class="evidenceImgs"><</if>>
+        <<set $EmfActivated to 1>>
+		<<set $EmfActivationTime = $hours * 60 + $minutes>>
+        @@.evidenceshadowtext; <span class="evidenceshadowtext"> Ohh... what is this...? Nevertheless, one more piece of evidence</span>@@
+    <<else>>
+    	 <div class="notFound-container">
+        <div class="mc-thoughts">I didn't find anything</div></div>
+    <</if>>
+<<else>>
+	 <div class="notFound-container">
+    <div class="mc-thoughts">I didn't find anything</div></div>
+<</if>>
+<</nobr>>
+
+
+

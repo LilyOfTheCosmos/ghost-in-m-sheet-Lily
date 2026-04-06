@@ -1,0 +1,33 @@
+:: WatchPorn {"position":"300,1100","size":"100,100"}
+<<nobr>>
+<<set $masturbationCD to 1>>
+<<set $videos to ["porn/1.mp4", "porn/2.mp4", "porn/3.mp4", "porn/4.mp4", "porn/5.mp4", "porn/6.mp4", "porn/7.mp4"]>>
+<<set $currentVideoIndex to 0>>
+<div id="video-container">
+    <video autoplay controls muted loop>
+ 				<source @src="`assets/`+$videos[$currentVideoIndex]" type="video/mp4">
+ 				</video>
+</div>
+
+@@.usebtn;<<link "Watch porn" >>
+<<include "add3">>
+<<include "add15lust">>
+<<if $mc.lust gte 60>>
+<<replace "#watch-pornID">>
+@@.usebtn;[[Masturbate]]@@
+<</replace>>
+<</if>>
+    <<set $currentVideoIndex to ($currentVideoIndex + 1) % $videos.length>>
+    <<replace "#video-container">>
+                <video autoplay controls muted loop>
+ 				<source @src="`assets/`+$videos[$currentVideoIndex]" type="video/mp4">
+ 				</video>
+    <</replace>>
+<</link>>@@
+<div id="watch-pornID"></div>
+<br>
+@@.backbtn;[[Stop|PornCore]]@@
+<</nobr>>
+
+
+

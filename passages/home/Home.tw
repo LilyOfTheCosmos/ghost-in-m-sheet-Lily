@@ -1,0 +1,19 @@
+:: Home {"position":"600,800","size":"100,100"}
+<<nobr>>
+<img src="assets/img/mchouse.jpg" width="100%">
+<br>
+@@.location; My home@@<br>
+@@.mc-thoughts; Home, sweet home@@<br>
+<br>
+<span class="enterbtn">[[Go inside|Livingroom]]</span><br>
+<<if $isBrookePossessed eq 1>>@@.usebtn; [[Go find Brooke|possessedBrooke]]@@<br><</if>>
+<br>
+<span class="backbtn">[[Leave|CityMap]]</span><br>
+<<if previous(2) is "Home">><<include "add3">>
+<<elseif previous() is "CityMap">><<include "add20">>
+<<else>><<include "add3">>
+<</if>>
+<</nobr>>
+
+
+

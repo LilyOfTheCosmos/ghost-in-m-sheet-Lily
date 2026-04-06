@@ -1,0 +1,1206 @@
+:: StoryScript [script]
+(function () {
+    'use strict';
+    // meters.js, by Chapel; for SugarCube 2
+    // v1.0.1
+
+    var options = {
+        tryGlobal : true, // attempt to send `Meter` to the global scope?
+        allowClobbering : false, // allow a new meter to replace a previously defined meter with the same name instead of throwing
+        IAmAGrownUp : false // make sure you have enough rope to hang yourself
+    };
+
+
+    var defaultSettings = {
+        full : '#2ECC40', // color when the bar is full
+        empty : '#FF4136', // color when the bar is empty
+        back : '#DDDDDD', // color of the backing
+        height : '12px', // height of the bar
+        width : '180px', // width of the bar
+        animate : 400, // ms
+        easing : 'swing', // animation easing
+        text : '#111111', // label text color
+        label : '', // label text
+        align : 'center' // label alignment
+    };
+
+    var _validAlignments = ['center', 'left', 'right'];
+    var _validEasing = ['swing', 'linear'];
+
+    function _handleString (str, def) {
+        if (str && typeof str === 'string') {
+            str = str.toLowerCase().trim();
+            if (str) {
+                return str;
+            }
+        }
+        return def || '';
+    }
+
+    function _colorEasing (t) {
+        // from: https://gist.github.com/gre/1650294
+        return (t < 0.5) ? 2 * t * t : -1 + (4 - 2 * t) *t;
+    }
+
+    function Meter (opts, value) {
+        if (!(this instanceof Meter)) {
+            return new Meter(opts, value);
+        }
+
+        var defs = clone(defaultSettings);
+
+        this.settings = Object.assign(defs, opts);
+
+        // default malformed settings
+
+        this.settings.align = _handleString(this.settings.align);
+        this.settings.easing = _handleString(this.settings.easing);
+
+        if (!_validAlignments.includes(this.settings.align)) {
+            this.settings.align = 'center';
+        }
+
+        if (!_validEasing.includes(this.settings.easing)) {
+            this.settings.easing = 'swing';
+        }
+
+        // set the value, or default to 1
+
+        value = Number(value);
+        if (Number.isNaN(value)) {
+            value = 1;
+        }
+        value = Math.clamp(value, 0, 1);
+        this.value = value;
+
+        // the backing of the meter, and the container
+        var $wrapper = $(document.createElement('div'))
+            .addClass('chapel-meter')
+            .attr({
+                'data-val' : value,
+                'data-label' : this.settings.label
+            })
+            .css({
+                'position' : 'relative',
+                'background-color' : this.settings.back,
+                'height' : this.settings.height,
+                'width' : this.settings.width,
+                'overflow' : 'hidden'
+            });
+
+        // the meter's label
+        var $label = $(document.createElement('div'))
+            .addClass('meter-label')
+            .css({
+                'top' : 0,
+                'right' : 0,
+                'font-size' : this.settings.height,
+                'font-weight' : 'bold',
+                'line-height' : '100%',
+                'width' : '100%',
+                'height' : '100%',
+                'vertical-align' : 'middle',
+                'text-align' : this.settings.align,
+                'color' : this.settings.text,
+                'z-index' : 1,
+                'position' : 'relative',
+                'bottom' : '100%'
+            })
+            .wiki(this.settings.label)
+            .appendTo($wrapper);
+
+        // this is just here to give the bar a smooth transitioning coloration
+        var $barTop = $(document.createElement('div'))
+            .addClass('meter-top')
+            .css({
+                'background-color' : this.settings.full,
+                'opacity' : _colorEasing(this.value),
+                'width' : '100%',
+                'height' : '100%',
+                'z-index' : 0
+            });
+
+        // this actually holds the value and the 'real' bar color
+        var $barBottom = $(document.createElement('div'))
+            .addClass('meter-bottom')
+            .css({
+                'position' : 'absolute',
+                'top' : 0,
+                'left' : 0,
+                'background-color' : this.settings.empty,
+                'opacity' : 1,
+                'width' : (this.value * 100) + '%',
+                'height' : '100%',
+                'z-index' : 0
+            })
+            .append($barTop)
+            .appendTo($wrapper);
+
+        this.$element = $wrapper;
+        this.$bars = { // undocumented
+            top : $barTop,
+            bottom : $barBottom
+        };
+        this.$label = $label; // undocumented
+
+        // mostly a reminder
+        $label.css('font-size', (parseInt($wrapper.css('height'), 10) < parseInt($('.passage').css('font-size'), 10)) ? 
+            $wrapper.css('height') : $('.passage').css('font-size'));
+        $label.css('line-height', $wrapper.css('height'));
+    }
+
+    Object.assign(Meter, {
+        _list : new Map(), // undocumented; meter data dump
+        is : function (thing) { // see if passed "thing" is a meter instance
+            return thing instanceof Meter;
+        },
+        has : function (name) { // does the named meter exist?
+            return Meter._list.has(name) && Meter.is(Meter._list.get(name));
+        },
+        get : function (name) { // return the meter instance
+            if (Meter.has(name)) {
+                return Meter._list.get(name);
+            }
+            return null;
+        },
+        del : function (name) { // delete the meter with the indicated name
+            if (Meter.has(name)) {
+                Meter._list.delete(name);
+            }
+        },
+        add : function (name, opts, value) { // add a new meter; the constructor should not be used
+            if (Meter.has(name) && !options.allowClobbering) {
+                console.error('Meter "' + name + '" already exists.');
+                return;
+            }
+            Object.assign(opts, { id : name });
+            var meter = new Meter(opts, value);
+            Meter._list.set(name, meter);
+            return meter;
+        },
+        _emit : function (inst, name) { // undocumented; emit an event on the given meter
+            if (!Meter.is(inst)) {
+                return;
+            }
+            inst.$element.trigger({
+                type : ':' + name,
+                meter : inst
+            });
+        }
+    });
+
+    Object.assign(Meter.prototype, {
+        constructor : Meter,
+        _label : function (wait) { // undocumented; reprocess the meter label and set the sizes
+            // THE LABEL IS AN ACTUAL NIGHTMARE
+            var self = this;
+            function process () {
+                self.$label.empty().wiki(self.settings.label);
+                self.$label.css('font-size', (parseInt(self.$element.css('height'), 10) < parseInt(self.$element.parent().css('font-size'), 10)) ? 
+                    self.$element.css('height') : self.$element.parent().css('font-size'));
+                self.$label.css('line-height', self.$element.css('height'));
+            }
+            if (wait) {
+                setTimeout(process, Engine.minDomActionDelay);
+            } else {
+                process();
+            }
+            return this;
+        },
+        _width : function () { // undocumented; change the meter width
+            var self = this;
+            this.$bars.bottom.animate({
+                'width' : (this.value * 100) + '%'
+            }, this.settings.animate, this.settings.easing, function () {
+                Meter._emit(self, 'meter-animation-complete');
+            });
+            return this;
+        },
+        _color : function () { // undocumented; blend the full and empty meter colors
+            this.$bars.top.animate({
+                'opacity' : _colorEasing(this.value)
+            }, this.settings.animate, this.settings.easing);
+            return this;
+        },
+        animate : function () { // animate bar changes
+            Meter._emit(this, 'meter-animation-start');
+            return this._color()._width()._label();
+        },
+        val : function (n) { // set and get bar value
+            if (n !== undefined) {
+                n = Number(n);
+                if (Number.isNaN(n)) {
+                    n = 1;
+                }
+                n = Math.clamp(n, 0, 1);
+
+                this.value = n;
+                this.animate();
+            }
+            return this.value;
+        },
+        options : function (opts) {
+            // set or get bar settings
+            if (opts && typeof opts === 'object') {
+                Object.assign(this.settings, opts);
+            }
+            return this.settings;
+        },
+        unwrap : function () {
+            // return unwrapped container element
+            return this.$element[0];
+        },
+        place : function ($target, options) { // put the bar in a known element, with a wrapper
+            var $wrapper = $(document.createElement('span'));
+            if (!($target instanceof jQuery)) {
+                $target = $($target);
+            }
+            if (!$target[0]) {
+                console.warn('meter#place() -> no valid target');
+            }
+            if (options && typeof options === 'object') {
+                // options can contain classes or attributes for the wrapper
+                if (options.classes && (Array.isArray(options.classes) || typeof options.classes === 'string')) {
+                    $wrapper.addClass(options.classes);
+                }
+                if (options.attr && typeof options.attr === 'object') {
+                    $wrapper.attr(options.attr);
+                }
+            }
+            $target.append($wrapper.append(this.$element));
+            // make sure to process the label
+            this._label(true);
+            return this;
+        },
+        // event methods for meters
+        on : function (eventType, cb) {
+            if (typeof cb !== 'function') {
+                return this;
+            }
+            if (!eventType || typeof eventType !== 'string' || !eventType.trim()) {
+                return this;
+            }
+            eventType = eventType.split(' ').map( function (type) {
+                type = type.split('.')[0];
+                return type + '.userland';
+            }).join(' ');
+            this.$element.on(eventType, cb);
+            return this;
+        },
+        one : function (eventType, cb) {
+            if (typeof cb !== 'function') {
+                return this;
+            }
+            if (!eventType || typeof eventType !== 'string' || !eventType.trim()) {
+                return this;
+            }
+            eventType = eventType.split(' ').map( function (type) {
+                type = type.split('.')[0];
+                return type + '.userland';
+            }).join(' ');
+            this.$element.one(eventType, cb);
+            return this;
+        },
+        off : function (eventType) {
+            if (eventType && typeof eventType === 'string' && eventType.trim()) {
+                eventType = eventType.split(' ').map( function (type) {
+                    type = type.split('.')[0];
+                    return type + '.userland';
+                }).join(' ');
+            } else {
+                eventType = '.userland'; // remove all user events
+            }
+            this.$element.off(eventType);
+            return this;
+        },
+        // ariaClick-style setup
+        click : function (options, cb) {
+            // let SugarCube handle the errors
+            this.$element.ariaClick(options, cb);
+            return this;
+        },
+        // for completeness and in case a meter winds up in the state
+        clone : function () {
+            return new Meter(this.settings, this.value);
+        },
+        toJSON : function () {
+            return JSON.reviveWrapper('new setup.Meter(' + JSON.stringify(this.settings) + ', ' + this.value + ')');
+        }
+    });
+
+    // setup-spaced API
+    setup.Meter = Meter;
+
+    if (options.tryGlobal) { // global API, if undefined
+        window.Meter = window.Meter || Meter;
+    }
+
+    // <<newmeter '$variable' [optional: starting value (between 0 and 1)]>>...<</newmeter>>
+    // optional child tags: <<metercolors full [empty] [backing]>>, <<metersizing height [width]>>, <<meteranimation timeOrBool [easing]>>, <<meterlabel labelText [textColor] [alignment]>>
+    Macro.add('newmeter', {
+        tags : ['colors', 'sizing', 'animation', 'label'],
+        handler : function () {
+
+            if (State.length > 0 && !options.IAmAGrownUp) {
+                // you are not a grown up
+                return this.error('The `<<newmeter>>` macro must be called in your `StoryInit` special passage. Seriously. No excuses. --Love, Chapel');
+            }
+
+            if (this.args.length < 1) {
+                return this.error('The `<<newmeter>>` macro requires at least one argument: a meter name.');
+            }
+
+            var meterName = this.args[0], 
+                colorsTag = null, 
+                sizeTag = null, 
+                animTag = null,
+                labelTag = null;
+
+            if (typeof meterName !== 'string') {
+                return this.error('Invalid meter name.');
+            }
+
+            meterName = meterName.trim();
+
+            if (Meter.has(meterName) && !options.allowClobbering) {
+                return this.error('Cannot clobber the existing meter "' + meterName + '".');
+            }
+
+            if (this.payload.length) {
+                // get each child tag for processing
+                colorsTag = this.payload.find( function (pl) {
+                    return pl.name === 'colors';
+                });
+                sizeTag = this.payload.find( function (pl) {
+                    return pl.name === 'sizing';
+                });
+                animTag = this.payload.find( function (pl) {
+                    return pl.name === 'animation';
+                });
+                labelTag = this.payload.find( function (pl) {
+                    return pl.name === 'label';
+                });
+            }
+
+            var opts = {};
+
+            if (colorsTag) {
+                // process the colors tag
+                if (!colorsTag.args.length) {
+                    return this.error('No arguments passed to the `<<colors>>` tag.');
+                }
+
+                switch (colorsTag.args.length) {
+                    case 1:
+                        opts.empty = colorsTag.args[0];
+                        opts.full = 'transparent'; // make the meter one solid color
+                        break;
+                    case 2:
+                        opts.full = colorsTag.args[0];
+                        opts.empty = colorsTag.args[1];
+                        break;
+                    default:
+                        opts.full = colorsTag.args[0];
+                        opts.empty = colorsTag.args[1];
+                        opts.back = colorsTag.args[2];
+                }
+            }
+
+            if (sizeTag) {
+                // process the sizin tag
+                if (!sizeTag.args.length) {
+                    return this.error('No arguments passed to the `<<sizing>>` tag.');
+                }
+
+                opts.width = sizeTag.args[0];
+
+                if (sizeTag.args[1]) {
+                    opts.height = sizeTag.args[1];
+                }
+
+            }
+
+            if (animTag) {
+                // process the animations tag
+                if (!animTag.args.length) {
+                    return this.error('No arguments passed to the `<<animation>>` tag.');
+                }
+
+                if (typeof animTag.args[0] === 'boolean' && !animTag.args[0]) {
+                    opts.animate = 0; // functionally no animation--we still want the event, though, so we'll just 0 it out
+                } else if (typeof animTag.args[0] === 'string') {
+                    opts.animate = Util.fromCssTime(animTag.args[0]);
+                } else {
+                    return this.error('The argument to the `<<animation>>` tag should be `true`, `false`, or a valid CSS time value.');
+                }
+
+                if (animTag.args[1] && ['swing', 'linear'].includes(animTag.args[1])) {
+                    opts.easing = animTag.args[1];
+                }
+            }
+
+            if (labelTag) {
+                // process the label tag
+                var text = labelTag.args[0];
+                if (text && typeof text === 'string') {
+                    opts.label = text.trim();
+                } else {
+                   return this.error('The labelText argument for the `<<label>>` tag is required.');
+                }
+
+                if (labelTag.args[1] && typeof labelTag.args[1] === 'string') {
+                    opts.text = labelTag.args[1];
+                }
+                if (labelTag.args[2] && typeof labelTag.args[2] === 'string') {
+                    opts.align = labelTag.args[2];
+                }
+            }
+
+            Meter.add(meterName, opts, this.args[1]);
+
+        }
+    });
+
+    // <<showmeter '$variable' [value]>>
+    Macro.add('showmeter', {
+        handler : function () {
+
+            if (this.args.length < 1) {
+                return this.error('This macro requires at least one argument: the meter\'s name.');
+            }
+
+            // get the meter
+            var meterName = this.args[0];
+
+            if (typeof meterName !== 'string') {
+                return this.error('Invalid meter name.');
+            }
+
+            meterName = meterName.trim();
+
+            var meter = Meter.get(meterName);
+
+            if (!meter || !Meter.is(meter)) {
+                return this.error('The meter "' + meterName + '" does not exist.');
+            }
+
+            // set the meter, if necessary
+            if (typeof this.args[1] === 'number') {
+                meter.val(this.args[1]);
+            }
+
+            // render the meter
+            meter.place(this.output, {
+                classes : 'macro-' + this.name,
+                attr : { id : 'meter-' + Util.slugify(meterName) }
+            });
+
+        }
+    });
+
+    // <<updatebar '$variable' value>>
+    Macro.add('updatemeter', {
+        handler : function () {
+
+            if (this.args.length < 2) {
+                return this.error('This macro requires two arguments: the meter\'s name and a value.');
+            }
+
+            // get the meter
+            var meterName = this.args[0];
+
+            if (typeof meterName !== 'string') {
+                return this.error('Invalid meter name.');
+            }
+
+            meterName = meterName.trim();
+
+            var meter = Meter.get(meterName);
+
+            if (!meter || !Meter.is(meter)) {
+                return this.error('The meter "' + meterName + '" does not exist.');
+            }
+
+            // set it
+            meter.val(this.args[1]); // if it's on the page, should update and animate auto-magically.
+
+        }
+    });
+}());
+
+
+/* hovertip v2.0 - Start */
+window.UpdateHoverTipTxt = function (container) {
+	if (Engine.isIdle()) {
+		clearInterval(HTTIntervalID);
+		if (container === undefined) {
+			container = $(document);
+		} else {
+			container = $(container);
+		}
+		var i, id, top, left, parent, elementList, element, hoverPos, boxPos, zindex;
+		elementList = container.find('span[id^="hoverTipTxt"]');
+		for (i = 0; i < elementList.length; i++) {
+			element = $(elementList[i]);
+			id = elementList[i].id.substring(11);
+			/* Find parent hoverTip item on the page. */
+			parent = $(container).find("#hoverTip" + (id));
+			/* Position bottom of hoverTipTxt just above the parent. */
+			top = Math.round(-element.outerHeight() - 6);
+			/* Center hoverTipTxt horizontally over parent. */
+			left = Math.round((parent.outerWidth() - element.outerWidth()) / 2);
+			/* See if the hoverTip is contained by something with a higher z-index. */
+			zindex = element.css("z-index");
+			if (zindex === "auto") {
+				zindex = 0;
+			} else {
+				zindex = parseInt(zindex, 10);
+			}
+			while (parent.parent()[0] !== document) {
+				if ((parent.parent().css("z-index") !== "auto") && (parseInt(parent.parent().css("z-index"), 10) > zindex)) {
+					/* Get container rect. */
+					boxPos = parent[0].getBoundingClientRect();
+					break;
+				}
+				parent = parent.parent();
+			}
+			/* Update position. */
+			element.css({ top: top, left: left });
+			hoverPos = element[0].getBoundingClientRect();
+			/* Make sure the text isn't outside the bottom of the screen. */
+			if (hoverPos.top > window.innerHeight - hoverPos.height - 10) {
+				top -= hoverPos.top - (window.innerHeight - hoverPos.height - 10);
+			}
+			/* Make sure the text isn't outside the top of the screen. */
+			if (hoverPos.top < 4) {
+				top -= hoverPos.top - 4;
+			}
+			/* Make sure the text isn't outside the right of the screen. */
+			if (hoverPos.left > window.innerWidth - hoverPos.width - 26) {
+				left -= hoverPos.left - (window.innerWidth - hoverPos.width - 26);
+			}
+			/* Make sure the text isn't outside the left of the screen. */
+			if (hoverPos.left < 4) {
+				left -= hoverPos.left - 4;
+			}
+			/* Update position. */
+			element.css({ top: Math.round(top), left: Math.round(left) });
+			hoverPos = element[0].getBoundingClientRect();
+			if (boxPos) {  /* Fit within dialog boxes and the like. */
+				/* Make sure the text isn't outside the bottom of the box. */
+				if (hoverPos.top > boxPos.bottom - hoverPos.height - 10) {
+					top -= hoverPos.top - (boxPos.bottom - hoverPos.height - 10);
+				}
+				/* Make sure the text isn't outside the top of the box. */
+				if (hoverPos.top < boxPos.top + 4) {
+					top -= hoverPos.top - (boxPos.top + 4);
+				}
+				/* Make sure the text isn't outside the right of the box. */
+				if (hoverPos.left > boxPos.right - hoverPos.width - 26) {
+					left -= hoverPos.left - (boxPos.right - hoverPos.width - 26);
+				}
+				/* Make sure the text isn't outside the left of the box. */
+				if (hoverPos.left < boxPos.left + 4) {
+					left -= hoverPos.left - boxPos.left - 4;
+				}
+				/* Update position. */
+				element.css({ top: Math.round(top), left: Math.round(left) });
+			}
+		}
+	} else {
+		clearInterval(HTTIntervalID);
+		HTTIntervalID = setInterval(UpdateHoverTipTxt, 300);
+	}
+};
+/*  Waits for passage to be fully rendered before doing anything.  */
+var HTTIntervalID = 0;
+$(document).on(":passageend", function (ev) {
+	UpdateHoverTipTxt();
+});
+$(window).on("resize scroll", function (ev) {
+	clearInterval(HTTIntervalID);
+	HTTIntervalID = setInterval(UpdateHoverTipTxt, 300);
+});
+$("#ui-bar-toggle").on("click", function (ev) {
+	clearInterval(HTTIntervalID);
+	HTTIntervalID = setInterval(UpdateHoverTipTxt, 300);
+});
+/* <<hovertip>> macro */
+Macro.add("hovertip", {
+	tags	 : null,
+	handler  : function () {
+		if (this.args.length > 0) {
+			var mw = "";
+			if ((this.args.length > 1) && (!isNaN(parseInt(this.args[1], 10)))) {
+				mw = ' style="max-width: ' + parseInt(this.args[1], 10) + 'px;"';
+			}
+			if (State.temporary.HoverTipCount == undefined) {
+				State.temporary.HoverTipCount = 1;
+			} else {
+				State.temporary.HoverTipCount++;
+			}
+			while ($("#hoverTip" + State.temporary.HoverTipCount).length) {
+				/* Found an existing hoverTip. */
+				State.temporary.HoverTipCount++;
+			}
+			var output = '<span id="hoverTip' + State.temporary.HoverTipCount +
+					'" class="hoverTipTxt hoverTip" tabindex="0" ' +
+					'onmouseenter="UpdateHoverTipTxt();">' +
+					this.payload[0].contents + '<span id="hoverTipTxt' +
+					State.temporary.HoverTipCount + '" class="hoverBox hoverTail"' +
+					mw + '>' + this.args[0] + '</span></span>';
+			$(this.output).wiki(output);
+		} else {
+			$(this.output).wiki(this.payload[0].contents);
+		}
+	}
+});
+/* hovertip v2.0 - End */
+
+
+Meter.add('searchBasementEmf', { label   : "$currentsearchBasement.emf", width :"50%" }, 1);
+
+Meter.add('searchBasementPlasm', { label   : "$currentsearchBasement.plasm", width :"50%" }, 1);
+
+Meter.add('searchBasementUvl', { label   : "$currentsearchBasement.uvl", width :"50%" }, 1);
+
+Meter.add('searchBasementTemperature', { label   : "$currentsearchBasement.temperature", width :"50%" }, 1);
+
+Meter.add('searchBasementGwb', { label   : "$currentsearchBasement.gwb", width :"50%" }, 1);
+
+Meter.add('searchBasementSpiritbox', { label   : "$currentsearchBasement.spiritbox", width :"50%" }, 1);
+
+
+Meter.add('searchNurseryEmf', { label   : "$currentsearchNursery.emf", width :"50%" }, 1);
+
+Meter.add('searchNurseryPlasm', { label   : "$currentsearchNursery.plasm", width :"50%" }, 1);
+
+Meter.add('searchNurseryUvl', { label   : "$currentsearchNursery.uvl", width :"50%" }, 1);
+
+Meter.add('searchNurseryTemperature', { label   : "$currentsearchNursery.temperature", width :"50%" }, 1);
+
+Meter.add('searchNurseryGwb', { label   : "$currentsearchNursery.gwb", width :"50%" }, 1);
+
+Meter.add('searchNurserySpiritbox', { label   : "$currentsearchNursery.spiritbox", width :"50%" }, 1);
+
+
+
+Meter.add('searchBedroomTwoEmf', { label   : "$currentsearchBedroomTwo.emf", width :"50%" }, 1);
+
+Meter.add('searchBedroomTwoPlasm', { label   : "$currentsearchBedroomTwo.plasm", width :"50%" }, 1);
+
+Meter.add('searchBedroomTwoUvl', { label   : "$currentsearchBedroomTwo.uvl", width :"50%" }, 1);
+
+Meter.add('searchBedroomTwoTemperature', { label   : "$currentsearchBedroomTwo.temperature", width :"50%" }, 1);
+
+Meter.add('searchBedroomTwoGwb', { label   : "$currentsearchBedroomTwo.gwb", width :"50%" }, 1);
+
+Meter.add('searchBedroomTwoSpiritbox', { label   : "$currentsearchBedroomTwo.spiritbox", width :"50%" }, 1);
+
+
+
+Meter.add('searchBathroomTwoEmf', { label   : "$currentsearchBathroomTwo.emf", width :"50%" }, 1);
+
+Meter.add('searchBathroomTwoPlasm', { label   : "$currentsearchBathroomTwo.plasm", width :"50%" }, 1);
+
+Meter.add('searchBathroomTwoUvl', { label   : "$currentsearchBathroomTwo.uvl", width :"50%" }, 1);
+
+Meter.add('searchBathroomTwoTemperature', { label   : "$currentsearchBathroomTwo.temperature", width :"50%" }, 1);
+
+Meter.add('searchBathroomTwoGwb', { label   : "$currentsearchBathroomTwo.gwb", width :"50%" }, 1);
+
+Meter.add('searchBathroomTwoSpiritbox', { label   : "$currentsearchBathroomTwo.spiritbox", width :"50%" }, 1);
+
+
+Meter.add('searchHallwayUpstairsEmf', { label   : "$currentsearchHallwayUpstairs.emf", width :"50%" }, 1);
+
+Meter.add('searchHallwayUpstairsPlasm', { label   : "$currentsearchHallwayUpstairs.plasm", width :"50%" }, 1);
+
+Meter.add('searchHallwayUpstairsUvl', { label   : "$currentsearchHallwayUpstairs.uvl", width :"50%" }, 1);
+
+Meter.add('searchHallwayUpstairsTemperature', { label   : "$currentsearchHallwayUpstairs.temperature", width :"50%" }, 1);
+
+Meter.add('searchHallwayUpstairsGwb', { label   : "$currentsearchHallwayUpstairs.gwb", width :"50%" }, 1);
+
+Meter.add('searchHallwayUpstairsSpiritbox', { label   : "$currentsearchHallwayUpstairs.spiritbox", width :"50%" }, 1);
+
+Meter.add('mclust', { label   : "$mc.lust", width :"220px" }, 1);
+
+Meter.add('companionsanity', { label   : "$companion.sanity", width :"100%" }, 1);
+
+Meter.add('companionlust', { label   : "$companion.lust", width :"100%" }, 1);
+
+Meter.add('ghostlust', { label   : "ghostlust", width :"100%" }, 1);
+
+Meter.add('searchRoomAEmf', { label   : "$currentsearchRoomA.emf", width :"50%" }, 1);
+
+Meter.add('searchRoomAPlasm', { label   : "$currentsearchRoomA.plasm", width :"50%" }, 1);
+
+Meter.add('searchRoomAUvl', { label   : "$currentsearchRoomA.uvl", width :"50%" }, 1);
+
+Meter.add('searchRoomATemperature', { label   : "$currentsearchRoomA.temperature", width :"50%" }, 1);
+
+Meter.add('searchRoomAGwb', { label   : "$currentsearchRoomA.gwb", width :"50%" }, 1);
+
+Meter.add('searchRoomASpiritbox', { label   : "$currentsearchRoomA.spiritbox", width :"50%" }, 1);
+
+
+Meter.add('searchRoomBEmf', { label   : "$currentsearchRoomB.emf", width :"50%" }, 1);
+
+Meter.add('searchRoomBPlasm', { label   : "$currentsearchRoomB.plasm", width :"50%" }, 1);
+
+Meter.add('searchRoomBUvl', { label   : "$currentsearchRoomB.uvl", width :"50%" }, 1);
+
+Meter.add('searchRoomBTemperature', { label   : "$currentsearchRoomB.temperature", width :"50%" }, 1);
+
+Meter.add('searchRoomBGwb', { label   : "$currentsearchRoomB.gwb", width :"50%" }, 1);
+
+Meter.add('searchRoomBSpiritbox', { label   : "$currentsearchRoomB.spiritbox", width :"50%" }, 1);
+
+
+
+Meter.add('searchRoomCEmf', { label   : "$currentsearchRoomC.emf", width :"50%" }, 1);
+
+Meter.add('searchRoomCPlasm', { label   : "$currentsearchRoomC.plasm", width :"50%" }, 1);
+
+Meter.add('searchRoomCUvl', { label   : "$currentsearchRoomC.uvl", width :"50%" }, 1);
+
+Meter.add('searchRoomCTemperature', { label   : "$currentsearchRoomC.temperature", width :"50%" }, 1);
+
+Meter.add('searchRoomCGwb', { label   : "$currentsearchRoomC.gwb", width :"50%" }, 1);
+
+Meter.add('searchRoomCSpiritbox', { label   : "$currentsearchRoomC.spiritbox", width :"50%" }, 1);
+
+
+//new location - prison
+
+Meter.add('searchBlockAIroncladEmf', { label   : "$currentsearchBlockAIronclad.emf", width :"50%" }, 1);
+
+Meter.add('searchBlockAIroncladPlasm', { label   : "$currentsearchBlockAIronclad.plasm", width :"50%" }, 1);
+
+Meter.add('searchBlockAIroncladUvl', { label   : "$currentsearchBlockAIronclad.uvl", width :"50%" }, 1);
+
+Meter.add('searchBlockAIroncladTemperature', { label   : "$currentsearchBlockAIronclad.temperature", width :"50%" }, 1);
+
+Meter.add('searchBlockAIroncladGwb', { label   : "$currentsearchBlockAIronclad.gwb", width :"50%" }, 1);
+
+Meter.add('searchBlockAIroncladSpiritbox', { label   : "$currentsearchBlockAIronclad.spiritbox", width :"50%" }, 1);
+
+///
+Meter.add('searchBlockBIroncladEmf', { label   : "$currentsearchBlockBIronclad.emf", width :"50%" }, 1);
+
+Meter.add('searchBlockBIroncladPlasm', { label   : "$currentsearchBlockBIronclad.plasm", width :"50%" }, 1);
+
+Meter.add('searchBlockBIroncladUvl', { label   : "$currentsearchBlockBIronclad.uvl", width :"50%" }, 1);
+
+Meter.add('searchBlockBIroncladTemperature', { label   : "$currentsearchBlockBIronclad.temperature", width :"50%" }, 1);
+
+Meter.add('searchBlockBIroncladGwb', { label   : "$currentsearchBlockBIronclad.gwb", width :"50%" }, 1);
+
+Meter.add('searchBlockBIroncladSpiritbox', { label   : "$currentsearchBlockBIronclad.spiritbox", width :"50%" }, 1);
+
+///
+
+Meter.add('searchBlockCIroncladEmf', { label   : "$currentsearchBlockCIronclad.emf", width :"50%" }, 1);
+
+Meter.add('searchBlockCIroncladPlasm', { label   : "$currentsearchBlockCIronclad.plasm", width :"50%" }, 1);
+
+Meter.add('searchBlockCIroncladUvl', { label   : "$currentsearchBlockCIronclad.uvl", width :"50%" }, 1);
+
+Meter.add('searchBlockCIroncladTemperature', { label   : "$currentsearchBlockCIronclad.temperature", width :"50%" }, 1);
+
+Meter.add('searchBlockCIroncladGwb', { label   : "$currentsearchBlockCIronclad.gwb", width :"50%" }, 1);
+
+Meter.add('searchBlockCIroncladSpiritbox', { label   : "$currentsearchBlockCIronclad.spiritbox", width :"50%" }, 1);
+
+/////
+
+Meter.add('searchBlockACellAIroncladEmf', { label   : "$currentsearchBlockACellAIronclad.emf", width :"50%" }, 1);
+
+Meter.add('searchBlockACellAIroncladPlasm', { label   : "$currentsearchBlockACellAIronclad.plasm", width :"50%" }, 1);
+
+Meter.add('searchBlockACellAIroncladUvl', { label   : "$currentsearchBlockACellAIronclad.uvl", width :"50%" }, 1);
+
+Meter.add('searchBlockACellAIroncladTemperature', { label   : "$currentsearchBlockACellAIronclad.temperature", width :"50%" }, 1);
+
+Meter.add('searchBlockACellAIroncladGwb', { label   : "$currentsearchBlockACellAIronclad.gwb", width :"50%" }, 1);
+
+Meter.add('searchBlockACellAIroncladSpiritbox', { label   : "$currentsearchBlockACellAIronclad.spiritbox", width :"50%" }, 1);
+
+///
+
+Meter.add('searchBlockACellBIroncladEmf', { label   : "$currentsearchBlockACellBIronclad.emf", width :"50%" }, 1);
+
+Meter.add('searchBlockACellBIroncladPlasm', { label   : "$currentsearchBlockACellBIronclad.plasm", width :"50%" }, 1);
+
+Meter.add('searchBlockACellBIroncladUvl', { label   : "$currentsearchBlockACellBIronclad.uvl", width :"50%" }, 1);
+
+Meter.add('searchBlockACellBIroncladTemperature', { label   : "$currentsearchBlockACellBIronclad.temperature", width :"50%" }, 1);
+
+Meter.add('searchBlockACellBIroncladGwb', { label   : "$currentsearchBlockACellBIronclad.gwb", width :"50%" }, 1);
+
+Meter.add('searchBlockACellBIroncladSpiritbox', { label   : "$currentsearchBlockACellBIronclad.spiritbox", width :"50%" }, 1);
+
+///
+
+Meter.add('searchBlockACellCIroncladEmf', { label   : "$currentsearchBlockACellCIronclad.emf", width :"50%" }, 1);
+
+Meter.add('searchBlockACellCIroncladPlasm', { label   : "$currentsearchBlockACellCIronclad.plasm", width :"50%" }, 1);
+
+Meter.add('searchBlockACellCIroncladUvl', { label   : "$currentsearchBlockACellCIronclad.uvl", width :"50%" }, 1);
+
+Meter.add('searchBlockACellCIroncladTemperature', { label   : "$currentsearchBlockACellCIronclad.temperature", width :"50%" }, 1);
+
+Meter.add('searchBlockACellCIroncladGwb', { label   : "$currentsearchBlockACellCIronclad.gwb", width :"50%" }, 1);
+
+Meter.add('searchBlockACellCIroncladSpiritbox', { label   : "$currentsearchBlockACellCIronclad.spiritbox", width :"50%" }, 1);
+
+///
+
+Meter.add('searchBlockBCellAIroncladEmf', { label   : "$currentsearchBlockBCellAIronclad.emf", width :"50%" }, 1);
+
+Meter.add('searchBlockBCellAIroncladPlasm', { label   : "$currentsearchBlockBCellAIronclad.plasm", width :"50%" }, 1);
+
+Meter.add('searchBlockBCellAIroncladUvl', { label   : "$currentsearchBlockBCellAIronclad.uvl", width :"50%" }, 1);
+
+Meter.add('searchBlockBCellAIroncladTemperature', { label   : "$currentsearchBlockBCellAIronclad.temperature", width :"50%" }, 1);
+
+Meter.add('searchBlockBCellAIroncladGwb', { label   : "$currentsearchBlockBCellAIronclad.gwb", width :"50%" }, 1);
+
+Meter.add('searchBlockBCellAIroncladSpiritbox', { label   : "$currentsearchBlockBCellAIronclad.spiritbox", width :"50%" }, 1);
+
+///
+
+Meter.add('searchBlockBCellBIroncladEmf', { label   : "$currentsearchBlockBCellBIronclad.emf", width :"50%" }, 1);
+
+Meter.add('searchBlockBCellBIroncladPlasm', { label   : "$currentsearchBlockBCellBIronclad.plasm", width :"50%" }, 1);
+
+Meter.add('searchBlockBCellBIroncladUvl', { label   : "$currentsearchBlockBCellBIronclad.uvl", width :"50%" }, 1);
+
+Meter.add('searchBlockBCellBIroncladTemperature', { label   : "$currentsearchBlockBCellBIronclad.temperature", width :"50%" }, 1);
+
+Meter.add('searchBlockBCellBIroncladGwb', { label   : "$currentsearchBlockBCellBIronclad.gwb", width :"50%" }, 1);
+
+Meter.add('searchBlockBCellBIroncladSpiritbox', { label   : "$currentsearchBlockBCellBIronclad.spiritbox", width :"50%" }, 1);
+
+///
+
+Meter.add('searchBlockBCellCIroncladEmf', { label   : "$currentsearchBlockBCellCIronclad.emf", width :"50%" }, 1);
+
+Meter.add('searchBlockBCellCIroncladPlasm', { label   : "$currentsearchBlockBCellCIronclad.plasm", width :"50%" }, 1);
+
+Meter.add('searchBlockBCellCIroncladUvl', { label   : "$currentsearchBlockBCellCIronclad.uvl", width :"50%" }, 1);
+
+Meter.add('searchBlockBCellCIroncladTemperature', { label   : "$currentsearchBlockBCellCIronclad.temperature", width :"50%" }, 1);
+
+Meter.add('searchBlockBCellCIroncladGwb', { label   : "$currentsearchBlockBCellCIronclad.gwb", width :"50%" }, 1);
+
+Meter.add('searchBlockBCellCIroncladSpiritbox', { label   : "$currentsearchBlockBCellCIronclad.spiritbox", width :"50%" }, 1);
+
+///
+
+Meter.add('searchHallwayIroncladEmf', { label   : "$currentsearchHallwayIronclad.emf", width :"50%" }, 1);
+
+Meter.add('searchHallwayIroncladPlasm', { label   : "$currentsearchHallwayIronclad.plasm", width :"50%" }, 1);
+
+Meter.add('searchHallwayIroncladUvl', { label   : "$currentsearchHallwayIronclad.uvl", width :"50%" }, 1);
+
+Meter.add('searchHallwayIroncladTemperature', { label   : "$currentsearchHallwayIronclad.temperature", width :"50%" }, 1);
+
+Meter.add('searchHallwayIroncladGwb', { label   : "$currentsearchHallwayIronclad.gwb", width :"50%" }, 1);
+
+Meter.add('searchHallwayIroncladSpiritbox', { label   : "$currentsearchHallwayIronclad.spiritbox", width :"50%" }, 1);
+
+///
+
+Meter.add('searchReceptionIroncladEmf', { label   : "$currentsearchReceptionIronclad.emf", width :"50%" }, 1);
+
+Meter.add('searchReceptionIroncladPlasm', { label   : "$currentsearchReceptionIronclad.plasm", width :"50%" }, 1);
+
+Meter.add('searchReceptionIroncladUvl', { label   : "$currentsearchReceptionIronclad.uvl", width :"50%" }, 1);
+
+Meter.add('searchReceptionIroncladTemperature', { label   : "$currentsearchReceptionIronclad.temperature", width :"50%" }, 1);
+
+Meter.add('searchReceptionIroncladGwb', { label   : "$currentsearchReceptionIronclad.gwb", width :"50%" }, 1);
+
+Meter.add('searchReceptionIroncladSpiritbox', { label   : "$currentsearchReceptionIronclad.spiritbox", width :"50%" }, 1);
+
+///
+
+Meter.add('searchKitchenIroncladEmf', { label   : "$currentsearchKitchenIronclad.emf", width :"50%" }, 1);
+
+Meter.add('searchKitchenIroncladPlasm', { label   : "$currentsearchKitchenIronclad.plasm", width :"50%" }, 1);
+
+Meter.add('searchKitchenIroncladUvl', { label   : "$currentsearchKitchenIronclad.uvl", width :"50%" }, 1);
+
+Meter.add('searchKitchenIroncladTemperature', { label   : "$currentsearchKitchenIronclad.temperature", width :"50%" }, 1);
+
+Meter.add('searchKitchenIroncladGwb', { label   : "$currentsearchKitchenIronclad.gwb", width :"50%" }, 1);
+
+Meter.add('searchKitchenIroncladSpiritbox', { label   : "$currentsearchKitchenIronclad.spiritbox", width :"50%" }, 1);
+
+///
+
+///
+
+
+
+
+function debounce(func, wait) {
+    let timeout;
+    return function(...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, args), wait);
+    };
+}
+
+$(document).off('keydown').on('keydown', debounce(function(event) {
+    switch (event.key) {
+        case 't':
+$('#addsearchThermometrHallway a, #addsearchThermometrHallwayButton a').click();
+$('#addsearchThermometrKitchen a, #addsearchThermometrKitchenButton a').click();
+$('#addsearchThermometrBathroom a, #addsearchThermometrBathroomButton a').click();
+$('#addsearchThermometrBedroom a, #addsearchThermometrBedroomButton a').click();
+$('#addsearchThermometrLivingroom a, #addsearchThermometrLivingroomButton a').click();
+
+$('#elmBasementTemperature a, #elmBasementTemperatureButton a').click();
+$('#elmBedroomTemperature a, #elmBedroomTemperatureButton a').click();
+$('#elmBedroomTwoTemperature a, #elmBedroomTwoTemperatureButton a').click();
+$('#elmNurseryTemperature a, #elmNurseryTemperatureButton a').click();
+$('#elmKitchenTemperature a, #elmKitchenTemperatureButton a').click();	   
+$('#elmBathroomTemperature a, #elmBathroomTemperatureButton a').click();
+$('#elmBathroomTwoTemperature a, #elmBathroomTwoTemperatureButton a').click();
+$('#elmHallwayTemperature a, #elmHallwayTemperatureButton a').click();
+$('#elmHallwayUpstairsTemperature a, #elmHallwayUpstairsTemperatureButton a').click();
+
+$('#enigmaHallwayTemperature a, #enigmaHallwayTemperatureButton a').click();
+$('#enigmaBasementTemperature a, #enigmaBasementTemperatureButton a').click();
+$('#enigmaBedroomTemperature a, #enigmaBedroomTemperatureButton a').click();
+$('#enigmaKitchenTemperature a, #enigmaKitchenTemperatureButton a').click();
+$('#enigmaBathroomTemperature a, #enigmaBathroomTemperatureButton a').click();
+$('#enigmaLivingroomTemperature a, #enigmaLivingroomTemperatureButton a').click();
+$('#enigmaRoomATemperature a, #enigmaRoomATemperatureButton a').click();
+$('#enigmaRoomBTemperature a, #enigmaRoomBTemperatureButton a').click();
+$('#enigmaRoomCTemperature a, #enigmaRoomCTemperatureButton a').click();
+        
+$('#ironcladBlockATemperatureButton a').click();
+$('#ironcladBlockBTemperatureButton a').click();
+$('#ironcladBlockACellATemperatureButton a').click();
+$('#ironcladBlockACellBTemperatureButton a').click();
+$('#ironcladBlockACellCTemperatureButton a').click();
+$('#ironcladBlockBCellATemperatureButton a').click();
+$('#ironcladBlockBCellBTemperatureButton a').click();
+$('#ironcladBlockBCellCTemperatureButton a').click();
+$('#ironcladHallwayTemperatureButton a').click();
+$('#ironcladReceptionTemperatureButton a').click();
+$('#ironcladKitchenTemperatureButton a').click();
+
+                break;
+            case 'f':
+$('#searchEmfH a, #searchEmfHButton a').click();
+$('#searchEmfK a, #searchEmfKButton a').click();
+$('#searchEmfBath a, #searchEmfBathButton a').click();
+$('#searchEmfB a, #searchEmfBButton a').click();
+$('#searchEmfL a, #searchEmfLButton a').click();
+
+$('#elmBEMF a, #elmBEMFButton a').click();
+$('#elmBedroomEMF a, #elmBedroomEMFButton a').click();
+$('#elmBedroomTwoEMF a, #elmBedroomTwoEMFButton a').click();
+$('#elmNurseryEMF a, #elmNurseryEMFButton a').click();
+$('#elmKitchenEMF a, #elmKitchenEMFButton a').click();
+$('#elmBathroomEMF a, #elmBathroomEMFButton a').click();
+$('#elmBathroomTwoEMF a, #elmBathroomTwoEMFButton a').click();
+$('#elmHallwayEMF a, #elmHallwayEMFButton a').click();
+$('#elmHallwayUpstairsEMF a, #elmHallwayUpstairsEMFButton a').click();
+
+$('#enigmaHallwayEMF a, #enigmaHallwayEMFButton a').click();
+$('#enigmaBEMF a, #enigmaBEMFButton a').click();
+$('#enigmaBedroomEMF a, #enigmaBedroomEMFButton a').click();
+$('#enigmaKitchenEMF a, #enigmaKitchenEMFButton a').click();
+$('#enigmaBathroomEMF a, #enigmaBathroomEMFButton a').click();
+$('#enigmaLivingroomEMF a, #enigmaLivingroomEMFButton a').click();
+$('#enigmaRoomAEMF a, #enigmaRoomAEMFButton a').click();
+$('#enigmaRoomBEMF a, #enigmaRoomBEMFButton a').click();
+$('#enigmaRoomCEMF a, #enigmaRoomCEMFButton a').click();
+        
+$('#ironcladBlockAEmfButton a').click();
+$('#ironcladBlockBEmfButton a').click();
+$('#ironcladBlockACellAEmfButton a').click();
+$('#ironcladBlockACellBEmfButton a').click();
+$('#ironcladBlockACellCEmfButton a').click();
+$('#ironcladBlockBCellAEmfButton a').click();
+$('#ironcladBlockBCellBEmfButton a').click();
+$('#ironcladBlockBCellCEmfButton a').click();
+$('#ironcladHallwayEmfButton a').click();
+$('#ironcladReceptionEmfButton a').click();
+$('#ironcladKitchenEmfButton a').click();
+                break;
+            case 'g':
+$('#searchGwbH a, #searchGwbHButton a').click();
+$('#searchGwbK a, #searchGwbKButton a').click();
+$('#searchGwbBathroom a, #searchGwbBathroomButton a').click();
+$('#searchGwbBedroom a, #searchGwbBedroomButton a').click();
+$('#searchGwbLivingroom a, #searchGwbLivingroomButton a').click();
+
+$('#elmBGWB a, #elmBGWBButton a').click();
+$('#elmBedroomGWB a, #elmBedroomGWBButton a').click();
+$('#elmBedroomTwoGWB a, #elmBedroomTwoGWBButton a').click();
+$('#elmNurseryGWB a, #elmNurseryGWBButton a').click();
+$('#elmKitchenGWB a, #elmKitchenGWBButton a').click();
+$('#elmBathroomGWB a, #elmBathroomGWBButton a').click();
+$('#elmBathroomTwoGWB a, #elmBathroomTwoGWBButton a').click();
+$('#elmHallwayGWB a, #elmHallwayGWBButton a').click();
+$('#elmHallwayUpstairsGWB a, #elmHallwayUpstairsGWBButton a').click();
+
+$('#enigmaHallwayGWB a, #enigmaHallwayGWBButton a').click();
+$('#enigmaBGWB a, #enigmaBGWBButton a').click();
+$('#enigmaBedroomGWB a, #enigmaBedroomGWBButton a').click();
+$('#enigmaKitchenGWB a, #enigmaKitchenGWBButton a').click();
+$('#enigmaBathroomGWB a, #enigmaBathroomGWBButton a').click();
+$('#enigmaLivingroomGWB a, #enigmaLivingroomGWBButton a').click();
+$('#enigmaRoomAGWB a, #enigmaRoomAGWBButton a').click();
+$('#enigmaRoomBGWB a, #enigmaRoomBGWBButton a').click();
+$('#enigmaRoomCGWB a, #enigmaRoomCGWBButton a').click();
+
+$('#ironcladBlockAGwbButton a').click();
+$('#ironcladBlockBGwbButton a').click();
+$('#ironcladBlockACellAGwbButton a').click();
+$('#ironcladBlockACellBGwbButton a').click();
+$('#ironcladBlockACellCGwbButton a').click();
+$('#ironcladBlockBCellAGwbButton a').click();
+$('#ironcladBlockBCellBGwbButton a').click();
+$('#ironcladBlockBCellCGwbButton a').click();
+$('#ironcladHallwayGwbButton a').click();
+$('#ironcladReceptionGwbButton a').click();
+$('#ironcladKitchenGwbButton a').click();
+                break;
+            case 'u':
+$('#searchUvlH a, #searchUvlHButton a').click();
+$('#searchUvlK a, #searchUvlKButton a').click();
+$('#searchUvlBath a, #searchUvlBathButton a').click();
+$('#searchUvlB a, #searchUvlBButton a').click();
+$('#searchUvlL a, #searchUvlLButton a').click();
+
+$('#elmBasementUVL a, #elmBasementUVLButton a').click();
+$('#elmBedroomUVL a, #elmBedroomUVLButton a').click();
+$('#elmBedroomTwoUVL a, #elmBedroomTwoUVLButton a').click();
+$('#elmNurseryUVL a, #elmNurseryUVLButton a').click();
+$('#elmKitchenUVL a, #elmKitchenUVLButton a').click();
+$('#elmBathroomUVL a, #elmBathroomUVLButton a').click();
+$('#elmBathroomTwoUVL a, #elmBathroomTwoUVLButton a').click();
+$('#elmHallwayUVL a, #elmHallwayUVLButton a').click();
+$('#elmHallwayUpstairsUVL a, #elmHallwayUpstairsUVLButton a').click();
+
+$('#enigmaHallwayUVL a, #enigmaHallwayUVLButton a').click();
+$('#enigmaBasementUVL a, #enigmaBasementUVLButton a').click();
+$('#enigmaBedroomUVL a, #enigmaBedroomUVLButton a').click();
+$('#enigmaKitchenUVL a, #enigmaKitchenUVLButton a').click();
+$('#enigmaBathroomUVL a, #enigmaBathroomUVLButton a').click();
+$('#enigmaLivingroomUVL a, #enigmaLivingroomUVLButton a').click();
+$('#enigmaRoomAUVL a, #enigmaRoomAUVLButton a').click();
+$('#enigmaRoomBUVL a, #enigmaRoomBUVLButton a').click();
+$('#enigmaRoomCUVL a, #enigmaRoomCUVLButton a').click();
+
+$('#ironcladBlockAUvlButton a').click();
+$('#ironcladBlockBUvlButton a').click();
+$('#ironcladBlockACellAUvlButton a').click();
+$('#ironcladBlockACellBUvlButton a').click();
+$('#ironcladBlockACellCUvlButton a').click();
+$('#ironcladBlockBCellAUvlButton a').click();
+$('#ironcladBlockBCellBUvlButton a').click();
+$('#ironcladBlockBCellCUvlButton a').click();
+$('#ironcladHallwayUvlButton a').click();
+$('#ironcladReceptionUvlButton a').click();
+$('#ironcladKitchenUvlButton a').click();
+                break;
+            case 'e':
+$('#searchGlassH a, #searchGlassHButton a').click();
+$('#searchPlasmKitchen a, #searchPlasmKitchenButton a').click();
+$('#searchPlasmBathroom a, #searchPlasmBathroomButton a').click();
+$('#searchPlasmBedroom a, #searchPlasmBedroomButton a').click();
+$('#searchPlasmLivingroom a, #searchPlasmLivingroomButton a').click();
+
+$('#elmBasementPlasm a, #elmBasementPlasmButton a').click();
+$('#elmBedroomPlasm a, #elmBedroomPlasmButton a').click();
+$('#elmBedroomTwoPlasm a, #elmBedroomTwoPlasmButton a').click();
+$('#elmNurseryPlasm a, #elmNurseryPlasmButton a').click();
+$('#elmKitchenPlasm a, #elmKitchenPlasmButton a').click();
+$('#elmBathroomPlasm a, #elmBathroomPlasmButton a').click();
+$('#elmBathroomTwoPlasm a, #elmBathroomTwoPlasmButton a').click();
+$('#elmHallwayPlasm a, #elmHallwayPlasmButton a').click();
+$('#elmHallwayUpstairsPlasm a, #elmHallwayUpstairsPlasmButton a').click();
+
+$('#enigmaHallwayPlasm a, #enigmaHallwayPlasmButton a').click();
+$('#enigmaBasementPlasm a, #enigmaBasementPlasmButton a').click();
+$('#enigmaBedroomPlasm a, #enigmaBedroomPlasmButton a').click();
+$('#enigmaKitchenPlasm a, #enigmaKitchenPlasmButton a').click();
+$('#enigmaBathroomPlasm a, #enigmaBathroomPlasmButton a').click();
+$('#enigmaLivingroomPlasm a, #enigmaLivingroomPlasmButton a').click();
+$('#enigmaRoomAPlasm a, #enigmaRoomAPlasmButton a').click();
+$('#enigmaRoomBPlasm a, #enigmaRoomBPlasmButton a').click();
+$('#enigmaRoomCPlasm a, #enigmaRoomCPlasmButton a').click();
+
+$('#ironcladBlockAPlasmButton a').click();
+$('#ironcladBlockBPlasmButton a').click();
+$('#ironcladBlockACellAPlasmButton a').click();
+$('#ironcladBlockACellBPlasmButton a').click();
+$('#ironcladBlockACellCPlasmButton a').click();
+$('#ironcladBlockBCellAPlasmButton a').click();
+$('#ironcladBlockBCellBPlasmButton a').click();
+$('#ironcladBlockBCellCPlasmButton a').click();
+$('#ironcladHallwayPlasmButton a').click();
+$('#ironcladReceptionPlasmButton a').click();
+$('#ironcladKitchenPlasmButton a').click();
+                break;     
+            case 's':
+$('#searchSpiritboxH a, #searchSpiritboxHButton a').click();
+$('#searchSpiritboxK a, #searchSpiritboxKButton a').click();
+$('#searchSpiritboxBathroom a, #searchSpiritboxBathroomButton a').click();
+$('#searchSpiritboxBedroom a, #searchSpiritboxBedroomButton a').click();
+$('#searchSpiritboxLivingroom a, #searchSpiritboxLivingroomButton a').click();
+
+$('#elmBasementSpiritbox a, #elmBasementSpiritboxButton a').click();
+$('#elmBedroomSpiritbox a, #elmBedroomSpiritboxButton a').click();
+$('#elmBedroomTwoSpiritbox a, #elmBedroomTwoSpiritboxButton a').click();
+$('#elmNurserySpiritbox a, #elmNurserySpiritboxButton a').click();
+$('#elmKitchenSpiritbox a, #elmKitchenSpiritboxButton a').click();
+$('#elmBathroomSpiritbox a, #elmBathroomSpiritboxButton a').click();
+$('#elmBathroomTwoSpiritbox a, #elmBathroomTwoSpiritboxButton a').click();
+$('#elmHallwaySpiritbox a, #elmHallwaySpiritboxButton a').click();
+$('#elmHallwayUpstairsSpiritbox a, #elmHallwayUpstairsSpiritboxButton a').click();
+
+$('#enigmaHallwaySpiritbox a, #enigmaHallwaySpiritboxButton a').click();
+$('#enigmaBasementSpiritbox a, #enigmaBasementSpiritboxButton a').click();
+$('#enigmaBedroomSpiritbox a, #enigmaBedroomSpiritboxButton a').click();
+$('#enigmaKitchenSpiritbox a, #enigmaKitchenSpiritboxButton a').click();
+$('#enigmaBathroomSpiritbox a, #enigmaBathroomSpiritboxButton a').click();
+$('#enigmaLivingroomSpiritbox a, #enigmaLivingroomSpiritboxButton a').click();
+$('#enigmaRoomASpiritbox a, #enigmaRoomASpiritboxButton a').click();
+$('#enigmaRoomBSpiritbox a, #enigmaRoomBSpiritboxButton a').click();
+$('#enigmaRoomCSpiritbox a, #enigmaRoomCSpiritboxButton a').click();
+
+$('#ironcladBlockASpiritboxButton a').click();
+$('#ironcladBlockBSpiritboxButton a').click();
+$('#ironcladBlockACellASpiritboxButton a').click();
+$('#ironcladBlockACellBSpiritboxButton a').click();
+$('#ironcladBlockACellCSpiritboxButton a').click();
+$('#ironcladBlockBCellASpiritboxButton a').click();
+$('#ironcladBlockBCellBSpiritboxButton a').click();
+$('#ironcladBlockBCellCSpiritboxButton a').click();
+$('#ironcladHallwaySpiritboxButton a').click();
+$('#ironcladReceptionSpiritboxButton a').click();
+$('#ironcladKitchenSpiritboxButton a').click();
+                break;
+         }
+}, 50));
+
+$(document).on(':passagestart', function (ev) {
+	if (!ev.passage.tags.includes('noreturn')) {
+		State.variables.return = ev.passage.name;
+	}
+});
+
+
+
+
+

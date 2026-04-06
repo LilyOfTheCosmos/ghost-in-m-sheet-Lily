@@ -1,0 +1,106 @@
+:: widgetText [nobr widget] {"position":"300,1700","size":"100,100"}
+<<widget "activity">>
+<<replace ".MonkeyPawShow">>
+<<set _videoList to ["cursedpossessions/slap1.mp4", "cursedpossessions/slap2.mp4", "cursedpossessions/slap3.mp4", "cursedpossessions/slap4.mp4", "cursedpossessions/passion1.mp4", "cursedpossessions/passion2.mp4", "cursedpossessions/passion3.mp4", "cursedpossessions/passion4.mp4", "cursedpossessions/pulse1.mp4", "cursedpossessions/pulse2.mp4", "cursedpossessions/pulse3.mp4", "cursedpossessions/pulse4.mp4"]>>
+<<if $ghost.name eq "Cthulion">>
+<<set _videoList to _videoList.concat(["ghosts/cthulion/1.0.mp4", "ghosts/cthulion/1.1.mp4", "ghosts/cthulion/1.2.mp4", "ghosts/cthulion/1.3.mp4", "ghosts/cthulion/1.4.mp4", "ghosts/cthulion/1.5.mp4", "ghosts/cthulion/1.6.mp4", 
+"ghosts/cthulion/2.0.mp4", "ghosts/cthulion/2.1.mp4", "ghosts/cthulion/2.2.mp4", "ghosts/cthulion/2.3.mp4", "ghosts/cthulion/2.4.mp4"])>>
+<<elseif $ghost.name eq "Banshee">>
+<<set _videoList to _videoList.concat(["ghosts/banshee/1.mp4", "ghosts/banshee/2.mp4", "ghosts/banshee/3.mp4", "ghosts/banshee/4.mp4", "ghosts/banshee/5.mp4", "ghosts/banshee/6.mp4", "ghosts/banshee/7.mp4", "ghosts/banshee/8.mp4", "ghosts/banshee/9.mp4", "ghosts/banshee/10.mp4"])>>
+<</if>>
+
+<<set _randomIndex to random(0, _videoList.length - 1)>>
+<<set _selectedVideo to _videoList[_randomIndex]>>
+<video autoplay muted controls loop class="displayCentredImgs">
+ <source @src="`assets/`+_selectedVideo" type="video/mp4">
+ </video>
+@@.mc-speech; Shit! I shouldn't have asked this....@@<br>
+<<set $wishesCount -=1>>
+<<include "minus15sanity">>
+<<include "add15lust">>
+@@.mc-thoughts; Lust increased: +15 <img src="assets/img/hearth.png" style="position: relative; top: 0.375em; width:3%; display: inline; margin: 0;">@@<br>
+@@.mc-thoughts; Sanity decreased: -15 <img src="assets/img/sanity.png" style="position: relative; top: 0.375em; width:3%; display: inline; margin: 0;">@@<br>
+<br><br>
+@@.backbtn;<<link "Return" `passage()`>><</link>>@@
+<</replace>>
+<</widget>>
+
+
+<<widget "traptheghost">>
+<<replace "#wishesCount">>
+<<set $wishesCount -=1>>
+@@.mc-thoughts; $wishesCount wishes left...@@<br><br>
+<<set $ghostIsTrapped to 1>>
+@@.mc-speech; Now the ghost can't change its favorite room.<br>
+With each wish, I feel worse and worse.@@<br>
+<<include "minus15sanity">>
+<b>@@.mc-thoughts; Sanity decreased: -15 <img src="assets/img/sanity.png" style="position: relative; top: 0.375em; width:3%; display: inline; margin: 0;">@@</b><br>
+<br>
+@@.backbtn;<<link "Return" `passage()`>><</link>>@@
+<</replace>>
+<</widget>>
+
+
+
+<<widget "sanity">>
+<<replace "#wishesCount">>
+<<set $wishesCount -=1>>
+@@.mc-thoughts; $wishesCount wishes left...@@<br><br>
+<b>@@.mc-thoughts; Sanity changed: 50 <img src="assets/img/sanity.png" style="position: relative; top: 0.375em; width:3%; display: inline; margin: 0;">  now!@@</b><br>
+@@.mc-speech; I shouldn't have expected anything better...@@
+<<set $mc.sanity to 50>>
+<<updatemeter 'sanity' `$mc.sanity / $mc.sanityMax`>>
+<br>
+<br>
+@@.backbtn;<<link "Return" `passage()`>><</link>>@@
+<</replace>>
+<</widget>>
+
+
+<<widget "leave">>
+<<set $wishesCount -=1>>
+<<set $cursedHuntActive to 0>>
+<<if $isElm eq 1>>
+<<goto "Elm Street">>
+<<elseif $isOwaissa eq 1>>
+<<goto "Owaissa Street">>
+<</if>>
+<</widget>>
+
+
+<<widget "knowledge">>
+<<replace "#wishesCount">>
+<<if $knowledgeUsed neq 1>>
+<<set $wishesCount -=1>>
+@@.mc-thoughts; $wishesCount wishes left...@@<br><br>
+<<set $knowledgeUsed to 1>>
+<<set _allEvidence to ["emf", "spiritbox", "gwb", "uvl", "glass", "temperature"]>>
+<<set _missingEvidence to _allEvidence.filter(e => !$ghost.evidence.includes(e) && e !== $hiddenEvidence && e !== $hiddenEvidence1 && e !== $hiddenEvidence2)>>
+<<set $chosenEvidence to _missingEvidence.random()>>
+@@.mc-speech; It worked! One evidence has been removed from my diary!<br>
+Wait...I hear someone's footsteps...@@
+<<timed 2s>>
+<<goto "ghostHuntEvent">>
+          <</timed>>
+<<else>>
+@@.mc-speech; Nothing happened... I probably won't be able to remove more than one piece of evidence@@<br><br><br>
+@@.backbtn;<<link "Return" `passage()`>><</link>>@@
+<</if>>
+<</replace>>
+<</widget>>
+
+
+<<widget "dawn">>
+<<set $wishesCount -=1>>
+<<set $hours to 6>>
+<<set $cursedHuntActive to 0>>
+<<goto "HuntOverTime">>
+<</widget>>
+
+
+<<widget "anything">>
+<<set _check to random(1,6)>>
+<</widget>>
+
+
+

@@ -1,0 +1,139 @@
+:: OwaissaBedroom [hauntedhouse owaissaBedroom] {"position":"1750,650","size":"100,100"}
+<<nobr>>
+<div class="room">
+	<div class="room-wrapper">
+		<div class="content">
+
+          	<div id="actionBedroom" class="action">
+                   
+          	</div>
+        </div>
+        <div class="furnitureSearch">
+        	<<if $cursedHuntActive eq 1>>
+<span><<link '<img src="assets/img/furniture/bed2.png" class="highlighted-furniture">'>>
+<<replace ".room-wrapper">><<set $isInHideSpot to 1>><img src="assets/hunting/hid1.jpg" width="80%" class="fadeInScale"><br>
+<<done>>
+<<addclass ".fadeInScale" "tarotCardsShow">><</done>>
+@@.mc-thoughts;You press yourself against the cold floor, feeling your heart racing in your chest. The screams and rustling outside make you hold your breath. The ghost, filled with rage, prowls the room, and each of its steps echoes dully in your ears.<br>
+
+All you can do now is wait and hope it doesn’t find you.@@
+<br><br>
+@@.backbtn; [[Leave|OwaissaBedroom][$isInHideSpot to 0]]@@<br>
+<</replace>><</link>></span>
+            <<else>>
+             <span id="bedroom_bed2"><<link [img[assets/img/furniture/bed2.png][furnitureSearch]]>><<set $currentFurniture to "bedroom_bed2">><<includeTimeEventClothesHunt>><</link>></span><</if>>
+			 <span id="bedroom_table"><<link [img[assets/img/furniture/table.png][furnitureSearch]]>><<set $currentFurniture to "bedroom_table">><<includeTimeEventClothesHunt>><</link>></span>
+			 <span id="bedroom_wardrobe1"><<link [img[assets/img/furniture/wardrobe1.png][furnitureSearch]]>><<set $currentFurniture to "bedroom_wardrobe1">><<includeTimeEventClothesHunt>><</link>></span>
+        </div>
+		<div class="footer">
+        	<div class="footertools">
+         	<div class="footer-card">
+            	<div class="cardimg">
+                	<img src="assets/img/emf.png" class="icon"  id="owaissaBedroomPicEMF">
+                </div>
+                <div class="cardlink">
+                	<<include "searchEmfBedroom">>
+                </div>
+            </div>
+            <div class="footer-card">
+            	<div class="cardimg">
+                	<img src="assets/img/glass.png" class="icon"  id="owaissaBedroomPicPlasm">                
+                </div>
+                <div class="cardlink">
+                	<<include "searchPlasmBedroom">>
+                </div>
+            </div>
+            <div class="footer-card">
+            	<div class="cardimg">
+                	<img src="assets/img/gwb.png" class="icon"  id="owaissaBedroomPicGWB">                
+                </div>
+                <div class="cardlink">
+                	<<include "searchGwbBedroom">>
+                </div>
+            </div>
+            <div class="footer-card">
+            	<div class="cardimg">
+                	<img src="assets/img/spiritbox.png" class="icon"  id="owaissaBedroomPicSB">                
+                </div>
+                <div class="cardlink">
+                	<<include "searchSbBedroom">>
+                </div>
+            </div>
+            <div class="footer-card">
+            	<div class="cardimg">
+                	<img src="assets/img/thermometr.png" class="icon"  id="owaissaBedroomPicThermometr">                
+                </div>
+                <div class="cardlink">
+                	<<include "searchThermometrBedroom">>
+                </div>
+            </div>
+            <div class="footer-card">
+            	<div class="cardimg">
+                	<img src="assets/img/uvl.png" class="icon"  id="owaissaBedroomPicUVL">                
+                </div>
+                <div class="cardlink">
+                	<<include "searchUVLBedroom">>
+                </div>
+            </div>
+            <<if $showComp eq 1>>
+            <div class="footer-card">
+            	<div class="cardimg">
+               <<compLinks>>         
+                </div>
+            </div>
+            <<elseif $showComp eq 2>>
+            <div class="footer-card">
+            	<div class="cardimg">
+                <a data-passage="failedComp">
+                	<img src="assets/img/questionMark.png" class="companion-image"> </a>     
+                </div>
+            </div>
+            <<elseif $showComp eq 3>>
+            <div class="footer-card">
+            	<div class="cardimg">
+<<compLinksSuccess>>
+                </div>
+            </div>
+            <</if>>
+            <div class="footer-card footer-light">
+            	<span class="cursedHuntLinkDisable"><<link [img[assets/img/lighton.png][OwaissaBedroom]]>><<set $bedroom.background to 1>><</link>>
+             <<link [img[assets/img/lightoff.png][OwaissaBedroom]]>><<set $bedroom.background to 2>><</link>>
+			<<if $mc.lust gte 80 and $weakenTheGhostQuest and $isWeakenGhost neq 1>> 
+<<link [img[assets/img/hearth.png][minigame]]>>
+<<set $minigameVideo to "start">>
+<<set $ghostOrgasmMeter to 0>>
+<<set $mcOrgasmMeter to 0>><</link>>
+<</if>></span>
+            </div>
+         </div>
+         <div class="footeraction">
+			@@.adaptiveLink;<<link "Hallway" "OwaissaHallway">><<includeTimeEventClothesHunt>><<set $stepCount += 1>><</link>>@@
+         </div>
+		</div>
+	</div>
+</div>
+<</nobr>>
+<<script>>
+$(document).ready(function() {
+    $('#owaissaBedroomPicEMF').on('click', function() {
+        $('#searchEmfB a').click();
+    });
+    $('#owaissaBedroomPicPlasm').on('click', function() {
+        $('#searchPlasmBedroom a').click();
+    });
+    $('#owaissaBedroomPicGWB').on('click', function() {
+        $('#searchGwbBedroom a').click();
+    });
+    $('#owaissaBedroomPicSB').on('click', function() {
+        $('#searchSpiritboxBedroom a').click();
+    });
+    $('#owaissaBedroomPicThermometr').on('click', function() {
+        $('#addsearchThermometrBedroom a').click();
+    });
+    $('#owaissaBedroomPicUVL').on('click', function() {
+        $('#searchUvlB a').click();
+    });
+});
+<</script>>
+
+

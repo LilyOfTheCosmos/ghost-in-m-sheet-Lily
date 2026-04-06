@@ -1,0 +1,37 @@
+:: LibrarySearchResult {"position":"2500,1900","size":"100,100"}
+<<nobr>>
+<<set _foundLibrary to []>>
+
+<<if ndef $foundTips>> <<set _foundLibrary.push("book")>><</if>>
+<<if ndef $foundComics>> <<set _foundLibrary.push("comics")>><</if>>
+<<if ndef $foundGirl>> <<set _foundLibrary.push("girl")>><</if>>
+<<if ndef $foundGuy>><<set _foundLibrary.push("guy")>><</if>>
+<<if ndef $foundBrook>><<set _foundLibrary.push("brook")>><</if>>
+
+<<set _selectedResult to _foundLibrary[random(0, _foundLibrary.length - 1)]>>
+            
+<<if _selectedResult is "book">>
+<<include "libraryTipsBook">>
+<<set $foundTips to 1>>
+<<elseif _selectedResult is "comics">>
+<<set $foundComics to 1>>
+<img src="assets/library/comicsFound.jpg" width="100%"><br>
+@@.mc-speech; What’s this? Erotic comics? It looks interesting… I wonder how it ended up here.@@<br>
+@@.enterbtn;[[Read comics|comics]]<br>@@
+<br>
+
+<<elseif _selectedResult is "girl">>
+<<include "libraryGirl">>
+<<elseif _selectedResult is "guy">>
+<<include "libraryGuy">>
+<<elseif _selectedResult is "brook">>
+<<include "libraryBrook">>
+<<set $foundBrook to 1>>
+<</if>>
+<<done>>
+<<addclass ".linkselector" "disabled-link">>
+<</done>>
+<</nobr>>
+
+
+

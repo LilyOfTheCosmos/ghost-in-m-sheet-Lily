@@ -1,0 +1,39 @@
+:: comics {"position":"2925,2200","size":"100,100"}
+<<nobr>>
+<div class="flexwrapper gap">
+<div class="housecardComics">
+<img src="assets/library/getting-in-shape-001.jpg" class="comic-cover"><br>
+@@.enterbtn;<<link "read" "readComics">><<set $comics1 to 1>><</link>>@@
+</div>
+<div class="housecardComics">
+<img src="assets/library/closed-investigation-journal-colorized-001.jpg"  class="comic-cover"><br>
+@@.enterbtn;<<link "read" "readComics">><<set $comics2 to 1>><</link>>@@
+</div>
+<div class="housecardComics">
+<img src="assets/library/the-naughty-in-law-1-zero-001.jpg" class="comic-cover"><br>
+@@.enterbtn;<<link "read" "readComics">><<set $comics3 to 1>><</link>>@@
+</div>
+<div class="housecardComics">
+<img src="assets/library/a-dumb-comic-001.jpg" class="comic-cover"><br>
+@@.enterbtn;<<link "read" "readComics">><<set $comics4 to 1>><</link>>@@
+</div>
+</div>
+<br>
+@@.backbtn;[[Leave|LibraryInside]] @@<br>
+<style>
+.housecardComics {
+	width: 30%;
+    text-align: center;
+    z-index: 2;
+    line-height: 1.3;
+}
+.gap {
+	gap: 1%;
+}
+</style>
+<<done>>
+<<addclass ".linkselector" "disabled-link">>
+<</done>>
+<</nobr>>
+
+

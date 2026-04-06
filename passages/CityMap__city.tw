@@ -1,0 +1,105 @@
+:: CityMap [city] {"position":"1125,300","size":"100,100"}
+<div class="flexwrapper">
+<div class="housecard">
+<img src="assets/img/gymIcon.png" class="icon">
+@@.icontextcity; [[Gym|Gym]]@@
+</div>
+<div class="housecard">
+
+</div>
+<div class="housecard">
+<img src="assets/img/home.png" class="icon">
+@@.icontextcity; [[Home|Home]]@@
+</div>
+<div class="housecard">
+
+</div>
+<div class="housecard">
+
+</div>
+<div class="housecard">
+<img src="assets/img/mall.png" class="icon">
+@@.icontextcity; [[Mall|Mall]]@@
+</div>
+<div class="housecard">
+
+</div>
+<div class="housecard">
+
+</div>
+<div class="housecard">
+<img src="assets/img/witchhouse.png" class="icon">
+@@.icontextcity; [[Witch's House|Witch]]@@
+</div>
+<div class="housecard">
+
+</div>
+<div class="housecard">
+
+</div>
+<div class="housecard">
+<img src="assets/img/libraryIcon.png" class="icon">
+@@.icontextcity; [[Library|Library]]@@
+</div>
+<div class="housecard">
+
+</div>
+<div class="housecard">
+<img src="assets/img/park.png" class="icon">
+@@.icontextcity; [[Park|Park]]@@
+</div>
+<div class="housecard">
+
+</div>
+<div class="housecard">
+<img src="assets/img/churchIco.png" class="icon">
+@@.icontextcity; [[Church|Church]]@@
+</div>
+<div class="housecard">
+
+</div>
+<div class="housecard">
+
+</div>
+<div class="housecard">
+<img src="assets/img/deliveryhub.png" class="icon">
+@@.icontextcity; [[Delivery Hub|DeliveryHub]]@@
+</div>
+<div class="housecard">
+</div>
+<div class="housecard">
+</div>
+<div class="housecard">
+<img src="assets/img/beautySalon.png" class="icon">
+@@.icontextcity; [[Beauty Salon |BeautySalon]]@@
+</div>
+<div class="housecard">
+</div>
+<div class="housecard">
+</div>
+<<if $hasQuestForRescue eq 1>><img src="assets/rescue/down.png" class="downPointer clickable" onclick="SugarCube.Engine.play('rescueMap');"><</if>>
+</div>
+
+
+<<nobr>>
+
+<<if ($hours gte 22) or ($hours gte 0 and $hours lte 5)>>
+ <style>
+ .city:before {
+ content: '';
+	display: block;
+	width: 100vw;
+	height: 100vh;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color:rgba(0, 0, 0, .4);
+    z-index: 1;
+ }
+ </style>
+ 		<</if>>
+<</nobr>>
+
+

@@ -1,0 +1,20 @@
+assets/
+# Binaries and build folders
+bin/
+obj/
+build/
+
+# IDE and Project files
+.vscode/
+.idea/
+*.sln
+*.csproj
+*.user
+
+# Logs and temporary files
+*.log
+.cache/
+
+# OS generated files
+.DS_Store
+Thumbs.db

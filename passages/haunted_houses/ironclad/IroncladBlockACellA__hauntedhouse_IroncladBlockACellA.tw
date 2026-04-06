@@ -1,0 +1,102 @@
+:: IroncladBlockACellA [hauntedhouse IroncladBlockACellA] {"position":"2500,300","size":"100,100"}
+<<nobr>>
+<div class="room">
+	<div class="room-wrapper">
+		<div class="content">
+          	<div id="actionironcladBlockACellA" class="action">
+				
+          	</div>
+        </div>
+        
+		<div class="footer">
+        	<div class="footertools">
+         	<div class="footer-card">
+            	<div class="cardimg">
+                	<img src="assets/img/emf.png" class="icon" id="ironcladBlockACellAPicEMF">
+                </div>
+                <div class="cardlink">
+                	<<include "searchEMFBlockACellAIronclad">>
+                </div>
+            </div>
+            <div class="footer-card">
+            	<div class="cardimg">
+                	<img src="assets/img/glass.png" class="icon" id="actionironcladBlockACellAPicPlasm">                
+                </div>
+                <div class="cardlink">
+                	<<include "searchPlasmBlockACellAIronclad">>
+                </div>
+            </div>
+            <div class="footer-card">
+            	<div class="cardimg">
+                	<img src="assets/img/gwb.png" class="icon" id="actionironcladBlockACellAPicGWB">                
+                </div>
+                <div class="cardlink">
+                	<<include "searchGwbBlockACellAIronclad">>
+                </div>
+            </div>
+            <div class="footer-card">
+            	<div class="cardimg">
+                	<img src="assets/img/spiritbox.png" class="icon" id="actionironcladBlockACellAPicSB">                
+                </div>
+                <div class="cardlink">
+                	<<include "searchSbBlockACellAIronclad">>
+                </div>
+            </div>
+            <div class="footer-card">
+            	<div class="cardimg">
+                	<img src="assets/img/thermometr.png" class="icon" id="actionironcladBlockACellAPicThermometr">                
+                </div>
+                <div class="cardlink">
+                	<<include "searchThermometrBlockACellAIronclad">>
+                </div>
+            </div>
+            <div class="footer-card">
+            	<div class="cardimg">
+                	<img src="assets/img/uvl.png" class="icon" id="actionironcladBlockACellAPicUVL">                
+                </div>
+                <div class="cardlink">
+                	<<include "searchUvlBlockACellAIronclad">>
+                </div>
+            </div>
+              <<if $showComp eq 1>>
+            <div class="footer-card">
+            	<div class="cardimg">
+					<<compLinks>>              
+                </div>
+            </div>
+            <<elseif $showComp eq 2>>
+            <div class="footer-card">
+            	<div class="cardimg">
+                <a data-passage="failedComp">
+                	<img src="assets/img/questionMark.png" class="companion-image"> </a>     
+                </div>
+            </div>
+            <<elseif $showComp eq 3>>
+            <div class="footer-card">
+            	<div class="cardimg">
+<<compLinksSuccess>>
+                </div>
+            </div>
+            <</if>>
+            <div class="footer-card footer-light">
+            	<span class="cursedHuntLinkDisable"><<link [img[assets/img/lighton.png][IroncladBlockACellA]]>><<set $BlockACellA.background to 1>><</link>>
+             <<link [img[assets/img/lightoff.png][IroncladBlockACellA]]>><<set $BlockACellA.background to 2>><</link>>
+			<<if $mc.lust gte 80 and $weakenTheGhostQuest and $isWeakenGhost neq 1>> 
+<<link [img[assets/img/hearth.png][minigame]]>>
+<<set $minigameVideo to "start">>
+<<set $ghostOrgasmMeter to 0>>
+<<set $mcOrgasmMeter to 0>><</link>>
+<</if>></span>
+            </div>
+         </div>
+         <div class="footeraction">
+			@@.adaptiveLink;<<link "BlockA" "IroncladBlockA">>
+<<includeTimeEventHunt>><<set $stepCount += 1>><</link>>@@   
+			
+		 </div>
+		</div>
+	</div>
+</div>
+<</nobr>>
+
+

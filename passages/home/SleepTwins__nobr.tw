@@ -1,0 +1,12 @@
+:: SleepTwins [nobr] {"position":"600,3100","size":"100,100"}
+<img src="assets/exorcism/thetwinsend.jpg" class="displayCentredImgs">
+@@.mc-thoughts; You wake up, feeling the sticky liquid on your face.@@<br>
+@@.mc-speech; THIS WASN'T A DREAM? FUCK@@<br>
+<<if $summonText eq 1>>
+@@.mc-thoughts; It seems I summoned the wrong ghost... next time I'll have to pay attention to the amulet.@@<br>
+<<unset $summonText>>
+<</if>><br><br>
+@@.backbtn; [[Bathroom|Bathroom]]@@<br>
+<<set $hours +=8>><<if $hours >=24>><<set $hours -=24>><<include "resetCD">><</if>>
+
+

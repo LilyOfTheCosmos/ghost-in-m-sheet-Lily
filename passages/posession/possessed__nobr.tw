@@ -1,0 +1,98 @@
+:: possessed [nobr] {"position":"1000,3200","size":"100,100"}
+@@.mc-thoughts; A strange sensation overwhelms you, and the entire world suddenly fades to black,@@ <<linkappend "@@.usebtn; vanishing as if it never existed@@">>
+<<set _check to random(1,2)>>
+<<if _check eq 1>>
+<img src="assets/hunting/possessed/1.0.jpg" width="100%"><</if>>
+<<if _check eq 2>>
+<img src="assets/hunting/possessed/2.0.jpg" width="100%"><</if>>
+@@.mc-thoughts; When you regain awareness, you realize you are tightly bound to a large wooden cross. Before you stands a nun, her gaze stern, her lips moving in silent prayer, though you can’t make out a single word.@@<br>
+@@.notmc-speech; In the name of all that is holy, leave this body, evil spirit, and do not return.@@<br>
+@@.mc-thoughts; You try to say, "What’s going on? Where am I?" but instead, your mouth moves on its own, and you hear your own voice saying:@@<br>
+@@color:red; You will not drive me out. This body is mine now.@@<br>
+@@.notmc-speech; Shut up! Leave this girl alone!<br>
+Ah, it seems prayers won’t do… I’ll have to@@ <<linkappend "<b>@@.notmc-speechLink;take other measures.@@</b>">>
+<<if _check eq 1>>
+<video autoplay controls muted loop>
+<source src="assets/hunting/possessed/1.1.mp4" type="video/mp4">
+</video>
+@@.mc-thoughts; She grabbed a book and started slapping you, more out of anger than to help you.@@<br>
+@@color:red; You won’t be able to help her. She’s mine forever.@@<br><</if>>
+<<if _check eq 2>>
+<<set _checkInside to random(1,2)>>
+<<if _checkInside eq 1>>
+<video autoplay controls muted loop>
+<source src="assets/hunting/possessed/2.1.mp4" type="video/mp4">
+</video>
+<<elseif _checkInside eq 2>>
+<video autoplay controls muted loop>
+<source src="assets/hunting/possessed/2.2.mp4" type="video/mp4">
+</video><</if>>
+@@.mc-thoughts; You see the nun pull out a strapon from somewhere and put it on.@@<br>
+@@.mc-thoughts; I think this method is the only way@@<br><</if>>
+@@.notmc-speech; Maybe I should be more ruthless.@@ <<linkappend "@@.notmc-speechLink; I'll save you, my child@@">>
+<<if _check eq 1>>
+<video autoplay controls muted loop>
+ <source src="assets/hunting/possessed/1.2.mp4" type="video/mp4">
+ </video><</if>>
+<<if _check eq 2>>
+<video autoplay controls muted loop>
+ <source src="assets/hunting/possessed/2.3.mp4" type="video/mp4">
+ </video><</if>>
+@@.mc-thoughts; Although you're possessed, you feel everything happening to your body with heightened intensity — as if the possession has sharpened all your senses.<br>
+Each of her thrusts sends a small jolt of pleasure through your body, building up inside you.@@<br>
+@@color:red; Haha~ you’re going to break this poor girl.@@<br>
+@@.notmc-speech; Shut up and leave, I know the end is close!@@<br>
+@@.mc-thoughts; It seems you’re at your limit, on the verge of blacking out again.<br>
+ But the nun quickens her pace, and in a moment, an overwhelming wave of pleasure consumes you, forcing a wild scream out of you.@@<br>
+<<linkappend "@@.usebtn; Some time later@@">>
+<<if _check eq 1>>
+<img src="assets/hunting/possessed/1end.jpg" width="100%"><</if>>
+<<if _check eq 2>>
+<img src="assets/hunting/possessed/2end.jpg" width="100%"><</if>>
+@@.notmc-speech; You're back. Do you remember what happened?@@<br>
+@@.mc-speech; Not entirely…@@<br>
+
+@@.notmc-speech;You were possessed by a ghost. It’s a good thing you didn’t do anything harmful to yourself. I’m not sure how this happened, but be more careful next time.<br>
+You’re safe now; I think you can go home and rest.@@<br>
+@@.mc-speech;Thank you. I really do need to rest.@@<br>
+<br>
+@@.backbtn; [[Go home|Sleep]]@@<br>
+
+<<if $ghostHuntingMode neq 2>>
+<<else>>
+<<if $isCompChosen eq 1 and $companion.name eq "Blake" and $gotCursedItem eq 1>>
+<<set $gotCursedItem to 0>>
+<</if>>
+<<if $tempCorr gte 1>><<set $tempCorr to 1>><</if>>
+<<set $mc.corruption += $tempCorr>>
+
+Corruption is increased (+ <<= $tempCorr.toFixed(2)>>) : <<= $mc.corruption.toFixed(2)>><br>
+<<set $mc.dirty to 1>>
+<<set $tempCorr to 0>>
+<<set $EmfActivationTime to 0>>
+<<set $uvlActivationTime to 0>>
+<<set $EmfActivated to 0>>
+<<set $uvlActivated to 0>>
+
+<<set $ghostHuntingMode to 3>>
+<<include "lostClothes">>
+
+<<done>>
+<<addclass ".linkselector" "disabled-link">>
+<</done>>
+<<set $chosenPlan to 0>>
+<<set $chosenPlanActivated to 0>>
+<<set $randomGhostPassage to 0>>
+<<set $isCompRoomChosen to 0>>
+<<set $showComp to 0>>
+<<set $isCompChosen to 0>>
+<<if $companion.name eq "Alice" and $isAliceGoingForHuntingAlone eq 0>>
+<<set $aliceWorkDone to 0>>
+<</if>>
+<</if>>
+<</linkappend>>
+<</linkappend>>
+<</linkappend>>
+<</linkappend>>
+
+

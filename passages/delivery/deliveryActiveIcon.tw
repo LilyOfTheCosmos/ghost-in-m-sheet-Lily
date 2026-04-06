@@ -1,0 +1,31 @@
+:: deliveryActiveIcon {"position":"1100,1100","size":"100,100"}
+<<if passage() is "Honeywood Court 3" or passage() is "Onyx Place 10" or passage() is "Star Street 25" or passage() is "Lilac Lane 72" or passage() is "Emerald Street 17" or passage() is "Cascade Avenue 56" or passage() is "Jasmine Lane 89" or passage() is "Golden Road 34" or passage() is "Twilight Boulevard 61" or passage() is "Amethyst Street 42">>
+	<<set _passageName to passage()>>
+	<<switch $deliveryActiveIcon1>>
+		<<case true>>
+			<<addclass ".itemAvailableOne" "visible">>
+			<<removeclass ".itemAvailableOne" "hidden">>
+		<<case false>>
+			<<addclass ".itemAvailableOne" "hidden">>
+			<<removeclass ".itemAvailableOne" "visible">>
+	<</switch>>
+	<<switch $deliveryActiveIcon2>>
+		<<case true>>
+			<<addclass ".itemAvailableTwo" "visible">>
+			<<removeclass ".itemAvailableTwo" "hidden">>
+		<<case false>>
+			<<addclass ".itemAvailableTwo" "hidden">>
+			<<removeclass ".itemAvailableTwo" "visible">>
+	<</switch>>
+	<<switch $deliveryActiveIcon3>>
+		<<case true>>
+			<<addclass ".itemAvailableThree" "visible">>
+			<<removeclass ".itemAvailableThree" "hidden">>
+		<<case false>>
+			<<addclass ".itemAvailableThree" "hidden">>
+			<<removeclass ".itemAvailableThree" "visible">>
+	<</switch>>
+<</if>>
+
+
+

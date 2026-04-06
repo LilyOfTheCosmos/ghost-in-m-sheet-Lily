@@ -1,0 +1,331 @@
+:: clothingSection {"position":"2700,1700","size":"100,100"}
+<<nobr>>
+
+<<nobr>>
+<div class="flexwrapper backgroundForText">
+<div class="housecard">
+<<if $jeansState1 eq "not bought">>
+<img src="assets/img/wardrobe/jeans1.png" class="iconPx"><br>
+<span class="mc-thoughts">+5 beauty</span><br>
+<span class="priceAmount">30$</span><br>
+<<if $mc.money gte 30>>
+@@.buyItemLink;<<link "Buy" "clothingSection">>
+<<set $jeansState1 to "not worn">>
+<<set $mc.money -= 30>>
+<</link>>@@<br>
+<<else>>@@.mc-thoughts; I don't have enough money@@<</if>>
+<</if>>
+</div>
+<div class="housecard">
+<<if $jeansState2 eq "not bought">>
+<img src="assets/img/wardrobe/jeans2.png" class="iconPx"><br>
+<span class="mc-thoughts">+8 beauty</span><br>
+<span class="priceAmount">40$</span><br>
+<<if $mc.money gte 40>>
+@@.buyItemLink;<<link "Buy" "clothingSection">>
+<<set $jeansState2 to "not worn">>
+<<set $mc.money -= 40>>
+<</link>>@@<br>
+<<else>>@@.mc-thoughts; I don't have enough money@@<</if>>
+<</if>>
+</div>
+<div class="housecard">
+<<if $jeansState3 eq "not bought">>
+<img src="assets/img/wardrobe/jeans3.png" class="iconPx"><br>
+<span class="mc-thoughts">+11 beauty</span><br>
+<span class="priceAmount">50$</span><br>
+<<if $mc.money gte 50>>
+@@.buyItemLink;<<link "Buy" "clothingSection">>
+<<set $jeansState3 to "not worn">>
+<<set $mc.money -= 50>>
+<</link>>@@<br>
+<<else>>@@.mc-thoughts; I don't have enough money@@<</if>>
+<</if>>
+</div>
+<div class="housecard">
+<<if $shortsState1 eq "not bought">>
+<img src="assets/img/wardrobe/shorts1.png" class="iconPx"><br>
+<span class="mc-thoughts">+6 beauty</span><br>
+<span class="priceAmount">35$</span><br>
+<<if $mc.money gte 35>>
+@@.buyItemLink;<<link "Buy" "clothingSection">>
+<<set $shortsState1 to "not worn">>
+<<set $mc.money -= 35>>
+<</link>>@@<br>
+<<else>>@@.mc-thoughts; I don't have enough money@@<</if>>
+<</if>>
+</div>
+<div class="housecard">
+<<if $shortsState2 eq "not bought">>
+<img src="assets/img/wardrobe/Shorts2.png" class="iconPx"><br>
+<span class="mc-thoughts">+9 beauty</span><br>
+<span class="priceAmount">45$</span><br>
+<<if $mc.money gte 45>>
+@@.buyItemLink;<<link "Buy" "clothingSection">>
+<<set $shortsState2 to "not worn">>
+<<set $mc.money -= 45>>
+<</link>>@@<br>
+<<else>>@@.mc-thoughts; I don't have enough money@@<</if>>
+<</if>>
+</div>
+<div class="housecard">
+<<if $shortsState3 eq "not bought">>
+<img src="assets/img/wardrobe/Shorts3.png" class="iconPx"><br>
+<span class="mc-thoughts">+12 beauty</span><br>
+<span class="priceAmount">55$</span><br>
+<<if $mc.money gte 55>>
+@@.buyItemLink;<<link "Buy" "clothingSection">>
+<<set $shortsState3 to "not worn">>
+<<set $mc.money -= 55>>
+<</link>>@@<br>
+<<else>>@@.mc-thoughts; I don't have enough money@@<</if>>
+<</if>>
+</div>
+
+<div class="housecard">
+<<if $skirtState1 eq "not bought">>
+<img src="assets/img/wardrobe/skirt1.png" class="iconPx"><br>
+<span class="mc-thoughts">+7 beauty</span><br>
+<span class="priceAmount">40$</span><br>
+<<if $mc.money gte 40>>
+@@.buyItemLink;<<link "Buy" "clothingSection">>
+<<set $skirtState1 to "not worn">>
+<<set $mc.money -= 40>>
+<</link>>@@<br>
+<<else>>@@.mc-thoughts; I don't have enough money@@<</if>>
+<</if>>
+</div>
+<div class="housecard">
+<<if $skirtState2 eq "not bought">>
+<img src="assets/img/wardrobe/skirt2.png" class="iconPx"><br>
+<span class="mc-thoughts">+10 beauty</span><br>
+<span class="priceAmount">50$</span><br>
+<<if $mc.money gte 50>>
+@@.buyItemLink;<<link "Buy" "clothingSection">>
+<<set $skirtState2 to "not worn">>
+<<set $mc.money -= 50>>
+<</link>>@@<br>
+<<else>>@@.mc-thoughts; I don't have enough money@@<</if>>
+<</if>>
+</div>
+<div class="housecard">
+<<if $skirtState3 eq "not bought">>
+<img src="assets/img/wardrobe/skirt3.png" class="iconPx"><br>
+<span class="mc-thoughts">+13 beauty</span><br>
+<span class="priceAmount">60$</span><br>
+<<if $mc.money gte 60>>
+@@.buyItemLink;<<link "Buy" "clothingSection">>
+<<set $skirtState3 to "not worn">>
+<<set $mc.money -= 60>>
+<</link>>@@<br>
+<<else>>@@.mc-thoughts; I don't have enough money@@<</if>>
+<</if>>
+</div>
+
+<div class="housecard">
+<<if $tshirtState1 eq "not bought">>
+<img src="assets/img/wardrobe/tshirt1.png" class="iconPx"><br>
+<span class="mc-thoughts">+5 beauty</span><br>
+<span class="priceAmount">30$</span><br>
+<<if $mc.money gte 30>>
+@@.buyItemLink;<<link "Buy" "clothingSection">>
+<<set $tshirtState1 to "not worn">>
+<<set $mc.money -= 30>>
+<</link>>@@<br>
+<<else>>@@.mc-thoughts; I don't have enough money@@<</if>>
+<</if>>
+</div>
+<div class="housecard">
+<<if $tshirtState2 eq "not bought">>
+<img src="assets/img/wardrobe/tshirt2.png" class="iconPx"><br>
+<span class="mc-thoughts">+8 beauty</span><br>
+<span class="priceAmount">40$</span><br>
+<<if $mc.money gte 40>>
+@@.buyItemLink;<<link "Buy" "clothingSection">>
+<<set $tshirtState2 to "not worn">>
+<<set $mc.money -= 40>>
+<</link>>@@<br>
+<<else>>@@.mc-thoughts; I don't have enough money@@<</if>>
+<</if>>
+</div>
+<div class="housecard">
+<<if $tshirtState3 eq "not bought">>
+<img src="assets/img/wardrobe/tshirt3.png" class="iconPx"><br>
+<span class="mc-thoughts">+11 beauty</span><br>
+<span class="priceAmount">50$</span><br>
+<<if $mc.money gte 50>>
+@@.buyItemLink;<<link "Buy" "clothingSection">>
+<<set $tshirtState3 to "not worn">>
+<<set $mc.money -= 50>>
+<</link>>@@<br>
+<<else>>@@.mc-thoughts; I don't have enough money@@<</if>>
+<</if>>
+</div>
+<div class="housecard">
+<<if $braState1 eq "not bought">>
+<img src="assets/img/wardrobe/slip2.png" class="iconPx"><br>
+<span class="mc-thoughts">+2 beauty</span><br>
+<span class="priceAmount">20$</span><br>
+<<if $mc.money gte 20>>
+@@.buyItemLink;<<link "Buy" "clothingSection">>
+<<set $braState1 to "not worn">>
+<<set $mc.money -= 20>>
+<</link>>@@<br>
+<<else>>@@.mc-thoughts; I don't have enough money@@<</if>>
+<</if>>
+</div>
+<div class="housecard">
+<<if $braState2 eq "not bought">>
+<img src="assets/img/wardrobe/slip3.png" class="iconPx"><br>
+<span class="mc-thoughts">+4 beauty</span><br>
+<span class="priceAmount">30$</span><br>
+<<if $mc.money gte 30>>
+@@.buyItemLink;<<link "Buy" "clothingSection">>
+<<set $braState2 to "not worn">>
+<<set $mc.money -= 30>>
+<</link>>@@<br>
+<<else>>@@.mc-thoughts; I don't have enough money@@<</if>>
+<</if>>
+</div>
+<div class="housecard">
+<<if $braState3 eq "not bought">>
+<img src="assets/img/wardrobe/slip4.png" class="iconPx"><br>
+<span class="mc-thoughts">+6 beauty</span><br>
+<span class="priceAmount">40$</span><br>
+<<if $mc.money gte 40>>
+@@.buyItemLink;<<link "Buy" "clothingSection">>
+<<set $braState3 to "not worn">>
+<<set $mc.money -= 40>>
+<</link>>@@<br>
+<<else>>@@.mc-thoughts; I don't have enough money@@<</if>>
+<</if>>
+</div>
+
+<div class="housecard">
+<<if $pantiesState1 eq "not bought">>
+<img src="assets/img/wardrobe/short2.png" class="iconPx"><br>
+<span class="mc-thoughts">+2 beauty</span><br>
+<span class="priceAmount">25$</span><br>
+<<if $mc.money gte 25>>
+@@.buyItemLink;<<link "Buy" "clothingSection">>
+<<set $pantiesState1 to "not worn">>
+<<set $mc.money -= 25>>
+<</link>>@@<br>
+<<else>>@@.mc-thoughts; I don't have enough money@@<</if>>
+<</if>>
+</div>
+<div class="housecard">
+<<if $pantiesState2 eq "not bought">>
+<img src="assets/img/wardrobe/short3.png" class="iconPx"><br>
+<span class="mc-thoughts">+4 beauty</span><br>
+<span class="priceAmount">35$</span><br>
+<<if $mc.money gte 35>>
+@@.buyItemLink;<<link "Buy" "clothingSection">>
+<<set $pantiesState2 to "not worn">>
+<<set $mc.money -= 35>>
+<</link>>@@<br>
+<<else>>@@.mc-thoughts; I don't have enough money@@<</if>>
+<</if>>
+</div>
+<div class="housecard">
+<<if $pantiesState3 eq "not bought">>
+<img src="assets/img/wardrobe/short4.png" class="iconPx"><br>
+<span class="mc-thoughts">+6 beauty</span><br>
+<span class="priceAmount">45$</span><br>
+<<if $mc.money gte 45>>
+@@.buyItemLink;<<link "Buy" "clothingSection">>
+<<set $pantiesState3 to "not worn">>
+<<set $mc.money -= 45>>
+<</link>>@@<br>
+<<else>>@@.mc-thoughts; I don't have enough money@@<</if>>
+<</if>>
+</div>
+
+<div class="housecard">
+<<if $stockingsState1 eq "not bought">>
+<img src="assets/img/wardrobe/Stockings1.png" class="iconPx"><br>
+<span class="mc-thoughts">+2 beauty</span><br>
+<span class="priceAmount">30$</span><br>
+<<if $mc.money gte 30>>
+@@.buyItemLink;<<link "Buy" "clothingSection">>
+<<set $stockingsState1 to "not worn">>
+<<set $mc.money -= 30>>
+<</link>>@@<br>
+<<else>>@@.mc-thoughts; I don't have enough money@@<</if>>
+<</if>>
+</div>
+<div class="housecard">
+<<if $stockingsState2 eq "not bought">>
+<img src="assets/img/wardrobe/Stockings2.png" class="iconPx"><br>
+<span class="mc-thoughts">+4 beauty</span><br>
+<span class="priceAmount">60$</span><br>
+<<if $mc.money gte 60>>
+@@.buyItemLink;<<link "Buy" "clothingSection">>
+<<set $stockingsState2 to "not worn">>
+<<set $mc.money -= 60>>
+<</link>>@@<br>
+<<else>>@@.mc-thoughts; I don't have enough money@@<</if>>
+<</if>>
+</div>
+<div class="housecard">
+<<if $stockingsState3 eq "not bought">>
+<img src="assets/img/wardrobe/Stockings3.png" class="iconPx"><br>
+<span class="mc-thoughts">+6 beauty</span><br>
+<span class="priceAmount">120$</span><br>
+<<if $mc.money gte 120>>
+@@.buyItemLink;<<link "Buy" "clothingSection">>
+<<set $stockingsState3 to "not worn">>
+<<set $mc.money -= 120>>
+<</link>>@@<br>
+<<else>>@@.mc-thoughts; I don't have enough money@@<</if>>
+<</if>>
+</div>
+<div class="housecard">
+</div>
+<div class="housecard">
+<<if ndef $sportswear>>
+<img src="assets/img/wardrobe/sportswear.jpg" class="iconPx"><br>
+<span class="priceAmount">100$</span><br>
+<<if $mc.money gte 100>>
+@@.buyItemLink;<<link "Buy" "clothingSection">>
+<<set $sportswear to "not worn">>
+<<set $mc.money -= 100>>
+<</link>>@@<br>
+<<else>>@@.mc-thoughts; I don't have enough money@@<</if>>
+<</if>>
+</div>
+<div>
+</div>
+<div>
+</div>
+<div class="housecard">
+</div>
+<div class="housecard">
+<<if $mc.corruption gte 2>>
+<<if ndef $neckChokerState1>>
+<img src="assets/img/wardrobe/neckChoker1.png" class="iconPx"><br>
+<span class="mc-thoughts">+15 lust</span><br>
+<span class="priceAmount">100$</span><br>
+<<if $mc.money gte 100>>
+@@.buyItemLink;<<link "Buy" "clothingSection">>
+<<set $neckChokerState1 to "not worn">>
+<<set $mc.money -= 100>>
+<</link>>@@<br>
+<<else>>@@.mc-thoughts; I don't have enough money@@<</if>>
+<</if>>
+<</if>>
+</div>
+</div>
+<br>
+@@.backbtn;[[Leave|Mall]] @@
+<</nobr>>
+<style>
+body {
+    background-image: url('assets/img/clothingSection.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+</style>
+<</nobr>>
+
+

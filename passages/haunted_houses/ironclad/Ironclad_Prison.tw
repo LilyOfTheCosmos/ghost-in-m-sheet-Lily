@@ -1,0 +1,26 @@
+:: Ironclad Prison {"position":"2700,525","size":"100,100"}
+<<nobr>>
+<img src="assets/room/ironclad/ironclad.webp" width="90%"><br>
+@@.location; Prison "Ironclad"@@<br>
+@@.mc-thoughts; Ironclad Prison, once a symbol of justice, now stands abandoned, its long and storied past cloaked in shadows. Whispers speak of restless spirits wandering its halls—a chilling reminder of the darkness it once held.@@<br>
+<br>
+
+
+<<if $wardenClothesStage eq 2>>
+@@.movebtn;[[Go inside|IroncladHallway][$ghostHuntingMode to 2]]@@<br>
+<<else>>
+@@.movebtn; <<linkreplace "Go inside">>
+<<set $wardenClothesStage to 0>>
+<<set $mc.energy to 0>>
+@@.mc-thoughts; You walk through the prison, exploring every room. But nothing happens.@@<br>
+@@.mc-speech; Something's not right. This is definitely the place, but there are no ghosts... I guess I should ask the witch. @@<br><br>
+@@.backbtn; [[Return home|Home][$hours += 6; $isIronclad to 0]] @@<br>
+<</linkreplace>>@@
+<</if>>
+<br>
+<br>
+<<if $ghostHuntingMode eq 2>><span class="movebtn">[[End the hunt|HuntOverManual][$ghostHuntingMode to 3]]</span><<else>><</if>>
+<</nobr>>
+
+
+

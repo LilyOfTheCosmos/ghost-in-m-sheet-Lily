@@ -1,0 +1,65 @@
+:: MC [nobr] {"position":"400,300","size":"100,100"}
+<div id="statusContainer">
+   <div id="inPainImg">
+   <<hovertip "Need to buy medicine">><<if $isPenaltyOn eq 1>>
+   <img src="assets/img/icons/pain.jpg">
+<</if>><</hovertip>>
+	</div>
+    <<if $isIronclad eq 1 and $ghostHuntingMode eq 2>>
+    <<hovertip "Wearing a sexy warden costume">><img src="assets/img/icons/warden1.png"><</hovertip>>
+
+    <<else>>
+  <div id="statusOuterTop">
+  <<if $tshirtState eq "worn">>
+	<<hovertip "Wearing t-shirt">><img src="assets/img/icons/top.jpg"><</hovertip>>
+    <<else>>
+		  	<img src="assets/img/icons/empty.jpg">
+	<</if>>
+  </div>
+  <div id="statusOuterBottom">
+  <<if $jeansState eq "worn">>
+  	<<hovertip "Wearing jeans">><img src="assets/img/icons/jeans.jpg"><</hovertip>>
+    <<elseif $shortsState eq "worn">>
+  	<<hovertip "Wearing shorts">><img src="assets/img/icons/shorts.jpg"><</hovertip>>
+    <<elseif $skirtState eq "worn">>
+  	<<hovertip "Wearing skirt">><img src="assets/img/icons/skirt.jpg"><</hovertip>>
+    <<else>>
+		  	<img src="assets/img/icons/empty.jpg">
+	<</if>>
+  </div>
+  <div id="statusUnderTop">
+<<if $braState eq "worn">>
+  	<<hovertip "Wearing bra.">><img src="assets/img/icons/bra.jpg"><</hovertip>>
+<<else>>
+	<<hovertip "No bra on!">><img src="assets/img/icons/tits.jpg"><</hovertip>>
+<</if>>
+  </div>
+  <div id="statusUnderBottom">
+<<if $pantiesState eq "worn">>
+  	<<hovertip "Wearing panties">><img src="assets/img/icons/panties.jpg"><</hovertip>>
+<<else>>
+	 <<hovertip "No panties on!">><img src="assets/img/icons/nude.jpg"><</hovertip>>
+<</if>>
+  </div>
+  <</if>>
+</div>
+
+<style>
+#statusContainer {
+ 	display: flex;
+    align-items: center;
+
+    gap: 5%;
+    justify-content: center;
+}
+#statusContainer div {
+  text-align: center;
+}
+#statusContainer img {
+  display: block;
+  max-width: 100%;
+  height: auto; 
+}
+</style>
+
+

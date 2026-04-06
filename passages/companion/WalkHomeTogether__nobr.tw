@@ -1,0 +1,187 @@
+:: WalkHomeTogether [nobr] {"position":"2450,3550","size":"100,100"}
+<<set _videoToggle to true>>
+<<if $ghost.name eq "Spirit">>
+<img src="assets/img/mchouse.jpg" width="100%">
+@@.notmc-speech; I have a strange feeling. Like something is following us...@@<br>
+@@.mc-speech;I didn't see anyone. Maybe you should stay at my place then?@@<br>
+@@.notmc-speech; Yes, if you don't mind.@@<br><br>
+@@.backbtn; [[Sleep together|ghostSpecialEventSpirit]]@@
+<<else>>
+<<if $companion.name eq "Brook">>
+<<if $companion.lust gte 50>>
+<video autoplay controls muted loop>
+ <source src="assets/brook/home/1.mp4" type="video/mp4">
+ </video>
+@@.mc-thoughts;As soon as you walked in, she pounced on you and started kissing you@@<br>
+@@.notmc-speech; I’m so turned on, $mc.name. I want you right now.@@<br>
+@@.mc-thoughts; Her eagerness instantly aroused you, making your nipples harden, and your pussy crave attention.@@<br>
+@@.mc-speech; Yes~ let’s do it. @@<br>
+@@.notmc-speech; I have something special for us. Here, let’s use @@
+<<linkappend "@@.notmc-speechLink; this strap-on.@@">><br>
+<span id ="walkhomebrook">
+<video autoplay controls muted loop>
+ <source src="assets/brook/home/2.mp4" type="video/mp4">
+ </video></span>
+@@.mc-thoughts; You took turns pleasuring 
+<<link "@@.usebtn;each other@@">>
+<<set _videoToggle to !_videoToggle>>
+<<replace "#walkhomebrook">>
+<<if _videoToggle>>
+            <video autoplay controls muted loop>
+                <source src="assets/brook/home/2.mp4" type="video/mp4">
+            </video>
+        <<else>>
+            <video autoplay controls muted loop>
+                <source src="assets/brook/home/3.mp4" type="video/mp4">
+            </video>
+  <</if>>
+<</replace>>
+<</link>> 
+with the strap-on until you were both completely spent.@@<br>
+@@.notmc-speech; That was amazing.@@<br>
+@@.mc-speech;Yeah~@@<br>
+@@.notmc-speech; I’m really exhausted today. You rest up, and I’ll head back. Hopefully, we’ll meet again.@@<br>
+@@.mc-speech;Alright, bye.@@<br>
+<<if $mc.corruption lt 10>>
+<<set $mc.corruption += 0.1>>
++0.1 <img src="assets/img/corruption.png" style="position: relative; top: 0.375em; width:3%; display: inline; margin: 0;"><br><br>
+<</if>>
+<br>
+@@.backbtn; [[Sleep]]@@<br> 
+<</linkappend>>
+<<else>>
+<img src="assets/img/mchouse.jpg" width="100%">
+@@.mc-speech; We made it to my place. Thanks for walking me back@@<br>
+@@.notmc-speech; No problem, hope we meet again. Bye.@@<br>
+@@.warningtext; (Req. $companion.name's <img src="assets/img/hearth.png" style="position: relative; top: 0.375em; width:3%; display: inline; margin: 0;"> ≥ 50)@@
+<br><br>
+@@.backbtn; [[Sleep]]@@<br> 
+<</if>>
+
+
+<<elseif $companion.name eq "Alice">>
+<<if $companion.lust gte 50>>
+<video autoplay controls muted loop>
+ <source src="assets/alice/home/1.mp4" type="video/mp4">
+ </video>
+@@.mc-thoughts;As soon as you walked in, she pounced on you and started kissing you@@<br>
+@@.notmc-speech; I’m so turned on, $mc.name. I want you right now.@@<br>
+@@.mc-thoughts; Her eagerness instantly aroused you, making your nipples harden, and your pussy crave attention.@@<br>
+@@.mc-speech; Yes~ @@<<linkappend "@@.mc-speechLink; let’s do it. @@">>
+<span id ="walkhomealice">
+<video autoplay controls muted loop>
+ <source src="assets/alice/home/2.mp4" type="video/mp4">
+ </video></span>
+@@.mc-thoughts; You took turns pleasuring 
+<<link "@@.usebtn;each other@@">>
+<<set _videoToggle to !_videoToggle>>
+<<replace "#walkhomealice">>
+<<if _videoToggle>>
+            <video autoplay controls muted loop>
+                <source src="assets/alice/home/2.mp4" type="video/mp4">
+            </video>
+        <<else>>
+            <video autoplay controls muted loop>
+                <source src="assets/alice/home/3.mp4" type="video/mp4">
+            </video>
+  <</if>>
+<</replace>>
+<</link>> 
+until you were both completely spent.@@<br>
+@@.notmc-speech; That was amazing.@@<br>
+<<if $mc.corruption lt 10>>
+<<set $mc.corruption += 0.1>>
++0.1 <img src="assets/img/corruption.png" style="position: relative; top: 0.375em; width:3%; display: inline; margin: 0;">
+<</if>><br>
+@@.mc-speech;Yeah~Do you want to [[take a shower|aliceContinue]] with me?@@<br> <b>or</b> <br>
+@@.mc-speech; I'm really tired already. I think I need to get some [[sleep|Sleep]].@@<br>
+<</linkappend>>
+<<else>>
+<img src="assets/img/mchouse.jpg" width="100%">
+@@.mc-speech; We made it to my place. Thanks for walking me back@@<br>
+@@.notmc-speech; No problem, hope we meet again. Bye.@@<br>
+@@.warningtext; (Req. $companion.name's <img src="assets/img/hearth.png" style="position: relative; top: 0.375em; width:3%; display: inline; margin: 0;"> ≥ 50)@@
+<br><br>
+@@.backbtn; [[Sleep]]@@<br> 
+<</if>>
+<<elseif $companion.name eq "Blake">>
+<<if $companion.lust gte 50>>
+<video autoplay controls muted loop>
+ <source src="assets/blake/home/1.mp4" type="video/mp4">
+ </video>
+@@.mc-thoughts;As soon as you walked in, she pounced on you and started kissing you@@<br>
+@@.notmc-speech; I’m so turned on, $mc.name. I want you right now.@@<br>
+@@.mc-thoughts; Her eagerness instantly aroused you, making your nipples harden, and your pussy crave attention.@@<br>
+@@.mc-speech; Yes~ @@<<linkappend "@@.mc-speechLink; let’s do it. @@">>
+<span id ="walkhomeblake">
+<video autoplay controls muted loop>
+ <source src="assets/blake/home/2.mp4" type="video/mp4">
+ </video></span>
+@@.mc-thoughts; You took turns pleasuring 
+<<link "@@.usebtn;each other@@">>
+<<set _videoToggle to !_videoToggle>>
+<<replace "#walkhomeblake">>
+<<if _videoToggle>>
+            <video autoplay controls muted loop>
+                <source src="assets/blake/home/2.mp4" type="video/mp4">
+            </video>
+        <<else>>
+            <video autoplay controls muted loop>
+                <source src="assets/blake/home/3.mp4" type="video/mp4">
+            </video>
+  <</if>>
+<</replace>>
+<</link>> 
+until you both [[cum at the same time.|blakeContinue]]@@<br>
+<</linkappend>>
+<<else>>
+<img src="assets/img/mchouse.jpg" width="100%">
+@@.mc-speech; We made it to my place. Thanks for walking me back@@<br>
+@@.notmc-speech; No problem, hope we meet again. Bye.@@<br>
+@@.warningtext; (Req. $companion.name's <img src="assets/img/hearth.png" style="position: relative; top: 0.375em; width:3%; display: inline; margin: 0;"> ≥ 50)@@
+<br><br>
+@@.backbtn; [[Sleep]]@@<br> 
+<</if>>
+<</if>>
+<</if>>
+
+
+
+
+
+
+
+
+
+
+
+
+<<if $tempCorr gte 1>><<set $tempCorr to 1>><</if>>
+<<set $mc.corruption += $tempCorr>>
+
+
+<<set $tempCorr to 0>>
+<<set $ghostHuntingMode to 3>>
+
+
+<<set $EmfActivationTime to 0>>
+<<set $uvlActivationTime = 0>>
+<<set $EmfActivated to 0>>
+<<set $uvlActivated to 0>>
+
+<<if $isCompChosen eq 1 and $companion.name eq "Blake" and $gotCursedItem eq 1>>
+<<set $gotCursedItem to 0>>
+<</if>>
+
+<<set $chosenPlan to 0>>
+<<set $chosenPlanActivated to 0>>
+<<set $randomGhostPassage to 0>>
+<<set $isCompRoomChosen to 0>>
+<<set $showComp to 0>>
+<<set $isCompChosen to 0>>
+
+<<if $companion.name eq "Alice" and $isAliceGoingForHuntingAlone eq 0>>
+<<set $aliceWorkDone to 0>>
+<</if>>
+
+

@@ -1,0 +1,324 @@
+:: witchSale {"position":"1350,150","size":"100,100"}
+<<nobr>>
+<div class="flexwrapper">
+<div class="housecard">
+<img src="assets/img/sanityPills.png" class="iconPx"><br>
+<span class="priceAmount">10$</span><br>
+<<if $mc.money gte 10>>
+@@.buyItemLink;<<link "Buy" "witchSale">>
+<<set $sanityPillsAmount += 1>>
+<<set $mc.money -= 10>>
+<</link>>@@<br>
+<<else>>@@.mc-thoughts; I don't have enough money@@<</if>>
+<span class="subtitleAmount">@@.mc-thoughts; You have $sanityPillsAmount sanity pills@@</span>
+</div>
+<div class="housecard">
+<<if ndef $crucifixAmount>><<set $crucifixAmount to 0>><</if>>
+<img src="assets/img/crucifix.webp" class="iconPx"><br>
+<span class="priceAmount">10$</span><br>
+<<if $mc.money gte 10>>
+@@.buyItemLink;<<link "Buy" "witchSale">>
+<<set $crucifixAmount += 1>>
+<<set $mc.money -= 10>>
+<</link>>@@<br>
+<<else>>@@.mc-thoughts; I don't have enough money@@<</if>>
+<span class="subtitleAmount">@@.mc-thoughts; You have $crucifixAmount crucifix@@</span>
+</div>
+<div class="housecard">
+<<if $equipment.emf eq 5>>
+<img src="assets/img/emf.png" class="iconPx"><br>
+<span class="priceAmount">200$</span><br>
+<<if $mc.money gte 200>>
+@@.buyItemLink;<<link "Buy (lvl 2)" "witchSale">>
+<<set $equipment.emf to 4>>
+<<set $mc.money -= 200>>
+<</link>>@@<br>
+<<else>>@@.mc-thoughts; I don't have enough money@@<</if>>
+<</if>>
+</div>
+<div class="housecard">
+<<if $equipment.thermometer eq 5>>
+<img src="assets/img/thermometr.png" class="iconPx"><br>
+<span class="priceAmount">100$</span><br>
+<<if $mc.money gte 100>>
+@@.buyItemLink;<<link "Buy (lvl 2)" "witchSale">>
+<<set $equipment.thermometer to 4>>
+<<set $mc.money -= 100>>
+<</link>>@@<br>
+<<else>>@@.mc-thoughts; I don't have enough money@@<</if>>
+<</if>>
+</div>
+<div class="housecard">
+<<if $equipment.sb eq 5>>
+<img src="assets/img/spiritbox.png" class="iconPx"><br>
+<span class="priceAmount">500$</span><br>
+<<if $mc.money gte 500>>
+@@.buyItemLink;<<link "Buy (lvl 2)" "witchSale">>
+<<set $equipment.sb to 4>>
+<<set $mc.money -= 500>>
+<</link>>@@<br>
+<<else>>@@.mc-thoughts; I don't have enough money@@<</if>>
+<</if>>
+</div>
+<div class="housecard">
+<<if $equipment.gwb eq 5>>
+<img src="assets/img/gwb.png" class="iconPx"><br>
+<span class="priceAmount">400$</span><br>
+<<if $mc.money gte 400>>
+@@.buyItemLink;<<link "Buy (lvl 2)" "witchSale">>
+<<set $equipment.gwb to 4>>
+<<set $mc.money -= 400>>
+<</link>>@@<br>
+<<else>>@@.mc-thoughts; I don't have enough money@@<</if>>
+<</if>>
+</div>
+<div class="housecard">
+<<if $equipment.glass eq 5>>
+<img src="assets/img/glass.png" class="iconPx"><br>
+<span class="priceAmount">300$</span><br>
+<<if $mc.money gte 300>>
+@@.buyItemLink;<<link "Buy (lvl 2)" "witchSale">>
+<<set $equipment.glass to 4>>
+<<set $mc.money -= 300>>
+<</link>>@@<br>
+<<else>>@@.mc-thoughts; I don't have enough money@@<</if>>
+<</if>>
+</div>
+<div class="housecard">
+<<if $equipment.uvl eq 5>>
+<img src="assets/img/uvl.png" class="iconPx"><br>
+<span class="priceAmount">400$</span><br>
+<<if $mc.money gte 400>>
+@@.buyItemLink;<<link "Buy (lvl 2)" "witchSale">>
+<<set $equipment.uvl to 4>>
+<<set $mc.money -= 400>>
+<</link>>@@<br>
+<<else>>@@.mc-thoughts; I don't have enough money@@<</if>>
+<</if>>
+</div>
+<div class="housecard">
+<<if $boughtMonkeyPawGuide eq 1>>
+<img src="assets/cursedpossessions/monkeyPaw/monkeypawPage.jpg" class="iconPx"><br>
+<span class="priceAmount">400$</span><br>
+<<if $mc.money gte 400>>
+@@.buyItemLink;<<link "Buy" "witchSale">>
+<<set $boughtMonkeyPawGuide to 2>>
+<<set $wishActivity to 1>>
+<<set $wishTraptheghost to 1>>
+<<set $wishSanity to 1>>
+<<set $wishLeave to 1>>
+<<set $wishKnowledge to 1>>
+<<set $wishDawn to 1>>
+<<set $wishAnything to 1>>
+<<set $mc.money -= 400>>
+<</link>>@@<br>
+<<else>>@@.mc-thoughts; I don't have enough money@@<</if>>
+<</if>>
+</div>
+<div class="housecard">
+<<if ndef $boughtDetector>>
+<img src="assets/img/detector.png" class="iconPx"><br>
+<span class="priceAmount">200$</span><br>
+<<if $mc.money gte 200>>
+@@.buyItemLink;<<link "Buy" "witchSale">>
+<<set $boughtDetector to 1>>
+<<set $mc.money -= 200>>
+<</link>>@@<br>
+<<else>>@@.mc-thoughts; I don't have enough money@@<</if>>
+<</if>>
+</div>
+<div class="housecard">
+
+</div>
+<div class="housecard">
+
+</div>
+<div class="housecard">
+<<if $ghostJinnInfoCollected neq 1>>
+<img src="assets/ghosts/Jinn.webp" class="iconPx">
+@@.mc-thoughts; Information about Jinn@@<br>
+<span class="priceAmount">200$</span><br>
+<<if $mc.money gte 200>>
+@@.buyItemLink;<<link "Buy" "witchSale">>
+<<set $ghostJinnInfoCollected to 1>>
+<<set $mc.money -= 200>>
+<</link>>@@<br>
+<<else>>@@.warningtext; I don't have enough money@@<</if>>
+<</if>>
+</div>
+<div class="housecard">
+<<if $ghostDeogenInfoCollected neq 1>>
+<img src="assets/ghosts/Deogen.webp" class="iconPx">
+@@.mc-thoughts; Information about Deogen@@<br>
+<span class="priceAmount">200$</span><br>
+<<if $mc.money gte 200>>
+@@.buyItemLink;<<link "Buy" "witchSale">>
+<<set $ghostDeogenInfoCollected to 1>>
+<<set $mc.money -= 200>>
+<</link>>@@<br>
+<<else>>@@.warningtext; I don't have enough money@@<</if>>
+<</if>>
+</div>
+<div class="housecard">
+<<if $ghostDemonInfoCollected neq 1>>
+<img src="assets/ghosts/Demon.webp" class="iconPx">
+@@.mc-thoughts; Information about Demon@@<br>
+<span class="priceAmount">200$</span><br>
+<<if $mc.money gte 200>>
+@@.buyItemLink;<<link "Buy" "witchSale">>
+<<set $ghostDemonInfoCollected to 1>>
+<<set $mc.money -= 200>>
+<</link>>@@<br>
+<<else>>@@.warningtext; I don't have enough money@@<</if>>
+<</if>>
+</div>
+<div class="housecard">
+<<if $ghostPhantomInfoCollected neq 1>>
+<img src="assets/ghosts/Phantom.webp" class="iconPx">
+@@.mc-thoughts; Information about Phantom@@<br>
+<span class="priceAmount">200$</span><br>
+<<if $mc.money gte 200>>
+@@.buyItemLink;<<link "Buy" "witchSale">>
+<<set $ghostPhantomInfoCollected to 1>>
+<<set $mc.money -= 200>>
+<</link>>@@<br>
+<<else>>@@.warningtext; I don't have enough money@@<</if>>
+<</if>>
+</div>
+<div class="housecard">
+<<if $ghostShadeInfoCollected neq 1>>
+<img src="assets/ghosts/Shade.webp" class="iconPx">
+@@.mc-thoughts; Information about Shade@@<br>
+<span class="priceAmount">200$</span><br>
+<<if $mc.money gte 200>>
+@@.buyItemLink;<<link "Buy" "witchSale">>
+<<set $ghostShadeInfoCollected to 1>>
+<<set $mc.money -= 200>>
+<</link>>@@<br>
+<<else>>@@.warningtext; I don't have enough money@@<</if>>
+<</if>>
+</div>
+<div class="housecard">
+<<if $ghostGoryoInfoCollected neq 1>>
+<img src="assets/ghosts/Goryo.webp" class="iconPx">
+@@.mc-thoughts; Information about Goryo@@<br>
+<span class="priceAmount">200$</span><br>
+<<if $mc.money gte 200>>
+@@.buyItemLink;<<link "Buy" "witchSale">>
+<<set $ghostGoryoInfoCollected to 1>>
+<<set $mc.money -= 200>>
+<</link>>@@<br>
+<<else>>@@.warningtext; I don't have enough money@@<</if>>
+<</if>>
+</div>
+<div class="housecard">
+<<if $ghostOniInfoCollected neq 1>>
+<img src="assets/ghosts/Oni.webp" class="iconPx">
+@@.mc-thoughts; Information about Oni@@<br>
+<span class="priceAmount">200$</span><br>
+<<if $mc.money gte 200>>
+@@.buyItemLink;<<link "Buy" "witchSale">>
+<<set $ghostOniInfoCollected to 1>>
+<<set $mc.money -= 200>>
+<</link>>@@<br>
+<<else>>@@.warningtext; I don't have enough money@@<</if>>
+<</if>>
+</div>
+<div class="housecard">
+<<if $ghostMylingInfoCollected neq 1>>
+<img src="assets/ghosts/Myling.webp" class="iconPx">
+@@.mc-thoughts; Information about Myling@@<br>
+<span class="priceAmount">200$</span><br>
+<<if $mc.money gte 200>>
+@@.buyItemLink;<<link "Buy" "witchSale">>
+<<set $ghostMylingInfoCollected to 1>>
+<<set $mc.money -= 200>>
+<</link>>@@<br>
+<<else>>@@.warningtext; I don't have enough money@@<</if>>
+<</if>>
+</div>
+<div class="housecard">
+<<if $ghostSpiritInfoCollected neq 1>>
+<img src="assets/ghosts/Spirit.webp" class="iconPx">
+@@.mc-thoughts; Information about Spirit@@<br>
+<span class="priceAmount">200$</span><br>
+<<if $mc.money gte 200>>
+@@.buyItemLink;<<link "Buy" "witchSale">>
+<<set $ghostSpiritInfoCollected to 1>>
+<<set $mc.money -= 200>>
+<</link>>@@<br>
+<<else>>@@.warningtext; I don't have enough money@@<</if>>
+<</if>>
+</div>
+<div class="housecard">
+<<if $ghostCthulionInfoCollected neq 1>>
+<img src="assets/ghosts/Cthulion.webp" class="iconPx">
+@@.mc-thoughts; Information about Cthulion@@<br>
+<span class="priceAmount">200$</span><br>
+<<if $mc.money gte 200>>
+@@.buyItemLink;<<link "Buy" "witchSale">>
+<<set $ghostCthulionInfoCollected to 1>>
+<<set $mc.money -= 200>>
+<</link>>@@<br>
+<<else>>@@.warningtext; I don't have enough money@@<</if>>
+<</if>>
+</div>
+<div class="housecard">
+<<if $ghostBansheeInfoCollected neq 1>>
+<img src="assets/ghosts/Banshee.webp" class="iconPx">
+@@.mc-thoughts; Information about Banshee@@<br>
+<span class="priceAmount">200$</span><br>
+<<if $mc.money gte 200>>
+@@.buyItemLink;<<link "Buy" "witchSale">>
+<<set $ghostBansheeInfoCollected to 1>>
+<<set $mc.money -= 200>>
+<</link>>@@<br>
+<<else>>@@.warningtext; I don't have enough money@@<</if>>
+<</if>>
+</div>
+<div class="housecard">
+<<if $ghostMoroiInfoCollected neq 1>>
+<img src="assets/ghosts/Moroi.webp" class="iconPx">
+@@.mc-thoughts; Information about Moroi@@<br>
+<span class="priceAmount">200$</span><br>
+<<if $mc.money gte 200>>
+@@.buyItemLink;<<link "Buy" "witchSale">>
+<<set $ghostMoroiInfoCollected to 1>>
+<<set $mc.money -= 200>>
+<</link>>@@<br>
+<<else>>@@.warningtext; I don't have enough money@@<</if>>
+<</if>>
+</div>
+<div class="housecard">
+<<if $ghostWraithInfoCollected neq 1>>
+<img src="assets/ghosts/Wraith.webp" class="iconPx">
+@@.mc-thoughts; Information about Wraith@@<br>
+<span class="priceAmount">200$</span><br>
+<<if $mc.money gte 200>>
+@@.buyItemLink;<<link "Buy" "witchSale">>
+<<set $ghostWraithInfoCollected to 1>>
+<<set $mc.money -= 200>>
+<</link>>@@<br>
+<<else>>@@.warningtext; I don't have enough money@@<</if>>
+<</if>>
+</div>
+<div class="housecard">
+<<if $ghostRaijuInfoCollected neq 1>>
+<img src="assets/ghosts/Raiju.webp" class="iconPx">
+@@.mc-thoughts; Information about Raiju@@<br>
+<span class="priceAmount">200$</span><br>
+<<if $mc.money gte 200>>
+@@.buyItemLink;<<link "Buy" "witchSale">>
+<<set $ghostRaijuInfoCollected to 1>>
+<<set $mc.money -= 200>>
+<</link>>@@<br>
+<<else>>@@.warningtext; I don't have enough money@@<</if>>
+<</if>>
+
+</div>
+</div>
+<br>
+@@.backbtn;[[Back|WitchInside]]@@ <br>
+<</nobr>>
+
+

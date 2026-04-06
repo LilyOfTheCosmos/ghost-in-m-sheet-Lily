@@ -1,0 +1,133 @@
+:: OwaissaHallway [hauntedhouse owaissaHallway] {"position":"1650,450","size":"100,100"}
+<<nobr>>
+<div class="room">
+	<div class="room-wrapper">
+		<div class="content">
+          	<div id="actionHallway" class="action">
+
+          	</div>
+        </div>
+        <div class="furnitureSearch">
+             <span id="hallway_carpet"><<link [img[assets/img/furniture/carpet.png][furnitureSearch]]>><<set $currentFurniture to "hallway_carpet">><<includeTimeEventClothesHunt>><</link>></span>
+			 <span id="hallway_wardrobe"><<link [img[assets/img/furniture/wardrobe.png][furnitureSearch]]>><<set $currentFurniture to "hallway_wardrobe">><<includeTimeEventClothesHunt>><</link>></span>
+			 <span id="hallway_coatrack"><<link [img[assets/img/furniture/coatrack.png][furnitureSearch]]>><<set $currentFurniture to "hallway_coatrack">><<includeTimeEventClothesHunt>><</link>></span>
+        </div>
+		<div class="footer">
+        	<div class="footertools">
+         	<div class="footer-card">
+            	<div class="cardimg">
+                	<img src="assets/img/emf.png" class="icon" id="owaissaHallwayPicEMF">
+                </div>
+                <div class="cardlink">
+                	<<include "searchEmfHallway">>
+                </div>
+            </div>
+            <div class="footer-card">
+            	<div class="cardimg">
+                	<img src="assets/img/glass.png" class="icon" id="owaissaHallwayPicPlasm">                
+                </div>
+                <div class="cardlink">
+                	<<include "searchPlasmHallway">>
+                </div>
+            </div>
+            <div class="footer-card">
+            	<div class="cardimg">
+                	<img src="assets/img/gwb.png" class="icon" id="owaissaHallwayPicGWB">                
+                </div>
+                <div class="cardlink">
+                	<<include "searchGwbHallway">>
+                </div>
+            </div>
+            <div class="footer-card">
+            	<div class="cardimg">
+                	<img src="assets/img/spiritbox.png" class="icon" id="owaissaHallwayPicSB">                
+                </div>
+                <div class="cardlink">
+                	<<include "searchSbHallway">>
+                </div>
+            </div>
+            <div class="footer-card">
+            	<div class="cardimg">
+ <img src="assets/img/thermometr.png" class="icon" id="owaissaHallwayPicThermometr">     
+                </div>
+                <div class="cardlink">
+                	<<include "searchThermometrHallway">>
+                </div>
+            </div>
+            <div class="footer-card">
+            	<div class="cardimg">
+                	<img src="assets/img/uvl.png" class="icon" id="owaissaHallwayPicUVL">                
+                </div>
+                <div class="cardlink">
+                	<<include "searchUVLHallway">>
+                </div>
+            </div>
+
+           <<if $showComp eq 1>>
+            <div class="footer-card">
+            	<div class="cardimg">
+                <<compLinks>>     
+                </div>
+            </div>
+            <<elseif $showComp eq 2>>
+            <div class="footer-card">
+            	<div class="cardimg">
+                <a data-passage="failedComp">
+                	<img src="assets/img/questionMark.png" class="companion-image"> </a>     
+                </div>
+            </div>
+            <<elseif $showComp eq 3>>
+            <div class="footer-card">
+            	<div class="cardimg">
+<<compLinksSuccess>>    
+                </div>
+            </div>
+            <</if>>
+            <div class="footer-card footer-light">
+<span class="cursedHuntLinkDisable"><<link [img[assets/img/lighton.png][OwaissaHallway]]>><<set $hallway.background to 1>><</link>>
+<<link [img[assets/img/lightoff.png][OwaissaHallway]]>><<set $hallway.background to 2>><</link>>
+			<<if $mc.lust gte 80 and $weakenTheGhostQuest and $isWeakenGhost neq 1>> 
+<<link [img[assets/img/hearth.png][minigame]]>>
+<<set $minigameVideo to "start">>
+<<set $ghostOrgasmMeter to 0>>
+<<set $mcOrgasmMeter to 0>><</link>>
+<</if>></span>
+            </div>
+         </div>
+         <div class="footeraction">
+         	@@.adaptiveLink;<<link "Kitchen" "OwaissaKitchen">><<includeTimeEventClothesHunt>><<set $stepCount += 1>><</link>>@@
+			@@.adaptiveLink;<<link "Bedroom" "OwaissaBedroom">><<includeTimeEventClothesHunt>><<set $stepCount += 1>><</link>>@@
+			@@.adaptiveLink;<<link "Bathroom" "OwaissaBathroom">><<includeTimeEventClothesHunt>><<set $stepCount += 1>><</link>>@@
+            <span class="cursedHuntLinkDisable">@@.adaptiveLink;<<link "Outside" "Owaissa Street">><</link>>@@</span>
+         </div>
+		</div>
+	</div>
+</div>
+
+
+<</nobr>>
+
+<<script>>
+$(document).ready(function() {
+    $('#owaissaHallwayPicEMF').on('click', function() {
+        $('#searchEmfH a').click();
+    });
+    $('#owaissaHallwayPicPlasm').on('click', function() {
+        $('#searchGlassH a').click();
+    });
+    $('#owaissaHallwayPicGWB').on('click', function() {
+        $('#searchGwbH a').click();
+    });
+    $('#owaissaHallwayPicSB').on('click', function() {
+        $('#searchSpiritboxH a').click();
+    });
+    $('#owaissaHallwayPicThermometr').on('click', function() {
+        $('#addsearchThermometrHallway a').click();
+    });
+    $('#owaissaHallwayPicUVL').on('click', function() {
+        $('#searchUvlH a').click();
+    });
+});
+<</script>>
+
+
