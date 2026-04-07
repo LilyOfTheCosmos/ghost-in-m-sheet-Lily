@@ -1,0 +1,24 @@
+{
+  "name": "the-ghost-hunter-fork",
+  "version": "1.0.0",
+  "description": "An attempt at continuing Trykowka's 'The Ghost Hunter'",
+  "main": "index.html",
+  "scripts": {
+    "build": "./build.sh",
+    "start": "./start.sh",
+    "watch": "while inotifywait -e modify -e create -e delete passages/*.tw; do ./build.sh; done",
+    "clean": "rm -f tgh-fork.html",
+    "rebuild": "npm run clean && npm run build"
+  },
+  "keywords": [
+    "twine",
+    "twee",
+    "story",
+    "game"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.0.0"
+  }
+}

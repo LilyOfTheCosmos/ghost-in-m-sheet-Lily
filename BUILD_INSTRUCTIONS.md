@@ -1,38 +1,15 @@
-# The Ghost Hunter Fork
+# Build Instructions for The Ghost Hunter Fork
 
-An attempt at continuing Trykowka's "The Ghost Hunter".
-
-## Quick Start
-
-### Prerequisites
+## Prerequisites
 
 - Tweego (Twee/Twine compiler)
   - Download from: https://github.com/tmedwards/tweego
-  - Or use the automated setup script below
+  - Place in the root directory as `tweego-2.1.1-linux-x64/tweego` (or update the path in build.sh)
+  - Or install system-wide and ensure `tweego` is in your PATH
 
-### Setup
+## Quick Start
 
-#### Automated Setup (Recommended)
-
-Run the setup script to automatically download and install Tweego:
-
-```bash
-./setup.sh
-```
-
-#### Manual Setup
-
-If you prefer to set up Tweego manually:
-
-1. Download Tweego from: https://github.com/tmedwards/tweego/releases
-2. Extract the archive to the project root
-3. Ensure the path in `build.sh` matches your Tweego location:
-   - Default: `../tweego-2.1.1-linux-x64/tweego`
-   - Or update the `TWEEGO_PATH` variable in `build.sh`
-
-### Building the Project
-
-#### Using VS Code (Recommended)
+### Using VS Code Tasks (Recommended)
 
 1. Open the project in VS Code
 2. Press `Ctrl+Shift+P` (or `Cmd+Shift+P` on Mac)
@@ -40,7 +17,7 @@ If you prefer to set up Tweego manually:
 4. Choose "Build Story" to build the project
 5. Choose "Start Development Server" to build and start a local server
 
-#### Using Command Line
+### Using Command Line
 
 ```bash
 # Build the story
@@ -148,12 +125,4 @@ You can customize the build process by editing:
 - `start.sh`: Development server startup script
 - `.vscode/tasks.json`: VS Code task definitions
 - `.vscode/launch.json`: VS Code debug configurations
-
-## Documentation
-
-- [Setup Guide](SETUP.md) - Detailed setup instructions
-- [Build Instructions](BUILD_INSTRUCTIONS.md) - Advanced build options
-
-## License
-
-GPLv3
+```

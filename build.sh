@@ -1,3 +1,76 @@
-#!/bin/sh -xe
+#!/bin/sh
 
-../tweego-2.1.1-linux-x64/tweego -o tgh-fork.html passages/
+# Robust build script for The Ghost Hunter Fork
+# This script builds the Twee/Twine story into an HTML file
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+cd "$SCRIPT_DIR"
+
+# Configuration
+OUTPUT_FILE="tgh-fork.html"
+PASSAGES_DIR="passages"
+TWEEGO_PATH="tweego-2.1.1-linux-x64/tweego"
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
+
+echo -e "${GREEN}Starting build process...${NC}"
+
+# Check if Tweego exists
+if [ ! -f "$TWEEGO_PATH" ]; then
+    echo -e "${YELLOW}Tweego not found at $TWEEGO_PATH${NC}"
+    echo -e "${YELLOW}Attempting to use system-installed tweego...${NC}"
+    TWEEGO_PATH="tweego"
+fi
+
+# Verify Tweego is available
+if ! command -v "$TWEEGO_PATH" >/dev/null 2>&1; then
+    echo -e "${RED}Error: Tweego not found. Please install Tweego or place it in the expected location.${NC}"
+    echo -e "${YELLOW}Download from: https://github.com/tmedwards/tweego${NC}"
+    exit 1
+fi
+
+# Check if passages directory exists
+if [ ! -d "$PASSAGES_DIR" ]; then
+    echo -e "${RED}Error: Passages directory '$PASSAGES_DIR' not found${NC}"
+    exit 1
+fi
+
+# Check if there are any .tw files in the passages directory
+if [ -z "$(ls -A $PASSAGES_DIR/*.tw 2>/dev/null)" ]; then
+    echo -e "${RED}Error: No .tw files found in '$PASSAGES_DIR' directory${NC}"
+    exit 1
+fi
+
+# Clean up any existing output file
+if [ -f "$OUTPUT_FILE" ]; then
+    echo -e "${YELLOW}Removing existing output file: $OUTPUT_FILE${NC}"
+    rm -f "$OUTPUT_FILE"
+fi
+
+# Build the story
+echo -e "${GREEN}Building story from $PASSAGES_DIR to $OUTPUT_FILE...${NC}"
+
+if $TWEEGO_PATH -o "$OUTPUT_FILE" "$PASSAGES_DIR"; then
+    echo -e "${GREEN}Build successful!${NC}"
+    
+    # Check if output file was created
+    if [ -f "$OUTPUT_FILE" ]; then
+        FILE_SIZE=$(stat -c%s "$OUTPUT_FILE" 2>/dev/null || stat -f%z "$OUTPUT_FILE" 2>/dev/null)
+        echo -e "${GREEN}Output file created: $OUTPUT_FILE (${FILE_SIZE} bytes)${NC}"
+        
+        # List the output file
+        ls -lh "$OUTPUT_FILE"
+    else
+        echo -e "${RED}Error: Build completed but output file was not created${NC}"
+        exit 1
+    fi
+else
+    echo -e "${RED}Error: Build failed${NC}"
+    exit 1
+fi
+
+echo -e "${GREEN}Build process completed successfully!${NC}"

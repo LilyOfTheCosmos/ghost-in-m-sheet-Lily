@@ -1,4 +1,7 @@
 assets/
+tweego-2.1.1-linux-x64/
+storyformats/
+
 # Binaries and build folders
 bin/
 obj/
@@ -18,3 +21,10 @@ build/
 # OS generated files
 .DS_Store
 Thumbs.db
+
+# Build artifacts
+tgh-fork.html
+*.html
+
+# Node modules (if using npm)
+node_modules/

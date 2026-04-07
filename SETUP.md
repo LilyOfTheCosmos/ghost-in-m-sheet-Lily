@@ -1,18 +1,14 @@
-# The Ghost Hunter Fork
+# Setup Guide for The Ghost Hunter Fork
 
-An attempt at continuing Trykowka's "The Ghost Hunter".
-
-## Quick Start
-
-### Prerequisites
+## Prerequisites
 
 - Tweego (Twee/Twine compiler)
   - Download from: https://github.com/tmedwards/tweego
   - Or use the automated setup script below
 
-### Setup
+## Quick Setup
 
-#### Automated Setup (Recommended)
+### Automated Setup (Recommended)
 
 Run the setup script to automatically download and install Tweego:
 
@@ -20,7 +16,13 @@ Run the setup script to automatically download and install Tweego:
 ./setup.sh
 ```
 
-#### Manual Setup
+This will:
+
+1. Download Tweego 2.1.1 for Linux x64
+2. Extract it to the appropriate directory
+3. Make build scripts executable
+
+### Manual Setup
 
 If you prefer to set up Tweego manually:
 
@@ -30,17 +32,16 @@ If you prefer to set up Tweego manually:
    - Default: `../tweego-2.1.1-linux-x64/tweego`
    - Or update the `TWEEGO_PATH` variable in `build.sh`
 
-### Building the Project
+## Building the Project
 
-#### Using VS Code (Recommended)
+### Using VS Code (Recommended)
 
 1. Open the project in VS Code
 2. Press `Ctrl+Shift+P` (or `Cmd+Shift+P` on Mac)
 3. Type "Run Task" and select "Tasks: Run Task"
 4. Choose "Build Story" to build the project
-5. Choose "Start Development Server" to build and start a local server
 
-#### Using Command Line
+### Using Command Line
 
 ```bash
 # Build the story
@@ -48,12 +49,6 @@ If you prefer to set up Tweego manually:
 
 # Start development server
 ./start.sh
-
-# Clean build artifacts
-rm -f tgh-fork.html
-
-# Rebuild
-./build.sh
 ```
 
 ## VS Code Integration
@@ -68,17 +63,6 @@ rm -f tgh-fork.html
 1. Start the development server using the "Start Development Server" task
 2. Press `F5` to launch the debugger
 3. Choose your preferred browser (Chrome or Firefox)
-
-## Build Script Features
-
-The `build.sh` script includes:
-
-- Automatic error handling
-- Verification of required files and dependencies
-- Color-coded output for better visibility
-- File size reporting
-- Cleanup of existing output files
-- Detailed error messages
 
 ## Development Workflow
 
@@ -106,12 +90,6 @@ npm start
 
 # Watch for changes
 npm run watch
-
-# Clean build artifacts
-npm run clean
-
-# Rebuild
-npm run rebuild
 ```
 
 ## Troubleshooting
@@ -148,12 +126,3 @@ You can customize the build process by editing:
 - `start.sh`: Development server startup script
 - `.vscode/tasks.json`: VS Code task definitions
 - `.vscode/launch.json`: VS Code debug configurations
-
-## Documentation
-
-- [Setup Guide](SETUP.md) - Detailed setup instructions
-- [Build Instructions](BUILD_INSTRUCTIONS.md) - Advanced build options
-
-## License
-
-GPLv3
