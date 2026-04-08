@@ -78,7 +78,11 @@ fi
 
 
 # Make scripts executable
-chmod +x build.sh start.sh
+chmod +x build.sh start.sh .githooks/pre-commit
+
+# Configure git to use the repo's hooks
+git config core.hooksPath .githooks
+echo -e "${GREEN}Git hooks configured.${NC}"
 
 echo -e "${GREEN}Setup complete!${NC}"
 echo -e "${GREEN}You can now run ./build.sh to build the story.${NC}"

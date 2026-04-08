@@ -1,0 +1,5 @@
+#!/bin/bash
+
+SCRIPT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+echo "Running build before commit..."
+bash "$SCRIPT_DIR/build.sh"
