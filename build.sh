@@ -51,6 +51,14 @@ if [ -f "$OUTPUT_FILE" ]; then
     rm -f "$OUTPUT_FILE"
 fi
 
+# Check passage links before building
+echo -e "${GREEN}Checking passage links...${NC}"
+if ! python3 "$SCRIPT_DIR/check_links.py"; then
+    echo -e "${RED}Error: Broken links detected. Fix them before building.${NC}"
+    exit 1
+fi
+echo -e "${GREEN}Link check passed.${NC}"
+
 # Build the story
 echo -e "${GREEN}Building story from $PASSAGES_DIR to $OUTPUT_FILE...${NC}"
 
