@@ -32,14 +32,14 @@ If you prefer to set up Tweego manually:
    - Default: `../tweego-2.1.1-linux-x64/tweego`
    - Or update the `TWEEGO_PATH` variable in `build.sh`
 
-## Building the Project
+## Building and Opening the Project
 
 ### Using VS Code (Recommended)
 
 1. Open the project in VS Code
 2. Press `Ctrl+Shift+P` (or `Cmd+Shift+P` on Mac)
 3. Type "Run Task" and select "Tasks: Run Task"
-4. Choose "Build Story" to build the project
+4. Choose "Build Story" to build, or "Open in Browser" to build and open
 
 ### Using Command Line
 
@@ -47,9 +47,11 @@ If you prefer to set up Tweego manually:
 # Build the story
 ./build.sh
 
-# Start development server
+# Build and open in browser
 ./start.sh
 ```
+
+The build produces `tgh-fork.html`, which can be opened directly in any browser — no server required.
 
 ## VS Code Integration
 
@@ -60,9 +62,7 @@ If you prefer to set up Tweego manually:
 
 ### Debugging
 
-1. Start the development server using the "Start Development Server" task
-2. Press `F5` to launch the debugger
-3. Choose your preferred browser (Chrome or Firefox)
+1. Press `F5` to build and launch the story in Chrome or Firefox
 
 ## Development Workflow
 
@@ -85,7 +85,7 @@ npm install
 # Build
 npm run build
 
-# Start server
+# Build and open in browser
 npm start
 
 # Watch for changes
@@ -112,17 +112,13 @@ npm run watch
 
 ## Output
 
-The build process creates `tgh-fork.html` in the project root directory, which can be:
-
-- Opened directly in a web browser
-- Served using a local development server
-- Deployed to a web server
+The build process creates `tgh-fork.html` in the project root directory. Open it directly in any web browser — no server needed.
 
 ## Customization
 
 You can customize the build process by editing:
 
 - `build.sh`: Main build script
-- `start.sh`: Development server startup script
+- `start.sh`: Build and open script
 - `.vscode/tasks.json`: VS Code task definitions
 - `.vscode/launch.json`: VS Code debug configurations
