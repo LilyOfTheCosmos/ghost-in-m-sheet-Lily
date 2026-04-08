@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 
-# Robust build script for The Ghost Hunter Fork
+# Build script for The Ghost Hunter Fork
 # This script builds the Twee/Twine story into an HTML file
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
@@ -40,15 +40,9 @@ if [ ! -d "$PASSAGES_DIR" ]; then
 fi
 
 # Check if there are any .tw files in the passages directory
-if [ -z "$(ls -A $PASSAGES_DIR/*.tw 2>/dev/null)" ]; then
+if [ -z "$(ls -A "$PASSAGES_DIR"/*.tw 2>/dev/null)" ]; then
     echo -e "${RED}Error: No .tw files found in '$PASSAGES_DIR' directory${NC}"
     exit 1
-fi
-
-# Clean up any existing output file
-if [ -f "$OUTPUT_FILE" ]; then
-    echo -e "${YELLOW}Removing existing output file: $OUTPUT_FILE${NC}"
-    rm -f "$OUTPUT_FILE"
 fi
 
 # Check passage links before building
@@ -69,9 +63,6 @@ if $TWEEGO_PATH -o "$OUTPUT_FILE" "$PASSAGES_DIR"; then
     if [ -f "$OUTPUT_FILE" ]; then
         FILE_SIZE=$(stat -c%s "$OUTPUT_FILE" 2>/dev/null || stat -f%z "$OUTPUT_FILE" 2>/dev/null)
         echo -e "${GREEN}Output file created: $OUTPUT_FILE (${FILE_SIZE} bytes)${NC}"
-        
-        # List the output file
-        ls -lh "$OUTPUT_FILE"
     else
         echo -e "${RED}Error: Build completed but output file was not created${NC}"
         exit 1

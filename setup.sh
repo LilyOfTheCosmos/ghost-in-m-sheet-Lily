@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Setup script for The Ghost Hunter Fork
 # This script downloads and sets up Tweego and SugarCube if needed
@@ -13,9 +13,9 @@ TWEEGO_URL="https://github.com/tmedwards/tweego/releases/download/v${TWEEGO_VERS
 TWEEGO_PATH="${SCRIPT_DIR}/${TWEEGO_DIR}/tweego"
 
 SUGARCUBE_VERSION="2.37.3"
-SUGARCUBE_DIR="sugarcube-${SUGARCUBE_VERSION}" # https://github.com/tmedwards/sugarcube-2/releases/download/v2.37.3/sugarcube-2.37.3-for-twine-2.1-local.zip
 SUGARCUBE_URL="https://github.com/tmedwards/sugarcube-2/releases/download/v${SUGARCUBE_VERSION}/sugarcube-${SUGARCUBE_VERSION}-for-twine-2.1-local.zip"
 SUGARCUBE_PATH="${SCRIPT_DIR}/${TWEEGO_DIR}/storyformats"
+SUGARCUBE_INSTALLED_PATH="${SUGARCUBE_PATH}/sugarcube-2"
 
 # Colors for output
 RED='\033[0;31m'
@@ -52,25 +52,29 @@ else
     echo -e "${GREEN}Tweego installed successfully!${NC}"
 fi
 
-echo -e "${YELLOW}SugarCube not found. Downloading...${NC}"
-
-# Download SugarCube
-if command -v curl >/dev/null 2>&1; then
-    curl -L "$SUGARCUBE_URL" -o "sugarcube.zip"
-elif command -v wget >/dev/null 2>&1; then
-    wget "$SUGARCUBE_URL" -O "sugarcube.zip"
+if [ -d "$SUGARCUBE_INSTALLED_PATH" ]; then
+    echo -e "${GREEN}SugarCube already installed at $SUGARCUBE_INSTALLED_PATH${NC}"
+    echo -e "${YELLOW}Skipping download...${NC}"
 else
-    echo -e "${RED}Error: Neither curl nor wget found. Please install one of them.${NC}"
-    exit 1
+    echo -e "${YELLOW}SugarCube not found. Downloading...${NC}"
+
+    # Download SugarCube
+    if command -v curl >/dev/null 2>&1; then
+        curl -L "$SUGARCUBE_URL" -o "sugarcube.zip"
+    elif command -v wget >/dev/null 2>&1; then
+        wget "$SUGARCUBE_URL" -O "sugarcube.zip"
+    else
+        echo -e "${RED}Error: Neither curl nor wget found. Please install one of them.${NC}"
+        exit 1
+    fi
+
+    # Extract SugarCube
+    echo -e "${YELLOW}Extracting SugarCube...${NC}"
+    unzip -o sugarcube.zip -d "${SUGARCUBE_PATH}"
+    rm sugarcube.zip
+
+    echo -e "${GREEN}SugarCube ${SUGARCUBE_VERSION} installed successfully!${NC}"
 fi
-
-# Extract SugarCube
-echo -e "${YELLOW}Extracting SugarCube...${NC}"
-unzip -o sugarcube.zip -d "${SUGARCUBE_PATH}"
-# Clean up
-rm sugarcube.zip
-
-echo -e "${GREEN}SugarCube ${SUGARCUBE_VERSION} installed successfully!${NC}"
 
 
 # Make scripts executable

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Start script for The Ghost Hunter Fork
 # This script builds the story and starts a local development server
@@ -16,7 +16,10 @@ echo -e "${GREEN}Starting development server...${NC}"
 
 # Build the story first
 echo -e "${YELLOW}Building story...${NC}"
-./build.sh
+if ! ./build.sh; then
+    echo -e "${RED}Error: Build failed. Server not started.${NC}"
+    exit 1
+fi
 
 # Check if serve is available
 if command -v serve >/dev/null 2>&1; then
@@ -27,10 +30,6 @@ elif command -v python3 >/dev/null 2>&1; then
     echo -e "${GREEN}Starting Python HTTP server...${NC}"
     echo -e "${YELLOW}Open http://localhost:8000 in your browser${NC}"
     python3 -m http.server 8000
-elif command -v python >/dev/null 2>&1; then
-    echo -e "${GREEN}Starting Python HTTP server...${NC}"
-    echo -e "${YELLOW}Open http://localhost:8000 in your browser${NC}"
-    python -m SimpleHTTPServer 8000
 elif command -v php >/dev/null 2>&1; then
     echo -e "${GREEN}Starting PHP development server...${NC}"
     echo -e "${YELLOW}Open http://localhost:8000 in your browser${NC}"
@@ -38,8 +37,8 @@ elif command -v php >/dev/null 2>&1; then
 else
     echo -e "${RED}Error: No HTTP server found (serve, python3, python, or php)${NC}"
     echo -e "${YELLOW}Please install one of the following:${NC}"
-    echo -e "${YELLOW}- npm install -g serve${NC}"
-    echo -e "${YELLOW}- Python 3 (python3 -m http.server)${NC}"
-    echo -e "${YELLOW}- PHP (php -S localhost:8000)${NC}"
+    echo -e "${YELLOW}  npm install -g serve${NC}"
+    echo -e "${YELLOW}  python3 -m http.server${NC}"
+    echo -e "${YELLOW}  php -S localhost:8000${NC}"
     exit 1
 fi
