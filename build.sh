@@ -70,7 +70,7 @@ echo -e "${GREEN}Ghost check passed.${NC}"
 # Build the story
 echo -e "${GREEN}Building story from $PASSAGES_DIR to $OUTPUT_FILE...${NC}"
 
-if $TWEEGO_PATH -o "$OUTPUT_FILE" "$PASSAGES_DIR"; then
+if "$TWEEGO_PATH" -o "$OUTPUT_FILE" "$PASSAGES_DIR"; then
     echo -e "${GREEN}Build successful!${NC}"
     
     # Check if output file was created

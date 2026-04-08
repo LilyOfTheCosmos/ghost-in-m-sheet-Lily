@@ -17,6 +17,7 @@ build/
 # Logs and temporary files
 *.log
 .cache/
+__pycache__/
 
 # OS generated files
 .DS_Store

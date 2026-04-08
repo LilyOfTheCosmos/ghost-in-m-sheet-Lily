@@ -2,26 +2,26 @@ import collections
 import os
 import re
 import pathlib
-from typing import List, Tuple, Pattern, Union
+
 
 def recursive_grep(
-    pattern: Union[str, Pattern],
+    pattern: str | re.Pattern[str],
     root: str,
     encoding: str = "utf-8",
     errors: str = "ignore",
-) -> List[Tuple[str, str]]:
+) -> list[tuple[str, str, int]]:
     """
     Recursively search files under `root` for regex `pattern`.
 
     Returns:
-        List of (file_path, matched_string)
+        List of (file_path, matched_string, line_number)
     """
     if isinstance(pattern, str):
         regex = re.compile(pattern)
     else:
         regex = pattern
 
-    matches: List[Tuple[str, str]] = []
+    matches: list[tuple[str, str, int]] = []
 
     for dirpath, _, filenames in os.walk(root):
         for filename in filenames:
@@ -46,24 +46,15 @@ def main():
     not_found_count = 0
     not_found_entries = collections.defaultdict(list)
     for tw, s, lno in results:
-        #m = re.match(r'(assets\/[^\"\']+)[\"\']', s)
         m = re.search(r'(assets[\/\w\.\s\-\_\,]+)', s)
         if m:
             s = m.group(1)
-        #else:
-        #    m = re.search(r'(assets[\/\w\.]+)', s)
-        #    if m:
-        #        s = m.group(1)
-        #        print(f"Inner {s}")
-        #print(f"Outer {s}")
         img = pathlib.Path(s)
         if not img.is_file():
-            #print(f"{img}:{lno}: {s} not found")
             not_found_count += 1
             not_found_entries[str(img)].append((tw, lno))
         else:
             found_count += 1
-    #exit(0)
     for img, sources in not_found_entries.items():
         print(f"{img=}")
         for tw, lno in sources:
@@ -72,5 +63,6 @@ def main():
     print(f"{not_found_count=}")
     print(f"{found_count=}")
 
-main()
+if __name__ == "__main__":
+    main()
 
