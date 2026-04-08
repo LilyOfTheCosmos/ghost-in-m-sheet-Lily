@@ -1,0 +1,42 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build Story",
+      "type": "shell",
+      "command": "./build.sh",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [],
+      "detail": "Build the Twee/Twine story into HTML"
+    },
+    {
+      "label": "Open in Browser",
+      "type": "shell",
+      "command": "./start.sh",
+      "group": "test",
+      "problemMatcher": [],
+      "detail": "Build the story and open tgh-fork.html in the default browser"
+    },
+    {
+      "label": "Clean Build Artifacts",
+      "type": "shell",
+      "command": "rm",
+      "args": ["-f", "tgh-fork.html"],
+      "group": "clean",
+      "problemMatcher": [],
+      "detail": "Remove the generated HTML file"
+    },
+    {
+      "label": "Rebuild Story",
+      "type": "shell",
+      "command": "./build.sh",
+      "dependsOn": "Clean Build Artifacts",
+      "group": "build",
+      "problemMatcher": [],
+      "detail": "Clean and rebuild the story"
+    }
+  ]
+}

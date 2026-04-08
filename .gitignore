@@ -8,8 +8,6 @@ obj/
 build/
 
 # IDE and Project files
-.vscode/
-.idea/
 *.sln
 *.csproj
 *.user
