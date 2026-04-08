@@ -29,7 +29,7 @@ Okay, here I can get a ghost contract. It costs money. I receive a key to the ho
 <<elseif $firstVisitWitchShop eq false>>
 @@.notmc-speech; Hey $mc.name, how are you?@@<br>
 <<if def $succubus and (hasVisited("succubusEventTV") or hasVisited("succubusPCEvent")) and (ndef $exorcismQuestStage or $exorcismQuestStage eq 0)>>
-<<linkreplace "@@.usebtn; Ask about a ghost in the house"@@>>
+<<linkreplace "@@.usebtn; Ask about a ghost in the house@@">>
 @@.mc-speech; I am disturbed by someone or something in my own home! <br>
 Something is living in my house, sometimes it seems to possess me. This has been going on for some time.<br>
 I thought it would leave me alone after a while, like other ghosts, but it's not like that.@@<br>

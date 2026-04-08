@@ -118,8 +118,7 @@ Fine, he's going to get to my pussy anyway.
 <<replace "#compResponse">>
     @@.notmc-speech;Sure, I'll search for any ghost evidence.@@<</replace>>
 <</link>>@@<br>
-@@.usebtn;<<link "It would be nice if you found the ghost's favorite room @@.warningtext; 
-($brook.chanceOfSuccessGR %, $companion.plan4TimeReq min@@)">>
+@@.usebtn;<<link "It would be nice if you found the ghost's favorite room @@.warningtext; ($brook.chanceOfSuccessGR %, $companion.plan4TimeReq min@@)">>
 <<set $chosenPlan to "Plan4">>
 <<set $chanceToSuccess to $companion.chanceOfSuccessGR>>
 <<set $showComp to 0>>

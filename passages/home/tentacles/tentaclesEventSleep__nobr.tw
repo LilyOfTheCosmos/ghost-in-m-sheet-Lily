@@ -41,12 +41,12 @@
     @@.mc-speech;Oh not two at once@@<br>
     @@.mc-thoughts;Time felt endless as they seemed to toy with you, speeding up and slowing down, denying you your orgasm.@@<br>
     @@.mc-thoughts;You felt the tentacle inside your pussy tense up, then it started to cum, flooding you with warm, white fluid, @@
-      <<linkappend "@@.usebtn; pushing you over the edge.">>
+      <<linkappend "@@.usebtn; pushing you over the edge.@@">>
        <video autoplay controls muted loop>
        <source src="assets/tentacles/sleep5.mp4" type="video/mp4">
        </video>
 	  @@.mc-speech;Aahhh ~fuck@@ 
-        <<linkappend "@@.usebtn; I'm c-cumming">>
+        <<linkappend "@@.usebtn; I'm c-cumming@@">>
         <<if $tentaclesEventStageSleep eq 2>>
   		<<set $tentaclesEventStageSleep to 3>>
   		<<set $tentaclesTextAfterSleep to 3>>

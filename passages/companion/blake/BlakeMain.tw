@@ -62,7 +62,7 @@ I don't think I can influence her. For now...@@<br>
     @@.notmc-speech; We already have a cursed item.@@<</replace>>
 <</if>>
 <</link>>@@</span> <<if ndef $gotCursedItem>>@@.warningtext; Req. quest from the witch@@<</if>><br>
-@@.usebtn;<<link "I want you to look for any ghost evidence @@.warningtext; ($brook.chanceOfSuccessAnyEvidence %, $companion.plan3TimeReq min@@)">>
+@@.usebtn;<<link "I want you to look for any ghost evidence @@.warningtext; ($companion.chanceOfSuccessAnyEvidence %, $companion.plan3TimeReq min@@)">>
 <<set $chosenPlan to "Plan3">>
 <<set $chanceToSuccess to $companion.chanceOfSuccessAnyEvidence>>
 <<set $showComp to 0>>
@@ -71,8 +71,7 @@ I don't think I can influence her. For now...@@<br>
 <<replace "#compResponse">>
     @@.notmc-speech;Sure, I'll search for any ghost evidence.@@<</replace>>
 <</link>>@@<br>
-@@.usebtn;<<link "It would be nice if you found the ghost's favorite room @@.warningtext; 
-($companion.chanceOfSuccessGR %, $companion.plan4TimeReq min@@)">>
+@@.usebtn;<<link "It would be nice if you found the ghost's favorite room @@.warningtext; ($companion.chanceOfSuccessGR %, $companion.plan4TimeReq min@@)">>
 <<set $chosenPlan to "Plan4">>
 <<set $chanceToSuccess to $companion.chanceOfSuccessGR>>
 <<set $showComp to 0>>
