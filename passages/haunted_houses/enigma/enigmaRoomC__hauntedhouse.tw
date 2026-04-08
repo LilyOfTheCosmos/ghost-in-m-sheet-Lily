@@ -9,54 +9,12 @@
         </div>
 		<div class="footer">
         	<div class="footertools">
-         	<div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/emf.png" class="icon"   id="enigmaRoomCPicEMF">
-                </div>
-                <div class="cardlink">
-                	<<include "searchEMFRoomCEnigma">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/glass.png" class="icon"  id="enigmaRoomCPicPlasm">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchPlasmRoomCEnigma">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/gwb.png" class="icon"  id="enigmaRoomCPicGWB">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchGwbRoomCEnigma">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/spiritbox.png" class="icon"  id="enigmaRoomCPicSB">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchSbRoomCEnigma">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/thermometr.png" class="icon"  id="enigmaRoomCPicThermometr">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchThermometrRoomCEnigma">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/uvl.png" class="icon"  id="enigmaRoomCPicUVL">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchUVLRoomCEnigma">>
-                </div>
-            </div>
+         	<<toolCard "assets/img/emf.png" "enigmaRoomCPicEMF" "searchEMFRoomCEnigma">>
+         	<<toolCard "assets/img/glass.png" "enigmaRoomCPicPlasm" "searchPlasmRoomCEnigma">>
+         	<<toolCard "assets/img/gwb.png" "enigmaRoomCPicGWB" "searchGwbRoomCEnigma">>
+         	<<toolCard "assets/img/spiritbox.png" "enigmaRoomCPicSB" "searchSbRoomCEnigma">>
+         	<<toolCard "assets/img/thermometr.png" "enigmaRoomCPicThermometr" "searchThermometrRoomCEnigma">>
+         	<<toolCard "assets/img/uvl.png" "enigmaRoomCPicUVL" "searchUVLRoomCEnigma">>
             <div class="footer-card footer-light">
             	<<link [img[assets/img/lighton.png][enigmaRoomC]]>><<set $roomC.background to 1>><</link>>
              <<link [img[assets/img/lightoff.png][enigmaRoomC]]>><<set $roomC.background to 2>><</link>>
@@ -72,26 +30,7 @@
 <</nobr>>
 
 <<script>>
-$(document).ready(function() {
-    $('#enigmaRoomCPicEMF').on('click', function() {
-        $('#enigmaRoomCEMF a').click();
-    });
-    $('#enigmaRoomCPicPlasm').on('click', function() {
-        $('#enigmaRoomCPlasm a').click();
-    });
-    $('#enigmaRoomCPicGWB').on('click', function() {
-        $('#enigmaRoomCGWB a').click();
-    });
-    $('#enigmaRoomCPicSB').on('click', function() {
-        $('#enigmaRoomCSpiritbox a').click();
-    });
-    $('#enigmaRoomCPicThermometr').on('click', function() {
-        $('#enigmaRoomCTemperature a').click();
-    });
-    $('#enigmaRoomCPicUVL').on('click', function() {
-        $('#enigmaRoomCUVL a').click();
-    });
-});
+$(document).ready(function() { setup.roomToolHandlersByPrefix('enigmaRoomC'); });
 <</script>>
 
 

@@ -9,54 +9,12 @@
         </div>
 		<div class="footer">
         	<div class="footertools">
-         	<div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/emf.png" class="icon" id="enigmaHallwayPicEMF">
-                </div>
-                <div class="cardlink">
-                	<<include "searchEMFHallwayEnigma">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/glass.png" class="icon" id="enigmaHallwayPicPlasm">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchPlasmHallwayEnigma">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/gwb.png" class="icon" id="enigmaHallwayPicGWB">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchGwbHallwayEnigma">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/spiritbox.png" class="icon" id="enigmaHallwayPicSB">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchSbHallwayEnigma">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/thermometr.png" class="icon" id="enigmaHallwayPicThermometr">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchThermometrHallwayEnigma">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/uvl.png" class="icon" id="enigmaHallwayPicUVL">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchUVLHallwayEnigma">>
-                </div>
-            </div>
+         	<<toolCard "assets/img/emf.png" "enigmaHallwayPicEMF" "searchEMFHallwayEnigma">>
+         	<<toolCard "assets/img/glass.png" "enigmaHallwayPicPlasm" "searchPlasmHallwayEnigma">>
+         	<<toolCard "assets/img/gwb.png" "enigmaHallwayPicGWB" "searchGwbHallwayEnigma">>
+         	<<toolCard "assets/img/spiritbox.png" "enigmaHallwayPicSB" "searchSbHallwayEnigma">>
+         	<<toolCard "assets/img/thermometr.png" "enigmaHallwayPicThermometr" "searchThermometrHallwayEnigma">>
+         	<<toolCard "assets/img/uvl.png" "enigmaHallwayPicUVL" "searchUVLHallwayEnigma">>
             <div class="footer-card footer-light">
             	<<link [img[assets/img/lighton.png][enigmaHallway]]>><<set $hallway.background to 1>><</link>>
              <<link [img[assets/img/lightoff.png][enigmaHallway]]>><<set $hallway.background to 2>><</link>>
@@ -78,26 +36,7 @@
 <</nobr>>
 
 <<script>>
-$(document).ready(function() {
-    $('#enigmaHallwayPicEMF').on('click', function() {
-        $('#enigmaHallwayEMF a').click();
-    });
-    $('#enigmaHallwayPicPlasm').on('click', function() {
-        $('#enigmaHallwayPlasm a').click();
-    });
-    $('#enigmaHallwayPicGWB').on('click', function() {
-        $('#enigmaHallwayGWB a').click();
-    });
-    $('#enigmaHallwayPicSB').on('click', function() {
-        $('#enigmaHallwaySpiritbox a').click();
-    });
-    $('#enigmaHallwayPicThermometr').on('click', function() {
-        $('#enigmaHallwayTemperature a').click();
-    });
-    $('#enigmaHallwayPicUVL').on('click', function() {
-        $('#enigmaHallwayUVL a').click();
-    });
-});
+$(document).ready(function() { setup.roomToolHandlersByPrefix('enigmaHallway'); });
 <</script>>
 
 

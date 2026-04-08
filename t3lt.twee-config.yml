@@ -185,9 +185,10 @@ sugarcube-2:
         money, +0.2 corruption (if below 10), and sets $webcamShowCD to 1.
     showmeter:
       name: showmeter
-      description: "Renders a named meter to the page at the current location. Optionally
-        sets its value at the same time. The element receives the id
-        \"meter-<slugified-name>\". Args: meterName (string), [value (number, 0-1)]."
+      description: 'Renders a named meter to the page at the current location.
+        Optionally sets its value at the same time. The element receives the id
+        "meter-<slugified-name>". Args: meterName (string), [value (number,
+        0-1)].'
     hovertip:
       name: hovertip
       container: true
@@ -208,15 +209,20 @@ sugarcube-2:
     colors:
       name: colors
       description: "Child tag of <<newmeter>>. Sets the meter's fill, empty, and
-        background colors. With 1 arg sets a solid color; with 2 sets full+empty;
-        with 3 sets full+empty+backing. Args: full (color), [empty (color)],
-        [backing (color)]."
+        background colors. With 1 arg sets a solid color; with 2 sets
+        full+empty; with 3 sets full+empty+backing. Args: full (color), [empty
+        (color)], [backing (color)]."
     label:
       name: label
       description: "Child tag of <<newmeter>>. Adds a text label to the meter. Args:
         labelText (string), [textColor (CSS color)], [alignment (string)]."
     animation:
       name: animation
-      description: "Child tag of <<newmeter>>. Configures the fill animation. Pass
-        false to disable or a CSS time value (e.g. \"0.4s\") to set duration.
-        Args: timeOrBool (CSS time string | false), [easing (\"swing\" | \"linear\")]."
+      description: 'Child tag of <<newmeter>>. Configures the fill animation. Pass
+        false to disable or a CSS time value (e.g. "0.4s") to set duration.
+        Args: timeOrBool (CSS time string | false), [easing ("swing" |
+        "linear")].'
+    toolCard:
+      name: toolCard
+    companionCard:
+      name: companionCard

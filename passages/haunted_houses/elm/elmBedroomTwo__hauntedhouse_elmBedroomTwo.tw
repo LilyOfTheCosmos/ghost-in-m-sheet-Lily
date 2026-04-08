@@ -14,74 +14,13 @@
         </div>
 		<div class="footer">
         	<div class="footertools">
-         	<div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/emf.png" class="icon" id="elmBedroomTwoPicEMF">
-                </div>
-                <div class="cardlink">
-                	<<include "searchEMFBedroomTwoElm">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/glass.png" class="icon" id="elmBedroomTwoPicPlasm">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchPlasmBedroomTwoElm">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/gwb.png" class="icon" id="elmBedroomTwoPicGWB">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchGwbBedroomTwoElm">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/spiritbox.png" class="icon" id="elmBedroomTwoPicSB">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchSbBedroomTwoElm">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/thermometr.png" class="icon" id="elmBedroomTwoPicThermometr">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchThermometrBedroomTwoElm">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/uvl.png" class="icon" id="elmBedroomTwoPicUVL">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchUVLBedroomTwoElm">>
-                </div>
-            </div>
-              <<if $showComp eq 1>>
-            <div class="footer-card">
-            	<div class="cardimg">
-				<<compLinks>>          
-                </div>
-            </div>
-            <<elseif $showComp eq 2>>
-            <div class="footer-card">
-            	<div class="cardimg">
-                <a data-passage="failedComp">
-                	<img src="assets/img/questionMark.png" class="companion-image"> </a>     
-                </div>
-            </div>
-            <<elseif $showComp eq 3>>
-            <div class="footer-card">
-            	<div class="cardimg">
-<<compLinksSuccess>>
-                </div>
-            </div>
-            <</if>>
+         	<<toolCard "assets/img/emf.png" "elmBedroomTwoPicEMF" "searchEMFBedroomTwoElm">>
+         	<<toolCard "assets/img/glass.png" "elmBedroomTwoPicPlasm" "searchPlasmBedroomTwoElm">>
+         	<<toolCard "assets/img/gwb.png" "elmBedroomTwoPicGWB" "searchGwbBedroomTwoElm">>
+         	<<toolCard "assets/img/spiritbox.png" "elmBedroomTwoPicSB" "searchSbBedroomTwoElm">>
+         	<<toolCard "assets/img/thermometr.png" "elmBedroomTwoPicThermometr" "searchThermometrBedroomTwoElm">>
+         	<<toolCard "assets/img/uvl.png" "elmBedroomTwoPicUVL" "searchUVLBedroomTwoElm">>
+            <<companionCard>>
             <div class="footer-card footer-light">
             	<span class="cursedHuntLinkDisable"><<link [img[assets/img/lighton.png][elmBedroomTwo]]>><<set $bedroomTwo.background to 1>><</link>>
              <<link [img[assets/img/lightoff.png][elmBedroomTwo]]>><<set $bedroomTwo.background to 2>><</link>>
@@ -103,26 +42,7 @@
 <</nobr>>
 
 <<script>>
-$(document).ready(function() {
-    $('#elmBedroomTwoPicEMF').on('click', function() {
-        $('#elmBedroomTwoEMF a').click();
-    });
-    $('#elmBedroomTwoPicPlasm').on('click', function() {
-        $('#elmBedroomTwoPlasm a').click();
-    });
-    $('#elmBedroomTwoPicGWB').on('click', function() {
-        $('#elmBedroomTwoGWB a').click();
-    });
-    $('#elmBedroomTwoPicSB').on('click', function() {
-        $('#elmBedroomTwoSpiritbox a').click();
-    });
-    $('#elmBedroomTwoPicThermometr').on('click', function() {
-        $('#elmBedroomTwoTemperature a').click();
-    });
-    $('#elmBedroomTwoPicUVL').on('click', function() {
-        $('#elmBedroomTwoUVL a').click();
-    });
-});
+$(document).ready(function() { setup.roomToolHandlersByPrefix('elmBedroomTwo'); });
 <</script>>
 
 

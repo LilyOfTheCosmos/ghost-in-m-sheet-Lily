@@ -26,74 +26,13 @@ All you can do now is wait and hope it doesn’t find you.@@
         </div>
 		<div class="footer">
         	<div class="footertools">
-         	<div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/emf.png" class="icon" id="elmBedroomPicEMF">
-                </div>
-                <div class="cardlink">
-                	<<include "searchEMFBedroomElm">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/glass.png" class="icon" id="elmBedroomPicPlasm">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchPlasmBedroomElm">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/gwb.png" class="icon" id="elmBedroomPicGWB">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchGwbBedroomElm">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/spiritbox.png" class="icon" id="elmBedroomPicSB">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchSbBedroomElm">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/thermometr.png" class="icon" id="elmBedroomPicThermometr">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchThermometrBedroomElm">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/uvl.png" class="icon" id="elmBedroomPicUVL">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchUVLBedroomElm">>
-                </div>
-            </div>
-              <<if $showComp eq 1>>
-            <div class="footer-card">
-            	<div class="cardimg">
-					<<compLinks>>              
-                </div>
-            </div>
-            <<elseif $showComp eq 2>>
-            <div class="footer-card">
-            	<div class="cardimg">
-                <a data-passage="failedComp">
-                	<img src="assets/img/questionMark.png" class="companion-image"> </a>     
-                </div>
-            </div>
-            <<elseif $showComp eq 3>>
-            <div class="footer-card">
-            	<div class="cardimg">
-<<compLinksSuccess>>
-                </div>
-            </div>
-            <</if>>
+         	<<toolCard "assets/img/emf.png" "elmBedroomPicEMF" "searchEMFBedroomElm">>
+         	<<toolCard "assets/img/glass.png" "elmBedroomPicPlasm" "searchPlasmBedroomElm">>
+         	<<toolCard "assets/img/gwb.png" "elmBedroomPicGWB" "searchGwbBedroomElm">>
+         	<<toolCard "assets/img/spiritbox.png" "elmBedroomPicSB" "searchSbBedroomElm">>
+         	<<toolCard "assets/img/thermometr.png" "elmBedroomPicThermometr" "searchThermometrBedroomElm">>
+         	<<toolCard "assets/img/uvl.png" "elmBedroomPicUVL" "searchUVLBedroomElm">>
+            <<companionCard>>
             <div class="footer-card footer-light">
             	<span class="cursedHuntLinkDisable"><<link [img[assets/img/lighton.png][elmBedroom]]>><<set $bedroom.background to 1>><</link>>
              <<link [img[assets/img/lightoff.png][elmBedroom]]>><<set $bedroom.background to 2>><</link>>
@@ -116,26 +55,7 @@ All you can do now is wait and hope it doesn’t find you.@@
 <</nobr>>
 
 <<script>>
-$(document).ready(function() {
-    $('#elmBedroomPicEMF').on('click', function() {
-        $('#elmBedroomEMF a').click();
-    });
-    $('#elmBedroomPicPlasm').on('click', function() {
-        $('#elmBedroomPlasm a').click();
-    });
-    $('#elmBedroomPicGWB').on('click', function() {
-        $('#elmBedroomGWB a').click();
-    });
-    $('#elmBedroomPicSB').on('click', function() {
-        $('#elmBedroomSpiritbox a').click();
-    });
-    $('#elmBedroomPicThermometr').on('click', function() {
-        $('#elmBedroomTemperature a').click();
-    });
-    $('#elmBedroomPicUVL').on('click', function() {
-        $('#elmBedroomUVL a').click();
-    });
-});
+$(document).ready(function() { setup.roomToolHandlersByPrefix('elmBedroom'); });
 <</script>>
 
 

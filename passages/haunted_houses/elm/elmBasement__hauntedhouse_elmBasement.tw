@@ -13,74 +13,13 @@
         </div>
 		<div class="footer">
         	<div class="footertools">
-         	<div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/emf.png" class="icon" id="elmBasementPicEMF">
-                </div>
-                <div class="cardlink">
-                	<<include "searchEMFBasement">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/glass.png" class="icon" id="elmBasementPicPlasm">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchPlasmBasement">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/gwb.png" class="icon" id="elmBasementPicGWB">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchGwbBasement">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/spiritbox.png" class="icon" id="elmBasementPicSB">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchSbBasement">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/thermometr.png" class="icon" id="elmBasementPicThermometr">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchThermometrBasementElm">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/uvl.png" class="icon" id="elmBasementPicUVL">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchUVLBasement">>
-                </div>
-            </div>
-              <<if $showComp eq 1>>
-            <div class="footer-card">
-            	<div class="cardimg">
-					<<compLinks>>              
-                </div>
-            </div>
-            <<elseif $showComp eq 2>>
-            <div class="footer-card">
-            	<div class="cardimg">
-                <a data-passage="failedComp">
-                	<img src="assets/img/questionMark.png" class="companion-image"> </a>     
-                </div>
-            </div>
-            <<elseif $showComp eq 3>>
-            <div class="footer-card">
-            	<div class="cardimg">
-<<compLinksSuccess>>
-                </div>
-            </div>
-            <</if>>
+         	<<toolCard "assets/img/emf.png" "elmBasementPicEMF" "searchEMFBasement">>
+         	<<toolCard "assets/img/glass.png" "elmBasementPicPlasm" "searchPlasmBasement">>
+         	<<toolCard "assets/img/gwb.png" "elmBasementPicGWB" "searchGwbBasement">>
+         	<<toolCard "assets/img/spiritbox.png" "elmBasementPicSB" "searchSbBasement">>
+         	<<toolCard "assets/img/thermometr.png" "elmBasementPicThermometr" "searchThermometrBasementElm">>
+         	<<toolCard "assets/img/uvl.png" "elmBasementPicUVL" "searchUVLBasement">>
+            <<companionCard>>
             <div class="footer-card footer-light">
             	<span class="cursedHuntLinkDisable"><<link [img[assets/img/lighton.png][elmBasement]]>><<set $basement.background to 1>><</link>>
              <<link [img[assets/img/lightoff.png][elmBasement]]>><<set $basement.background to 2>><</link>>
@@ -103,24 +42,14 @@
 
 <<script>>
 $(document).ready(function() {
-    $('#elmBasementPicEMF').on('click', function() {
-        $('#elmBEMF a').click();
-    });
-    $('#elmBasementPicPlasm').on('click', function() {
-        $('#elmBasementPlasm a').click();
-    });
-    $('#elmBasementPicGWB').on('click', function() {
-        $('#elmBGWB a').click();
-    });
-    $('#elmBasementPicSB').on('click', function() {
-        $('#elmBasementSpiritbox a').click();
-    });
-    $('#elmBasementPicThermometr').on('click', function() {
-        $('#elmBasementTemperature a').click();
-    });
-    $('#elmBasementPicUVL').on('click', function() {
-        $('#elmBasementUVL a').click();
-    });
+    setup.roomToolHandlers([
+        ['elmBasementPicEMF', 'elmBEMF'],
+        ['elmBasementPicPlasm', 'elmBasementPlasm'],
+        ['elmBasementPicGWB', 'elmBGWB'],
+        ['elmBasementPicSB', 'elmBasementSpiritbox'],
+        ['elmBasementPicThermometr', 'elmBasementTemperature'],
+        ['elmBasementPicUVL', 'elmBasementUVL'],
+    ]);
 });
 <</script>>
 

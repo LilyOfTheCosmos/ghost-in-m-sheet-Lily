@@ -14,75 +14,13 @@
         </div>
 		<div class="footer">
         	<div class="footertools">
-         	<div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/emf.png" class="icon" id="owaissaHallwayPicEMF">
-                </div>
-                <div class="cardlink">
-                	<<include "searchEmfHallway">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/glass.png" class="icon" id="owaissaHallwayPicPlasm">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchPlasmHallway">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/gwb.png" class="icon" id="owaissaHallwayPicGWB">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchGwbHallway">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/spiritbox.png" class="icon" id="owaissaHallwayPicSB">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchSbHallway">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
- <img src="assets/img/thermometr.png" class="icon" id="owaissaHallwayPicThermometr">     
-                </div>
-                <div class="cardlink">
-                	<<include "searchThermometrHallway">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/uvl.png" class="icon" id="owaissaHallwayPicUVL">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchUVLHallway">>
-                </div>
-            </div>
-
-           <<if $showComp eq 1>>
-            <div class="footer-card">
-            	<div class="cardimg">
-                <<compLinks>>     
-                </div>
-            </div>
-            <<elseif $showComp eq 2>>
-            <div class="footer-card">
-            	<div class="cardimg">
-                <a data-passage="failedComp">
-                	<img src="assets/img/questionMark.png" class="companion-image"> </a>     
-                </div>
-            </div>
-            <<elseif $showComp eq 3>>
-            <div class="footer-card">
-            	<div class="cardimg">
-<<compLinksSuccess>>    
-                </div>
-            </div>
-            <</if>>
+         	<<toolCard "assets/img/emf.png" "owaissaHallwayPicEMF" "searchEmfHallway">>
+         	<<toolCard "assets/img/glass.png" "owaissaHallwayPicPlasm" "searchPlasmHallway">>
+         	<<toolCard "assets/img/gwb.png" "owaissaHallwayPicGWB" "searchGwbHallway">>
+         	<<toolCard "assets/img/spiritbox.png" "owaissaHallwayPicSB" "searchSbHallway">>
+         	<<toolCard "assets/img/thermometr.png" "owaissaHallwayPicThermometr" "searchThermometrHallway">>
+         	<<toolCard "assets/img/uvl.png" "owaissaHallwayPicUVL" "searchUVLHallway">>
+            <<companionCard>>
             <div class="footer-card footer-light">
 <span class="cursedHuntLinkDisable"><<link [img[assets/img/lighton.png][OwaissaHallway]]>><<set $hallway.background to 1>><</link>>
 <<link [img[assets/img/lightoff.png][OwaissaHallway]]>><<set $hallway.background to 2>><</link>>
@@ -109,24 +47,14 @@
 
 <<script>>
 $(document).ready(function() {
-    $('#owaissaHallwayPicEMF').on('click', function() {
-        $('#searchEmfH a').click();
-    });
-    $('#owaissaHallwayPicPlasm').on('click', function() {
-        $('#searchGlassH a').click();
-    });
-    $('#owaissaHallwayPicGWB').on('click', function() {
-        $('#searchGwbH a').click();
-    });
-    $('#owaissaHallwayPicSB').on('click', function() {
-        $('#searchSpiritboxH a').click();
-    });
-    $('#owaissaHallwayPicThermometr').on('click', function() {
-        $('#addsearchThermometrHallway a').click();
-    });
-    $('#owaissaHallwayPicUVL').on('click', function() {
-        $('#searchUvlH a').click();
-    });
+    setup.roomToolHandlers([
+        ['owaissaHallwayPicEMF', 'searchEmfH'],
+        ['owaissaHallwayPicPlasm', 'searchGlassH'],
+        ['owaissaHallwayPicGWB', 'searchGwbH'],
+        ['owaissaHallwayPicSB', 'searchSpiritboxH'],
+        ['owaissaHallwayPicThermometr', 'addsearchThermometrHallway'],
+        ['owaissaHallwayPicUVL', 'searchUvlH'],
+    ]);
 });
 <</script>>
 

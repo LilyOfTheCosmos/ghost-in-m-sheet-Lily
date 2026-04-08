@@ -1,0 +1,54 @@
+:: widgetHauntedHouseRoom [widget nobr] {"position":"7000,100","size":"100,100"}
+<<script>>
+setup.roomToolHandlers = function(handlers) {
+    handlers.forEach(function(pair) {
+        $('#' + pair[0]).on('click', function() {
+            $('#' + pair[1] + ' a').click();
+        });
+    });
+};
+setup.roomToolHandlersByPrefix = function(prefix) {
+    setup.roomToolHandlers([
+        [prefix + 'PicEMF', prefix + 'EMF'],
+        [prefix + 'PicPlasm', prefix + 'Plasm'],
+        [prefix + 'PicGWB', prefix + 'GWB'],
+        [prefix + 'PicSB', prefix + 'Spiritbox'],
+        [prefix + 'PicThermometr', prefix + 'Temperature'],
+        [prefix + 'PicUVL', prefix + 'UVL']
+    ]);
+};
+<</script>>
+
+<<widget "toolCard">>
+<div class="footer-card">
+<div class="cardimg">
+<img @src="_args[0]" class="icon" @id="_args[1]">
+</div>
+<div class="cardlink">
+<<include `_args[2]`>>
+</div>
+</div>
+<</widget>>
+
+<<widget "companionCard">>
+<<if $showComp eq 1>>
+<div class="footer-card">
+<div class="cardimg">
+<<compLinks>>
+</div>
+</div>
+<<elseif $showComp eq 2>>
+<div class="footer-card">
+<div class="cardimg">
+<a data-passage="failedComp">
+<img src="assets/img/questionMark.png" class="companion-image"> </a>
+</div>
+</div>
+<<elseif $showComp eq 3>>
+<div class="footer-card">
+<div class="cardimg">
+<<compLinksSuccess>>
+</div>
+</div>
+<</if>>
+<</widget>>

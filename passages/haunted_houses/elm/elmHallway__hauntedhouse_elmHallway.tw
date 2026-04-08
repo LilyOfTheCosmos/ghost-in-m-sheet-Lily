@@ -13,73 +13,13 @@
         </div>
 		<div class="footer">
         	<div class="footertools">
-         	<div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/emf.png" class="icon" id="elmHallwayPicEMF">
-                </div>
-                <div class="cardlink">
-                	<<include "searchEMFHallwayElm">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/glass.png" class="icon" id="elmHallwayPicPlasm">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchPlasmHallwayElm">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/gwb.png" class="icon" id="elmHallwayPicGWB">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchGwbHallwayElm">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/spiritbox.png" class="icon" id="elmHallwayPicSB">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchSbHallwayElm">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/thermometr.png" class="icon" id="elmHallwayPicThermometr">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchThermometrHallwayElm">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/uvl.png" class="icon" id="elmHallwayPicUVL">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchUVLHallwayElm">>
-                </div>
-            </div>
-              <<if $showComp eq 1>>
-            <div class="footer-card">
-            	<div class="cardimg">
-				<<compLinks>>
-            </div>
-            <<elseif $showComp eq 2>>
-            <div class="footer-card">
-            	<div class="cardimg">
-                <a data-passage="failedComp">
-                	<img src="assets/img/questionMark.png" class="companion-image"> </a>     
-                </div>
-            </div>
-            <<elseif $showComp eq 3>>
-            <div class="footer-card">
-            	<div class="cardimg">
-<<compLinksSuccess>>
-                </div>
-            </div>
-            <</if>>
+         	<<toolCard "assets/img/emf.png" "elmHallwayPicEMF" "searchEMFHallwayElm">>
+         	<<toolCard "assets/img/glass.png" "elmHallwayPicPlasm" "searchPlasmHallwayElm">>
+         	<<toolCard "assets/img/gwb.png" "elmHallwayPicGWB" "searchGwbHallwayElm">>
+         	<<toolCard "assets/img/spiritbox.png" "elmHallwayPicSB" "searchSbHallwayElm">>
+         	<<toolCard "assets/img/thermometr.png" "elmHallwayPicThermometr" "searchThermometrHallwayElm">>
+         	<<toolCard "assets/img/uvl.png" "elmHallwayPicUVL" "searchUVLHallwayElm">>
+            <<companionCard>>
             <div class="footer-card footer-light">
             	<span class="cursedHuntLinkDisable"><<link [img[assets/img/lighton.png][elmHallway]]>><<set $hallway.background to 1>><</link>>
              <<link [img[assets/img/lightoff.png][elmHallway]]>><<set $hallway.background to 2>><</link>>
@@ -114,26 +54,7 @@
 <</nobr>>
 
 <<script>>
-$(document).ready(function() {
-    $('#elmHallwayPicEMF').on('click', function() {
-        $('#elmHallwayEMF a').click();
-    });
-    $('#elmHallwayPicPlasm').on('click', function() {
-        $('#elmHallwayPlasm a').click();
-    });
-    $('#elmHallwayPicGWB').on('click', function() {
-        $('#elmHallwayGWB a').click();
-    });
-    $('#elmHallwayPicSB').on('click', function() {
-        $('#elmHallwaySpiritbox a').click();
-    });
-    $('#elmHallwayPicThermometr').on('click', function() {
-        $('#elmHallwayTemperature a').click();
-    });
-    $('#elmHallwayPicUVL').on('click', function() {
-        $('#elmHallwayUVL a').click();
-    });
-});
+$(document).ready(function() { setup.roomToolHandlersByPrefix('elmHallway'); });
 <</script>>
 
 

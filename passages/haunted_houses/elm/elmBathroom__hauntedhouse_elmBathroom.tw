@@ -14,74 +14,13 @@
         </div>
 		<div class="footer">
         	<div class="footertools">
-         	<div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/emf.png" class="icon" id="elmBathroomPicEMF">
-                </div>
-                <div class="cardlink">
-                	<<include "searchEMFBathroomElm">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/glass.png" class="icon" id="elmBathroomPicPlasm">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchPlasmBathroomElm">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/gwb.png" class="icon" id="elmBathroomPicGWB">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchGwbBathroomElm">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/spiritbox.png" class="icon" id="elmBathroomPicSB">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchSbBathroomElm">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/thermometr.png" class="icon" id="elmBathroomPicThermometr">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchThermometrBathroomElm">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/uvl.png" class="icon" id="elmBathroomPicUVL">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchUVLBathroomElm">>
-                </div>
-            </div>
-              <<if $showComp eq 1>>
-            <div class="footer-card">
-            	<div class="cardimg">
-					<<compLinks>>           
-                </div>
-            </div>
-            <<elseif $showComp eq 2>>
-            <div class="footer-card">
-            	<div class="cardimg">
-                <a data-passage="failedComp">
-                	<img src="assets/img/questionMark.png" class="companion-image"> </a>     
-                </div>
-            </div>
-            <<elseif $showComp eq 3>>
-            <div class="footer-card">
-            	<div class="cardimg">
-<<compLinksSuccess>>
-                </div>
-            </div>
-            <</if>>
+         	<<toolCard "assets/img/emf.png" "elmBathroomPicEMF" "searchEMFBathroomElm">>
+         	<<toolCard "assets/img/glass.png" "elmBathroomPicPlasm" "searchPlasmBathroomElm">>
+         	<<toolCard "assets/img/gwb.png" "elmBathroomPicGWB" "searchGwbBathroomElm">>
+         	<<toolCard "assets/img/spiritbox.png" "elmBathroomPicSB" "searchSbBathroomElm">>
+         	<<toolCard "assets/img/thermometr.png" "elmBathroomPicThermometr" "searchThermometrBathroomElm">>
+         	<<toolCard "assets/img/uvl.png" "elmBathroomPicUVL" "searchUVLBathroomElm">>
+            <<companionCard>>
             <div class="footer-card footer-light">
             	<span class="cursedHuntLinkDisable"><<link [img[assets/img/lighton.png][elmBathroom]]>><<set $bathroom.background to 1>><</link>>
              <<link [img[assets/img/lightoff.png][elmBathroom]]>><<set $bathroom.background to 2>><</link>>
@@ -103,26 +42,7 @@
 <</nobr>>
 
 <<script>>
-$(document).ready(function() {
-    $('#elmBathroomPicEMF').on('click', function() {
-        $('#elmBathroomEMF a').click();
-    });
-    $('#elmBathroomPicPlasm').on('click', function() {
-        $('#elmBathroomPlasm a').click();
-    });
-    $('#elmBathroomPicGWB').on('click', function() {
-        $('#elmBathroomGWB a').click();
-    });
-    $('#elmBathroomPicSB').on('click', function() {
-        $('#elmBathroomSpiritbox a').click();
-    });
-    $('#elmBathroomPicThermometr').on('click', function() {
-        $('#elmBathroomTemperature a').click();
-    });
-    $('#elmBathroomPicUVL').on('click', function() {
-        $('#elmBathroomUVL a').click();
-    });
-});
+$(document).ready(function() { setup.roomToolHandlersByPrefix('elmBathroom'); });
 <</script>>
 
 

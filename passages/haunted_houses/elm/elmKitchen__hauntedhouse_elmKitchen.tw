@@ -14,74 +14,13 @@
         </div>
 		<div class="footer">
         	<div class="footertools">
-         	<div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/emf.png" class="icon" id="elmKitchenPicEMF">
-                </div>
-                <div class="cardlink">
-                	<<include "searchEMFKitchenElm">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/glass.png" class="icon" id="elmKitchenPicPlasm">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchPlasmKitchenElm">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/gwb.png" class="icon" id="elmKitchenPicGWB">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchGwbKitchenElm">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/spiritbox.png" class="icon" id="elmKitchenPicSB">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchSbKitchenElm">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/thermometr.png" class="icon" id="elmKitchenPicThermometr">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchThermometrKitchenElm">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/uvl.png" class="icon" id="elmKitchenPicUVL">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchUVLKitchenElm">>
-                </div>
-            </div>
-              <<if $showComp eq 1>>
-            <div class="footer-card">
-            	<div class="cardimg">
-					<<compLinks>>              
-                </div>
-            </div>
-            <<elseif $showComp eq 2>>
-            <div class="footer-card">
-            	<div class="cardimg">
-                <a data-passage="failedComp">
-                	<img src="assets/img/questionMark.png" class="companion-image"> </a>     
-                </div>
-            </div>
-            <<elseif $showComp eq 3>>
-            <div class="footer-card">
-            	<div class="cardimg">
-<<compLinksSuccess>>
-                </div>
-            </div>
-            <</if>>
+         	<<toolCard "assets/img/emf.png" "elmKitchenPicEMF" "searchEMFKitchenElm">>
+         	<<toolCard "assets/img/glass.png" "elmKitchenPicPlasm" "searchPlasmKitchenElm">>
+         	<<toolCard "assets/img/gwb.png" "elmKitchenPicGWB" "searchGwbKitchenElm">>
+         	<<toolCard "assets/img/spiritbox.png" "elmKitchenPicSB" "searchSbKitchenElm">>
+         	<<toolCard "assets/img/thermometr.png" "elmKitchenPicThermometr" "searchThermometrKitchenElm">>
+         	<<toolCard "assets/img/uvl.png" "elmKitchenPicUVL" "searchUVLKitchenElm">>
+            <<companionCard>>
             <div class="footer-card footer-light">
             	<span class="cursedHuntLinkDisable"><<link [img[assets/img/lighton.png][elmKitchen]]>><<set $kitchen.background to 1>><</link>>
              <<link [img[assets/img/lightoff.png][elmKitchen]]>><<set $kitchen.background to 2>><</link>>
@@ -103,26 +42,7 @@
 <</nobr>>
 
 <<script>>
-$(document).ready(function() {
-    $('#elmKitchenPicEMF').on('click', function() {
-        $('#elmKitchenEMF a').click();
-    });
-    $('#elmKitchenPicPlasm').on('click', function() {
-        $('#elmKitchenPlasm a').click();
-    });
-    $('#elmKitchenPicGWB').on('click', function() {
-        $('#elmKitchenGWB a').click();
-    });
-    $('#elmKitchenPicSB').on('click', function() {
-        $('#elmKitchenSpiritbox a').click();
-    });
-    $('#elmKitchenPicThermometr').on('click', function() {
-        $('#elmKitchenTemperature a').click();
-    });
-    $('#elmKitchenPicUVL').on('click', function() {
-        $('#elmKitchenUVL a').click();
-    });
-});
+$(document).ready(function() { setup.roomToolHandlersByPrefix('elmKitchen'); });
 <</script>>
 
 

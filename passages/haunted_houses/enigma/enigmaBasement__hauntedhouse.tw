@@ -9,54 +9,12 @@
         </div>
 		<div class="footer">
         	<div class="footertools">
-         	<div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/emf.png" class="icon" id="enigmaBasementPicEMF">
-                </div>
-                <div class="cardlink">
-                	<<include "searchEMFBasementEnigma">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/glass.png" class="icon" id="enigmaBasementPicPlasm">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchPlasmBasementEnigma">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/gwb.png" class="icon" id="enigmaBasementPicGWB">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchGwbBasementEnigma">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/spiritbox.png" class="icon" id="enigmaBasementPicSB">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchSbBasementEnigma">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/thermometr.png" class="icon" id="enigmaBasementPicThermometr">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchThermometrBasementEnigma">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/uvl.png" class="icon" id="enigmaBasementPicUVL">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchUVLBasementEnigma">>
-                </div>
-            </div>
+         	<<toolCard "assets/img/emf.png" "enigmaBasementPicEMF" "searchEMFBasementEnigma">>
+         	<<toolCard "assets/img/glass.png" "enigmaBasementPicPlasm" "searchPlasmBasementEnigma">>
+         	<<toolCard "assets/img/gwb.png" "enigmaBasementPicGWB" "searchGwbBasementEnigma">>
+         	<<toolCard "assets/img/spiritbox.png" "enigmaBasementPicSB" "searchSbBasementEnigma">>
+         	<<toolCard "assets/img/thermometr.png" "enigmaBasementPicThermometr" "searchThermometrBasementEnigma">>
+         	<<toolCard "assets/img/uvl.png" "enigmaBasementPicUVL" "searchUVLBasementEnigma">>
             <div class="footer-card footer-light">
             	<<link [img[assets/img/lighton.png][enigmaBasement]]>><<set $basement.background to 1>><</link>>
              <<link [img[assets/img/lightoff.png][enigmaBasement]]>><<set $basement.background to 2>><</link>>
@@ -76,24 +34,14 @@
 
 <<script>>
 $(document).ready(function() {
-    $('#enigmaBasementPicEMF').on('click', function() {
-        $('#enigmaBEMF a').click();
-    });
-    $('#enigmaBasementPicPlasm').on('click', function() {
-        $('#enigmaBasementPlasm a').click();
-    });
-    $('#enigmaBasementPicGWB').on('click', function() {
-        $('#enigmaBGWB a').click();
-    });
-    $('#enigmaBasementPicSB').on('click', function() {
-        $('#enigmaBasementSpiritbox a').click();
-    });
-    $('#enigmaBasementPicThermometr').on('click', function() {
-        $('#enigmaBasementTemperature a').click();
-    });
-    $('#enigmaBasementPicUVL').on('click', function() {
-        $('#enigmaBasementUVL a').click();
-    });
+    setup.roomToolHandlers([
+        ['enigmaBasementPicEMF', 'enigmaBEMF'],
+        ['enigmaBasementPicPlasm', 'enigmaBasementPlasm'],
+        ['enigmaBasementPicGWB', 'enigmaBGWB'],
+        ['enigmaBasementPicSB', 'enigmaBasementSpiritbox'],
+        ['enigmaBasementPicThermometr', 'enigmaBasementTemperature'],
+        ['enigmaBasementPicUVL', 'enigmaBasementUVL'],
+    ]);
 });
 <</script>>
 

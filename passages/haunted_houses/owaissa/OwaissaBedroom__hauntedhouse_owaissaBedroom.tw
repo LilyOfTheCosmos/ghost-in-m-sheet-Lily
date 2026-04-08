@@ -27,74 +27,13 @@ All you can do now is wait and hope it doesn’t find you.@@
         </div>
 		<div class="footer">
         	<div class="footertools">
-         	<div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/emf.png" class="icon"  id="owaissaBedroomPicEMF">
-                </div>
-                <div class="cardlink">
-                	<<include "searchEmfBedroom">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/glass.png" class="icon"  id="owaissaBedroomPicPlasm">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchPlasmBedroom">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/gwb.png" class="icon"  id="owaissaBedroomPicGWB">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchGwbBedroom">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/spiritbox.png" class="icon"  id="owaissaBedroomPicSB">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchSbBedroom">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/thermometr.png" class="icon"  id="owaissaBedroomPicThermometr">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchThermometrBedroom">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/uvl.png" class="icon"  id="owaissaBedroomPicUVL">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchUVLBedroom">>
-                </div>
-            </div>
-            <<if $showComp eq 1>>
-            <div class="footer-card">
-            	<div class="cardimg">
-               <<compLinks>>         
-                </div>
-            </div>
-            <<elseif $showComp eq 2>>
-            <div class="footer-card">
-            	<div class="cardimg">
-                <a data-passage="failedComp">
-                	<img src="assets/img/questionMark.png" class="companion-image"> </a>     
-                </div>
-            </div>
-            <<elseif $showComp eq 3>>
-            <div class="footer-card">
-            	<div class="cardimg">
-<<compLinksSuccess>>
-                </div>
-            </div>
-            <</if>>
+         	<<toolCard "assets/img/emf.png" "owaissaBedroomPicEMF" "searchEmfBedroom">>
+         	<<toolCard "assets/img/glass.png" "owaissaBedroomPicPlasm" "searchPlasmBedroom">>
+         	<<toolCard "assets/img/gwb.png" "owaissaBedroomPicGWB" "searchGwbBedroom">>
+         	<<toolCard "assets/img/spiritbox.png" "owaissaBedroomPicSB" "searchSbBedroom">>
+         	<<toolCard "assets/img/thermometr.png" "owaissaBedroomPicThermometr" "searchThermometrBedroom">>
+         	<<toolCard "assets/img/uvl.png" "owaissaBedroomPicUVL" "searchUVLBedroom">>
+            <<companionCard>>
             <div class="footer-card footer-light">
             	<span class="cursedHuntLinkDisable"><<link [img[assets/img/lighton.png][OwaissaBedroom]]>><<set $bedroom.background to 1>><</link>>
              <<link [img[assets/img/lightoff.png][OwaissaBedroom]]>><<set $bedroom.background to 2>><</link>>
@@ -115,24 +54,14 @@ All you can do now is wait and hope it doesn’t find you.@@
 <</nobr>>
 <<script>>
 $(document).ready(function() {
-    $('#owaissaBedroomPicEMF').on('click', function() {
-        $('#searchEmfB a').click();
-    });
-    $('#owaissaBedroomPicPlasm').on('click', function() {
-        $('#searchPlasmBedroom a').click();
-    });
-    $('#owaissaBedroomPicGWB').on('click', function() {
-        $('#searchGwbBedroom a').click();
-    });
-    $('#owaissaBedroomPicSB').on('click', function() {
-        $('#searchSpiritboxBedroom a').click();
-    });
-    $('#owaissaBedroomPicThermometr').on('click', function() {
-        $('#addsearchThermometrBedroom a').click();
-    });
-    $('#owaissaBedroomPicUVL').on('click', function() {
-        $('#searchUvlB a').click();
-    });
+    setup.roomToolHandlers([
+        ['owaissaBedroomPicEMF', 'searchEmfB'],
+        ['owaissaBedroomPicPlasm', 'searchPlasmBedroom'],
+        ['owaissaBedroomPicGWB', 'searchGwbBedroom'],
+        ['owaissaBedroomPicSB', 'searchSpiritboxBedroom'],
+        ['owaissaBedroomPicThermometr', 'addsearchThermometrBedroom'],
+        ['owaissaBedroomPicUVL', 'searchUvlB'],
+    ]);
 });
 <</script>>
 

@@ -9,54 +9,12 @@
         </div>
 		<div class="footer">
         	<div class="footertools">
-         	<div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/emf.png" class="icon" id="enigmaBathroomPicEMF">
-                </div>
-                <div class="cardlink">
-                	<<include "searchEMFBathroomEnigma">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/glass.png" class="icon" id="enigmaBathroomPicPlasm">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchPlasmBathroomEnigma">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/gwb.png" class="icon" id="enigmaBathroomPicGWB">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchGwbBathroomEnigma">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/spiritbox.png" class="icon" id="enigmaBathroomPicSB">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchSbBathroomEnigma">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/thermometr.png" class="icon" id="enigmaBathroomPicThermometr">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchThermometrBathroomEnigma">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/uvl.png" class="icon" id="enigmaBathroomPicUVL">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchUVLBathroomEnigma">>
-                </div>
-            </div>
+         	<<toolCard "assets/img/emf.png" "enigmaBathroomPicEMF" "searchEMFBathroomEnigma">>
+         	<<toolCard "assets/img/glass.png" "enigmaBathroomPicPlasm" "searchPlasmBathroomEnigma">>
+         	<<toolCard "assets/img/gwb.png" "enigmaBathroomPicGWB" "searchGwbBathroomEnigma">>
+         	<<toolCard "assets/img/spiritbox.png" "enigmaBathroomPicSB" "searchSbBathroomEnigma">>
+         	<<toolCard "assets/img/thermometr.png" "enigmaBathroomPicThermometr" "searchThermometrBathroomEnigma">>
+         	<<toolCard "assets/img/uvl.png" "enigmaBathroomPicUVL" "searchUVLBathroomEnigma">>
             <div class="footer-card footer-light">
             	<<link [img[assets/img/lighton.png][enigmaBathroom]]>><<set $bathroom.background to 1>><</link>>
              <<link [img[assets/img/lightoff.png][enigmaBathroom]]>><<set $bathroom.background to 2>><</link>>  
@@ -72,26 +30,7 @@
 <</nobr>>
 
 <<script>>
-$(document).ready(function() {
-    $('#enigmaBathroomPicEMF').on('click', function() {
-        $('#enigmaBathroomEMF a').click();
-    });
-    $('#enigmaBathroomPicPlasm').on('click', function() {
-        $('#enigmaBathroomPlasm a').click();
-    });
-    $('#enigmaBathroomPicGWB').on('click', function() {
-        $('#enigmaBathroomGWB a').click();
-    });
-    $('#enigmaBathroomPicSB').on('click', function() {
-        $('#enigmaBathroomSpiritbox a').click();
-    });
-    $('#enigmaBathroomPicThermometr').on('click', function() {
-        $('#enigmaBathroomTemperature a').click();
-    });
-    $('#enigmaBathroomPicUVL').on('click', function() {
-        $('#enigmaBathroomUVL a').click();
-    });
-});
+$(document).ready(function() { setup.roomToolHandlersByPrefix('enigmaBathroom'); });
 <</script>>
 
 

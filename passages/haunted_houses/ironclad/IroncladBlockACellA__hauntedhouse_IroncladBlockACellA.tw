@@ -10,74 +10,13 @@
         
 		<div class="footer">
         	<div class="footertools">
-         	<div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/emf.png" class="icon" id="ironcladBlockACellAPicEMF">
-                </div>
-                <div class="cardlink">
-                	<<include "searchEMFBlockACellAIronclad">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/glass.png" class="icon" id="actionironcladBlockACellAPicPlasm">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchPlasmBlockACellAIronclad">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/gwb.png" class="icon" id="actionironcladBlockACellAPicGWB">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchGwbBlockACellAIronclad">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/spiritbox.png" class="icon" id="actionironcladBlockACellAPicSB">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchSbBlockACellAIronclad">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/thermometr.png" class="icon" id="actionironcladBlockACellAPicThermometr">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchThermometrBlockACellAIronclad">>
-                </div>
-            </div>
-            <div class="footer-card">
-            	<div class="cardimg">
-                	<img src="assets/img/uvl.png" class="icon" id="actionironcladBlockACellAPicUVL">                
-                </div>
-                <div class="cardlink">
-                	<<include "searchUvlBlockACellAIronclad">>
-                </div>
-            </div>
-              <<if $showComp eq 1>>
-            <div class="footer-card">
-            	<div class="cardimg">
-					<<compLinks>>              
-                </div>
-            </div>
-            <<elseif $showComp eq 2>>
-            <div class="footer-card">
-            	<div class="cardimg">
-                <a data-passage="failedComp">
-                	<img src="assets/img/questionMark.png" class="companion-image"> </a>     
-                </div>
-            </div>
-            <<elseif $showComp eq 3>>
-            <div class="footer-card">
-            	<div class="cardimg">
-<<compLinksSuccess>>
-                </div>
-            </div>
-            <</if>>
+         	<<toolCard "assets/img/emf.png" "ironcladBlockACellAPicEMF" "searchEMFBlockACellAIronclad">>
+         	<<toolCard "assets/img/glass.png" "actionironcladBlockACellAPicPlasm" "searchPlasmBlockACellAIronclad">>
+         	<<toolCard "assets/img/gwb.png" "actionironcladBlockACellAPicGWB" "searchGwbBlockACellAIronclad">>
+         	<<toolCard "assets/img/spiritbox.png" "actionironcladBlockACellAPicSB" "searchSbBlockACellAIronclad">>
+         	<<toolCard "assets/img/thermometr.png" "actionironcladBlockACellAPicThermometr" "searchThermometrBlockACellAIronclad">>
+         	<<toolCard "assets/img/uvl.png" "actionironcladBlockACellAPicUVL" "searchUvlBlockACellAIronclad">>
+            <<companionCard>>
             <div class="footer-card footer-light">
             	<span class="cursedHuntLinkDisable"><<link [img[assets/img/lighton.png][IroncladBlockACellA]]>><<set $BlockACellA.background to 1>><</link>>
              <<link [img[assets/img/lightoff.png][IroncladBlockACellA]]>><<set $BlockACellA.background to 2>><</link>>
