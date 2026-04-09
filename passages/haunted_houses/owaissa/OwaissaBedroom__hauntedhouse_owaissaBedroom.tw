@@ -10,7 +10,7 @@
         </div>
         <div class="furnitureSearch">
         	<<if $cursedHuntActive eq 1>>
-<span><<link '<img @src="setup.ImagePath + '/img/furniture/bed2.png'" class="highlighted-furniture">'>>
+<span><<link '<img @src="setup.ImagePath + \'/img/furniture/bed2.png\'" class="highlighted-furniture">' "OwaissaBedroom">>
 <<replace ".room-wrapper">><<set $isInHideSpot to 1>><img @src="setup.ImagePath + '/hunting/hid1.jpg'" width="80%" class="fadeInScale"><br>
 <<done>>
 <<addclass ".fadeInScale" "tarotCardsShow">><</done>>
@@ -64,5 +64,3 @@ $(document).ready(function() {
     ]);
 });
 <</script>>
-
-

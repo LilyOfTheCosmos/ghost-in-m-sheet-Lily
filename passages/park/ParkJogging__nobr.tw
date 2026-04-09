@@ -49,7 +49,7 @@
 <br>
 
 <<if $mc.energy gte 2>>
-<<linkreplace 'Continue jogging <img @src="setup.ImagePath + '/img/energy.png'" style="position: relative; top: 0.375em; width:3%;">'>>
+<<linkreplace 'Continue jogging <img @src="setup.ImagePath + \'/img/energy.png\'" style="position: relative; top: 0.375em; width:3%;">'>>
 <<set _check to random(30,110)>>
 <<if _check lte $mc.beauty>>
 <video autoplay controls muted loop>
@@ -110,14 +110,3 @@
 @@.mc-speech; I'm too tired. Need to rest@@<br><br>
 @@.backbtn; [[Leave|CityMap]] @@<br>
 <</if>>
-
-
-
-
-
-
-
-
-
-
-

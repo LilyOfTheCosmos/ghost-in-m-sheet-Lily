@@ -9,7 +9,7 @@
         </div>
         <div class="furnitureSearch">
         <<if $cursedHuntActive eq 1>>
-<span><<link '<img @src="setup.ImagePath + '/img/furniture/bed1.png'" class="highlighted-furniture">'>>
+<span><<link '<img @src="setup.ImagePath + \'/img/furniture/bed1.png\'" class="highlighted-furniture">' "elmBedroom">>
 <<replace ".room-wrapper">><<set $isInHideSpot to 1>><img @src="setup.ImagePath + '/hunting/hid1.jpg'" width="80%" class="fadeInScale"><br>
 <<done>>
 <<addclass ".fadeInScale" "tarotCardsShow">><</done>>
@@ -57,5 +57,3 @@ All you can do now is wait and hope it doesn’t find you.@@
 <<script>>
 $(document).ready(function() { setup.roomToolHandlersByPrefix('elmBedroom'); });
 <</script>>
-
-

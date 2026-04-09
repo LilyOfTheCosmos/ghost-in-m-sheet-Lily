@@ -11,7 +11,7 @@
              <span id="nursery_desk"><<link "<img @src='setup.ImagePath + \"/img/furniture/desk.png\"'>" "furnitureSearch">><<set $currentFurniture to "nursery_desk">><<includeTimeEventClothesHunt>><</link>></span>
 			 <span id="nursery_table"><<link "<img @src='setup.ImagePath + \"/img/furniture/table.png\"'>" "furnitureSearch">><<set $currentFurniture to "nursery_table">><<includeTimeEventClothesHunt>><</link>></span>
               <<if $cursedHuntActive eq 1>>
-<span><<link '<img @src="setup.ImagePath + '/img/furniture/bed.png'" class="highlighted-furniture">'>>
+<span><<link '<img @src="setup.ImagePath + \"/img/furniture/bed.png\"" class="highlighted-furniture">'>>
 <<replace ".room-wrapper">><<set $isInHideSpot to 1>><img @src="setup.ImagePath + '/hunting/hid1.jpg'" width="80%" class="fadeInScale"><br>
 <<done>>
 <<addclass ".fadeInScale" "tarotCardsShow">><</done>>
