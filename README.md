@@ -2,6 +2,10 @@
 
 An attempt at continuing Trykowka's "The Ghost Hunter".
 
+## Original Author
+
+This fork is maintained independently and the original author, Trykowka, is not involved in these updates. If you'd like to support the original creator, you can find their Patreon here: [https://www.patreon.com/Yaldabaoth](https://www.patreon.com/Yaldabaoth)
+
 ## Quick Start
 
 ### Prerequisites
