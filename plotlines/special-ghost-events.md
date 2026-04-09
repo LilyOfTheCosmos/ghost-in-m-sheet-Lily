@@ -30,6 +30,10 @@ Specific ghost types have unique special events that occur under certain conditi
   * [ghostSpecialEventWraithStart.tw](../passages/special_event/ghostSpecialEventWraithStart.tw) - Wraith event start
   * [ghostSpecialEventWraithEnd.tw](../passages/special_event/ghostSpecialEventWraithEnd.tw) - Wraith event conclusion
 
+* **The Twins events** - The Twins can interact with the player during sleep at home. These events involve dual-entity encounters with unique mechanics.
+  * [TheTwinsEvent__nobr.tw](../passages/home/TheTwinsEvent__nobr.tw) - The Twins home event
+  * [SleepTwins__nobr.tw](../passages/home/SleepTwins__nobr.tw) - Sleeping encounter with The Twins
+
 * **General spirit event** - Shared event logic used by multiple ghost types.
   * [ghostSpecialEventSpirit__nobr.tw](../passages/special_event/ghostSpecialEventSpirit__nobr.tw) - Generic spirit event handler
 
@@ -37,5 +41,9 @@ Specific ghost types have unique special events that occur under certain conditi
   * [succubusEventTV__nobr.tw](../passages/home/summoning/succubusEventTV__nobr.tw) - Succubus TV event
   * [succubusPCEvent__nobr.tw](../passages/home/summoning/succubusPCEvent__nobr.tw) - Succubus PC event
   * [tentaclesEventSleep__nobr.tw](../passages/home/tentacles/tentaclesEventSleep__nobr.tw) - Tentacles sleep event
+  * [tentaclesEventSleep1__nobr.tw](../passages/home/tentacles/tentaclesEventSleep1__nobr.tw) - Tentacles sleep event stage 2
   * [tentaclesEventTV__nobr.tw](../passages/home/tentacles/tentaclesEventTV__nobr.tw) - Tentacles TV event
+  * [tentaclesEventTV1__nobr.tw](../passages/home/tentacles/tentaclesEventTV1__nobr.tw) - Tentacles TV event stage 2
   * [tentaclesEventNap__nobr.tw](../passages/home/tentacles/tentaclesEventNap__nobr.tw) - Tentacles nap event
+  * [tentaclesEventPC__nobr.tw](../passages/home/tentacles/tentaclesEventPC__nobr.tw) - Tentacles PC event
+  * [tentaclesEventPC1__nobr.tw](../passages/home/tentacles/tentaclesEventPC1__nobr.tw) - Tentacles PC event stage 2

@@ -125,5 +125,3 @@ You can customize the build process by editing:
 - `start.sh`: Development server startup script
 - `.vscode/tasks.json`: VS Code task definitions
 - `.vscode/launch.json`: VS Code debug configurations
-
-```

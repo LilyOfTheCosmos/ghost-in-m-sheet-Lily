@@ -46,6 +46,10 @@ The core gameplay revolves around investigating haunted locations to identify an
   * [stealBottomOuter__nobr.tw](../passages/haunted_houses/general/stealBottomOuter__nobr.tw) - Outer bottom stolen event
   * [lostClothes__nobr.tw](../passages/haunted_houses/general/lostClothes__nobr.tw) - Lost clothing summary
   * [findStolenClothes__nobr.tw](../passages/haunted_houses/general/findStolenClothes__nobr.tw) - Finding stolen clothes
+  * [findStolenBra__nobr.tw](../passages/haunted_houses/general/findStolenBra__nobr.tw) - Finding stolen bra
+  * [findStolenPanties__nobr.tw](../passages/haunted_houses/general/findStolenPanties__nobr.tw) - Finding stolen panties
+  * [findStolenShirt__nobr.tw](../passages/haunted_houses/general/findStolenShirt__nobr.tw) - Finding stolen shirt
+  * [findStolenBottom__nobr.tw](../passages/haunted_houses/general/findStolenBottom__nobr.tw) - Finding stolen bottom
   * [NudityEvent__nobr.tw](../passages/haunted_houses/general/NudityEvent__nobr.tw) - Nudity event triggers
   * [NudityEventTwo__nobr.tw](../passages/haunted_houses/general/NudityEventTwo__nobr.tw) - Second nudity event
 
@@ -56,3 +60,4 @@ The core gameplay revolves around investigating haunted locations to identify an
   * [Owaissa_Street.tw](../passages/haunted_houses/owaissa/Owaissa_Street.tw) - Owaissa Street house
   * [MonkeyPaw__nobr_noreturn.tw](../passages/haunted_houses/general/MonkeyPaw__nobr_noreturn.tw) - Monkey's Paw cursed item use
   * [furnitureSearch__nobr_noreturn.tw](../passages/haunted_houses/general/furnitureSearch__nobr_noreturn.tw) - Searching furniture for evidence
+  * [furnitureCode__nobr.tw](../passages/haunted_houses/general/furnitureCode__nobr.tw) - Furniture interaction code logic

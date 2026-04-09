@@ -29,3 +29,7 @@ Specific ghost types have unique special events that occur under certain conditi
 ## [Body Modification and Personalization Plotline](body-mods.md)
 
 The game includes a body modification system that allows you to customize your character's appearance through piercings, tattoos, and other modifications. This system is integrated with the gameplay through the exhibitionism mechanic, where your character's comfort with nudity affects certain interactions and events. The body modification plotline provides character development options and can unlock unique content based on your choices and progression.
+
+## [Locations and Activities](locations.md)
+
+The game world includes several city locations the player can visit between hunts. These include delivery jobs for earning money, a gym for physical training, a library for research and social encounters, a park for jogging, a church that serves as the rescue quest hub and exorcism storyline, and a mall for shopping. Each location has its own activities, events, and companion interactions.
