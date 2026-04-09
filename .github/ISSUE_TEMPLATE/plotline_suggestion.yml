@@ -1,0 +1,100 @@
+name: Plotline / Story Suggestion
+description: Suggest a new questline, character arc, story event, relationship arc, or narrative scene
+title: "[Plotline] "
+labels: ["plotline", "needs-review"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for contributing a story idea! This game has a lot of potential for rich narrative content.
+        Please describe your plotline idea in as much detail as you can. Admins will review and approve suggestions before adding them to the roadmap.
+
+  - type: input
+    id: title
+    attributes:
+      label: Plotline Title
+      description: Give your plotline a short, descriptive name
+      placeholder: "e.g. The Boyfriend Corruption Arc"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type of Content
+      description: What kind of plotline is this?
+      options:
+        - New Quest / Contract
+        - Character Arc (NPC / Companion)
+        - Relationship Arc (Romantic / Corrupting)
+        - Ghost Story / Lore
+        - Scene / Event
+        - Alternate Ending
+        - World-building / Location Story
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Story Summary
+      description: Describe the plotline. Who is involved? What happens? How does it affect the MC?
+      placeholder: |
+        e.g. The MC has a boyfriend who doesn't know about her ghost hunting. As her corruption increases,
+        he begins to notice changes -- suspicious marks, strange behaviors, etc. The player can choose
+        to keep the relationship or let it fall apart as part of the corruption journey.
+    validations:
+      required: true
+
+  - type: textarea
+    id: characters
+    attributes:
+      label: Characters Involved
+      description: Which existing characters does this involve, or does it require new ones?
+      placeholder: "e.g. Involves the MC, introduces a new NPC (the boyfriend)"
+
+  - type: textarea
+    id: triggers
+    attributes:
+      label: Triggers / Conditions
+      description: What triggers this plotline? Does it require certain stats, items, or events?
+      placeholder: "e.g. Unlocks when MC reaches 20+ corruption and has completed the main witch quest"
+
+  - type: textarea
+    id: branching
+    attributes:
+      label: Branching / Player Choices
+      description: Does the player have meaningful choices? How can it play out differently?
+      placeholder: "e.g. Player can confess to the boyfriend (losing him but gaining a special item) or continue hiding it"
+
+  - type: dropdown
+    id: tone
+    attributes:
+      label: Content Tone
+      description: How would you describe the tone of this content?
+      options:
+        - Corruption / Degeneration
+        - Romance / Relationship
+        - Horror / Supernatural
+        - Comedic / Lighthearted
+        - Bittersweet / Dramatic
+        - Dark / Heavy
+        - Mixed
+
+  - type: textarea
+    id: inspiration
+    attributes:
+      label: Inspiration / References
+      description: Anything that inspired this idea? (games, stories, F95zone posts, etc.)
+      placeholder: Optional
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Before Submitting
+      options:
+        - label: I searched existing issues and this plotline hasn't been suggested before
+          required: true
+        - label: I understand this is a suggestion and admins decide what gets added to the roadmap
+          required: true
