@@ -21,6 +21,15 @@
       "detail": "Build the story and open ghost-in-msheet.html in the default browser"
     },
     {
+      "label": "Open with Assets in Browser",
+      "type": "shell",
+      "command": "./start.sh",
+      "args": ["assets"],
+      "group": "test",
+      "problemMatcher": [],
+      "detail": "Build with the real assets folder and open ghost-in-msheet.html in the default browser"
+    },
+    {
       "label": "Clean Build Artifacts",
       "type": "shell",
       "command": "rm",
