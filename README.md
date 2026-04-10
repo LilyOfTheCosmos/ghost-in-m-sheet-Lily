@@ -42,7 +42,7 @@ If you prefer to set up Tweego manually:
 2. Press `Ctrl+Shift+P` (or `Cmd+Shift+P` on Mac)
 3. Type "Run Task" and select "Tasks: Run Task"
 4. Choose "Build Story" to build the project
-5. Choose "Start Development Server" to build and start a local server
+5. Choose "Open in Browser" to build the story and open it in your default browser
 
 #### Using Command Line
 
@@ -50,7 +50,7 @@ If you prefer to set up Tweego manually:
 # Build the story
 ./build.sh
 
-# Start development server
+# Build and open the story in your default browser
 ./start.sh
 
 # Clean build artifacts
@@ -69,7 +69,7 @@ rm -f ghost-in-msheet.html
 
 ### Debugging
 
-1. Start the development server using the "Start Development Server" task
+1. Build the story using the "Build Story" task (or run `./start.sh` to build and open it)
 2. Press `F5` to launch the debugger
 3. Choose your preferred browser (Chrome or Firefox)
 
@@ -149,7 +149,7 @@ The build process creates `ghost-in-msheet.html` in the project root directory, 
 You can customize the build process by editing:
 
 - `build.sh`: Main build script
-- `start.sh`: Development server startup script
+- `start.sh`: Build-and-open-in-browser script
 - `.vscode/tasks.json`: VS Code task definitions
 - `.vscode/launch.json`: VS Code debug configurations
 
