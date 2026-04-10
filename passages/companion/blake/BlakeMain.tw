@@ -1,19 +1,59 @@
 :: BlakeMain {"position":"2050,3875","size":"100,100"}
 <<nobr>>
+<<if ndef $chanceToAttackBlake>><<set $chanceToAttackBlake to 25>><</if>>
 <div class="flexwrapperCompanionMain">
 <div class="companionImageMain">
-<img @src="setup.ImagePath + '/blake/blake.png'" width=100% >
+<<do>>
+<<if $chanceToAttackBlake eq 25>>
+<img @src="setup.ImagePath + '/blake/blake1.png'" width=100% >
+<<elseif $chanceToAttackBlake eq 40>>
+<img @src="setup.ImagePath + '/blake/blake2.png'" width=100% >
+<<elseif $chanceToAttackBlake eq 55>>
+<img @src="setup.ImagePath + '/blake/blake3.png'" width=100% >
+<<elseif $chanceToAttackBlake eq 70>>
+<img @src="setup.ImagePath + '/blake/blake4.png'" width=100% >
+<<elseif $chanceToAttackBlake eq 90>>
+<img @src="setup.ImagePath + '/blake/blake5.png'" width=100% >
+<</if>><br>
+<</do>>
 </div>
 <div class="companionTextMain">
 <span style="color: yellow; font-weight: bold; font-size: 1.2em;">$blake.name :</span> $blake.lvl lvl <<if $blake.lvl gte 5>> (max. lvl)<<else>>($blake.exp / $blake.expForNextLvl)<</if>><br>
 
-
-
-@@.mc-thoughts; 
-I don't think I can influence her. For now...@@<br>
-<<set $chanceToAttackBlake to 50>>
+@@.mc-thoughts; I could ask her to take off some of her clothes. Maybe that way I could distract the ghost by drawing its attention to her. Plus, it would make it easier for her to move and stay less distracted...@@<br>
+@@.mc-speech;
+<br>
+<<link "You'll be more comfortable in your regular clothes.">><<set $chanceToAttackBlake to 25>><<redo "companionAnswers">><<redo>><</link>><br>
+<div class="blakeLvlCheck1">
+<<link "You can take off your top, it'll make it easier for you to move.">><<set $chanceToAttackBlake to 40>><<redo "companionAnswers">><<redo>><</link>><<if $blake.lvl lt 1>>@@.warningtext; (Req. lvl 1+)@@<</if>><br>
+</div>
+<div class="blakeLvlCheck2">
+<<link "Stay in just your underwear, it might help us get through this.">><<set $chanceToAttackBlake to 55>><<redo "companionAnswers">><<redo>><</link>><<if $blake.lvl lt 2>>@@.warningtext; (Req. lvl 2+)@@<</if>><br>
+</div>
+<div class="blakeLvlCheck3">
+<<link "Just keep your panties on, it'll be easier for both of us.">><<set $chanceToAttackBlake to 70>><<redo "companionAnswers">><<redo>><</link>><<if $blake.lvl lt 3>>@@.warningtext; (Req. lvl 3+)@@<</if>><br>
+</div>
+<div class="blakeLvlCheck4">
+<<link "Take everything off, I think it'll distract the ghost and give us an advantage.">><<set $chanceToAttackBlake to 90>><<redo "companionAnswers">><<redo>><</link>><<if $blake.lvl lt 4>>@@.warningtext; (Req. lvl 4+)@@<</if>><br>
+</div>
+@@
+<br>
+<<do tag "companionAnswers">>
+@@.notmc-speech;
+<<if $chanceToAttackBlake eq 25>>
+Let's just focus on the task.
+<<elseif $chanceToAttackBlake eq 40>>
+Take my top off? Well... alright, if you think it'll help.
+<<elseif $chanceToAttackBlake eq 55>>
+Down to my underwear? Okay, I trust you.
+<<elseif $chanceToAttackBlake eq 70>>
+Just my panties? This is so embarrassing, but fine...
+<<elseif $chanceToAttackBlake eq 90>>
+Completely naked? You're lucky I like you, $mc.name.
+<</if>>
+@@<</do>><br>
 <<set $chanceToAttack to $chanceToAttackBlake>>
-@@.warningtext; Chance of ghost encounter: $chanceToAttack %@@
+@@.warningtext; Chance of ghost encounter: <<do>>$chanceToAttackBlake %<</do>>@@<br>
 <br>
 </div>
 </div>
@@ -112,6 +152,21 @@ Come on! Let's go naked together.You'll like it.<br>@@
 <<addclass ".linkselector" "disabled-link">>
 <<if ndef $gotCursedItem>>
 <<addclass "#checkQuestForCursedItem" "disabled-link">>
+<</if>>
+<<if $blake.lvl lt 1>>
+<<addclass ".blakeLvlCheck1" "disabled-link">>
+<<addclass ".blakeLvlCheck2" "disabled-link">>
+<<addclass ".blakeLvlCheck3" "disabled-link">>
+<<addclass ".blakeLvlCheck4" "disabled-link">>
+<<elseif $blake.lvl lt 2>>
+<<addclass ".blakeLvlCheck2" "disabled-link">>
+<<addclass ".blakeLvlCheck3" "disabled-link">>
+<<addclass ".blakeLvlCheck4" "disabled-link">>
+<<elseif $blake.lvl lt 3>>
+<<addclass ".blakeLvlCheck3" "disabled-link">>
+<<addclass ".blakeLvlCheck4" "disabled-link">>
+<<elseif $blake.lvl lt 4>>
+<<addclass ".blakeLvlCheck4" "disabled-link">>
 <</if>>
 <</done>>
 <</nobr>>

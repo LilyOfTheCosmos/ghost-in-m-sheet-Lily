@@ -1,19 +1,59 @@
 :: AliceMain [nobr] {"position":"2050,3550","size":"100,100"}
 <<nobr>>
+<<if ndef $chanceToAttackAlice>><<set $chanceToAttackAlice to 25>><</if>>
 <div class="flexwrapperCompanionMain">
 <div class="companionImageMain">
-<img @src="setup.ImagePath + '/alice/alice.png'" width=100% >
+<<do>>
+<<if $chanceToAttackAlice eq 25>>
+<img @src="setup.ImagePath + '/alice/alice1.png'" width=100% >
+<<elseif $chanceToAttackAlice eq 40>>
+<img @src="setup.ImagePath + '/alice/alice2.png'" width=100% >
+<<elseif $chanceToAttackAlice eq 55>>
+<img @src="setup.ImagePath + '/alice/alice3.png'" width=100% >
+<<elseif $chanceToAttackAlice eq 70>>
+<img @src="setup.ImagePath + '/alice/alice4.png'" width=100% >
+<<elseif $chanceToAttackAlice eq 90>>
+<img @src="setup.ImagePath + '/alice/alice5.png'" width=100% >
+<</if>><br>
+<</do>>
 </div>
 <div class="companionTextMain">
 <span style="color: yellow; font-weight: bold; font-size: 1.2em;">$alice.name :</span> $alice.lvl lvl <<if $alice.lvl gte 5>> (max. lvl)<<else>>($alice.exp / $alice.expForNextLvl)<</if>><br>
 
-
-
-@@.mc-thoughts; 
-I don't think I can influence her. For now...@@<br>
-<<set $chanceToAttackAlice to 50>>
+@@.mc-thoughts; I could ask her to take off some of her clothes. Maybe that way I could distract the ghost by drawing its attention to her. Plus, it would make it easier for her to move and stay less distracted...@@<br>
+@@.mc-speech;
+<br>
+<<link "You'll be more comfortable in your regular clothes.">><<set $chanceToAttackAlice to 25>><<redo "companionAnswers">><<redo>><</link>><br>
+<div class="aliceLvlCheck1">
+<<link "You can take off your top, it'll make it easier for you to move.">><<set $chanceToAttackAlice to 40>><<redo "companionAnswers">><<redo>><</link>><<if $alice.lvl lt 1>>@@.warningtext; (Req. lvl 1+)@@<</if>><br>
+</div>
+<div class="aliceLvlCheck2">
+<<link "Stay in just your underwear, it might help us get through this.">><<set $chanceToAttackAlice to 55>><<redo "companionAnswers">><<redo>><</link>><<if $alice.lvl lt 2>>@@.warningtext; (Req. lvl 2+)@@<</if>><br>
+</div>
+<div class="aliceLvlCheck3">
+<<link "Just keep your panties on, it'll be easier for both of us.">><<set $chanceToAttackAlice to 70>><<redo "companionAnswers">><<redo>><</link>><<if $alice.lvl lt 3>>@@.warningtext; (Req. lvl 3+)@@<</if>><br>
+</div>
+<div class="aliceLvlCheck4">
+<<link "Take everything off, I think it'll distract the ghost and give us an advantage.">><<set $chanceToAttackAlice to 90>><<redo "companionAnswers">><<redo>><</link>><<if $alice.lvl lt 4>>@@.warningtext; (Req. lvl 4+)@@<</if>><br>
+</div>
+@@
+<br>
+<<do tag "companionAnswers">>
+@@.notmc-speech;
+<<if $chanceToAttackAlice eq 25>>
+Let's just focus on the task.
+<<elseif $chanceToAttackAlice eq 40>>
+Take my top off? Well... alright, if you think it'll help.
+<<elseif $chanceToAttackAlice eq 55>>
+Down to my underwear? Okay, I trust you.
+<<elseif $chanceToAttackAlice eq 70>>
+Just my panties? This is so embarrassing, but fine...
+<<elseif $chanceToAttackAlice eq 90>>
+Completely naked? You're lucky I like you, $mc.name.
+<</if>>
+@@<</do>><br>
 <<set $chanceToAttack to $chanceToAttackAlice>>
-@@.warningtext; Chance of ghost encounter: $chanceToAttack %@@
+@@.warningtext; Chance of ghost encounter: <<do>>$chanceToAttackAlice %<</do>>@@<br>
 <br>
 </div>
 </div>
@@ -112,6 +152,21 @@ Come on! Let's go naked together.You'll like it.<br>@@
 <<addclass ".linkselector" "disabled-link">>
 <<if ndef $gotCursedItem>>
 <<addclass "#checkQuestForCursedItem" "disabled-link">>
+<</if>>
+<<if $alice.lvl lt 1>>
+<<addclass ".aliceLvlCheck1" "disabled-link">>
+<<addclass ".aliceLvlCheck2" "disabled-link">>
+<<addclass ".aliceLvlCheck3" "disabled-link">>
+<<addclass ".aliceLvlCheck4" "disabled-link">>
+<<elseif $alice.lvl lt 2>>
+<<addclass ".aliceLvlCheck2" "disabled-link">>
+<<addclass ".aliceLvlCheck3" "disabled-link">>
+<<addclass ".aliceLvlCheck4" "disabled-link">>
+<<elseif $alice.lvl lt 3>>
+<<addclass ".aliceLvlCheck3" "disabled-link">>
+<<addclass ".aliceLvlCheck4" "disabled-link">>
+<<elseif $alice.lvl lt 4>>
+<<addclass ".aliceLvlCheck4" "disabled-link">>
 <</if>>
 <</done>>
 <</nobr>>
