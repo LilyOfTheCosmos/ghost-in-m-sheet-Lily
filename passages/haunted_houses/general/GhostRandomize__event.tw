@@ -2,19 +2,22 @@
 <<nobr>>
 <img @src="setup.ImagePath + '/img/witchGirl.jpg'" width="100%">
 <br>
-<<run
-    var _idx = random(1, setup.GHOST_SLOT_COUNT);
-    State.variables.ghost = clone(State.variables["ghost" + _idx]);
+<<script>>
+    (function () {
+        var V = State.variables;
+        var idx = 1 + Math.floor(Math.random() * setup.GHOST_SLOT_COUNT);
+        V.ghost = clone(V["ghost" + idx]);
 
-    setup.searchableRooms.forEach(function (room) {
-        State.variables["currentsearch" + room] = setup.makeEmptySearchState();
-    });
+        setup.searchableRooms.forEach(function (room) {
+            V["currentsearch" + room] = setup.makeEmptySearchState();
+        });
 
-    setup.huntableRoomVars.forEach(function (name) {
-        var room = State.variables[name];
-        if (room) room.background = 2;
-    });
->>
+        setup.huntableRoomVars.forEach(function (name) {
+            var room = V[name];
+            if (room) room.background = 2;
+        });
+    })();
+<</script>>
 
 
 
