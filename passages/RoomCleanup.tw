@@ -21,7 +21,7 @@ window.messyRoom = {
   }
 };
 
-$(document).on(':passageend', function() {
+$(document).one(':passageend', function() {
   if (window.messyRoom.trashItems.length > 0) {
     window.messyRoom.placeTrashRandomly();
   }
