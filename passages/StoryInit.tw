@@ -23,10 +23,36 @@
 <<set $deliveryActiveIcon2 to true>>
 <<set $deliveryActiveIcon3 to true>>
 <<set $earnedMoney to 0>>
+<<set $currentHouse to "">>
 <<set $firstVisitDeliveryHub = true>>
 <<set $firstVisitWitchShop = true>>
 <<set $jobMoneySuccessed to 10>>
 <<set $jobMoneyFailed to 3>>
+<<run setup.deliveryHouses = {
+	"Honeywood Court 3":    "house1.jpg",
+	"Onyx Place 10":        "house2.jpg",
+	"Star Street 25":       "house3.jpg",
+	"Lilac Lane 72":        "house4.jpg",
+	"Emerald Street 17":    "house5.jpg",
+	"Cascade Avenue 56":    "house6.jpg",
+	"Jasmine Lane 89":      "house7.jpg",
+	"Golden Road 34":       "house8.jpg",
+	"Twilight Boulevard 61":"house9.jpg",
+	"Amethyst Street 42":   "house10.jpg"
+}>>
+<<run setup.deliveryStreets = Object.keys(setup.deliveryHouses)>>
+<<run setup.deliveryEventChooseConfig = {
+	pizza:   { varName: "deliveryPizzaEvent",   img: "pizzaevent/1.jpg",   payMode: "done"   },
+	package: { varName: "deliveryPackageEvent", img: "packageevent/1.jpg", payMode: "always" },
+	burger:  { varName: "deliveryBurgerEvent",  img: "burgerevent/1.jpg",  payMode: "always" },
+	papers:  { varName: "deliveryPappersEvent", img: "papersevent/1.jpg",  payMode: "always" }
+}>>
+<<run setup.deliveryMapLayout = [
+	"Honeywood Court 3", "",                  "Onyx Place 10",      "",                    "Star Street 25",
+	"",                  "Lilac Lane 72",     "Emerald Street 17",  "",                    "",
+	"",                  "Cascade Avenue 56", "",                   "Jasmine Lane 89",     "Golden Road 34",
+	"Twilight Boulevard 61","",               "Amethyst Street 42", "",                    ""
+]>>
 <<set $equipment to {
 	emf:5,
     spiritbox:5,

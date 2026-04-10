@@ -1,40 +1,17 @@
-:: DeliveryPappersEvent1 [event] {"position":"1550,1850","size":"100,100"}
-<<nobr>>
+:: DeliveryPappersEvent1 [event nobr] {"position":"1550,1850","size":"100,100"}
 <<set $deliveryPappersEvent to 1>>
 <<addLust 45>>
-<<set _check to random(1,2)>>
-<<if _check eq 1>>
-<video autoplay controls muted loop>
- <source @src="setup.ImagePath + '/deliveryhub/papersevent/4.mp4'" type="video/mp4">
- </video><</if>>
- <<if _check eq 2>>
-<video autoplay controls muted loop>
- <source @src="setup.ImagePath + '/deliveryhub/papersevent/5.mp4'" type="video/mp4">
- </video><</if>>
- +45 <img @src="setup.ImagePath + '/img/hearth.png'" style="position: relative; top: 0.375em; width:3%;"><br>
- @@.mc-speech; Oh~i'm cumming~@@<br>
- @@.notmc-speech; On your knees bitch,@@ <<linkappend "@@.notmc-speechLink; quickly@@">><br>
- <video autoplay controls muted loop>
- <source @src="setup.ImagePath + '/deliveryhub/papersevent/6.mp4'" type="video/mp4">
- </video>
+<<deliveryVideo "papersevent" 4 5>>
++45 <img @src="setup.ImagePath + '/img/hearth.png'" style="position: relative; top: 0.375em; width:3%;"><br>
+@@.mc-speech; Oh~i'm cumming~@@<br>
+@@.notmc-speech; On your knees bitch,@@ <<linkappend "@@.notmc-speechLink; quickly@@">><br>
+<<deliveryVideo "papersevent" 6>>
 @@.mc-speech; Oh~so much cum@@<br>
 @@.notmc-speech; Wow, you are the best. I think you deserve a little bonus@@<br>
-@@.mc-thoughts; I feel like I'm a prostitute. I’ve probably already made more money with my body than with delivery.@@<br>
+@@.mc-thoughts; I feel like I'm a prostitute. I've probably already made more money with my body than with delivery.@@<br>
 <br>
-You earned an extra $15<br>
-<<set $mc.money += 15>>
-<<if $mc.corruption lt 10>>
-<<set $mc.corruption += 0.2>>
-+0.2 <img @src="setup.ImagePath + '/img/corruption.png'" style="position: relative; top: 0.375em; width:3%; display: inline; margin: 0;"><br>
-<</if>>
+<<deliveryBonus 15>>
 <br>
 @@.backbtn;[[Leave|DeliveryMap]]@@ <br>
-<<if $mc.lust gte 100>>
- <<set $mc.lust to 0>>
- <<set $mc.lust to Number($mc.lust.toFixed(2))>>
-<<updatemeter 'mclust' `$mc.lust / 100`>>
- <</if>>
+<<deliveryLustOverflow>>
 <</linkappend>>
-<</nobr>>
-
-

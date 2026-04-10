@@ -1,38 +1,20 @@
-:: DeliveryPizzaEvent2 [event] {"position":"1100,1950","size":"100,100"}
-<<nobr>>
+:: DeliveryPizzaEvent2 [event nobr] {"position":"1100,1950","size":"100,100"}
 <<set $deliveryPizzaEvent to 1>>
 <<addLust 60>>
-<video autoplay controls muted loop>
- <source @src="setup.ImagePath + '/deliveryhub/pizzaevent/5.mp4'" type="video/mp4">
- </video>
-  +60 <img @src="setup.ImagePath + '/img/hearth.png'" style="position: relative; top: 0.375em; width:3%;"><br>
- @@.mc-thoughts; I can't control myself anymore. The neighbors can probably hear my moans@@<br>
- @@.notmc-speech; Yes, I see how you "don't like it". Will you cum for me, slut?@@<br>
- @@.mc-speech; Ah~ YES~ Fuck me~ PLEASE, <<linkappend "I'M CUMMING">><br>
-<<if $mc.lust gte 100>>
- <<set $mc.lust to 0>>
- <</if>>
- <<set $mc.lust to Number($mc.lust.toFixed(2))>>
-<<updatemeter 'mclust' `$mc.lust / 100`>>
- <video autoplay controls muted loop>
- <source @src="setup.ImagePath + '/deliveryhub/pizzaevent/6.mp4'" type="video/mp4">
- </video>
- @@.notmc-speech; Now get the fuck out of here@@<br>
+<<deliveryVideo "pizzaevent" 5>>
++60 <img @src="setup.ImagePath + '/img/hearth.png'" style="position: relative; top: 0.375em; width:3%;"><br>
+@@.mc-thoughts; I can't control myself anymore. The neighbors can probably hear my moans@@<br>
+@@.notmc-speech; Yes, I see how you "don't like it". Will you cum for me, slut?@@<br>
+@@.mc-speech; Ah~ YES~ Fuck me~ PLEASE, <<linkappend "I'M CUMMING">><br>
+<<deliveryLustOverflow>>
+<<deliveryVideo "pizzaevent" 6>>
+@@.notmc-speech; Now get the fuck out of here@@<br>
 @@.notmc-speech; Take this too. You deserved it@@<br>
 @@.mc-speech; Mm~ @@<br>
 
 @@.mc-thoughts; At least she gave me money. It seems even more than I usually earn. I could go now@@<br>
 <br>
-You earned an extra $15<br>
-<<if $mc.corruption lt 10>>
-<<set $mc.corruption += 0.1>>
-+0.2 <img @src="setup.ImagePath + '/img/corruption.png'" style="position: relative; top: 0.375em; width:3%; display: inline; margin: 0;"><br><br>
-<</if>>
+<<deliveryBonus 10 0.1>>
 @@.backbtn;[[Leave|DeliveryMap]]@@<br>
-<<set $mc.money += 10>>
 <<set $earnedMoney += $jobMoneySuccessed>>
 <</linkappend>>@@
-<</nobr>>
-
-
-

@@ -1,21 +1,13 @@
-:: DeliveryPizzaEvent1 [event] {"position":"1100,1850","size":"100,100"}
-<<nobr>>
+:: DeliveryPizzaEvent1 [event nobr] {"position":"1100,1850","size":"100,100"}
 <<addLust 45>>
-<video autoplay controls muted loop>
- <source @src="setup.ImagePath + '/deliveryhub/pizzaevent/3.mp4'" type="video/mp4">
- </video>
-  +45 <img @src="setup.ImagePath + '/img/hearth.png'" style="position: relative; top: 0.375em; width:3%;"><br>
- @@.notmc-speech;Oh, I see you're ready now, nice and wet.@@<br>
- @@.mc-thoughts; What's happening to me? Why am I starting to like this?@@<br>
+<<deliveryVideo "pizzaevent" 3>>
++45 <img @src="setup.ImagePath + '/img/hearth.png'" style="position: relative; top: 0.375em; width:3%;"><br>
+@@.notmc-speech;Oh, I see you're ready now, nice and wet.@@<br>
+@@.mc-thoughts; What's happening to me? Why am I starting to like this?@@<br>
 @@.notmc-speech;Wait for me here, <<linkappend "I'll be right back">>
- <video autoplay controls muted loop>
- <source @src="setup.ImagePath + '/deliveryhub/pizzaevent/4.mp4'" type="video/mp4">
- </video>
+<<deliveryVideo "pizzaevent" 4>>
 @@.mc-thoughts; She took the dildo and is now fucking me like a cheap whore. And the worst thing is that I like it. @@<br>
 @@.notmc-speech;Oh, you are so tight. Do you like the way I fuck you?@@<br>
 @@.mc-speech; Mm~ No...~m~No@@<br>
 @@.notmc-speech; Well then [[I'll continue|DeliveryPizzaEvent2]]@@
 <</linkappend>>@@
-<</nobr>>
-
-

@@ -335,8 +335,64 @@ sugarcube-2:
       name: sanityPills
     deliveryLocation:
       name: deliveryLocation
+      description: "Renders the house view for a street passage: image,
+        address, and the three 'Deliver the order' slots. With no args,
+        derives the image file from setup.deliveryHouses[passage()] and
+        formats the address by splitting the passage name's last space.
+        Legacy args (imageFile, addressText) remain supported."
     deliveryEventCheck:
       name: deliveryEventCheck
+      description: "Routes a delivery attempt from the street passage into
+        the matching EventChoose passage, falling back to a generic
+        success/failure block. Args: orderNum (1-3)."
+    deliveryEventChoose:
+      name: deliveryEventChoose
+      container: true
+      description: "Container widget for a delivery encounter's gate
+        passage. Handles init-if-ndef, the header image, earnedMoney
+        accounting (config-driven), and the shared 'already delivered →
+        thank you → back' branch. The per-encounter dialog goes in the
+        body and is only rendered when the encounter hasn't been
+        completed. Args: type (string, key into setup.deliveryEventChooseConfig)."
+    deliveryVideo:
+      name: deliveryVideo
+      description: "Renders one random video from
+        /deliveryhub/<subdir>/N.mp4 inside an autoplay/muted/loop shell.
+        Args: subdir (string), start (int), [end (int, default=start)]."
+    deliveryThanks:
+      name: deliveryThanks
+      description: "Emits a randomised 'thank you' one-liner for a
+        successful delivery. No args."
+    deliverySorry:
+      name: deliverySorry
+      description: "Emits a randomised 'wrong delivery' one-liner. No args."
+    deliveryBonus:
+      name: deliveryBonus
+      description: "Emits the shared 'You earned an extra $N' block that
+        awards bonus money and capped corruption. Args: amount (number),
+        [corruption (number, default 0.2)]."
+    deliveryLustOverflow:
+      name: deliveryLustOverflow
+      description: "Resets $mc.lust to 0 and repaints the lust meter if
+        lust has overflowed 100. No args."
+    deliveryCorrReq:
+      name: deliveryCorrReq
+      description: "Emits the shared '(Req. corruption ≥ N)' warning line.
+        Args: threshold (number)."
+    deliveryLustReq:
+      name: deliveryLustReq
+      description: "Emits the shared '(Req. lust ≥ N)' warning line. Args:
+        threshold (number)."
+    deliveryAddressFmt:
+      name: deliveryAddressFmt
+      description: "Formats a passage-name street ('Amethyst Street 42')
+        as a display address ('Amethyst Street, 42'). Args: passageName
+        (string)."
+    deliveryGenericSuccess:
+      name: deliveryGenericSuccess
+      description: "Generic successful-delivery block: happy image,
+        thank-you line, earnedMoney increment, and the Back button.
+        No args."
     addTime:
       name: addTime
     addLust:

@@ -1,84 +1,156 @@
 :: widgetDelivery [widget nobr] {"position":"1100,1200","size":"100,100"}
 
-<<widget "deliveryLocation">>
-<<set _img to _args[0]>>
-<<set _address to _args[1]>>
-<img @src="setup.ImagePath + '/img/' + _img" width="90%"><br>
+/* Format a passage-name street ("Amethyst Street 42") as a display
+   address ("Amethyst Street, 42"). Last space becomes ", ". */
+<<widget "deliveryAddressFmt">>
+<<set _src to _args[0]>>
+<<set _i to _src.lastIndexOf(" ")>>
+<<set _out to _src.substr(0, _i) + ", " + _src.substr(_i + 1)>>_out<</widget>>
 
+/* Random video from /deliveryhub/<subdir>/N.mp4 where N is a random
+   integer in [start, end]. Replaces the 4-10 line <<if>> ladders each
+   encounter passage used to repeat for every video pick.
+   _args[0]: subdirectory under /deliveryhub/ (e.g. "burgerevent")
+   _args[1]: start index
+   _args[2]: end index (optional — defaults to start, single video) */
+<<widget "deliveryVideo">>
+<<set _start to _args[1]>>
+<<set _end to (_args.length gt 2 ? _args[2] : _args[1])>>
+<<set _n to random(_start, _end)>>
+<video autoplay controls muted loop>
+<source @src="setup.ImagePath + '/deliveryhub/' + _args[0] + '/' + _n + '.mp4'" type="video/mp4">
+</video>
+<</widget>>
+
+/* Shared "thank-you" randomised one-liner for successful deliveries. */
+<<widget "deliveryThanks">>
+<<switch either(0, 1, 2)>>
+<<case 0>>@@.notmc-speech; Great, thank you so much!@@
+<<case 1>>@@.notmc-speech; Awesome! Thank you very much.@@
+<<default>>@@.notmc-speech; Just in time, thank you!@@
+<</switch>>
+<</widget>>
+
+/* Shared "wrong delivery" randomised one-liner. */
+<<widget "deliverySorry">>
+<<switch either(0, 1, 2)>>
+<<case 0>>@@.notmc-speech; Sorry, but I think you made a mistake.@@
+<<case 1>>@@.notmc-speech; Apologies, but I believe there might be a mistake.@@
+<<default>>@@.notmc-speech; Sorry, but I think there might be an error.@@
+<</switch>>
+<</widget>>
+
+/* "You earned an extra $N" block shared by the climax passages. Awards
+   money and (capped at 10) corruption. Default corruption gain is 0.2.
+   _args[0]: money bonus
+   _args[1]: corruption gain (optional, default 0.2) */
+<<widget "deliveryBonus">>
+<<set _amt to _args[0]>>
+<<set _corr to (_args.length gt 1 ? _args[1] : 0.2)>>
+You earned an extra $<<= _amt>><br>
+<<set $mc.money += _amt>>
+<<if $mc.corruption lt 10>>
+<<set $mc.corruption += _corr>>
++<<= _corr>> <img @src="setup.ImagePath + '/img/corruption.png'" style="position: relative; top: 0.375em; width:3%; display: inline; margin: 0;"><br>
+<</if>>
+<</widget>>
+
+/* Clamp mc.lust back to 0 when it has overflowed 100, and repaint the
+   lust meter. Used by several climax passages. */
+<<widget "deliveryLustOverflow">>
+<<if $mc.lust gte 100>>
+<<set $mc.lust to 0>>
+<<set $mc.lust to Number($mc.lust.toFixed(2))>>
+<<updatemeter 'mclust' `$mc.lust / 100`>>
+<</if>>
+<</widget>>
+
+/* deliveryLocation — the house view shown inside the shared
+   deliveryHouse passage. Reads $currentHouse (set by the DeliveryMap
+   links) and derives the image + address from setup.deliveryHouses. */
+<<widget "deliveryLocation">>
+<<set _house to $currentHouse>>
+<<set _img to setup.deliveryHouses[_house]>>
+<<set _sp to _house.lastIndexOf(" ")>>
+<<set _address to _house.substr(0, _sp) + ", " + _house.substr(_sp + 1)>>
+<img @src="setup.ImagePath + '/img/' + _img" width="90%"><br>
 @@.location; _address@@<br>
 <br>
 @@.mc-thoughts;What should I deliver here?@@<br>
 <br>
 <div class=deliverywrapper>
-  <div class="itemAvailableOne">
-    <img @src="setup.ImagePath+`/`+$order1.image" class="iconPx"><br>
-    	@@.usebtn;[[Deliver the order|deliveryEvent1]]@@<br>
-  </div>
-  <div class="itemAvailableTwo">
-    <img @src="setup.ImagePath+`/`+$order2.image" class="iconPx"><br>
-    	@@.usebtn;[[Deliver the order|deliveryEvent2]]@@<br>
-  </div>
-  <div class="itemAvailableThree">
-    <img @src="setup.ImagePath+`/`+$order3.image" class="iconPx"><br>
-    	@@.usebtn;[[Deliver the order|deliveryEvent3]]@@<br>
-  </div>
+<<for _slot to 1; _slot lte 3; _slot++>>
+<<capture _slot>>
+<<set _order to State.variables["order" + _slot]>>
+<<set _slotClass to (_slot eq 1 ? "itemAvailableOne" : (_slot eq 2 ? "itemAvailableTwo" : "itemAvailableThree"))>>
+<div @class="_slotClass">
+<img @src="setup.ImagePath + '/' + _order.image" class="iconPx"><br>
+@@.usebtn;<<link "Deliver the order">><<set $currentOrder to _slot>><<goto "deliveryEvent">><</link>>@@<br>
+</div>
+<</capture>>
+<</for>>
 </div>
 <br>
 @@.backbtn;[[Leave|DeliveryMap]] @@
 <</widget>>
 
+/* deliveryEventChoose — container widget for the shared gate of each
+   first-contact delivery encounter (pizza, package, burger, papers).
+   Handles the init-if-ndef, header image, earnedMoney accounting, and
+   the generic "already delivered → thank you → back" branch. The
+   per-encounter dialog lives in _contents and is only rendered when
+   the encounter hasn't been completed yet.
+   _args[0]: type key from setup.deliveryEventChooseConfig */
+<<widget "deliveryEventChoose" container>>
+<<set _cfg to setup.deliveryEventChooseConfig[_args[0]]>>
+<<set _varName to _cfg.varName>>
+<<if ndef State.variables[_varName]>><<set State.variables[_varName] to 0>><</if>>
+<<if _cfg.payMode eq "always">><<set $earnedMoney += $jobMoneySuccessed>><</if>>
+<img @src="setup.ImagePath + '/deliveryhub/' + _cfg.img" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
+<<if State.variables[_varName] eq 1>>
+@@.notmc-speech; Great, thank you so much!@@<br>
+<<if _cfg.payMode eq "done">><<set $earnedMoney += $jobMoneySuccessed>><</if>>
+<br>
+@@.backbtn;[[Back|DeliveryMap]]@@
+<<else>>
+<<= _contents>>
+<</if>>
+<</widget>>
+
+/* Emit a "corruption required" gate line — shared by the Choose gates. */
+<<widget "deliveryCorrReq">>
+@@.warningtext; (Req. <img @src="setup.ImagePath + '/img/corruption.png'" style="position: relative; top: 0.375em; width:3%; display: inline; margin: 0;"> ≥ <<= _args[0]>>)@@
+<</widget>>
+
+<<widget "deliveryLustReq">>
+@@.warningtext; (Req. <img @src="setup.ImagePath + '/img/hearth.png'" style="position: relative; top: 0.375em; width:3%; display: inline; margin: 0;"> ≥ <<= _args[0]>>)@@
+<</widget>>
+
+/* deliveryEventCheck — called once per delivery attempt. Matches the
+   current street passage (previous()) against the active orders, and
+   either routes into the matching encounter Choose passage or shows a
+   generic success/failure. */
 <<widget "deliveryEventCheck">>
 <<set _orderNum to _args[0]>>
-<<set _order to (_orderNum eq 1) ? $order1 : (_orderNum eq 2) ? $order2 : $order3>>
+<<set _order to State.variables["order" + _orderNum]>>
 <<set _iconVar to "deliveryActiveIcon" + _orderNum>>
-<<set _randomIndex to either(0, 1, 2)>>
-<<set _localIsAddressFound = false>>
-<<set _localIsItemFound = false>>
-
-<<set _previous = previous()>>
-
-<<for _i to 0; _i < $orders.length; _i++>>
-  <<if $orders[_i].address === _previous and $orders[_i].item is _order.item>>
-    <<set _localIsAddressFound = true>>
-    <<set _localIsItemFound = true>>
-    <<break>>
-  <</if>>
+<<set _match to false>>
+<<for _o range $orders>>
+<<if _o.address === $currentHouse and _o.item is _order.item>><<set _match to true>><<break>><</if>>
 <</for>>
-
-<<if _localIsAddressFound and _localIsItemFound>>
- <<if _order.item eq "pizza">>
-<<include "DeliveryPizzaEventChoose">>
-<<elseif _order.item eq "package">>
-<<include "DeliveryPackageEventChoose">>
- <<elseif _order.item eq "burgers">>
-<<include "DeliveryBurgerEventChoose">>
-<<elseif _order.item eq "newspapers">>
-<<include "DeliveryPappersEventChoose">>
-<<elseif _order.item eq "books" and ndef $meetAlice >>
-<<include "meetAlice">>
+<<if _match>>
+<<switch _order.item>>
+<<case "pizza">><<include "DeliveryPizzaEventChoose">>
+<<case "package">><<include "DeliveryPackageEventChoose">>
+<<case "burgers">><<include "DeliveryBurgerEventChoose">>
+<<case "newspapers">><<include "DeliveryPappersEventChoose">>
+<<case "books">><<if ndef $meetAlice>><<include "meetAlice">><<else>><<deliveryGenericSuccess>><</if>>
+<<default>><<deliveryGenericSuccess>>
+<</switch>>
 <<else>>
- <img @src="setup.ImagePath + '/img/deliverygirlhappy.jpg'" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
-<<set $earnedMoney += $jobMoneySuccessed>>
-<<if _randomIndex is 0>>
-    @@.notmc-speech; Great, thank you so much!@@
-<<elseif _randomIndex is 1>>
-    @@.notmc-speech; Awesome! Thank you very much.@@
-<<else>>
-    @@.notmc-speech; Just in time, thank you!@@
-<</if>>
-    <br><br>
-   @@.backbtn; [[Back|DeliveryMap]] @@
-<</if>>
-<<else>>
-  <img @src="setup.ImagePath + '/img/deliverygirlsad.jpg'" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
-  <<set $earnedMoney += $jobMoneyFailed>>
-  <<if _randomIndex is 0>>
-    @@.notmc-speech; Sorry, but I think you made a mistake.@@
-<<elseif _randomIndex is 1>>
-    @@.notmc-speech; Apologies, but I believe there might be a mistake.@@
-<<else>>
-    @@.notmc-speech; Sorry, but I think there might be an error.@@
-<</if>><br>
+<img @src="setup.ImagePath + '/img/deliverygirlsad.jpg'" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
+<<set $earnedMoney += $jobMoneyFailed>>
+<<deliverySorry>><br>
 @@.mc-speech; Damn, I must have made a mistake.@@<br>
 <br>
 <br>
@@ -87,6 +159,15 @@
 <<run State.variables[_iconVar] = false>>
 <br>
 <br>
-
 <<addTime 30>>
+<</widget>>
+
+/* Generic successful-delivery block: used when the matched item has no
+   custom encounter, and by deliveryEventDecline. */
+<<widget "deliveryGenericSuccess">>
+<img @src="setup.ImagePath + '/img/deliverygirlhappy.jpg'" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
+<<set $earnedMoney += $jobMoneySuccessed>>
+<<deliveryThanks>>
+<br><br>
+@@.backbtn; [[Back|DeliveryMap]] @@
 <</widget>>

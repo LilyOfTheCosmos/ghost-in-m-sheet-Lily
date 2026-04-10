@@ -20,6 +20,7 @@ You wander from shelf to shelf, searching for something interesting. Suddenly, y
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
 </style>
 
 

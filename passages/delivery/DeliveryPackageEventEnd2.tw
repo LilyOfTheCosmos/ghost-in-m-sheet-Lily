@@ -1,23 +1,9 @@
-:: DeliveryPackageEventEnd2 [event] {"position":"1300,1950","size":"100,100"}
-<<nobr>>
+:: DeliveryPackageEventEnd2 [event nobr] {"position":"1300,1950","size":"100,100"}
 <<addLust 15>>
-<<if $mc.lust gte 100>>
- <<set $mc.lust to 0>>
- <</if>>
-<video autoplay controls muted loop>
- <source @src="setup.ImagePath + '/deliveryhub/packageevent/7.mp4'" type="video/mp4">
- </video>
- @@.notmc-speech; Yea~ that's it, you're a good girl. Here you go, you've earned it@@<br>
- @@.mc-thoughts; It's finally over@@<br>
- You earned an extra $10<br>
- <<set $mc.money += 10>>
- <<if $mc.corruption lt 10>>
-<<set $mc.corruption += 0.2>>
-+0.2 <img @src="setup.ImagePath + '/img/corruption.png'" style="position: relative; top: 0.375em; width:3%; display: inline; margin: 0;"><br>
-<</if>>
+<<deliveryLustOverflow>>
+<<deliveryVideo "packageevent" 7>>
+@@.notmc-speech; Yea~ that's it, you're a good girl. Here you go, you've earned it@@<br>
+@@.mc-thoughts; It's finally over@@<br>
+<<deliveryBonus 10>>
 <br>
 @@.backbtn;[[Leave|DeliveryMap]]@@<br>
-<</nobr>>
-
-
-

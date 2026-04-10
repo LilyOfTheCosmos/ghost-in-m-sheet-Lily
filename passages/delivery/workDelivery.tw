@@ -1,58 +1,41 @@
 :: workDelivery {"position":"900,1200","size":"100,100"}
 <<nobr>>
-<<set $streets = [
-  "Honeywood Court 3",
-  "Onyx Place 10",
-  "Star Street 25",
-  "Lilac Lane 72",
-  "Emerald Street 17",
-  "Cascade Avenue 56",
-  "Jasmine Lane 89",
-  "Golden Road 34",
-  "Twilight Boulevard 61",
-  "Amethyst Street 42"
-]>>
-
 <<set $itemImages = {
-  "pizza": "img/pizza.jpg",
-  "package": "img/package.jpg",
-  "newspapers": "img/newspapers.jpg",
-  "burgers": "img/burger.jpg",
-  "books":"img/books.jpg",
+	pizza:      "img/pizza.jpg",
+	package:    "img/package.jpg",
+	newspapers: "img/newspapers.jpg",
+	burgers:    "img/burger.jpg",
+	books:      "img/books.jpg"
 }>>
-
 <<set $items = ["pizza", "package", "newspapers", "books", "burgers"]>>
+<<set $streets to setup.deliveryStreets.slice()>>
 
-<<set $orders = []>>
+<<set $shuffledStreets to $streets.shuffle()>>
+<<set $shuffledItems to $items.shuffle()>>
 
-<<set $shuffledStreets = $streets.shuffle()>>
-<<set $shuffledItems = $items.shuffle()>>
-
-<<for _i to 0; _i < 3; _i++>>
-  <<set $order = {
-    address: $shuffledStreets[_i],
-    item: $shuffledItems[_i],
-    image: $itemImages[$shuffledItems[_i]]
-  }>>
-  
-  <<set $orders.push($order)>>
+<<set $orders to []>>
+<<for _i to 0; _i lt 3; _i++>>
+<<set _item to $shuffledItems[_i]>>
+<<set $orders.push({
+	address: $shuffledStreets[_i],
+	item:    _item,
+	image:   $itemImages[_item]
+})>>
 <</for>>
 
-<<set $shuffledOrders = $orders.shuffle()>>
+<<set $shuffledOrders to $orders.slice().shuffle()>>
+<<set $order1 to $orders[0]>>
+<<set $order2 to $orders[1]>>
+<<set $order3 to $orders[2]>>
+
 @@.mc-action;Here are your orders for this shift: the address and associated items. Good luck!@@
 <br>
 <br>
 <br>
-<<for _i to 2; _i >= 0; _i-->>
+<<for _i to 2; _i gte 0; _i-->>
 <div class="order-container">
-  <span class="address-item">$shuffledOrders[_i].address —</span> <img @src="setup.ImagePath+`/`+$shuffledOrders[_i].image" class="iconPx">
-  	</div><br>
+<span class="address-item">$shuffledOrders[_i].address —</span> <img @src="setup.ImagePath + '/' + $shuffledOrders[_i].image" class="iconPx">
+</div><br>
 <</for>>
-<<set $order1 = $orders[0]>>
-<<set $order2 = $orders[1]>>
-<<set $order3 = $orders[2]>>
-
 <</nobr>>
 @@.movebtn;[[Start|DeliveryMap]] @@
-
-

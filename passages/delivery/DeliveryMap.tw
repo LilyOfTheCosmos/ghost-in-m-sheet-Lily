@@ -1,96 +1,25 @@
-:: DeliveryMap [city] {"position":"800,1500","size":"100,100"}
-<<nobr>>
+:: DeliveryMap [city nobr] {"position":"800,1500","size":"100,100"}
 <style>
-  .passage {
-    line-height: normal !important;
-  }
+.passage { line-height: normal !important; }
 </style>
-<</nobr>>
-<span id="endShift" class="btnendshift btnendcolor clickable">End the shift</span>\
+<span id="endShift" class="btnendshift btnendcolor clickable">End the shift</span>
 <div class="flexwrapper">
+<<for _cell range setup.deliveryMapLayout>>
+<<capture _cell>>
 <div class="housecard">
+<<if _cell neq "">>
+<<set _sp to _cell.lastIndexOf(" ")>>
+<<set _label to _cell.substr(0, _sp) + ", " + _cell.substr(_sp + 1)>>
 <img @src="setup.ImagePath + '/img/delivery1.png'" class="iconsOnMap">
-@@.icontextdelivery; [[Honeywood Court, 3|Honeywood Court 3]]@@
+@@.icontextdelivery;<<link _label "deliveryHouse">><<set $currentHouse to _cell>><</link>>@@
+<</if>>
 </div>
-<div class="housecard">
+<</capture>>
+<</for>>
 </div>
-<div class="housecard">
-<img @src="setup.ImagePath + '/img/delivery1.png'" class="iconsOnMap">
-@@.icontextdelivery; [[Onyx Place, 10|Onyx Place 10]]@@
-</div>
-<div class="housecard">
-
-</div>
-<div class="housecard">
-<img @src="setup.ImagePath + '/img/delivery1.png'" class="iconsOnMap">
-@@.icontextdelivery; [[Star Street, 25|Star Street 25]]@@
-</div>
-<div class="housecard">
-
-</div>
-<div class="housecard">
-<img @src="setup.ImagePath + '/img/delivery1.png'" class="iconsOnMap">
-@@.icontextdelivery; [[Lilac Lane, 72|Lilac Lane 72]]@@
-</div>
-<div class="housecard">
-<img @src="setup.ImagePath + '/img/delivery1.png'" class="iconsOnMap">
-@@.icontextdelivery; [[Emerald Street, 17|Emerald Street 17]]@@
-</div>
-<div class="housecard">
-
-</div>
-<div class="housecard">
-
-</div>
-<div class="housecard">
-
-</div>
-<div class="housecard">
-<img @src="setup.ImagePath + '/img/delivery1.png'" class="iconsOnMap">
-@@.icontextdelivery; [[Cascade Avenue, 56|Cascade Avenue 56]]@@
-</div>
-<div class="housecard">
-
-</div>
-<div class="housecard">
-<img @src="setup.ImagePath + '/img/delivery1.png'" class="iconsOnMap">
-@@.icontextdelivery; [[Jasmine Lane, 89|Jasmine Lane 89]]@@
-</div>
-<div class="housecard">
-<img @src="setup.ImagePath + '/img/delivery1.png'" class="iconsOnMap">
-@@.icontextdelivery; [[Golden Road, 34|Golden Road 34]]@@
-</div>
-<div class="housecard">
-<img @src="setup.ImagePath + '/img/delivery1.png'" class="iconsOnMap">
-@@.icontextdelivery; [[Twilight Boulevard, 61|Twilight Boulevard 61]]@@
-</div>
-<div class="housecard">
-
-</div>
-<div class="housecard">
-<img @src="setup.ImagePath + '/img/delivery1.png'" class="iconsOnMap">
-@@.icontextdelivery; [[Amethyst Street, 42|Amethyst Street 42]]@@
-</div>
-<div class="housecard">
-
-</div>
-<div class="housecard">
-
-</div>
-</div>
-<<nobr>>
 <<script>>
 if (typeof window.endShiftHandler === 'undefined') {
-    window.endShiftHandler = function() {
-        var targetPassage = 'DeliveryManager';
-        if (targetPassage) {
-            Engine.play(targetPassage);
-        }
-    };
-    
-    $(document).on('click', "#endShift", window.endShiftHandler);
+	window.endShiftHandler = function () { Engine.play('DeliveryManager'); };
+	$(document).on('click', '#endShift', window.endShiftHandler);
 }
 <</script>>
-<</nobr>>
-
-

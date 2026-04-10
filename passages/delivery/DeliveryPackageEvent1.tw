@@ -1,32 +1,14 @@
-:: DeliveryPackageEvent1 [event] {"position":"1250,1850","size":"100,100"}
-<<nobr>>
+:: DeliveryPackageEvent1 [event nobr] {"position":"1250,1850","size":"100,100"}
 <<addLust 45>>
- <<if $mc.lust gte 100>>
- <<set $mc.lust to 0>>
- <</if>>
-<<set _check to random(1,2)>>
-<<if _check eq 1>>
-<video autoplay controls muted loop>
- <source @src="setup.ImagePath + '/deliveryhub/packageevent/3.mp4'" type="video/mp4">
- </video><</if>>
- <<if _check eq 2>>
-<video autoplay controls muted loop>
- <source @src="setup.ImagePath + '/deliveryhub/packageevent/4.mp4'" type="video/mp4">
- </video><</if>>
- @@.notmc-speech; Do you like it, slut?@@<br>
- @@.mc-speech; Oh~Please don't stop~Your cock is so good~@@<br>
- 
+<<deliveryLustOverflow>>
+<<deliveryVideo "packageevent" 3 4>>
+@@.notmc-speech; Do you like it, slut?@@<br>
+@@.mc-speech; Oh~Please don't stop~Your cock is so good~@@<br>
+
 <<linkreplace "@@.mc-speechLink;Continue@@">>
 <<addLust 45>>
- <<if $mc.lust gte 100>>
- <<set $mc.lust to 0>>
- <</if>>
- <video autoplay controls muted loop>
- <source @src="setup.ImagePath + '/deliveryhub/packageevent/6.mp4'" type="video/mp4">
- </video>
+<<deliveryLustOverflow>>
+<<deliveryVideo "packageevent" 6>>
 @@.mc-speech; Oh~it feels amazing@@<br>
 @@.mc-speechLink; [[He's cumming|DeliveryPackageEventEnd1]]@@
 <</linkreplace>>
-<</nobr>>
-
-
