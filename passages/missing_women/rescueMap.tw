@@ -1,70 +1,14 @@
 :: rescueMap {"position":"2175,1600","size":"100,100"}
 <img @src="setup.ImagePath + '/rescue/down.png'" class="upPointer clickable" onclick="SugarCube.Engine.play('CityMap');">
 <div class="flexwrapper">
-<div class="housecard rescuehousecard">
-<img @src="setup.ImagePath + '/rescue/house/1.jpg'" class="iconRescuePx">
-@@.icontextcity; [[Move|rescueHouse][$rescueHouse to 1]]@@
+<<for _h to 1; _h lte 16; _h++>>
+<<capture _h>>
+<div @class="'housecard rescuehousecard' + ($cheatRescueHouseHighlight && _h === $randomRescuePhotoNumber ? ' cheatRescueHighlight' : '')">
+<img @src="setup.ImagePath + '/rescue/house/' + _h + '.jpg'" class="iconRescuePx">
+@@.icontextcity;<<link "Move" "rescueHouse">><<set $rescueHouse to _h>><</link>>@@
 </div>
-<div class="housecard rescuehousecard">
-<img @src="setup.ImagePath + '/rescue/house/2.jpg'" class="iconRescuePx">
-@@.icontextcity; [[Move|rescueHouse][$rescueHouse to 2]]@@
-</div>
-<div class="housecard rescuehousecard">
-<img @src="setup.ImagePath + '/rescue/house/3.jpg'" class="iconRescuePx">
-@@.icontextcity; [[Move|rescueHouse][$rescueHouse to 3]]@@
-</div>
-<div class="housecard rescuehousecard">
-<img @src="setup.ImagePath + '/rescue/house/4.jpg'" class="iconRescuePx">
-@@.icontextcity; [[Move|rescueHouse][$rescueHouse to 4]]@@
-</div>
-<div class="housecard rescuehousecard">
-<img @src="setup.ImagePath + '/rescue/house/5.jpg'" class="iconRescuePx">
-@@.icontextcity; [[Move|rescueHouse][$rescueHouse to 5]]@@
-</div>
-<div class="housecard rescuehousecard">
-<img @src="setup.ImagePath + '/rescue/house/6.jpg'" class="iconRescuePx">
-@@.icontextcity; [[Move|rescueHouse][$rescueHouse to 6]]@@
-</div>
-<div class="housecard rescuehousecard">
-<img @src="setup.ImagePath + '/rescue/house/7.jpg'" class="iconRescuePx">
-@@.icontextcity; [[Move|rescueHouse][$rescueHouse to 7]]@@
-</div>
-<div class="housecard rescuehousecard">
-<img @src="setup.ImagePath + '/rescue/house/8.jpg'" class="iconRescuePx">
-@@.icontextcity; [[Move|rescueHouse][$rescueHouse to 8]]@@
-</div>
-<div class="housecard rescuehousecard">
-<img @src="setup.ImagePath + '/rescue/house/9.jpg'" class="iconRescuePx">
-@@.icontextcity; [[Move|rescueHouse][$rescueHouse to 9]]@@
-</div>
-<div class="housecard rescuehousecard">
-<img @src="setup.ImagePath + '/rescue/house/10.jpg'" class="iconRescuePx">
-@@.icontextcity; [[Move|rescueHouse][$rescueHouse to 10]]@@
-</div>
-<div class="housecard rescuehousecard">
-<img @src="setup.ImagePath + '/rescue/house/11.jpg'" class="iconRescuePx">
-@@.icontextcity; [[Move|rescueHouse][$rescueHouse to 11]]@@
-</div>
-<div class="housecard rescuehousecard">
-<img @src="setup.ImagePath + '/rescue/house/12.jpg'" class="iconRescuePx">
-@@.icontextcity; [[Move|rescueHouse][$rescueHouse to 12]]@@
-</div>
-<div class="housecard rescuehousecard">
-<img @src="setup.ImagePath + '/rescue/house/13.jpg'" class="iconRescuePx">
-@@.icontextcity; [[Move|rescueHouse][$rescueHouse to 13]]@@
-</div>
-<div class="housecard rescuehousecard">
-<img @src="setup.ImagePath + '/rescue/house/14.jpg'" class="iconRescuePx">
-@@.icontextcity; [[Move|rescueHouse][$rescueHouse to 14]]@@
-</div>
-<div class="housecard rescuehousecard">
-<img @src="setup.ImagePath + '/rescue/house/15.jpg'" class="iconRescuePx">
-@@.icontextcity; [[Move|rescueHouse][$rescueHouse to 15]]@@
-</div>
-<div class="housecard rescuehousecard">
-<img @src="setup.ImagePath + '/rescue/house/16.jpg'" class="iconRescuePx">
-@@.icontextcity; [[Move|rescueHouse][$rescueHouse to 16]]@@
-</div>
+<</capture>>
+<</for>>
 </div>
 <style>
 	body {
@@ -81,6 +25,17 @@
 	display: flex;
     flex-direction: column;
     align-items: center;
+}
+.cheatRescueHighlight {
+	outline: 3px solid #ff3b3b;
+	outline-offset: 2px;
+	border-radius: 30%;
+	box-shadow: 0 0 12px 4px rgba(255, 59, 59, 0.8);
+	animation: cheatRescuePulse 1.2s ease-in-out infinite;
+}
+@keyframes cheatRescuePulse {
+	0%, 100% { box-shadow: 0 0 8px 2px rgba(255, 59, 59, 0.6); }
+	50%      { box-shadow: 0 0 18px 6px rgba(255, 59, 59, 1); }
 }
 </style>
 

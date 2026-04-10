@@ -51,6 +51,7 @@
 <<link "lvlup(cheat)">><<set $mc.lvl += 1>><</link>><br>
 <<link "corruptionUp(cheat)">><<set $mc.corruption += 1>><</link>><br>
 <<linkreplace "curseditem room(cheat)">>$ghostRoomCI.name<</linkreplace>>
+<br><<linkreplace "highlight rescue house(cheat)">><<set $cheatRescueHouseHighlight to 1>>Rescue house $randomRescuePhotoNumber highlighted on map<</linkreplace>>
 <br><<linkreplace "lvlup Brook(cheat)">><<set $brook.lvl to 5>>Brook is lvl5 now<</linkreplace>>
 <br><<linkreplace "lvlup Alice(cheat)">><<set $alice.lvl to 5>>Alice is lvl5 now<</linkreplace>>
 <br><<linkreplace "lvlup Blake(cheat)">><<set $blake.lvl to 5>>Blake is lvl5 now<</linkreplace>>
