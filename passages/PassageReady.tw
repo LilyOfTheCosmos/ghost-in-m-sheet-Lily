@@ -28,6 +28,11 @@
 
 <<set $stealChance to (1 + (Math.log(101 - $mc.sanity) / Math.log(101)) * 1) * $stealChanceMult>>
 
+/* SaveMigration already ran these defaults on load, but
+   PassageReady keeps running them so brand-new variables introduced mid-save
+   still get picked up without a reload. */
+<<run if (setup.applySaveDefaults) { setup.applySaveDefaults(State.variables); }>>
+
 <<if ndef $ghostSpecialEventSpiritCD>><<set $ghostSpecialEventSpiritCD to 0>><</if>>
 
 <<if ndef $ghost16>>
@@ -37,12 +42,15 @@ evidence: ["spiritbox", "glass", "temperature"],
 }>>
 <</if>>
 
-<<if $ghost17fixed neq 0>>
+/* Old versions shipped ghost17 with wrong evidence; $ghost17fixed was used as
+   a one-shot flag but the check was `neq 0`, which re-triggers on any
+   non-zero value including undefined. Use ndef so it runs exactly once. */
+<<if ndef $ghost17 or ndef $ghost17fixed>>
 <<set $ghost17 to {
 name: "Banshee",
 evidence: ["glass", "gwb", "uvl"],
 }>>
-<<set $ghost17fixed to 0>>
+<<set $ghost17fixed to 1>>
 <</if>>
 
 <<if ndef $ghost18>>

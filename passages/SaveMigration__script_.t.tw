@@ -1,0 +1,220 @@
+:: SaveMigration [script]
+/*
+ * Save/Load robustness layer.
+ *
+ * Addresses three classes of save corruption reported on F95zone:
+ *   1. Progress variables added in later versions being undefined on old saves
+ *      (previously patched ad-hoc in PassageReady; now centralised and applied
+ *      on load rather than on next passage entry).
+ *   2. Saves silently carrying non-serialisable junk (functions, jQuery nodes,
+ *      DOM references) that either throw on load or quietly lose data.
+ *   3. Load handlers that throw and leave SugarCube in a half-restored state,
+ *      which players experience as "save won't load".
+ *
+ * Strategy:
+ *   - Stamp every save with a version number and a timestamp via Save.onSave.
+ *   - On Save.onLoad, walk the save's moments and ensure the "current" moment
+ *     has every expected variable defined with a sane default.
+ *   - Wrap everything in try/catch so one bad field can't nuke the whole load.
+ */
+(function () {
+	'use strict';
+
+	// Bump this when you add a new required top-level variable and want old
+	// saves to pick up its default on next load.
+	var SAVE_VERSION = 2;
+	setup.SAVE_VERSION = SAVE_VERSION;
+
+	/*
+	 * Central place for default values of variables that are allowed to be
+	 * missing on old saves. Anything initialised in StoryInit that a later
+	 * version depends on should be listed here with its default.
+	 *
+	 * Values are functions so each save gets its own fresh object / array and
+	 * two saves can't end up aliasing the same reference after migration.
+	 */
+	var DEFAULTS = {
+		ghost16: function () {
+			return { name: 'Cthulion', evidence: ['spiritbox', 'glass', 'temperature'] };
+		},
+		ghost17: function () {
+			return { name: 'Banshee', evidence: ['glass', 'gwb', 'uvl'] };
+		},
+		ghost18: function () {
+			return { name: 'Raiju', evidence: ['emf', 'spiritbox', 'uvl'] };
+		},
+		sensualBodyPart: function () {
+			return { brain: 1, tits: 1, ass: 1, bottom: 1, mouth: 1, pussy: 1, anal: 1 };
+		},
+		ghostSpecialEventSpiritCD:  function () { return 0; },
+		relationshipBlake:          function () { return 0; },
+		crucifixAmount:             function () { return 0; },
+		sanityPillsAmount:          function () { return 0; },
+		moneyFromWeakenTheGhost:    function () { return 0; },
+		tentaclesEventStageSleep:   function () { return 0; },
+		piercingTitsAddSens:        function () { return 0; },
+		piercingTonguedAddSens:     function () { return 0; },
+		piercingPussyAddSens:       function () { return 0; },
+		updatePiercingBodyPartSens: function () { return 1; },
+		fixSave:                    function () { return 1; }
+	};
+
+	// mc sub-fields added after launch — missing on very old saves
+	var MC_DEFAULTS = {
+		fit:   0,
+		exhib: 0
+	};
+
+	function applyDefaults (vars) {
+		if (!vars || typeof vars !== 'object') {
+			return;
+		}
+
+		Object.keys(DEFAULTS).forEach(function (key) {
+			if (vars[key] === undefined || vars[key] === null) {
+				try {
+					vars[key] = DEFAULTS[key]();
+				}
+				catch (ex) {
+					console.error('SaveMigration: failed to default $' + key, ex);
+				}
+			}
+		});
+
+		if (vars.mc && typeof vars.mc === 'object') {
+			Object.keys(MC_DEFAULTS).forEach(function (key) {
+				if (vars.mc[key] === undefined || vars.mc[key] === null) {
+					vars.mc[key] = MC_DEFAULTS[key];
+				}
+			});
+		}
+
+		// clamp body-part sensitivity (old saves occasionally over-increment)
+		if (vars.sensualBodyPart && typeof vars.sensualBodyPart === 'object') {
+			Object.keys(vars.sensualBodyPart).forEach(function (part) {
+				var v = Number(vars.sensualBodyPart[part]);
+				if (!Number.isFinite(v)) {
+					vars.sensualBodyPart[part] = 1;
+				}
+				else if (v > 6) {
+					vars.sensualBodyPart[part] = 6;
+				}
+			});
+		}
+
+		// hasPSpray/charges invariant: if charges are gone, the spray is gone
+		if (typeof vars.hasPSprayCharges === 'number' && vars.hasPSprayCharges <= 0) {
+			vars.hasPSpray = 0;
+		}
+	}
+
+	// Expose for use from Twine (PassageReady belt-and-braces call).
+	setup.applySaveDefaults = applyDefaults;
+
+	/*
+	 * Strip values that can't survive a JSON round-trip. These show up when
+	 * someone accidentally does `<<set $foo to $('#bar')>>` or stashes a
+	 * function on a variable. SugarCube's own clone() will usually drop them
+	 * silently, but leaving them in place can cause reload exceptions.
+	 */
+	function scrubNonSerialisable (obj, seen) {
+		if (obj === null || typeof obj !== 'object') {
+			return;
+		}
+		if (seen.has(obj)) {
+			return;
+		}
+		seen.add(obj);
+
+		Object.keys(obj).forEach(function (key) {
+			var v = obj[key];
+			if (v === null || v === undefined) {
+				return;
+			}
+			var t = typeof v;
+			if (t === 'function') {
+				delete obj[key];
+				return;
+			}
+			// jQuery object, DOM node, Window, etc.
+			if (t === 'object' && (
+				(typeof window !== 'undefined' && v === window) ||
+				(v.nodeType !== undefined && typeof v.nodeName === 'string') ||
+				(typeof jQuery !== 'undefined' && v instanceof jQuery)
+			)) {
+				delete obj[key];
+				return;
+			}
+			if (v instanceof Map || v instanceof Set || v instanceof WeakMap || v instanceof WeakSet) {
+				// Map/Set don't JSON.stringify — SugarCube's own clone handles
+				// them, but only via a revive wrapper, so just drop unknown ones.
+				delete obj[key];
+				return;
+			}
+			if (t === 'object') {
+				scrubNonSerialisable(v, seen);
+			}
+		});
+	}
+
+	if (typeof Save !== 'undefined' && Save.onSave && typeof Save.onSave.add === 'function') {
+		Save.onSave.add(function (save) {
+			try {
+				save.metadata = save.metadata || {};
+				save.metadata.version = SAVE_VERSION;
+				save.metadata.savedAt = Date.now();
+
+				// Best-effort scrub of the current moment only. We don't walk
+				// the full history because (a) SugarCube has already cloned it
+				// and (b) mutating older moments confuses the undo stack.
+				if (save.state && Array.isArray(save.state.history) && save.state.history.length) {
+					var idx = typeof save.state.index === 'number'
+						? save.state.index
+						: save.state.history.length - 1;
+					var moment = save.state.history[idx];
+					if (moment && moment.variables) {
+						scrubNonSerialisable(moment.variables, new Set());
+					}
+				}
+			}
+			catch (ex) {
+				console.error('SaveMigration.onSave failed:', ex);
+				// Never rethrow — a failed scrub is better than a failed save.
+			}
+		});
+	}
+
+	if (typeof Save !== 'undefined' && Save.onLoad && typeof Save.onLoad.add === 'function') {
+		Save.onLoad.add(function (save) {
+			try {
+				if (!save || !save.state || !Array.isArray(save.state.history)) {
+					return;
+				}
+
+				var idx = typeof save.state.index === 'number'
+					? save.state.index
+					: save.state.history.length - 1;
+
+				// Apply defaults to the *current* moment. The player will only
+				// ever see that one; older moments are just undo history and
+				// will get PassageReady's belt-and-braces pass if rewound into.
+				var moment = save.state.history[idx];
+				if (moment && moment.variables) {
+					applyDefaults(moment.variables);
+				}
+
+				// Record what version the save was loaded at, so later code
+				// can tell "this was a v1 save, run one-time fixups".
+				save.metadata = save.metadata || {};
+				var loadedFrom = Number(save.metadata.version) || 1;
+				save.metadata.loadedFromVersion = loadedFrom;
+				save.metadata.version = SAVE_VERSION;
+			}
+			catch (ex) {
+				console.error('SaveMigration.onLoad failed:', ex);
+				// Swallow: a migration failure must not block loading an
+				// otherwise-valid save. PassageReady still has fallbacks.
+			}
+		});
+	}
+}());
