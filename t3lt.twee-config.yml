@@ -303,6 +303,26 @@ sugarcube-2:
         span id and $currentFurniture value, e.g. 'bedroom_table')."
     companionCard:
       name: companionCard
+    randRangeImg:
+      name: randRangeImg
+      description: "Renders a random image from a numbered sequence. Path is
+        setup.ImagePath + '/' + pathPrefix + N + ext, where N is chosen
+        uniformly from [start..end]. Args: pathPrefix (string), start (int),
+        end (int), ext (string, e.g. '.jpg'), [cssClass (string, default
+        'evidenceImgs')]."
+    randRangeVideo:
+      name: randRangeVideo
+      description: "Video counterpart of <<randRangeImg>>. Renders one random
+        video from a numbered sequence inside an autoplay/muted/loop shell.
+        Args: pathPrefix (string), start (int), end (int), ext (string)."
+    notFound:
+      name: notFound
+      description: "Canonical 'I didn't find anything' block used by the
+        evidence-check tool passages. Args: message (string)."
+    coloredText:
+      name: coloredText
+      description: "Wraps content in the evidence bold/stroke text span.
+        Args: color (string — pass '' for no colour), content (any)."
     randomVideo:
       name: randomVideo
     gainXP:

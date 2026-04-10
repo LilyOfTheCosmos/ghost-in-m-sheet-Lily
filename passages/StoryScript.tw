@@ -1362,6 +1362,58 @@ setup.searchPrefixIndex = (function () {
     return idx;
 }());
 
+/* Haunted-house passage catalogue, derived from setup.searchRoomPrefixes.
+ * Each entry maps one concrete room passage back to its house + bgRoom,
+ * which is exactly the information the tool passages need to ask "is the
+ * player currently standing in the ghost's room?". The Owaissa and Ironclad
+ * passages capitalise the first letter of the prefix; Elm and Enigma keep
+ * the prefix casing as-is. */
+setup.hauntedPassages = (function () {
+    return setup.searchRoomPrefixes.map(function (e) {
+        var house;
+        if (e.eventChain === "ironclad")      house = "ironclad";
+        else if (e.eventChain === "enigma")   house = "enigma";
+        else if (e.prefix.indexOf("owaissa") === 0) house = "owaissa";
+        else                                  house = "elm";
+        var capitalise = (house === "owaissa" || house === "ironclad");
+        var passage = capitalise
+            ? e.prefix.charAt(0).toUpperCase() + e.prefix.slice(1)
+            : e.prefix;
+        return { passage: passage, bgRoom: e.bgRoom, house: house };
+    });
+}());
+
+/* setup.isGhostHere([houses]) — true iff the current passage belongs to
+ * one of the listed houses AND $ghostRoom.name matches that passage's
+ * bgRoom. Pass a house-filter array to scope the check (e.g. ["enigma"]
+ * for the *Art tool variants). Omit the filter to accept any house. */
+setup.isGhostHere = function (houses) {
+    var sv = State.variables;
+    var ghostRoom = sv.ghostRoom;
+    if (!ghostRoom || !ghostRoom.name) return false;
+    var cur = passage();
+    return setup.hauntedPassages.some(function (e) {
+        if (houses && houses.indexOf(e.house) === -1) return false;
+        return e.passage === cur && e.bgRoom === ghostRoom.name;
+    });
+};
+
+/* Shared equipment-tier chance table used by the gwb / plasm / spiritbox
+ * checks: tier 5 = 15%, tier 4 = 25%, tier 3 = 35%. Returns true when the
+ * (1..100) roll passes for the given tier. */
+setup.TIER_CHANCE = { 5: 15, 4: 25, 3: 35 };
+setup.chanceByTier = function (tier, roll) {
+    var t = setup.TIER_CHANCE[tier];
+    return t !== undefined && roll <= t;
+};
+
+/* Equipment upgrade → on-time window (in in-game minutes) used by the EMF
+ * and UVL tools. Higher tiers stay active longer. */
+setup.TOOL_TIME_REMAIN = { 5: 10, 4: 15, 3: 20 };
+setup.toolTimeRemain = function (tier) {
+    return setup.TOOL_TIME_REMAIN[tier] || 0;
+};
+
 /* Build the full <<searchTool>> config from a (tool, prefix) pair by
  * pulling per-tool defaults out of setup.searchToolDefs and per-prefix
  * defaults out of setup.searchRoomPrefixes. This is what the room-level

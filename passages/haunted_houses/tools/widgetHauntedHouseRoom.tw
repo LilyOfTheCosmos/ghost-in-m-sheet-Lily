@@ -152,6 +152,43 @@ All you can do now is wait and hope it doesn’t find you.@@
 <span @id="_args[1]"><<link `'<img src="' + _imgSrc + '">'` "furnitureSearch">><<set $currentFurniture to _args[1]>><<includeTimeEventClothesHunt>><</link>></span>
 <</widget>>
 
+/* randRangeImg — args: pathPrefix, start, end, ext, cssClass?
+   Renders a random image from a numbered sequence. The file path is
+   setup.ImagePath + '/' + pathPrefix + N + ext, where N is an integer
+   picked uniformly from [start..end]. Replaces the long 1..N <<if>>
+   ladders that the tool check passages used to repeat for every image set. */
+<<widget "randRangeImg">>
+<<set _n to random(_args[1], _args[2])>>
+<img @src="setup.ImagePath + '/' + _args[0] + _n + _args[3]" @class="_args[4] || 'evidenceImgs'">
+<</widget>>
+
+/* randRangeVideo — args: pathPrefix, start, end, ext.
+   Video counterpart of randRangeImg. Each file is rendered in the same
+   autoplay/muted/loop/displayCentredImgs shell that TarotCards used to
+   repeat per-card. */
+<<widget "randRangeVideo">>
+<<set _n to random(_args[1], _args[2])>>
+<video autoplay muted controls loop class="displayCentredImgs">
+<source @src="setup.ImagePath + '/' + _args[0] + _n + _args[3]" type="video/mp4">
+</video>
+<</widget>>
+
+/* notFound — args: message. Canonical "I didn't find anything" block used
+   by every evidence-check passage when the roll fails or the ghost isn't
+   in the current room. */
+<<widget "notFound">>
+<<set _msg to _args[0]>>
+<div class="notFound-container"><div class="mc-thoughts">_msg</div></div>
+<</widget>>
+
+/* coloredText — args: color, content. Wraps content in the evidence
+   "bold + stroke" text style, optionally coloured. Pass "" for no colour. */
+<<widget "coloredText">>
+<<set _ctColor to _args[0] || "inherit">>
+<<set _ctBody to _args[1]>>
+<span @style="'color: ' + _ctColor + '; font-weight: bold; -webkit-text-stroke: 1px black;'" class="boldText">_ctBody</span>
+<</widget>>
+
 <<widget "companionCard">>
 <<if $showComp eq 1>>
 <div class="footer-card">

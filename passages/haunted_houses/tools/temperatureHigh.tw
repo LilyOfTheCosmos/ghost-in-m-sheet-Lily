@@ -1,96 +1,30 @@
 :: temperatureHigh {"position":"3725,125","size":"100,100"}
 <<nobr>>
-<<set _checkRaiju to random(1,8)>>
-<<set _validPassages = {
-    "hallway": ["OwaissaHallway", "elmHallway", "enigmaHallway"],
-    "kitchen": ["OwaissaKitchen", "elmKitchen", "enigmaKitchen"],
-    "bedroom": ["OwaissaBedroom", "elmBedroom", "enigmaBedroom"],
-    "bathroom": ["OwaissaBathroom", "elmBathroom", "enigmaBathroom"],
-    "livingroom": ["OwaissaLivingroom", "enigmaLivingroom"],
-    "basement": ["elmBasement", "enigmaBasement"],
-    "bedroomTwo": ["elmBedroomTwo"],
-    "bathroomTwo": ["elmBathroomTwo"],
-    "nursery": ["elmNursery"],
-    "hallwayUpstairs": ["elmHallwayUpstairs"],
-    "roomA": ["enigmaRoomA"],
-    "roomB": ["enigmaRoomB"],
-    "roomC": ["enigmaRoomC"],
-    "Reception": ["IroncladReception"],
-    "BlockA": ["IroncladBlockA"],
-	"BlockB": ["IroncladBlockB"],
-	"BlockACellA": ["IroncladBlockACellA"],
-	"BlockACellB": ["IroncladBlockACellB"],
-	"BlockACellC": ["IroncladBlockACellC"],
-	"BlockBCellA": ["IroncladBlockBCellA"],
-	"BlockBCellB": ["IroncladBlockBCellB"],
-	"BlockBCellC": ["IroncladBlockBCellC"],
-	"Kitchen": ["IroncladKitchen"],
-	"Hallway": ["IroncladHallway"],
-}>>
+/* Baseline offset added to the room temperature:
+     +8 when the player is in the ghost's room AND evidence says temperature,
+     +5 when in the ghost's room without that evidence,
+     +0 otherwise.
+   Colour is green outside the ghost's room (and for tier 5 — plain), red in
+   the ghost's room, yellow when the room has no temperature evidence. Raiju
+   occasionally glitches the reading to a random 0..50 value on tier <= 4
+   thermometers. */
+<<set _inGhostRoom to setup.isGhostHere()>>
+<<set _hasTempEvidence to $ghost.evidence.includes("temperature")>>
+<<set _tier to $equipment.temperature>>
 
-<<if _validPassages[$ghostRoom.name] && _validPassages[$ghostRoom.name].includes(passage())>>
-    <<if $ghost.evidence.includes("temperature")>>
-        <span class="toolsTextCentered boldText">
-<<if $equipment.temperature eq 5>>
-<<if $ghost.name eq "Raiju" and _checkRaiju eq 8>>
-<<print random(0, 50)>>
+<<if _inGhostRoom and _hasTempEvidence>>
+	<<set _offset to 8>>
+	<<set _color to (_tier eq 5 ? "" : "red")>>
+<<elseif _inGhostRoom>>
+	<<set _offset to 5>>
+	<<set _color to (_tier eq 5 ? "" : _tier eq 4 ? "red" : "yellow")>>
 <<else>>
-<<print random(13, 16) + $temperature + 8>>
+	<<set _offset to 0>>
+	<<set _color to (_tier eq 5 ? "" : "green")>>
 <</if>>
-<<elseif $equipment.temperature eq 4>>
-<<if $ghost.name eq "Raiju" and _checkRaiju eq 8>>
-@@color:red;<<print random(0, 50)>>@@
-<<else>>
-@@color:red;<<print random(13, 16) + $temperature + 8>>@@
-<</if>>
-<<elseif $equipment.temperature eq 3>>
-<<if $ghost.name eq "Raiju" and _checkRaiju eq 8>>
-@@color:red;<<print random(0, 50)>>@@
-<<else>>
-@@color:red;<<print random(13, 16) + $temperature + 8>>@@<</if>>
-<</if>></span>
-    <<else>>
-    <span class="toolsTextCentered boldText">
-<<if $equipment.temperature eq 5>>
-<<if $ghost.name eq "Raiju" and _checkRaiju eq 8>>
-<<print random(0, 50)>>
-<<else>>
-<<print random(13, 16) + $temperature + 5>>
-<</if>>
-<<elseif $equipment.temperature eq 4>>
-<<if $ghost.name eq "Raiju" and _checkRaiju eq 8>>
-@@color:red;<<print random(0, 50)>>@@
-<<else>>
-@@color:red;<<print random(13, 16) + 5>>@@
-<</if>>
-<<elseif $equipment.temperature eq 3>>
-<<if $ghost.name eq "Raiju" and _checkRaiju eq 8>>
-@@color:yellow;<<print random(0, 50)>>@@
-<<else>>
-@@color:yellow;<<print random(13, 16) + $temperature + 5>>@@<</if>>
-<</if>></span>
-    <</if>>
-<<else>>
-    <span class="toolsTextCentered boldText">
-    <<if $equipment.temperature eq 5>>
-<<if $ghost.name eq "Raiju" and _checkRaiju eq 8>>
-<<print random(0, 50)>>
-<<else>>
-    <<print random(13, 16) + $temperature>>
-    <</if>>
-<<elseif $equipment.temperature eq 4>>
-<<if $ghost.name eq "Raiju" and _checkRaiju eq 8>>
-@@color:green;<<print random(0, 50)>>@@
-<<else>>
-@@color:green;<<print random(13, 16) + $temperature>>@@<</if>>
-<<elseif $equipment.temperature eq 3>>
-<<if $ghost.name eq "Raiju" and _checkRaiju eq 8>>
-@@color:green;<<print random(0, 50)>>@@
-<<else>>
-@@color:green;<<print random(13, 16) + $temperature>>@@<</if>><</if>>
-    </span>
-<</if>>
+
+<<set _raijuGlitch to ($ghost.name eq "Raiju" and random(1, 8) eq 8)>>
+<<set _reading to _raijuGlitch ? random(0, 50) : (random(13, 16) + $temperature + _offset)>>
+
+<span class="toolsTextCentered boldText"><<coloredText _color _reading>></span>
 <</nobr>>
-
-
-
