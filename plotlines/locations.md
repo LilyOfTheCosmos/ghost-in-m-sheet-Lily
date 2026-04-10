@@ -5,15 +5,15 @@ The game world includes several city locations the player can visit between hunt
 * **Delivery Jobs** - A job system where the player delivers packages, pizzas, burgers, and papers to various addresses around the city. Includes delivery events with unique encounters and a manager storyline. Also serves as the location where the player first meets Alice.
   * [DeliveryHub.tw](../passages/delivery/DeliveryHub.tw) - Delivery job hub
   * [DeliveryManager.tw](../passages/delivery/DeliveryManager.tw) - Manager interactions
-  * [DeliveryManagerEventStart__event.tw](../passages/delivery/DeliveryManagerEventStart__event.tw) - Manager event chain
-  * [DeliveryMap__city.tw](../passages/delivery/DeliveryMap__city.tw) - Delivery route map
+  * [DeliveryManagerEventStart.tw](../passages/delivery/DeliveryManagerEventStart.tw) - Manager event chain
+  * [DeliveryMap.tw](../passages/delivery/DeliveryMap.tw) - Delivery route map
   * [workDelivery.tw](../passages/delivery/workDelivery.tw) - Working a delivery shift
   * [endShiftDelivery.tw](../passages/delivery/endShiftDelivery.tw) - Ending a delivery shift
   * [deliveryActiveIcon.tw](../passages/delivery/deliveryActiveIcon.tw) - Active delivery route icons
   * [meetAlice.tw](../passages/delivery/meetAlice.tw) - Meeting Alice during deliveries
-  * [deliveryEvent1__event.tw](../passages/delivery/deliveryEvent1__event.tw) - Delivery encounter event 1
-  * [deliveryEvent2__event.tw](../passages/delivery/deliveryEvent2__event.tw) - Delivery encounter event 2
-  * [deliveryEvent3__event.tw](../passages/delivery/deliveryEvent3__event.tw) - Delivery encounter event 3
+  * [deliveryEvent1.tw](../passages/delivery/deliveryEvent1.tw) - Delivery encounter event 1
+  * [deliveryEvent2.tw](../passages/delivery/deliveryEvent2.tw) - Delivery encounter event 2
+  * [deliveryEvent3.tw](../passages/delivery/deliveryEvent3.tw) - Delivery encounter event 3
   * [deliveryEventDecline.tw](../passages/delivery/deliveryEventDecline.tw) - Declining a delivery event
   * Delivery types: Burger (4 files), Package (5 files), Papers (3 files), Pizza (4 files) - each with start, choose, and stage passages
   * Delivery addresses: Amethyst Street 42, Cascade Avenue 56, Emerald Street 17, Golden Road 34, Honeywood Court 3, Jasmine Lane 89, Lilac Lane 72, Onyx Place 10, Twilight Boulevard 61
@@ -46,7 +46,7 @@ The game world includes several city locations the player can visit between hunt
   * [libraryBrook.tw](../passages/library/libraryBrook.tw) - Brook-specific library interaction
   * [libraryGirl.tw](../passages/library/libraryGirl.tw) - Girl resident encounter
   * [libraryGuy.tw](../passages/library/libraryGuy.tw) - Guy resident encounter
-  * [libraryGuy1__event.tw](../passages/library/libraryGuy1__event.tw) - Guy resident event chain
+  * [libraryGuy1.tw](../passages/library/libraryGuy1.tw) - Guy resident event chain
 
 * **Park** - Outdoor location with jogging activities and park encounter events.
   * [Park.tw](../passages/park/Park.tw) - Park entry and activities
@@ -61,9 +61,9 @@ The game world includes several city locations the player can visit between hunt
   * [churchBasementEnt.tw](../passages/church/churchBasementEnt.tw) - Church basement access
   * [RainExorcism.tw](../passages/church/RainExorcism.tw) - Rain exorcism event
   * [RainHelps.tw](../passages/church/RainHelps.tw) - Rain assistance event
-  * [ToolsEventChurch__event.tw](../passages/church/ToolsEventChurch__event.tw) - Church tool event
-  * [ToolsEventChurch1__event.tw](../passages/church/ToolsEventChurch1__event.tw) - Church tool event stage 1
-  * [ToolsEventChurchEnd__event.tw](../passages/church/ToolsEventChurchEnd__event.tw) - Church tool event conclusion
+  * [ToolsEventChurch.tw](../passages/church/ToolsEventChurch.tw) - Church tool event
+  * [ToolsEventChurch1.tw](../passages/church/ToolsEventChurch1.tw) - Church tool event stage 1
+  * [ToolsEventChurchEnd.tw](../passages/church/ToolsEventChurchEnd.tw) - Church tool event conclusion
 
 * **Mall** - Shopping location with clothing, electronics, and adult sections. The adult section includes Blake-specific companion content.
   * [Mall.tw](../passages/mall/Mall.tw) - Mall exterior and entry

@@ -7,25 +7,25 @@ The game features multiple companion characters (Alice, Blake, Brook, Alex, Case
   * [AliceMain.tw](../passages/companion/alice/AliceMain.tw) - Alice's main interaction screen during hunts
   * [AliceHelp.tw](../passages/companion/alice/AliceHelp.tw) - Alice's assistance during hunts
   * [AliceInfo.tw](../passages/companion/alice/AliceInfo.tw) - Information about Alice
-  * [AliceHuntEndAlone__noreturn.tw](../passages/companion/alice/AliceHuntEndAlone__noreturn.tw) - Alice's ending if you hunt alone
+  * [AliceHuntEndAlone.tw](../passages/companion/alice/AliceHuntEndAlone.tw) - Alice's ending if you hunt alone
   * [aliceContinue.tw](../passages/companion/alice/aliceContinue.tw) - Alice's continuation options
   * [aliceMini.tw](../passages/companion/alice/aliceMini.tw) - Alice's mini-events
 
 * **Blake** - A more experienced hunter who provides solid support during investigations. Has unique endings depending on your choices and can help with various hunting strategies, with potential for romantic/sexual tension during dangerous situations.
   * [BlakeInit.tw](../passages/companion/blake/BlakeInit.tw) - Blake's initialization and stats setup
   * [BlakeMain.tw](../passages/companion/blake/BlakeMain.tw) - Blake's main interaction screen during hunts
-  * [BlakeHelp__noreturn.tw](../passages/companion/blake/BlakeHelp__noreturn.tw) - Blake's assistance during hunts
-  * [BlakeInfo__noreturn.tw](../passages/companion/blake/BlakeInfo__noreturn.tw) - Information about Blake
-  * [BlakeHuntEndAlone__noreturn.tw](../passages/companion/blake/BlakeHuntEndAlone__noreturn.tw) - Blake's ending if you hunt alone
+  * [BlakeHelp.tw](../passages/companion/blake/BlakeHelp.tw) - Blake's assistance during hunts
+  * [BlakeInfo.tw](../passages/companion/blake/BlakeInfo.tw) - Information about Blake
+  * [BlakeHuntEndAlone.tw](../passages/companion/blake/BlakeHuntEndAlone.tw) - Blake's ending if you hunt alone
   * [blakeContinue.tw](../passages/companion/blake/blakeContinue.tw) - Blake's continuation options
   * [blakeMini.tw](../passages/companion/blake/blakeMini.tw) - Blake's mini-events
 
 * **Brook** - A companion with specific skills for ghost hunting, including higher chances of success with certain evidence types. Has unique home interaction scenarios that can include sensual or sexual content.
   * [BrookInit.tw](../passages/companion/brook/BrookInit.tw) - Brook's initialization and stats setup
   * [BrookMain.tw](../passages/companion/brook/BrookMain.tw) - Brook's main interaction screen during hunts
-  * [BrookHelp__noreturn.tw](../passages/companion/brook/BrookHelp__noreturn.tw) - Brook's assistance during hunts
-  * [BrookInfo__noreturn.tw](../passages/companion/brook/BrookInfo__noreturn.tw) - Information about Brook
-  * [BrookHuntEndAlone__noreturn.tw](../passages/companion/brook/BrookHuntEndAlone__noreturn.tw) - Brook's ending if you hunt alone
+  * [BrookHelp.tw](../passages/companion/brook/BrookHelp.tw) - Brook's assistance during hunts
+  * [BrookInfo.tw](../passages/companion/brook/BrookInfo.tw) - Information about Brook
+  * [BrookHuntEndAlone.tw](../passages/companion/brook/BrookHuntEndAlone.tw) - Brook's ending if you hunt alone
   * [brookMini.tw](../passages/companion/brook/brookMini.tw) - Brook's mini-events
 
 * **Alex, Casey, and Taylor** - Additional companions with their own unique personalities and hunting specialties, each bringing different dynamics to your ghost hunting team and potential for intimate encounters.
@@ -40,10 +40,10 @@ The game features multiple companion characters (Alice, Blake, Brook, Alex, Case
 * **Relationship mechanics** - Your choices during hunts, how you treat your companions, and shared experiences affect their loyalty and effectiveness. Companions may develop romantic or sexual feelings for you, leading to intimate encounters during hunts, at home, or when walking home together.
   * [compEvent.tw](../passages/companion/compEvent.tw) - Companion event triggers
   * [WalkHomeTogether.tw](../passages/companion/WalkHomeTogether.tw) - Walking home together with companions
-  * [CompanionLeaving__noreturn.tw](../passages/companion/CompanionLeaving__noreturn.tw) - Companion leaving scenarios
-  * [succeededComp__noreturn.tw](../passages/companion/succeededComp__noreturn.tw) - Successful companion mission outcomes
-  * [failedComp__noreturn.tw](../passages/failedComp__noreturn.tw) - Failed companion mission outcomes
+  * [CompanionLeaving.tw](../passages/companion/CompanionLeaving.tw) - Companion leaving scenarios
+  * [succeededComp.tw](../passages/companion/succeededComp.tw) - Successful companion mission outcomes
+  * [failedComp.tw](../passages/failedComp.tw) - Failed companion mission outcomes
 
 * **Companion events** - Special scenes occur during hunts, at home, and when walking home together that can include nudity, intimate touching, and sexual content depending on your relationship progress and character choices. Some companions have specific requirements for intimate events (exhibitionism level, clothing state, etc.).
-  * [CompResult__noreturn.tw](../passages/companion/CompResult__noreturn.tw) - Companion result outcomes
-  * [CompRandomRoom__noreturn.tw](../passages/companion/CompRandomRoom__noreturn.tw) - Random companion room events
+  * [CompResult.tw](../passages/companion/CompResult.tw) - Companion result outcomes
+  * [CompRandomRoom.tw](../passages/companion/CompRandomRoom.tw) - Random companion room events

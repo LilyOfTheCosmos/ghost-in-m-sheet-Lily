@@ -8,7 +8,7 @@ The core gameplay revolves around investigating haunted locations to identify an
   * [UVLcheck.tw](../passages/haunted_houses/tools/UVLcheck.tw) - UV light checks
   * [GWBcheck.tw](../passages/haunted_houses/tools/GWBcheck.tw) - Ghost Writing Book checks
   * [PlasmCheck.tw](../passages/haunted_houses/tools/PlasmCheck.tw) - Plasma/Freezing Temperature checks
-  * [Crucifix__noreturn.tw](../passages/haunted_houses/tools/Crucifix__noreturn.tw) - Crucifix usage
+  * [Crucifix.tw](../passages/haunted_houses/tools/Crucifix.tw) - Crucifix usage
   * [TarotCards.tw](../passages/haunted_houses/tools/TarotCards.tw) - Tarot card mechanics
   * [temperatureHigh.tw](../passages/haunted_houses/tools/temperatureHigh.tw) - High temperature detection
 
@@ -18,22 +18,22 @@ The core gameplay revolves around investigating haunted locations to identify an
   * [LFCI.tw](../passages/haunted_houses/general/LFCI.tw) - Look For Cursed Items mechanic
 
 * **Hunt flow** - The core loop of starting, running, and ending a ghost hunt.
-  * [huntStart__noreturn.tw](../passages/haunted_houses/hunt/huntStart__noreturn.tw) - Beginning a hunt
-  * [huntEnd__noreturn.tw](../passages/haunted_houses/hunt/huntEnd__noreturn.tw) - Ending a hunt normally
+  * [huntStart.tw](../passages/haunted_houses/hunt/huntStart.tw) - Beginning a hunt
+  * [huntEnd.tw](../passages/haunted_houses/hunt/huntEnd.tw) - Ending a hunt normally
   * [HuntOverManual.tw](../passages/haunted_houses/hunt/HuntOverManual.tw) - Manually ending a hunt
-  * [HuntOverSanity__noreturn.tw](../passages/haunted_houses/hunt/HuntOverSanity__noreturn.tw) - Hunt ending due to sanity loss
+  * [HuntOverSanity.tw](../passages/haunted_houses/hunt/HuntOverSanity.tw) - Hunt ending due to sanity loss
   * [HuntOverTime.tw](../passages/haunted_houses/hunt/HuntOverTime.tw) - Hunt ending due to time limit
   * [huntEventSuccubus.tw](../passages/haunted_houses/hunt/huntEventSuccubus.tw) - Succubus hunt event
 
 * **Ghost behavior and randomization** - The ghost type and room are randomized at the start of each hunt and can change during it.
-  * [GhostRandomize__event.tw](../passages/haunted_houses/general/GhostRandomize__event.tw) - Randomizing ghost type and placement
-  * [GhostStreet__ghoststreet.tw](../passages/haunted_houses/general/GhostStreet__ghoststreet.tw) - Ghost street assignment
+  * [GhostRandomize.tw](../passages/haunted_houses/general/GhostRandomize.tw) - Randomizing ghost type and placement
+  * [GhostStreet.tw](../passages/haunted_houses/general/GhostStreet.tw) - Ghost street assignment
   * [changeGhostRoom.tw](../passages/haunted_houses/general/changeGhostRoom.tw) - Ghost changing its favorite room
-  * [ghostHuntEvent__noreturn.tw](../passages/haunted_houses/general/ghostHuntEvent__noreturn.tw) - Ghost hunt event triggers
+  * [ghostHuntEvent.tw](../passages/haunted_houses/general/ghostHuntEvent.tw) - Ghost hunt event triggers
 
 * **Sanity and survival mechanics** - Environmental and ghost interactions affect the player's state and can force the hunt to end.
-  * [Hide__noreturn.tw](../passages/haunted_houses/general/Hide__noreturn.tw) - Hiding from the ghost
-  * [RunFast__noreturn.tw](../passages/haunted_houses/general/RunFast__noreturn.tw) - Running from the ghost
+  * [Hide.tw](../passages/haunted_houses/general/Hide.tw) - Hiding from the ghost
+  * [RunFast.tw](../passages/haunted_houses/general/RunFast.tw) - Running from the ghost
   * [lightPassageGhost.tw](../passages/haunted_houses/general/lightPassageGhost.tw) - Ghost-controlled lighting
   * [lightPassageManual.tw](../passages/haunted_houses/general/lightPassageManual.tw) - Manual lighting control
 

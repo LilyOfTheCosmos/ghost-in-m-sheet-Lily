@@ -18,7 +18,7 @@ Ghost possession is a dangerous mechanic that can occur during hunts. When posse
   * [rescuePossessed.tw](../passages/missing_women/rescuePossessed.tw) - General rescue possession mechanics
 
 * **City map while possessed** - The city map changes appearance when the player is in a possessed state.
-  * [CityMapPossessed__city.tw](../passages/CityMapPossessed__city.tw) - City navigation while possessed
+  * [CityMapPossessed.tw](../passages/CityMapPossessed.tw) - City navigation while possessed
 
 * **The Twins possession at home** - The Twins can appear during sleep at home, triggering unique dual-entity possession events.
   * [TheTwinsEvent.tw](../passages/home/TheTwinsEvent.tw) - The Twins home event
