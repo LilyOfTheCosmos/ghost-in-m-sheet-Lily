@@ -225,37 +225,36 @@ sugarcube-2:
     roomShell:
       name: roomShell
       container: true
-      description: "Container widget that wraps a haunted-house room with the
-        standard .room/.room-wrapper/.content/.action scaffolding. Sets shared
-        _shell* temp vars consumed by the inner <<roomFooter>> widget. Args:
-        passage (string, e.g. 'elmBedroom' or 'IroncladHallway'), bgRoomVar
-        (string, the room state variable whose .background is toggled, e.g.
-        'bedroom' or 'BlockACellA'), [variant (string, 'basic' for enigma's
-        simple light + no companion; default = full)]. Inner content should
-        be an optional <<furnitureRow>> followed by a <<roomFooter>>."
+      description: "Container widget that wraps a haunted-house room with the standard
+        .room/.room-wrapper/.content/.action scaffolding. Sets shared _shell*
+        temp vars consumed by the inner <<roomFooter>> widget. Args: passage
+        (string, e.g. 'elmBedroom' or 'IroncladHallway'), bgRoomVar (string, the
+        room state variable whose .background is toggled, e.g. 'bedroom' or
+        'BlockACellA'), [variant (string, 'basic' for enigma's simple light + no
+        companion; default = full)]. Inner content should be an optional
+        <<furnitureRow>> followed by a <<roomFooter>>."
     furnitureRow:
       name: furnitureRow
       container: true
-      description: "Container widget that wraps its contents in
-        <div class=\"furnitureSearch\">. Use inside <<roomShell>> for the small
-        set of <<furnitureItem>>/<<hideSpot>> calls a room exposes; omit
-        entirely for rooms with no furniture."
+      description: Container widget that wraps its contents in <div
+        class="furnitureSearch">. Use inside <<roomShell>> for the small set of
+        <<furnitureItem>>/<<hideSpot>> calls a room exposes; omit entirely for
+        rooms with no furniture.
     roomFooter:
       name: roomFooter
       container: true
-      description: "Container widget that emits the .footer block for a
-        haunted-house room: a .footertools div with <<roomToolBar>> + the
-        appropriate light widget, plus a .footeraction div whose body comes
-        from the inner content (the per-room navigation links). Reads the
-        _shell* temp vars set by the enclosing <<roomShell>> for passage,
-        bgRoomVar, and variant."
+      description: "Container widget that emits the .footer block for a haunted-house
+        room: a .footertools div with <<roomToolBar>> + the appropriate light
+        widget, plus a .footeraction div whose body comes from the inner content
+        (the per-room navigation links). Reads the _shell* temp vars set by the
+        enclosing <<roomShell>> for passage, bgRoomVar, and variant."
     navLink:
       name: navLink
-      description: "Renders an @@.adaptiveLink;<<link>>...<</link>>@@
-        navigation link that fires the appropriate include-time-event chain
-        and increments $stepCount. Args: label (string), targetPassage
-        (string), [mode (string, 'hunt' for ironclad's includeTimeEventHunt;
-        default = elm/owaissa includeTimeEventClothesHunt)]."
+      description: "Renders an @@.adaptiveLink;<<link>>...<</link>>@@ navigation link
+        that fires the appropriate include-time-event chain and increments
+        $stepCount. Args: label (string), targetPassage (string), [mode (string,
+        'hunt' for ironclad's includeTimeEventHunt; default = elm/owaissa
+        includeTimeEventClothesHunt)]."
     leaveLink:
       name: leaveLink
       description: "Wraps a plain @@.adaptiveLink;<<link>> in the
@@ -264,8 +263,8 @@ sugarcube-2:
         (string), targetPassage (string)."
     roomToolCard:
       name: roomToolCard
-      description: "Renders one tool slot inside <<roomToolBar>>. Derives the
-        image, picture id, and searchTool config from setup.searchToolDefs and
+      description: "Renders one tool slot inside <<roomToolBar>>. Derives the image,
+        picture id, and searchTool config from setup.searchToolDefs and
         setup.searchPrefixIndex. Args: tool (string, key into searchToolDefs),
         prefix (string, room prefix from searchRoomPrefixes)."
     roomToolBar:
@@ -277,12 +276,12 @@ sugarcube-2:
         suppress the companion card — used by enigma rooms)]."
     roomFooterLight:
       name: roomFooterLight
-      description: "Renders the lights-on/off + heart minigame block for elm,
-        owaissa, and ironclad rooms (cursedHuntLinkDisable wrapper, plus the
-        seduction minigame trigger when $mc.lust gte 80). Args: passage
-        (string, link target — usually the current passage name), bgRoomVar
-        (string, name of the room state variable whose .background is
-        toggled, e.g. 'bedroom' or 'BlockACellA')."
+      description: "Renders the lights-on/off + heart minigame block for elm, owaissa,
+        and ironclad rooms (cursedHuntLinkDisable wrapper, plus the seduction
+        minigame trigger when $mc.lust gte 80). Args: passage (string, link
+        target — usually the current passage name), bgRoomVar (string, name of
+        the room state variable whose .background is toggled, e.g. 'bedroom' or
+        'BlockACellA')."
     roomFooterLightBasic:
       name: roomFooterLightBasic
       description: "Enigma's simpler lights-only footer block: no
@@ -290,39 +289,39 @@ sugarcube-2:
         (string), bgRoomVar (string)."
     hideSpot:
       name: hideSpot
-      description: "Furniture item that doubles as a hide spot during cursed
-        hunts. When $cursedHuntActive is 1 the image highlights and clicking
-        replaces the room with the hide-spot scene; otherwise it acts as a
-        normal furniture span. Args: passage (string, link target), imageFile
-        (string, filename under img/furniture/), id (string, span id, e.g.
+      description: "Furniture item that doubles as a hide spot during cursed hunts.
+        When $cursedHuntActive is 1 the image highlights and clicking replaces
+        the room with the hide-spot scene; otherwise it acts as a normal
+        furniture span. Args: passage (string, link target), imageFile (string,
+        filename under img/furniture/), id (string, span id, e.g.
         'bedroom_bed1')."
     furnitureItem:
       name: furnitureItem
-      description: "Plain furniture span that opens furnitureSearch on click.
-        Args: imageFile (string, filename under img/furniture/), id (string,
-        span id and $currentFurniture value, e.g. 'bedroom_table')."
+      description: "Plain furniture span that opens furnitureSearch on click. Args:
+        imageFile (string, filename under img/furniture/), id (string, span id
+        and $currentFurniture value, e.g. 'bedroom_table')."
     companionCard:
       name: companionCard
     randRangeImg:
       name: randRangeImg
       description: "Renders a random image from a numbered sequence. Path is
         setup.ImagePath + '/' + pathPrefix + N + ext, where N is chosen
-        uniformly from [start..end]. Args: pathPrefix (string), start (int),
-        end (int), ext (string, e.g. '.jpg'), [cssClass (string, default
+        uniformly from [start..end]. Args: pathPrefix (string), start (int), end
+        (int), ext (string, e.g. '.jpg'), [cssClass (string, default
         'evidenceImgs')]."
     randRangeVideo:
       name: randRangeVideo
-      description: "Video counterpart of <<randRangeImg>>. Renders one random
-        video from a numbered sequence inside an autoplay/muted/loop shell.
-        Args: pathPrefix (string), start (int), end (int), ext (string)."
+      description: "Video counterpart of <<randRangeImg>>. Renders one random video
+        from a numbered sequence inside an autoplay/muted/loop shell. Args:
+        pathPrefix (string), start (int), end (int), ext (string)."
     notFound:
       name: notFound
       description: "Canonical 'I didn't find anything' block used by the
         evidence-check tool passages. Args: message (string)."
     coloredText:
       name: coloredText
-      description: "Wraps content in the evidence bold/stroke text span.
-        Args: color (string — pass '' for no colour), content (any)."
+      description: "Wraps content in the evidence bold/stroke text span. Args: color
+        (string — pass '' for no colour), content (any)."
     randomVideo:
       name: randomVideo
     gainXP:
@@ -335,64 +334,62 @@ sugarcube-2:
       name: sanityPills
     deliveryLocation:
       name: deliveryLocation
-      description: "Renders the house view for a street passage: image,
-        address, and the three 'Deliver the order' slots. With no args,
-        derives the image file from setup.deliveryHouses[passage()] and
-        formats the address by splitting the passage name's last space.
-        Legacy args (imageFile, addressText) remain supported."
+      description: "Renders the house view for a street passage: image, address, and
+        the three 'Deliver the order' slots. With no args, derives the image
+        file from setup.deliveryHouses[passage()] and formats the address by
+        splitting the passage name's last space. Legacy args (imageFile,
+        addressText) remain supported."
     deliveryEventCheck:
       name: deliveryEventCheck
-      description: "Routes a delivery attempt from the street passage into
-        the matching EventChoose passage, falling back to a generic
-        success/failure block. Args: orderNum (1-3)."
+      description: "Routes a delivery attempt from the street passage into the
+        matching EventChoose passage, falling back to a generic success/failure
+        block. Args: orderNum (1-3)."
     deliveryEventChoose:
       name: deliveryEventChoose
       container: true
-      description: "Container widget for a delivery encounter's gate
-        passage. Handles init-if-ndef, the header image, earnedMoney
-        accounting (config-driven), and the shared 'already delivered →
-        thank you → back' branch. The per-encounter dialog goes in the
-        body and is only rendered when the encounter hasn't been
-        completed. Args: type (string, key into setup.deliveryEventChooseConfig)."
+      description: "Container widget for a delivery encounter's gate passage. Handles
+        init-if-ndef, the header image, earnedMoney accounting (config-driven),
+        and the shared 'already delivered → thank you → back' branch. The
+        per-encounter dialog goes in the body and is only rendered when the
+        encounter hasn't been completed. Args: type (string, key into
+        setup.deliveryEventChooseConfig)."
     deliveryVideo:
       name: deliveryVideo
-      description: "Renders one random video from
-        /deliveryhub/<subdir>/N.mp4 inside an autoplay/muted/loop shell.
-        Args: subdir (string), start (int), [end (int, default=start)]."
+      description: "Renders one random video from /deliveryhub/<subdir>/N.mp4 inside
+        an autoplay/muted/loop shell. Args: subdir (string), start (int), [end
+        (int, default=start)]."
     deliveryThanks:
       name: deliveryThanks
-      description: "Emits a randomised 'thank you' one-liner for a
-        successful delivery. No args."
+      description: Emits a randomised 'thank you' one-liner for a successful delivery.
+        No args.
     deliverySorry:
       name: deliverySorry
-      description: "Emits a randomised 'wrong delivery' one-liner. No args."
+      description: Emits a randomised 'wrong delivery' one-liner. No args.
     deliveryBonus:
       name: deliveryBonus
-      description: "Emits the shared 'You earned an extra $N' block that
-        awards bonus money and capped corruption. Args: amount (number),
-        [corruption (number, default 0.2)]."
+      description: "Emits the shared 'You earned an extra $N' block that awards bonus
+        money and capped corruption. Args: amount (number), [corruption (number,
+        default 0.2)]."
     deliveryLustOverflow:
       name: deliveryLustOverflow
-      description: "Resets $mc.lust to 0 and repaints the lust meter if
-        lust has overflowed 100. No args."
+      description: Resets $mc.lust to 0 and repaints the lust meter if lust has
+        overflowed 100. No args.
     deliveryCorrReq:
       name: deliveryCorrReq
-      description: "Emits the shared '(Req. corruption ≥ N)' warning line.
-        Args: threshold (number)."
+      description: "Emits the shared '(Req. corruption ≥ N)' warning line. Args:
+        threshold (number)."
     deliveryLustReq:
       name: deliveryLustReq
-      description: "Emits the shared '(Req. lust ≥ N)' warning line. Args:
-        threshold (number)."
+      description: "Emits the shared '(Req. lust ≥ N)' warning line. Args: threshold
+        (number)."
     deliveryAddressFmt:
       name: deliveryAddressFmt
-      description: "Formats a passage-name street ('Amethyst Street 42')
-        as a display address ('Amethyst Street, 42'). Args: passageName
-        (string)."
+      description: "Formats a passage-name street ('Amethyst Street 42') as a display
+        address ('Amethyst Street, 42'). Args: passageName (string)."
     deliveryGenericSuccess:
       name: deliveryGenericSuccess
-      description: "Generic successful-delivery block: happy image,
-        thank-you line, earnedMoney increment, and the Back button.
-        No args."
+      description: "Generic successful-delivery block: happy image, thank-you line,
+        earnedMoney increment, and the Back button. No args."
     addTime:
       name: addTime
     addLust:
@@ -433,6 +430,18 @@ sugarcube-2:
         Ectoplasm, Thermometer, UVL). Builds the meter, repeat loop, event
         chain, and completion replace. Two call forms: (1) <<searchTool tool
         prefix>> — derives the full config from setup.searchToolDefs and
-        setup.searchPrefixIndex (this is the form used by <<roomToolCard>>);
-        (2) <<searchTool cfgObject>> — pass a fully-built config object for
-        manual control of buttonId/meterId/actionSel/etc."
+        setup.searchPrefixIndex (this is the form used by <<roomToolCard>>); (2)
+        <<searchTool cfgObject>> — pass a fully-built config object for manual
+        control of buttonId/meterId/actionSel/etc."
+    addLustPussy:
+      name: addLustPussy
+    addLustByPart:
+      name: addLustByPart
+    addLustTits:
+      name: addLustTits
+    addSanity:
+      name: addSanity
+    addEnergy:
+      name: addEnergy
+    addFit:
+      name: addFit
