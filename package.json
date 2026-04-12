@@ -9,7 +9,8 @@
     "watch": "while inotifywait -e modify -e create -e delete passages/*.tw; do ./build.sh; done",
     "clean": "rm -f ghost-in-msheet.html",
     "rebuild": "npm run clean && npm run build",
-    "test": "npx playwright test"
+    "test": "npx playwright test",
+    "prepare": "git config core.hooksPath .githooks"
   },
   "keywords": [
     "twine",
