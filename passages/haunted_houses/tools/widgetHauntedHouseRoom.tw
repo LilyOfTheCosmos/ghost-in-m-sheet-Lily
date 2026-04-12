@@ -57,7 +57,10 @@
    used by elm and owaissa). Always increments $stepCount, since every
    non-enigma navigation link in the haunted houses does. */
 <<widget "navLink">>
-@@.adaptiveLink;<<link _args[0] _args[1]>><<if _args.length gt 2 and _args[2] eq "hunt">><<includeTimeEventHunt>><<else>><<includeTimeEventClothesHunt>><</if>><<set $stepCount += 1>><</link>>@@
+<<set _navMode to (_args.length gt 2 ? _args[2] : "")>>
+<<capture _navMode>>
+@@.adaptiveLink;<<link _args[0] _args[1]>><<if _navMode eq "hunt">><<includeTimeEventHunt>><<else>><<includeTimeEventClothesHunt>><</if>><<set $stepCount += 1>><</link>>@@
+<</capture>>
 <</widget>>
 
 /* leaveLink — args: label, target passage. Wraps a plain @@.adaptiveLink;
@@ -128,8 +131,11 @@
    normal furniture span that opens furnitureSearch. */
 <<widget "hideSpot">>
 <<set _imgSrc to setup.ImagePath + '/img/furniture/' + _args[1]>>
+<<set _hideTarget to _args[0]>>
+<<set _hideId to _args[2]>>
 <<if $cursedHuntActive eq 1>>
-<span><<link `'<img src="' + _imgSrc + '" class="highlighted-furniture">'` _args[0]>>
+<<capture _hideTarget>>
+<span><<link `'<img src="' + _imgSrc + '" class="highlighted-furniture">'` _hideTarget>>
 <<replace ".room-wrapper">><<set $isInHideSpot to 1>><img @src="setup.ImagePath + '/hunting/hid1.jpg'" width="80%" class="fadeInScale"><br>
 <<done>>
 <<run $(".fadeInScale").addClass("tarotCardsShow")>><</done>>
@@ -137,10 +143,13 @@
 
 All you can do now is wait and hope it doesn’t find you.@@
 <br><br>
-@@.backbtn;<<link "Leave" _args[0]>><<set $isInHideSpot to 0>><</link>>@@<br>
+@@.backbtn;<<link "Leave" _hideTarget>><<set $isInHideSpot to 0>><</link>>@@<br>
 <</replace>><</link>></span>
+<</capture>>
 <<else>>
-<span @id="_args[2]"><<link `'<img src="' + _imgSrc + '">'` "furnitureSearch">><<set $currentFurniture to _args[2]>><<includeTimeEventClothesHunt>><</link>></span>
+<<capture _hideId>>
+<span @id="_hideId"><<link `'<img src="' + _imgSrc + '">'` "furnitureSearch">><<set $currentFurniture to _hideId>><<includeTimeEventClothesHunt>><</link>></span>
+<</capture>>
 <</if>>
 <</widget>>
 
@@ -149,7 +158,10 @@ All you can do now is wait and hope it doesn’t find you.@@
    furnitureSearch on click. */
 <<widget "furnitureItem">>
 <<set _imgSrc to setup.ImagePath + '/img/furniture/' + _args[0]>>
-<span @id="_args[1]"><<link `'<img src="' + _imgSrc + '">'` "furnitureSearch">><<set $currentFurniture to _args[1]>><<includeTimeEventClothesHunt>><</link>></span>
+<<set _furnId to _args[1]>>
+<<capture _furnId>>
+<span @id="_furnId"><<link `'<img src="' + _imgSrc + '">'` "furnitureSearch">><<set $currentFurniture to _furnId>><<includeTimeEventClothesHunt>><</link>></span>
+<</capture>>
 <</widget>>
 
 /* randRangeImg — args: pathPrefix, start, end, ext, cssClass?
