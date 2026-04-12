@@ -8,7 +8,7 @@
 @@.mc-speech;Yeah, that's right.@@<br>
 <<set $dialogBlake to 0>>
 <<if setup.Mall.blakeCanIntroduceCursedItemBuyback()>>
- @@.notmc-speech;Alice mentioned that sometimes you come across… hmm, let's say, "something special." Some toys with, well, "a magical aura"?@@<br>
+ @@.notmc-speech;Alice mentioned that sometimes you come across... hmm, let's say, "something special." Some toys with, well, "a magical aura"?@@<br>
 @@.mc-speech;Yeah, you're right. But I usually give them to the witch in exchange for a fee.@@<br>
 @@.notmc-speech;How about selling them to me instead? I'll pay you more than the witch@@<br>
  @@.mc-speech;Why do you need them?@@<br>
@@ -36,7 +36,7 @@ Money: +60 $ <br>
 <<else>>
 <</if>>
 <<if setup.Mall.blakeCanIntroduceCursedItemBuyback()>>
-@@.notmc-speech;Alice mentioned that sometimes you come across… hmm, let's say, "something special." Some toys with, well, "a magical aura"?@@<br>
+@@.notmc-speech;Alice mentioned that sometimes you come across... hmm, let's say, "something special." Some toys with, well, "a magical aura"?@@<br>
 @@.mc-speech;Yeah, you're right. But I usually give them to the witch in exchange for a fee.@@<br>
 @@.notmc-speech;How about selling them to me instead? I'll pay you more than the witch@@<br>
  @@.mc-speech;Why do you need them?@@<br>
@@ -73,7 +73,7 @@ But if we find the cursed item, I'll keep it, okay?@@<br>
 
 
 <span class="CompanionInfoAskForHuntAlone">
-@@.mc-speech;<<link "I’d like you to go ghost hunting alone.">>
+@@.mc-speech;<<link "I'd like you to go ghost hunting alone.">>
 <<set $isCompChosenBlake to 0>>
 <<replace "#blakeInfoAnswer">>@@.notmc-speech; I think I'm already experienced enough to do it on my own. Where should I go?@@<br>
 

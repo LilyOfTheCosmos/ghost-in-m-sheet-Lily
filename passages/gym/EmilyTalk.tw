@@ -18,12 +18,12 @@ Relation with @@.mc-speech;Emily@@ improved: $relationEmily now!
 @@.notmc-speech; I find setting small goals really helps.<br>@@<</if>>
 
 <<if _check eq 2>>@@.notmc-speech; You can work out on your own, but training with a coach will be more beneficial, although it does cost money.<br>@@
-@@.mc-speech; Thanks for mentioning it. I’ll keep that in mind.<br>@@
+@@.mc-speech; Thanks for mentioning it. I'll keep that in mind.<br>@@
 <</if>>
 
 <<if _check eq 3>>
 @@.notmc-speech; There are group classes here, held daily from 12 PM to 14 PM. They are free and very effective.<br>@@
-@@.mc-speech; Thanks for mentioning it. I’ll keep that in mind.<br>@@<</if>>
+@@.mc-speech; Thanks for mentioning it. I'll keep that in mind.<br>@@<</if>>
 <<if $relationEmily lt 10>>
 <<set $relationEmily +=1>>
 Relation with @@.mc-speech;Emily@@ improved: $relationEmily now!<br><</if>>
@@ -37,14 +37,14 @@ Relation with @@.mc-speech;Emily@@ improved: $relationEmily now!<br><</if>>
 <<if _check eq 1>>@@.mc-speech; Why do you work out in the evening?<br>@@
 @@.notmc-speech; I used to work out at any time of the day, but now I prefer training with a female coach.<br>@@<</if>>
 
-<<if _check eq 2>>@@.notmc-speech; Have you seen the trainer who works here in the morning? Well... I heard that he goes crazy for girls in pretty lingerie, so I took advantage of that. Now I’m training with him for free.<br>@@
+<<if _check eq 2>>@@.notmc-speech; Have you seen the trainer who works here in the morning? Well... I heard that he goes crazy for girls in pretty lingerie, so I took advantage of that. Now I'm training with him for free.<br>@@
 @@.mc-speech; I think I understand what you mean. Maybe I'll take advantage of that too.<br>@@
 <<set $trainer1TipReceived to 1>>
 <</if>>
 
 <<if _check eq 3>>
 @@.notmc-speech; Do you know the trainer who works here during the day? He likes girls who are in good shape.<br>@@
-@@.mc-speech; Thanks for mentioning it. I’ll keep that in mind.<br>@@<</if>>
+@@.mc-speech; Thanks for mentioning it. I'll keep that in mind.<br>@@<</if>>
 <<if $relationEmily lt 10>>
 <<set $relationEmily +=1>>
 Relation with @@.mc-speech;Emily@@ improved: $relationEmily now!<br><</if>>

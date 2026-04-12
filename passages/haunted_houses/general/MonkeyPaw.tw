@@ -9,7 +9,7 @@
 @@.mc-thoughts; <b>Hmm...What should I wish for?</b> <br>$wishesCount wishes left...@@<br>
 <<if ndef $boughtMonkeyPawGuide>>
 <<set $boughtMonkeyPawGuide to 0>>
-@@.mc-speech; I need to be extremely careful… Maybe I should ask the witch how to use it? I think she could help me.@@
+@@.mc-speech; I need to be extremely careful... Maybe I should ask the witch how to use it? I think she could help me.@@
 
 <</if>> 
 

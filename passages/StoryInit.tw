@@ -56,12 +56,12 @@
 	{
 		name: "Jinn",
 		flag: "ghostJinnInfoCollected",
-		text: "Some ghost hunters have reported that when encountering a Jinn, they tried to run but always failed because the ghost is too fast. However, when they found a hiding spot—even if it was right in front of the Jinn—he often passed by without noticing them. This indicates that hiding from a Jinn is much easier than trying to escape."
+		text: "Some ghost hunters have reported that when encountering a Jinn, they tried to run but always failed because the ghost is too fast. However, when they found a hiding spot--even if it was right in front of the Jinn--he often passed by without noticing them. This indicates that hiding from a Jinn is much easier than trying to escape."
 	},
 	{
 		name: "Deogen",
 		flag: "ghostDeogenInfoCollected",
-		text: "The Deogen is described as a particularly frightening ghost that will always find you, even if you try to hide. Once it starts its hunt, hiding won’t help, as the Deogen relentlessly searches for its prey. However, since the Deogen is extremely slow, there’s a chance to escape if you still have the strength to run."
+		text: "The Deogen is described as a particularly frightening ghost that will always find you, even if you try to hide. Once it starts its hunt, hiding won't help, as the Deogen relentlessly searches for its prey. However, since the Deogen is extremely slow, there's a chance to escape if you still have the strength to run."
 	},
 	{
 		name: "Demon",

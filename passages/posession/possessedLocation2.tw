@@ -17,7 +17,7 @@
             </video>
   <</if>>
 <</replace>><</link>>
-<br>@@color:red; Well, we’ve only just started. I think we’ll go somewhere else now that we’re done here. @@<br>
+<br>@@color:red; Well, we've only just started. I think we'll go somewhere else now that we're done here. @@<br>
 @@.mc-speech; Oh, damn@@<br>
 @@.enterbtn; [[Next|possessed]]@@<br>
 <</if>>

@@ -7,7 +7,7 @@
 	<</if>>
 	<<if $sensualBodyPart.brain gte 3>>
 		<div class="spiritbox-container">
-			<b>Something's wrong, I think I’m losing consciousness...</b>
+			<b>Something's wrong, I think I'm losing consciousness...</b>
 		</div>
 		<<timed 2s>><<goto "CityMapPossessed">><</timed>>
 	<<else>>

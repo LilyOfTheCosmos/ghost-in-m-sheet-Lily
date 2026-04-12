@@ -17,15 +17,15 @@ You sense someone nearby. A wave of anxiety builds in your chest. Suddenly, you 
 @@.notmc-speech; Well, well, baby, you're finally awake?@@<br> 
 @@.mc-speech; $currentRescueGirl? What the hell is going on?!@@<br> 
 @@.mc-thoughts; She laughs, but there's something off about it, something eerie that makes you tense up.<br>
-You realize it's not Jade anymore. Whoever’s standing in front of you, it’s not $currentRescueGirl.@@<br>
+You realize it's not Jade anymore. Whoever's standing in front of you, it's not $currentRescueGirl.@@<br>
 @@.mc-speech; Hey, let me go! Whatever you are, just let me go!@@<br>
 @@.mc-thoughts; She leans in closer, her breath brushing against your skin. Her voice drops, almost whispering @@<br>
-@@.notmc-speech; Of course, I’ll let you go... but not before we <<linkappend "have a little fun first. ">>
+@@.notmc-speech; Of course, I'll let you go... but not before we <<linkappend "have a little fun first. ">>
 <<if _check eq 1>>
 <video autoplay controls muted loop>
  <source @src="setup.ImagePath + '/rescue/Jade/1.1.mp4'" type="video/mp4">
  </video>
-@@.mc-thoughts; She started to rub your pussy at a furious pace. Your moans began to spread throughout the house, but she didn’t show you any mercy.@@<br>
+@@.mc-thoughts; She started to rub your pussy at a furious pace. Your moans began to spread throughout the house, but she didn't show you any mercy.@@<br>
 @@.mc-speech; OH~ Fuck~ I'm going to...@@<br>
 @@.mc-thoughts; She latched onto your pussy and began to greedily [[suck on your clit.|rescueJadePossessed1][$rescueJadePossessed to 1]]@@<br>
 <</if>>

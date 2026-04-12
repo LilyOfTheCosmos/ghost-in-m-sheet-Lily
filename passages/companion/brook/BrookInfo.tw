@@ -42,7 +42,7 @@
 
 
 <span class="CompanionInfoAskForHuntAlone">
-@@.mc-speech;<<link "I’d like you to go ghost hunting alone.">>
+@@.mc-speech;<<link "I'd like you to go ghost hunting alone.">>
 <<set $isCompChosenBrook to 0>>
 <<replace "#brookInfoAnswer">>@@.notmc-speech; I think I'm already experienced enough to do it on my own. Where should I go?@@<br>
 

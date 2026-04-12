@@ -18,7 +18,7 @@
 		@@.mc-speech; <span class="evidenceshadowtext"> It seems I found fingerprints... one more piece of evidence</span>@@<br>
 	<<else>>
 		<<if random(1, 2) eq 1>>
-			/* Lower-body fingerprints — keyed off the currently worn bottom. */
+			/* Lower-body fingerprints -- keyed off the currently worn bottom. */
 			<<if $jeansState is "worn">>
 				<<randRangeImg "uvl/1." 1 4 ".png">>
 			<<elseif $shortsState is "worn">>
@@ -37,7 +37,7 @@
 				<</if>>
 			<</if>>
 		<<else>>
-			/* Upper-body fingerprints — keyed off top + bra state. */
+			/* Upper-body fingerprints -- keyed off top + bra state. */
 			<<if $tshirtState is "worn">>
 				<<randRangeImg "uvl/1." 5 7 ".png">>
 			<<elseif $braState is "worn">>

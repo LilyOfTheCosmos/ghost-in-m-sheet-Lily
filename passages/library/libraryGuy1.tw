@@ -11,7 +11,7 @@
 <<addLust 30>>
 
 
-@@.mc-speech; We have to stop! Someone might see what we’re doing here. @@<br>
+@@.mc-speech; We have to stop! Someone might see what we're doing here. @@<br>
 @@.notmc-speech; Come on, suck me off real quick, no one will catch us. @@<br>
 <<if $mc.corruption lte 3>>
  @@.mc-speech; Ha~, [[no way.|LibraryInside]]@@ @@.warningtext; (Req. <img @src="setup.ImagePath + '/img/corruption.png'" style="position: relative; top: 0.375em; width:3%; display: inline; margin: 0;"> ≥ 4)@@<br>

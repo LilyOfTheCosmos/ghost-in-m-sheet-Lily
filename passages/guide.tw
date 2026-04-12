@@ -1,6 +1,6 @@
 :: guide {"position":"100,600","size":"100,100"}
 	<b>Welcome to the game!</b>
-This game is similar to titles like Phasmophobia and Demonologist. If you are familiar with them, you will find it easy to get the hang of things. Here’s a brief guide:
+This game is similar to titles like Phasmophobia and Demonologist. If you are familiar with them, you will find it easy to get the hang of things. Here's a brief guide:
 
 @@.enterbtn;[[Player guide -> Evidence]]@@ 
 
@@ -16,7 +16,7 @@ This game is similar to titles like Phasmophobia and Demonologist. If you are fa
 <</linkreplace>>
 <</linkreplace>><br>
 <<linkreplace "Sensitive body part">>
-<b>What’s your extra sensitive spot?</b><br>
+<b>What's your extra sensitive spot?</b><br>
 <em>The chosen one will occur more frequently during the ghost hunt than the other body parts, bringing more lust.</em><br>
 <label><<radiobutton "$sensualBodyPart.brain" 3 autocheck>> Mind</label><br>
 <label><<radiobutton "$sensualBodyPart.tits" 3 autocheck>> Boobs</label><br>

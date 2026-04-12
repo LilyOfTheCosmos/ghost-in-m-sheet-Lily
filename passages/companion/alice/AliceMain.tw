@@ -119,7 +119,7 @@ Completely naked? You're lucky I like you, $mc.name.
 <</linkreplace>><br>
 <<else>>
 @@.notmc-speech;Um... Well, maybe you should find your clothes first...?@@<br>
-<<if $mc.exhib lte 4 or ndef $mc.exhib>>@@.mc-speech; Yeah, you're right.@@@@.warningtext; (She’ll go with you if you’re dressed) or Req. Exhibitionism Level 5+@@<</if>>
+<<if $mc.exhib lte 4 or ndef $mc.exhib>>@@.mc-speech; Yeah, you're right.@@@@.warningtext; (She'll go with you if you're dressed) or Req. Exhibitionism Level 5+@@<</if>>
 <<if $mc.exhib gte 5>>
 <<linkreplace "@@.mc-speechLink; I don't care@@">>
 <<if hasVisited("NudityEventTwo")>>
@@ -128,10 +128,10 @@ Completely naked? You're lucky I like you, $mc.name.
 <br>
 @@.backbtn; [[Go home together naked|NudityEventTwo]]@@<br>
 <<else>>
-@@.mc-speech; I don't care. I just want to get out of here as soon as possible. Besides, I’ve walked down the street naked before... It's actually kind of fun. People's eyes wander over you, and the breeze gently tickles all your intimate places~ <br>
+@@.mc-speech; I don't care. I just want to get out of here as soon as possible. Besides, I've walked down the street naked before... It's actually kind of fun. People's eyes wander over you, and the breeze gently tickles all your intimate places~ <br>
 It might feel awkward at first, but after a couple of minutes, you'll start to enjoy it...<br>
 Come on! Let's go naked together.You'll like it.<br>@@
-@@.notmc-speech; Wow, you’re such a slut. Alright, let’s go. But I’ll still grab some clothes from here for us. That way, I'll feel more comfortable.@@<br>
+@@.notmc-speech; Wow, you're such a slut. Alright, let's go. But I'll still grab some clothes from here for us. That way, I'll feel more comfortable.@@<br>
 <br>
 @@.backbtn; [[Go home together naked|NudityEventTwo]]@@<br>
 <</if>>

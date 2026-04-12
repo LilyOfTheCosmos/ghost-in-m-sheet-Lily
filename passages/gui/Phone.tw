@@ -14,9 +14,9 @@ $brook.lvl lvl <<if $brook.lvl gte 5>> (max. lvl)<<else>>($brook.exp / $brook.ex
 @@.mc-thoughts; She's sleeping/busy@@<br><</if>>
 <<else>>
 <<if setup.Library.brookIsPossessed()>>
-<<linkreplace "@@.enterbtn;Text her@@">>She’s not answering... Strange, she usually responds right away...<</linkreplace>>
+<<linkreplace "@@.enterbtn;Text her@@">>She's not answering... Strange, she usually responds right away...<</linkreplace>>
 <<elseif setup.Library.brookIsWithRain()>>
-@@.mc-thoughts;She’s probably still with Rain. Maybe it’s worth waiting a couple of days. @@
+@@.mc-thoughts;She's probably still with Rain. Maybe it's worth waiting a couple of days. @@
 <<else>>
 @@.enterbtn;[[Text her|BrookInfo]]@@<br>
 <</if>>

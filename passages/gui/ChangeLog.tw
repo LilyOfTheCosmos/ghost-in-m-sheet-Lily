@@ -43,7 +43,7 @@ The Succubus appears in the game when you reach 6 corruption or more
 - Now the ghost can affect the MC's mind.<br>
 - A new location for possession has been added - a church. <br>
 - A new girl has been added for the "Missing Girls" quest - Ash.<br>
-- A new ability for the ghost Moroi has been added: (When using the spirit box, if the character’s mind is easily influenced, there’s a chance MC could become possessed) This also works if you are hunting with Brooke (if her level is 2 or higher)).<br>
+- A new ability for the ghost Moroi has been added: (When using the spirit box, if the character's mind is easily influenced, there's a chance MC could become possessed) This also works if you are hunting with Brooke (if her level is 2 or higher)).<br>
 - Several icons have been added to track the character's clothing. <br>
 - A new location has been added - Beauty Salon (currently only with piercings).<br>
 - Now the frequency of tool ticks will depend on the character's level (can be adjusted). <br>
@@ -52,9 +52,9 @@ The Succubus appears in the game when you reach 6 corruption or more
 <<linkreplace "v.0.4.2">><br>
 - Added Paranormal Detector in the witch's shop (allows you to see the correct furniture, in which cursed possessions, stolen clothes, and other items are hidden)<br>
 - You no longer need to click on tools to find evidence (Instead, a timer is activated.)<br>
-- The "Missing Girls" task has been updated — now you can spy on them (While spying on the girls, you can become possessed (if they catch you))<br>
-- Now you can take on a more challenging contract (the ghost will hide one piece of evidence) – x2 the reward. (Some ghosts are currently impossible to identify, as not all of them have unique abilities).<br>
-- The temperature range for a room without a ghost has been adjusted, now it’s between 13 and 16 degrees.<br>
+- The "Missing Girls" task has been updated -- now you can spy on them (While spying on the girls, you can become possessed (if they catch you))<br>
+- Now you can take on a more challenging contract (the ghost will hide one piece of evidence) - x2 the reward. (Some ghosts are currently impossible to identify, as not all of them have unique abilities).<br>
+- The temperature range for a room without a ghost has been adjusted, now it's between 13 and 16 degrees.<br>
 - A choker has been added to the clothing store. <br>
  <</linkreplace>><br>
 <<linkreplace "v.0.4.1">><br>
@@ -69,7 +69,7 @@ The Succubus appears in the game when you reach 6 corruption or more
 <</linkreplace>><br>
 <<linkreplace "v.0.4.0">><br>
 Added: <br>
-- New ghost: Banshee! (Ability)<<linkreplace "Spoiler">>During the ghost hunting, she may use her ability (it doesn't depend on anything, just a small chance of appearance)(There’s currently no way to learn about her ability anywhere.)<</linkreplace>><br> 
+- New ghost: Banshee! (Ability)<<linkreplace "Spoiler">>During the ghost hunting, she may use her ability (it doesn't depend on anything, just a small chance of appearance)(There's currently no way to learn about her ability anywhere.)<</linkreplace>><br> 
 - The ability for Cthulion to appear during ghost hunting has been added.<br>
 - Now the bra can be stolen.<br>
 - Now the follower can walk home with you. <<linkreplace "Spoiler">>The Spirit ghost may follow you<</linkreplace>><br>
@@ -168,7 +168,7 @@ New department in the store (electronics): you can buy a webcamera <<linkreplace
 - Item descriptions have been added (increasing beauty).<br>
 - Special abilities for some ghosts: Mare (event), Wraith (event), Demon, Deogen, Oni, Jinn.<br>
 - Use the internet to search for information about ghosts (random).<br>
-- Information about ghosts is automatically added to the Ghostpedia (ghost icon) when the character encounters the ghost’s special ability or finds information about that ability online.<br>
+- Information about ghosts is automatically added to the Ghostpedia (ghost icon) when the character encounters the ghost's special ability or finds information about that ability online.<br>
 - Events in the gym<br>
 <</linkreplace>><br><br>
 <<if (previous() eq "WitchEndContract") or (tags(previous()).includes("event"))>>

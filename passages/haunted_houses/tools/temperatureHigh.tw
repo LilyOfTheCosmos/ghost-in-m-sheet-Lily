@@ -4,7 +4,7 @@
      +8 when the player is in the ghost's room AND evidence says temperature,
      +5 when in the ghost's room without that evidence,
      +0 otherwise.
-   Colour is green outside the ghost's room (and for tier 5 — plain), red in
+   Colour is green outside the ghost's room (and for tier 5 -- plain), red in
    the ghost's room, yellow when the room has no temperature evidence. Raiju
    occasionally glitches the reading to a random 0..50 value on tier <= 4
    thermometers. */

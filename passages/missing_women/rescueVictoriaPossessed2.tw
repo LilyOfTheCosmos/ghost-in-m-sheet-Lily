@@ -6,7 +6,7 @@
 @@.mc-thoughts; She kisses you, and you kiss her back.@@<br>
 @@.notmc-speech; Did you like that?@@<br>
 @@.mc-speech; Let me go.@@<br>
-@@.notmc-speech; Oh, too bad you're not submissive enough. I would've taken over you, but maybe one day I’ll get the chance...@@<br>
+@@.notmc-speech; Oh, too bad you're not submissive enough. I would've taken over you, but maybe one day I'll get the chance...@@<br>
 @@.mc-thoughts; She kisses you again, and everything goes black.@@<br>
 <</if>>
 <<if $rescueVictoriaPossessed eq 2>>
@@ -16,7 +16,7 @@
 @@.mc-thoughts; She kisses you, and you kiss her back.@@<br>
 @@.notmc-speech; Did you like that?@@<br>
 @@.mc-speech; Let me go.@@<br>
-@@.notmc-speech; Oh, too bad you're not submissive enough. I would've taken over you, but maybe one day I’ll get the chance...@@<br>
+@@.notmc-speech; Oh, too bad you're not submissive enough. I would've taken over you, but maybe one day I'll get the chance...@@<br>
 @@.mc-thoughts; She kisses you again, and everything goes black.@@<br>
 <</if>>
 <<if $rescueVictoriaPossessed eq 3>>
@@ -26,7 +26,7 @@
 @@.mc-thoughts; She kisses you, and you kiss her back.@@<br>
 @@.notmc-speech; Did you like that?@@<br>
 @@.mc-speech; Let me go.@@<br>
-@@.notmc-speech; Oh, too bad you're not submissive enough. I would've taken over you, but maybe one day I’ll get the chance...@@<br>
+@@.notmc-speech; Oh, too bad you're not submissive enough. I would've taken over you, but maybe one day I'll get the chance...@@<br>
 @@.mc-thoughts; She kisses you again, and everything goes black.@@<br>
 <</if>>
 <br>

@@ -2,19 +2,19 @@
 <img @src="setup.ImagePath + '/rescue/Rain.jpg'" width="50%" class="displayCentredImgs"><br>
 <<if ndef $relationshipWithRain>>
 <<set $relationshipWithRain to 0>>
-@@.notmc-speech; $mc.name, hey. I’m Rain. The witch told me about you. Thanks for agreeing to help.@@<br>
-@@.mc-speech; Of course. Though it’s kind of strange that you know a witch.@@<br>
+@@.notmc-speech; $mc.name, hey. I'm Rain. The witch told me about you. Thanks for agreeing to help.@@<br>
+@@.mc-speech; Of course. Though it's kind of strange that you know a witch.@@<br>
 @@.notmc-speech; Well, she used to serve the church but left the order for some reasons.@@<br>
 @@.mc-speech;An order?@@<br>
-@@.notmc-speech; We help people who are haunted by them, day after day. Sometimes we just perform cleansing rituals, and sometimes we have to do an exorcism. Basically, we’re doing what you do, but with an organization behind it.@@<br>
+@@.notmc-speech; We help people who are haunted by them, day after day. Sometimes we just perform cleansing rituals, and sometimes we have to do an exorcism. Basically, we're doing what you do, but with an organization behind it.@@<br>
 @@.mc-speech;Sounds interesting. Can I join?@@<br>
 @@.notmc-speech; Not right now. But if you prove yourself to be a good ghost hunter, we might consider it.@@<br>
-@@.mc-speech; Alright, but I’m here for something else. Tell me about the missing girls.@@<br>
-@@.notmc-speech; Listen closely. There’s a board with photos of the missing girls right outside the church. It has their names and pictures. <br><em><b>We update it every day at 6 PM</b></em>, since some girls get found and some stay missing.<br><br>
+@@.mc-speech; Alright, but I'm here for something else. Tell me about the missing girls.@@<br>
+@@.notmc-speech; Listen closely. There's a board with photos of the missing girls right outside the church. It has their names and pictures. <br><em><b>We update it every day at 6 PM</b></em>, since some girls get found and some stay missing.<br><br>
 If you want to help, just take one of the posters from the board.<br>
 Now, about where to look: there are lots of old, abandoned houses in the southern part of the city. Most of the missing girls end up there, but none of them originally went that way. They went to places on Owaissa Street or Elm Street and somehow ended up south.<br><br>
-<em><b>You’ve got two options: either head straight south and search every house, which will take a while, or start on Owaissa or Elm and try to find clues that point to a specific house in the south.</b></em><br>
-But remember, you’ve got limited time. <em><b>You need to find the girl by 6 PM the next day.</b></em> After that, it’s too late, and we’ll have to send in more experienced hunters.<br><br>
+<em><b>You've got two options: either head straight south and search every house, which will take a while, or start on Owaissa or Elm and try to find clues that point to a specific house in the south.</b></em><br>
+But remember, you've got limited time. <em><b>You need to find the girl by 6 PM the next day.</b></em> After that, it's too late, and we'll have to send in more experienced hunters.<br><br>
 <em><b>And one more thing: the longer the girl stays missing, the worse things could get. Take a bottle of holy water, just in case.</b></em>@@<br>
 @@.mc-speech; Alright, I think I got it. Thanks.@@<br>
 <br>
@@ -31,7 +31,7 @@ But remember, you’ve got limited time. <em><b>You need to find the girl by 6 P
 <<elseif $hasQuestForRescue eq 3>>
 @@.notmc-speech;Oh, $mc.name, I've already been informed that you found our girl, thank you so much. You've been a great help to me, thank you.<br>@@
 <<if $equipment.spiritbox neq 3>>
-@@.notmc-speech;I hope you’ll be able to keep helping us. <br>
+@@.notmc-speech;I hope you'll be able to keep helping us. <br>
 I don't have anything to give you in return for your help right now, but maybe I can repay you somehow later.@@<br>
  <<set $equipment.spiritbox to 3>>
 @@.mc-action; You get a lvl 3 Spiritbox @@<img @src="setup.ImagePath + '/img/spiritbox.png'" style="max-width:5%"><br><br><</if>>

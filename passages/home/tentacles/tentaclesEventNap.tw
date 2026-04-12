@@ -34,7 +34,7 @@
 <video autoplay controls muted loop>
  <source @src="setup.ImagePath + '/tentacles/nap6.mp4'" type="video/mp4">
 </video>
-    @@.mc-thoughts;All this leads to an explosive, simultaneous orgasm – you and the tentacles reach the peak of pleasure together. You feel your muscles clench, while the tentacles, trembling, start to release their semen on you, covering you with warm, sticky fluid. The sensation of being coated in their seed, mixed with your own orgasm, creates a moment that feels endless in its intensity and pleasure. @@
+    @@.mc-thoughts;All this leads to an explosive, simultaneous orgasm - you and the tentacles reach the peak of pleasure together. You feel your muscles clench, while the tentacles, trembling, start to release their semen on you, covering you with warm, sticky fluid. The sensation of being coated in their seed, mixed with your own orgasm, creates a moment that feels endless in its intensity and pleasure. @@
     @@.mc-speech; Oh~ fuck, I'm so fucked I can't even stand up.@@<br><br>
 @@.backbtn; [[Rest|Bedroom][$hours += 4]]@@
     <<if $tentaclesEventStageAll lt 2>>

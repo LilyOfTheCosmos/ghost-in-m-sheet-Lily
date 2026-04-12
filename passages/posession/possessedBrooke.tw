@@ -13,11 +13,11 @@
 @@.mc-speech; This is Brooke! I have to help her!@@<br>
 
 <<if setup.Posession.canPepperSprayBrookeAttacker()>>
-@@.mc-thoughts; He notices you but doesn’t even try to run away. Luckily, you have a pepper spray in your bag. You quickly pull it out and use it. The man flees.@@<br>
+@@.mc-thoughts; He notices you but doesn't even try to run away. Luckily, you have a pepper spray in your bag. You quickly pull it out and use it. The man flees.@@<br>
 @@.mc-thoughts;  You take her hand and drag her along with you [[the church|RainHelps]]@@
 <<set $hasPSprayCharges -= 1>>
 <<else>>
-@@.mc-thoughts; He notices you but doesn’t try to flee. You have no means of defense, and you’re not strong enough to fight him. With a single blow, he knocks you to the ground, and you@@ 
+@@.mc-thoughts; He notices you but doesn't try to flee. You have no means of defense, and you're not strong enough to fight him. With a single blow, he knocks you to the ground, and you@@ 
 <<linkappend "@@.usebtn; black out@@">>
 <<set $hours to $hours + random(2,6)>>
 <video autoplay controls muted loop>

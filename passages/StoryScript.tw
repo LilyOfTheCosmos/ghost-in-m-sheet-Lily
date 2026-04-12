@@ -995,7 +995,7 @@ $(document).on(':passagerender', function (ev) {
 	});
 });
 
-/* Ghost catalogue — single source of truth for ghost metadata consumed by
+/* Ghost catalogue -- single source of truth for ghost metadata consumed by
  * the Notebook (evidence hovertips) and Ghostopedia (long descriptions).
  * Keeping this in code (not $state) means strings live in one place and
  * aren't serialised into every save file. */
@@ -1200,7 +1200,7 @@ setup.searchableRooms = [
 
 /* $-variable names of every room object that has a `.background` field
  * reset between hunts. Some are camelCase (BlockACellA), others lowercase
- * (kitchen) — kept as a list rather than computed from searchableRooms. */
+ * (kitchen) -- kept as a list rather than computed from searchableRooms. */
 setup.huntableRoomVars = [
     "kitchen", "bathroom", "bedroom", "hallway", "livingroom", "basement",
     "BlockA", "BlockB",
@@ -1225,7 +1225,7 @@ setup.makeEmptySearchState = function () {
  * [Button]); picSuffix matches the toolCard image id convention used by the
  * global click-delegation handler below. The two diverge for spiritbox
  * (PicSB vs widgetSuffix Spiritbox) and temperature (PicThermometr vs
- * Temperature) — that asymmetry predates this refactor. iconFile is the
+ * Temperature) -- that asymmetry predates this refactor. iconFile is the
  * toolCard image filename under setup.ImagePath + "/img/". replaceMode and
  * needsLightCheck are tool-wide constants: emf and temperature are simple
  * "single" replacements; gwb/plasm/uvl/spiritbox use "double" (clear meter +
@@ -1302,21 +1302,21 @@ setup.searchToolDefs = {
 };
 
 /* Tool slots are emitted in this canonical order by the <<roomToolBar>>
- * widget — every haunted-house room shows the same six in the same order. */
+ * widget -- every haunted-house room shows the same six in the same order. */
 setup.searchToolOrder = ["emf", "plasm", "gwb", "spiritbox", "temperature", "uvl"];
 
 /* Canonical per-haunted-house-room prefix list used by the <<searchTool>>
  * macro (for id + config derivation), the keyboard shortcut handler, and
  * the <<roomToolBar>> widget. Each entry holds:
- *   prefix     — the canonical id-prefix used by search/parent passages
- *   bagRoom    — bag name suffix; the search bag is $currentsearch<bagRoom>
- *   bgRoom     — name of the room state object whose .background field
+ *   prefix     -- the canonical id-prefix used by search/parent passages
+ *   bagRoom    -- bag name suffix; the search bag is $currentsearch<bagRoom>
+ *   bgRoom     -- name of the room state object whose .background field
  *                gates dark/lights checks (e.g. "bedroom" or "BlockACellA")
- *   eventChain — "standard" (default), "enigma", or "ironclad"
- *   meterTag   — "div" overrides the default "span" (Owaissa rooms only)
+ *   eventChain -- "standard" (default), "enigma", or "ironclad"
+ *   meterTag   -- "div" overrides the default "span" (Owaissa rooms only)
  */
 setup.searchRoomPrefixes = [
-    // Owaissa — meterTag div
+    // Owaissa -- meterTag div
     { prefix: "owaissaBedroom",      bagRoom: "Bedroom",     bgRoom: "bedroom",    meterTag: "div" },
     { prefix: "owaissaBathroom",     bagRoom: "Bathroom",    bgRoom: "bathroom",   meterTag: "div" },
     { prefix: "owaissaKitchen",      bagRoom: "Kitchen",     bgRoom: "kitchen",    meterTag: "div" },
@@ -1332,7 +1332,7 @@ setup.searchRoomPrefixes = [
     { prefix: "elmHallway",          bagRoom: "Hallway",         bgRoom: "hallway"         },
     { prefix: "elmHallwayUpstairs",  bagRoom: "HallwayUpstairs", bgRoom: "hallwayUpstairs" },
     { prefix: "elmNursery",          bagRoom: "Nursery",         bgRoom: "nursery"         },
-    // Enigma — eventChain enigma
+    // Enigma -- eventChain enigma
     { prefix: "enigmaBasement",      bagRoom: "Basement",   bgRoom: "basement",   eventChain: "enigma" },
     { prefix: "enigmaBedroom",       bagRoom: "Bedroom",    bgRoom: "bedroom",    eventChain: "enigma" },
     { prefix: "enigmaBathroom",      bagRoom: "Bathroom",   bgRoom: "bathroom",   eventChain: "enigma" },
@@ -1342,7 +1342,7 @@ setup.searchRoomPrefixes = [
     { prefix: "enigmaRoomA",         bagRoom: "RoomA",      bgRoom: "roomA",      eventChain: "enigma" },
     { prefix: "enigmaRoomB",         bagRoom: "RoomB",      bgRoom: "roomB",      eventChain: "enigma" },
     { prefix: "enigmaRoomC",         bagRoom: "RoomC",      bgRoom: "roomC",      eventChain: "enigma" },
-    // Ironclad — eventChain ironclad; bag names carry an "Ironclad" suffix that the prefix does not
+    // Ironclad -- eventChain ironclad; bag names carry an "Ironclad" suffix that the prefix does not
     { prefix: "ironcladHallway",     bagRoom: "HallwayIronclad",     bgRoom: "hallway",     eventChain: "ironclad" },
     { prefix: "ironcladReception",   bagRoom: "ReceptionIronclad",   bgRoom: "reception",   eventChain: "ironclad" },
     { prefix: "ironcladKitchen",     bagRoom: "KitchenIronclad",     bgRoom: "kitchen",     eventChain: "ironclad" },
@@ -1383,7 +1383,7 @@ setup.hauntedPassages = (function () {
     });
 }());
 
-/* setup.isGhostHere([houses]) — true iff the current passage belongs to
+/* setup.isGhostHere([houses]) -- true iff the current passage belongs to
  * one of the listed houses AND $ghostRoom.name matches that passage's
  * bgRoom. Pass a house-filter array to scope the check (e.g. ["enigma"]
  * for the *Art tool variants). Omit the filter to accept any house. */
@@ -1417,7 +1417,7 @@ setup.toolTimeRemain = function (tier) {
 /* Build the full <<searchTool>> config from a (tool, prefix) pair by
  * pulling per-tool defaults out of setup.searchToolDefs and per-prefix
  * defaults out of setup.searchRoomPrefixes. This is what the room-level
- * <<roomToolBar>> widget calls — there's no need for the 200+ thin search
+ * <<roomToolBar>> widget calls -- there's no need for the 200+ thin search
  * passage wrappers that previously hard-coded each combination. */
 setup.searchToolConfigFor = function (tool, prefix) {
     var entry = setup.searchPrefixIndex[prefix];
@@ -1439,22 +1439,22 @@ setup.searchToolConfigFor = function (tool, prefix) {
 
 /* Build the markup for one tool slot. Called by the <<searchTool>> macro
  * with a config object whose required fields are:
- *   tool        — key into setup.searchToolDefs
- *   room        — bag suffix, e.g. "Bedroom" or "KitchenIronclad"
+ *   tool        -- key into setup.searchToolDefs
+ *   room        -- bag suffix, e.g. "Bedroom" or "KitchenIronclad"
  *                 (the search bag is $currentsearch<Room>; meter is search<Room><Tool>)
- *   bgRoom      — variable name of the room state object whose .background field
+ *   bgRoom      -- variable name of the room state object whose .background field
  *                 controls the dark/lights checks (e.g. "bedroom" or "kitchen")
- *   prefix      — canonical per-haunted-house-room prefix (e.g. "owaissaBedroom",
+ *   prefix      -- canonical per-haunted-house-room prefix (e.g. "owaissaBedroom",
  *                 "elmBasement", "ironcladKitchen"). Button/meter/action ids are
  *                 derived from this + the tool's widgetSuffix.
- *   eventChain  — "standard" | "ironclad" | "enigma"
- *   replaceMode — "single" (replace meterId with check passage)
+ *   eventChain  -- "standard" | "ironclad" | "enigma"
+ *   replaceMode -- "single" (replace meterId with check passage)
  *               | "double" (replace actionSel with check passage AND clear meterId)
  * Optional overrides:
- *   buttonId / meterId / actionSel — only when the derived default doesn't fit
- *   meterTag    — "span" (default) or "div"
- *   needsLightCheck — true for spiritbox; wraps body in lights-off guard
- *   lightOffSel — selector for the lights-off message (defaults to "#" + actionSel)
+ *   buttonId / meterId / actionSel -- only when the derived default doesn't fit
+ *   meterTag    -- "span" (default) or "div"
+ *   needsLightCheck -- true for spiritbox; wraps body in lights-off guard
+ *   lightOffSel -- selector for the lights-off message (defaults to "#" + actionSel)
  */
 setup.searchToolMarkup = function (cfg) {
     var def = setup.searchToolDefs[cfg.tool];
@@ -1485,7 +1485,7 @@ setup.searchToolMarkup = function (cfg) {
         ? def.artCheckPassage
         : def.checkPassage;
 
-    // Event chain — what happens when an iteration ticks WITHOUT completing.
+    // Event chain -- what happens when an iteration ticks WITHOUT completing.
     var eventChain;
     if (cfg.eventChain === "enigma") {
         eventChain = '<<include "lightPassageGhost">><<include "eventArt">>';
@@ -1511,7 +1511,7 @@ setup.searchToolMarkup = function (cfg) {
             '<</if>>';
     }
 
-    // Completion replace — what happens when the meter fills.
+    // Completion replace -- what happens when the meter fills.
     var completionReplace;
     if (cfg.replaceMode === "double") {
         completionReplace =
@@ -1615,7 +1615,7 @@ $(document).on('click.searchToolPic', '.footer-card .cardimg img.icon[id]', func
 
 /* Wardrobe state enum + initialiser. The string values are part of the
  * save format (existing passages compare against the literals), so don't
- * change them — use the constants in new code instead. */
+ * change them -- use the constants in new code instead. */
 setup.ClothingState = {
     NOT_BOUGHT: "not bought",
     NOT_WORN:   "not worn",
@@ -1623,7 +1623,7 @@ setup.ClothingState = {
 };
 
 /* Wardrobe slots: slot 0 starts as the default outfit, slots 1..3 are
- * unlocked through purchases. shortsState is special — slot 0 is unused
+ * unlocked through purchases. shortsState is special -- slot 0 is unused
  * (the unsuffixed alias is the "default" slot used by older saves). */
 setup.WARDROBE_CATEGORIES = ["tshirt", "jeans", "bra", "panties"];
 setup.WARDROBE_PURCHASE_ONLY = ["shorts", "skirt"];

@@ -2,15 +2,15 @@
 <<if $checkChoosenLocation eq "library">>
 <img @src="setup.ImagePath + '/possessed/1.jpg'" width="100%"><br>
 @@.mc-thoughts; You find yourself in a room surrounded by rows of books.@@<br>
-@@.mc-speech; It seems I’m in a library. But how did I get here?<br>@@
+@@.mc-speech; It seems I'm in a library. But how did I get here?<br>@@
 <<linkreplace "@@.usebtn; What's happening?@@">>
 <video autoplay controls muted loop>
  <source @src="setup.ImagePath + '/possessed/1.1.mp4'" type="video/mp4">
  </video>
-@@.mc-thoughts; You’re standing and talking to someone, but you can’t make sense of the conversation. The words blur together, like they’re not even real. You try to move your hand, but it won’t obey.@@<br>
-@@.mc-speech; How is this possible? It feels like I’ve lost control of my own body.@@<br>
+@@.mc-thoughts; You're standing and talking to someone, but you can't make sense of the conversation. The words blur together, like they're not even real. You try to move your hand, but it won't obey.@@<br>
+@@.mc-speech; How is this possible? It feels like I've lost control of my own body.@@<br>
 @@.mc-thoughts; Suddenly, your lips meet his. His arms wrap around you, and you feel his warmth, his touch, the tension between you. A rush of pleasure floods your senses.@@<br>
-@@color:red; <em>Don’t resist. Just give in to the pleasure</em>@@ - @@.mc-thoughts; A second voice echoes in your mind.@@<br>
+@@color:red; <em>Don't resist. Just give in to the pleasure</em>@@ - @@.mc-thoughts; A second voice echoes in your mind.@@<br>
 
 <<linkreplace "@@.usebtn;Try to resist@@">>
 <<if setup.Posession.canResistFirstAttempt()>>
@@ -44,7 +44,7 @@ Sometimes, you still gave in to the pleasure: at that moment, you began to push 
 @@.mc-thoughts; You find yourself surrounded by a crowd of nearly naked men.@@<br>
 @@.mc-speech; What the hell? Where am I? What am I doing here, conducting an interview?<br>@@
 @@.mc-thoughts; But your face shows only surprise and lust instead of confusion. Your hands reach out to their penises on their own.@@<br>
-@@color:red; <em>Don’t resist. Just give in to the pleasure</em>@@ - @@.mc-thoughts; A second voice echoes in your mind.@@<br>
+@@color:red; <em>Don't resist. Just give in to the pleasure</em>@@ - @@.mc-thoughts; A second voice echoes in your mind.@@<br>
 
 <<linkreplace "@@.usebtn;Try to resist@@">>
 <<if setup.Posession.canResistFirstAttempt()>>
@@ -52,7 +52,7 @@ Sometimes, you still gave in to the pleasure: at that moment, you began to push 
  <source @src="setup.ImagePath + '/possessed/2.1.mp4'" type="video/mp4">
  </video>
 @@.mc-thoughts; You try to resist, but you can't concentrate. <br>
-They started undressing you, touching your most intimate places. Yet you didn’t even try to stop them, even though you wanted to. Your body wouldn’t obey you.@@<br>
+They started undressing you, touching your most intimate places. Yet you didn't even try to stop them, even though you wanted to. Your body wouldn't obey you.@@<br>
 @@.mc-speech; I need to try again, or this will end badly.@@<br>
 
 
@@ -78,13 +78,13 @@ They started undressing you, touching your most intimate places. Yet you didn’
 
 <img @src="setup.ImagePath + '/possessed/3.jpg'" width="100%"><br>
 @@.mc-thoughts; You find yourself in a gym.@@<br>
-@@.mc-speech; I don’t remember how I got here.<br>@@
-<<linkreplace "@@.usebtn; What’s happening?@@">>
+@@.mc-speech; I don't remember how I got here.<br>@@
+<<linkreplace "@@.usebtn; What's happening?@@">>
 <video autoplay controls muted loop>
  <source @src="setup.ImagePath + '/possessed/3.1.mp4'" type="video/mp4">
  </video>
 @@.mc-thoughts; Suddenly, you start undressing. @@<br>
-@@color:red; Pretty hot in here, isn’t it, guys?@@<br>
+@@color:red; Pretty hot in here, isn't it, guys?@@<br>
 @@.mc-speech; What? Did I just say that? No way.@@<br>
 @@.mc-thoughts; They watch you with hungry eyes.@@<br>
 @@.mc-speech; Oh no, how shameful! I need to stop this.@@<br>
@@ -93,9 +93,9 @@ They started undressing you, touching your most intimate places. Yet you didn’
 <video autoplay controls muted loop>
  <source @src="setup.ImagePath + '/possessed/3.2.mp4'" type="video/mp4">
  </video>
-@@.mc-thoughts; You try to concentrate, but you can’t. It’s unsettling that you’ve pulled down your leggings and started working out with your bare butt, exposing your holes to two strangers.<br>
+@@.mc-thoughts; You try to concentrate, but you can't. It's unsettling that you've pulled down your leggings and started working out with your bare butt, exposing your holes to two strangers.<br>
 They came closer and started touching your butt.<br>@@
-@@color:red; Don’t be shy, I’m all yours today.@@<br>
+@@color:red; Don't be shy, I'm all yours today.@@<br>
 @@.mc-speech; SHIT! I need to do something quickly, or this will end really badly for me.@@<br>
 <<linkreplace "@@.usebtn;Try to resist again@@">>
 <<if setup.Posession.canResistSecondAttempt()>>
@@ -112,7 +112,7 @@ They came closer and started touching your butt.<br>@@
 <<elseif $checkChoosenLocation eq "church">>
 <img @src="setup.ImagePath + '/possessed/4.1.jpg'" width="100%"><br>
 @@.mc-thoughts; You find yourself in a church.@@<br>
-@@.mc-speech; I don’t remember how I got here.<br>@@
+@@.mc-speech; I don't remember how I got here.<br>@@
 @@color:red; Ah~ nun, it seems something has possessed me, help me...@@<br>
 @@.mc-speech; Is this me speaking? This is so strange...@@<br>
 @@.notmc-speech; Lie down, you must listen to me, now I will help you@@ 

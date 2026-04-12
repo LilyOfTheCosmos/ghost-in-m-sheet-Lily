@@ -37,7 +37,7 @@
 <<if setup.Home.succubusCanKnock()>>
 <<linkreplace "@@.usebtn; Someone is gently knocking on the door@@">>
 <<set $succubus to 1>>
-@@.mc-thoughts; You open the door — no one is there. A light breeze brushes against your face and fades away.@@<br>
+@@.mc-thoughts; You open the door -- no one is there. A light breeze brushes against your face and fades away.@@<br>
 @@.mc-speech; Hmm... Strange, I could've sworn I heard knocking...@@
 <</linkreplace>><br>
 <</if>>

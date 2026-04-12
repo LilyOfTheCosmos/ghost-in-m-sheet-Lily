@@ -12,7 +12,7 @@
    encounter passage used to repeat for every video pick.
    _args[0]: subdirectory under /deliveryhub/ (e.g. "burgerevent")
    _args[1]: start index
-   _args[2]: end index (optional — defaults to start, single video) */
+   _args[2]: end index (optional -- defaults to start, single video) */
 <<widget "deliveryVideo">>
 <<set _start to _args[1]>>
 <<set _end to (_args.length gt 2 ? _args[2] : _args[1])>>
@@ -65,7 +65,7 @@ You earned an extra $<<= _amt>><br>
 <</if>>
 <</widget>>
 
-/* deliveryLocation — the house view shown inside the shared
+/* deliveryLocation -- the house view shown inside the shared
    deliveryHouse passage. Reads $currentHouse (set by the DeliveryMap
    links) and derives the image + address from setup.deliveryHouses. */
 <<widget "deliveryLocation">>
@@ -94,7 +94,7 @@ You earned an extra $<<= _amt>><br>
 @@.backbtn;[[Leave|DeliveryMap]] @@
 <</widget>>
 
-/* deliveryEventChoose — container widget for the shared gate of each
+/* deliveryEventChoose -- container widget for the shared gate of each
    first-contact delivery encounter (pizza, package, burger, papers).
    Handles the init-if-ndef, header image, earnedMoney accounting, and
    the generic "already delivered → thank you → back" branch. The
@@ -117,7 +117,7 @@ You earned an extra $<<= _amt>><br>
 <</if>>
 <</widget>>
 
-/* Emit a "corruption required" gate line — shared by the Choose gates. */
+/* Emit a "corruption required" gate line -- shared by the Choose gates. */
 <<widget "deliveryCorrReq">>
 @@.warningtext; (Req. <img @src="setup.ImagePath + '/img/corruption.png'" style="position: relative; top: 0.375em; width:3%; display: inline; margin: 0;"> ≥ <<= _args[0]>>)@@
 <</widget>>
@@ -126,7 +126,7 @@ You earned an extra $<<= _amt>><br>
 @@.warningtext; (Req. <img @src="setup.ImagePath + '/img/hearth.png'" style="position: relative; top: 0.375em; width:3%; display: inline; margin: 0;"> ≥ <<= _args[0]>>)@@
 <</widget>>
 
-/* deliveryEventCheck — called once per delivery attempt. Matches the
+/* deliveryEventCheck -- called once per delivery attempt. Matches the
    current street passage (previous()) against the active orders, and
    either routes into the matching encounter Choose passage or shows a
    generic success/failure. */

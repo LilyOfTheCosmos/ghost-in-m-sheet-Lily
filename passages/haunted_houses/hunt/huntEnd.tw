@@ -5,7 +5,7 @@
 <</if>>
 <<if $ghost.name eq "Cthulion">>
 <<set _check to random(1,4)>>
-@@.mc-thoughts; For a moment, you black out. When you come to, a strange, unsettling feeling lingers — like someone is close by. Suddenly, movements appear from the shadows, and you notice tentacles. They slowly coil around you, sliding across your skin. You try to resist, but their touches grow more insistent, keeping you captive.@@
+@@.mc-thoughts; For a moment, you black out. When you come to, a strange, unsettling feeling lingers -- like someone is close by. Suddenly, movements appear from the shadows, and you notice tentacles. They slowly coil around you, sliding across your skin. You try to resist, but their touches grow more insistent, keeping you captive.@@
 <<if _check eq 1>>
 <video autoplay controls muted loop>
 <source @src="setup.ImagePath + '/tentacles/1.0.mp4'" type="video/mp4">
@@ -59,7 +59,7 @@ The tentacles penetrate you more deeply, their movements growing bolder. You giv
 <source @src="setup.ImagePath + '/tentacles/3.3.mp4'" type="video/mp4">
 </video>
 <</if>>
-The sensations drive you wild — hot waves of pleasure surge through your body, making you lose control. A bright, almost unbearable wave of ecstasy ignites within you, and soon your consciousness fades, 
+The sensations drive you wild -- hot waves of pleasure surge through your body, making you lose control. A bright, almost unbearable wave of ecstasy ignites within you, and soon your consciousness fades, 
 <<if $highpriestess eq 1>>@@.usebtn; [[plunging you into darkness|$return][$highpriestess to 0; $mc.sanity to 25]]@@<<else>>
 @@.usebtn; [[plunging you into darkness|Sleep]]@@<</if>>
 <</linkappend>>
@@ -83,7 +83,7 @@ The sensations drive you wild — hot waves of pleasure surge through your body,
 <video autoplay controls muted loop>
 <source @src="setup.ImagePath + '/prison/hunt4.0.mp4'" type="video/mp4">
 </video><</if>>
-They caught you and dragged you into a dark room. There's no strength to resist. You feel yourself losing control as the ghosts begin to do whatever they want with you. You can't fight back — all that's left is to 
+They caught you and dragged you into a dark room. There's no strength to resist. You feel yourself losing control as the ghosts begin to do whatever they want with you. You can't fight back -- all that's left is to 
 <<linkappend "@@.usebtn; submit@@">>
 <<if _randomHuntEven eq 1>>
 <video autoplay controls muted loop>

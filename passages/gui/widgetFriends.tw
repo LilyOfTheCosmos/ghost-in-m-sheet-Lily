@@ -95,7 +95,7 @@ $companion.name 's exp: + _args[0]
 @@.notmc-speech; I don't want to talk about it... Just help me@@<br>
 @@.mc-thoughts; You walked over to her, carefully helping her up.@@<br>
 <<elseif $companion.name eq "Alice">>
-@@.mc-thoughts; When you entered the room, you saw her.@@<br> @@.mc-speech; Are you alright?@@<br> @@.notmc-speech; I'm fine. It’s just a ghost, nothing to worry about. And it looks like I almost beat it.@@<br> @@.mc-thoughts; It seems I can see the marks of that fight on her...@@<br> @@.mc-speech; Well done, I’m proud of you.@@<br>
+@@.mc-thoughts; When you entered the room, you saw her.@@<br> @@.mc-speech; Are you alright?@@<br> @@.notmc-speech; I'm fine. It's just a ghost, nothing to worry about. And it looks like I almost beat it.@@<br> @@.mc-thoughts; It seems I can see the marks of that fight on her...@@<br> @@.mc-speech; Well done, I'm proud of you.@@<br>
 <<elseif $companion.name eq "Blake">>
 @@.mc-thoughts; When you entered the room, you saw her.@@<br> @@.mc-speech; What are you doing?@@<br> @@.notmc-speech; I thought I could attract the ghost this way.@@<br> @@.mc-speech; Why?@@<br> @@.notmc-speech; Well, maybe it would have more cursed items, and I could take them for myself.@@<br>
 @@.mc-speech; I don't think that's how it works, or the ghost would probably not want to share with you.@@<br>

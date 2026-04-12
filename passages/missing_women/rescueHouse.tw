@@ -50,7 +50,7 @@
 <</if>>
 <<addTime 20>>
 <<if setup.MissingWomen.searchTooLate()>>
-@@.mc-speech; The nun said that after 6 p.m. it's pointless to keep searching. It seems I’m too late. I should go back to her and tell her I failed.@@<br>
+@@.mc-speech; The nun said that after 6 p.m. it's pointless to keep searching. It seems I'm too late. I should go back to her and tell her I failed.@@<br>
 <<else>>
 <<if setup.MissingWomen.canSearchHouse()>>
 <<linkreplace "@@.usebtn; Search the house @@ <img @src='setup.ImagePath + \"/img/energy.png\"' style='position: relative; top: 0.375em; width:3%; display: inline; margin: 0;'>">>
@@ -61,7 +61,7 @@
 <<elseif setup.MissingWomen.canResolveRescue()>>
 <<goto "rescueEvent">>
 <<elseif setup.MissingWomen.questFailed()>>
-@@.mc-speech; The nun said that after 6 p.m. it's pointless to keep searching. It seems I’m too late. I should go back to her and tell her I failed.@@<br>
+@@.mc-speech; The nun said that after 6 p.m. it's pointless to keep searching. It seems I'm too late. I should go back to her and tell her I failed.@@<br>
 <</if>>
 <</linkreplace>><<else>>
 @@.mc-speech;I'm too tired to search the house.@@<br><</if>>

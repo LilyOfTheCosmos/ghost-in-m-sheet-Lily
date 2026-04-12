@@ -46,10 +46,10 @@ I thought it would leave me alone after a while, like other ghosts, but it's not
 <<if setup.Witch.canOfferRescueQuest()>><span class="rescueGirlsDisabled">
 <<linkreplace "@@.usebtn; Missing girls@@">>
 <<set $hasQuestForRescue to 0>>
-@@.notmc-speech; Oh, $mc.name, you’ve come at just the right time. I can see you're getting more and more experienced with each passing day, and I’ve got an important task for you. My old friend, a nun named Rain from the church, needs some help<br>
-She told me that recently, her girls — who, like you, are also ghost hunters—have started disappearing. She needs help finding them, and I thought you might be the one to assist her.<br>@@
+@@.notmc-speech; Oh, $mc.name, you've come at just the right time. I can see you're getting more and more experienced with each passing day, and I've got an important task for you. My old friend, a nun named Rain from the church, needs some help<br>
+She told me that recently, her girls -- who, like you, are also ghost hunters--have started disappearing. She needs help finding them, and I thought you might be the one to assist her.<br>@@
 @@.mc-speech; Of course, I think I can help her.@@<br>
-@@.notmc-speech; Great! I’ll let her know you’re on board. Head to the church — I’m sure she’ll find you and explain what to do next.@@<br>
+@@.notmc-speech; Great! I'll let her know you're on board. Head to the church -- I'm sure she'll find you and explain what to do next.@@<br>
 <br>
 @@.mc-action; You need to talk to Sister Rain at the church.@@<br>
 <</linkreplace>><<if $mc.lvl lt 4>>@@.warningtext; (Req. lvl 4+)@@<</if>><br></span><</if>>
@@ -76,10 +76,10 @@ She told me that recently, her girls — who, like you, are also ghost hunters�
 <<if setup.Witch.canOfferCursedItemQuest()>>
 <<linkreplace "@@.usebtn;I have a small task for you.@@">>
 <<set $gotCursedItem to 0>>	
-@@.notmc-speech; It seems you’ve gained some experience and are ready for new challenges. So listen:<br>
+@@.notmc-speech; It seems you've gained some experience and are ready for new challenges. So listen:<br>
 In every house with a ghost, there is a cursed object. It could be in any room. Find it and bring it to me, and I'll reward you. Deal?<br>@@
 @@.mc-speech; How will I know if the object is cursed and not just an ordinary one?@@<br>
-@@.notmc-speech;The cursed object has a very strong aura. You’ll feel it when you pick it up.@@<br>
+@@.notmc-speech;The cursed object has a very strong aura. You'll feel it when you pick it up.@@<br>
 <br>
 @@.mc-action; I need to search the haunted house for the cursed object. It could be in any room.@@
 <br>
@@ -96,11 +96,11 @@ In every house with a ghost, there is a cursed object. It could be in any room. 
 @@.mc-action; You get a lvl 3 Ghost Writing Book @@<img @src="setup.ImagePath + '/img/gwb.png'" style="max-width:5%"><br>
 <br>
 @@.mc-speech; But why do you need them?@@<br>
-@@.notmc-speech; It’s a powerful magical artifact. I think you felt just how potent it is yourself.@@ @@.mc-thoughts;<br> She ran her tongue over the toy and smiled slightly@@<br>
+@@.notmc-speech; It's a powerful magical artifact. I think you felt just how potent it is yourself.@@ @@.mc-thoughts;<br> She ran her tongue over the toy and smiled slightly@@<br>
 
-@@.notmc-speech;And by the way, you can bring me cursed objects, and I’ll pay you for them. It’ll be like an additional task, apart from identifying the type of ghost.@@<br>
+@@.notmc-speech;And by the way, you can bring me cursed objects, and I'll pay you for them. It'll be like an additional task, apart from identifying the type of ghost.@@<br>
 <<else>>
-@@.notmc-speech;Don’t forget to bring me the cursed items. I’ll pay you for them.@@<br>
+@@.notmc-speech;Don't forget to bring me the cursed items. I'll pay you for them.@@<br>
 <</if>>
 
 @@.mc-speech; Alright, extra money never hurts.@@
@@ -122,10 +122,10 @@ In every house with a ghost, there is a cursed object. It could be in any room. 
 <</if>>
 <<if setup.Witch.canAskAboutMonkeyPaw()>>
 <<linkreplace "@@.usebtn; Ask about Monkey Paw@@">>
-@@.notmc-speech; Oh, I see you found that in the haunted house. If you’d like to know what kinds of wishes the monkey paw can grant, I can sell you a little guide. Let’s say... for $400. @@<br>
+@@.notmc-speech; Oh, I see you found that in the haunted house. If you'd like to know what kinds of wishes the monkey paw can grant, I can sell you a little guide. Let's say... for $400. @@<br>
 @@.mc-speech; That's so expensive!!!@@<br>
 @@.notmc-speech; You see, it took a lot of effort to acquire it. So it's up to you to decide.@@<br>
-@@.mc-speech; Alright, I’ll think about it for now...@@<br>
+@@.mc-speech; Alright, I'll think about it for now...@@<br>
 @@.notmc-speech; No problem, just take a look at my wares if you decide to buy it.@@<br>
 <<set $boughtMonkeyPawGuide to 1>>
 <</linkreplace>><br>
@@ -133,7 +133,7 @@ In every house with a ghost, there is a cursed object. It could be in any room. 
 <</if>>
 <<if setup.Witch.canAskAboutIronclad()>>
 <<linkreplace "@@.usebtn; Ask about Prison 'Ironclad'@@">>
-@@.mc-speech; I went there, but I didn’t find any paranormal activity. @@<br>
+@@.mc-speech; I went there, but I didn't find any paranormal activity. @@<br>
 @@.notmc-speech; The thing is, some places have a special influence on ghosts. This includes the "Ironclad" prison. You won't be able to catch their attention unless you... fit in with the place. Perhaps you should think about how to become a part of this environment, how to make them notice you.@@<br>
 @@.mc-thoughts; It seems like the ghosts are drawn to those who belong to this place... A specific outfit might help me blend in. Perhaps I could find something suitable at the Mall. @@<br>
 <<set $wardenClothesStage to 1>>

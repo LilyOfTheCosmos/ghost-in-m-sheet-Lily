@@ -62,7 +62,7 @@
 		fixSave:                    function () { return 1; }
 	};
 
-	// mc sub-fields added after launch — missing on very old saves
+	// mc sub-fields added after launch -- missing on very old saves
 	var MC_DEFAULTS = {
 		fit:   0,
 		exhib: 0
@@ -149,7 +149,7 @@
 				return;
 			}
 			if (v instanceof Map || v instanceof Set || v instanceof WeakMap || v instanceof WeakSet) {
-				// Map/Set don't JSON.stringify — SugarCube's own clone handles
+				// Map/Set don't JSON.stringify -- SugarCube's own clone handles
 				// them, but only via a revive wrapper, so just drop unknown ones.
 				delete obj[key];
 				return;
@@ -182,7 +182,7 @@
 			}
 			catch (ex) {
 				console.error('SaveMigration.onSave failed:', ex);
-				// Never rethrow — a failed scrub is better than a failed save.
+				// Never rethrow -- a failed scrub is better than a failed save.
 			}
 		});
 	}

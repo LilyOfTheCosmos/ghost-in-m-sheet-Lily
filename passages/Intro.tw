@@ -2,7 +2,7 @@
 <<nobr>>
 Ghost in M'Sheet<br>
 <br>
-<b>What’s your extra sensitive spot?</b><br>
+<b>What's your extra sensitive spot?</b><br>
 <em>The chosen one will occur more frequently during the ghost hunt than the other body parts, bringing more lust.</em><br>
 <label><<radiobutton "$sensualBodyPart.brain" 3 autocheck>> Mind</label><br>
 <label><<radiobutton "$sensualBodyPart.tits" 3 autocheck>> Boobs</label><br>

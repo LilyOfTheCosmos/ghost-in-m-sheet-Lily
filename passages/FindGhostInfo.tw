@@ -18,7 +18,7 @@
 		@@.mc-speech; That's enough for today. Maybe i'll get lucky and find something tomorrow.@@<br>
 	<</if>>
 <<else>>
-	@@.mc-thoughts;You scrolled the internet for an hour, but didn’t find any new information. It seems like you won’t be able to find anything else here.@@
+	@@.mc-thoughts;You scrolled the internet for an hour, but didn't find any new information. It seems like you won't be able to find anything else here.@@
 <</if>>
 <</linkreplace>>
 <</if>>

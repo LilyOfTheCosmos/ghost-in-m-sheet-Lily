@@ -3,7 +3,7 @@
 <br>
 <<if $mc.exhib gte 5>>
 @@.mc-speech; Or... maybe I shouldn't put on clothes... I've kind of gotten used to being naked...<br>
-I can pick it up later. Hopefully, it won’t disappear...@@<br>
+I can pick it up later. Hopefully, it won't disappear...@@<br>
 
 <<linkreplace "@@.mc-speechLink; Nah... I should get dressed@@">>
 <br>

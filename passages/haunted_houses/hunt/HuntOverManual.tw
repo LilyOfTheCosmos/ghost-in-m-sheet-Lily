@@ -10,7 +10,7 @@
 
 <<if setup.HauntedHouses.hasClothesStolen()>>
 <img @src="setup.ImagePath + '/img/confusedImg.jpg'" class="displayCentredImgs">
-@@.mc-speech; Damn! It looks like that disgusting ghost took my clothes... Maybe I should go back and look for it? Though I really don’t want to return to that cursed house.@@<br>
+@@.mc-speech; Damn! It looks like that disgusting ghost took my clothes... Maybe I should go back and look for it? Though I really don't want to return to that cursed house.@@<br>
 <<run setup.HauntedHouses.clearStolenClothesFlag()>>
 @@.movebtn; <<back "Return to the house">>@@<br>
 Or<br>

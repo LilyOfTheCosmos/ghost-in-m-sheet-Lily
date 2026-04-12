@@ -1,8 +1,8 @@
 :: widgetHauntedHouseRoom [widget nobr] {"position":"7000,100","size":"100,100"}
-/* roomShell — container widget. Args:
+/* roomShell -- container widget. Args:
      0: passage name (e.g. "elmBedroom" or "IroncladHallway")
      1: bgRoom state-variable name (e.g. "bedroom", "BlockACellA")
-     2: light variant — "basic" (enigma: simple light, no companion)
+     2: light variant -- "basic" (enigma: simple light, no companion)
         or omitted/anything else (full: cursedHuntDisable + minigame heart + companion).
    Sets shared _shell* temp vars consumed by the inner roomFooter widget,
    then renders the standard outer .room/.room-wrapper/.content/.action
@@ -23,7 +23,7 @@
 </div>
 <</widget>>
 
-/* furnitureRow — container widget. Wraps its contents in
+/* furnitureRow -- container widget. Wraps its contents in
    <div class="furnitureSearch">. Use it inside <<roomShell>> for the small
    set of <<furnitureItem>>/<<hideSpot>> calls each room exposes. Omit it
    entirely for rooms with no furniture (e.g. enigma). */
@@ -31,7 +31,7 @@
 <div class="furnitureSearch"><<= _contents>></div>
 <</widget>>
 
-/* roomFooter — container widget. Reads the _shell* temp vars set by the
+/* roomFooter -- container widget. Reads the _shell* temp vars set by the
    enclosing <<roomShell>> and emits the full .footer block: a .footertools
    div with <<roomToolBar>> + the appropriate light widget, plus a
    .footeraction div whose body comes from _contents (the per-room links).
@@ -52,7 +52,7 @@
 </div>
 <</widget>>
 
-/* navLink — args: label, target passage, optional mode ("hunt" for the
+/* navLink -- args: label, target passage, optional mode ("hunt" for the
    ironclad-style includeTimeEventHunt; default is includeTimeEventClothesHunt
    used by elm and owaissa). Always increments $stepCount, since every
    non-enigma navigation link in the haunted houses does. */
@@ -63,14 +63,14 @@
 <</capture>>
 <</widget>>
 
-/* leaveLink — args: label, target passage. Wraps a plain @@.adaptiveLink;
+/* leaveLink -- args: label, target passage. Wraps a plain @@.adaptiveLink;
    <<link>> in the .cursedHuntLinkDisable span used by the elm and owaissa
    hallways' "leave / Outside" exits. No event chain or step increment. */
 <<widget "leaveLink">>
 <span class="cursedHuntLinkDisable">@@.adaptiveLink;<<link _args[0] _args[1]>><</link>>@@</span>
 <</widget>>
 
-/* roomToolCard — args: tool key (e.g. "emf"), room prefix (e.g. "elmBedroom").
+/* roomToolCard -- args: tool key (e.g. "emf"), room prefix (e.g. "elmBedroom").
    Renders one tool slot using metadata from setup.searchToolDefs and
    setup.searchPrefixIndex, with the searchTool macro inlined directly. */
 <<widget "roomToolCard">>
@@ -84,7 +84,7 @@
 </div>
 <</widget>>
 
-/* roomToolBar — arg: room prefix. Emits the canonical six tool slots in
+/* roomToolBar -- arg: room prefix. Emits the canonical six tool slots in
    the order setup.searchToolOrder, plus the companion card. Replaces the
    six per-tool <<toolCard>> calls (and the per-room <<script>>) that every
    haunted-house room used to repeat. */
@@ -95,7 +95,7 @@
 <<if _args[1] neq "noCompanion">><<companionCard>><</if>>
 <</widget>>
 
-/* roomFooterLight — args: passage name (link target), bgRoom state-variable
+/* roomFooterLight -- args: passage name (link target), bgRoom state-variable
    name (e.g. "bedroom" or "BlockACellA"). The cursedHuntLinkDisable wrapper
    prevents the lights from being toggled while a hunt is active, and the
    conditional heart link launches the seduction minigame. Used by elm,
@@ -113,7 +113,7 @@
 </div>
 <</widget>>
 
-/* roomFooterLightBasic — args: passage name, bgRoom state-variable name.
+/* roomFooterLightBasic -- args: passage name, bgRoom state-variable name.
    Enigma's simpler lights-only variant: no cursedHuntLinkDisable wrapper,
    no minigame trigger. */
 <<widget "roomFooterLightBasic">>
@@ -123,7 +123,7 @@
 </div>
 <</widget>>
 
-/* hideSpot — args: passage name (link target), furniture image filename
+/* hideSpot -- args: passage name (link target), furniture image filename
    under img/furniture/, furniture span id (e.g. "bedroom_bed1").
    Renders one furniture item that doubles as a hide spot during cursed
    hunts: when $cursedHuntActive is 1 the image highlights and clicking it
@@ -141,7 +141,7 @@
 <<run $(".fadeInScale").addClass("tarotCardsShow")>><</done>>
 @@.mc-thoughts;You press yourself against the cold floor, feeling your heart racing in your chest. The screams and rustling outside make you hold your breath. The ghost, filled with rage, prowls the room, and each of its steps echoes dully in your ears.<br>
 
-All you can do now is wait and hope it doesn’t find you.@@
+All you can do now is wait and hope it doesn't find you.@@
 <br><br>
 @@.backbtn;<<link "Leave" _hideTarget>><<set $isInHideSpot to 0>><</link>>@@<br>
 <</replace>><</link>></span>
@@ -153,7 +153,7 @@ All you can do now is wait and hope it doesn’t find you.@@
 <</if>>
 <</widget>>
 
-/* furnitureItem — args: furniture image filename under img/furniture/,
+/* furnitureItem -- args: furniture image filename under img/furniture/,
    furniture span id (e.g. "bedroom_table"). The image span that opens
    furnitureSearch on click. */
 <<widget "furnitureItem">>
@@ -164,7 +164,7 @@ All you can do now is wait and hope it doesn’t find you.@@
 <</capture>>
 <</widget>>
 
-/* randRangeImg — args: pathPrefix, start, end, ext, cssClass?
+/* randRangeImg -- args: pathPrefix, start, end, ext, cssClass?
    Renders a random image from a numbered sequence. The file path is
    setup.ImagePath + '/' + pathPrefix + N + ext, where N is an integer
    picked uniformly from [start..end]. Replaces the long 1..N <<if>>
@@ -174,7 +174,7 @@ All you can do now is wait and hope it doesn’t find you.@@
 <img @src="setup.ImagePath + '/' + _args[0] + _n + _args[3]" @class="_args[4] || 'evidenceImgs'">
 <</widget>>
 
-/* randRangeVideo — args: pathPrefix, start, end, ext.
+/* randRangeVideo -- args: pathPrefix, start, end, ext.
    Video counterpart of randRangeImg. Each file is rendered in the same
    autoplay/muted/loop/displayCentredImgs shell that TarotCards used to
    repeat per-card. */
@@ -185,7 +185,7 @@ All you can do now is wait and hope it doesn’t find you.@@
 </video>
 <</widget>>
 
-/* notFound — args: message. Canonical "I didn't find anything" block used
+/* notFound -- args: message. Canonical "I didn't find anything" block used
    by every evidence-check passage when the roll fails or the ghost isn't
    in the current room. */
 <<widget "notFound">>
@@ -193,7 +193,7 @@ All you can do now is wait and hope it doesn’t find you.@@
 <div class="notFound-container"><div class="mc-thoughts">_msg</div></div>
 <</widget>>
 
-/* coloredText — args: color, content. Wraps content in the evidence
+/* coloredText -- args: color, content. Wraps content in the evidence
    "bold + stroke" text style, optionally coloured. Pass "" for no colour. */
 <<widget "coloredText">>
 <<set _ctColor to _args[0] || "inherit">>

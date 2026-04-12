@@ -146,7 +146,7 @@ setup.Home = (function () {
 			m.lust = 30 + Math.floor(Math.random() * 31);
 		},
 		applyAssaultDebuff: function () {
-			// Same ranges as the sleep penalty but does not restore energy —
+			// Same ranges as the sleep penalty but does not restore energy --
 			// used by standalone assault events (e.g. ParkEvent2).
 			var m = mc();
 			m.sanityMax = 70;

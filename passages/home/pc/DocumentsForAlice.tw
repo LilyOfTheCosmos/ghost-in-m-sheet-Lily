@@ -12,7 +12,7 @@
 @@.backbtn; [[Finish the work and send the documents to Alice|Use PC]]@@<br>
 
 <<else>>
-@@.mc-speech; I’m too tired@@ @@.warningtext; (Req. 3 <img @src="setup.ImagePath + '/img/energy.png'" style="position: relative; top: 0.375em; width:3%;">)@@<br>
+@@.mc-speech; I'm too tired@@ @@.warningtext; (Req. 3 <img @src="setup.ImagePath + '/img/energy.png'" style="position: relative; top: 0.375em; width:3%;">)@@<br>
 <br>
 @@.backbtn; [[Back|Use PC]]@@<br>
 <</if>>

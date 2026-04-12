@@ -4,12 +4,12 @@
 
 <<if setup.Library.brookIsPossessed()>>
 <img @src="setup.ImagePath + '/img/libraryInside.jpg'" width="100%">
-@@.mc-speech; She’s not there... strange...@@<br><br>
+@@.mc-speech; She's not there... strange...@@<br><br>
 @@.backbtn; [[Leave|LibraryInside]] @@<br>
 <<else>>
 <<if setup.Library.brookIsWithRain()>>
 <img @src="setup.ImagePath + '/img/libraryInside.jpg'" width="100%">
-@@.mc-thoughts;She’s probably still with Rain. Maybe it’s worth waiting a couple of days. @@<br><br>
+@@.mc-thoughts;She's probably still with Rain. Maybe it's worth waiting a couple of days. @@<br><br>
 @@.backbtn; [[Leave|LibraryInside]] @@<br>
 <<else>>
 
@@ -71,7 +71,7 @@ By the way, I found some information about a rare ghost here in the library. @@<
 
 
 <span class="CompanionInfoAskForHuntAlone">
-@@.mc-speech;<<link "I’d like you to go ghost hunting alone.">>
+@@.mc-speech;<<link "I'd like you to go ghost hunting alone.">>
 <<set $isCompChosenBrook to 0>>
 <<replace "#brookInfoAnswer">>@@.notmc-speech; I think I'm already experienced enough to do it on my own. Where should I go?@@<br>
 
