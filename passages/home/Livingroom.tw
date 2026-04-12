@@ -17,16 +17,14 @@
 <<unset $tentaclesEventTVText>>
 <</if>>
 @@.usebtn;<<link "Watch tv (30 min)" "Livingroom">>
+<<addTime 30>>
 <<if setup.Home.spiritNapEventReady()>>
 <<goto "ghostSpecialEventTVSpirit">>
 <<elseif setup.Home.succubusTVEventReady()>>
 <<goto "succubusEventTV">>
-<<addTime 30>>
 <<elseif setup.Home.tentaclesTVEventReady()>>
 <<goto "tentaclesEventTV">>
-<<addTime 30>>
 <</if>>
-<<addTime 30>>
 <</link>>@@<br>
 @@.enterbtn;[[Use PC]]@@<br>
 @@.enterbtn;<<link "Bedroom" "Bedroom">><<addTime 0.5>><</link>>@@<br>

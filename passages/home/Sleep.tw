@@ -25,15 +25,9 @@
 <<else>>
 @@.backbtn;<<link "Wake up" "Bedroom">><<set $hours +=8>><<if $hours >=24>><<set $hours -=24>><<include "resetCD">><</if>><</link>>@@
 <<if $isPenaltyOn eq 1>>
-<<set $mc.sanityMax to 70>>
-<<set $mc.sanity to random(40,70)>>
-<<set $mc.energy to $mc.energyMax>>
-<<set $mc.lust to random(30,60)>>
+<<run setup.Home.applySleepPenalty()>>
 <<else>>
-<<set $mc.sanityMax to 100>>
-<<set $mc.sanity to $mc.sanityMax>>
-<<set $mc.energy to $mc.energyMax>>
-<<set $mc.lust to 0>>
+<<run setup.Home.applyFullRest()>>
 <</if>>
 
 <<if previous() eq "ghostSpecialEventMareEnd">>

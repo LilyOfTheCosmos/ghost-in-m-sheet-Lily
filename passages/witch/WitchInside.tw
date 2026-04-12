@@ -73,7 +73,6 @@ She told me that recently, her girls â€” who, like you, are also ghost huntersâ€
 @@.notmc-speech; Yes, as long as you're inexperienced, that's enough for you.@@ <br>
 @@.warningtext; (Req. lvl 2+)@@<br>
 <<else>>
-<<if $mc.lvl gte 2>>
 <<if setup.Witch.canOfferCursedItemQuest()>>
 <<linkreplace "@@.usebtn;I have a small task for you.@@">>
 <<set $gotCursedItem to 0>>	
@@ -111,7 +110,6 @@ In every house with a ghost, there is a cursed object. It could be in any room. 
 
 @@.mc-speech; Alright, extra money never hurts.@@
 <</linkreplace>>
-<</if>>
 <</if>>
 <</if>>
 

@@ -66,26 +66,13 @@ But for now, I need to go to the [[bathroom|Bathroom]].
 <<else>>
 
 
-<<if setup.Home.justSleptFromBedroom() and (previous(2) neq "HuntOverSanity" or previous(2) neq "huntEnd")>>
-<<if $ghostMareEventStart eq 1>>
-<<set $ghostMareEventStart to 2>><</if>>
-<<if setup.Home.mareStageIsLow()>>
-<<set $mc.sanityMax to 70>>
-<<set $mc.sanity to random(50,70)>>
-<<set $mc.energy to $mc.energyMax>>
-<<set $mc.lust to random(30,60)>>
-<<else>>
-<<set $mc.sanityMax to 50>>
-<<set $mc.sanity to random(30,49)>>
-<<set $mc.energy to $mc.energyMax>>
-<<set $mc.lust to random(60,90)>>
+<<if setup.Home.justSleptFromBedroom()>>
+<<run setup.Home.applyMareWake()>>
+<<run setup.Home.advanceMareStageOnWake()>>
+<<if $isPenaltyOn neq 1>>
+@@.mc-speech; I feel unwell... strange, I need to find out what's happening to me. In this condition, it will be much harder for me to hunt ghosts.@@<br>
 <</if>>
-<<if hasVisited("ghostSpecialEventMare") and $ghostMareEventStart gte 1 and (previous(2) neq "HuntOverSanity" or previous(2) neq "huntEnd")>>
-<<set $ghostMareEventStart to 4>>
 <</if>>
-<<if $isPenaltyOn eq 1>>
-<<else>>
-@@.mc-speech; I feel unwell... strange, I need to find out what's happening to me. In this condition, it will be much harder for me to hunt ghosts.@@<br><</if>><</if>>
 @@.enterbtn;[[Wardrobe|wardrobe]]@@ <br>
 @@.enterbtn;[[Bathroom]]@@<br>
 @@.usebtn;[[Sleep (8 hours)|Sleep]]@@<br>
