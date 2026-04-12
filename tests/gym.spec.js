@@ -1,15 +1,19 @@
 const { test, expect } = require('@playwright/test');
-const { openGame, setVar, getVar, callSetup } = require('./helpers');
+const { openGame, resetGame, setVar, getVar, callSetup } = require('./helpers');
 
 test.describe('Gym Controller', () => {
   let page;
 
-  test.beforeEach(async ({ browser }) => {
+  test.beforeAll(async ({ browser }) => {
     page = await openGame(browser);
   });
 
-  test.afterEach(async () => {
+  test.afterAll(async () => {
     await page.close();
+  });
+
+  test.beforeEach(async () => {
+    await resetGame(page);
   });
 
   // --- Open hours ---

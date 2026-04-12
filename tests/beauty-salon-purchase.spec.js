@@ -1,18 +1,20 @@
 const { test, expect } = require('@playwright/test');
-const { GAME_URL, waitForSugarCube, goToPassage, getVar, setVar } = require('./helpers');
+const { openGame, resetGame, goToPassage, getVar, setVar } = require('./helpers');
 
 test.describe('Beauty Salon — Piercing Purchase', () => {
   let page;
 
-  test.beforeEach(async ({ browser }) => {
-    page = await browser.newPage();
-    await page.goto(GAME_URL, { waitUntil: 'load' });
-    await waitForSugarCube(page);
-    await setVar(page, 'hours', 12);
+  test.beforeAll(async ({ browser }) => {
+    page = await openGame(browser);
   });
 
-  test.afterEach(async () => {
+  test.afterAll(async () => {
     await page.close();
+  });
+
+  test.beforeEach(async () => {
+    await resetGame(page);
+    await setVar(page, 'hours', 12);
   });
 
   test('purchasing ears piercing deducts money and marks item as worn', async () => {

@@ -1,15 +1,19 @@
 const { test, expect } = require('@playwright/test');
-const { openGame, setVar, callSetup } = require('./helpers');
+const { openGame, resetGame, setVar, callSetup } = require('./helpers');
 
 test.describe('Salon Controller', () => {
   let page;
 
-  test.beforeEach(async ({ browser }) => {
+  test.beforeAll(async ({ browser }) => {
     page = await openGame(browser);
   });
 
-  test.afterEach(async () => {
+  test.afterAll(async () => {
     await page.close();
+  });
+
+  test.beforeEach(async () => {
+    await resetGame(page);
   });
 
   test('isOpen true during operating hours (8-21)', async () => {

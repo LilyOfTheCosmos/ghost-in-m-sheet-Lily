@@ -68,6 +68,16 @@ async function openGame(browser) {
   return page;
 }
 
+/**
+ * Reset SugarCube state by restarting the engine (replays StoryInit).
+ * Much faster than closing and reopening the page.
+ */
+async function resetGame(page) {
+  await page.evaluate(() => SugarCube.Engine.restart());
+  await waitForSugarCube(page);
+  await page.waitForFunction(() => SugarCube.State.passage !== '');
+}
+
 module.exports = {
   GAME_URL,
   waitForSugarCube,
@@ -76,4 +86,5 @@ module.exports = {
   setVar,
   callSetup,
   openGame,
+  resetGame,
 };
