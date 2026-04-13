@@ -1,0 +1,475 @@
+:: SeduceGhostMinigameController [script]
+/*
+ * Centralized state queries, mutations, and data for the seduce-ghost
+ * minigame. Manages state transitions, arousal-meter math, action
+ * handlers, and video-list lookups. Widget passages call into
+ * setup.SeduceGhostMinigame instead of inlining the underlying logic.
+ */
+setup.SeduceGhostMinigame = (function () {
+	function v(n) { return State.variables[n]; }
+	function sv(n, val) { State.variables[n] = val; }
+	function mc() { return State.variables.mc; }
+
+	function img(src) { return { type: "image", src: src }; }
+	function vid(src) { return { type: "video", src: src }; }
+
+	function pickRandom(arr) {
+		return arr[random(0, arr.length - 1)];
+	}
+
+	function addEnergy(amount) {
+		var m = mc();
+		m.energy += amount;
+		if (m.energy > m.energyMax) m.energy = m.energyMax;
+	}
+
+	function clampMeters() {
+		if (v("ghostOrgasmMeter") < 0) sv("ghostOrgasmMeter", 0);
+		if (v("mcOrgasmMeter") < 0) sv("mcOrgasmMeter", 0);
+	}
+
+	function ghostWin() { return v("ghostOrgasmMeter") >= 100; }
+	function mcWin() { return v("mcOrgasmMeter") >= 100; }
+
+	// ----------------------------------------------------------------
+	// Video data -- keyed by state, each entry has ghostWin/mcWin/normal
+	// ----------------------------------------------------------------
+
+	// Shared video pools reused across multiple states
+	var TEASE_NORMAL = [
+		img("minigame/tease/1.webp"), vid("minigame/tease/1.mp4"),
+		vid("minigame/tease/2.mp4"), vid("minigame/tease/3.mp4"),
+		img("minigame/tease/4.webp"), vid("minigame/tease/5.mp4"),
+		vid("minigame/tease/6.mp4"), vid("minigame/tease/7.mp4"),
+		vid("minigame/tease/8.mp4"), vid("minigame/tease/9.mp4"),
+		img("minigame/tease/10.webp")
+	];
+	var TEASE_MC_WIN_A = [
+		img("minigame/tease/end1.webp"), img("minigame/tease/end2.webp"),
+		vid("minigame/tease/end9.mp4")
+	];
+	var TEASE_MC_WIN_B = [
+		img("minigame/tease/end3.webp"), img("minigame/tease/end2.webp"),
+		img("minigame/tease/end5.webp"), vid("minigame/tease/end9.mp4")
+	];
+	var BJ_MC_WIN = [
+		img("minigame/blowjob/bjend10.webp"), img("minigame/blowjob/bjend11.webp"),
+		img("minigame/blowjob/bjend12.webp"), img("minigame/blowjob/bjend13.webp")
+	];
+
+	var VIDEOS = {
+		seduceFailed: { normal: TEASE_NORMAL },
+		seduce: {
+			ghostWin: [
+				img("minigame/tease/slapend1.webp"), img("minigame/tease/slapend2.webp"),
+				img("minigame/tease/end4.webp"), img("minigame/tease/end5.webp"),
+				img("minigame/tease/end6.webp"), img("minigame/tease/end7.webp")],
+			mcWin: TEASE_MC_WIN_A,
+			normal: TEASE_NORMAL
+		},
+		slapface: {
+			ghostWin: [img("minigame/tease/slapend1.webp"), img("minigame/tease/slapend2.webp")],
+			mcWin: TEASE_MC_WIN_A,
+			normal: [
+				img("minigame/tease/70.webp"), img("minigame/tease/71.webp"),
+				img("minigame/tease/72.webp"), img("minigame/tease/73.webp"),
+				img("minigame/tease/74.webp"), img("minigame/tease/75.webp"),
+				img("minigame/tease/76.webp"), img("minigame/tease/77.webp")]
+		},
+		subdueslapface: {
+			ghostWin: [img("minigame/tease/slapend3.webp"), img("minigame/tease/slapend4.webp")],
+			mcWin: TEASE_MC_WIN_A,
+			normal: [
+				img("minigame/tease/80.webp"), img("minigame/tease/81.webp"),
+				img("minigame/tease/82.webp"), img("minigame/tease/83.webp"),
+				img("minigame/tease/84.webp")]
+		},
+		assjob: {
+			ghostWin: [
+				img("minigame/tease/end4.webp"), img("minigame/tease/end6.webp"),
+				img("minigame/tease/end7.webp")],
+			mcWin: TEASE_MC_WIN_B,
+			normal: [
+				img("minigame/tease/11.webp"), vid("minigame/tease/12.mp4"),
+				vid("minigame/tease/13.mp4"), vid("minigame/tease/14.mp4"),
+				vid("minigame/tease/15.mp4"), vid("minigame/tease/16.mp4"),
+				img("minigame/tease/17.webp"), img("minigame/tease/18.webp"),
+				vid("minigame/tease/19.mp4")]
+		},
+		subdueassjob: {
+			ghostWin: [
+				img("minigame/tease/end6.webp"), img("minigame/tease/end7.webp"),
+				img("minigame/tease/end8.webp")],
+			mcWin: TEASE_MC_WIN_B,
+			normal: [
+				img("minigame/tease/20.webp"), vid("minigame/tease/21.webm"),
+				img("minigame/tease/22.webp"), img("minigame/tease/23.webp"),
+				vid("minigame/tease/24.mp4"), img("minigame/tease/25.webp"),
+				img("minigame/tease/26.webp"), vid("minigame/tease/27.mp4")]
+		},
+		titjob: {
+			ghostWin: [img("minigame/tease/30end1.webp"), img("minigame/tease/30end2.webp")],
+			mcWin: [
+				img("minigame/tease/end2.webp"), img("minigame/tease/end1.webp"),
+				vid("minigame/tease/end9.mp4")],
+			normal: [
+				img("minigame/tease/30.webp"), img("minigame/tease/31.webp"),
+				img("minigame/tease/32.webp"), img("minigame/tease/33.webp"),
+				img("minigame/tease/34.webp"), img("minigame/tease/35.webp"),
+				img("minigame/tease/36.webp"), img("minigame/tease/37.webp"),
+				img("minigame/tease/38.webp")]
+		},
+		subduetitjob: {
+			ghostWin: [
+				img("minigame/tease/30end3.webp"), img("minigame/tease/30end4.webp"),
+				img("minigame/tease/30end5.webp")],
+			mcWin: [
+				img("minigame/tease/end2.webp"), img("minigame/tease/end1.webp"),
+				vid("minigame/tease/end9.mp4")],
+			normal: [
+				img("minigame/tease/40.webp"), img("minigame/tease/41.webp"),
+				img("minigame/tease/42.webp"), img("minigame/tease/43.webp"),
+				img("minigame/tease/44.webp"), img("minigame/tease/45.webp"),
+				img("minigame/tease/46.webp"), img("minigame/tease/47.webp"),
+				img("minigame/tease/48.webp"), img("minigame/tease/49.webp")]
+		},
+		rimjob: {
+			ghostWin: [img("minigame/tease/60end1.webp")],
+			mcWin: [
+				img("minigame/tease/end2.webp"), img("minigame/tease/end1.webp"),
+				vid("minigame/tease/end9.mp4")],
+			normal: [
+				img("minigame/tease/50.webp"), img("minigame/tease/51.webp"),
+				img("minigame/tease/52.webp"), img("minigame/tease/53.webp"),
+				img("minigame/tease/54.webp"), img("minigame/tease/55.webp"),
+				img("minigame/tease/56.webp")]
+		},
+		subduerimjob: {
+			ghostWin: [img("minigame/tease/60end1.webp")],
+			mcWin: [
+				img("minigame/tease/end2.webp"), img("minigame/tease/end1.webp"),
+				vid("minigame/tease/end9.mp4")],
+			normal: [
+				img("minigame/tease/60.webp"), img("minigame/tease/61.webp"),
+				img("minigame/tease/62.webp"), img("minigame/tease/63.webp"),
+				img("minigame/tease/64.webp"), img("minigame/tease/65.webp")]
+		},
+		blowjob: {
+			ghostWin: [
+				vid("minigame/blowjob/bjend5.mp4"), vid("minigame/blowjob/bjend6.mp4"),
+				img("minigame/blowjob/bjend7.webp"), img("minigame/blowjob/bjend8.webp")],
+			mcWin: BJ_MC_WIN,
+			normal: [
+				img("minigame/blowjob/30.webp"), img("minigame/blowjob/31.webp"),
+				img("minigame/blowjob/32.webp"), img("minigame/blowjob/33.webp"),
+				img("minigame/blowjob/34.webp"), img("minigame/blowjob/35.webp"),
+				img("minigame/blowjob/36.webp"), img("minigame/blowjob/37.webp"),
+				img("minigame/blowjob/38.webp"), img("minigame/blowjob/39.webp"),
+				img("minigame/blowjob/40.webp"), img("minigame/blowjob/41.webp"),
+				vid("minigame/blowjob/42.mp4"), vid("minigame/blowjob/43.mp4"),
+				vid("minigame/blowjob/44.mp4"), vid("minigame/blowjob/45.mp4"),
+				vid("minigame/blowjob/46.mp4"), vid("minigame/blowjob/47.mp4")]
+		},
+		subdueblowjob: {
+			ghostWin: [
+				img("minigame/blowjob/bjend1.webp"), img("minigame/blowjob/bjend2.webp"),
+				img("minigame/blowjob/bjend3.webp")],
+			mcWin: BJ_MC_WIN,
+			normal: [
+				img("minigame/blowjob/50.webp"), img("minigame/blowjob/51.webp"),
+				img("minigame/blowjob/52.webp"), img("minigame/blowjob/53.webp"),
+				img("minigame/blowjob/54.webp"), img("minigame/blowjob/55.webp"),
+				img("minigame/blowjob/56.webp"), img("minigame/blowjob/57.webp"),
+				img("minigame/blowjob/58.webp"), vid("minigame/blowjob/59.mp4")]
+		},
+		penetratepussy: {
+			ghostWin: [
+				img("minigame/penetrate/end1.webp"), img("minigame/penetrate/end2.webp"),
+				img("minigame/penetrate/end5.webp")],
+			mcWin: [img("minigame/penetrate/end3.webp"), img("minigame/penetrate/end4.webp")],
+			normal: [
+				img("minigame/penetrate/1.webp"), img("minigame/penetrate/2.webp"),
+				img("minigame/penetrate/3.webp"), img("minigame/penetrate/4.webp"),
+				img("minigame/penetrate/5.webp"), img("minigame/penetrate/6.webp"),
+				vid("minigame/penetrate/7.mp4"), vid("minigame/penetrate/8.mp4"),
+				vid("minigame/penetrate/9.mp4"), vid("minigame/penetrate/10.mp4"),
+				vid("minigame/penetrate/11.mp4"), vid("minigame/penetrate/12.mp4"),
+				vid("minigame/penetrate/13.mp4"), vid("minigame/penetrate/14.mp4")]
+		},
+		penetrateanal: {
+			ghostWin: [
+				img("minigame/penetrate/end8.webp"), img("minigame/penetrate/end9.webp"),
+				vid("minigame/penetrate/end11.mp4")],
+			mcWin: [
+				img("minigame/penetrate/end6.webp"), img("minigame/penetrate/end7.webp"),
+				img("minigame/penetrate/end10.webp")],
+			normal: [
+				img("minigame/penetrate/20.webp"), img("minigame/penetrate/21.webp"),
+				img("minigame/penetrate/22.webp"), img("minigame/penetrate/23.webp"),
+				img("minigame/penetrate/24.webp"), img("minigame/penetrate/25.webp"),
+				vid("minigame/penetrate/26.mp4"), img("minigame/penetrate/27.webp"),
+				img("minigame/penetrate/28.webp"), img("minigame/penetrate/29.webp"),
+				img("minigame/penetrate/30.webp"), img("minigame/penetrate/31.webp")]
+		},
+		fuckpussy: {
+			ghostWin: [
+				img("minigame/sex/end5.webp"), img("minigame/sex/end6.webp"),
+				img("minigame/sex/end7.webp"), img("minigame/sex/end9.webp")],
+			mcWin: [
+				img("minigame/sex/end1.webp"), img("minigame/sex/end2.webp"),
+				img("minigame/sex/end3.webp"), img("minigame/sex/end4.webp")],
+			normal: [
+				img("minigame/sex/1.webp"), img("minigame/sex/2.webp"),
+				img("minigame/sex/3.webp"), img("minigame/sex/4.webp"),
+				img("minigame/sex/5.webp"), img("minigame/sex/6.webp"),
+				img("minigame/sex/7.webp"), img("minigame/sex/8.webp"),
+				img("minigame/sex/9.webp"), img("minigame/sex/10.webp"),
+				vid("minigame/sex/11.mp4"), vid("minigame/sex/12.mp4"),
+				vid("minigame/sex/13.mp4"), vid("minigame/sex/14.mp4"),
+				vid("minigame/sex/15.mp4"), vid("minigame/sex/16.mp4"),
+				vid("minigame/sex/17.mp4")]
+		},
+		fuckanal: {
+			ghostWin: [
+				img("minigame/sex/end17.webp"), img("minigame/sex/end18.webp"),
+				img("minigame/sex/end19.webp"), img("minigame/sex/end20.webp"),
+				img("minigame/sex/end21.webp"), img("minigame/sex/end22.webp")],
+			mcWin: [
+				img("minigame/sex/end10.webp"), img("minigame/sex/end11.webp"),
+				img("minigame/sex/end12.webp"), img("minigame/sex/end13.webp"),
+				img("minigame/sex/end14.webp"), img("minigame/sex/end15.webp"),
+				img("minigame/sex/end16.webp")],
+			normal: [
+				img("minigame/sex/20.webp"), img("minigame/sex/21.webp"),
+				img("minigame/sex/22.webp"), img("minigame/sex/23.webp"),
+				img("minigame/sex/24.webp"), img("minigame/sex/25.webp"),
+				img("minigame/sex/26.webp"), img("minigame/sex/27.webp"),
+				img("minigame/sex/28.webp"), img("minigame/sex/29.webp"),
+				img("minigame/sex/30.webp"), img("minigame/sex/31.webp"),
+				img("minigame/sex/32.webp"), img("minigame/sex/33.webp"),
+				img("minigame/sex/34.webp"), img("minigame/sex/35.webp"),
+				img("minigame/sex/36.webp")]
+		}
+	};
+
+	// ----------------------------------------------------------------
+	// State transition tables
+	// ----------------------------------------------------------------
+
+	var TEASE_POOL = ["slapface", "assjob", "titjob"];
+
+	/*
+	 * Resist transitions: each state maps to { success: [...], fail: [...] }.
+	 * One entry is picked at random from the combined pool; entries from
+	 * `success` set minigameEventFailed=0, entries from `fail` set it to 1.
+	 */
+	var RESIST = {
+		slapface:       { success: ["seduce"], fail: ["slapface", "titjob", "assjob"] },
+		assjob:         { success: ["seduce"], fail: ["slapface", "titjob", "assjob"] },
+		titjob:         { success: ["seduce"], fail: ["slapface", "titjob", "assjob"] },
+		subdueslapface: { success: ["seduce"], fail: ["slapface", "titjob", "assjob"] },
+		subduetitjob:   { success: ["seduce"], fail: ["slapface", "titjob", "assjob"] },
+		subdueassjob:   { success: ["seduce"], fail: ["slapface", "titjob", "assjob"] },
+		rimjob:         { success: ["seduce", "slapface", "titjob", "assjob"], fail: ["rimjob", "blowjob"] },
+		blowjob:        { success: ["seduce", "slapface", "titjob", "assjob"], fail: ["rimjob", "blowjob"] },
+		subduerimjob:   { success: ["seduce", "slapface", "titjob", "assjob"], fail: ["rimjob", "blowjob"] },
+		subdueblowjob:  { success: ["seduce", "slapface", "titjob", "assjob"], fail: ["rimjob", "blowjob"] },
+		penetratepussy: { success: ["seduce", "slapface", "titjob", "assjob", "rimjob", "blowjob"], fail: ["penetratepussy", "penetrateanal"] },
+		penetrateanal:  { success: ["seduce", "slapface", "titjob", "assjob", "rimjob", "blowjob"], fail: ["penetratepussy", "penetrateanal"] },
+		fuckpussy:      { success: ["seduce", "slapface", "titjob", "assjob", "rimjob", "blowjob", "penetratepussy", "penetrateanal"], fail: ["fuckpussy"] },
+		fuckanal:       { success: ["seduce", "slapface", "titjob", "assjob", "rimjob", "blowjob", "penetratepussy", "penetrateanal"], fail: [] }
+	};
+
+	/*
+	 * Submit transitions: the pool of next states (all count as success).
+	 * pickRandom gives equal weight to each entry, so duplicates raise
+	 * the probability of that state (e.g. fuckpussy appears 3x = 75%).
+	 */
+	var SUBMIT_NEXT = {
+		seduce:         TEASE_POOL,
+		slapface:       ["rimjob", "blowjob", "penetratepussy", "penetrateanal"],
+		assjob:         ["rimjob", "blowjob", "penetratepussy", "penetrateanal"],
+		titjob:         ["rimjob", "blowjob", "penetratepussy", "penetrateanal"],
+		subdueslapface: ["rimjob", "blowjob", "penetratepussy", "penetrateanal"],
+		subduetitjob:   ["rimjob", "blowjob", "penetratepussy", "penetrateanal"],
+		subdueassjob:   ["rimjob", "blowjob", "penetratepussy", "penetrateanal"],
+		rimjob:         ["penetratepussy", "penetrateanal"],
+		blowjob:        ["penetratepussy", "penetrateanal"],
+		subduerimjob:   ["penetratepussy", "penetrateanal"],
+		subdueblowjob:  ["penetratepussy", "penetrateanal"],
+		penetratepussy: ["fuckpussy", "penetrateanal"],
+		penetrateanal:  ["fuckanal", "penetratepussy"],
+		fuckpussy:      ["fuckpussy", "penetrateanal", "fuckpussy", "fuckpussy"],
+		fuckanal:       ["penetratepussy", "fuckanal"]
+	};
+
+	/*
+	 * Subdue transitions: 2/3 chance of success (go to subdue variant),
+	 * 1/3 chance of failure (stay in base state).
+	 */
+	var SUBDUE = {
+		slapface:       { success: "subdueslapface", fail: "slapface" },
+		assjob:         { success: "subdueassjob",   fail: "assjob" },
+		titjob:         { success: "subduetitjob",   fail: "titjob" },
+		subdueslapface: { success: "subdueslapface", fail: "slapface" },
+		subduetitjob:   { success: "subduetitjob",   fail: "titjob" },
+		subdueassjob:   { success: "subdueassjob",   fail: "assjob" },
+		rimjob:         { success: "subduerimjob",   fail: "rimjob" },
+		blowjob:        { success: "subdueblowjob",  fail: "blowjob" },
+		subduerimjob:   { success: "subduerimjob",   fail: "rimjob" },
+		subdueblowjob:  { success: "subdueblowjob",  fail: "blowjob" }
+	};
+
+	// States where resist costs no energy and does not change meters
+	var FREE_RESIST = ["subdueslapface", "subduetitjob", "subdueassjob"];
+
+	// ----------------------------------------------------------------
+	// Transition helpers
+	// ----------------------------------------------------------------
+
+	function rollResist(state) {
+		var t = RESIST[state];
+		if (!t) return;
+		var pool = [];
+		t.success.forEach(function (s) { pool.push({ state: s, failed: 0 }); });
+		t.fail.forEach(function (s) { pool.push({ state: s, failed: 1 }); });
+		if (pool.length === 0) return;
+		var pick = pickRandom(pool);
+		sv("minigameVideo", pick.state);
+		sv("minigameEventFailed", pick.failed);
+	}
+
+	function rollSubmit(state) {
+		var pool = SUBMIT_NEXT[state];
+		if (!pool || pool.length === 0) return;
+		sv("minigameVideo", pickRandom(pool));
+		sv("minigameEventFailed", 0);
+	}
+
+	function rollSubdue(state) {
+		var t = SUBDUE[state];
+		if (!t) return;
+		if (random(1, 3) <= 2) {
+			sv("minigameVideo", t.success);
+			sv("minigameEventFailed", 0);
+		} else {
+			sv("minigameVideo", t.fail);
+			sv("minigameEventFailed", 1);
+		}
+	}
+
+	// ----------------------------------------------------------------
+	// Public API
+	// ----------------------------------------------------------------
+	return {
+		// --- Meter queries ---
+		isGhostFinished: function () { return ghostWin(); },
+		isMcFinished:    function () { return mcWin(); },
+		isFinished:      function () { return ghostWin() || mcWin(); },
+
+		// --- State queries ---
+		hasSubdue:          function (s) { return SUBDUE.hasOwnProperty(s || v("minigameVideo")); },
+		resistCostsEnergy:  function (s) { return FREE_RESIST.indexOf(s || v("minigameVideo")) === -1; },
+
+		// --- Video lookup ---
+		getVideoList: function () {
+			var state = v("minigameVideo");
+			if (state === "start") {
+				var mi = mc().makeupImg;
+				var src = mi === 1 ? "img/makeup1.jpg"
+						: mi === 2 ? "img/makeup2.jpg"
+						: mi === 3 ? "img/makeup3.jpg"
+						: "img/mc.jpg";
+				return [img(src)];
+			}
+			var data = VIDEOS[state];
+			if (!data) return [img("img/mc.jpg")];
+			if (ghostWin() && data.ghostWin) return data.ghostWin;
+			if (mcWin() && data.mcWin) return data.mcWin;
+			return data.normal || [];
+		},
+
+		// --- Actions ---
+		init: function () {
+			sv("minigameVideo", "start");
+			sv("ghostOrgasmMeter", 0);
+			sv("mcOrgasmMeter", 0);
+		},
+
+		leave: function () {
+			delete State.variables.minigameVideo;
+		},
+
+		tryAttract: function () {
+			mc().energy -= 1;
+			if (random(30, 100) <= mc().beauty) {
+				sv("minigameEventFailed", 0);
+				sv("minigameVideo", "seduce");
+			} else {
+				sv("minigameEventFailed", 1);
+				sv("minigameVideo", "seduceFailed");
+			}
+		},
+
+		tryAgain: function () {
+			mc().energy -= 1;
+			if (random(30, 100) <= mc().beauty) {
+				sv("minigameEventFailed", 0);
+				sv("minigameVideo", pickRandom(TEASE_POOL));
+			} else {
+				sv("minigameEventFailed", 1);
+				sv("minigameVideo", "seduceFailed");
+			}
+		},
+
+		continueSeduce: function () {
+			addEnergy(0.2);
+			sv("mcOrgasmMeter", v("mcOrgasmMeter") + random(4, 8));
+			sv("ghostOrgasmMeter", v("ghostOrgasmMeter") + random(2, 6));
+			if (!ghostWin() && !mcWin()) {
+				sv("minigameEventFailed", 0);
+				sv("minigameVideo", pickRandom(TEASE_POOL));
+			}
+		},
+
+		tryLeave: function () {
+			if (random(1, 2) === 1) {
+				delete State.variables.minigameVideo;
+			} else {
+				sv("minigameEventFailed", 1);
+				sv("minigameVideo", pickRandom(TEASE_POOL));
+			}
+		},
+
+		resist: function () {
+			var state = v("minigameVideo");
+			if (FREE_RESIST.indexOf(state) === -1) {
+				mc().energy -= 1;
+				sv("mcOrgasmMeter", v("mcOrgasmMeter") - random(2, 6));
+				sv("ghostOrgasmMeter", v("ghostOrgasmMeter") - random(0, 5));
+				clampMeters();
+			}
+			rollResist(state);
+		},
+
+		submit: function () {
+			var state = v("minigameVideo");
+			addEnergy(0.2);
+			sv("mcOrgasmMeter", v("mcOrgasmMeter") + random(4, 8));
+			var ghostInc = (state === "subduetitjob") ? random(2, 5) : random(2, 6);
+			sv("ghostOrgasmMeter", v("ghostOrgasmMeter") + ghostInc);
+			sv("minigameEventFailed", 0);
+			if (!ghostWin() && !mcWin()) {
+				rollSubmit(state);
+			}
+		},
+
+		subdue: function () {
+			var state = v("minigameVideo");
+			mc().energy -= 1;
+			sv("mcOrgasmMeter", v("mcOrgasmMeter") + random(2, 6));
+			sv("ghostOrgasmMeter", v("ghostOrgasmMeter") + random(5, 10));
+			rollSubdue(state);
+		}
+	};
+})();

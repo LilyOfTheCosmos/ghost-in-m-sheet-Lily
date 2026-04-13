@@ -127,19 +127,20 @@ sugarcube-2:
       description: "Sets _videoList to the video pool for a specific Cthulion ghost
         ability tier (1-4). Used before rendering the event video for
         Cthulion-specific scenes. Args: tier (number, 1-4)."
-    minigameVideo:
-      name: minigameVideo
-      description: Renders the media (image or video) for the current minigame state.
-        Uses $minigameVideo and $ghostOrgasmMeter to select content from
-        _videoList.
-    minigameMenu:
-      name: minigameMenu
-      description: Renders the interactive action buttons for the seduction minigame.
-        Button choices depend on $minigameVideo state and current stats.
-    minigameText:
-      name: minigameText
+    seduceGhostMinigameVideo:
+      name: seduceGhostMinigameVideo
+      description: Renders the media (image or video) for the current seduce-ghost
+        minigame state. Delegates video-list lookup to
+        setup.SeduceGhostMinigame.getVideoList().
+    seduceGhostMinigameMenu:
+      name: seduceGhostMinigameMenu
+      description: Renders the interactive action buttons for the seduce-ghost
+        minigame. Button choices depend on $minigameVideo state and current stats.
+        Action logic is delegated to setup.SeduceGhostMinigame.
+    seduceGhostMinigameText:
+      name: seduceGhostMinigameText
       description: Renders the dialogue and stat feedback text for the current
-        seduction minigame state.
+        seduce-ghost minigame state.
     ghostRoom:
       name: ghostRoom
       description: Prints the human-readable display name of the ghost's current

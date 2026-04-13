@@ -1,6 +1,6 @@
-:: minigame [nobr noreturn] {"position":"1000,3900","size":"100,100"}
+:: seduceGhostMinigame [nobr noreturn] {"position":"1000,3900","size":"100,100"}
 <div id="minigame_mainvideo">
-<<minigameVideo>>
+<<seduceGhostMinigameVideo>>
 
 <b> <<if $ghostOrgasmMeter lte 0>><<set $ghostOrgasmMeter to 0>><</if>>
 Ghost's Arousal: $ghostOrgasmMeter |  <<if $mcOrgasmMeter lte 0>><<set $mcOrgasmMeter to 0>><</if>>Your Arousal:  $mcOrgasmMeter <br> </b>
@@ -13,7 +13,7 @@ Ghost's Arousal: $ghostOrgasmMeter |  <<if $mcOrgasmMeter lte 0>><<set $mcOrgasm
 <<else>>
 <</if>>
 
-<<minigameText>>
+<<seduceGhostMinigameText>>
 
 </div>
 <div id="minigame_menu">
@@ -24,8 +24,6 @@ Ghost's Arousal: $ghostOrgasmMeter |  <<if $mcOrgasmMeter lte 0>><<set $mcOrgasm
 <br>
 @@.usebtn; [[You're passing out|huntEnd]]@@
 <<else>>
-<<minigameMenu>>
+<<seduceGhostMinigameMenu>>
 <</if>>
 </div>
-
-

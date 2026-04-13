@@ -105,10 +105,8 @@
 <span class="cursedHuntLinkDisable"><<link "<img @src='setup.ImagePath + \"/img/lighton.png\"'>" _args[0]>><<set State.variables[_args[1]].background = 1>><</link>>
 <<link "<img @src='setup.ImagePath + \"/img/lightoff.png\"'>" _args[0]>><<set State.variables[_args[1]].background = 2>><</link>>
 <<if $mc.lust gte 80 and $weakenTheGhostQuest and $isWeakenGhost neq 1>>
-<<link "<img @src='setup.ImagePath + \"/img/hearth.png\"'>" "minigame">>
-<<set $minigameVideo to "start">>
-<<set $ghostOrgasmMeter to 0>>
-<<set $mcOrgasmMeter to 0>><</link>>
+<<link "<img @src='setup.ImagePath + \"/img/hearth.png\"'>" "seduceGhostMinigame">>
+<<run setup.SeduceGhostMinigame.init()>><</link>>
 <</if>></span>
 </div>
 <</widget>>
