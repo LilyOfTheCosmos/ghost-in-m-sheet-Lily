@@ -13,6 +13,14 @@ setup.Events = (function () {
 		return val >= lo && val < hi;
 	}
 
+	// --- Sanity thresholds by lust tier (private) ----------------
+	// Index 0 is unused; tiers 1-7 map to the decreasingSanity
+	// stage values.
+	var sanityThresholds = [0, 4, 5, 5, 6, 7, 8, 9];
+
+	// Body-part keys in escalation order (event numbers 1-7).
+	var bodyPartKeys = ['brain', 'tits', 'ass', 'bottom', 'mouth', 'pussy', 'anal'];
+
 	// --- Video data for each event (private) --------------------
 	// _type: 'flat' | 'top' | 'bottom' controls which resolver is used.
 	// 'prison' entries are flat arrays (no location split).
@@ -269,6 +277,53 @@ setup.Events = (function () {
 			if (ev._type === 'top')    return this.topClothingVideos(eventNum);
 			if (ev._type === 'bottom') return this.bottomClothingVideos(eventNum);
 			return [];
+		},
+
+		/*
+		 * Return the Banshee-ability video list (location-aware).
+		 */
+		bansheeVideos: function () {
+			if (v('isIronclad') === 1)
+				return ["prison/banshee1.mp4", "prison/banshee2.mp4"];
+			return ["ghosts/banshee/1.mp4", "ghosts/banshee/2.mp4", "ghosts/banshee/3.mp4",
+			        "ghosts/banshee/4.mp4", "ghosts/banshee/5.mp4", "ghosts/banshee/6.mp4",
+			        "ghosts/banshee/7.mp4", "ghosts/banshee/8.mp4", "ghosts/banshee/9.mp4",
+			        "ghosts/banshee/10.mp4"];
+		},
+
+		/*
+		 * Pick a random body-part event (1-7) based on lust tier and
+		 * a sanity-chance roll.  Returns 0 if no event triggers.
+		 *
+		 * @param {number} chance - a value in [0, 100] (the caller's
+		 *   random roll, shared with Banshee/Cthulion checks).
+		 */
+		rollBodyPartEvent: function (chance) {
+			var tier      = this.lustTier();
+			var threshold = sanityThresholds[tier];
+			if (chance > threshold) return 0;
+
+			var parts      = bodyPartKeys.slice(0, tier);
+			var bp         = State.variables.sensualBodyPart;
+			var multiplier = 3;
+			var weights    = [];
+			var totalWeight = 0;
+
+			for (var i = 0; i < parts.length; i++) {
+				var w = bp[parts[i]] || 0;
+				if (i === parts.length - 1) w *= multiplier;
+				weights.push(w);
+				totalWeight += w;
+			}
+			if (totalWeight <= 0) return 0;
+
+			var roll = Math.floor(Math.random() * totalWeight) + 1;
+			var cumulative = 0;
+			for (var i = 0; i < weights.length; i++) {
+				cumulative += weights[i];
+				if (roll <= cumulative) return i + 1;
+			}
+			return parts.length;
 		}
 	};
 })();
