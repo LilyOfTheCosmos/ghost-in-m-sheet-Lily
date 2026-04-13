@@ -39,9 +39,6 @@ You found a crusifix!
 @@.mc-speech; Enough stealing for today.@@
 <</if>>
 
-
-
-
 <br>
 <<if not setup.Witch.canVisitWitchBedroomNight()>>
 @@.mc-speech; Enough for today.@@
@@ -51,5 +48,3 @@ You found a crusifix!
 <br>
 <br>
 @@.backbtn; [[Leave|Witch]]@@<br>
-
-

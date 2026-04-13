@@ -1,9 +1,7 @@
 :: widgetEvent [widget nobr] {"position":"400,1800","size":"100,100"}
 <<widget "eventRandomizer">><<set _eventKey to _args[0]>><<set _videoList to setup.Events.videoListForEvent(_eventKey)>><</widget>>
 
-
 <<set $tempCorr += 0.05>>
-
 
 <<widget "eventRandomizerText">>
 <<set _bodyPart to _args[0]>>
@@ -51,7 +49,6 @@ You can't hold back anymore. Your hand slides down to your most intimate spot, f
 
 <</if>>
 
-
 <<elseif _bodyPart eq "tits">>
 <<if _ct eq 8>>
 <<addLustByPart>>
@@ -89,7 +86,6 @@ You can't hold back anymore. Your hand slides down to your most intimate spot, f
 @@.mc-speech; No. This has no power over me. I won't let this go any further.@@<br>
 
 <</if>>
-
 
 <<elseif _bodyPart eq "ass">>
 <<if _ct eq 8>>
@@ -129,7 +125,6 @@ You can't hold back anymore. Your hand slides down to your most intimate spot, f
 
 <</if>>
 
-
 <<elseif _bodyPart eq "bottom">>
 <<if _ct eq 8>>
 <<addLustByPart>>
@@ -168,7 +163,6 @@ You can't hold back anymore. Your hand slides down to your most intimate spot, f
 
 <</if>>
 
-
 <<elseif _bodyPart eq "mouth">>
 <<if _ct eq 8>>
 <<addLustByPart>>
@@ -192,7 +186,6 @@ He brings it to your mouth and you take it in your mouth yourself, capturing it 
  @@.mc-speech; ~Gurlp~Gulp~No, I will not submit to you ~Agh~@@<br>
 
 <</if>>
-
 
 <<elseif _bodyPart eq "pussy">>
 <<if _ct eq 8>>
@@ -218,7 +211,6 @@ Taking advantage of your distraction, he shoves his already erect cock into your
 <</if>>
 
 <</if>>
-
 
 <<elseif _bodyPart eq "anal">>
 <<if _ct eq 8>>

@@ -18,6 +18,3 @@ Wait... I think I've seen you before, near the witch's house.@@<br>
 <<set $earnedMoney += $jobMoneySuccessed>>
 <<set $meetAlice to 1>>
 @@.backbtn; [[Leave|DeliveryMap]]@@<br>
-
-
-

@@ -104,17 +104,7 @@ They caught you and dragged you into a dark room. There's no strength to resist.
 They keep fucking your holes until they cum all over your body. After a wild fuck, everything around you slowly disappears  and you @@.usebtn;[[black out|Sleep]]@@<br>
 <</linkappend>>
 
-
 <<else>>
-
-
-
-
-
-
-
-
-
 
 &emsp;&emsp; It grabbed you, and you felt its icy fingers tighten around your body. In the next moment, you were lifted onto its shoulders, the cold seeping into your bones. You tried to struggle, but your strength was quickly fading.<br>
 &emsp;&emsp;The ghost dragged you through the dark hallways of the house, and time seemed to slow down. Images blurred before your eyes, sounds became distorted and distant. Your head hung limply, and you felt your consciousness slipping away. Your thoughts grew muddled, and reality seemed distant and unclear.<br>
@@ -154,7 +144,6 @@ Time lost all meaning. Each touch sent shivers of pleasure throughout your body.
 Finally, having had its fill of playing with you, the ghost left, leaving you exhausted. <br>&emsp;&emsp; Slipping into a deep sleep, you felt the remnants of pleasure <<if $highpriestess eq 1>>@@.usebtn; [[fading into darkness|$return][$highpriestess to 0; $mc.sanity to 25]]@@<<else>>
 @@.usebtn; [[fading into darkness|Sleep]]@@<</if>><br>
 <</linkappend>>
-
 
 <<elseif $shortsState eq "worn">>
 <video autoplay controls muted loop>
@@ -359,13 +348,9 @@ $@@.usebtn; [[fading into darkness|Sleep]]@@<</if>><br>
 
 <</if>>
 
-
 <</if>>
 
-
 <</if>> /*tentacle*/
-
-
 
 <<if $highpriestess eq 1>>
 <<else>>
@@ -388,5 +373,3 @@ Corruption is increased (+ <<= $tempCorr.toFixed(2)>>) : <<= $mc.corruption.toFi
 <<run setup.Companion.resetHuntState()>>
 <<run setup.Companion.resetAliceWorkIfNeeded()>>
 <</if>>
-
-

@@ -41,12 +41,7 @@
     <</if>>
     <</linkappend>>
 	
-	
-
-
 <</linkreplace>>
 <<else>>
 @@.backbtn; [[Run away|Livingroom][$tentaclesEventPCText to 1]]@@<br>
 <</if>>
-
-

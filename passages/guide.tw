@@ -26,7 +26,6 @@ This game is similar to titles like Phasmophobia and Demonologist. If you are fa
 <label><<radiobutton "$sensualBodyPart.anal" 3 autocheck>> Anus</label><br>
 <</linkreplace>>
 
-
 <</nobr>>
 <<if (previous() eq "WitchEndContract") or (tags(previous()).includes("event"))>>
 @@.backbtn;<<back>>@@<br>
@@ -35,5 +34,3 @@ This game is similar to titles like Phasmophobia and Demonologist. If you are fa
 <<done>>
 <<addclass ".linkselector" "disabled-link">>
 <</done>>
-
-

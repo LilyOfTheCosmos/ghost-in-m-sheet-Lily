@@ -29,8 +29,6 @@
 <</if>>
 <</linkappend>>
 
-
-
 <<else>>
 <video autoplay controls muted loop>
 <source @src="setup.ImagePath + '/ghosts/specials/spirit4.0.mp4'" type="video/mp4">
@@ -43,5 +41,3 @@
 @@.mc-thoughts; You feel something trying to slip into your tender mouth, and, exhausted after a long day, you almost unconsciously give in. Fatigue overwhelms  and you instinctively begin to suck. Your mind too drowsy to fully grasp what's happening. It sends a shiver through you and a wave of strange pleasure. You can't stop the sensation as it becomes more and more real. You spread your legs, allowing the touches to go deeper. Fingers slide over your pussy, @@ @@.usebtn;[[filling you with excitement.|ghostSpecialEventSleepSpirit2]]@@
 <</linkappend>>
 <</if>>
-
-

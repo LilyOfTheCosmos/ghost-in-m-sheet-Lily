@@ -64,9 +64,6 @@
     <</if>>
 <</if>>
 
-
-
-
 <<elseif $companion.name eq "Alice">>
 <<if $companion.sanity gte 75>>
 
@@ -142,8 +139,6 @@
 
 <</if>>
 
-
-
 <<elseif $companion.name eq "Blake">>
 
 <<if $companion.sanity gte 75>>
@@ -164,7 +159,6 @@
     {type: "video", src: "blake/2.4.mp4"},
 	{type: "video", src: "blake/2.5.mp4"}]>>
     
- 
 <<elseif $companion.sanity gte 25 and $companion.sanity lte 49>>
 
 <<set _videoList to [
@@ -174,7 +168,6 @@
     {type: "video", src: "blake/3.3.mp4"},
     {type: "video", src: "blake/3.4.mp4"}]>>
    
-    
 <<elseif $companion.sanity gte 0 and $companion.sanity lte 24>>
 
 <<set _videoList to [
@@ -373,13 +366,6 @@
 <</if>>
 <</if>>
 
-
-
-
-
-
-
-
 <<set _randomIndex to random(0, _videoList.length - 1)>>
 <<set _selectedVideo to _videoList[_randomIndex]>>
 <<set $videoEventCompanion to _selectedVideo.src>>
@@ -445,7 +431,6 @@
 <<isCompanionContinue $casey.lvl 4 25 50>>
 <</if>>
 
-
 <<elseif $companion.sanity gte 1 and $companion.sanity lt 25>>
 
 <<CompanionTextcompEvent4>>
@@ -467,5 +452,3 @@
 <<done>>
 <<addclass ".linkselector" "disabled-link">>
 <</done>>
-
-

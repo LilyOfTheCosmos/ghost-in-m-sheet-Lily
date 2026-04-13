@@ -80,7 +80,6 @@
 <<if $hasQuestForRescue eq 1>><img @src="setup.ImagePath + '/rescue/down.png'" class="downPointer clickable" onclick="SugarCube.Engine.play('rescueMap');"><</if>>
 </div>
 
-
 <<nobr>>
 
 <<if ($hours gte 22) or ($hours gte 0 and $hours lte 5)>>
@@ -101,5 +100,3 @@
  </style>
  		<</if>>
 <</nobr>>
-
-

@@ -19,5 +19,3 @@
 <<set $tshirtState3 to "worn">><</if>>
 
 <<set $isShirtStolen to 0>>
-
-

@@ -18,8 +18,6 @@ His cock, hot and huge, beat inside you, taking up all your attention. You did n
  @@.mc-thoughts; He finished, but you were shaking all over. From excitement, nerves... from fear, probably. Tired, you@@ @@[[passed out|CityMapPossessed]]@@<br>
  <</linkappend>>
  
- 
- 
 <<elseif previous() eq "rescueJulia">>
 <span id="rescueStayJulia">
 <video autoplay controls muted loop>
@@ -100,5 +98,3 @@ His cock, hot and huge, beat inside you, taking up all your attention. You did n
  @@.mc-thoughts; He finished, but you were shaking all over. From excitement, nerves... from fear, probably. Tired, you@@ @@[[passed out|CityMapPossessed]]@@<br>
  <</linkappend>>
 <</if>>
-
-

@@ -23,5 +23,3 @@ chanceOfSuccessGR: 20,
 chanceOfSuccessAnyEvidence: 15,
 }>>
 <<set $addedBlake to 1>>
-
-

@@ -58,7 +58,6 @@ with the strap-on until you were both completely spent.@@<br>
 @@.backbtn; [[Sleep]]@@<br> 
 <</if>>
 
-
 <<elseif $companion.name eq "Alice">>
 <<if $companion.lust gte 50>>
 <video autoplay controls muted loop>
@@ -145,24 +144,11 @@ until you both [[cum at the same time.|blakeContinue]]@@<br>
 <</if>>
 <</if>>
 
-
-
-
-
-
-
-
-
-
-
-
 <<if $tempCorr gte 1>><<set $tempCorr to 1>><</if>>
 <<set $mc.corruption += $tempCorr>>
 
-
 <<set $tempCorr to 0>>
 <<set $ghostHuntingMode to 3>>
-
 
 <<set $EmfActivationTime to 0>>
 <<set $uvlActivationTime = 0>>
@@ -174,5 +160,3 @@ until you both [[cum at the same time.|blakeContinue]]@@<br>
 <<run setup.Companion.resetHuntState()>>
 
 <<run setup.Companion.resetAliceWorkIfNeeded()>>
-
-

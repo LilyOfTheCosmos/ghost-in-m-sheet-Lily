@@ -169,5 +169,3 @@
 <<if setup.Companion.anyCompanionSelected()>><<set $isCompChosen to 1>><</if>>
 
 <</nobr>>
-
-

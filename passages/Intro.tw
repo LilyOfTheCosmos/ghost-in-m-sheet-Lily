@@ -18,8 +18,4 @@ Or just click @@.enterbtn;<<link "here" "Intro1">><<set $mc.name to "Mary">><</l
 <br>
 @@.mc-thoughts;This game is similar to games like Phasmophobia, Demonologist, etc., so if you've played such games, there shouldn't be any difficulties. Nevertheless, here's a brief guide to the game:@@
 <br>
-@@.enterbtn;[[Player guide -> Evidence]]@@ 
-
-
-
-
+@@.enterbtn;[[Player guide -> Evidence]]@@

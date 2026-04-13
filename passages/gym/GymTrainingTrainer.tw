@@ -3,7 +3,6 @@
 <<addTime 60>>
 <<include "gymTrainer">>
 
-
 <<gymFitnessGain 2>>
  <br>
  <br>
@@ -11,5 +10,3 @@
 <<done>>
 <<addclass ".linkselector" "disabled-link">>
 <</done>>
-
-

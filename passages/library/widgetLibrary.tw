@@ -12,7 +12,6 @@
 <<run State.variables["isCompChosen" + _args[1]] = 0>>
 <<replace `"#" + _answerId`>>@@.notmc-speech; I think I'm already experienced enough to do it on my own. Where should I go?@@<br>
 
-
 @@.enterbtn;<<link `"Owaissa Street - " + _owaissaChance + " %"`>>
 <<run State.variables[_compVarPrefix.toLowerCase() + "ChooseOwaissa"] = 1>>
 <<run State.variables[_compVarPrefix.toLowerCase() + "ChooseElm"] = 0>>
@@ -24,7 +23,6 @@
 <<else>>
 <<replace `"#" + _answerTwoId`>>@@.notmc-speech;Owaissa Street? Hmm... Yes, of course. I think I can handle it.@@<</replace>><</if>><</link>>@@@@color: green; <b>-20$</b>@@<br>
 
-
 @@.enterbtn;<<link `"Elm Street - " + _elmChance + " %"`>>
 <<run State.variables[_compVarPrefix.toLowerCase() + "ChooseOwaissa"] = 0>>
 <<run State.variables[_compVarPrefix.toLowerCase() + "ChooseElm"] = 1>>
@@ -35,7 +33,6 @@
 <<else>>
 <<replace `"#" + _answerTwoId`>>@@.notmc-speech;Elm Street? Hmm... Yes, of course. I think I can handle it.@@<</replace>><</if>>
 <</link>>@@@@color: green; <b>-20$</b>@@<br>
-
 
 <span @id="_answerTwoId">
 

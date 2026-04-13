@@ -25,7 +25,6 @@
 </div>
 </div>
 
-
 <<if $prefssubscribers gte 5>><div class="flexwrapper">
 <div class="housecard">
 <img @src="setup.ImagePath + '/trans/taylor.jpg'" width="100px"><br>
@@ -68,7 +67,6 @@
 </div><</if>>
 <span id="internetConfirm"></span>
 
-
 <</linkreplace>>
 
 <<if $ghostMareEventStart eq 2 or $ghostMareEventStart eq 3>>
@@ -91,4 +89,3 @@
 <<done>>
 <<addclass ".linkselector" "disabled-link">>
 <</done>>
-

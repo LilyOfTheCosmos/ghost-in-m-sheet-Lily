@@ -155,17 +155,7 @@ Corruption is increased (+ <<= $tempCorr.toFixed(2)>>) : <<= $mc.corruption.toFi
 <<run setup.Companion.resetHuntState()>>
 @@.movebtn;[[Next|Sleep]]@@
 
-
 <</if>>
 <</linkreplace>>@@
 
-
-
-
-
 <<set $ghostHuntingMode to 3>>
-
-
-
-
-

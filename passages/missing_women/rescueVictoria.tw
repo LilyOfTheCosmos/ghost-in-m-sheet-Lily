@@ -123,5 +123,3 @@ She thanks you for saving her and says she'll tell the nun about your help.@@<br
 @@.backbtn; [[Leave|Church][$hasQuestForRescue to 3]]@@<br>
 <</linkreplace>>
 <</if>></span>
-
-

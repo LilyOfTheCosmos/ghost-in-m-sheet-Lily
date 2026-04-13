@@ -37,5 +37,3 @@
 <<if $isCameraBought eq 1>><<set $mcSleptWithCameraOn to 1>><</if>>
 <</nobr>>
 <<removeMakeup 5>>
-
-

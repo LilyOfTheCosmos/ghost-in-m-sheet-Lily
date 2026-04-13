@@ -25,6 +25,3 @@
  @@.backbtn;[[Back|succubusPCEvent]]<br>
  <<else>>
 @@.backbtn;[[Back|Livingroom]]@@<br><</if>>
-
-
-

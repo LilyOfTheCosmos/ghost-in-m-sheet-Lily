@@ -21,7 +21,6 @@
 <<if _check eq 3>><img @src="setup.ImagePath + '/stealClothes/12.png'" class="displayCentredImgs"><</if>>
 <</if>>
 
-
 <<if $pantiesState eq "worn">>
 <<if $rememberBottomUnder eq "panties0">>
 <<set $rememberBottomUnder to "nopanties0">>
@@ -44,6 +43,3 @@
 <</if>>
 
 <<set $isPantiesStolen to 1>>
-
-
-

@@ -172,5 +172,3 @@ That's it.@@<br>
 <</done>>
 <<set $aliceWorkDone to 0>>
 @@.backbtn; [[Back|previous()][$aliceChooseOwaissa to 0; $aliceChooseElm to 0]]
-
-

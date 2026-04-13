@@ -34,13 +34,6 @@
 <</linkappend>>
 <</linkappend>>
 
-
-
-
-
-
-
-
 <<elseif _check eq 2>>
 <img @src="setup.ImagePath + '/succubus/hunt1.0.jpg'" class="displayCentredImgs">
 @@.mc-thoughts; The ghost moves in on you, but out of nowhere, a surge of sensual magic cuts through the air. The succubus materializes, her very presence snagging the ghost's attention. Her figure exudes an aura of sexuality, with each contour and curve appearing as if designed@@
@@ -148,11 +141,3 @@
 <</linkappend>>
 <</linkappend>>
 <</if>>
-
-
-
-
-
-
-
-

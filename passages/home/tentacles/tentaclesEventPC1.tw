@@ -23,6 +23,3 @@
 	@@.backbtn; [[Rest|Bedroom][$hours +=3]]@@<br>
     <</linkappend>>
     <</linkappend>>
-    
-
-

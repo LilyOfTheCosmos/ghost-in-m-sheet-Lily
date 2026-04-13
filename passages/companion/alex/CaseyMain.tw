@@ -121,7 +121,6 @@ Completely naked? You're really pushing it, $mc.name.
    @@.notmc-speech; Got it, I'll try to find the ghost's favorite room.@@<</replace>>
 <</link>>@@<br>
 
-
 <span id="compResponse"></span>
 <br>
 <br>
@@ -148,5 +147,3 @@ Completely naked? You're really pushing it, $mc.name.
 <<addclass ".caseyLvlCheck4" "disabled-link">>
 <</if>>
 <</done>>
-
-

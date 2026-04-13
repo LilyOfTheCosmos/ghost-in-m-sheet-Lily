@@ -98,5 +98,3 @@ $companion.name's lust <img @src="setup.ImagePath + '/img/hearth.png'" style="po
 @@.notmc-speech; Alright, we've relaxed a bit, but we should keep going.@@<br><br>
 @@.backbtn; [[Continue|previous()]]@@<br>
      <</if>><</if>>
-
-

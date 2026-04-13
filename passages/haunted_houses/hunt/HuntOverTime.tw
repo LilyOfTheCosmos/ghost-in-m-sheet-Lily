@@ -19,7 +19,6 @@
 
 <<set $mc.corruption += $tempCorr>>
 
-
 Corruption is increased (+ <<= $tempCorr.toFixed(2)>>) : <<= $mc.corruption.toFixed(2)>><br>
 <<set $tempCorr to 0>>
 <<run setup.HauntedHouses.resetToolTimers()>>
@@ -31,5 +30,3 @@ Corruption is increased (+ <<= $tempCorr.toFixed(2)>>) : <<= $mc.corruption.toFi
 <</done>>
 <<run setup.Companion.resetHuntState()>>
 <<run setup.Companion.resetAliceWorkIfNeeded()>>
-
-

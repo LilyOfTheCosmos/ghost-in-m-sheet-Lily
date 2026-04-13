@@ -265,6 +265,27 @@ test.describe('file hygiene', () => {
     expect(violations, violations.join('\n')).toHaveLength(0);
   });
 
+  test('no triple-or-more consecutive blank lines in .tw files', () => {
+    const violations = [];
+    for (const f of allFiles) {
+      const content = fs.readFileSync(f, 'utf-8');
+      const lines = content.split('\n');
+      let streak = 0;
+      for (let i = 0; i < lines.length; i++) {
+        if (lines[i].trim() === '') {
+          streak++;
+          if (streak >= 3) {
+            violations.push(`${rel(f)}:${i + 1} 3+ consecutive blank lines`);
+            break; // report only the first occurrence per file
+          }
+        } else {
+          streak = 0;
+        }
+      }
+    }
+    expect(violations, violations.join('\n')).toHaveLength(0);
+  });
+
   test('.tw files must be valid UTF-8', () => {
     const violations = [];
     for (const f of allFiles) {

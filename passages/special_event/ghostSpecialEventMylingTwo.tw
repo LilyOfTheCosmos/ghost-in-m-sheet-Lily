@@ -12,5 +12,3 @@ But as you keep walking, you start to notice something strange. People are stari
 @@.notmc-speech;I don't know. Let's get home quickly.@@<br><br>
 @@.backbtn;[[You're finally home|WalkHomeTogether][$hours += 1]]@@<br>
 <<run setup.SpecialEvent.resetHuntPlansAfterMyling()>>
-
-

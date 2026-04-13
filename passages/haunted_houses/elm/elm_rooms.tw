@@ -9,7 +9,6 @@
 <</roomFooter>>
 <</roomShell>><</nobr>>
 
-
 :: elmBathroom [hauntedhouse elmBathroom] {"position":"2150,550","size":"100,100"}
 <<nobr>><<roomShell "elmBathroom" "bathroom">>
 <<furnitureRow>>
@@ -22,7 +21,6 @@
 <</roomFooter>>
 <</roomShell>><</nobr>>
 
-
 :: elmBathroomTwo [hauntedhouse elmBathroomTwo] {"position":"2250,550","size":"100,100"}
 <<nobr>><<roomShell "elmBathroomTwo" "bathroomTwo">>
 <<furnitureRow>>
@@ -33,7 +31,6 @@
 <<navLink "hallway" "elmHallwayUpstairs">>
 <</roomFooter>>
 <</roomShell>><</nobr>>
-
 
 :: elmBedroom [hauntedhouse elmBedroom] {"position":"2150,650","size":"100,100"}
 <<nobr>><<roomShell "elmBedroom" "bedroom">>
@@ -47,7 +44,6 @@
 <</roomFooter>>
 <</roomShell>><</nobr>>
 
-
 :: elmBedroomTwo [hauntedhouse elmBedroomTwo] {"position":"2250,650","size":"100,100"}
 <<nobr>><<roomShell "elmBedroomTwo" "bedroomTwo">>
 <<furnitureRow>>
@@ -59,7 +55,6 @@
 <<navLink "hallway" "elmHallwayUpstairs">>
 <</roomFooter>>
 <</roomShell>><</nobr>>
-
 
 :: elmHallway [hauntedhouse elmHallway] {"position":"2250,750","size":"100,100"}
 <<nobr>><<roomShell "elmHallway" "hallway">>
@@ -78,7 +73,6 @@
 <</roomFooter>>
 <</roomShell>><</nobr>>
 
-
 :: elmHallwayUpstairs [hauntedhouse elmHallwayUpstairs] {"position":"2150,850","size":"100,100"}
 <<nobr>><<roomShell "elmHallwayUpstairs" "hallwayUpstairs">>
 <<furnitureRow>>
@@ -93,7 +87,6 @@
 <</roomFooter>>
 <</roomShell>><</nobr>>
 
-
 :: elmKitchen [hauntedhouse elmKitchen] {"position":"2250,450","size":"100,100"}
 <<nobr>><<roomShell "elmKitchen" "kitchen">>
 <<furnitureRow>>
@@ -105,7 +98,6 @@
 <<navLink "hallway" "elmHallway">>
 <</roomFooter>>
 <</roomShell>><</nobr>>
-
 
 :: elmNursery [hauntedhouse elmNursery] {"position":"2150,750","size":"100,100"}
 <<nobr>><<roomShell "elmNursery" "nursery">>

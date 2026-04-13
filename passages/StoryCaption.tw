@@ -91,5 +91,3 @@ Timer changed: $timerToolsDecreased now!<</linkreplace>><br>
 <<linkreplace "100ms">><<set $changeToolsActivated to 0>><<set $timerToolsDecreased to "100ms">>
 Timer changed: $timerToolsDecreased now!<</linkreplace>><br>
 <</linkreplace>>
-
-

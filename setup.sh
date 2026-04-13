@@ -76,7 +76,6 @@ else
     echo -e "${GREEN}SugarCube ${SUGARCUBE_VERSION} installed successfully!${NC}"
 fi
 
-
 # Make scripts executable
 chmod +x build.sh start.sh .githooks/pre-commit
 

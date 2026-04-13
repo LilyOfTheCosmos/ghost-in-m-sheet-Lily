@@ -13,5 +13,3 @@
 <<set $filteredGhostPassages to _GhostPassages.filter(passage => passage !== $currentGhostPassage)>>
 <<set $randomGhostPassage to $filteredGhostPassages[Math.floor(Math.random() * $filteredGhostPassages.length)]>>
 <</if>>
-
-

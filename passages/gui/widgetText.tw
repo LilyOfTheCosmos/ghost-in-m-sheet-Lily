@@ -25,7 +25,6 @@
 <</replace>>
 <</widget>>
 
-
 <<widget "traptheghost">>
 <<replace "#wishesCount">>
 <<set $wishesCount -=1>>
@@ -39,8 +38,6 @@ With each wish, I feel worse and worse.@@<br>
 @@.backbtn;<<link "Return" `passage()`>><</link>>@@
 <</replace>>
 <</widget>>
-
-
 
 <<widget "sanity">>
 <<replace "#wishesCount">>
@@ -56,7 +53,6 @@ With each wish, I feel worse and worse.@@<br>
 <</replace>>
 <</widget>>
 
-
 <<widget "leave">>
 <<set $wishesCount -=1>>
 <<set $cursedHuntActive to 0>>
@@ -66,7 +62,6 @@ With each wish, I feel worse and worse.@@<br>
 <<goto "Owaissa Street">>
 <</if>>
 <</widget>>
-
 
 <<widget "knowledge">>
 <<replace "#wishesCount">>
@@ -89,7 +84,6 @@ Wait...I hear someone's footsteps...@@
 <</replace>>
 <</widget>>
 
-
 <<widget "dawn">>
 <<set $wishesCount -=1>>
 <<set $hours to 6>>
@@ -97,10 +91,6 @@ Wait...I hear someone's footsteps...@@
 <<goto "HuntOverTime">>
 <</widget>>
 
-
 <<widget "anything">>
 <<set _check to random(1,6)>>
 <</widget>>
-
-
-

@@ -416,8 +416,6 @@
   </div>
    <</if>>
 
- 
-
 <style>
   .slide {
     display: none; 
@@ -488,5 +486,3 @@
 <<addclass ".linkselector" "disabled-link">>
 <</done>>
 @@.backbtn; [[Back|comics]] @@
-
-

@@ -44,5 +44,3 @@ chanceOfSuccessAnyEvidence: 50,
 chanceOfSuccessGR: 50,
 }>>
 <<set $addedTransInit to 1>>
-
-

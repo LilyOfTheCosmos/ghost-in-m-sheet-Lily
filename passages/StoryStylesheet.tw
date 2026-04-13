@@ -70,7 +70,6 @@ video {
 }
 /* hovertip v2.0 - End */
 
-
 body.ghoststreet {
   background-image: url('assets/img/ghoststreet.jpg');
   background-size: cover;
@@ -473,8 +472,6 @@ body.city {
   	background-position: center;
 }
 
-
-
 .enigmaBasementLight {
 	background-image: url('assets/room/enigma/basement.jpg');
     background-size: cover;
@@ -600,7 +597,6 @@ body.city {
   	z-index: 1;
 }
 
-
 .IroncladReceptionLight {
 	background-image: url('assets/room/ironclad/reception.webp');
     background-size: cover;
@@ -657,7 +653,6 @@ body.city {
     background-repeat: no-repeat;
     z-index: 1;
 }
-
 
 .IroncladBlockBLight {
 	background-image: url('assets/room/ironclad/blockB.webp');
@@ -756,32 +751,6 @@ body.city {
     background-repeat: no-repeat;
     z-index: 1;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .right {
   	display: inline-block;
@@ -940,7 +909,6 @@ body.city {
   	text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
-
 .mc-speechLink a {
 	color:#FF1493;
   	font-style: italic;
@@ -995,7 +963,6 @@ body.city {
   font-style: italic;
   text-decoration: none;
 }
-
 
 .priceAmount {
   font-weight: bold;
@@ -1066,7 +1033,6 @@ body.city {
 .footer-light {
   display: inline-block;
 }
-
 
 #time {
   font-family: "Kode Mono", sans-serif;
@@ -1238,7 +1204,6 @@ body.city {
   	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
-
 .enterbtn a {
   	font-size: 1.1em;
   	font-weight: bold;
@@ -1290,7 +1255,6 @@ body.city {
 	-webkit-text-stroke: 0.3px black;
   	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
-
 
 .disabled-link {
   pointer-events: none;
@@ -1557,8 +1521,6 @@ clip-path: polygon(20% 1%, 67% 44%, 50% 100%, 30% 50%);
     border: 2px solid green; 
 }
 
-
 #ui-bar-body {
 	overflow-x:hidden;
 }
-

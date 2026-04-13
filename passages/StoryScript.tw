@@ -10,7 +10,6 @@
         IAmAGrownUp : false // make sure you have enough rope to hang yourself
     };
 
-
     var defaultSettings = {
         full : '#2ECC40', // color when the bar is full
         empty : '#FF4136', // color when the bar is empty
@@ -528,7 +527,6 @@
     });
 }());
 
-
 /* hovertip v2.0 - Start */
 window.UpdateHoverTipTxt = function (container) {
 	if (Engine.isIdle()) {
@@ -657,7 +655,6 @@ Macro.add("hovertip", {
 });
 /* hovertip v2.0 - End */
 
-
 Meter.add('searchBasementEmf', { label   : "$currentsearchBasement.emf", width :"50%" }, 1);
 
 Meter.add('searchBasementPlasm', { label   : "$currentsearchBasement.plasm", width :"50%" }, 1);
@@ -669,7 +666,6 @@ Meter.add('searchBasementTemperature', { label   : "$currentsearchBasement.tempe
 Meter.add('searchBasementGwb', { label   : "$currentsearchBasement.gwb", width :"50%" }, 1);
 
 Meter.add('searchBasementSpiritbox', { label   : "$currentsearchBasement.spiritbox", width :"50%" }, 1);
-
 
 Meter.add('searchNurseryEmf', { label   : "$currentsearchNursery.emf", width :"50%" }, 1);
 
@@ -683,8 +679,6 @@ Meter.add('searchNurseryGwb', { label   : "$currentsearchNursery.gwb", width :"5
 
 Meter.add('searchNurserySpiritbox', { label   : "$currentsearchNursery.spiritbox", width :"50%" }, 1);
 
-
-
 Meter.add('searchBedroomTwoEmf', { label   : "$currentsearchBedroomTwo.emf", width :"50%" }, 1);
 
 Meter.add('searchBedroomTwoPlasm', { label   : "$currentsearchBedroomTwo.plasm", width :"50%" }, 1);
@@ -697,8 +691,6 @@ Meter.add('searchBedroomTwoGwb', { label   : "$currentsearchBedroomTwo.gwb", wid
 
 Meter.add('searchBedroomTwoSpiritbox', { label   : "$currentsearchBedroomTwo.spiritbox", width :"50%" }, 1);
 
-
-
 Meter.add('searchBathroomTwoEmf', { label   : "$currentsearchBathroomTwo.emf", width :"50%" }, 1);
 
 Meter.add('searchBathroomTwoPlasm', { label   : "$currentsearchBathroomTwo.plasm", width :"50%" }, 1);
@@ -710,7 +702,6 @@ Meter.add('searchBathroomTwoTemperature', { label   : "$currentsearchBathroomTwo
 Meter.add('searchBathroomTwoGwb', { label   : "$currentsearchBathroomTwo.gwb", width :"50%" }, 1);
 
 Meter.add('searchBathroomTwoSpiritbox', { label   : "$currentsearchBathroomTwo.spiritbox", width :"50%" }, 1);
-
 
 Meter.add('searchHallwayUpstairsEmf', { label   : "$currentsearchHallwayUpstairs.emf", width :"50%" }, 1);
 
@@ -744,7 +735,6 @@ Meter.add('searchRoomAGwb', { label   : "$currentsearchRoomA.gwb", width :"50%" 
 
 Meter.add('searchRoomASpiritbox', { label   : "$currentsearchRoomA.spiritbox", width :"50%" }, 1);
 
-
 Meter.add('searchRoomBEmf', { label   : "$currentsearchRoomB.emf", width :"50%" }, 1);
 
 Meter.add('searchRoomBPlasm', { label   : "$currentsearchRoomB.plasm", width :"50%" }, 1);
@@ -757,8 +747,6 @@ Meter.add('searchRoomBGwb', { label   : "$currentsearchRoomB.gwb", width :"50%" 
 
 Meter.add('searchRoomBSpiritbox', { label   : "$currentsearchRoomB.spiritbox", width :"50%" }, 1);
 
-
-
 Meter.add('searchRoomCEmf', { label   : "$currentsearchRoomC.emf", width :"50%" }, 1);
 
 Meter.add('searchRoomCPlasm', { label   : "$currentsearchRoomC.plasm", width :"50%" }, 1);
@@ -770,7 +758,6 @@ Meter.add('searchRoomCTemperature', { label   : "$currentsearchRoomC.temperature
 Meter.add('searchRoomCGwb', { label   : "$currentsearchRoomC.gwb", width :"50%" }, 1);
 
 Meter.add('searchRoomCSpiritbox', { label   : "$currentsearchRoomC.spiritbox", width :"50%" }, 1);
-
 
 //new location - prison
 
@@ -942,9 +929,6 @@ Meter.add('searchKitchenIroncladSpiritbox', { label   : "$currentsearchKitchenIr
 ///
 
 ///
-
-
-
 
 function debounce(func, wait) {
     let timeout;
@@ -1669,8 +1653,3 @@ $(document).one(':storyready', function () {
 		}
 	});
 });
-
-
-
-
-

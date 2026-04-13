@@ -10,7 +10,6 @@
 <</roomFooter>>
 <</roomShell>><</nobr>>
 
-
 :: IroncladReception [hauntedhouse IroncladReception] {"position":"2600,425","size":"100,100"}
 <<nobr>><<roomShell "IroncladReception" "reception">>
 <<roomFooter>>
@@ -19,7 +18,6 @@
 <</roomFooter>>
 <</roomShell>><</nobr>>
 
-
 :: IroncladKitchen [hauntedhouse IroncladKitchen] {"position":"2800,425","size":"100,100"}
 <<nobr>><<roomShell "IroncladKitchen" "kitchen">>
 <<roomFooter>>
@@ -27,7 +25,6 @@
 <<navLink "Entrance" "IroncladHallway" "hunt">>
 <</roomFooter>>
 <</roomShell>><</nobr>>
-
 
 :: IroncladBlockA [IroncladBlockA hauntedhouse] {"position":"2600,300","size":"100,100"}
 <<nobr>><<roomShell "IroncladBlockA" "BlockA">>
@@ -39,7 +36,6 @@
 <</roomFooter>>
 <</roomShell>><</nobr>>
 
-
 :: IroncladBlockB [IroncladBlockB hauntedhouse] {"position":"2800,300","size":"100,100"}
 <<nobr>><<roomShell "IroncladBlockB" "BlockB">>
 <<roomFooter>>
@@ -50,14 +46,12 @@
 <</roomFooter>>
 <</roomShell>><</nobr>>
 
-
 :: IroncladBlockACellA [hauntedhouse IroncladBlockACellA] {"position":"2500,300","size":"100,100"}
 <<nobr>><<roomShell "IroncladBlockACellA" "BlockACellA">>
 <<roomFooter>>
 <<navLink "BlockA" "IroncladBlockA" "hunt">>
 <</roomFooter>>
 <</roomShell>><</nobr>>
-
 
 :: IroncladBlockACellB [IroncladBlockACellB hauntedhouse] {"position":"2600,200","size":"100,100"}
 <<nobr>><<roomShell "IroncladBlockACellB" "BlockACellB">>
@@ -66,14 +60,12 @@
 <</roomFooter>>
 <</roomShell>><</nobr>>
 
-
 :: IroncladBlockACellC [IroncladBlockACellC hauntedhouse] {"position":"2500,200","size":"100,100"}
 <<nobr>><<roomShell "IroncladBlockACellC" "BlockACellC">>
 <<roomFooter>>
 <<navLink "BlockA" "IroncladBlockA" "hunt">>
 <</roomFooter>>
 <</roomShell>><</nobr>>
-
 
 :: IroncladBlockBCellA [IroncladBlockBCellA hauntedhouse] {"position":"2900,300","size":"100,100"}
 <<nobr>><<roomShell "IroncladBlockBCellA" "BlockBCellA">>
@@ -82,14 +74,12 @@
 <</roomFooter>>
 <</roomShell>><</nobr>>
 
-
 :: IroncladBlockBCellB [IroncladBlockBCellB hauntedhouse] {"position":"2800,200","size":"100,100"}
 <<nobr>><<roomShell "IroncladBlockBCellB" "BlockBCellB">>
 <<roomFooter>>
 <<navLink "BlockB" "IroncladBlockB" "hunt">>
 <</roomFooter>>
 <</roomShell>><</nobr>>
-
 
 :: IroncladBlockBCellC [hauntedhouse IroncladBlockBCellC] {"position":"2900,200","size":"100,100"}
 <<nobr>><<roomShell "IroncladBlockBCellC" "BlockBCellC">>

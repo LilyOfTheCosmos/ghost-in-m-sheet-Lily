@@ -13,7 +13,6 @@
 ]>>
 <div id="tarotCard"><img @src="setup.ImagePath + '/cursedpossessions/tarotCards/tarot.png'" class="displayCentredImgs"></div>
 
-
 <div id="tarotCardsEnd" class="tarotCardHidden"><<link "@@.usebtn;Pull a card@@">>
 <<replace "#tarotCard">>
 <<if $drawnCards < 10>>
@@ -68,9 +67,6 @@
 		<</done>>
 		<</timed>>
 <</if>>
-
-
-
 
 		<<if $chosenCard.name eq "passion">>
         <<timed 2s>>
@@ -161,9 +157,6 @@ Somehow, I feel much better after that...@@<br>
 		<</timed>>
         <</if>>
 
-        
-        
-        
     <</if>>
     <<else>>
 			<<replace "#tarotCardsEnd">>
@@ -180,5 +173,3 @@ Somehow, I feel much better after that...@@<br>
 <<done>>
 <<addclass ".linkselector" "disabled-link">>
 <</done>>
-
-

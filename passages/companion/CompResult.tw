@@ -27,12 +27,8 @@ As soon as I thought about it, I started to feel more... aroused<br>@@
 <<set $gotCursedItem to 1>>
 <br>
 
-
-
 <<CompExp 10>>
 <</if>>
-
-
 
 <<elseif $chosenPlan eq "Plan3">>
 <<set _randomEvidence to $ghost.evidence[random(0, $ghost.evidence.length - 1)]>>
@@ -106,19 +102,6 @@ As soon as I thought about it, I started to feel more... aroused<br>@@
 <<CompExp 5>>
 <</if>>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 <<elseif $chosenPlan eq "Plan4">>
 @@.notmc-speech;  the ghost's favorite room -- it's <<ghostRoom>>@@<br>
 <br>
@@ -132,5 +115,3 @@ As soon as I thought about it, I started to feel more... aroused<br>@@
 <<done>>
 <<addclass ".linkselector" "disabled-link">>
 <</done>>
-
-

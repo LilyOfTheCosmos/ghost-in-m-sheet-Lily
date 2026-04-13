@@ -12,6 +12,3 @@
 <<set $hiddenEvidence2 to $ghost.evidence[_randomIndex2]>>
 <<set $ghost.evidence.deleteAt(_randomIndex2)>>
 <</if>>
-
-
-

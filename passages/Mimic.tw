@@ -10,5 +10,3 @@
   <<set $lastChangeIntervalMimic to $currentIntervalMimic>>
 <</if>>
 <</if>>
-
-

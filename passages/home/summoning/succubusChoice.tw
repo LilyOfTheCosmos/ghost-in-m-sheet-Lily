@@ -27,7 +27,6 @@
 @@.backbtn; [[Pass out|Bedroom][$succubusChoiceEventText to 1]]@@<br>
 <</linkappend>>
 
-
 <<elseif $summoningChoice eq 2>>
 <<set _check to random(1,4)>>
 <<if _check eq 1>>
@@ -78,7 +77,6 @@
 @@.mc-speech; Oh... fuck me harder... more...@@<br>
 @@.mc-thoughts; She begins to fuck herself with wild greed, the toys sliding in and out, making you moan with each thrust. You feel the pleasure building, your body @@<<linkappend "@@.usebtn; exploding from the orgasm@@">>
 
-
 <<if _check eq 1>>
 <video autoplay controls muted loop class="displayCentredImgs">
 <source @src="setup.ImagePath + '/succubus/form1.2.mp4'" type="video/mp4">
@@ -102,9 +100,6 @@
 <source @src="setup.ImagePath + '/succubus/3.mp4'" type="video/mp4">
 </video>
 <</if>>
-
-
-
 
 @@.mc-speech; "I'm... I'm cumming... oh fuck!"@@<br>
 @@.mc-thoughts; You cum, your body trembling with ecstasy, then everything fades as you pass out.@@<br><br>
@@ -153,8 +148,6 @@
 <</linkappend>>
 <</linkappend>>
 
-
-
 <<elseif $summoningChoice eq 4>>
 <video autoplay controls muted loop class="displayCentredImgs">
 <source @src="setup.ImagePath + '/succubus/trans1.mp4'" type="video/mp4">
@@ -186,13 +179,9 @@
 @@.mc-thoughts; Now alone, her kiss still echoes through your senses.@@<br><br>
 @@.backbtn; [[Pass out|Bedroom][$succubusChoiceEventText to 2]]@@
 
-
-
 <</linkappend>>
 
 <</linkappend>>
 <</if>>
 <<set $hours +=4>><<if $hours >=24>><<set $hours -=24>><<include "resetCD">><</if>>
 <<set $succubusEventTimer to 6>>
-
-

@@ -11,5 +11,3 @@ I've got everything set up: the book with the incantation is open before me, the
 @@.usebtn; [[Begin the summoning ritual|summoningStart][$exorcismCD to 1]]@@<br>
 <br>
 @@.backbtn; [[Leave|Bedroom]]@@
-
-

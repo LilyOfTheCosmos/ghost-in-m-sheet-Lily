@@ -39,15 +39,6 @@
 	</video>
 </div>
 
-
-
-
-
-
-
-
-
-
 @@.mc-speech; Oh wow~ it's $currentRescueGirl, and it looks like she's... in trouble.<br>
 I can help her if I use holy water.... or<br>
 I could watch a little longer and then help her... but I might get noticed. @@<br>
@@ -121,5 +112,3 @@ She thanks you for saving her and says she'll tell the nun about your help.@@<br
 @@.backbtn; [[Leave|Church][$hasQuestForRescue to 3]]@@<br>
 <</linkreplace>>
 <</if>></span>
-
-

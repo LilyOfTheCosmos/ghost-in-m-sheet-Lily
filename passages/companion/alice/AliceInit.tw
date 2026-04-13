@@ -23,5 +23,3 @@ chanceOfSuccessGR: 50,
 chanceOfSuccessAnyEvidence: 25,
 }>>
 <<set $addedAlice to 1>>
-
-

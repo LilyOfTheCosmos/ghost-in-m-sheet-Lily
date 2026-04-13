@@ -71,6 +71,3 @@ $blake.lvl lvl <<if $blake.lvl gte 5>> (max. lvl)<<else>>($blake.exp / $blake.ex
 </div>
 <br>
 @@.backbtn; [[Back|Use PC]]@@<br>
-
-
-

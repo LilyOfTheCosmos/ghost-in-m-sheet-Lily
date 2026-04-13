@@ -24,5 +24,3 @@
 <<if previous(2) is "Witch">><<addTime 0.5>>
 <<elseif previous() is "CityMap">><<addTime 20>>
 <<else>><<addTime 0.5>><</if>>
-
-

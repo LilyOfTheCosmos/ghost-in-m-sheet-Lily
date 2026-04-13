@@ -55,8 +55,6 @@ Sometimes, you still gave in to the pleasure: at that moment, you began to push 
 They started undressing you, touching your most intimate places. Yet you didn't even try to stop them, even though you wanted to. Your body wouldn't obey you.@@<br>
 @@.mc-speech; I need to try again, or this will end badly.@@<br>
 
-
-
 <<linkreplace "@@.usebtn;Try to resist again@@">>
 <<if setup.Posession.canResistSecondAttempt()>>
 <<goto "possessedLocation1">>
@@ -64,10 +62,6 @@ They started undressing you, touching your most intimate places. Yet you didn't 
 <<breakFreePossession 6>>
 <</if>>
 <</linkreplace>>
-
-
-
-
 
 <<else>>
 <<breakFreePossession 3>>
@@ -184,12 +178,4 @@ So that means... oh~ I think I...i~ <<linkreplace "@@.usebtn; commiiiing~@@">>
 <</linkreplace>>
 <</linkappend>>
  
- 
- 
- 
- 
- 
- 
 <</if>>
-
-

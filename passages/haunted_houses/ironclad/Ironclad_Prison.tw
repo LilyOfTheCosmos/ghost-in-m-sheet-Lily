@@ -4,7 +4,6 @@
 @@.mc-thoughts; Ironclad Prison, once a symbol of justice, now stands abandoned, its long and storied past cloaked in shadows. Whispers speak of restless spirits wandering its halls--a chilling reminder of the darkness it once held.@@<br>
 <br>
 
-
 <<if $wardenClothesStage eq 2>>
 @@.movebtn;[[Go inside|IroncladHallway][$ghostHuntingMode to 2]]@@<br>
 <<else>>
@@ -19,6 +18,3 @@
 <br>
 <br>
 <<if $ghostHuntingMode eq 2>><span class="movebtn">[[End the hunt|HuntOverManual][$ghostHuntingMode to 3]]</span><<else>><</if>>
-
-
-

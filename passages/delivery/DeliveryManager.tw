@@ -65,8 +65,6 @@ I don't think I can do it. But I could offer some part-time work for such a beau
 <<else>>@@.notmc-speech; Enough for today, talk to me tomorrow@@<</if>>
 <</linkreplace>>
 
-
-
 <<elseif previous() is "DeliveryMap">>
 @@.notmc-speech; Here are your hard-earned money for the shift. Not much, but it's something at least.@@ <br>
 <<include "endShiftDelivery">>
@@ -74,5 +72,3 @@ I don't think I can do it. But I could offer some part-time work for such a beau
 <br>
 <br>
 @@.backbtn;[[Leave|DeliveryHub]] @@
-
-

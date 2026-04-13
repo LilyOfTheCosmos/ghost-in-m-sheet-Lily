@@ -7,7 +7,6 @@
 <<if passage() is "wardrobe">>
 <<include "piercing">>
 
-
 <<switch $neckChokerState1>>
 	<<case "worn">>
     	<<replace "#currentNeck">><<link "<img @src='setup.ImagePath + \"/img/wardrobe/neckChoker1.png\"'>" "wardrobe">><<set $neckChokerState1 to "not worn">>
@@ -20,9 +19,6 @@
 <<updatemeter 'mclust' `$mc.lust / 100`>><</if>>
 <</link>><</append>>
 <</switch>>
-
-
-
 
 <<switch $stockingsState1>>
 	<<case "worn">>
@@ -65,7 +61,6 @@
 <<set $rememberBottomStockings to "stockings2">><</link>><</append>>
 <</switch>>
 
-
 <<switch $stockingsState3>>
 	<<case "worn">>
     	<<replace "#currentUnderwearStockings">><<link "<img @src='setup.ImagePath + \"/img/wardrobe/Stockings3.png\"'>" "wardrobe">><<set $stockingsState3 to "not worn">>
@@ -86,39 +81,6 @@
 
 <<set $rememberBottomStockings to "stockings3">><</link>><</append>>
 <</switch>>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <<switch $braState0>>
 	<<case "worn">>
@@ -183,7 +145,6 @@
 <<set $rememberTopUnder to "bra2">><</link>><</append>>
 <</switch>>
 
-
 <<switch $braState3>>
 	<<case "worn">>
     	<<replace "#currentUnderwearTop">><<link "<img @src='setup.ImagePath + \"/img/wardrobe/slip4.png\"'>" "wardrobe">><<set $braState3 to "not worn">>
@@ -205,10 +166,6 @@
 
 <<set $rememberTopUnder to "bra3">><</link>><</append>>
 <</switch>>
-
-
-
-
 
 <<switch $pantiesState0>>
 	<<case "worn">>
@@ -273,7 +230,6 @@
 <<set $rememberBottomUnder to "panties2">><</link>><</append>>
 <</switch>>
 
-
 <<switch $pantiesState3>>
 	<<case "worn">>
     	<<replace "#currentUnderwearBottom">><<link "<img @src='setup.ImagePath + \"/img/wardrobe/short4.png\"'>" "wardrobe">><<set $pantiesState3 to "not worn">>
@@ -295,8 +251,6 @@
 
 <<set $rememberBottomUnder to "panties3">><</link>><</append>>
 <</switch>>
-
-
 
 <<switch $tshirtState0>>
 	<<case "worn">>
@@ -362,7 +316,6 @@
 <<set $rememberTopOuter to "tshirt2">><</link>><</append>>
 <</switch>>
 
-
 <<switch $tshirtState3>>
 	<<case "worn">>
     	<<replace "#currentOuterwearTop">><<link "<img @src='setup.ImagePath + \"/img/wardrobe/tshirt3.png\"'>" "wardrobe">><<set $tshirtState3 to "not worn">>
@@ -384,34 +337,6 @@
 
 <<set $rememberTopOuter to "tshirt3">><</link>><</append>>
 <</switch>>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <<switch $jeansState0>>
 	<<case "worn">>
@@ -435,7 +360,6 @@
 <<if ($jeansState2 neq "not bought")>><<set $jeansState2 to "not worn">><</if>>
 <<if ($jeansState3 neq "not bought")>><<set $jeansState3 to "not worn">><</if>>
 
-
 <<if ($shortsState1 neq "not bought")>><<set $shortsState1 to "not worn">><</if>>
 <<if ($shortsState2 neq "not bought")>><<set $shortsState2 to "not worn">><</if>>
 <<if ($shortsState3 neq "not bought")>><<set $shortsState3 to "not worn">><</if>>
@@ -446,7 +370,6 @@
 
 <<set $rememberBottomOuter to "jeans0">><</link>><</append>>
 <</switch>>
-
 
 <<switch $jeansState1>>
 	<<case "worn">>
@@ -472,7 +395,6 @@
 <<if ($jeansState2 neq "not bought")>><<set $jeansState2 to "not worn">><</if>>
 <<if ($jeansState3 neq "not bought")>><<set $jeansState3 to "not worn">><</if>>
 
-
 <<if ($shortsState1 neq "not bought")>><<set $shortsState1 to "not worn">><</if>>
 <<if ($shortsState2 neq "not bought")>><<set $shortsState2 to "not worn">><</if>>
 <<if ($shortsState3 neq "not bought")>><<set $shortsState3 to "not worn">><</if>>
@@ -481,15 +403,12 @@
 <<if $skirtState2 neq "not bought">><<set $skirtState2 to "not worn">><</if>>
 <<if $skirtState3 neq "not bought">><<set $skirtState3 to "not worn">><</if>>
 
-
 <<set $rememberBottomOuter to "jeans1">><</link>><</append>>
 <</switch>>
-
 
 <<switch $jeansState2>>
 	<<case "worn">>
    
-            
     	<<replace "#currentOuterwearBottom">><<link "<img @src='setup.ImagePath + \"/img/wardrobe/jeans2.png\"'>" "wardrobe">>
                 <<set $mc.beauty -= 8>>
                  <<set $rememberBottomOuter to "nojeans2">>
@@ -511,7 +430,6 @@
 <<if ($jeansState1 neq "not bought")>><<set $jeansState1 to "not worn">><</if>>
 <<if ($jeansState3 neq "not bought")>><<set $jeansState3 to "not worn">><</if>>
 
-
 <<if ($shortsState1 neq "not bought")>><<set $shortsState1 to "not worn">><</if>>
 <<if ($shortsState2 neq "not bought")>><<set $shortsState2 to "not worn">><</if>>
 <<if ($shortsState3 neq "not bought")>><<set $shortsState3 to "not worn">><</if>>
@@ -521,8 +439,6 @@
 <<if $skirtState3 neq "not bought">><<set $skirtState3 to "not worn">><</if>>
 <<set $rememberBottomOuter to "jeans2">><</link>><</append>>
 <</switch>>
-
-
 
 <<switch $jeansState3>>
 	<<case "worn">>
@@ -547,7 +463,6 @@
 <<if ($jeansState2 neq "not bought")>><<set $jeansState2 to "not worn">><</if>>
 <<if ($jeansState1 neq "not bought")>><<set $jeansState1 to "not worn">><</if>>
 
-
 <<if ($shortsState1 neq "not bought")>><<set $shortsState1 to "not worn">><</if>>
 <<if ($shortsState2 neq "not bought")>><<set $shortsState2 to "not worn">><</if>>
 <<if ($shortsState3 neq "not bought")>><<set $shortsState3 to "not worn">><</if>>
@@ -557,8 +472,6 @@
 <<if $skirtState3 neq "not bought">><<set $skirtState3 to "not worn">><</if>>
 <<set $rememberBottomOuter to "jeans3">><</link>><</append>>
 <</switch>>
-
-
 
 <<switch $shortsState1>>
 			<<case "worn">>
@@ -580,8 +493,6 @@
 <<if $rememberBottomOuter eq "skirt3">><<set $mc.beauty -=13>><</if>>
 <<if ($shortsState2 neq "not bought")>><<set $shortsState2 to "not worn">><</if>>
 <<if ($shortsState3 neq "not bought")>><<set $shortsState3 to "not worn">><</if>>
-
-
 
 <<if $skirtState1 neq "not bought">><<set $skirtState1 to "not worn">><</if>>
 <<if $skirtState2 neq "not bought">><<set $skirtState2 to "not worn">><</if>>
@@ -620,8 +531,6 @@
 <<if ($shortsState1 neq "not bought")>><<set $shortsState1 to "not worn">><</if>>
 <<if ($shortsState3 neq "not bought")>><<set $shortsState3 to "not worn">><</if>>
 
-
-
 <<if $skirtState1 neq "not bought">><<set $skirtState1 to "not worn">><</if>>
 <<if $skirtState2 neq "not bought">><<set $skirtState2 to "not worn">><</if>>
 <<if $skirtState3 neq "not bought">><<set $skirtState3 to "not worn">><</if>>
@@ -657,8 +566,6 @@
 <<if ($shortsState2 neq "not bought")>><<set $shortsState2 to "not worn">><</if>>
 <<if ($shortsState1 neq "not bought")>><<set $shortsState1 to "not worn">><</if>>
 
-
-
 <<if $skirtState1 neq "not bought">><<set $skirtState1 to "not worn">><</if>>
 <<if $skirtState2 neq "not bought">><<set $skirtState2 to "not worn">><</if>>
 <<if $skirtState3 neq "not bought">><<set $skirtState3 to "not worn">><</if>>
@@ -669,9 +576,6 @@
 <<if ($jeansState3 neq "not bought")>><<set $jeansState3 to "not worn">><</if>>
 <<set $rememberBottomOuter to "shorts3">><</link>><</append>>
 <</switch>>
-
-
-
 
 <<switch $skirtState1>>
 			<<case "worn">>
@@ -701,8 +605,6 @@
 <<if ($jeansState1 neq "not bought")>><<set $jeansState1 to "not worn">><</if>>
 <<if ($jeansState2 neq "not bought")>><<set $jeansState2 to "not worn">><</if>>
 <<if ($jeansState3 neq "not bought")>><<set $jeansState3 to "not worn">><</if>>
-
-
 
 <<set $rememberBottomOuter to "skirt1">><</link>><</append>>
 <</switch>>
@@ -735,7 +637,6 @@
 <<if ($jeansState1 neq "not bought")>><<set $jeansState1 to "not worn">><</if>>
 <<if ($jeansState2 neq "not bought")>><<set $jeansState2 to "not worn">><</if>>
 <<if ($jeansState3 neq "not bought")>><<set $jeansState3 to "not worn">><</if>>
-
 
 <<set $rememberBottomOuter to "skirt2">><</link>><</append>>
 <</switch>>
@@ -775,8 +676,6 @@
 
 <</if>>
 
-
-
 <<if passage() eq "Mirror" and $thetwinsevent neq 1>>
 <<switch $mc.makeupImg>>
 	<<case 0>>
@@ -790,14 +689,12 @@
  <</switch>>
 <</if>>
 
-
 <<if $mc.sanity lte 0 and $ghostHuntingMode eq 2>>
 <<goto "HuntOverSanity">>
 <</if>>
 <<if $hours gte 6 and $ghostHuntingMode eq 2>>
 <<goto "HuntOverTime">>
 <</if>>
-
 
 <<if ndef $update22>>
 <<include "update1">>
@@ -899,13 +796,10 @@
 <<set $rememberBottomUnder to "panties0">>
 <</if>>
 
-
 <<set $stealChanceMult to 1.1>>
-
 
 <<set _eventTriggered = false>>
 <<set _stealClothesTriggered = false>>
-
 
 <<if $elapsedTimeHunt gt $huntTimeRemain>>
 <<set $huntActivated to 0>>
@@ -924,8 +818,6 @@ if (State.variables.cursedHuntActive === 1) {
     $('.cursedHuntLinkDisable').addClass('disabled-linkSpecial');
 };
 <</script>>
-
-
 
 <<if $update4 neq 1>>
 <<set $blake.plan2TimeReq to 10>>
@@ -975,5 +867,3 @@ else if (State.variables.isOwaissa === 1) {
 <<if ndef $timerToolsDecreased>>
 <<include "changeTimer">>
 <</if>>
-
-

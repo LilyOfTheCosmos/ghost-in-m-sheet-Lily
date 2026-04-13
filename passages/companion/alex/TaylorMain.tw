@@ -121,7 +121,6 @@ Completely naked? You're lucky I like you, $mc.name.
    @@.notmc-speech; Got it, I'll try to find the ghost's favorite room.@@<</replace>>
 <</link>>@@<br>
 
-
 <span id="compResponse"></span>
 <br>
 <br>
@@ -148,5 +147,3 @@ Completely naked? You're lucky I like you, $mc.name.
 <<addclass ".taylorLvlCheck4" "disabled-link">>
 <</if>>
 <</done>>
-
-

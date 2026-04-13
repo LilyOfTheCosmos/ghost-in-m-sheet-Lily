@@ -90,5 +90,3 @@ $blake.lvl lvl <<if $blake.lvl gte 5>> (max. lvl)<<else>>($blake.exp / $blake.ex
 <<done>>
 <<addclass ".linkselector" "disabled-link">>
 <</done>>
-
-

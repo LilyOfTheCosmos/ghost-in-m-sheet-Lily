@@ -39,15 +39,9 @@ Subscribers: <<if ndef $prefssubscribers>>0<<else>>$prefssubscribers<</if>><br>
 @@.mc-speech; Enough for today.@@<br>
 <</if>>
 
-
 <<set $prefsmoney to ($prefsmoney || 0)>>
 <<set $prefssubscribers to ($prefssubscribers || 0)>>
 <<set $prefsshowCount to ($prefsshowCount || 0)>>
 
-
-
 <br>
 @@.backbtn;[[Back|Use PC]] @@<br>
-
-
-

@@ -9,7 +9,6 @@
 <<set $relationEmily to 1>>
 Relation with @@.mc-speech;Emily@@ improved: $relationEmily now!
 
-
 <<elseif $relationEmily lte 4>>
 <<set _check to random(1,3)>>
 
@@ -28,8 +27,6 @@ Relation with @@.mc-speech;Emily@@ improved: $relationEmily now!
 Relation with @@.mc-speech;Emily@@ improved: $relationEmily now!<br><</if>>
 
 <<elseif $relationEmily gte 5>>
-
-
 
 <<set _check to random(1,3)>>
 
@@ -57,5 +54,3 @@ Relation with @@.mc-speech;Emily@@ improved: $relationEmily now!<br><</if>>
 <<done>>
 <<addclass ".linkselector" "disabled-link">>
 <</done>>
-
-

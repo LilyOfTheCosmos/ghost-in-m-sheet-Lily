@@ -23,5 +23,3 @@ chanceOfSuccessGR: 30,
 chanceOfSuccessAnyEvidence: 25,
 }>>
 <<set $addedBrook to 1>>
-
-

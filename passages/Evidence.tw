@@ -44,7 +44,6 @@
     margin: 1em 0;
 }
 
-
 th, td {
     padding: 8px 12px;
     text-align: left;
@@ -55,7 +54,6 @@ th, td {
     text-align: center
 }
 
-
 #guide td {
     padding-left: 1em;
 }
@@ -64,7 +62,6 @@ th, td {
 th:last-child, td:last-child {
     border-right: none;
 }
-
 
 </style>
 <div id="guide">
@@ -150,7 +147,6 @@ th:last-child, td:last-child {
     Use them according with the following instructions to acquire the pieces of evidence necessary
     for ghost identification.
 </p>
-
 
 <table>
     <tr>
@@ -298,7 +294,6 @@ th:last-child, td:last-child {
    TM & © 2026 WoMan Co. All rights reserved
 </p>
 
-
 </section>
 </div>
 
@@ -309,6 +304,3 @@ th:last-child, td:last-child {
 <<done>>
 <<addclass ".linkselector" "disabled-link">>
 <</done>>
-
-
-

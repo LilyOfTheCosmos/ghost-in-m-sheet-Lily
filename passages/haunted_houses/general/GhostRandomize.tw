@@ -18,15 +18,7 @@
     })();
 <</script>>
 
-
-
-
-
-
-
-
 <<set $isIronclad to 0>>
-
 
 <<set $tarotCardsStage to 0>>
 <<set $MonkeyPawStage to 0>>
@@ -57,5 +49,3 @@ Money: -35 $<br>
 <<set $ghostHuntingMode to 1>><br>
 <br>
 @@.backbtn;[[Back|WitchInside]] @@<br>
-
-

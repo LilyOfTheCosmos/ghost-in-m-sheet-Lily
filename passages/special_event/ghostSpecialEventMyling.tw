@@ -11,5 +11,3 @@ You feel a little uneasy. Why are they all looking at you? Your cheeks flush und
 @@.mc-thoughts; You quickly check yourself--your clothes are on, everything seems fine. But something feels off. Why does the attention feel so intense? They're looking at you like they see something you don't. Could it just be leftover stress from the hunt?@@<br>
 <br>
 @@.movebtn;[[You're finally home|Livingroom][$hours += 1]]@@<br>
-
-

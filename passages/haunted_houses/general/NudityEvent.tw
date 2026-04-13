@@ -44,7 +44,6 @@
 <<goto "Livingroom">>
     <</if>>
     
-    
     <<set _randomIndex to random(0, _videoList.length - 1)>>
 <<set _selectedVideo to _videoList[_randomIndex]>>
 <<set $videoEventNaked to _selectedVideo.src>>
@@ -57,7 +56,6 @@
  <img @src="setup.ImagePath+`/`+$videoEventNaked" alt="Image" class="displayCentredImgs"><br>
 <</if>>
 
- 
 <<if $mc.exhib lte 4>>
 @@.mc-thoughts; You hurry through the dark streets, trying to stay hidden in the shadows. Your heart races so fast, it feels like it's echoing through the empty night. Every breath catches in your throat as the cool breeze teases your bare skin, making you shiver in embarrassment. @@<br> 
 @@.mc-speech; Why didn't I just go back and grab my clothes? How did I let this happen?@@<br>
@@ -71,8 +69,6 @@
 @@.mc-speech; Exhibitionism increased: $mc.exhib now!@@<br>
 <</if>>
 <<else>>
-
-
 
 @@.mc-thoughts; You walk through the night, feeling every caress of the cool air ignite your bare skin. You bite your lip, a soft shiver of pleasure running down your spine. Each step sends a sweet ripple through you, intensifying this strange, yet delicious sensation. You're no longer in a hurry -- in fact, you want to savor the moment.<br>
 Your fingers toy with your hair, and your hips sway gently with each step. @@<br>
@@ -88,10 +84,6 @@ Your fingers toy with your hair, and your hips sway gently with each step. @@<br
 
 @@.backbtn; [[You made it home|Livingroom]]  @@<br>
 
-
-
 <<done>>
 <<addclass ".linkselector" "disabled-link">>
 <</done>>
-
-

@@ -69,5 +69,3 @@
 <<if previous() is "ghostSpecialEventWraithStart">>
 <<addTime 60>>
 <</if>>
-
-

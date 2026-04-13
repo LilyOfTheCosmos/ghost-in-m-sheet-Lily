@@ -37,17 +37,8 @@ You have a little time to
 use the Crucifix, but unfortunately, @@.enterbtn;[[you don't have it...|huntEnd]]@@
 <</if>>
 
-
-
-
-
-
-
-
 <</if>>
 <</linkappend>>
 <<done>>
 <<addclass ".linkselector" "disabled-link">>
 <</done>>
-
-

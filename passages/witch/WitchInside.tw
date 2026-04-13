@@ -66,7 +66,6 @@ She told me that recently, her girls -- who, like you, are also ghost hunters--h
 <<elseif $ghostHuntingMode eq 1>>@@.mc-thoughts; I already have a contract@@
 <<elseif $ghostHuntingMode eq 3>>@@.usebtn;[[End the contract|WitchEndContract]]@@<</if>><br>
 
-
 <<if $mc.lvl lte 1>>
 @@.mc-speech; I just need to correctly identify the ghost, right?@@<br>
 @@.notmc-speech; Yes, as long as you're inexperienced, that's enough for you.@@ <br>
@@ -106,8 +105,6 @@ In every house with a ghost, there is a cursed object. It could be in any room. 
 <</linkreplace>>
 <</if>>
 <</if>>
-
-
 
 <br>
 @@.mc-speech;<<linkreplace "Do you have anything for sale?">>
@@ -152,6 +149,3 @@ In every house with a ghost, there is a cursed object. It could be in any room. 
 <</if>>
 <br><br>
 @@.backbtn;[[Leave|Witch]] <br>
-
-
-

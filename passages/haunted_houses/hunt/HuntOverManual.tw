@@ -35,7 +35,6 @@ Corruption is increased (+ <<= $tempCorr.toFixed(2)>>) : <<= $mc.corruption.toFi
 <<set $tempCorr to 0>>
 <<run setup.HauntedHouses.endHunt()>>
 
-
 <<run setup.HauntedHouses.resetToolTimers()>>
 
 <<run setup.Companion.clearBlakeCursedItem()>>
@@ -47,5 +46,3 @@ Corruption is increased (+ <<= $tempCorr.toFixed(2)>>) : <<= $mc.corruption.toFi
 <<done>>
 <<addclass ".linkselector" "disabled-link">>
 <</done>>
-
-

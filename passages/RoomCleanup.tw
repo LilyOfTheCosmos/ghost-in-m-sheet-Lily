@@ -38,5 +38,3 @@ $(document).one(':passageend', function() {
 </div>
 <div id="cleanup-message" style="display: none;">Done!</div>
 <</nobr>>
-
-

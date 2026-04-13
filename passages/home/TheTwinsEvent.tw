@@ -5,7 +5,6 @@
  @@.mc-thoughts;One of them enters your pussy, and the pleasure is so intense that your eyes roll back. The sensation is overwhelming, causing you to start sucking the other's cock, your moans muffled by his length. @@<br>
  @@.mc-speech;Mmm... fuck@@ <<linkappend "@@.mc-speechLink; this is too good...@@">>
  
- 
  <span id ="thetwinsevent">
 <video autoplay controls muted loop>
  <source @src="setup.ImagePath + '/ghosts/specials/twins4.mp4'" type="video/mp4">
@@ -32,5 +31,3 @@
 @@.backbtn; [[Leave|Bedroom]]@@<br>
 <</linkappend>> 
 <</linkappend>>
-
-

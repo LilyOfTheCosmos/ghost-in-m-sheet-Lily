@@ -44,7 +44,6 @@ name: "Mare",
 evidence: ["glass", "gwb", "temperature"],
 }>>
 
-
 <<run setup.initWardrobe(State.variables)>>
 
 <<set $huntActivated to 0>>
@@ -62,5 +61,3 @@ evidence: ["glass", "gwb", "temperature"],
 <<set $ghostMareEventStart to 0>>
 <<set $ghostMareEventStage to 0>>
 <<set $update22 to 0.4>>
-
-

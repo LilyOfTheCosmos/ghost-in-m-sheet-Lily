@@ -168,7 +168,6 @@
 <</if>>
 <</if>>
 
-
 <img @src="setup.ImagePath+`/`+$artImgEvent" class="displayCentredImgsEvent"><br>
 @@.mc-thoughts; The sense of reality begins to shift. You feel something invisible and sinister slowly creeping into your mind, blurring the lines between reality and illusion. The longer you stay in this house, the more your connection to the familiar world weakens.<br>@@
 @@.mc-speech;I feel very strange. It seems like the lower my sanity, the more this place changes me, but I won't be scared so easily@@<br>
@@ -183,6 +182,3 @@
 <<done>>
 <<addclass ".linkselector" "disabled-link">>
 <</done>>
-
-
-

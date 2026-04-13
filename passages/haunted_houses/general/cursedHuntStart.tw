@@ -33,7 +33,6 @@ Corruption is increased (+ <<= $tempCorr.toFixed(2)>>) : <<= $mc.corruption.toFi
 <<run setup.HauntedHouses.endHunt()>>
 <<include "lostClothes">>
 
-
 <<run setup.Companion.resetHuntState()>>
 <<run setup.Companion.resetAliceWorkIfNeeded()>>
 
@@ -45,5 +44,3 @@ Corruption is increased (+ <<= $tempCorr.toFixed(2)>>) : <<= $mc.corruption.toFi
 <<done>>
 <<addclass ".linkselector" "disabled-link">>
 <</done>>
-
-

@@ -16,5 +16,3 @@
 <<elseif $mc.lvl gte 7>>
 <<set $timerToolsDecreased to "150ms">>
 <</if>>
-
-

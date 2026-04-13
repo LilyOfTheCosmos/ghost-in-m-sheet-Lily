@@ -19,5 +19,3 @@
 <<set $braState3 to "worn">><</if>>
 
 <<set $isBraStolen to 0>>
-
-

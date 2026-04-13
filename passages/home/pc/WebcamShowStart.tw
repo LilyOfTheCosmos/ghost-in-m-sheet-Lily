@@ -12,7 +12,6 @@
 <<set _videoList to ["webcam/5.0.mp4", "webcam/5.1.mp4", "webcam/5.2.mp4", "webcam/5.3.mp4", "webcam/5.4.mp4", "webcam/5.5.mp4"]>>
 <</if>>
 
-
 <<set _randomIndex to random(0, _videoList.length - 1)>>
 <<set _selectedVideo to _videoList[_randomIndex]>>
 <<set $webcamVideo to _selectedVideo>>
@@ -75,7 +74,6 @@
 
 <<webcamEvent>>
   
-
 <span id="showWeBCam">  You earned <<print _moneyEarnedWithMultiplier>> $ and attracted <<print Math.round(_moneyEarnedWithMultiplier * 0.1)>> new subscribers.</span>
 <<set $mc.money += _moneyEarnedWithMultiplier>>
 <br>
@@ -87,5 +85,3 @@ video {
 height: 500px;
 }
 </style>
-
-

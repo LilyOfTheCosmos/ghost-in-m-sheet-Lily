@@ -230,7 +230,6 @@
 			<<removeclass "body.hauntedhouse" "enigmaLivingroomLight">>\
 	<</switch>>
     
-
 <<elseif passage() is "IroncladReception">>
 	<<switch $reception.background>>
 		<<case 1>>
@@ -341,10 +340,4 @@
 			<<removeclass "body.hauntedhouse" "IroncladBlockBCellCLight">>\
 	<</switch>>
 
-
-
-
-
     <</if>>
-
-

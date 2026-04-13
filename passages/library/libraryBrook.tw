@@ -1,6 +1,5 @@
 :: libraryBrook [nobr] {"position":"3125,2100","size":"100,100"}
 
-
 <<if setup.Library.brookIsPossessed()>>
 <img @src="setup.ImagePath + '/img/libraryInside.jpg'" width="100%">
 @@.mc-speech; She's not there... strange...@@<br><br>
@@ -11,12 +10,6 @@
 @@.mc-thoughts;She's probably still with Rain. Maybe it's worth waiting a couple of days. @@<br><br>
 @@.backbtn; [[Leave|LibraryInside]] @@<br>
 <<else>>
-
-
-
-
-
-
 
 <<if $brook.lvl eq 2>>
 <<set $chanceToSuccessAloneOwaissaBrook to 25>>
@@ -67,13 +60,10 @@ By the way, I found some information about a rare ghost here in the library. @@<
 @@.mc-speech; Yeah, let's do that.@@<</replace>>
 <</link>>@@<br>
 
-
-
 <span class="CompanionInfoAskForHuntAlone">
 @@.mc-speech;<<link "I'd like you to go ghost hunting alone.">>
 <<set $isCompChosenBrook to 0>>
 <<replace "#brookInfoAnswer">>@@.notmc-speech; I think I'm already experienced enough to do it on my own. Where should I go?@@<br>
-
 
 @@.enterbtn;<<link "Owaissa Street - $chanceToSuccessAloneOwaissaBrook %">>
 <<set $brookChooseOwaissa to 1>><<set $brookChooseElm to 0>><<set $isBrookGoingForHuntingAlone to 1>>
@@ -84,7 +74,6 @@ By the way, I found some information about a rare ghost here in the library. @@<
 <<else>>
 <<replace "#brookInfoAnswerTwo">>@@.notmc-speech;Owaissa Street? Hmm... Yes, of course. I think I can handle it.@@<</replace>><</if>><</link>>@@@@color: green; <b>-20$</b>@@<br>
 
-
 @@.enterbtn;<<link "Elm Street - $chanceToSuccessAloneElmBrook %">>
 <<set $brookChooseOwaissa to 0>><<set $brookChooseElm to 1>><<set $isBrookGoingForHuntingAlone to 1>>
 <<if (ndef $payForHuntAloneBrook or $payForHuntAloneBrook eq 0) and $mc.money gte 20>><<set $mc.money -= 20>><<set $payForHuntAloneBrook to 1>><</if>>
@@ -93,7 +82,6 @@ By the way, I found some information about a rare ghost here in the library. @@<
 <<else>>
 <<replace "#brookInfoAnswerTwo">>@@.notmc-speech;Elm Street? Hmm... Yes, of course. I think I can handle it.@@<</replace>><</if>>
 <</link>>@@@@color: green; <b>-20$</b>@@<br>
-
 
 <span id="brookInfoAnswerTwo">
 	
@@ -124,14 +112,3 @@ By the way, I found some information about a rare ghost here in the library. @@<
 <</done>>
 @@.backbtn; [[Leave|LibraryInside]] @@<br>
 <</if>><</if>>
-
-
-
-
-
-
-
-
-
-
-

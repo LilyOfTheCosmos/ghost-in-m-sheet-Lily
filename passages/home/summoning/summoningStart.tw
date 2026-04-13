@@ -6,9 +6,6 @@
 @@.mc-thoughts; You notice a figure appearing right behind you in the mirror reflection, its eyes filled with@@ @@.enterbtn;[[unnatural lust|summonSpirit]]@@<br>
 <</linkappend>>
 
-
-
-
 <<elseif $thetwinsevent eq 1>>
 <img @src="setup.ImagePath + '/succubus/succubus.jpg'" width="100%" class="displayCentredImgs">
 @@.mc-thoguhts; You start reading the words from the ancient book, your lips slowly forming each sound, each word like a whisper filling the room. You feel the energy growing around you, each syllable resonating in the air,@@ <<linkappend "@@.usebtn; calling something invisible@@">><br>
@@ -16,9 +13,6 @@
 @@.mc-speech; Did I do something wrong?@@<br>
 @@.mc-thoughts; Suddenly, you feel a growing sense of weakness and fatigue. Barely reaching your bed, you fall into a deep@@ @@.enterbtn;[[sleep|summonTwins]]@@
 <</linkappend>>
-
-
-
 
 <<elseif $ghostMareEventStart neq 0>>
 <img @src="setup.ImagePath + '/succubus/succubus.jpg'" width="100%" class="displayCentredImgs">
@@ -87,5 +81,3 @@
 @@.usebtn; [[Strapon fuck|succubusChoice][$summoningChoice to 3]]@@<br>
 @@.usebtn;  [[Something unusual? (Trans content)|succubusChoice][$summoningChoice to 4]]@@<br>
 <</if>>
-
-

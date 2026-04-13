@@ -141,7 +141,6 @@ Come on! Let's go naked together.You'll like it.<br>@@
 <</replace>>
 <</link>>@@<</if>><br>
 
-
 <span id="compResponse"></span>
 <br>
 <br>
@@ -168,5 +167,3 @@ Come on! Let's go naked together.You'll like it.<br>@@
 <<addclass ".blakeLvlCheck4" "disabled-link">>
 <</if>>
 <</done>>
-
-

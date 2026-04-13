@@ -37,7 +37,6 @@ stage4: 3,
 
 <<else>>
 
-
 <<if $mc.sanity >= 75 and _chance <= $decreasingSanity.stage1>> /*touching and slapping*/
 <<set _eventTriggered = true>>
 	<<set _chanceInside = random(1,5)>>
@@ -89,14 +88,8 @@ stage4: 3,
             
           <<elseif $jeansState is "ripped">>
           		         
-          
-
-          
-         
-          
           <</if>>
 
-          
   <<elseif _chanceInside gte 4>>
   <<addLustTits 3>>
     	<<if $tshirtState is "worn">>
@@ -123,7 +116,6 @@ stage4: 3,
             <</if>>
              <<elseif $braState is "not worn">>
              
-
 <<if $isOwaissa eq 1>>
 <<set _videoList to ["nobra/1.mp4", "nobra/2.mp4", "nobra/3.mp4", "nobra/4.mp4", "nobra/5.mp4", "nobra/6.mp4", "nobra/7.mp4", "nobra/8.mp4"]>>
 <<elseif $isElm eq 1>>
@@ -188,7 +180,6 @@ stage4: 3,
     <</if>>
                  <</if>>
     			 <</if>>
-                 
                  
 <<addLust 5>>
 <<set $tempCorr += 0.02>>
@@ -277,18 +268,10 @@ stage4: 3,
 <</if>>
 <</if>>
 
-
 <<set _randomIndex to random(0, _videoList.length - 1)>>
 <<set _selectedVideo to _videoList[_randomIndex]>>
 <<set $videoEvent to _selectedVideo>>
 
-
-
-
-
 <<if _selectedVideo>>
 <<goto "eventMC">>
 <</if>>
-
-
-

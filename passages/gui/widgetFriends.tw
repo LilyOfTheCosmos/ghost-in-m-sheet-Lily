@@ -22,11 +22,8 @@ $companion.name 's exp: + _args[0]
 <<set $blake.exp += _args[0]>>
 <</if>>
 
-
 <</if>>
 <</widget>>
-
-
 
 <<widget "compLinks">>
 <<if $companion.name eq "Brook">>
@@ -57,7 +54,6 @@ $companion.name 's exp: + _args[0]
 <</if>>
 <</widget>>
 
-
 <<widget "compLinksSuccess">>
 <<if $companion.name eq "Brook">>
 <a data-passage="succeededComp">
@@ -83,7 +79,6 @@ $companion.name 's exp: + _args[0]
 <a data-passage="succeededComp">
 	<img @src="setup.ImagePath+`/trans/`+$transPicture+`.jpg`" class="companion-imageSucceeded"> 
 </a>
-
 
 <</if>>
 <</widget>>
@@ -176,14 +171,12 @@ Your <img @src="setup.ImagePath + '/img/hearth.png'" style="position: relative; 
 <<addLust 15>>
 <</widget>>
 
-
 <<widget "CompanionTextcompEvent3">>
 <<if $companion.name eq "Brook">>
 @@.mc-thoughts; As you entered the room, you immediately saw her. But she wasn't alone. Fortunately, you entered just in time, and as soon as you did, the ghost let her go and vanished@@<br>
 @@.mc-speech; $companion.name, are you alright? I saw what the ghost was doing to you...@@<br>
 @@.notmc-speech; Thank you, $mc.name, you came just in time.@@<br>
 @@.mc-thoughts; You walked over to her, carefully helping her up.@@<br>
-
 
 <<elseif $companion.name eq "Alice">>
 @@.mc-thoughts; Before entering the room, you hear strange sounds coming from inside. <br>
@@ -239,7 +232,6 @@ It seems she doesn't want to be interrupted. But as soon as the ghost saw you, i
 As you entered the room, you immediately saw her. But she wasn't alone. You walked in just in time to see what was happening...<br> 
 It seems she doesn't want to be interrupted. But as soon as the ghost saw you, it disappeared. @@<br>
 
-
 @@.mc-speech; $companion.name, are you alright? I heard screaming...@@<br> 
 @@.notmc-speech; Don't worry, it just caught me by surprise.@@<br> 
 @@.mc-speech; Sure...@@<br>
@@ -264,7 +256,6 @@ $companion.name's sanity: - $companion.decreaseSanity<img @src="setup.ImagePath 
 Your <img @src="setup.ImagePath + '/img/hearth.png'" style="position: relative; top: 0.375em; width:3%;"> +15<br>
 <<addLust 15>>
 <</widget>>
-
 
 <<widget "isCompanionContinue">>
 <<linkappend "@@.mc-speechLink; Will you be able to continue?@@">><br>
@@ -320,5 +311,3 @@ or @@.usebtn;<<link `$companion.name + " helps you"`>><<set $companion.sanity -=
 <<replace "#eventVideo">><<include "AliceHelp">><</replace>>
 <</link>> @@ - $companion.name's <img @src="setup.ImagePath + '/img/sanity.png'" style="position: relative; top: 0.375em; width:3%;">
 <</widget>>
-
-

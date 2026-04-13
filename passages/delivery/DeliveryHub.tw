@@ -17,5 +17,3 @@
 <<elseif previous() is "CityMap">><<addTime 20>>
 <<else>><<addTime 3>>
 <</if>>
-
-

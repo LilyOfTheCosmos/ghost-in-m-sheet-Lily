@@ -18,7 +18,6 @@
 <<set $mc.beauty +=11>>
 <<set $jeansState3 to "worn">><</if>>
 
-
 <<if $rememberBottomOuter eq "noshorts1">>
 <<set $rememberBottomOuter to "shorts1">>
 <<set $mc.beauty +=6>>
@@ -33,8 +32,6 @@
 <<set $rememberBottomOuter to "shorts3">>
 <<set $mc.beauty +=12>>
 <<set $shortsState3 to "worn">><</if>>
-
-
 
 <<if $rememberBottomOuter eq "noskirt1">>
 <<set $rememberBottomOuter to "skirt1">>
@@ -52,5 +49,3 @@
 <<set $skirtState3 to "worn">><</if>>
 
 <<set $isBottomStolen to 0>>
-
-

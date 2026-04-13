@@ -496,7 +496,6 @@
 <</if>>
 <</widget>>
 
-
 <<widget "includeStyle2">>
 <style>
   	body {
@@ -760,8 +759,6 @@
 </style>
 <</if>>
 
-
-
 <<elseif previous(2) is "IroncladReception">>
 <<if $reception.background eq 1>>
 <style>
@@ -1010,5 +1007,3 @@
 <<set _videoList to ["ghosts/cthulion/4.0.mp4", "ghosts/cthulion/4.1.mp4", "ghosts/cthulion/4.2.mp4", "ghosts/cthulion/4.3.mp4", "ghosts/cthulion/4.4.mp4", "ghosts/cthulion/4.5.mp4", "ghosts/cthulion/4.6.mp4", "ghosts/cthulion/4.7.mp4", "ghosts/cthulion/4.8.mp4", "ghosts/cthulion/4.9.mp4"]>>
 <</if>>
 <</widget>>
-
-

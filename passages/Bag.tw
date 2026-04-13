@@ -127,6 +127,3 @@ Pepper spray ($hasPSprayCharges charges left)<</if>>
 @@.backbtn;<<back>>@@<br>
 <<else>>
 @@.backbtn;<<return>>@@<br><</if>>
-
-
-

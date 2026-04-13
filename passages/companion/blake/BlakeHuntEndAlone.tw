@@ -139,5 +139,3 @@ That's it.@@<br>
 <<addclass ".linkselector" "disabled-link">>
 <</done>>
 @@.backbtn; [[Back|previous()][$blakeChooseOwaissa to 0; $blakeChooseElm to 0]]
-
-

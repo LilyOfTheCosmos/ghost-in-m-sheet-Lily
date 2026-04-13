@@ -11,6 +11,3 @@
 <<include "rescuePossessed">>
 <</if>>
 <<set $rescueQuestCD to 1>>
-
-
-

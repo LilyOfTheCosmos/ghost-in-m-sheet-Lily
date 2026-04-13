@@ -5,5 +5,3 @@
 <<set _stealClothesTriggered = true>>
 <<goto "stealClothes">><</if>>
 <</if>>
-
-

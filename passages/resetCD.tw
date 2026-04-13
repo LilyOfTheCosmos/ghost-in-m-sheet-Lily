@@ -67,5 +67,3 @@
 <<set $gotCursedItemEventCD += 1>>
 <</if>>
 <</if>>
-
-

@@ -194,7 +194,6 @@ evidence: [$EvidenceType.GLASS, $EvidenceType.EMF, $EvidenceType.SPIRITBOX],
 
 ----------------------------------------------------------------------------------------
 
-
 ----------
 
 <<run ["kitchen", "bathroom", "bedroom", "hallway", "livingroom"].forEach(function(name) {
@@ -204,7 +203,6 @@ evidence: [$EvidenceType.GLASS, $EvidenceType.EMF, $EvidenceType.SPIRITBOX],
 		background: 2
 	};
 })>>
-
 
 <<newmeter 'energy'>>
     <<sizing '220px'>>
@@ -233,5 +231,3 @@ evidence: [$EvidenceType.GLASS, $EvidenceType.EMF, $EvidenceType.SPIRITBOX],
     <<sizing '50%' 20px>>
     <<animation 2s swing>>
 <</newmeter>>
-
-

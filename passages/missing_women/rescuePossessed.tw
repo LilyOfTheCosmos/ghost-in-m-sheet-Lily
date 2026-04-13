@@ -53,5 +53,3 @@ Your instincts screamed that this place was dangerous, and you found yourself to
 @@.usebtn; <<link "Come closer to her." "rescueAshPossessed">><</link>>@@<br>
 <</if>>
 <</linkreplace>>
-
-

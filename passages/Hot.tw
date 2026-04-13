@@ -6,6 +6,3 @@
 <<linkreplace "@@.usebtn;Take upper clothes off@@">>
 <<goto "Hot1">><</linkreplace>>
 Or @@.usebtn;[[Nah, too risky|previous()]]@@<br>
-
-
-

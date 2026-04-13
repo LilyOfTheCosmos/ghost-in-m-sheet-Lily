@@ -10,12 +10,8 @@
 +0.2 <img @src="setup.ImagePath + '/img/corruption.png'" style="position: relative; top: 0.375em; width:3%;">
 <<set $mc.corruption += 0.2>><br><</if>>
 
-
 @@.mc-speech; Fuuhh~, i need to rest a bit@@<br>
 <<set $mc.lust to 0>>
 <br>
 @@.backbtn;[[Rest and leave|Livingroom]]@@<br>
 <<addTime 20>>
-
-
-

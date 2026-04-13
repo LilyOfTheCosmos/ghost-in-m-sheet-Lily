@@ -59,9 +59,6 @@
 <<if $rememberTopOuter eq "tshirt">><<set $rememberTopOuter to "tshirt0">><</if>>
 <<if $rememberBottomOuter eq "jeans">><<set $rememberBottomOuter to "jeans0">><</if>>
 
-
-
-
 <style>
   #availableClothes img,
   #availableOuterwear img,
@@ -82,5 +79,3 @@
 <</nobr>>
 
 @@.backbtn;[[Back|Bedroom]]@@
-
-

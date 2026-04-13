@@ -97,10 +97,7 @@ I think I'll take the monkey paw with me. It might be useful.@@<br>
 @@.backbtn; [[Back|$return]]@@
 <</if>>
 
-
 <</if>>
 <<done>>
 <<addclass ".linkselector" "disabled-link">>
 <</done>>
-
-

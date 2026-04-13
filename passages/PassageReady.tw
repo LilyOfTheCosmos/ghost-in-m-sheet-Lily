@@ -1,7 +1,6 @@
 :: PassageReady {"position":"200,200","size":"100,100"}
 <<if $ghostHuntingMode eq 2>>
 
-
 <<if $chosenPlanActivated eq 1 and (($hours * 60 + $minutes) gte $chosenPlanActivatedTime) and $showComp neq 2 and $showComp neq 3>>
 <<set _checkChance to random(1,100)>>
 <<if _checkChance gte $chanceToAttack>>
@@ -13,9 +12,7 @@
 <</if>>
 <</if>>
 
-
 <</if>>
-
 
 <<if passage() eq $randomGhostPassage>>
 <<goto "compEvent">>
@@ -24,7 +21,6 @@
 <<if $changeToolsActivated eq 1>>
 <<include "changeTimer">>
 <</if>>
-
 
 <<set $stealChance to (1 + (Math.log(101 - $mc.sanity) / Math.log(101)) * 1) * $stealChanceMult>>
 
@@ -82,7 +78,6 @@ evidence: ["emf", "spiritbox", "uvl"],
 <<set $MonkeyPawStage to 2>>
 <</if>>
 
-
 <<if ndef $mc.fit>>
 <<set $mc.fit to 0>>
 <</if>>
@@ -125,7 +120,6 @@ evidence: ["emf", "spiritbox", "uvl"],
 <<if ndef $addLustPiercingPussy>><<set $addLustPiercingPussy to 0>><</if>>
 <<if ndef $addLustPiercingTongue>><<set $addLustPiercingTongue to 0>><</if>>
 
-
 <<if $updateIronclad neq 2>>
 <<include "updateIronclad">>
 <</if>>
@@ -151,5 +145,3 @@ evidence: ["emf", "spiritbox", "uvl"],
 <<if ndef $addedTransInit>>
 <<include "transInit">>
 <</if>>
-
-

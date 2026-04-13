@@ -34,4 +34,3 @@
 	<<set $videoEvent to _videoList[_randomIndex]>>
 	<<goto "eventMC">>
 <</if>>
-

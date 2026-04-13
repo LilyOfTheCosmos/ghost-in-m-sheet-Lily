@@ -12,15 +12,12 @@
 <<elseif $isCIButtplug eq 1>>
 <<set _videoList to ["curseditems/2.0.mp4", "curseditems/2.1.mp4", "curseditems/2.2.mp4", "curseditems/2.3.mp4"]>>
 
-
 <<elseif $isCIBeads eq 1>>
 <<set _videoList to ["curseditems/3.0.mp4", "curseditems/3.1.mp4", "curseditems/3.2.mp4", "curseditems/3.3.mp4"]>>
-
 
 <<elseif $isCIHDildo eq 1>>
 <<set _videoList to ["curseditems/4.0.mp4", "curseditems/4.1.mp4", "curseditems/4.2.mp4"]>>
 <</if>>
-
 
 <<set _randomIndex to random(0, _videoList.length - 1)>>
 <<set _selectedVideoCI to _videoList[_randomIndex]>>
@@ -46,5 +43,3 @@ height: 500px;
 <<done>>
 <<addclass ".linkselector" "disabled-link">>
 <</done>>
-
-

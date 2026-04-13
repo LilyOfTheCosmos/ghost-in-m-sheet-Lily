@@ -51,10 +51,8 @@ They started fucking you in all holes at the same time, sometimes@@ <<link "@@.u
 <</if>>
 @@.enterbtn; [[Next|possessed]]@@<br>
 
-
 <</if>>
 <</linkappend>>
-
 
 <<elseif $checkChoosenLocation eq "home">>
 <span id ="possessedLocationHome">
@@ -184,7 +182,6 @@ You couldn't even imagine that you could feel so good just from a blowjob, so yo
 @@.notmc-speech;Yeah, just like that, baby, show me what you can do.@@<br>
 @@.mc-speech;No, I don't want this... what's wrong with me?@@<br>
 
-
 <<linkreplace "@@.usebtn; Try to resist again@@">>
 <<if setup.Posession.canResistSecondAttempt()>>
 <span id ="possessedLocationPark1">
@@ -231,7 +228,4 @@ You couldn't even imagine that you could feel so good just from a blowjob, so yo
 <</if>>
 <</linkreplace>>
 
-
 <</if>>
-
-

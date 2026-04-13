@@ -30,5 +30,3 @@
  </video>
  @@.mc-thoughts; You start kissing, and the whole world slips away from you in that moment. <br>You [[pass out.|Church][$hours += 3]]@@
 <</if>>
-
-

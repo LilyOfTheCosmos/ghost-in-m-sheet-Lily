@@ -38,13 +38,10 @@
 @@.mc-speech; Yeah, let's do that.@@<</replace>>
 <</link>>@@<br>
 
-
-
 <span class="CompanionInfoAskForHuntAlone">
 @@.mc-speech;<<link "I'd like you to go ghost hunting alone.">>
 <<set $isCompChosenBlake to 0>>
 <<replace "#blakeInfoAnswer">>@@.notmc-speech; I think I'm already experienced enough to do it on my own. Where should I go?@@<br>
-
 
 @@.enterbtn;<<link "Owaissa Street - $chanceToSuccessAloneOwaissaBlake %">>
 <<set $blakeChooseOwaissa to 1>>
@@ -57,7 +54,6 @@
 <<else>>
 <<replace "#blakeInfoAnswerTwo">>@@.notmc-speech;Owaissa Street? Hmm... Yes, of course. I think I can handle it.@@<</replace>><</if>><</link>>@@@@color: green; <b>-20$</b>@@<br>
 
-
 @@.enterbtn;<<link "Elm Street - $chanceToSuccessAloneElmBlake %">>
 <<set $blakeChooseOwaissa to 0>>
 <<set $blakeChooseElm to 1>>
@@ -68,7 +64,6 @@
 <<else>>
 <<replace "#blakeInfoAnswerTwo">>@@.notmc-speech;Elm Street? Hmm... Yes, of course. I think I can handle it.@@<</replace>><</if>>
 <</link>>@@@@color: green; <b>-20$</b>@@<br>
-
 
 <span id="blakeInfoAnswerTwo">
 	
@@ -94,5 +89,3 @@
 <</done>>
 <</if>>
 @@.backbtn; [[Return|$return]] @@<br>
-
-

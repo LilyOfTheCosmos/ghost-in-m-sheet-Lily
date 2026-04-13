@@ -52,5 +52,3 @@ Your <img @src="setup.ImagePath + '/img/hearth.png'" style="position: relative; 
 <br>
 <br>
 @@.backbtn;[[Leave|CityMap]] @@<br>
-
-

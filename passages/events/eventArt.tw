@@ -69,7 +69,6 @@ stage4: 3,
     <<elseif passage() is "enigmaHallway">>
     <<set _artListVids to ["animated/all/1.mp4", "animated/all/2.mp4", "animated/all/3.mp4", "animated/all/4.mp4", "animated/all/5.mp4", "animated/all/6.mp4", "animated/all/7.mp4", "animated/all/8.mp4", "animated/all/9.mp4", "animated/all/10.mp4", "animated/all/11.mp4", "animated/all/12.mp4", "animated/all/13.mp4", "animated/all/14.mp4", "animated/all/15.mp4", "animated/all/16.mp4", "animated/all/17.mp4", "animated/all/18.mp4", "animated/all/19.mp4", "animated/all/20.mp4", "animated/all/21.mp4", "animated/all/22.mp4", "animated/all/23.mp4", "animated/all/24.mp4", "animated/hallway/1.mp4", "animated/hallway/2.mp4", "animated/hallway/3.mp4", "animated/hallway/4.mp4"]>>
   
-    
 	<<elseif passage() is "OwaissaBathroom" or passage() is "elmBathroom">>
 	<<set _artListVids to ["animated/all/1.mp4", "animated/all/2.mp4", "animated/all/3.mp4", "animated/all/4.mp4", "animated/all/5.mp4", "animated/all/6.mp4", "animated/all/7.mp4", "animated/all/8.mp4", "animated/all/9.mp4", "animated/all/10.mp4", "animated/all/11.mp4", "animated/all/12.mp4", "animated/all/13.mp4", "animated/all/14.mp4", "animated/all/15.mp4", "animated/all/16.mp4", "animated/all/17.mp4", "animated/all/18.mp4", "animated/all/19.mp4", "animated/all/20.mp4", "animated/all/21.mp4", "animated/all/22.mp4", "animated/all/23.mp4", "animated/all/24.mp4", "animated/bath/1.mp4", "animated/bath/2.mp4"]>>
             
@@ -94,4 +93,3 @@ stage4: 3,
 <<if _selectedVids>>
 <<goto "artEventVids">>
 <</if>>
-

@@ -68,5 +68,3 @@ Brook's lust <img @src="setup.ImagePath + '/img/hearth.png'" style="position: re
 @@.backbtn; [[Continue|previous()]]@@<br>
      <</if>>
 	<</if>>
-
-

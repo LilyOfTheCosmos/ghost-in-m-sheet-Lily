@@ -71,5 +71,3 @@ You realize it's not Jade anymore. Whoever's standing in front of you, it's not 
 @@.notmc-speech; I can see you're starting to enjoy this. Haha, [[what if I just...|rescueJadePossessed1][$rescueJadePossessed to 3]]@@<br>
 <</if>>
 <</linkappend>>@@
-
-

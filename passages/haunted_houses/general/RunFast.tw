@@ -34,7 +34,6 @@ Cold air surrounds you, and you feel an icy hand reaching for you. You have a li
 use the Crucifix, but unfortunately, @@.enterbtn;[[you don't have it...|huntEnd]]@@
 <</if>>
 
-
 <<else>>
 You decide to look back, and to your relief, you see that the ghost has disappeared. The footsteps are no longer audible, and the shadows have stopped closing in around you. You slow down, trying to catch your breath, and feel the adrenaline slowly leaving your body. You managed to escape, and @@.enterbtn;[[you are safe -- for now.|$return]]@@<br>
 <br>
@@ -43,5 +42,3 @@ You decide to look back, and to your relief, you see that the ghost has disappea
 <<done>>
 <<addclass ".linkselector" "disabled-link">>
 <</done>>
-
-

@@ -245,8 +245,6 @@ or @@.usebtn; [["Call "+$companion.name + " for help"|$return][$companion.sanity
 <</if>>
 <</if>>
 
-
-
 <</if>><br>
 <</if>>
 </div>
@@ -287,5 +285,3 @@ or ((previous() is "IroncladBlockBCellC" and $BlockBCellC.background eq 2))
         }
     </style><</if>>
 <<includeStyleEventMC>>
-
-

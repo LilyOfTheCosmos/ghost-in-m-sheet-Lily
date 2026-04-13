@@ -34,5 +34,3 @@
 <<elseif ($pantiesState1 eq "not worn") or ($pantiesState2 eq "not worn") or ($pantiesState3 eq "not worn") or ($pantiesState0 eq "not worn")>>
 <<set $pantiesState to "not worn">>
 <</if>>
-
-

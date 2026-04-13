@@ -1,7 +1,6 @@
 :: adultSectionBlake [nobr] {"position":"3000,1750","size":"100,100"}
 <img @src="setup.ImagePath + '/blake/blakeShop.jpg'" class="displayCentredImgs" width="50%"><br>
 
-
 <<if setup.Mall.blakeUnlocked()>>
 <<if setup.Mall.blakeFirstMeeting()>>
 @@.notmc-speech; Hey, you're not $mc.name by any chance, are you? Alice told me you went ghost hunting together.@@<br>
@@ -53,11 +52,6 @@ Money: +60 $ <br>
 @@.mc-speech; No, thanks, I'm just looking around.@@<br>
 <</if>>
 
-
-
-
-
-
 <<if setup.Mall.blakeIsCompanionCandidate()>>
 <<if setup.Mall.blakeHuntFinishedAlone()>>
 @@.mc-speech; [[Ask her how her ghost hunt went.|BlakeHuntEndAlone]]@@<br>
@@ -70,13 +64,10 @@ But if we find the cursed item, I'll keep it, okay?@@<br>
 @@.mc-speech; Fine, let's do that.@@<</replace>>
 <</link>>@@<br>
 
-
-
 <span class="CompanionInfoAskForHuntAlone">
 @@.mc-speech;<<link "I'd like you to go ghost hunting alone.">>
 <<set $isCompChosenBlake to 0>>
 <<replace "#blakeInfoAnswer">>@@.notmc-speech; I think I'm already experienced enough to do it on my own. Where should I go?@@<br>
-
 
 @@.enterbtn;<<link "Owaissa Street - $chanceToSuccessAloneOwaissaBlake %">>
 <<set $blakeChooseOwaissa to 1>>
@@ -89,7 +80,6 @@ But if we find the cursed item, I'll keep it, okay?@@<br>
 <<else>>
 <<replace "#blakeInfoAnswerTwo">>@@.notmc-speech;Owaissa Street? Hmm... Yes, of course. I think I can handle it.@@<</replace>><</if>><</link>>@@@@color: green; <b>-20$</b>@@<br>
 
-
 @@.enterbtn;<<link "Elm Street - $chanceToSuccessAloneElmBlake %">>
 <<set $blakeChooseOwaissa to 0>>
 <<set $blakeChooseElm to 1>>
@@ -100,7 +90,6 @@ But if we find the cursed item, I'll keep it, okay?@@<br>
 <<else>>
 <<replace "#blakeInfoAnswerTwo">>@@.notmc-speech;Elm Street? Hmm... Yes, of course. I think I can handle it.@@<</replace>><</if>>
 <</link>>@@@@color: green; <b>-20$</b>@@<br>
-
 
 <span id="blakeInfoAnswerTwo">
 	
@@ -128,5 +117,3 @@ But if we find the cursed item, I'll keep it, okay?@@<br>
 <br>
 <br>
 @@.backbtn; [[Back|adultSection]]@@
-
-

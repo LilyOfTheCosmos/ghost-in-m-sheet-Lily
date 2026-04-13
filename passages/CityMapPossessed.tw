@@ -85,7 +85,6 @@
 
 </div>
 
-
 <<nobr>>
 
 <<if ($hours gte 22) or ($hours gte 0 and $hours lte 5)>>
@@ -106,5 +105,3 @@
  </style>
  		<</if>>
 <</nobr>>
-
-

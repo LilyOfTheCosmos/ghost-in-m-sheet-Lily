@@ -26,7 +26,6 @@
 <<set $tempListOwaissa to $tempListOwaissa.filter(x => x != $placeForCurseOwaissa)>>
 <</if>>
 
-
 <<set $placeForCursedItemElm to $tempListElm.random()>>
 <<set $tempListElm to $tempListElm.filter(x => x != $placeForCursedItemElm)>>
 <<set $placeForRescueClueElm to $tempListElm.random()>>
@@ -39,5 +38,3 @@
 <<set $placeForCurseElm to $tempListElm.random()>>
 <<set $tempListElm to $tempListElm.filter(x => x != $placeForCurseElm)>>
 <</if>>
-
-

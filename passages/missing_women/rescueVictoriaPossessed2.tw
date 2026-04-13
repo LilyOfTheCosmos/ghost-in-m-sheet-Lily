@@ -31,5 +31,3 @@
 <</if>>
 <br>
  @@.backbtn; [[Wake up|Church][$hours += 3]]@@<br>
-
-

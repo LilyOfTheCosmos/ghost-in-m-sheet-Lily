@@ -43,5 +43,3 @@ I don't have anything to give you in return for your help right now, but maybe I
 <<addclass ".linkselector" "disabled-link">>
 <</done>>
 @@.backbtn; [[Back|Church][$hasQuestForRescue to 0]]@@<br>
-
-

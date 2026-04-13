@@ -21,7 +21,6 @@
     <<set _stealOptions.push("outerwear")>>
 <</if>>
 
-
  <<if _stealOptions.length > 0>>
     <<set _stealOption to _stealOptions[random(0, _stealOptions.length - 1)]>>
 
@@ -44,7 +43,6 @@
 <br>
 @@.backbtn; [[Continue|$return]]@@<br>
 
-
 <<includeStyle>>
 <<includeStyle2>>
 <style>
@@ -56,5 +54,3 @@
 <<done>>
 <<addclass ".linkselector" "disabled-link">>
 <</done>>
-
-
