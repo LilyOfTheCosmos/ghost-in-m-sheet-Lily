@@ -50,32 +50,32 @@ setup.addLust = function(amount) {
 <</widget>>
 
 <<widget "addLustByPart">>
-<<set _base to _args[0] !== undefined ? _args[0] : 2>>
+<<set _lustBase to _args[0] !== undefined ? _args[0] : 2>>
 <<switch $argForRandomizer>>
-<<case 1>>
+<<case "brain">>
 <<set $sensualBodyPart.brain += 0.02>>
-<<run setup.addLust(_base + $sensualBodyPart.brain)>>
-<<case 2>>
+<<run setup.addLust(_lustBase + $sensualBodyPart.brain)>>
+<<case "tits">>
 <<set $sensualBodyPart.tits += 0.02 + $piercingTitsAddSens>>
-<<run setup.addLust(_base + $sensualBodyPart.tits)>>
-<<case 3>>
+<<run setup.addLust(_lustBase + $sensualBodyPart.tits)>>
+<<case "ass">>
 <<set $sensualBodyPart.ass += 0.02>>
-<<run setup.addLust(_base + $sensualBodyPart.ass)>>
-<<case 4>>
+<<run setup.addLust(_lustBase + $sensualBodyPart.ass)>>
+<<case "bottom">>
 <<set $sensualBodyPart.bottom += 0.02>>
 <<set $sensualBodyPart.ass += 0.01>>
 <<set $sensualBodyPart.pussy += 0.01 + $piercingPussyAddSens>>
 <<set $sensualBodyPart.anal += 0.01>>
-<<run setup.addLust(_base + $sensualBodyPart.bottom)>>
-<<case 5>>
+<<run setup.addLust(_lustBase + $sensualBodyPart.bottom)>>
+<<case "mouth">>
 <<set $sensualBodyPart.mouth += 0.02 + $piercingTongueAddSens>>
-<<run setup.addLust(_base + $sensualBodyPart.mouth)>>
-<<case 6>>
+<<run setup.addLust(_lustBase + $sensualBodyPart.mouth)>>
+<<case "pussy">>
 <<set $sensualBodyPart.pussy += 0.02 + $piercingPussyAddSens>>
-<<run setup.addLust(_base + $sensualBodyPart.pussy)>>
-<<case 7>>
+<<run setup.addLust(_lustBase + $sensualBodyPart.pussy)>>
+<<case "anal">>
 <<set $sensualBodyPart.anal += 0.02>>
-<<run setup.addLust(_base + $sensualBodyPart.anal)>>
+<<run setup.addLust(_lustBase + $sensualBodyPart.anal)>>
 <</switch>>
 <<updatemeter 'mclust' `$mc.lust / 100`>>
 <</widget>>

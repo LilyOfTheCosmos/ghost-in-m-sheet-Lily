@@ -1,19 +1,14 @@
 :: widgetEvent [widget nobr] {"position":"400,1800","size":"100,100"}
-<<widget "eventRandomizer1">><<set _videoList to setup.Events.videoListForEvent(1)>><</widget>>
-<<widget "eventRandomizer2">><<set _videoList to setup.Events.videoListForEvent(2)>><</widget>>
-<<widget "eventRandomizer3">><<set _videoList to setup.Events.videoListForEvent(3)>><</widget>>
-<<widget "eventRandomizer4">><<set _videoList to setup.Events.videoListForEvent(4)>><</widget>>
-<<widget "eventRandomizer5">><<set _videoList to setup.Events.videoListForEvent(5)>><</widget>>
-<<widget "eventRandomizer6">><<set _videoList to setup.Events.videoListForEvent(6)>><</widget>>
-<<widget "eventRandomizer7">><<set _videoList to setup.Events.videoListForEvent(7)>><</widget>>
+<<widget "eventRandomizer">><<set _eventKey to _args[0]>><<set _videoList to setup.Events.videoListForEvent(_eventKey)>><</widget>>
 
 
 <<set $tempCorr += 0.05>>
 
 
 <<widget "eventRandomizerText">>
+<<set _bodyPart to _args[0]>>
 <<set _ct to setup.Events.corruptionTier()>>
-<<if _args[0] eq 1>>
+<<if _bodyPart eq "brain">>
 <<if _ct eq 8>>
 <<addLustByPart>>
 @@.mc-thoughts; You've fully surrendered to the thoughts. You picture yourself in the place of those girls and crave for it to happen to you.@@<br>
@@ -57,7 +52,7 @@ You can't hold back anymore. Your hand slides down to your most intimate spot, f
 <</if>>
 
 
-<<elseif _args[0] eq 2>>
+<<elseif _bodyPart eq "tits">>
 <<if _ct eq 8>>
 <<addLustByPart>>
 @@.mc-thoughts; The hands firmly and insistently knead your chest, and you tremble with pleasure, giving yourself fully to the sensations. Your fingers trace along your skin, and you're consumed by overwhelming desire, wishing for this to never stop.@@<br>
@@ -96,7 +91,7 @@ You can't hold back anymore. Your hand slides down to your most intimate spot, f
 <</if>>
 
 
-<<elseif _args[0] eq 3>>
+<<elseif _bodyPart eq "ass">>
 <<if _ct eq 8>>
 <<addLustByPart>>
 @@.mc-thoughts; The slaps grow more insistent, each one sending jolts of pleasure through your body. You arch your back instinctively, your body fully giving in to the sensations. Your fingers trail along your thighs, teasing yourself as you moan softly, lost in desire.@@<br>
@@ -135,7 +130,7 @@ You can't hold back anymore. Your hand slides down to your most intimate spot, f
 <</if>>
 
 
-<<elseif _args[0] eq 4>>
+<<elseif _bodyPart eq "bottom">>
 <<if _ct eq 8>>
 <<addLustByPart>>
 @@.mc-thoughts; He's completely in control now, and all you want is more. It's like everything happening right now is exactly what you desire, and you can't resist anymore.@@<br>
@@ -174,7 +169,7 @@ You can't hold back anymore. Your hand slides down to your most intimate spot, f
 <</if>>
 
 
-<<elseif _args[0] eq 5>>
+<<elseif _bodyPart eq "mouth">>
 <<if _ct eq 8>>
 <<addLustByPart>>
 @@.mc-thoughts; The ghost appears in front of you and pushes. You look up and see his cock in front of your face. There's only one thought in your head: where will he fuck you this time.<br>
@@ -199,7 +194,7 @@ He brings it to your mouth and you take it in your mouth yourself, capturing it 
 <</if>>
 
 
-<<elseif _args[0] eq 6>>
+<<elseif _bodyPart eq "pussy">>
 <<if _ct eq 8>>
 <<addLustByPart>>
 @@.mc-thoughts; The ghost appears in front of you, and it seems like he's really turned on this time.
@@ -225,7 +220,7 @@ Taking advantage of your distraction, he shoves his already erect cock into your
 <</if>>
 
 
-<<elseif _args[0] eq 7>>
+<<elseif _bodyPart eq "anal">>
 <<if _ct eq 8>>
 <<addLustByPart>>
 @@.mc-thoughts; The ghost appears in front of you, and it seems like he's really turned on this time.

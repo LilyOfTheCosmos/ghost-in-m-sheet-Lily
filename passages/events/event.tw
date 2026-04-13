@@ -23,10 +23,10 @@
 	<</if>>
 
 <<else>>
-	<<set _eventNum to setup.Events.rollBodyPartEvent(_chance)>>
-	<<if _eventNum gt 0>>
+	<<set _eventKey to setup.Events.rollBodyPartEvent(_chance)>>
+	<<if _eventKey>>
 		<<set $tempCorr += 0.015>>
-		<<set _videoList to setup.Events.videoListForEvent(_eventNum)>>
+		<<set _videoList to setup.Events.videoListForEvent(_eventKey)>>
 	<</if>>
 <</if>>
 

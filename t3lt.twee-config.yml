@@ -5,46 +5,19 @@ sugarcube-2:
       description: "Updates a named meter's value without re-rendering it. If the
         meter is currently on the page it updates in place with animation. Args:
         meterName (string), value (number, 0-1)."
-    eventRandomizer1:
-      name: eventRandomizer1
-      description: Triggers a ghost interaction event at intensity level 1 (lowest).
-        Sets $argForRandomizer to 1 and _eventTriggered to true. Selects a video
-        based on current clothing state and active haunted house.
-    eventRandomizer2:
-      name: eventRandomizer2
-      description: Triggers a ghost interaction event at intensity level 2. Sets
-        $argForRandomizer to 2 and _eventTriggered to true. Selects a video
-        based on current clothing state and active haunted house.
-    eventRandomizer3:
-      name: eventRandomizer3
-      description: Triggers a ghost interaction event at intensity level 3. Sets
-        $argForRandomizer to 3 and _eventTriggered to true. Selects a video
-        based on current clothing state and active haunted house.
-    eventRandomizer4:
-      name: eventRandomizer4
-      description: Triggers a ghost interaction event at intensity level 4. Sets
-        $argForRandomizer to 4 and _eventTriggered to true. Selects a video
-        based on current clothing state and active haunted house.
-    eventRandomizer5:
-      name: eventRandomizer5
-      description: Triggers a ghost interaction event at intensity level 5. Sets
-        $argForRandomizer to 5 and _eventTriggered to true. Selects a video
-        based on current clothing state and active haunted house.
-    eventRandomizer6:
-      name: eventRandomizer6
-      description: Triggers a ghost interaction event at intensity level 6. Sets
-        $argForRandomizer to 6 and _eventTriggered to true. Selects a video
-        based on current clothing state and active haunted house.
-    eventRandomizer7:
-      name: eventRandomizer7
-      description: Triggers a ghost interaction event at intensity level 7 (highest).
-        Sets $argForRandomizer to 7 and _eventTriggered to true. Selects a video
-        based on current clothing state and active haunted house.
+    eventRandomizer:
+      name: eventRandomizer
+      description: "Triggers a ghost interaction event for the given body-part key.
+        Args: eventKey (string, one of 'brain', 'tits', 'ass', 'bottom', 'mouth',
+        'pussy', 'anal'). Sets $argForRandomizer to the key and _eventTriggered
+        to true. Selects a video based on current clothing state and active
+        haunted house."
     eventRandomizerText:
       name: eventRandomizerText
-      description: Displays the text and stat changes for the current ghost
-        interaction event. Uses $argForRandomizer to determine which event
-        tier's dialogue and effects to show.
+      description: "Displays the text and stat changes for the current ghost
+        interaction event. Args: eventKey (string, one of 'brain', 'tits',
+        'ass', 'bottom', 'mouth', 'pussy', 'anal'). Uses the key to determine
+        which body-part dialogue and effects to show."
     CompExp:
       name: CompExp
       description: "Adds experience points to the active companion ($companion).
