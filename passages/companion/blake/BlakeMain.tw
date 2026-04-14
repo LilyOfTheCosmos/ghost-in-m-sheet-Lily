@@ -4,15 +4,15 @@
 <div class="companionImageMain">
 <<do>>
 <<if $chanceToAttackBlake eq 25>>
-<img @src="setup.ImagePath + '/blake/blake1.png'" width=100% >
+	<img @src="setup.ImagePath + '/blake/blake1.png'" width=100% >
 <<elseif $chanceToAttackBlake eq 40>>
-<img @src="setup.ImagePath + '/blake/blake2.png'" width=100% >
+	<img @src="setup.ImagePath + '/blake/blake2.png'" width=100% >
 <<elseif $chanceToAttackBlake eq 55>>
-<img @src="setup.ImagePath + '/blake/blake3.png'" width=100% >
+	<img @src="setup.ImagePath + '/blake/blake3.png'" width=100% >
 <<elseif $chanceToAttackBlake eq 70>>
-<img @src="setup.ImagePath + '/blake/blake4.png'" width=100% >
+	<img @src="setup.ImagePath + '/blake/blake4.png'" width=100% >
 <<elseif $chanceToAttackBlake eq 90>>
-<img @src="setup.ImagePath + '/blake/blake5.png'" width=100% >
+	<img @src="setup.ImagePath + '/blake/blake5.png'" width=100% >
 <</if>><br>
 <</do>>
 </div>
@@ -40,15 +40,15 @@
 <<do tag "companionAnswers">>
 @@.notmc-speech;
 <<if $chanceToAttackBlake eq 25>>
-Let's just focus on the task.
+	Let's just focus on the task.
 <<elseif $chanceToAttackBlake eq 40>>
-Take my top off? Well... alright, if you think it'll help.
+	Take my top off? Well... alright, if you think it'll help.
 <<elseif $chanceToAttackBlake eq 55>>
-Down to my underwear? Okay, I trust you.
+	Down to my underwear? Okay, I trust you.
 <<elseif $chanceToAttackBlake eq 70>>
-Just my panties? This is so embarrassing, but fine...
+	Just my panties? This is so embarrassing, but fine...
 <<elseif $chanceToAttackBlake eq 90>>
-Completely naked? You're lucky I like you, $mc.name.
+	Completely naked? You're lucky I like you, $mc.name.
 <</if>>
 @@<</do>><br>
 <<set $chanceToAttack to $chanceToAttackBlake>>
@@ -61,85 +61,85 @@ Completely naked? You're lucky I like you, $mc.name.
 <br>
 <<sanityPills>>
 <br>
-@@.usebtn;<<link "Let's stick together for now">> 
-<<set $chosenPlan to "Plan1">>
-<<set $chosenPlanActivated to 0>>
-<<set $showComp to 1>>
-<<replace "#compResponse">>
-    @@.notmc-speech;Good, I'll stay close to you.@@<</replace>>
+@@.usebtn;<<link "Let's stick together for now">>
+	<<set $chosenPlan to "Plan1">>
+	<<set $chosenPlanActivated to 0>>
+	<<set $showComp to 1>>
+	<<replace "#compResponse">>
+		@@.notmc-speech;Good, I'll stay close to you.@@<</replace>>
 <</link>>@@<br>
 <span id="checkQuestForCursedItem">@@.usebtn;<<link "I need you to find the cursed item @@.warningtext; ($companion.chanceOfSuccessCI %, $companion.plan2TimeReq min)@@" >>
-<<if not setup.Companion.hasCursedItem()>>
-<<set $chosenPlan to "Plan2">>
-<<set $chanceToSuccess to $companion.chanceOfSuccessCI>>
-<<set $showComp to 0>>
-<<set $chosenPlanActivated to 1>>
-<<set $chosenPlanActivatedTime = $hours * 60 + $minutes + $companion.plan2TimeReq>>
+	<<if not setup.Companion.hasCursedItem()>>
+		<<set $chosenPlan to "Plan2">>
+		<<set $chanceToSuccess to $companion.chanceOfSuccessCI>>
+		<<set $showComp to 0>>
+		<<set $chosenPlanActivated to 1>>
+		<<set $chosenPlanActivatedTime = $hours * 60 + $minutes + $companion.plan2TimeReq>>
 
-<<replace "#compResponse">>
-    @@.notmc-speech;Alright, I'll look for the cursed item.@@<</replace>>
-<<else>>
-<<replace "#compResponse">>
-    @@.notmc-speech; We already have a cursed item.@@<</replace>>
-<</if>>
+		<<replace "#compResponse">>
+			@@.notmc-speech;Alright, I'll look for the cursed item.@@<</replace>>
+	<<else>>
+		<<replace "#compResponse">>
+			@@.notmc-speech; We already have a cursed item.@@<</replace>>
+	<</if>>
 <</link>>@@</span> <<if not setup.Companion.cursedItemQuestUnlocked()>>@@.warningtext; Req. quest from the witch@@<</if>><br>
 @@.usebtn;<<link "I want you to look for any ghost evidence @@.warningtext; ($companion.chanceOfSuccessAnyEvidence %, $companion.plan3TimeReq min@@)">>
-<<set $chosenPlan to "Plan3">>
-<<set $chanceToSuccess to $companion.chanceOfSuccessAnyEvidence>>
-<<set $showComp to 0>>
-<<set $chosenPlanActivated to 1>>
-<<set $chosenPlanActivatedTime = $hours * 60 + $minutes + $companion.plan3TimeReq>>
-<<replace "#compResponse">>
-    @@.notmc-speech;Sure, I'll search for any ghost evidence.@@<</replace>>
+	<<set $chosenPlan to "Plan3">>
+	<<set $chanceToSuccess to $companion.chanceOfSuccessAnyEvidence>>
+	<<set $showComp to 0>>
+	<<set $chosenPlanActivated to 1>>
+	<<set $chosenPlanActivatedTime = $hours * 60 + $minutes + $companion.plan3TimeReq>>
+	<<replace "#compResponse">>
+		@@.notmc-speech;Sure, I'll search for any ghost evidence.@@<</replace>>
 <</link>>@@<br>
 @@.usebtn;<<link "It would be nice if you found the ghost's favorite room @@.warningtext; ($companion.chanceOfSuccessGR %, $companion.plan4TimeReq min@@)">>
-<<set $chosenPlan to "Plan4">>
-<<set $chanceToSuccess to $companion.chanceOfSuccessGR>>
-<<set $showComp to 0>>
-<<set $chosenPlanActivated to 1>>
-<<set $chosenPlanActivatedTime = $hours * 60 + $minutes + $companion.plan4TimeReq>>
-<<replace "#compResponse">>
-   @@.notmc-speech; Got it, I'll try to find the ghost's favorite room.@@<</replace>>
+	<<set $chosenPlan to "Plan4">>
+	<<set $chanceToSuccess to $companion.chanceOfSuccessGR>>
+	<<set $showComp to 0>>
+	<<set $chosenPlanActivated to 1>>
+	<<set $chosenPlanActivatedTime = $hours * 60 + $minutes + $companion.plan4TimeReq>>
+	<<replace "#compResponse">>
+		@@.notmc-speech; Got it, I'll try to find the ghost's favorite room.@@<</replace>>
 <</link>>@@<br>
 
 <<if $ghostHuntingMode eq 2>>
-@@.usebtn;<<link "Ask her to walk you home.">>
+	@@.usebtn;<<link "Ask her to walk you home.">>
 
-<<replace "#compResponse">>
-@@.mc-speech; I think that's enough. Can you walk me home, please?@@<br>
-<<if setup.Companion.canWalkHomeWithCompanion()>>
-@@.notmc-speech; Of course. Are you sure you want to leave now?@@<br>
-<<if $ghost.name eq "Myling" and $ghostHuntingMode eq 2>>
-@@.mc-speech; Yes, [[let's go together|ghostSpecialEventMylingTwo]] @@<<else>>
-@@.mc-speech; Yes, [[let's go together|WalkHomeTogether]] @@<</if>> <b>or </b>
-<<linkreplace "@@.mc-speechLink; Not yet@@">>
-@@.notmc-speech; Alright, so what should we do?@@
-<</linkreplace>><br>
-<<else>>
-@@.notmc-speech;Um... Well, maybe you should find your clothes first...?@@<br>
-<<if $mc.exhib lte 4 or ndef $mc.exhib>>@@.mc-speech; Yeah, you're right.@@@@.warningtext; (She'll go with you if you're dressed) or Req. Exhibitionism Level 5+@@<</if>>
-<<if $mc.exhib gte 5>>
-<<linkreplace "@@.mc-speechLink; I don't care@@">>
-<<if hasVisited("NudityEventTwo")>>
-@@.mc-speech;Let's just leave naked, like last time...@@<br>
-@@.notmc-speech; Alright, but I'm still grabbing some bathrobes...@@<br>
-<br>
-@@.backbtn; [[Go home together naked|NudityEventTwo]]@@<br>
-<<else>>
-@@.mc-speech; I don't care. I just want to get out of here as soon as possible. Besides, I've walked down the street naked before... It's actually kind of fun. People's eyes wander over you, and the breeze gently tickles all your intimate places~ <br>
-It might feel awkward at first, but after a couple of minutes, you'll start to enjoy it...<br>
-Come on! Let's go naked together.You'll like it.<br>@@
-@@.notmc-speech; Wow, you're such a slut. Alright, let's go. But I'll still grab some clothes from here for us. That way, I'll feel more comfortable.@@<br>
-<br>
-@@.backbtn; [[Go home together naked|NudityEventTwo]]@@<br>
-<</if>>
-<</linkreplace>>
-<<else>>
+		<<replace "#compResponse">>
+			@@.mc-speech; I think that's enough. Can you walk me home, please?@@<br>
+			<<if setup.Companion.canWalkHomeWithCompanion()>>
+				@@.notmc-speech; Of course. Are you sure you want to leave now?@@<br>
+				<<if $ghost.name eq "Myling" and $ghostHuntingMode eq 2>>
+					@@.mc-speech; Yes, [[let's go together|ghostSpecialEventMylingTwo]] @@<<else>>
+					@@.mc-speech; Yes, [[let's go together|WalkHomeTogether]] @@<</if>> <b>or </b>
+				<<linkreplace "@@.mc-speechLink; Not yet@@">>
+					@@.notmc-speech; Alright, so what should we do?@@
+				<</linkreplace>><br>
+			<<else>>
+				@@.notmc-speech;Um... Well, maybe you should find your clothes first...?@@<br>
+				<<if $mc.exhib lte 4 or ndef $mc.exhib>>@@.mc-speech; Yeah, you're right.@@@@.warningtext; (She'll go with you if you're dressed) or Req. Exhibitionism Level 5+@@<</if>>
+				<<if $mc.exhib gte 5>>
+					<<linkreplace "@@.mc-speechLink; I don't care@@">>
+						<<if hasVisited("NudityEventTwo")>>
+							@@.mc-speech;Let's just leave naked, like last time...@@<br>
+							@@.notmc-speech; Alright, but I'm still grabbing some bathrobes...@@<br>
+							<br>
+							@@.backbtn; [[Go home together naked|NudityEventTwo]]@@<br>
+						<<else>>
+							@@.mc-speech; I don't care. I just want to get out of here as soon as possible. Besides, I've walked down the street naked before... It's actually kind of fun. People's eyes wander over you, and the breeze gently tickles all your intimate places~ <br>
+							It might feel awkward at first, but after a couple of minutes, you'll start to enjoy it...<br>
+							Come on! Let's go naked together.You'll like it.<br>@@
+							@@.notmc-speech; Wow, you're such a slut. Alright, let's go. But I'll still grab some clothes from here for us. That way, I'll feel more comfortable.@@<br>
+							<br>
+							@@.backbtn; [[Go home together naked|NudityEventTwo]]@@<br>
+						<</if>>
+					<</linkreplace>>
+				<<else>>
 
-<</if>>
-<</if>> 
-<</replace>>
-<</link>>@@<</if>><br>
+				<</if>>
+			<</if>>
+		<</replace>>
+	<</link>>@@<</if>><br>
 
 <span id="compResponse"></span>
 <br>
@@ -147,23 +147,23 @@ Come on! Let's go naked together.You'll like it.<br>@@
 @@.backbtn; [[Continue|previous()]]@@<br>
 
 <<done>>
-<<addclass ".linkselector" "disabled-link">>
-<<if not setup.Companion.cursedItemQuestUnlocked()>>
-<<addclass "#checkQuestForCursedItem" "disabled-link">>
-<</if>>
-<<if $blake.lvl lt 1>>
-<<addclass ".blakeLvlCheck1" "disabled-link">>
-<<addclass ".blakeLvlCheck2" "disabled-link">>
-<<addclass ".blakeLvlCheck3" "disabled-link">>
-<<addclass ".blakeLvlCheck4" "disabled-link">>
-<<elseif $blake.lvl lt 2>>
-<<addclass ".blakeLvlCheck2" "disabled-link">>
-<<addclass ".blakeLvlCheck3" "disabled-link">>
-<<addclass ".blakeLvlCheck4" "disabled-link">>
-<<elseif $blake.lvl lt 3>>
-<<addclass ".blakeLvlCheck3" "disabled-link">>
-<<addclass ".blakeLvlCheck4" "disabled-link">>
-<<elseif $blake.lvl lt 4>>
-<<addclass ".blakeLvlCheck4" "disabled-link">>
-<</if>>
+	<<addclass ".linkselector" "disabled-link">>
+	<<if not setup.Companion.cursedItemQuestUnlocked()>>
+		<<addclass "#checkQuestForCursedItem" "disabled-link">>
+	<</if>>
+	<<if $blake.lvl lt 1>>
+		<<addclass ".blakeLvlCheck1" "disabled-link">>
+		<<addclass ".blakeLvlCheck2" "disabled-link">>
+		<<addclass ".blakeLvlCheck3" "disabled-link">>
+		<<addclass ".blakeLvlCheck4" "disabled-link">>
+	<<elseif $blake.lvl lt 2>>
+		<<addclass ".blakeLvlCheck2" "disabled-link">>
+		<<addclass ".blakeLvlCheck3" "disabled-link">>
+		<<addclass ".blakeLvlCheck4" "disabled-link">>
+	<<elseif $blake.lvl lt 3>>
+		<<addclass ".blakeLvlCheck3" "disabled-link">>
+		<<addclass ".blakeLvlCheck4" "disabled-link">>
+	<<elseif $blake.lvl lt 4>>
+		<<addclass ".blakeLvlCheck4" "disabled-link">>
+	<</if>>
 <</done>>

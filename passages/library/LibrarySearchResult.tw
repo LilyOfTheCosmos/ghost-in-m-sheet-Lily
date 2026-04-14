@@ -2,25 +2,25 @@
 <<set _foundLibrary to setup.Library.availableSearchResults()>>
 
 <<set _selectedResult to _foundLibrary[random(0, _foundLibrary.length - 1)]>>
-            
+
 <<if _selectedResult is "book">>
-<<include "libraryTipsBook">>
-<<set $foundTips to 1>>
+	<<include "libraryTipsBook">>
+	<<set $foundTips to 1>>
 <<elseif _selectedResult is "comics">>
-<<set $foundComics to 1>>
-<img @src="setup.ImagePath + '/library/comicsFound.jpg'" width="100%"><br>
-@@.mc-speech; What's this? Erotic comics? It looks interesting... I wonder how it ended up here.@@<br>
-@@.enterbtn;[[Read comics|comics]]<br>@@
-<br>
+	<<set $foundComics to 1>>
+	<img @src="setup.ImagePath + '/library/comicsFound.jpg'" width="100%"><br>
+	@@.mc-speech; What's this? Erotic comics? It looks interesting... I wonder how it ended up here.@@<br>
+	@@.enterbtn;[[Read comics|comics]]<br>@@
+	<br>
 
 <<elseif _selectedResult is "girl">>
-<<include "libraryGirl">>
+	<<include "libraryGirl">>
 <<elseif _selectedResult is "guy">>
-<<include "libraryGuy">>
+	<<include "libraryGuy">>
 <<elseif _selectedResult is "brook">>
-<<include "libraryBrook">>
-<<set $foundBrook to 1>>
+	<<include "libraryBrook">>
+	<<set $foundBrook to 1>>
 <</if>>
 <<done>>
-<<addclass ".linkselector" "disabled-link">>
+	<<addclass ".linkselector" "disabled-link">>
 <</done>>

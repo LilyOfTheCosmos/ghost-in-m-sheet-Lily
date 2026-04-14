@@ -5,9 +5,9 @@
 @@.mc-thoughts; The beauty salon is a place where you can enhance your uniqueness and style. For now, only piercing services are available, but more options are promised in the future!@@<br>
 <br>
 <<if not setup.Salon.isOpen()>>
-@@.mc-thoughts;Beauty Salon is not open right now (open from 8 AM to 10 PM)@@<br>
+	@@.mc-thoughts;Beauty Salon is not open right now (open from 8 AM to 10 PM)@@<br>
 <<else>>
-<span class="enterbtn">[[Go inside|BeautySalonInside]]</span><br>
+	<span class="enterbtn">[[Go inside|BeautySalonInside]]</span><br>
 <</if>>
 <br>
 <span class="backbtn">[[Leave|CityMap]]</span><br>

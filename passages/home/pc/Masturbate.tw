@@ -7,7 +7,7 @@
 @@.mc-thoughts; A wave of pleasure ran through you, making your body tremble with delight, taking your mind somewhere far from reality@@<br>
 <img @src="setup.ImagePath + '/img/hearth.png'" style="position: relative; top: 0.375em; width:3%;"> decreased! <br>
 <<if $mc.corruption lte 4>>
-+0.2 <img @src="setup.ImagePath + '/img/corruption.png'" style="position: relative; top: 0.375em; width:3%;">
+	+0.2 <img @src="setup.ImagePath + '/img/corruption.png'" style="position: relative; top: 0.375em; width:3%;">
 <<set $mc.corruption += 0.2>><br><</if>>
 
 @@.mc-speech; Fuuhh~, i need to rest a bit@@<br>

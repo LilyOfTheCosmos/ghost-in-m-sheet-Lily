@@ -6,7 +6,7 @@
 	<</if>>
 	<<if $sensualBodyPart.brain gte 3>>
 		<div class="spiritbox-container">
-			<b>Something's wrong, I think I'm losing consciousness...</b>
+		<b>Something's wrong, I think I'm losing consciousness...</b>
 		</div>
 		<<timed 2s>><<goto "CityMapPossessed">><</timed>>
 	<<else>>
@@ -21,13 +21,13 @@
 	<<set _answers to ["I am hiding.", "I am here.", "I want revenge."]>>
 	<<set _currentQuestion to random(_questions.length - 1)>>
 	<div class="spiritbox-container">
-		<span class="spiritbox-question">You ask through the Spiritbox: "_questions[_currentQuestion]"</span>
-		<span class="spiritbox-answer">The ghost responds: "_answers[_currentQuestion]"</span>
+	<span class="spiritbox-question">You ask through the Spiritbox: "_questions[_currentQuestion]"</span>
+	<span class="spiritbox-answer">The ghost responds: "_answers[_currentQuestion]"</span>
 	</div>
 	<<set $EmfActivated to 1>>
 	<<set $EmfActivationTime to $hours * 60 + $minutes>>
 <<else>>
 	<div class="spiritbox-container">
-		<span class="spiritbox-no-response">No one responds. Silence...</span>
+	<span class="spiritbox-no-response">No one responds. Silence...</span>
 	</div>
 <</if>>

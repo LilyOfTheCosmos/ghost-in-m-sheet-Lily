@@ -10,14 +10,14 @@
 <br>
 <div class=deliverywrapper>
 <<for _slot to 1; _slot lte 3; _slot++>>
-<<capture _slot>>
-<<set _order to State.variables["order" + _slot]>>
-<<set _slotClass to (_slot eq 1 ? "itemAvailableOne" : (_slot eq 2 ? "itemAvailableTwo" : "itemAvailableThree"))>>
-<div @class="_slotClass">
-<img @src="setup.ImagePath + '/' + _order.image" class="iconPx"><br>
-@@.usebtn;<<link "Deliver the order">><<set $currentOrder to _slot>><<goto "deliveryEvent">><</link>>@@<br>
-</div>
-<</capture>>
+	<<capture _slot>>
+		<<set _order to State.variables["order" + _slot]>>
+		<<set _slotClass to (_slot eq 1 ? "itemAvailableOne" : (_slot eq 2 ? "itemAvailableTwo" : "itemAvailableThree"))>>
+		<div @class="_slotClass">
+		<img @src="setup.ImagePath + '/' + _order.image" class="iconPx"><br>
+		@@.usebtn;<<link "Deliver the order">><<set $currentOrder to _slot>><<goto "deliveryEvent">><</link>>@@<br>
+		</div>
+	<</capture>>
 <</for>>
 </div>
 <br>
@@ -29,25 +29,25 @@
 <<set _iconVar to "deliveryActiveIcon" + _orderNum>>
 <<set _match to false>>
 <<for _o range $orders>>
-<<if _o.address === $currentHouse and _o.item is _order.item>><<set _match to true>><<break>><</if>>
+	<<if _o.address === $currentHouse and _o.item is _order.item>><<set _match to true>><<break>><</if>>
 <</for>>
 <<if _match>>
-<<switch _order.item>>
-<<case "pizza">><<include "DeliveryPizzaEventChoose">>
-<<case "package">><<include "DeliveryPackageEventChoose">>
-<<case "burgers">><<include "DeliveryBurgerEventChoose">>
-<<case "newspapers">><<include "DeliveryPapersEventChoose">>
-<<case "books">><<if ndef $meetAlice>><<include "meetAlice">><<else>><<deliveryGenericSuccess>><</if>>
-<<default>><<deliveryGenericSuccess>>
-<</switch>>
+	<<switch _order.item>>
+	<<case "pizza">><<include "DeliveryPizzaEventChoose">>
+	<<case "package">><<include "DeliveryPackageEventChoose">>
+	<<case "burgers">><<include "DeliveryBurgerEventChoose">>
+	<<case "newspapers">><<include "DeliveryPapersEventChoose">>
+	<<case "books">><<if ndef $meetAlice>><<include "meetAlice">><<else>><<deliveryGenericSuccess>><</if>>
+	<<default>><<deliveryGenericSuccess>>
+	<</switch>>
 <<else>>
-<img @src="setup.ImagePath + '/img/deliverygirlsad.jpg'" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
-<<set $earnedMoney += $jobMoneyFailed>>
-<<deliverySorry>><br>
-@@.mc-speech; Damn, I must have made a mistake.@@<br>
-<br>
-<br>
-@@.backbtn;[[Back|DeliveryMap]] @@
+	<img @src="setup.ImagePath + '/img/deliverygirlsad.jpg'" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
+	<<set $earnedMoney += $jobMoneyFailed>>
+	<<deliverySorry>><br>
+	@@.mc-speech; Damn, I must have made a mistake.@@<br>
+	<br>
+	<br>
+	@@.backbtn;[[Back|DeliveryMap]] @@
 <</if>>
 <<run State.variables[_iconVar] = false>>
 <br>
@@ -71,7 +71,7 @@
 
 :: endShiftDelivery [nobr] {"position":"1200,1200","size":"100,100"}
 <<for _i to 1; _i lte 3; _i++>>
-<<set State.variables["deliveryActiveIcon" + _i] to true>>
+	<<set State.variables["deliveryActiveIcon" + _i] to true>>
 <</for>>
 Earned during the shift: $earnedMoney $
 <<set $mc.money += $earnedMoney>>

@@ -6,10 +6,10 @@ Your instincts screamed that this place was dangerous, and you found yourself to
 @@.mc-speech; This has to be the right place. But should I keep going? There's something seriously wrong with this place... maybe I should leave while I can.@@<br><br>
 
 <span id="choiceRescuePossessed">@@.usebtn; [[Leave|rescueMap]] @@<b>or</b></span><<linkreplace "@@.usebtn; Continue@@">>
-<<replace "#choiceRescuePossessed">><</replace>>
-@@.mc-thoughts; You're walking down the hallway of the old house when you hear some weird slurping sounds that catch your attention. You stop for a moment, listening, then carefully move closer to where it's coming from.<br>
-As you peek through a half-open door, you spot 
-<<if setup.MissingWomen.rescueEventAuto() or setup.MissingWomen.rescueEventRolls()>>
-<<rescueGirlLink>>
-<</if>>@@
+	<<replace "#choiceRescuePossessed">><</replace>>
+	@@.mc-thoughts; You're walking down the hallway of the old house when you hear some weird slurping sounds that catch your attention. You stop for a moment, listening, then carefully move closer to where it's coming from.<br>
+	As you peek through a half-open door, you spot
+	<<if setup.MissingWomen.rescueEventAuto() or setup.MissingWomen.rescueEventRolls()>>
+		<<rescueGirlLink>>
+	<</if>>@@
 <</linkreplace>>

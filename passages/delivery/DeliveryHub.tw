@@ -5,9 +5,9 @@
 @@.mc-thoughts; This is a small office in the city specializing in the delivery of various goods. It's one of the few places where you can earn some money@@<br>
 <br>
 <<if not setup.Delivery.isOpen()>>
-@@.mc-thoughts;The delivery hub is not open right now (open from 8 AM to 8 PM)@@
+	@@.mc-thoughts;The delivery hub is not open right now (open from 8 AM to 8 PM)@@
 <<else>>
-@@.enterbtn;[[Go to the manager|DeliveryManager]]@@<br>
+	@@.enterbtn;[[Go to the manager|DeliveryManager]]@@<br>
 <<if setup.Delivery.canStartShift()>>@@.usebtn;[[Take orders|workDelivery]]@@<<elseif setup.Delivery.tooTiredForShift()>>@@.mc-thoughts; I'm too tired<</if>>
 <</if>>
 <br>

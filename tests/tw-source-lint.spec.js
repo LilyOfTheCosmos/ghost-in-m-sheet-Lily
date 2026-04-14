@@ -250,6 +250,208 @@ test.describe('special passages and tags', () => {
 
 });
 
+// ── indentation (nobr passages only — whitespace is cosmetic) ───
+
+test.describe('indentation', () => {
+
+  /**
+   * Block macros whose <<name>> … <</name>> pairs must align.
+   * Only macros that genuinely open a multi-line block belong here;
+   * purely inline macros (<<set>>, <<run>>, etc.) are excluded.
+   */
+  const BLOCK_MACROS = new Set([
+    'if', 'for', 'switch', 'widget', 'button',
+    'done', 'capture', 'nobr', 'timed', 'repeat',
+    'silently', 'script',
+    'link', 'linkappend', 'linkprepend', 'linkreplace',
+    'replace', 'append', 'prepend',
+    'createplaylist', 'actions', 'type',
+  ]);
+
+  /** Mid-block markers that share their parent block's indent. */
+  const MID_BLOCK = new Set(['else', 'elseif', 'case', 'default']);
+
+  /** Leading whitespace of a line (the raw string, not a count). */
+  function leadingWS(line) {
+    return line.match(/^(\s*)/)[1];
+  }
+
+  /**
+   * Find every block-macro tag on a line.  Returns an array of
+   * { type: 'open'|'close'|'mid', name, pos }.
+   *
+   * Same-line open+close pairs (e.g. <<link …>><</link>>) are
+   * detected: the open becomes type 'selfclose' (ignored for stack
+   * purposes) and the close is omitted entirely.
+   */
+  function scanBlockMacros(line) {
+    const raw = [];
+    const re = /<<\s*(\/?)\s*([a-z]\w*)/gi;
+    let m;
+    while ((m = re.exec(line)) !== null) {
+      const isClose = m[1] === '/';
+      const name = m[2].toLowerCase();
+      if (isClose) {
+        if (BLOCK_MACROS.has(name)) raw.push({ type: 'close', name, pos: m.index });
+      } else if (MID_BLOCK.has(name)) {
+        raw.push({ type: 'mid', name, pos: m.index });
+      } else if (BLOCK_MACROS.has(name)) {
+        raw.push({ type: 'open', name, pos: m.index });
+      }
+    }
+    // Pair same-line open+close: walk backwards so innermost pairs match first.
+    const paired = new Set();
+    for (let i = raw.length - 1; i >= 0; i--) {
+      if (raw[i].type !== 'close') continue;
+      for (let j = i - 1; j >= 0; j--) {
+        if (raw[j].type === 'open' && raw[j].name === raw[i].name && !paired.has(j)) {
+          paired.add(j);
+          paired.add(i);
+          break;
+        }
+      }
+    }
+    return raw.filter((_, idx) => !paired.has(idx));
+  }
+
+  /**
+   * Walk through the body of a passage and return indentation
+   * violations.  Each violation has a `type` ('align' or 'depth')
+   * and a `msg` string.
+   *
+   * - align: a closing / mid-block tag's indent doesn't match its
+   *          opening tag.
+   * - depth: a line inside a block macro is not indented deeper
+   *          than the enclosing block tag.
+   *
+   * Lines inside <style> HTML blocks and <<script>> SugarCube blocks
+   * are exempt from all checks (CSS / JS have their own rules).
+   */
+  function findIndentViolations(passage) {
+    const lines = passage.body.split('\n');
+    const stack = [];      // { name, indent, line }
+    const violations = [];
+    let insideHtmlStyle = false;
+
+    for (let i = 0; i < lines.length; i++) {
+      const raw   = lines[i];
+      const trimmed = raw.trim();
+      if (!trimmed) continue;
+
+      const indent  = leadingWS(raw);
+      const absLine = passage.headerLine + 1 + i;
+
+      // ── track <style>…</style> regions ────────────────────────
+      if (insideHtmlStyle) {
+        if (/<\/style\s*>/i.test(trimmed)) insideHtmlStyle = false;
+        continue;
+      }
+      if (/^<style[\s>]/i.test(trimmed)) {
+        insideHtmlStyle = !/<\/style\s*>/i.test(trimmed);
+      }
+
+      // ── skip everything inside <<script>> ─────────────────────
+      const insideScript = stack.length > 0 && stack[stack.length - 1].name === 'script';
+      if (insideScript) {
+        // only process <</script>> close to pop the stack
+        const macros = scanBlockMacros(trimmed);
+        for (const mc of macros) {
+          if (mc.type === 'close' && mc.name === 'script') {
+            for (let s = stack.length - 1; s >= 0; s--) {
+              if (stack[s].name === 'script') { stack.length = s; break; }
+            }
+          }
+        }
+        continue;
+      }
+
+      // ── scan all block macros on this line ────────────────────
+      const macros = scanBlockMacros(trimmed);
+      const first  = macros[0] || null;
+      // "leading" = the first macro is also the first non-ws token
+      const leading = first && trimmed.startsWith('<<');
+
+      // ── indent checks ─────────────────────────────────────────
+      // Close / mid tags get an *alignment* check (must match opener).
+      // Everything else gets a *depth* check (must be deeper than
+      // the enclosing block).  The two are mutually exclusive per line.
+      if (leading && first.type === 'close') {
+        // alignment: close must match its opener
+        for (let s = stack.length - 1; s >= 0; s--) {
+          if (stack[s].name === first.name) {
+            if (indent !== stack[s].indent) {
+              violations.push({ type: 'align', msg:
+                `line ${absLine}: <</${first.name}>> indented ` +
+                `${indent.length} but its <<${first.name}>> at line ` +
+                `${stack[s].line} is indented ${stack[s].indent.length}`,
+              });
+            }
+            break;
+          }
+        }
+      } else if (leading && first.type === 'mid') {
+        if (stack.length > 0) {
+          const top = stack[stack.length - 1];
+          if (indent !== top.indent) {
+            violations.push({ type: 'align', msg:
+              `line ${absLine}: <<${first.name}>> indented ` +
+              `${indent.length} but its <<${top.name}>> at line ` +
+              `${top.line} is indented ${top.indent.length}`,
+            });
+          }
+        }
+      } else if (stack.length > 0 && !insideHtmlStyle) {
+        // depth: content / nested opens must be deeper
+        const top = stack[stack.length - 1];
+        if (indent.length <= top.indent.length) {
+          violations.push({ type: 'depth', msg:
+            `line ${absLine}: content inside <<${top.name}>> ` +
+            `(line ${top.line}) must be indented deeper`,
+          });
+        }
+      }
+
+      // ── update stack with ALL macros on this line ─────────────
+      for (const mc of macros) {
+        if (mc.type === 'close') {
+          for (let s = stack.length - 1; s >= 0; s--) {
+            if (stack[s].name === mc.name) { stack.length = s; break; }
+          }
+        } else if (mc.type === 'open') {
+          stack.push({ name: mc.name, indent, line: absLine });
+        }
+        // mid-block markers don't change the stack
+      }
+    }
+
+    return violations;
+  }
+
+  /** Filter helper. */
+  function passageViolations(type) {
+    const violations = [];
+    for (const p of allPassages) {
+      if (!p.tags.includes('nobr')) continue;
+      if (p.tags.includes('script') || p.tags.includes('stylesheet')) continue;
+      for (const v of findIndentViolations(p)) {
+        if (v.type === type) violations.push(`${loc(p)} "${p.name}": ${v.msg}`);
+      }
+    }
+    return violations;
+  }
+
+  test('block macro close / mid-block tags must align with their opening tag (nobr passages)', () => {
+    const v = passageViolations('align');
+    expect(v, v.join('\n')).toHaveLength(0);
+  });
+
+  test('content inside block macros must be indented deeper than the enclosing tag (nobr passages)', () => {
+    const v = passageViolations('depth');
+    expect(v, v.join('\n')).toHaveLength(0);
+  });
+
+});
+
 // ── general file hygiene ─────────────────────────────────────────
 
 test.describe('file hygiene', () => {

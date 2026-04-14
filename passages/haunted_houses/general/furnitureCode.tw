@@ -1,11 +1,11 @@
 :: furnitureCode [nobr] {"position":"1750,200","size":"100,100"}
 <<set $furnitureListOwaissa to [
-    "hallway_carpet", "hallway_wardrobe", "hallway_coatrack", "livingroom_table", "livingroom_sofa", "kitchen_desk", "kitchen_table", "kitchen_sink1", "bathroom_bathtub", "bathroom_carpet", "bathroom_sink", "bathroom_wmachine",
+"hallway_carpet", "hallway_wardrobe", "hallway_coatrack", "livingroom_table", "livingroom_sofa", "kitchen_desk", "kitchen_table", "kitchen_sink1", "bathroom_bathtub", "bathroom_carpet", "bathroom_sink", "bathroom_wmachine",
 "bedroom_bed2", "bedroom_table", "bedroom_wardrobe1"
 ]>>
 
 <<set $furnitureListElm to [
-"basement_table", "basement_shelves", "kitchen_sink1", "kitchen_table", "kitchen_desk", "bathroom_sink", "bathroom_bathtub", "bathroom_wmachine", "bathroomTwo_sink", "bathroomTwo_carpet", "bedroom_bed1", "bedroom_table", "bedroom_wardrobe1", 
+"basement_table", "basement_shelves", "kitchen_sink1", "kitchen_table", "kitchen_desk", "bathroom_sink", "bathroom_bathtub", "bathroom_wmachine", "bathroomTwo_sink", "bathroomTwo_carpet", "bedroom_bed1", "bedroom_table", "bedroom_wardrobe1",
 "bedroomTwo_table", "bedroomTwo_bed2", "bedroomTwo_shelves", "nursery_desk", "nursery_table", "nursery_bed", "hallway_carpet", "hallway_coatrack", "hallwayUpstairs_carpet", "hallwayUpstairs_shelves"
 ]>>
 
@@ -22,8 +22,8 @@
 <<set $tempListOwaissa to $tempListOwaissa.filter(x => x != $placeForMonkeyPawOwaissa)>>
 <<set _check to random(1,2)>>
 <<if _check eq 1>>
-<<set $placeForCurseOwaissa to $tempListOwaissa.random()>>
-<<set $tempListOwaissa to $tempListOwaissa.filter(x => x != $placeForCurseOwaissa)>>
+	<<set $placeForCurseOwaissa to $tempListOwaissa.random()>>
+	<<set $tempListOwaissa to $tempListOwaissa.filter(x => x != $placeForCurseOwaissa)>>
 <</if>>
 
 <<set $placeForCursedItemElm to $tempListElm.random()>>
@@ -33,8 +33,8 @@
 <<set $placeForTarotCardsElm to $tempListElm.random()>>
 <<set $tempListElm to $tempListElm.filter(x => x != $placeForTarotCardsElm)>>
 <<set $placeForMonkeyPawElm to $tempListElm.random()>>
-<<set $tempListElm to $tempListElm.filter(x => x != $placeForMonkeyPawElm)>> 
+<<set $tempListElm to $tempListElm.filter(x => x != $placeForMonkeyPawElm)>>
 <<if _check eq 2>>
-<<set $placeForCurseElm to $tempListElm.random()>>
-<<set $tempListElm to $tempListElm.filter(x => x != $placeForCurseElm)>>
+	<<set $placeForCurseElm to $tempListElm.random()>>
+	<<set $tempListElm to $tempListElm.filter(x => x != $placeForCurseElm)>>
 <</if>>

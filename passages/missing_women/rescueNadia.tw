@@ -2,26 +2,26 @@
 <<set _videoList to []>>
 <<set _randomChance to random(1, 100)>>
 <<set _videoList10 to [
-	{type: "video", src: "rescue/Nadia/10.0.mp4"},
-	{type: "video", src: "rescue/Nadia/10.1.mp4"},
-	{type: "video", src: "rescue/Nadia/10.2.mp4"},
-	{type: "video", src: "rescue/Nadia/10.3.mp4"},
-	{type: "video", src: "rescue/Nadia/10.4.mp4"},
-	{type: "video", src: "rescue/Nadia/10.5.mp4"}
+{type: "video", src: "rescue/Nadia/10.0.mp4"},
+{type: "video", src: "rescue/Nadia/10.1.mp4"},
+{type: "video", src: "rescue/Nadia/10.2.mp4"},
+{type: "video", src: "rescue/Nadia/10.3.mp4"},
+{type: "video", src: "rescue/Nadia/10.4.mp4"},
+{type: "video", src: "rescue/Nadia/10.5.mp4"}
 ]>>
 <<set _videoList11 to [
-	{type: "video", src: "rescue/Nadia/11.1.mp4"},
-	{type: "video", src: "rescue/Nadia/11.2.mp4"},
-	{type: "video", src: "rescue/Nadia/11.3.mp4"},
-	{type: "video", src: "rescue/Nadia/11.4.mp4"},
-	{type: "video", src: "rescue/Nadia/11.5.mp4"}
+{type: "video", src: "rescue/Nadia/11.1.mp4"},
+{type: "video", src: "rescue/Nadia/11.2.mp4"},
+{type: "video", src: "rescue/Nadia/11.3.mp4"},
+{type: "video", src: "rescue/Nadia/11.4.mp4"},
+{type: "video", src: "rescue/Nadia/11.5.mp4"}
 ]>>
 <<set _videoList12 to [
-	{type: "video", src: "rescue/Nadia/12.1.mp4"},
-	{type: "video", src: "rescue/Nadia/12.2.mp4"},
-	{type: "video", src: "rescue/Nadia/12.3.mp4"},
-	{type: "video", src: "rescue/Nadia/12.4.mp4"},
-	{type: "video", src: "rescue/Nadia/12.5.mp4"}
+{type: "video", src: "rescue/Nadia/12.1.mp4"},
+{type: "video", src: "rescue/Nadia/12.2.mp4"},
+{type: "video", src: "rescue/Nadia/12.3.mp4"},
+{type: "video", src: "rescue/Nadia/12.4.mp4"},
+{type: "video", src: "rescue/Nadia/12.5.mp4"}
 ]>>
 
 <<set _allLists to [_videoList10, _videoList11, _videoList12]>>
@@ -34,9 +34,9 @@
 <<set _usedVideos.push($videoRescueEvent)>>
 
 <div id="videoContainer">
-	<video autoplay controls muted loop>
-		<source @src="setup.ImagePath+`/`+$videoRescueEvent" type="video/mp4">
-	</video>
+<video autoplay controls muted loop>
+<source @src="setup.ImagePath+`/`+$videoRescueEvent" type="video/mp4">
+</video>
 </div>
 
 @@.mc-speech; Oh wow~ it's $currentRescueGirl, and it looks like she's... in trouble.<br>
@@ -44,29 +44,30 @@ I can help her if I use holy water.... or<br>
 I could watch a little longer and then help her... but I might get noticed. @@<br>
 @@.warningtext; The chance of being noticed - <<do tag "chanceRescue">>_caughtChance<</do>>@@<br>
 <span class="rescueWatchButton"><<link "@@.usebtn;Watch@@">>
-		<<set _clickCount += 1>>
-<<if _clickCount lte 4>>
-    	<<if _caughtChance gte _randomChance>>
-<<replace ".rescueWatchButton">>
-@@.mc-speech; FUCK! They noticed me. I won't have time to take out the holy water, but I could@@
-@@.usebtn; [[Run|Church][$hasQuestForRescue to 2]]@@
- 
-<<done>><<if not setup.MissingWomen.canStaySubmissive()>>
-<<addclass ".rescueStayCorruptionCheck" "disabled-link">>
-<</if>><</done>>
-<br>
-<span class="rescueStayCorruptionCheck">
-@@.mc-speech;Or...@@  @@.usebtn;[[Stay|rescueStay][$hasQuestForRescue to 2]]@@.@@.mc-speech; I guess I'm already used to losing...@@</span>
-<<if not setup.MissingWomen.canStaySubmissive()>>@@.warningtext; (Req. <img @src="setup.ImagePath + '/img/corruption.png'" style="position: relative; top: 0.375em; width:3%; display: inline; margin: 0;"> ≥ 6)@@<</if>>
+	<<set _clickCount += 1>>
+	<<if _clickCount lte 4>>
+		<<if _caughtChance gte _randomChance>>
+			<<replace ".rescueWatchButton">>
+				@@.mc-speech; FUCK! They noticed me. I won't have time to take out the holy water, but I could@@
+				@@.usebtn; [[Run|Church][$hasQuestForRescue to 2]]@@
 
-<br><br>
-<br>
-<</replace>>
-<<replace ".useHolyWaterButton">><</replace>>
+				<<done>>
+					<<if not setup.MissingWomen.canStaySubmissive()>>
+						<<addclass ".rescueStayCorruptionCheck" "disabled-link">>
+					<</if>><</done>>
+				<br>
+				<span class="rescueStayCorruptionCheck">
+				@@.mc-speech;Or...@@  @@.usebtn;[[Stay|rescueStay][$hasQuestForRescue to 2]]@@.@@.mc-speech; I guess I'm already used to losing...@@</span>
+				<<if not setup.MissingWomen.canStaySubmissive()>>@@.warningtext; (Req. <img @src="setup.ImagePath + '/img/corruption.png'" style="position: relative; top: 0.375em; width:3%; display: inline; margin: 0;"> ≥ 6)@@<</if>>
+
+				<br><br>
+				<br>
+			<</replace>>
+			<<replace ".useHolyWaterButton">><</replace>>
 		<</if>>
 		<<set _caughtChance += 20>>
 		<<redo "chanceRescue">>
-<</if>>
+	<</if>>
 	<<if _clickCount == 4>>
 		<<if _chosenList is _videoList10>>
 			<<set $videoRescueEvent to "rescue/Nadia/10End.mp4">>
@@ -77,7 +78,7 @@ I could watch a little longer and then help her... but I might get noticed. @@<b
 		<</if>>
 		<<replace "#videoContainer">>
 			<video autoplay controls muted loop>
-				<source @src="setup.ImagePath+`/`+$videoRescueEvent" type="video/mp4">
+			<source @src="setup.ImagePath+`/`+$videoRescueEvent" type="video/mp4">
 			</video>
 		<</replace>>
 	<</if>>
@@ -91,24 +92,24 @@ I could watch a little longer and then help her... but I might get noticed. @@<b
 		<<set _usedVideos.push($videoRescueEvent)>>
 		<<replace "#videoContainer">>
 			<video autoplay controls muted loop>
-				<source @src="setup.ImagePath+`/`+$videoRescueEvent" type="video/mp4">
+			<source @src="setup.ImagePath+`/`+$videoRescueEvent" type="video/mp4">
 			</video>
 		<</replace>>
 	<</if>>
 <</link>></span><br>
 <span class="useHolyWaterButton"><<if not setup.MissingWomen.hasHolyWater()>>
-@@.mc-thoughts; Fuck! I didn't bring any holy water... I can't do much without it...@@<br><br>
-@@.backbtn; [[Leave|rescueMap]]@@<br>
+	@@.mc-thoughts; Fuck! I didn't bring any holy water... I can't do much without it...@@<br><br>
+	@@.backbtn; [[Leave|rescueMap]]@@<br>
 <<else>>
-<<linkreplace "@@.usebtn;Use holywater@@">>
-<<replace ".rescueWatchButton">><</replace>>
-<<run setup.MissingWomen.useHolyWater()>>
-@@.mc-thoughts;But there's no time to waste! You quickly start throwing holy water toward the ghost. <br>
-It lets out a loud hiss, like the water's burning it from the inside. The ghost pulls away from $currentRescueGirl and disappears.@@<br>
-@@.mc-speech;Let's get out of here before it comes back!@@<br>
-@@.mc-thoughts; You grab her arm, and the two of you bolt out of the house.<br>
-She thanks you for saving her and says she'll tell the nun about your help.@@<br>
-<br><br>
-@@.backbtn; [[Leave|Church][$hasQuestForRescue to 3]]@@<br>
-<</linkreplace>>
+	<<linkreplace "@@.usebtn;Use holywater@@">>
+		<<replace ".rescueWatchButton">><</replace>>
+		<<run setup.MissingWomen.useHolyWater()>>
+		@@.mc-thoughts;But there's no time to waste! You quickly start throwing holy water toward the ghost. <br>
+		It lets out a loud hiss, like the water's burning it from the inside. The ghost pulls away from $currentRescueGirl and disappears.@@<br>
+		@@.mc-speech;Let's get out of here before it comes back!@@<br>
+		@@.mc-thoughts; You grab her arm, and the two of you bolt out of the house.<br>
+		She thanks you for saving her and says she'll tell the nun about your help.@@<br>
+		<br><br>
+		@@.backbtn; [[Leave|Church][$hasQuestForRescue to 3]]@@<br>
+	<</linkreplace>>
 <</if>></span>

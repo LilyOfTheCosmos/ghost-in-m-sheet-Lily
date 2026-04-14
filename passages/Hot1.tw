@@ -1,28 +1,28 @@
 :: Hot1 [nobr] {"position":"1525,1150","size":"100,100"}
 <<switch $pantiesState + "," + $braState>>
 <<case "worn,worn">>
-<video autoplay controls muted loop>
-<source @src="setup.ImagePath + '/mc/underwearOn.webm'" type="video/webm">
-</video>
+	<video autoplay controls muted loop>
+	<source @src="setup.ImagePath + '/mc/underwearOn.webm'" type="video/webm">
+	</video>
 <<case "worn,not worn">>
-<video autoplay width="40%" muted loop>
-<source @src="setup.ImagePath + '/mc/braOff.webm'" type="video/webm">
-</video>
+	<video autoplay width="40%" muted loop>
+	<source @src="setup.ImagePath + '/mc/braOff.webm'" type="video/webm">
+	</video>
 <<case "not worn,worn">>
-<video autoplay controls muted loop>
-<source @src="setup.ImagePath + '/mc/braOn.webm'" type="video/webm">
-</video>
+	<video autoplay controls muted loop>
+	<source @src="setup.ImagePath + '/mc/braOn.webm'" type="video/webm">
+	</video>
 <<case "not worn,not worn">>
-<video autoplay width="40%" muted loop>
-<source @src="setup.ImagePath + '/mc/underwearOff.webm'" type="video/webm">
-</video>
+	<video autoplay width="40%" muted loop>
+	<source @src="setup.ImagePath + '/mc/underwearOff.webm'" type="video/webm">
+	</video>
 <</switch>>
 <<set $hotAct to 0>>
 <<run ["rememberBottomOuter", "rememberTopOuter"].forEach(function(k) {
-	var v = State.variables[k];
-	if (v) State.variables[v.replace(/(\d+)$/, "State$1")] = "not worn";
+var v = State.variables[k];
+if (v) State.variables[v.replace(/(\d+)$/, "State$1")] = "not worn";
 })>>
 <br>
 @@.mc-speech;Am I not beautiful? Who could harm such a cutie?
- It feels much better, I am ready to [[continue|previous(2)]]@@
+It feels much better, I am ready to [[continue|previous(2)]]@@
 <<set $addtemptorealhouse to 0>>

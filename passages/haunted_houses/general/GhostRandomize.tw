@@ -36,7 +36,7 @@
 <<run setup.HauntedHouses.resetEvidenceChecks()>>
 
 <<if $deleteOneEvidence eq 1>>
-<<include "DeleteEvidence">>
+	<<include "DeleteEvidence">>
 <</if>>
 @@.notmc-speech; Great, here's the location on the map. You need to go there at night and identify the type of ghost inhabiting that place. Remember, you only have one night to determine the ghost. If you feel tired, you can go there any night, not necessarily tonight.@@<br>
 @@.mc-speech; Okay, thanks@@<br>

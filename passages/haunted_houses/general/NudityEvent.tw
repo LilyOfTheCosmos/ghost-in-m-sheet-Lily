@@ -1,89 +1,89 @@
 :: NudityEvent [nobr] {"position":"1700,1350","size":"100,100"}
 <<set _videoList to []>>
 <<if $ghost.name eq "The Twins">>
-<<set $thetwinsevent to 1>>
+	<<set $thetwinsevent to 1>>
 <</if>>
 <<if setup.HauntedHouses.nudityNakedNoBottoms()>>
-<<if $mc.exhib lte 4>>
-<<set _videoList to [
-	{type: "video", src: "naked/1.mp4"},
-	{type: "image", src: "naked/2.png"}]>>
-<<else>>
-  <<set _videoList to [
-	{type: "video", src: "naked/10.mp4"},
-	{type: "video", src: "naked/11.mp4"},
-	{type: "video", src: "naked/12.mp4"},
-	{type: "video", src: "naked/13.mp4"},
-    {type: "video", src: "naked/14.mp4"},
-	{type: "video", src: "naked/15.mp4"}]>>
-<</if>>
+	<<if $mc.exhib lte 4>>
+		<<set _videoList to [
+		{type: "video", src: "naked/1.mp4"},
+		{type: "image", src: "naked/2.png"}]>>
+	<<else>>
+		<<set _videoList to [
+		{type: "video", src: "naked/10.mp4"},
+		{type: "video", src: "naked/11.mp4"},
+		{type: "video", src: "naked/12.mp4"},
+		{type: "video", src: "naked/13.mp4"},
+		{type: "video", src: "naked/14.mp4"},
+		{type: "video", src: "naked/15.mp4"}]>>
+	<</if>>
 <<elseif setup.HauntedHouses.nudityToplessWithPanties()>>
-<<if $mc.exhib lte 4>>
-<<if $braState eq "worn">>
-<<set _videoList to [
-	{type: "image", src: "naked/5.png"},
-	{type: "image", src: "naked/6.png"},
-	{type: "image", src: "naked/7.png"}]>>
-<<else>>
-<<set _videoList to [
-	{type: "image", src: "naked/3.png"},
-	{type: "image", src: "naked/4.png"}]>>
-<</if>>
-<<else>>
-  <<set _videoList to [
-	{type: "video", src: "naked/30.mp4"},
-	{type: "video", src: "naked/31.mp4"},
-	{type: "video", src: "naked/32.mp4"}]>>
-<</if>>
+	<<if $mc.exhib lte 4>>
+		<<if $braState eq "worn">>
+			<<set _videoList to [
+			{type: "image", src: "naked/5.png"},
+			{type: "image", src: "naked/6.png"},
+			{type: "image", src: "naked/7.png"}]>>
+		<<else>>
+			<<set _videoList to [
+			{type: "image", src: "naked/3.png"},
+			{type: "image", src: "naked/4.png"}]>>
+		<</if>>
+	<<else>>
+		<<set _videoList to [
+		{type: "video", src: "naked/30.mp4"},
+		{type: "video", src: "naked/31.mp4"},
+		{type: "video", src: "naked/32.mp4"}]>>
+	<</if>>
 <<elseif setup.HauntedHouses.isTopless()>>
-<<set _videoList to [
+	<<set _videoList to [
 	{type: "video", src: "naked/20.mp4"},
 	{type: "video", src: "naked/21.mp4"},
 	{type: "video", src: "naked/22.mp4"}]>>
 <<elseif setup.HauntedHouses.isFullyDressed()>>
-<<goto "Livingroom">>
-    <</if>>
-    
-    <<set _randomIndex to random(0, _videoList.length - 1)>>
+	<<goto "Livingroom">>
+<</if>>
+
+<<set _randomIndex to random(0, _videoList.length - 1)>>
 <<set _selectedVideo to _videoList[_randomIndex]>>
 <<set $videoEventNaked to _selectedVideo.src>>
 
 <<if _selectedVideo.type == "video">>
-<video autoplay controls muted loop>
- <source @src="setup.ImagePath+`/`+$videoEventNaked" type="video/mp4">
- </video>
- <<else>>
- <img @src="setup.ImagePath+`/`+$videoEventNaked" alt="Image" class="displayCentredImgs"><br>
+	<video autoplay controls muted loop>
+	<source @src="setup.ImagePath+`/`+$videoEventNaked" type="video/mp4">
+	</video>
+<<else>>
+	<img @src="setup.ImagePath+`/`+$videoEventNaked" alt="Image" class="displayCentredImgs"><br>
 <</if>>
 
 <<if $mc.exhib lte 4>>
-@@.mc-thoughts; You hurry through the dark streets, trying to stay hidden in the shadows. Your heart races so fast, it feels like it's echoing through the empty night. Every breath catches in your throat as the cool breeze teases your bare skin, making you shiver in embarrassment. @@<br> 
-@@.mc-speech; Why didn't I just go back and grab my clothes? How did I let this happen?@@<br>
- @@.mc-thoughts; Every time a car passes, your body tenses, and you glance around nervously, praying they didn't see you. The air brushing against your bare skin only heightens the feeling of vulnerability.@@<br>
- @@.mc-thoughts; You pick up the pace, your steps quickening into a run as you feel the growing urge to get home faster, hoping no one else catches sight of you.@@<br> 
-@@.mc-speech; If someone sees me like this, I'll want to disappear into the ground.@@<br> 
-@@.mc-thoughts; You dart forward, eyes scanning the street for anyone nearby, silently begging that this night will remain your little secret.@@<br>
-<br>
-<<if $mc.exhib lte 9>>
-<<set $mc.exhib += 1>>
-@@.mc-speech; Exhibitionism increased: $mc.exhib now!@@<br>
-<</if>>
+	@@.mc-thoughts; You hurry through the dark streets, trying to stay hidden in the shadows. Your heart races so fast, it feels like it's echoing through the empty night. Every breath catches in your throat as the cool breeze teases your bare skin, making you shiver in embarrassment. @@<br>
+	@@.mc-speech; Why didn't I just go back and grab my clothes? How did I let this happen?@@<br>
+	@@.mc-thoughts; Every time a car passes, your body tenses, and you glance around nervously, praying they didn't see you. The air brushing against your bare skin only heightens the feeling of vulnerability.@@<br>
+	@@.mc-thoughts; You pick up the pace, your steps quickening into a run as you feel the growing urge to get home faster, hoping no one else catches sight of you.@@<br>
+	@@.mc-speech; If someone sees me like this, I'll want to disappear into the ground.@@<br>
+	@@.mc-thoughts; You dart forward, eyes scanning the street for anyone nearby, silently begging that this night will remain your little secret.@@<br>
+	<br>
+	<<if $mc.exhib lte 9>>
+		<<set $mc.exhib += 1>>
+		@@.mc-speech; Exhibitionism increased: $mc.exhib now!@@<br>
+	<</if>>
 <<else>>
 
-@@.mc-thoughts; You walk through the night, feeling every caress of the cool air ignite your bare skin. You bite your lip, a soft shiver of pleasure running down your spine. Each step sends a sweet ripple through you, intensifying this strange, yet delicious sensation. You're no longer in a hurry -- in fact, you want to savor the moment.<br>
-Your fingers toy with your hair, and your hips sway gently with each step. @@<br>
-@@.mc-speech; I like this @@<br> 
-@@.mc-thoughts; You enjoy every glance from a passerby who catches a glimpse of your naked body. Smiling to yourself, you feel the slow, rising wave of arousal wash over you.@@<br>
-<br>
-<<if $mc.exhib lte 9>>
-<<set $mc.exhib += 1>>
-@@.mc-speech; Exhibitionism increased: $mc.exhib now!@@<br>
-<</if>>
+	@@.mc-thoughts; You walk through the night, feeling every caress of the cool air ignite your bare skin. You bite your lip, a soft shiver of pleasure running down your spine. Each step sends a sweet ripple through you, intensifying this strange, yet delicious sensation. You're no longer in a hurry -- in fact, you want to savor the moment.<br>
+	Your fingers toy with your hair, and your hips sway gently with each step. @@<br>
+	@@.mc-speech; I like this @@<br>
+	@@.mc-thoughts; You enjoy every glance from a passerby who catches a glimpse of your naked body. Smiling to yourself, you feel the slow, rising wave of arousal wash over you.@@<br>
+	<br>
+	<<if $mc.exhib lte 9>>
+		<<set $mc.exhib += 1>>
+		@@.mc-speech; Exhibitionism increased: $mc.exhib now!@@<br>
+	<</if>>
 <</if>>
 <br>
 
 @@.backbtn; [[You made it home|Livingroom]]  @@<br>
 
 <<done>>
-<<addclass ".linkselector" "disabled-link">>
+	<<addclass ".linkselector" "disabled-link">>
 <</done>>

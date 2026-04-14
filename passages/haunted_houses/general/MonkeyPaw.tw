@@ -4,108 +4,108 @@
 
 <span id="wishesCount">
 <<if $wishesCount lte 0>>
-@@.mc-speech; It seems that I have no more wishes left...@@<br>
+	@@.mc-speech; It seems that I have no more wishes left...@@<br>
 <<else>>
-@@.mc-thoughts; <b>Hmm...What should I wish for?</b> <br>$wishesCount wishes left...@@<br>
-<<if ndef $boughtMonkeyPawGuide>>
-<<set $boughtMonkeyPawGuide to 0>>
-@@.mc-speech; I need to be extremely careful... Maybe I should ask the witch how to use it? I think she could help me.@@
+	@@.mc-thoughts; <b>Hmm...What should I wish for?</b> <br>$wishesCount wishes left...@@<br>
+	<<if ndef $boughtMonkeyPawGuide>>
+		<<set $boughtMonkeyPawGuide to 0>>
+		@@.mc-speech; I need to be extremely careful... Maybe I should ask the witch how to use it? I think she could help me.@@
 
-<</if>> 
+	<</if>>
 
-<br><br>
-<<if $wishActivity eq 1>>
-<<linkreplace "@@.usebtn; I wish for activity@@">>
-<<activity>>
-<</linkreplace>><br><</if>>
-<<if $wishTraptheghost eq 1>>
-<<linkreplace "@@.usebtn; I wish to trap the ghost@@">>
-<<traptheghost>>
-<</linkreplace>><br><</if>>
-<<if $wishSanity eq 1>>
-<<linkreplace "@@.usebtn; I wish to be sane@@">>
-<<sanity>>
-<</linkreplace>><br>
-<</if>>
-<<if $wishLeave eq 1>>
-<<linkreplace "@@.usebtn; I wish to leave@@">>
-<<leave>>
-<</linkreplace>><br>
-<</if>>
-<<if $wishKnowledge eq 1>>
-<<linkreplace "@@.usebtn; I wish for knowledge@@">>
-<<knowledge>>
-<</linkreplace>><br>
-<</if>>
-<<if $wishDawn eq 1>>
-<<linkreplace "@@.usebtn; I wish for dawn@@">>
-<<dawn>>
-<</linkreplace>><br>
-<</if>>
-<<if $wishAnything eq 1>>
-<<linkreplace "@@.usebtn; I wish for anything@@">>
-<<set _check to random(1,6)>>
-      <<if _check eq 1>>
-      <<activity>>
-      <<elseif _check eq 2>>
-      <<traptheghost>>
-      <<elseif _check eq 3>>
-      <<sanity>>
-      <<elseif _check eq 4>>
-      <<leave>>
-      <<elseif _check eq 5>>
-      <<knowledge>>
-      <<elseif _check eq 6>>
-      <<dawn>>
-      <</if>>
-<</linkreplace>><br>
-<</if>><br>
-<<if $boughtMonkeyPawGuide neq 2>>
-<label><b>@@.mc-speech;I wish for/to...@@</b><<textbox "$inputWish" "">></label>
+	<br><br>
+	<<if $wishActivity eq 1>>
+		<<linkreplace "@@.usebtn; I wish for activity@@">>
+			<<activity>>
+		<</linkreplace>><br><</if>>
+	<<if $wishTraptheghost eq 1>>
+		<<linkreplace "@@.usebtn; I wish to trap the ghost@@">>
+			<<traptheghost>>
+		<</linkreplace>><br><</if>>
+	<<if $wishSanity eq 1>>
+		<<linkreplace "@@.usebtn; I wish to be sane@@">>
+			<<sanity>>
+		<</linkreplace>><br>
+	<</if>>
+	<<if $wishLeave eq 1>>
+		<<linkreplace "@@.usebtn; I wish to leave@@">>
+			<<leave>>
+		<</linkreplace>><br>
+	<</if>>
+	<<if $wishKnowledge eq 1>>
+		<<linkreplace "@@.usebtn; I wish for knowledge@@">>
+			<<knowledge>>
+		<</linkreplace>><br>
+	<</if>>
+	<<if $wishDawn eq 1>>
+		<<linkreplace "@@.usebtn; I wish for dawn@@">>
+			<<dawn>>
+		<</linkreplace>><br>
+	<</if>>
+	<<if $wishAnything eq 1>>
+		<<linkreplace "@@.usebtn; I wish for anything@@">>
+			<<set _check to random(1,6)>>
+			<<if _check eq 1>>
+				<<activity>>
+			<<elseif _check eq 2>>
+				<<traptheghost>>
+			<<elseif _check eq 3>>
+				<<sanity>>
+			<<elseif _check eq 4>>
+				<<leave>>
+			<<elseif _check eq 5>>
+				<<knowledge>>
+			<<elseif _check eq 6>>
+				<<dawn>>
+			<</if>>
+		<</linkreplace>><br>
+	<</if>><br>
+	<<if $boughtMonkeyPawGuide neq 2>>
+		<label><b>@@.mc-speech;I wish for/to...@@</b><<textbox "$inputWish" "">></label>
 
-<<link "@@.usebtn; Make a Wish@@">>
-    <<if $inputWish.toLowerCase() eq "activity">>
-    <<set $wishActivity to 1>>
-<<activity>>
-    <<elseif $inputWish.toLowerCase() eq "trap the ghost">>
-    <<set $wishTraptheghost to 1>>
-<<traptheghost>>
-    <<elseif $inputWish.toLowerCase() eq "be sane">>
-<<set $wishSanity to 1>>
-<<sanity>>
-    <<elseif $inputWish.toLowerCase() eq "leave">>
-<<set $wishLeave to 1>>
-<<leave>>
-    <<elseif $inputWish.toLowerCase() eq "knowledge">>
-<<set $wishKnowledge to 1>>
-<<knowledge>>
-    <<elseif $inputWish.toLowerCase() eq "dawn">>
-<<set $wishDawn to 1>>
-<<dawn>>
-    <<elseif $inputWish.toLowerCase() eq "anything">>
-<<set $wishAnything to 1>>
-<<set _check to random(1,6)>>
-          <<if _check eq 1>>
-          <<activity>>
-          <<elseif _check eq 2>>
-          <<traptheghost>>
-          <<elseif _check eq 3>>
-          <<sanity>>
-          <<elseif _check eq 4>>
-          <<leave>>
-          <<elseif _check eq 5>>
-          <<knowledge>>
-          <<elseif _check eq 6>>
-          <<dawn>>
-          <</if>>
-    <<else>>
-		<<replace "#falseMonkeyPaw">>
-        @@.mc-speech; Nothing happened...@@
-		<</replace>>
-    <</if>>
-<</link>><br>
-<span id="falseMonkeyPaw"></span>
-<</if>>
+		<<link "@@.usebtn; Make a Wish@@">>
+			<<if $inputWish.toLowerCase() eq "activity">>
+				<<set $wishActivity to 1>>
+				<<activity>>
+			<<elseif $inputWish.toLowerCase() eq "trap the ghost">>
+				<<set $wishTraptheghost to 1>>
+				<<traptheghost>>
+			<<elseif $inputWish.toLowerCase() eq "be sane">>
+				<<set $wishSanity to 1>>
+				<<sanity>>
+			<<elseif $inputWish.toLowerCase() eq "leave">>
+				<<set $wishLeave to 1>>
+				<<leave>>
+			<<elseif $inputWish.toLowerCase() eq "knowledge">>
+				<<set $wishKnowledge to 1>>
+				<<knowledge>>
+			<<elseif $inputWish.toLowerCase() eq "dawn">>
+				<<set $wishDawn to 1>>
+				<<dawn>>
+			<<elseif $inputWish.toLowerCase() eq "anything">>
+				<<set $wishAnything to 1>>
+				<<set _check to random(1,6)>>
+				<<if _check eq 1>>
+					<<activity>>
+				<<elseif _check eq 2>>
+					<<traptheghost>>
+				<<elseif _check eq 3>>
+					<<sanity>>
+				<<elseif _check eq 4>>
+					<<leave>>
+				<<elseif _check eq 5>>
+					<<knowledge>>
+				<<elseif _check eq 6>>
+					<<dawn>>
+				<</if>>
+			<<else>>
+				<<replace "#falseMonkeyPaw">>
+					@@.mc-speech; Nothing happened...@@
+				<</replace>>
+			<</if>>
+		<</link>><br>
+		<span id="falseMonkeyPaw"></span>
+	<</if>>
 
 <</if>>
 <br>

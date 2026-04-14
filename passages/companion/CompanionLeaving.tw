@@ -10,5 +10,5 @@
 <<run setup.Companion.resetHuntState()>>
 @@.backbtn; [[Continue|$return]]@@<br>
 <<done>>
-<<addclass ".linkselector" "disabled-link">>
+	<<addclass ".linkselector" "disabled-link">>
 <</done>>

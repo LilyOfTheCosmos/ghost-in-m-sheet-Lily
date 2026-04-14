@@ -1,8 +1,8 @@
 :: Notebook [noreturn nobr] {"position":"100,300","size":"100,100"}
 <<if $knowledgeUsed eq 1>>
-<<done>>
-<<= '<<addclass ".' + $chosenEvidence + '" "blackColor">>'>>
-<</done>>
+	<<done>>
+		<<= '<<addclass ".' + $chosenEvidence + '" "blackColor">>'>>
+	<</done>>
 <</if>>
 <div class="backgroundForTextNotebook">
 @@.location ;Evidence@@<br>
@@ -11,103 +11,103 @@
 <div>
 <b>
 * <span class="emf"><<checkbox "$EMF5Check" false true autocheck>>EMF 5 </span><<linkreplace "Tips:">><br>
-<span style="color: red; font-weight: bold;  -webkit-text-stroke: 1px black;">Red</span> means evidence<br>
-<span style="color: yellow; font-weight: bold;  -webkit-text-stroke: 1px black;">Yellow</span> means it's not evidence.<br>
-<span style="color: green; font-weight: bold;  -webkit-text-stroke: 1px black;">Green</span> means nothing happened *try again*.<</linkreplace>>
+	<span style="color: red; font-weight: bold;  -webkit-text-stroke: 1px black;">Red</span> means evidence<br>
+	<span style="color: yellow; font-weight: bold;  -webkit-text-stroke: 1px black;">Yellow</span> means it's not evidence.<br>
+	<span style="color: green; font-weight: bold;  -webkit-text-stroke: 1px black;">Green</span> means nothing happened *try again*.<</linkreplace>>
 <br>* <span class="glass"><<checkbox "$EctoglassCheck" false true autocheck>> Ectoplasm</span><br>
 * <span class="gwb"><<checkbox "$GWBCheck" false true autocheck>> Ghost writing book</span><br>
 * <span class="spiritbox"><<checkbox "$SpiritboxCheck" false true autocheck>> Spiritbox</span><br>
 * <span class="temperature"><<checkbox "$TemperatureCheck" false true autocheck>> High temperature </span><<linkreplace "Tips:">><br>
-Normal temperature: 13 - 16.<br>
-Ghost's favorite room: 16 - 21.<br>
-Evidence "High temperature": 19 - 24.<br>
-If you have a level 2 or 3 thermometer -  color is added. (See the guide).<</linkreplace>>
+	Normal temperature: 13 - 16.<br>
+	Ghost's favorite room: 16 - 21.<br>
+	Evidence "High temperature": 19 - 24.<br>
+	If you have a level 2 or 3 thermometer -  color is added. (See the guide).<</linkreplace>>
 <br>* <span class="uvl"><<checkbox "$UVLCheck" false true autocheck>> UVL Fingerprints</span><br>
 </b>
 @@.movebtn;<<linkreplace "RESULT">>
-<<if ($EMF5Check or $SpiritboxCheck or $GWBCheck) and $EctoglassCheck eq false and $UVLCheck eq false and $TemperatureCheck eq false>>
-<<addclass "#Spirit" "right">>
-<</if>>
-<<if ($EMF5Check or $GWBCheck or $TemperatureCheck) and $EctoglassCheck eq false and $UVLCheck eq false and $SpiritboxCheck eq false>>
-<<addclass "#Shade" "right">>
-<</if>>
-<<if ($SpiritboxCheck or $GWBCheck or $UVLCheck) and $EMF5Check eq false and $TemperatureCheck eq false and $EctoglassCheck eq false>>
-<<addclass "#Poltergeist" "right">>
-<</if>>
-<<if ($SpiritboxCheck or $EctoglassCheck or $UVLCheck) and $EMF5Check eq false and $TemperatureCheck eq false and $GWBCheck eq false>>
-<<addclass "#Phantom" "right">>
-<</if>>
-<<if ($EMF5Check or $UVLCheck or $EctoglassCheck) and $SpiritboxCheck eq false and $GWBCheck eq false and $TemperatureCheck eq false>>
-<<addclass "#Goryo" "right">>
-<</if>>
+	<<if ($EMF5Check or $SpiritboxCheck or $GWBCheck) and $EctoglassCheck eq false and $UVLCheck eq false and $TemperatureCheck eq false>>
+		<<addclass "#Spirit" "right">>
+	<</if>>
+	<<if ($EMF5Check or $GWBCheck or $TemperatureCheck) and $EctoglassCheck eq false and $UVLCheck eq false and $SpiritboxCheck eq false>>
+		<<addclass "#Shade" "right">>
+	<</if>>
+	<<if ($SpiritboxCheck or $GWBCheck or $UVLCheck) and $EMF5Check eq false and $TemperatureCheck eq false and $EctoglassCheck eq false>>
+		<<addclass "#Poltergeist" "right">>
+	<</if>>
+	<<if ($SpiritboxCheck or $EctoglassCheck or $UVLCheck) and $EMF5Check eq false and $TemperatureCheck eq false and $GWBCheck eq false>>
+		<<addclass "#Phantom" "right">>
+	<</if>>
+	<<if ($EMF5Check or $UVLCheck or $EctoglassCheck) and $SpiritboxCheck eq false and $GWBCheck eq false and $TemperatureCheck eq false>>
+		<<addclass "#Goryo" "right">>
+	<</if>>
 
-<<if ($GWBCheck or $UVLCheck or $TemperatureCheck) and $SpiritboxCheck eq false and $EMF5Check eq false and $EctoglassCheck eq false>>
-<<addclass "#Demon" "right">>
-<</if>>
+	<<if ($GWBCheck or $UVLCheck or $TemperatureCheck) and $SpiritboxCheck eq false and $EMF5Check eq false and $EctoglassCheck eq false>>
+		<<addclass "#Demon" "right">>
+	<</if>>
 
-<<if ($EctoglassCheck or $GWBCheck or $SpiritboxCheck) and $EMF5Check eq false and $TemperatureCheck eq false and $UVLCheck eq false>>
-<<addclass "#Deogen" "right">>
-<</if>>
+	<<if ($EctoglassCheck or $GWBCheck or $SpiritboxCheck) and $EMF5Check eq false and $TemperatureCheck eq false and $UVLCheck eq false>>
+		<<addclass "#Deogen" "right">>
+	<</if>>
 
-<<if ($EMF5Check or $UVLCheck or $TemperatureCheck) and $SpiritboxCheck eq false and $GWBCheck eq false and $EctoglassCheck eq false>>
-<<addclass "#Jinn" "right">>
-<</if>>
+	<<if ($EMF5Check or $UVLCheck or $TemperatureCheck) and $SpiritboxCheck eq false and $GWBCheck eq false and $EctoglassCheck eq false>>
+		<<addclass "#Jinn" "right">>
+	<</if>>
 
-<<if ($GWBCheck or $TemperatureCheck or $SpiritboxCheck) and $EMF5Check eq false and $EctoglassCheck eq false and $UVLCheck eq false>>
-<<addclass "#Moroi" "right">>
-<</if>>
+	<<if ($GWBCheck or $TemperatureCheck or $SpiritboxCheck) and $EMF5Check eq false and $EctoglassCheck eq false and $UVLCheck eq false>>
+		<<addclass "#Moroi" "right">>
+	<</if>>
 
-<<if ($EMF5Check or $GWBCheck or $UVLCheck) and $SpiritboxCheck eq false and $EctoglassCheck eq false and $TemperatureCheck eq false>>
-<<addclass "#Myling" "right">>
-<</if>>
+	<<if ($EMF5Check or $GWBCheck or $UVLCheck) and $SpiritboxCheck eq false and $EctoglassCheck eq false and $TemperatureCheck eq false>>
+		<<addclass "#Myling" "right">>
+	<</if>>
 
-<<if ($EctoglassCheck or $EMF5Check or $TemperatureCheck) and $SpiritboxCheck eq false and $GWBCheck eq false and $UVLCheck eq false>>
-<<addclass "#Oni" "right">>
-<</if>>
+	<<if ($EctoglassCheck or $EMF5Check or $TemperatureCheck) and $SpiritboxCheck eq false and $GWBCheck eq false and $UVLCheck eq false>>
+		<<addclass "#Oni" "right">>
+	<</if>>
 
-<<if ($UVLCheck or $TemperatureCheck or $SpiritboxCheck) and $EMF5Check eq false and $GWBCheck eq false and $EctoglassCheck eq false>>
-<<addclass "#Mimic" "right">>
-<</if>>
+	<<if ($UVLCheck or $TemperatureCheck or $SpiritboxCheck) and $EMF5Check eq false and $GWBCheck eq false and $EctoglassCheck eq false>>
+		<<addclass "#Mimic" "right">>
+	<</if>>
 
-<<if ($EMF5Check or $TemperatureCheck or $SpiritboxCheck) and $GWBCheck eq false and $EctoglassCheck eq false and $UVLCheck eq false>>
-<<addclass "#TheTwins" "right">>
-<</if>>
+	<<if ($EMF5Check or $TemperatureCheck or $SpiritboxCheck) and $GWBCheck eq false and $EctoglassCheck eq false and $UVLCheck eq false>>
+		<<addclass "#TheTwins" "right">>
+	<</if>>
 
-<<if ($EctoglassCheck or $EMF5Check or $SpiritboxCheck) and $TemperatureCheck eq false and $GWBCheck eq false and $UVLCheck eq false>>
-<<addclass "#Wraith" "right">>
-<</if>>
+	<<if ($EctoglassCheck or $EMF5Check or $SpiritboxCheck) and $TemperatureCheck eq false and $GWBCheck eq false and $UVLCheck eq false>>
+		<<addclass "#Wraith" "right">>
+	<</if>>
 
-<<if ($EctoglassCheck or $GWBCheck or $TemperatureCheck) and $UVLCheck eq false and $EMF5Check eq false and $SpiritboxCheck eq false>>
-<<addclass "#Mare" "right">>
-<</if>>
+	<<if ($EctoglassCheck or $GWBCheck or $TemperatureCheck) and $UVLCheck eq false and $EMF5Check eq false and $SpiritboxCheck eq false>>
+		<<addclass "#Mare" "right">>
+	<</if>>
 
-<<if ($EctoglassCheck or $SpiritboxCheck or $TemperatureCheck) and $UVLCheck eq false and $EMF5Check eq false and $GWBCheck eq false>>
-<<addclass "#Cthulion" "right">>
-<</if>>
+	<<if ($EctoglassCheck or $SpiritboxCheck or $TemperatureCheck) and $UVLCheck eq false and $EMF5Check eq false and $GWBCheck eq false>>
+		<<addclass "#Cthulion" "right">>
+	<</if>>
 
-<<if ($GWBCheck or $UVLCheck or $EctoglassCheck) and $SpiritboxCheck eq false and $EMF5Check eq false and $TemperatureCheck eq false>>
-<<addclass "#Banshee" "right">>
-<</if>>
+	<<if ($GWBCheck or $UVLCheck or $EctoglassCheck) and $SpiritboxCheck eq false and $EMF5Check eq false and $TemperatureCheck eq false>>
+		<<addclass "#Banshee" "right">>
+	<</if>>
 
-<<if ($SpiritboxCheck or $EMF5Check or $UVLCheck) and $GWBCheck eq false and $TemperatureCheck eq false and $EctoglassCheck eq false>>
-<<addclass "#Raiju" "right">>
-<</if>>
+	<<if ($SpiritboxCheck or $EMF5Check or $UVLCheck) and $GWBCheck eq false and $TemperatureCheck eq false and $EctoglassCheck eq false>>
+		<<addclass "#Raiju" "right">>
+	<</if>>
 
-<<link "refresh" "Notebook">><</link>>
+	<<link "refresh" "Notebook">><</link>>
 <</linkreplace>>@@
 </div>
-		<a data-passage="Ghostopedia"><img @src="setup.ImagePath + '/img/ghostopedia.png'" class=" iconPC"><br></a>
+<a data-passage="Ghostopedia"><img @src="setup.ImagePath + '/img/ghostopedia.png'" class=" iconPC"><br></a>
 </div>
 <br>
 <div class="journal-container">
 <<for _g range setup.ghosts>>
-<span @class="setup.ghostEvidenceClasses(_g)" @id="_g.id"><<hovertip setup.ghostHoverHtml(_g.id)>><<= _g.name>><</hovertip>></span>
+	<span @class="setup.ghostEvidenceClasses(_g)" @id="_g.id"><<hovertip setup.ghostHoverHtml(_g.id)>><<= _g.name>><</hovertip>></span>
 <</for>><br>
 
 <<if (previous() eq "WitchEndContract") or (tags(previous()).includes("event"))>>
-@@.backbtn;<<back>>@@<br>
+	@@.backbtn;<<back>>@@<br>
 <<else>>
-@@.backbtn;<<return>>@@<br><</if>>
+	@@.backbtn;<<return>>@@<br><</if>>
 </div>
 
 <style>
@@ -163,5 +163,5 @@ body {
 }
 </style>
 <<done>>
-<<addclass ".linkselector" "disabled-link">>
+	<<addclass ".linkselector" "disabled-link">>
 <</done>>

@@ -9,5 +9,5 @@ I need to find my friend, and the sooner, the better. Maybe I can make it in tim
 [[Continue|$return]]<br>
 
 <<done>>
-<<addclass ".linkselector" "disabled-link">>
+	<<addclass ".linkselector" "disabled-link">>
 <</done>>

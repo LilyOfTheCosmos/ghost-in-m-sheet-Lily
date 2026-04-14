@@ -10,5 +10,5 @@
 <br>
 @@.backbtn;[[Back|Bathroom]] @@<br>
 <<done>>
-<<addclass ".linkselector" "disabled-link">>
+	<<addclass ".linkselector" "disabled-link">>
 <</done>>

@@ -3,40 +3,40 @@
 <br>
 @@.notmc-speech;Tell me the type of ghost:@@<br>
 <<if $saveMimic eq 1>>
-<<set $ghost.name to "Mimic">>
+	<<set $ghost.name to "Mimic">>
 <<set $saveMimic to 0>><</if>>
 <<set _ghostTypes = ["Shade", "Spirit", "Poltergeist", "Phantom", "Goryo", "Demon", "Deogen", "Jinn", "Moroi", "Myling", "Oni", "Mimic", "The Twins", "Wraith", "Mare", "Cthulion", "Banshee", "Raiju"]>>
 @@.mc-speech;I guess it was:@@<br>
 <<listbox "$ghostTypeSelected">>
-	<<optionsfrom _ghostTypes>>
+<<optionsfrom _ghostTypes>>
 <</listbox>><br>
 <<linkreplace "@@.usebtn;Choose@@">>
-<<done>>
-<<addclass ".linkselector" "disabled-link">>
-<</done>>
-<video autoplay muted>
-        <source @src="setup.ImagePath + '/witch/witchResult.mp4'" type="video/mp4" width="100%">
-</video>
-@@.notmc-speech;Let's find out, give me some time...@@
-<<timed 6s>>
-<<if ($ghost.name == $ghostTypeSelected)>>
-@@.notmc-speech; Yes, you're right, good girl@@<br>
+	<<done>>
+		<<addclass ".linkselector" "disabled-link">>
+	<</done>>
+	<video autoplay muted>
+	<source @src="setup.ImagePath + '/witch/witchResult.mp4'" type="video/mp4" width="100%">
+	</video>
+	@@.notmc-speech;Let's find out, give me some time...@@
+	<<timed 6s>>
+		<<if ($ghost.name == $ghostTypeSelected)>>
+			@@.notmc-speech; Yes, you're right, good girl@@<br>
 
-<<set $mc.money += $moneyFromContract + $moneyFromWeakenTheGhost>>
-<<gainXP $expFromContract>>
+			<<set $mc.money += $moneyFromContract + $moneyFromWeakenTheGhost>>
+			<<gainXP $expFromContract>>
 
-@@.backbtn;[[Back|WitchInside]]@@ <<else>> @@.notmc-speech;No, you are wrong. Maybe you'll get it right next time.@@<br>
+			@@.backbtn;[[Back|WitchInside]]@@ <<else>> @@.notmc-speech;No, you are wrong. Maybe you'll get it right next time.@@<br>
 
-<<set $mc.money += 0 + $moneyFromWeakenTheGhost>>
-<<gainXP 10>>
+			<<set $mc.money += 0 + $moneyFromWeakenTheGhost>>
+			<<gainXP 10>>
 
-@@.backbtn;[[Back|WitchInside]]@@<</if>>
-<<set $ghostHuntingMode to 0>>
-<<unset $hiddenEvidence>>
-<<unset $hiddenEvidence1>>
-<<unset $hiddenEvidence2>>
-<<unset $deleteSecondEvidence>>
-<<unset $deleteThirdEvidence>>
-<<unset $deleteOneEvidence>>
-<</timed>>
+			@@.backbtn;[[Back|WitchInside]]@@<</if>>
+		<<set $ghostHuntingMode to 0>>
+		<<unset $hiddenEvidence>>
+		<<unset $hiddenEvidence1>>
+		<<unset $hiddenEvidence2>>
+		<<unset $deleteSecondEvidence>>
+		<<unset $deleteThirdEvidence>>
+		<<unset $deleteOneEvidence>>
+	<</timed>>
 <</linkreplace>>

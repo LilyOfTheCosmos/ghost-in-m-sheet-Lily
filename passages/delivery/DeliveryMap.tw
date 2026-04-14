@@ -5,16 +5,16 @@
 <span id="endShift" class="btnendshift btnendcolor clickable">End the shift</span>
 <div class="flexwrapper">
 <<for _cell range setup.deliveryMapLayout>>
-<<capture _cell>>
-<div class="housecard">
-<<if _cell neq "">>
-<<set _sp to _cell.lastIndexOf(" ")>>
-<<set _label to _cell.substr(0, _sp) + ", " + _cell.substr(_sp + 1)>>
-<img @src="setup.ImagePath + '/img/delivery1.png'" class="iconsOnMap">
-@@.icontextdelivery;<<link _label "deliveryHouse">><<set $currentHouse to _cell>><</link>>@@
-<</if>>
-</div>
-<</capture>>
+	<<capture _cell>>
+		<div class="housecard">
+		<<if _cell neq "">>
+			<<set _sp to _cell.lastIndexOf(" ")>>
+			<<set _label to _cell.substr(0, _sp) + ", " + _cell.substr(_sp + 1)>>
+			<img @src="setup.ImagePath + '/img/delivery1.png'" class="iconsOnMap">
+			@@.icontextdelivery;<<link _label "deliveryHouse">><<set $currentHouse to _cell>><</link>>@@
+		<</if>>
+		</div>
+	<</capture>>
 <</for>>
 </div>
 <<script>>

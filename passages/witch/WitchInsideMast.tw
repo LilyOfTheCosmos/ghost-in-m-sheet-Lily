@@ -1,20 +1,20 @@
 :: WitchInsideMast [nobr] {"position":"1250,150","size":"100,100"}
 <<randomVideo "witch/1.mp4" "witch/2.mp4">>
- @@.mc-speech;Oops, she seems a little busy, I'd better come back later@@<br>
- @@.mc-thoughts; She's so hot though@@<br>
+@@.mc-speech;Oops, she seems a little busy, I'd better come back later@@<br>
+@@.mc-thoughts; She's so hot though@@<br>
 <<if not setup.Witch.hasStolenKey()>>
-@@.mc-thoughts; You see a key lying nearby, it looks like it might be for her house...@@<br>
-<<if setup.Witch.canStealKeyFromWitch()>>
-@@.usebtn;<<linkreplace "Steal the key">>
-<<set $gotKeyFromWitch to 1>>
-@@.mc-thoughts; Now i can enter the witch's house at night@@
-<</linkreplace>>@@
-<<else>>
-@@.mc-thoughts; I can't steal the key from her, it's wrong...@@
-@@.warningtext; (Req. <img @src="setup.ImagePath + '/img/corruption.png'" style="position: relative; top: 0.375em; width:3%;"> ≥ 3)
+	@@.mc-thoughts; You see a key lying nearby, it looks like it might be for her house...@@<br>
+	<<if setup.Witch.canStealKeyFromWitch()>>
+		@@.usebtn;<<linkreplace "Steal the key">>
+			<<set $gotKeyFromWitch to 1>>
+			@@.mc-thoughts; Now i can enter the witch's house at night@@
+		<</linkreplace>>@@
+	<<else>>
+		@@.mc-thoughts; I can't steal the key from her, it's wrong...@@
+		@@.warningtext; (Req. <img @src="setup.ImagePath + '/img/corruption.png'" style="position: relative; top: 0.375em; width:3%;"> ≥ 3)
+	<</if>>
 <</if>>
-<</if>>
- <br>
+<br>
 <br>
 <<addLust 15>>
 @@.backbtn;[[Leave|Witch]] @@

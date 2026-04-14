@@ -6,9 +6,9 @@
 @@<br>
 <br>
 <<if not setup.Gym.isOpen()>>
-@@.mc-thoughts; The gym is not open right now (open from 8 AM to 10 PM)@@
+	@@.mc-thoughts; The gym is not open right now (open from 8 AM to 10 PM)@@
 <<else>>
-@@.enterbtn;[[Inside|GymInside]]@@
+	@@.enterbtn;[[Inside|GymInside]]@@
 <</if>>
 <br>
 <br>

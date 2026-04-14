@@ -1,13 +1,13 @@
 :: MC [nobr] {"position":"400,300","size":"100,100"}
 <div id="statusContainer">
-	<div id="inPainImg">
-	<<hovertip "Need to buy medicine">><<if $isPenaltyOn eq 1>>
+<div id="inPainImg">
+<<hovertip "Need to buy medicine">><<if $isPenaltyOn eq 1>>
 	<img @src="setup.ImagePath + '/img/icons/pain.jpg'">
-	<</if>><</hovertip>>
-	</div>
-	<<if $isIronclad eq 1 and $ghostHuntingMode eq 2>>
+<</if>><</hovertip>>
+</div>
+<<if $isIronclad eq 1 and $ghostHuntingMode eq 2>>
 	<<hovertip "Wearing a sexy warden costume">><img @src="setup.ImagePath + '/img/icons/warden1.png'"><</hovertip>>
-	<<else>>
+<<else>>
 	<div id="statusOuterTop">
 	<<if $tshirtState eq "worn">>
 		<<hovertip "Wearing t-shirt">><img @src="setup.ImagePath + '/img/icons/top.jpg'"><</hovertip>>
@@ -17,9 +17,9 @@
 	</div>
 	<div id="statusOuterBottom">
 	<<set _bottom to [
-		{ state: $jeansState,  tip: "Wearing jeans",  icon: "jeans.jpg" },
-		{ state: $shortsState, tip: "Wearing shorts", icon: "shorts.jpg" },
-		{ state: $skirtState,  tip: "Wearing skirt",  icon: "skirt.jpg" }
+	{ state: $jeansState,  tip: "Wearing jeans",  icon: "jeans.jpg" },
+	{ state: $shortsState, tip: "Wearing shorts", icon: "shorts.jpg" },
+	{ state: $skirtState,  tip: "Wearing skirt",  icon: "skirt.jpg" }
 	].find(b => b.state === "worn")>>
 	<<if _bottom>>
 		<<hovertip _bottom.tip>><img @src="setup.ImagePath + '/img/icons/' + _bottom.icon"><</hovertip>>
@@ -41,7 +41,7 @@
 		<<hovertip "No panties on!">><img @src="setup.ImagePath + '/img/icons/nude.jpg'"><</hovertip>>
 	<</if>>
 	</div>
-	<</if>>
+<</if>>
 </div>
 
 <style>

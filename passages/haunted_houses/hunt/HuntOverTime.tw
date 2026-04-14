@@ -1,19 +1,19 @@
 :: HuntOverTime [nobr] {"position":"1500,1350","size":"100,100"}
 <<if $ghost.name eq "The Twins">>
-<<set $thetwinsevent to 1>>
+	<<set $thetwinsevent to 1>>
 <</if>>
 <<if $ghost.name eq "Spirit">>
-<<set $ghostSpiritEventStage to 0>>
+	<<set $ghostSpiritEventStage to 0>>
 <</if>>
 <img @src="setup.ImagePath + '/img/dawn.jpg'" width="100%">
 <br>
 @@.mc-thoughts; Ah, dawn. The ghostly activity has ceased. I need to summarize the gathered information and identify the type of ghost.@@<br>
 <<if setup.HauntedHouses.hasClothesStolen()>>
-@@.mc-thoughts; Now that you're no longer in danger, you can retrieve your clothes. After finding them, you head away from this cursed place.@@
-    <<if $isPantiesStolen eq 1>><<include "findStolenPanties">><</if>>
-    <<if $isBottomStolen eq 1>><<include "findStolenBottom">><</if>>
-    <<if $isShirtStolen eq 1>><<include "findStolenShirt">><</if>>
-    <<if $isBraStolen eq 1>><<include "findStolenBra">><</if>>
+	@@.mc-thoughts; Now that you're no longer in danger, you can retrieve your clothes. After finding them, you head away from this cursed place.@@
+	<<if $isPantiesStolen eq 1>><<include "findStolenPanties">><</if>>
+	<<if $isBottomStolen eq 1>><<include "findStolenBottom">><</if>>
+	<<if $isShirtStolen eq 1>><<include "findStolenShirt">><</if>>
+	<<if $isBraStolen eq 1>><<include "findStolenBra">><</if>>
 	<<run setup.HauntedHouses.clearStolenClothesFlag()>>
 <</if>>
 
@@ -22,11 +22,11 @@
 Corruption is increased (+ <<= $tempCorr.toFixed(2)>>) : <<= $mc.corruption.toFixed(2)>><br>
 <<set $tempCorr to 0>>
 <<run setup.HauntedHouses.resetToolTimers()>>
-    <<run setup.HauntedHouses.endHunt()>>
+<<run setup.HauntedHouses.endHunt()>>
 <<run setup.Companion.clearBlakeCursedItem()>>
 @@.movebtn;[[Leave|CityMap][$hours += 1]]@@<br>
 <<done>>
-<<addclass ".linkselector" "disabled-link">>
+	<<addclass ".linkselector" "disabled-link">>
 <</done>>
 <<run setup.Companion.resetHuntState()>>
 <<run setup.Companion.resetAliceWorkIfNeeded()>>

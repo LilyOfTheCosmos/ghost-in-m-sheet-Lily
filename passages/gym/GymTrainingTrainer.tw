@@ -4,9 +4,9 @@
 <<include "gymTrainer">>
 
 <<gymFitnessGain 2>>
- <br>
- <br>
+<br>
+<br>
 @@.backbtn;[[Back|GymInside]] @@
 <<done>>
-<<addclass ".linkselector" "disabled-link">>
+	<<addclass ".linkselector" "disabled-link">>
 <</done>>

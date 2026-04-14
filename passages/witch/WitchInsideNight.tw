@@ -3,47 +3,47 @@
 <br>
 
 <<if hasVisited("WitchBedroom")>>
-@@.mc-thoughts;You entered the witch's house using the key. The house is quiet. The door to her bedroom is slightly open, as if she was expecting you. A faint sound of breathing comes from behind the door.@@
+	@@.mc-thoughts;You entered the witch's house using the key. The house is quiet. The door to her bedroom is slightly open, as if she was expecting you. A faint sound of breathing comes from behind the door.@@
 <<else>>
-@@.mc-thoughts; You enter the witch's house, trying to move as quietly as possible. The room is shrouded in twilight, the air heavy, as if soaked in ancient mysteries. Occult objects are scattered everywhere -- strange dolls, darkened books with mysterious symbols, candles flickering with a dim light. You feel the gaze of invisible eyes watching your every step.<br>
-Your attention is drawn to a slightly open door at the back of the room. It looks like a bedroom. A faint sound of breathing comes from behind the door. She's probably asleep.@@
+	@@.mc-thoughts; You enter the witch's house, trying to move as quietly as possible. The room is shrouded in twilight, the air heavy, as if soaked in ancient mysteries. Occult objects are scattered everywhere -- strange dolls, darkened books with mysterious symbols, candles flickering with a dim light. You feel the gaze of invisible eyes watching your every step.<br>
+	Your attention is drawn to a slightly open door at the back of the room. It looks like a bedroom. A faint sound of breathing comes from behind the door. She's probably asleep.@@
 <</if>>
 <br>
 <<if setup.Witch.canStealItemsFromWitch()>>
-<<linkreplace "@@.usebtn;Look for something useful@@">>
-<<set $stealItemsFromWitchCD to 1>>
-<<set _check to random(1,5)>>
-@@.mc-speech; 
-<<if _check eq 1>>
-<<if ndef $ghostMylingInfoCollected>>
-<<set $ghostMylingInfoCollected to 1>>
-You found information about the ghost Myling
+	<<linkreplace "@@.usebtn;Look for something useful@@">>
+		<<set $stealItemsFromWitchCD to 1>>
+		<<set _check to random(1,5)>>
+		@@.mc-speech;
+		<<if _check eq 1>>
+			<<if ndef $ghostMylingInfoCollected>>
+				<<set $ghostMylingInfoCollected to 1>>
+				You found information about the ghost Myling
+			<<else>>
+				You found 30$
+				<<set $mc.money +=30>>
+			<</if>>
+		<<elseif _check eq 2>>
+			You didn't find anything
+		<<elseif _check eq 3>>
+			You found sanity pillls!
+			<<set $sanityPillsAmount +=1>>
+		<<elseif _check eq 4>>
+			You found a crusifix!
+			<<set $crucifixAmount += 1>>
+		<<elseif _check eq 5>>
+			<<goto "witchTentaclesEvent">>
+		<</if>>
+		@@
+	<</linkreplace>>
 <<else>>
-You found 30$
-<<set $mc.money +=30>>
-<</if>>
-<<elseif _check eq 2>>
-You didn't find anything 
-<<elseif _check eq 3>>
-You found sanity pillls!
-<<set $sanityPillsAmount +=1>>
-<<elseif _check eq 4>>
-You found a crusifix!
-<<set $crucifixAmount += 1>>
-<<elseif _check eq 5>>
-<<goto "witchTentaclesEvent">>
-<</if>>
-@@
-<</linkreplace>>
-<<else>>
-@@.mc-speech; Enough stealing for today.@@
+	@@.mc-speech; Enough stealing for today.@@
 <</if>>
 
 <br>
 <<if not setup.Witch.canVisitWitchBedroomNight()>>
-@@.mc-speech; Enough for today.@@
+	@@.mc-speech; Enough for today.@@
 <<else>>
-@@.enterbtn; [[Bedroom|WitchBedroom]]@@
+	@@.enterbtn; [[Bedroom|WitchBedroom]]@@
 <</if>>
 <br>
 <br>

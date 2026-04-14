@@ -4,15 +4,15 @@
 <div class="companionImageMain">
 <<do>>
 <<if $chanceToAttackAlex eq 25>>
-<img @src="setup.ImagePath + '/trans/alex1.png'" width=100% >
+	<img @src="setup.ImagePath + '/trans/alex1.png'" width=100% >
 <<elseif $chanceToAttackAlex eq 40>>
-<img @src="setup.ImagePath + '/trans/alex2.png'" width=100% >
+	<img @src="setup.ImagePath + '/trans/alex2.png'" width=100% >
 <<elseif $chanceToAttackAlex eq 55>>
-<img @src="setup.ImagePath + '/trans/alex3.png'" width=100% >
+	<img @src="setup.ImagePath + '/trans/alex3.png'" width=100% >
 <<elseif $chanceToAttackAlex eq 70>>
-<img @src="setup.ImagePath + '/trans/alex4.png'" width=100% >
+	<img @src="setup.ImagePath + '/trans/alex4.png'" width=100% >
 <<elseif $chanceToAttackAlex eq 90>>
-<img @src="setup.ImagePath + '/trans/alex5.png'" width=100% >
+	<img @src="setup.ImagePath + '/trans/alex5.png'" width=100% >
 <</if>><br>
 <</do>>
 </div>
@@ -40,15 +40,15 @@
 <<do tag "companionAnswers">>
 @@.notmc-speech;
 <<if $chanceToAttackAlex eq 25>>
-Let's just focus on the task.
+	Let's just focus on the task.
 <<elseif $chanceToAttackAlex eq 40>>
-Shirt off? Sure, if you say it helps.
+	Shirt off? Sure, if you say it helps.
 <<elseif $chanceToAttackAlex eq 55>>
-Down to my underwear? Alright, I trust you.
+	Down to my underwear? Alright, I trust you.
 <<elseif $chanceToAttackAlex eq 70>>
-Just my briefs? This feels a bit ridiculous, but fine.
+	Just my briefs? This feels a bit ridiculous, but fine.
 <<elseif $chanceToAttackAlex eq 90>>
-Completely naked? You owe me one, $mc.name.
+	Completely naked? You owe me one, $mc.name.
 <</if>>
 @@<</do>><br>
 <<set $chanceToAttack to $chanceToAttackAlex>>
@@ -61,64 +61,64 @@ Completely naked? You owe me one, $mc.name.
 <br>
 
 <<linkreplace "@@.usebtn; Give the sanity pills.@@">>
-<<if $sanityPillsAmount gte 1>>
-<<if $companion.sanity lt 100>>
-@@.mc-speech; I want you to take these sanity pills. Don't worry, they will help you.@@<br>
-@@.notmc-speech; Thank you, I feel a bit better.@@<br>
-<<set $sanityPillsAmount -= 1>>
-<b>-1 sanity pills</b><br>
-<b>$companion.name's sanity has increased by 30!</b><br>
-<<set $companion.sanity += 30>>
-<<if $companion.sanity gte 100>>
-<<set $companion.sanity to 100>>
-<</if>>
-<<else>>
-@@.mc-thoughts; I don't think that's needed right now.@@
-<</if>>
-<<else>>
-@@.mc-thoughts; I don't have those pills.@@
-<</if>>
+	<<if $sanityPillsAmount gte 1>>
+		<<if $companion.sanity lt 100>>
+			@@.mc-speech; I want you to take these sanity pills. Don't worry, they will help you.@@<br>
+			@@.notmc-speech; Thank you, I feel a bit better.@@<br>
+			<<set $sanityPillsAmount -= 1>>
+			<b>-1 sanity pills</b><br>
+			<b>$companion.name's sanity has increased by 30!</b><br>
+			<<set $companion.sanity += 30>>
+			<<if $companion.sanity gte 100>>
+				<<set $companion.sanity to 100>>
+			<</if>>
+		<<else>>
+			@@.mc-thoughts; I don't think that's needed right now.@@
+		<</if>>
+	<<else>>
+		@@.mc-thoughts; I don't have those pills.@@
+	<</if>>
 <</linkreplace>>
 <br>
-@@.usebtn;<<link "Let's stick together for now">> 
-<<set $chosenPlan to "Plan1">>
-<<set $chosenPlanActivated to 0>>
-<<set $showComp to 1>>
-<<replace "#compResponse">>
-    @@.notmc-speech;Good, I'll stay close to you.@@<</replace>>
+@@.usebtn;<<link "Let's stick together for now">>
+	<<set $chosenPlan to "Plan1">>
+	<<set $chosenPlanActivated to 0>>
+	<<set $showComp to 1>>
+	<<replace "#compResponse">>
+		@@.notmc-speech;Good, I'll stay close to you.@@<</replace>>
 <</link>>@@<br>
 <span id="checkQuestForCursedItem">@@.usebtn;<<link "I need you to find the cursed item @@.warningtext; ($companion.chanceOfSuccessCI %, $companion.plan2TimeReq min)@@" >>
-<<if not setup.Companion.hasCursedItem()>>
-<<set $chosenPlan to "Plan2">>
-<<set $chanceToSuccess to $companion.chanceOfSuccessCI>>
-<<set $showComp to 0>>
-<<set $chosenPlanActivated to 1>>
-<<set $chosenPlanActivatedTime = $hours * 60 + $minutes + $companion.plan2TimeReq>>
+	<<if not setup.Companion.hasCursedItem()>>
+		<<set $chosenPlan to "Plan2">>
+		<<set $chanceToSuccess to $companion.chanceOfSuccessCI>>
+		<<set $showComp to 0>>
+		<<set $chosenPlanActivated to 1>>
+		<<set $chosenPlanActivatedTime = $hours * 60 + $minutes + $companion.plan2TimeReq>>
 
-<<replace "#compResponse">>
-    @@.notmc-speech;Alright, I'll look for the cursed item.@@<</replace>>
-<<else>>
-<<replace "#compResponse">>
-    @@.notmc-speech; We already have a cursed item.@@<</replace>>
-<</if>>
+		<<replace "#compResponse">>
+			@@.notmc-speech;Alright, I'll look for the cursed item.@@<</replace>>
+	<<else>>
+		<<replace "#compResponse">>
+			@@.notmc-speech; We already have a cursed item.@@<</replace>>
+	<</if>>
 <</link>>@@</span> <<if not setup.Companion.cursedItemQuestUnlocked()>>@@.warningtext; Req. quest from the witch@@<</if>><br>
 @@.usebtn;<<link "I want you to look for any ghost evidence @@.warningtext; ($companion.chanceOfSuccessAnyEvidence %, $companion.plan3TimeReq min@@)">>
-<<set $chosenPlan to "Plan3">>
-<<set $chanceToSuccess to $companion.chanceOfSuccessAnyEvidence>>
-<<set $showComp to 0>>
-<<set $chosenPlanActivated to 1>>
-<<set $chosenPlanActivatedTime = $hours * 60 + $minutes + $companion.plan3TimeReq>>
-<<replace "#compResponse">>
-    @@.notmc-speech;Sure, I'll search for any ghost evidence.@@<</replace>>
+	<<set $chosenPlan to "Plan3">>
+	<<set $chanceToSuccess to $companion.chanceOfSuccessAnyEvidence>>
+	<<set $showComp to 0>>
+	<<set $chosenPlanActivated to 1>>
+	<<set $chosenPlanActivatedTime = $hours * 60 + $minutes + $companion.plan3TimeReq>>
+	<<replace "#compResponse">>
+		@@.notmc-speech;Sure, I'll search for any ghost evidence.@@<</replace>>
 <</link>>@@<br>
 @@.usebtn;<<link "It would be nice if you found the ghost's favorite room @@.warningtext; ($companion.chanceOfSuccessGR %, $companion.plan4TimeReq min@@)">>
-<<set $chosenPlan to "Plan4">>
-<<set $chanceToSuccess to $companion.chanceOfSuccessGR>>
-<<set $showComp to 0>>
-<<set $chosenPlanActivated to 1>>
-<<set $chosenPlanActivatedTime = $hours * 60 + $minutes + $companion.plan4TimeReq>>
-<<replace "#compResponse">>
-   @@.notmc-speech; Got it, I'll try to find the ghost's favorite room.@@<</replace>>
+	<<set $chosenPlan to "Plan4">>
+	<<set $chanceToSuccess to $companion.chanceOfSuccessGR>>
+	<<set $showComp to 0>>
+	<<set $chosenPlanActivated to 1>>
+	<<set $chosenPlanActivatedTime = $hours * 60 + $minutes + $companion.plan4TimeReq>>
+	<<replace "#compResponse">>
+		@@.notmc-speech; Got it, I'll try to find the ghost's favorite room.@@<</replace>>
 <</link>>@@<br>
 
 <span id="compResponse"></span>
@@ -127,23 +127,23 @@ Completely naked? You owe me one, $mc.name.
 @@.backbtn; [[Continue|previous()]]@@<br>
 
 <<done>>
-<<addclass ".linkselector" "disabled-link">>
-<<if not setup.Companion.cursedItemQuestUnlocked()>>
-<<addclass "#checkQuestForCursedItem" "disabled-link">>
-<</if>>
-<<if $alex.lvl lt 1>>
-<<addclass ".alexLvlCheck1" "disabled-link">>
-<<addclass ".alexLvlCheck2" "disabled-link">>
-<<addclass ".alexLvlCheck3" "disabled-link">>
-<<addclass ".alexLvlCheck4" "disabled-link">>
-<<elseif $alex.lvl lt 2>>
-<<addclass ".alexLvlCheck2" "disabled-link">>
-<<addclass ".alexLvlCheck3" "disabled-link">>
-<<addclass ".alexLvlCheck4" "disabled-link">>
-<<elseif $alex.lvl lt 3>>
-<<addclass ".alexLvlCheck3" "disabled-link">>
-<<addclass ".alexLvlCheck4" "disabled-link">>
-<<elseif $alex.lvl lt 4>>
-<<addclass ".alexLvlCheck4" "disabled-link">>
-<</if>>
+	<<addclass ".linkselector" "disabled-link">>
+	<<if not setup.Companion.cursedItemQuestUnlocked()>>
+		<<addclass "#checkQuestForCursedItem" "disabled-link">>
+	<</if>>
+	<<if $alex.lvl lt 1>>
+		<<addclass ".alexLvlCheck1" "disabled-link">>
+		<<addclass ".alexLvlCheck2" "disabled-link">>
+		<<addclass ".alexLvlCheck3" "disabled-link">>
+		<<addclass ".alexLvlCheck4" "disabled-link">>
+	<<elseif $alex.lvl lt 2>>
+		<<addclass ".alexLvlCheck2" "disabled-link">>
+		<<addclass ".alexLvlCheck3" "disabled-link">>
+		<<addclass ".alexLvlCheck4" "disabled-link">>
+	<<elseif $alex.lvl lt 3>>
+		<<addclass ".alexLvlCheck3" "disabled-link">>
+		<<addclass ".alexLvlCheck4" "disabled-link">>
+	<<elseif $alex.lvl lt 4>>
+		<<addclass ".alexLvlCheck4" "disabled-link">>
+	<</if>>
 <</done>>

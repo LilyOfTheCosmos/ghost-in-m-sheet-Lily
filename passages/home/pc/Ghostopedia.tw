@@ -1,30 +1,30 @@
 :: Ghostopedia [noreturn nobr] {"position":"300,800","size":"100,100"}
 <div class="wrapper">
-  <div class="evidenceFlex">
-    <<for _g range setup.ghosts>>
-      <div class="evidenceWrapper">
-        <div class="evidenceCardIcon">
-          <<= _g.name>><br>
-          <img @src="setup.ImagePath + '/ghosts/' + _g.image" class="iconPx">
-        </div>
-        <div class="evidenceDesc">
-          <<if setup.ghostInfoCollected(_g.id) and _g.description neq "">>
-            <<= _g.description>>
-            <<set _hct = setup.ghostHuntConditionText(_g)>>
-            <<if _hct neq "">><br>@@.notmc-speech;<<= _hct>>@@<</if>>
-          <<else>>
-            There is no information yet
-          <</if>>
-        </div>
-      </div>
-    <</for>>
-   </div>
+<div class="evidenceFlex">
+<<for _g range setup.ghosts>>
+	<div class="evidenceWrapper">
+	<div class="evidenceCardIcon">
+	<<= _g.name>><br>
+	<img @src="setup.ImagePath + '/ghosts/' + _g.image" class="iconPx">
+	</div>
+	<div class="evidenceDesc">
+	<<if setup.ghostInfoCollected(_g.id) and _g.description neq "">>
+		<<= _g.description>>
+		<<set _hct = setup.ghostHuntConditionText(_g)>>
+		<<if _hct neq "">><br>@@.notmc-speech;<<= _hct>>@@<</if>>
+	<<else>>
+		There is no information yet
+	<</if>>
+	</div>
+	</div>
+<</for>>
+</div>
 </div>
 <br>
 <<if previous() eq "Use PC">>
-@@.backbtn;[[Back|Use PC]]@@<br>
+	@@.backbtn;[[Back|Use PC]]@@<br>
 <<else>>
-@@.backbtn;<<back>>@@<</if>>
+	@@.backbtn;<<back>>@@<</if>>
 <<done>>
-<<addclass ".linkselector" "disabled-link">>
+	<<addclass ".linkselector" "disabled-link">>
 <</done>>

@@ -1,31 +1,31 @@
 :: ParkEvent2 [nobr] {"position":"3000,1600","size":"100,100"}
 <span id ="parkEvent2Vids">
 <video autoplay controls muted loop>
- <source @src="setup.ImagePath + '/mc/parkeventsex1.mp4'" type="video/mp4">
- </video></span>
+<source @src="setup.ImagePath + '/mc/parkeventsex1.mp4'" type="video/mp4">
+</video></span>
 <<set _videoIndex to 1>>
-@@.mc-thoughts; With a cloth in your mouth, you can only moan as she thrusts the dildo into your pussy, each hard push making you@@ <<link "@@.usebtn; tremble with a mix of pain and pleasure.@@">> 
-<<set _videoIndex to (_videoIndex + 1) % 3>>
-<<replace "#parkEvent2Vids">>
+@@.mc-thoughts; With a cloth in your mouth, you can only moan as she thrusts the dildo into your pussy, each hard push making you@@ <<link "@@.usebtn; tremble with a mix of pain and pleasure.@@">>
+	<<set _videoIndex to (_videoIndex + 1) % 3>>
+	<<replace "#parkEvent2Vids">>
 
-<video autoplay controls muted loop>
-<source @src="setup.ImagePath+`/mc/parkeventsex`+_videoIndex+`.mp4`" type="video/mp4">
-</video>
+		<video autoplay controls muted loop>
+		<source @src="setup.ImagePath+`/mc/parkeventsex`+_videoIndex+`.mp4`" type="video/mp4">
+		</video>
 
-<</replace>><</link>><br>
+	<</replace>><</link>><br>
 @@.mc-speech;Mmmph... it's too much...@@<br>
 @@.notmc-speech;You're loving this, aren't you?@@<br>
 <<linkappend "@@.usebtn; No! Fuck you!@@">>
-<video autoplay controls muted loop>
- <source @src="setup.ImagePath + '/mc/eventend.mp4'" type="video/mp4">
- </video>
-@@.mc-thoughts;She relentlessly fucks your pussy with the dildo, each thrust more invasive than the last, until she suddenly grabs your hair, pulling you up onto your knees. She shoves the dildo, now slick with your own juices, back into your mouth, making you taste your pussy mixed with her dominance over you. Her words sound like a promise or a threat @@<br>
-@@.notmc-speech; Maybe we'll meet again, baby.@@<br>
-@@.mc-speech;Fuck you... I hope not.@@<br>
-@@.notmc-speech;Oh, we will, sweet thing. Count on it.@@<br><br>
-@@.mc-thoughts; She left you fucked, sitting on the ground, as she walked away into the distance. Your body aches a bit, your pussy is red and sore. @@<br>
-@@.mc-speech; What a bitch, I hope we never cross paths again.@@<br><br>
-@@.backbtn; [[Leave|CityMap]] @@<br>
-<<set $isPenaltyOn to 1>>
-<<run setup.Home.applyAssaultDebuff()>>
+	<video autoplay controls muted loop>
+	<source @src="setup.ImagePath + '/mc/eventend.mp4'" type="video/mp4">
+	</video>
+	@@.mc-thoughts;She relentlessly fucks your pussy with the dildo, each thrust more invasive than the last, until she suddenly grabs your hair, pulling you up onto your knees. She shoves the dildo, now slick with your own juices, back into your mouth, making you taste your pussy mixed with her dominance over you. Her words sound like a promise or a threat @@<br>
+	@@.notmc-speech; Maybe we'll meet again, baby.@@<br>
+	@@.mc-speech;Fuck you... I hope not.@@<br>
+	@@.notmc-speech;Oh, we will, sweet thing. Count on it.@@<br><br>
+	@@.mc-thoughts; She left you fucked, sitting on the ground, as she walked away into the distance. Your body aches a bit, your pussy is red and sore. @@<br>
+	@@.mc-speech; What a bitch, I hope we never cross paths again.@@<br><br>
+	@@.backbtn; [[Leave|CityMap]] @@<br>
+	<<set $isPenaltyOn to 1>>
+	<<run setup.Home.applyAssaultDebuff()>>
 <</linkappend>>

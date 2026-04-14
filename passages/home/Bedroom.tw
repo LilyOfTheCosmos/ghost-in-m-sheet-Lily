@@ -4,89 +4,89 @@
 @@.location; Bedroom@@<br>
 <br>
 <<if $succubusChoiceEventText eq 1>>
-<<unset $succubusChoiceEventText>>
-@@.mc-thoughts; You wake up, back in your original form@@<br>
-@@.mc-speech; That was... oh... the main thing is that now I have her protection for 5 days.@@<br>
+	<<unset $succubusChoiceEventText>>
+	@@.mc-thoughts; You wake up, back in your original form@@<br>
+	@@.mc-speech; That was... oh... the main thing is that now I have her protection for 5 days.@@<br>
 <<elseif $succubusChoiceEventText eq 2>>
-<<unset $succubusChoiceEventText>>
-@@.mc-speech; That was... oh... the main thing is that now I have her protection for 5 days.@@<br>
+	<<unset $succubusChoiceEventText>>
+	@@.mc-speech; That was... oh... the main thing is that now I have her protection for 5 days.@@<br>
 <</if>>
 <<if $summonText eq 1>>
-@@.mc-speech; Oh fuck... apparently I summoned the wrong ghost... next time I need to pay attention to the amulet.@@<br>
-<<unset $summonText>>
+	@@.mc-speech; Oh fuck... apparently I summoned the wrong ghost... next time I need to pay attention to the amulet.@@<br>
+	<<unset $summonText>>
 <</if>>
 <<if setup.Home.canSummonForExorcism()>>
-@@.enterbtn; [[Summon the ghost|summoning]]@@<br>
+	@@.enterbtn; [[Summon the ghost|summoning]]@@<br>
 <<elseif setup.Home.exorcismOnCooldown()>>
-@@.mc-thoughts; Enough for today...@@<br>
+	@@.mc-thoughts; Enough for today...@@<br>
 <</if>>
 <<if $succubusTVText eq 1>>
-@@.mc-speech; WHAT the fuck just happened... I hope this ghost doesn't bother me anymore. Maybe I should ask how to get rid of it if it keeps haunting me.@@<br>
-<<unset $succubusTVText>><br>
+	@@.mc-speech; WHAT the fuck just happened... I hope this ghost doesn't bother me anymore. Maybe I should ask how to get rid of it if it keeps haunting me.@@<br>
+	<<unset $succubusTVText>><br>
 <</if>>
 <<if $tentaclesTextAfterSleep eq 1>>
-@@.mc-speech;Oh, that was a weird dream, like something was trying to get into my head... Brrr, horrible.@@<br>
-<<unset $tentaclesTextAfterSleep>>
+	@@.mc-speech;Oh, that was a weird dream, like something was trying to get into my head... Brrr, horrible.@@<br>
+	<<unset $tentaclesTextAfterSleep>>
 <<elseif $tentaclesTextAfterSleep eq 2>>
-@@.mc-speech;Thank God it was just a nightmare.@@<br>
-<<unset $tentaclesTextAfterSleep>>
+	@@.mc-speech;Thank God it was just a nightmare.@@<br>
+	<<unset $tentaclesTextAfterSleep>>
 <<elseif $tentaclesTextAfterSleep eq 3>>
-@@.mc-thoughts;You woke up. It was just a dream. But the aftermath lingered - your pussy was soaked through, craving more.@@<br>
-@@.mc-speech;Phew~ why is this happening? I'm so turned on right now...@@<br>
-<<unset $tentaclesTextAfterSleep>>
-<<set $mc.lust to 100>>
+	@@.mc-thoughts;You woke up. It was just a dream. But the aftermath lingered - your pussy was soaked through, craving more.@@<br>
+	@@.mc-speech;Phew~ why is this happening? I'm so turned on right now...@@<br>
+	<<unset $tentaclesTextAfterSleep>>
+	<<set $mc.lust to 100>>
 <<elseif $tentaclesTextAfterSleep eq 4>>
-@@.mc-speech;That was... oh~ I still feel it. I think I came in my sleep...@@<br>
-<<unset $tentaclesTextAfterSleep>>
-<<set $mc.lust to 100>>
+	@@.mc-speech;That was... oh~ I still feel it. I think I came in my sleep...@@<br>
+	<<unset $tentaclesTextAfterSleep>>
+	<<set $mc.lust to 100>>
 <<elseif $tentaclesTextAfterSleep eq 5>>
-@@.mc-speech;That was... oh~ I still feel it. I think I came in my sleep, not just once...@@<br>
-<<unset $tentaclesTextAfterSleep>>
-<<set $mc.lust to 100>>
+	@@.mc-speech;That was... oh~ I still feel it. I think I came in my sleep, not just once...@@<br>
+	<<unset $tentaclesTextAfterSleep>>
+	<<set $mc.lust to 100>>
 <</if>>
 <<if setup.Home.returningFromHuntDefeat()>>
-@@.mc-speech; Am I home? I don't remember how I got back here. My whole body aches and is <<linkappend "covered with something">>
-<<randomImage "mc/1.webp" "mc/2.webp" "mc/3.webp" "40%">><br>
-It seems like I'm starting to remember... I lost the battle, but not the war. Next time, I'll be more careful. <br>
-I don't feel well, my whole body aches... I need to buy some medicine from the store, as hunting ghosts will be much harder without it. <br>
-But for now, I need to go to the [[bathroom|Bathroom]].
-<<set $mc.sanityMax to 70>>
-<<set $mc.sanity to random(40,70)>>
-<<set $mc.energy to $mc.energyMax>>
-<<set $mc.lust to random(30,60)>>
-<</linkappend>>@@
+	@@.mc-speech; Am I home? I don't remember how I got back here. My whole body aches and is <<linkappend "covered with something">>
+		<<randomImage "mc/1.webp" "mc/2.webp" "mc/3.webp" "40%">><br>
+		It seems like I'm starting to remember... I lost the battle, but not the war. Next time, I'll be more careful. <br>
+		I don't feel well, my whole body aches... I need to buy some medicine from the store, as hunting ghosts will be much harder without it. <br>
+		But for now, I need to go to the [[bathroom|Bathroom]].
+		<<set $mc.sanityMax to 70>>
+		<<set $mc.sanity to random(40,70)>>
+		<<set $mc.energy to $mc.energyMax>>
+		<<set $mc.lust to random(30,60)>>
+	<</linkappend>>@@
 
 <<elseif setup.Home.returningFromMareEnd()>>
-@@.mc-thoughts; You wake up and see the@@ <<linkappend "@@.mc-thoughtsLink;aftermath of last night on yourself...@@">><br>
-<<randomImage "mc/4.webp" "mc/5.webp" "mc/6.webp" "40%">><br>
-<<set $isPenaltyOn to 0>>
-@@.mc-speech; Weirdly enough, I feel great, maybe even a bit better than usual, hehe. I suppose I should still head to the [[bathroom|Bathroom]].@@<</linkappend>>
+	@@.mc-thoughts; You wake up and see the@@ <<linkappend "@@.mc-thoughtsLink;aftermath of last night on yourself...@@">><br>
+		<<randomImage "mc/4.webp" "mc/5.webp" "mc/6.webp" "40%">><br>
+		<<set $isPenaltyOn to 0>>
+		@@.mc-speech; Weirdly enough, I feel great, maybe even a bit better than usual, hehe. I suppose I should still head to the [[bathroom|Bathroom]].@@<</linkappend>>
 
 <<else>>
 
-<<if setup.Home.justSleptFromBedroom()>>
-<<run setup.Home.applyMareWake()>>
-<<run setup.Home.advanceMareStageOnWake()>>
-<<if $isPenaltyOn neq 1>>
-@@.mc-speech; I feel unwell... strange, I need to find out what's happening to me. In this condition, it will be much harder for me to hunt ghosts.@@<br>
-<</if>>
-<</if>>
-@@.enterbtn;[[Wardrobe|wardrobe]]@@ <br>
-@@.enterbtn;[[Bathroom]]@@<br>
-@@.usebtn;[[Sleep (8 hours)|Sleep]]@@<br>
-@@.usebtn;<<link "Take a nap(1 hour)" "Bedroom">>
-<<addTime 60>>
-<<if $mc.energy lt $mc.energyMax>>
-<<set $mc.energy += 1>><</if>>
-<<if setup.Home.spiritNapEventReady()>>
-<<goto "ghostSpecialEventNapSpirit">>
-<<elseif setup.Home.tentaclesNapEventReady()>>
-<<goto "tentaclesEventNap">>
-<</if>>
-<</link>>@@<span><img @src="setup.ImagePath + '/img/energy.png'" style="position: relative; top: 0.375em; width:3%;"></span><br>
-<<if setup.Home.canUseHolyWaterOnMare()>>
-<<linkreplace "@@.usebtn; Use holy water@@">><<run setup.Home.useHolyWaterOnMare()>>
-@@.mc-speech; This should help. Now I can sleep peacefully.@@<</linkreplace>><</if>>
-<br>
-<br>
-@@.backbtn;[[Livingroom][$minutes +=1]]@@<br><</if>>
+	<<if setup.Home.justSleptFromBedroom()>>
+		<<run setup.Home.applyMareWake()>>
+		<<run setup.Home.advanceMareStageOnWake()>>
+		<<if $isPenaltyOn neq 1>>
+			@@.mc-speech; I feel unwell... strange, I need to find out what's happening to me. In this condition, it will be much harder for me to hunt ghosts.@@<br>
+		<</if>>
+	<</if>>
+	@@.enterbtn;[[Wardrobe|wardrobe]]@@ <br>
+	@@.enterbtn;[[Bathroom]]@@<br>
+	@@.usebtn;[[Sleep (8 hours)|Sleep]]@@<br>
+	@@.usebtn;<<link "Take a nap(1 hour)" "Bedroom">>
+		<<addTime 60>>
+		<<if $mc.energy lt $mc.energyMax>>
+		<<set $mc.energy += 1>><</if>>
+		<<if setup.Home.spiritNapEventReady()>>
+			<<goto "ghostSpecialEventNapSpirit">>
+		<<elseif setup.Home.tentaclesNapEventReady()>>
+			<<goto "tentaclesEventNap">>
+		<</if>>
+	<</link>>@@<span><img @src="setup.ImagePath + '/img/energy.png'" style="position: relative; top: 0.375em; width:3%;"></span><br>
+	<<if setup.Home.canUseHolyWaterOnMare()>>
+		<<linkreplace "@@.usebtn; Use holy water@@">><<run setup.Home.useHolyWaterOnMare()>>
+			@@.mc-speech; This should help. Now I can sleep peacefully.@@<</linkreplace>><</if>>
+	<br>
+	<br>
+	@@.backbtn;[[Livingroom][$minutes +=1]]@@<br><</if>>

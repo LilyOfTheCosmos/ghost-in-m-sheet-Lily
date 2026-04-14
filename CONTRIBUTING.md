@@ -9,15 +9,19 @@ This project thrives on community involvement. Anyone can suggest ideas, report 
 ## Ways to Contribute
 
 ### Suggest a Feature
+
 Have an idea for a new mechanic, ghost type, location, or gameplay system? Open a **Feature Request** issue.
 
 ### Report a Bug
+
 Found something broken or behaving unexpectedly? Open a **Bug Report** issue.
 
 ### Propose a Plotline or Story Content
+
 Want to suggest a new questline, character arc, story event, or scene? Open a **Plotline / Story Suggestion** issue.
 
 ### General Discussion
+
 Have broader ideas, questions, or want to chat with the community? Head to the [Discussions](../../discussions) tab.
 
 ---
@@ -45,6 +49,7 @@ If you want to contribute code or Twee/story content directly:
 5. Open a **Pull Request** against `main` with a clear description of what you changed and why
 
 ### PR Guidelines
+
 - Keep PRs focused -- one feature or fix per PR
 - Reference the related issue (e.g. `Closes #12`) in your PR description
 - For story/plotline content, include a brief summary of the narrative and how it fits the game

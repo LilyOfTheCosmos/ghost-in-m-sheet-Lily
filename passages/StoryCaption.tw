@@ -2,19 +2,20 @@
 <<include "MC">>
 <<include "bodyMod">><br>
 <<if $showComp eq 1 or $showComp eq 3>>
-<<if $companion.name eq "Brook">>
-<<companionMini "brook/brook.png" "Brook">>
-<<elseif $companion.name eq "Alice">>
-<<companionMini "alice/alice.png" "Alice">>
-<<elseif $companion.name eq "Blake">>
-<<companionMini "blake/blake.png" "Blake">>
-<<elseif $companion.name eq "Alex">>
-<<companionMini `"trans/" + $transPicture + ".jpg"` "Alex">>
-<<elseif $companion.name eq "Taylor">>
-<<companionMini `"trans/" + $transPicture + ".jpg"` "Taylor">>
-<<elseif $companion.name eq "Casey">>
-<<companionMini `"trans/" + $transPicture + ".jpg"` "Casey">>
-<</if>><</if>>
+	<<if $companion.name eq "Brook">>
+		<<companionMini "brook/brook.png" "Brook">>
+	<<elseif $companion.name eq "Alice">>
+		<<companionMini "alice/alice.png" "Alice">>
+	<<elseif $companion.name eq "Blake">>
+		<<companionMini "blake/blake.png" "Blake">>
+	<<elseif $companion.name eq "Alex">>
+		<<companionMini `"trans/" + $transPicture + ".jpg"` "Alex">>
+	<<elseif $companion.name eq "Taylor">>
+		<<companionMini `"trans/" + $transPicture + ".jpg"` "Taylor">>
+	<<elseif $companion.name eq "Casey">>
+		<<companionMini `"trans/" + $transPicture + ".jpg"` "Casey">>
+	<</if>>
+<</if>>
 <br>
 <span id="time"><<print ($hours < 10 ? '0' + $hours : $hours) + ":" + (Math.floor($minutes) < 10 ? '0' + Math.floor($minutes) : Math.floor($minutes))>></span><br>
 <b><img @src="setup.ImagePath + '/img/energy.png'" style="position: relative; top: 0.375em; width:10%;">Energy:</b> <<showmeter 'energy' `$mc.energy / $mc.energyMax`>>
@@ -23,7 +24,7 @@
 <b><img @src="setup.ImagePath + '/img/hearth.png'" style="position: relative; top: 0.375em; width:10%;">Lust:</b><<showmeter 'mclust' `$mc.lust.toFixed(2) / 100`>>
 <b><img @src="setup.ImagePath + '/img/icons/money.png'" style="position: relative; top: 0.375em; width:13%; display: inline; margin: 0;">$mc.money </b>
 <b><img @src="setup.ImagePath + '/img/corruption.png'" style="position: relative; top: 0.375em; width:13%; display: inline; margin: 0;">
-<<= $mc.corruption.toFixed(2)>> 
+<<= $mc.corruption.toFixed(2)>>
 <b><img @src="setup.ImagePath + '/img/beauty.png'" style="position: relative; top: 0.375em; width:11%; display: inline; margin: 0;">$mc.beauty</b>
 <b><img @src="setup.ImagePath + '/img/icons/lvl.png'" style="position: relative; top: 0.375em; width:11%; display: inline; margin: 0;">$mc.lvl</b> <br>
 <a class="linkselector" data-passage="Bag"><img @src="setup.ImagePath + '/img/bag.png'" width="30%"></a><a class="linkselector" data-passage="Notebook"><img @src="setup.ImagePath + '/img/notebook.png'" width="30%"></a><a class="linkselector" data-passage="Evidence"><img @src="setup.ImagePath + '/img/evidenceIcon.png'" width="30%"></a><br>
@@ -31,63 +32,65 @@
 <div class="linkselector enterbtn"> Game [[Guide|guide]] </div><br>
 
 <br>@@.usebtn;<<linkreplace "Cheats">>
-<<if $ghostHuntingMode eq 2>><<link "take pills(cheats)">><<set $mc.sanity +=30>><</link>>
-<br><<linkreplace "possession Card">>
-<<set $ghostHuntingMode to 3>>
-<<set $hours to random(12,20)>>
-<<goto "CityMapPossessed">><</linkreplace>><br>
-<<link "Decreasefollower's sanity(-10)(cheats)">><<set $companion.sanity -=10>><<updatemeter 'companionsanity' `$companion.sanity / 100`>><</link>>
-<</if>><br>
-<<linkreplace "ghostname(cheat)">>$ghost.name<<if $saveMimic eq 1>>(Mimic)<</if>><</linkreplace>><br>
-<<if $ghostHuntingMode gte 1>><<linkreplace "choose ghost type(cheat)">>
-<<for _gi to 1; _gi lte setup.GHOST_SLOT_COUNT; _gi++>>
-<<capture _gi>><<link `"set to " + State.variables["ghost" + _gi].name`>><<set $ghost to clone(State.variables["ghost" + _gi])>><</link>><</capture>><br>
-<</for>>
-<</linkreplace>><br><</if>>
-<<linkreplace "ghostroom(cheat)">>$ghostRoom.name<</linkreplace>><br>
-<<link "lust(cheat)">><<set $mc.lust += 100>><</link>><br>
-<<link "money(cheat)">><<set $mc.money += 100>><</link>><br>
-<<link "lvlup(cheat)">><<set $mc.lvl += 1>><</link>><br>
-<<link "corruptionUp(cheat)">><<set $mc.corruption += 1>><</link>><br>
-<<linkreplace "curseditem room(cheat)">>$ghostRoomCI.name<</linkreplace>>
-<br><<linkreplace "highlight rescue house(cheat)">><<set $cheatRescueHouseHighlight to 1>>Rescue house $randomRescuePhotoNumber highlighted on map<</linkreplace>>
-<br><<linkreplace "lvlup Brook(cheat)">><<set $brook.lvl to 5>>Brook is lvl5 now<</linkreplace>>
-<br><<linkreplace "lvlup Alice(cheat)">><<set $alice.lvl to 5>>Alice is lvl5 now<</linkreplace>>
-<br><<linkreplace "lvlup Blake(cheat)">><<set $blake.lvl to 5>>Blake is lvl5 now<</linkreplace>>
-<br><<linkreplace "Relationship Blake">><<set $relationshipBlake to 5>>Best Friends!<</linkreplace>>
-<br><<linkreplace "fitUp(cheat)">><<set $mc.fit to 100>>perfect body<</linkreplace>>
-<br><<linkreplace "lustCurrentFriend(cheat)">><<set $companion.lust += 100>>$companion.name's lust +100<</linkreplace>>
-<br><<linkreplace "Exhib5">><<set $mc.exhib to 5>>Exhib5<</linkreplace>>
-<br><<linkreplace "IncreaseSurrenderToPossession">><<set $mcpossession to 11>>Surrender to Possession is increased: $mcpossession now!<</linkreplace>>
-<<linkreplace "Maximize body part sensitivity">>
-All body parts are now at maximum sensitivity!
-<<set $sensualBodyPart.brain to 6>>
-<<set $sensualBodyPart.tits to 6>>
-<<set $sensualBodyPart.ass to 6>>
-<<set $sensualBodyPart.bottom to 6>>
-<<set $sensualBodyPart.mouth to 6>>
-<<set $sensualBodyPart.pussy to 6>>
-<<set $sensualBodyPart.anal to 6>>
-<</linkreplace>>
+	<<if $ghostHuntingMode eq 2>><<link "take pills(cheats)">><<set $mc.sanity +=30>><</link>>
+		<br><<linkreplace "possession Card">>
+			<<set $ghostHuntingMode to 3>>
+			<<set $hours to random(12,20)>>
+		<<goto "CityMapPossessed">><</linkreplace>><br>
+		<<link "Decreasefollower's sanity(-10)(cheats)">><<set $companion.sanity -=10>><<updatemeter 'companionsanity' `$companion.sanity / 100`>><</link>>
+	<</if>><br>
+	<<linkreplace "ghostname(cheat)">>$ghost.name<<if $saveMimic eq 1>>(Mimic)<</if>><</linkreplace>><br>
+	<<if $ghostHuntingMode gte 1>>
+		<<linkreplace "choose ghost type(cheat)">>
+			<<for _gi to 1; _gi lte setup.GHOST_SLOT_COUNT; _gi++>>
+				<<capture _gi>><<link `"set to " + State.variables["ghost" + _gi].name`>><<set $ghost to clone(State.variables["ghost" + _gi])>><</link>><</capture>><br>
+			<</for>>
+		<</linkreplace>><br>
+	<</if>>
+	<<linkreplace "ghostroom(cheat)">>$ghostRoom.name<</linkreplace>><br>
+	<<link "lust(cheat)">><<set $mc.lust += 100>><</link>><br>
+	<<link "money(cheat)">><<set $mc.money += 100>><</link>><br>
+	<<link "lvlup(cheat)">><<set $mc.lvl += 1>><</link>><br>
+	<<link "corruptionUp(cheat)">><<set $mc.corruption += 1>><</link>><br>
+	<<linkreplace "curseditem room(cheat)">>$ghostRoomCI.name<</linkreplace>>
+	<br><<linkreplace "highlight rescue house(cheat)">><<set $cheatRescueHouseHighlight to 1>>Rescue house $randomRescuePhotoNumber highlighted on map<</linkreplace>>
+	<br><<linkreplace "lvlup Brook(cheat)">><<set $brook.lvl to 5>>Brook is lvl5 now<</linkreplace>>
+	<br><<linkreplace "lvlup Alice(cheat)">><<set $alice.lvl to 5>>Alice is lvl5 now<</linkreplace>>
+	<br><<linkreplace "lvlup Blake(cheat)">><<set $blake.lvl to 5>>Blake is lvl5 now<</linkreplace>>
+	<br><<linkreplace "Relationship Blake">><<set $relationshipBlake to 5>>Best Friends!<</linkreplace>>
+	<br><<linkreplace "fitUp(cheat)">><<set $mc.fit to 100>>perfect body<</linkreplace>>
+	<br><<linkreplace "lustCurrentFriend(cheat)">><<set $companion.lust += 100>>$companion.name's lust +100<</linkreplace>>
+	<br><<linkreplace "Exhib5">><<set $mc.exhib to 5>>Exhib5<</linkreplace>>
+	<br><<linkreplace "IncreaseSurrenderToPossession">><<set $mcpossession to 11>>Surrender to Possession is increased: $mcpossession now!<</linkreplace>>
+	<<linkreplace "Maximize body part sensitivity">>
+		All body parts are now at maximum sensitivity!
+		<<set $sensualBodyPart.brain to 6>>
+		<<set $sensualBodyPart.tits to 6>>
+		<<set $sensualBodyPart.ass to 6>>
+		<<set $sensualBodyPart.bottom to 6>>
+		<<set $sensualBodyPart.mouth to 6>>
+		<<set $sensualBodyPart.pussy to 6>>
+		<<set $sensualBodyPart.anal to 6>>
+	<</linkreplace>>
 <</linkreplace>>@@
 
 <br>Ghost in M'Sheet 0.5.0
 <a class="linkselector" data-passage="ChangeLog">ChangeLog</a><br>
 <span class="debug"><<link "@@color:red;Fix Light/Exit Issue@@" `passage()`>><<set $cursedHuntActive to 0>><</link>></span><br>
 <<linkreplace "@@color:red;<em>Change Tools Timer</em>@@">>
-<<linkreplace "Set according to the MC's level(by default)">>
-<<set $changeToolsActivated to 1>>
-<</linkreplace>><br>
-<<linkreplace "1000ms">><<set $changeToolsActivated to 0>><<set $timerToolsDecreased to "1s">>
-Timer changed: $timerToolsDecreased now!<</linkreplace>><br>
-<<linkreplace "800ms">><<set $changeToolsActivated to 0>><<set $timerToolsDecreased to "800ms">>
-Timer changed: $timerToolsDecreased now!<</linkreplace>><br>
-<<linkreplace "600ms">><<set $changeToolsActivated to 0>><<set $timerToolsDecreased to "600ms">>
-Timer changed: $timerToolsDecreased now!<</linkreplace>><br>
-<<linkreplace "400ms">><<set $changeToolsActivated to 0>><<set $timerToolsDecreased to "400ms">>
-Timer changed: $timerToolsDecreased now!<</linkreplace>><br>
-<<linkreplace "200ms">><<set $changeToolsActivated to 0>><<set $timerToolsDecreased to "200ms">>
-Timer changed: $timerToolsDecreased now!<</linkreplace>><br>
-<<linkreplace "100ms">><<set $changeToolsActivated to 0>><<set $timerToolsDecreased to "100ms">>
-Timer changed: $timerToolsDecreased now!<</linkreplace>><br>
+	<<linkreplace "Set according to the MC's level(by default)">>
+		<<set $changeToolsActivated to 1>>
+	<</linkreplace>><br>
+	<<linkreplace "1000ms">><<set $changeToolsActivated to 0>><<set $timerToolsDecreased to "1s">>
+		Timer changed: $timerToolsDecreased now!<</linkreplace>><br>
+	<<linkreplace "800ms">><<set $changeToolsActivated to 0>><<set $timerToolsDecreased to "800ms">>
+		Timer changed: $timerToolsDecreased now!<</linkreplace>><br>
+	<<linkreplace "600ms">><<set $changeToolsActivated to 0>><<set $timerToolsDecreased to "600ms">>
+		Timer changed: $timerToolsDecreased now!<</linkreplace>><br>
+	<<linkreplace "400ms">><<set $changeToolsActivated to 0>><<set $timerToolsDecreased to "400ms">>
+		Timer changed: $timerToolsDecreased now!<</linkreplace>><br>
+	<<linkreplace "200ms">><<set $changeToolsActivated to 0>><<set $timerToolsDecreased to "200ms">>
+		Timer changed: $timerToolsDecreased now!<</linkreplace>><br>
+	<<linkreplace "100ms">><<set $changeToolsActivated to 0>><<set $timerToolsDecreased to "100ms">>
+		Timer changed: $timerToolsDecreased now!<</linkreplace>><br>
 <</linkreplace>>

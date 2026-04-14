@@ -9,5 +9,5 @@
 <<set $huntActivated to 1>>
 <<set $huntActivationTime = $hours * 60 + $minutes>>
 <<done>>
-<<addclass ".linkselector" "disabled-link">>
+	<<addclass ".linkselector" "disabled-link">>
 <</done>>

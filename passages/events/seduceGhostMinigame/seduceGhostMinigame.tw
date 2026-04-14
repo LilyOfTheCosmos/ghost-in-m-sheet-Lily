@@ -7,9 +7,9 @@ Ghost's Arousal: $ghostOrgasmMeter |  <<if $mcOrgasmMeter lte 0>><<set $mcOrgasm
 </div>
 <div id="minigame_text">
 <<if $minigameEventFailed eq 1>>
-@@.warningtext; FAILED @@<br>
+	@@.warningtext; FAILED @@<br>
 <<elseif $minigameEventFailed eq 0>>
-@@color:green; SUCCEED@@<br>
+	@@color:green; SUCCEED@@<br>
 <<else>>
 <</if>>
 
@@ -18,12 +18,12 @@ Ghost's Arousal: $ghostOrgasmMeter |  <<if $mcOrgasmMeter lte 0>><<set $mcOrgasm
 </div>
 <div id="minigame_menu">
 <<if $ghostOrgasmMeter gte 100>>
-<br>
-@@.usebtn; [[Continue investigating|$return][$isWeakenGhost to 1; $moneyFromWeakenTheGhost to 30]]@@
+	<br>
+	@@.usebtn; [[Continue investigating|$return][$isWeakenGhost to 1; $moneyFromWeakenTheGhost to 30]]@@
 <<elseif $mcOrgasmMeter gte 100>>
-<br>
-@@.usebtn; [[You're passing out|huntEnd]]@@
+	<br>
+	@@.usebtn; [[You're passing out|huntEnd]]@@
 <<else>>
-<<seduceGhostMinigameMenu>>
+	<<seduceGhostMinigameMenu>>
 <</if>>
 </div>

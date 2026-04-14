@@ -3,87 +3,87 @@
 <<set $isBrookGoingForHuntingAlone to 0>>
 @@.mc-speech; How did your ghost hunt go?@@<br>
 <<if $brookChooseOwaissa eq 1>>
-<<set _stateChance to $chanceToSuccessAloneOwaissaBrook>>
+	<<set _stateChance to $chanceToSuccessAloneOwaissaBrook>>
 <<elseif $brookChooseElm eq 1>>
-<<set _stateChance to $chanceToSuccessAloneElmBrook>>
+	<<set _stateChance to $chanceToSuccessAloneElmBrook>>
 <</if>>
 <<set _check to random(1,100)>>
 <<if _stateChance gte _check>>
-@@.notmc-speech; $mc.name, I did it! I correctly identified the ghost!@@<br>
-<<set _resultBrookAlone to 1>>
-<<if $brookChooseOwaissa eq 1>>
-<span> Money: +$50 $ </span><br>
-<<set $mc.money += 50>>
-<<elseif $brookChooseElm eq 1>>
-<span> Money: +$100 $ </span><br>
-<<set $mc.money += 100>>
-<</if>>
+	@@.notmc-speech; $mc.name, I did it! I correctly identified the ghost!@@<br>
+	<<set _resultBrookAlone to 1>>
+	<<if $brookChooseOwaissa eq 1>>
+		<span> Money: +$50 $ </span><br>
+		<<set $mc.money += 50>>
+	<<elseif $brookChooseElm eq 1>>
+		<span> Money: +$100 $ </span><br>
+		<<set $mc.money += 100>>
+	<</if>>
 <<else>>
-@@.notmc-speech; $mc.name, I didn't succeed... But I gained valuable experience and I'll be better prepared next time!@@
-<<set _resultBrookAlone to 0>>
+	@@.notmc-speech; $mc.name, I didn't succeed... But I gained valuable experience and I'll be better prepared next time!@@
+	<<set _resultBrookAlone to 0>>
 <</if>>
 <br>
 <<companionExpGain "Brook" "brook">>
 <br>
 <<linkappend "@@.mc-speechLink;Tell me more about how it went.@@">>
-<br>
-<<if $brook.lvl lt 3>>
-@@.notmc-speech; I don't want to talk about it...@@ @@.warningtext; Req. Brook's lvl ≥ 3@@
-<<else>>
-@@.notmc-speech;Well, listen...<br> 
-At first, things went well, of course, sometimes the ghost tried to...@@<<linkappend "@@.notmc-speechLink; scare me@@">>
-<<set _checkR to random(1,2)>>
-        <<if _checkR eq 1>>
-            <video autoplay controls muted loop>
-                <source @src="setup.ImagePath + '/brook/alone1.1.mp4'" type="video/mp4">
-            </video>
-        <<elseif _checkR eq 2>>
-            <video autoplay controls muted loop>
-                <source @src="setup.ImagePath + '/brook/alone1.2.mp4'" type="video/mp4">
-            </video>
-        <</if>>
-@@.notmc-speech;But I'm not easily frightened! <br>
-I continued searching for evidence.<br>
-The ghost became more aggressive... Sometimes it tried to @@<<linkappend "@@.notmc-speechLink;strangle me@@">>
-<<set _checkR to random(1,2)>>
-        <<if _checkR eq 1>>
-            <video autoplay controls muted loop>
-                <source @src="setup.ImagePath + '/brook/alone2.1.mp4'" type="video/mp4">
-            </video>
-        <<elseif _checkR eq 2>>
-            <video autoplay controls muted loop>
-                <source @src="setup.ImagePath + '/brook/alone2.2.mp4'" type="video/mp4">
-            </video>
-        <</if>>
-@@.notmc-speech;But I was stronger than it...<br>
-I was about to find the last piece of evidence when suddenly@@ <<linkappend 
- "@@.notmc-speechLink;it appeared right in front of me.@@">>
- <<set _checkR to random(1,2)>>
-        <<if _checkR eq 1>>
-            <video autoplay controls muted loop>
-                <source @src="setup.ImagePath + '/brook/alone3.1.mp4'" type="video/mp4">
-            </video>
-        <<elseif _checkR eq 2>>
-            <video autoplay controls muted loop>
-                <source @src="setup.ImagePath + '/brook/alone3.2.mp4'" type="video/mp4">
-            </video>
-        <</if>>
-@@.notmc-speech;I lost control... and I might have given it what it had been after from the beginning...@@<br>
-<<if _resultBrookAlone eq 1>>@@.notmc-speech; After it cu... weakened, I ran away. That's it. @@<br>
-@@.mc-speech; I knew you would succeed! Great job!@@<<elseif _resultBrookAlone eq 0>>
-@@.notmc-speech;It seems I just passed out.. I woke up when it was already morning. <br>
-That's it.@@<br>
-@@.mc-speech; It's okay, you'll definitely succeed next time!@@<br>
-@@.notmc-speech;You're right, I need to teach it a lesson for what it did to me...@@<</if>>
+	<br>
+	<<if $brook.lvl lt 3>>
+		@@.notmc-speech; I don't want to talk about it...@@ @@.warningtext; Req. Brook's lvl ≥ 3@@
+	<<else>>
+		@@.notmc-speech;Well, listen...<br>
+		At first, things went well, of course, sometimes the ghost tried to...@@<<linkappend "@@.notmc-speechLink; scare me@@">>
+			<<set _checkR to random(1,2)>>
+			<<if _checkR eq 1>>
+				<video autoplay controls muted loop>
+				<source @src="setup.ImagePath + '/brook/alone1.1.mp4'" type="video/mp4">
+				</video>
+			<<elseif _checkR eq 2>>
+				<video autoplay controls muted loop>
+				<source @src="setup.ImagePath + '/brook/alone1.2.mp4'" type="video/mp4">
+				</video>
+			<</if>>
+			@@.notmc-speech;But I'm not easily frightened! <br>
+			I continued searching for evidence.<br>
+			The ghost became more aggressive... Sometimes it tried to @@<<linkappend "@@.notmc-speechLink;strangle me@@">>
+				<<set _checkR to random(1,2)>>
+				<<if _checkR eq 1>>
+					<video autoplay controls muted loop>
+					<source @src="setup.ImagePath + '/brook/alone2.1.mp4'" type="video/mp4">
+					</video>
+				<<elseif _checkR eq 2>>
+					<video autoplay controls muted loop>
+					<source @src="setup.ImagePath + '/brook/alone2.2.mp4'" type="video/mp4">
+					</video>
+				<</if>>
+				@@.notmc-speech;But I was stronger than it...<br>
+				I was about to find the last piece of evidence when suddenly@@ <<linkappend
+					"@@.notmc-speechLink;it appeared right in front of me.@@">>
+					<<set _checkR to random(1,2)>>
+					<<if _checkR eq 1>>
+						<video autoplay controls muted loop>
+						<source @src="setup.ImagePath + '/brook/alone3.1.mp4'" type="video/mp4">
+						</video>
+					<<elseif _checkR eq 2>>
+						<video autoplay controls muted loop>
+						<source @src="setup.ImagePath + '/brook/alone3.2.mp4'" type="video/mp4">
+						</video>
+					<</if>>
+					@@.notmc-speech;I lost control... and I might have given it what it had been after from the beginning...@@<br>
+					<<if _resultBrookAlone eq 1>>@@.notmc-speech; After it cu... weakened, I ran away. That's it. @@<br>
+						@@.mc-speech; I knew you would succeed! Great job!@@<<elseif _resultBrookAlone eq 0>>
+						@@.notmc-speech;It seems I just passed out.. I woke up when it was already morning. <br>
+						That's it.@@<br>
+						@@.mc-speech; It's okay, you'll definitely succeed next time!@@<br>
+						@@.notmc-speech;You're right, I need to teach it a lesson for what it did to me...@@<</if>>
 
-<</linkappend>>
-<</linkappend>>
-<</linkappend>>
-<</if>>
+				<</linkappend>>
+			<</linkappend>>
+		<</linkappend>>
+	<</if>>
 <</linkappend>>
 <br>
 <br>
 <<done>>
-<<addclass ".linkselector" "disabled-link">>
+	<<addclass ".linkselector" "disabled-link">>
 <</done>>
 @@.backbtn; [[Back|previous()][$brookChooseOwaissa to 0; $brookChooseElm to 0]]

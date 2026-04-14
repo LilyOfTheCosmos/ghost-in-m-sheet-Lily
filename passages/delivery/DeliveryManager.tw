@@ -1,73 +1,73 @@
 :: DeliveryManager [nobr] {"position":"1100,1200","size":"100,100"}
 <img @src="setup.ImagePath + '/img/John.jpg'" width="70%"><br>
 <<if setup.Delivery.isFirstVisit()>>
-  @@.mc-thoughts; You enter the manager's office and notice a man around forty. There's nothing particularly remarkable about him. As you make your presence known, he carefully assesses you, momentarily pausing his gaze on your chest. Nevertheless, you gather the courage to initiate the conversation.@@<br>
-  <br>
-@@.mc-speech;Hello, my name is $mc.name, and I'm looking for a job. Perhaps you have something suitable for me?@@<br>
-@@.notmc-speech; Hello, I'm John. We happen to need couriers, and I think you could be a good fit for the job.@@<br>
-@@.mc-speech;
-"Thank you! I'm ready to start working. What do I need to do for that?@@<br>
+	@@.mc-thoughts; You enter the manager's office and notice a man around forty. There's nothing particularly remarkable about him. As you make your presence known, he carefully assesses you, momentarily pausing his gaze on your chest. Nevertheless, you gather the courage to initiate the conversation.@@<br>
+	<br>
+	@@.mc-speech;Hello, my name is $mc.name, and I'm looking for a job. Perhaps you have something suitable for me?@@<br>
+	@@.notmc-speech; Hello, I'm John. We happen to need couriers, and I think you could be a good fit for the job.@@<br>
+	@@.mc-speech;
+	"Thank you! I'm ready to start working. What do I need to do for that?@@<br>
 
-@@.notmc-speech; Great! "You can work from 08:00 to 20:00 any day of the week. During this time, you'll be able to take orders and deliver items to customers.@@<br>
+	@@.notmc-speech; Great! "You can work from 08:00 to 20:00 any day of the week. During this time, you'll be able to take orders and deliver items to customers.@@<br>
 
-@@.mc-speech;
-Understood. How will I receive orders?@@<br>
+	@@.mc-speech;
+	Understood. How will I receive orders?@@<br>
 
-@@.notmc-speech; Orders will come to you automatically. You'll receive addresses and a list of items to deliver. Your task is to deliver the items correctly to the specified addresses.@@<br>
+	@@.notmc-speech; Orders will come to you automatically. You'll receive addresses and a list of items to deliver. Your task is to deliver the items correctly to the specified addresses.@@<br>
 
-@@.mc-speech;
-"Got it. How much will I be paid for each order?@@<br>
+	@@.mc-speech;
+	"Got it. How much will I be paid for each order?@@<br>
 
-@@.notmc-speech; For each correctly delivered item, you'll receive $8. Not bad, right? But remember, if you make a mistake, you'll only get $3 for that delivery.@@<br>
+	@@.notmc-speech; For each correctly delivered item, you'll receive $8. Not bad, right? But remember, if you make a mistake, you'll only get $3 for that delivery.@@<br>
 
-@@.mc-speech;
-I'll do my best not to make mistakes. Ready to start working!@@<br>
+	@@.mc-speech;
+	I'll do my best not to make mistakes. Ready to start working!@@<br>
 
-@@.notmc-speech; Great, good luck with the deliveries. If you have any questions, feel free to ask.@@<br>
-<br>
-@@.mc-thoughts;
-It turned out to be quite simple. So, I just need to come here any day from 08:00 to 20:00 and fulfill orders. Sounds pretty straightforward.@@<br>
-<br>
-@@.mc-action; Now you can work as a courier.@@
-<br>
-  <<set $firstVisitDeliveryHub = false>>
-  <<elseif not setup.Delivery.isFirstVisit() and previous() isnot "DeliveryMap">>
-  <br>
-  <<if setup.Delivery.hasMetManagerEvent()>>
-  @@.notmc-speech; Oh, $mc.name, come in, don't be shy. What do you want to talk about?@@<<else>>
-  @@.notmc-speech; 
-Hello, you're like umm... Susan? Milana? Doesn't matter, I'm a bit busy right now, let's talk later.
-If you forgot, you can work here from 08:00 to 20:00. Take orders and go ahead. Good luck.@@<</if>>
-<br>
+	@@.notmc-speech; Great, good luck with the deliveries. If you have any questions, feel free to ask.@@<br>
+	<br>
+	@@.mc-thoughts;
+	It turned out to be quite simple. So, I just need to come here any day from 08:00 to 20:00 and fulfill orders. Sounds pretty straightforward.@@<br>
+	<br>
+	@@.mc-action; Now you can work as a courier.@@
+	<br>
+	<<set $firstVisitDeliveryHub = false>>
+<<elseif not setup.Delivery.isFirstVisit() and previous() isnot "DeliveryMap">>
+	<br>
+	<<if setup.Delivery.hasMetManagerEvent()>>
+		@@.notmc-speech; Oh, $mc.name, come in, don't be shy. What do you want to talk about?@@<<else>>
+		@@.notmc-speech;
+		Hello, you're like umm... Susan? Milana? Doesn't matter, I'm a bit busy right now, let's talk later.
+		If you forgot, you can work here from 08:00 to 20:00. Take orders and go ahead. Good luck.@@<</if>>
+	<br>
 
-<<linkreplace "@@.usebtn;Ask about payment@@">>
-<<if not setup.Delivery.managerBJOnCooldown()>>
-@@.mc-speech;I wanted to talk about payment. Is there a way to increase it somehow?<br>@@
-<<if not setup.Delivery.meetsBeautyForManagerFlirt()>>
-@@.notmc-speech; Um... <i>He looked at me but quickly lowered his head and started flipping through his papers</i><br> I think you just need to work more<br>@@
-@@.mc-thoughts; I need to catch his attention somehow<br>@@
-@@.warningtext; (Req. <img @src="setup.ImagePath + '/img/beauty.png'" style="position: relative; top: 0.375em; width:3%; display: inline; margin: 0;"> ≥ 45)@@
-<<else>>
-<<if setup.Delivery.hasMetManagerEvent()>>
-@@.notmc-speech;Of course, $mc.name, I think you know how I can help you@@<br>
-<<else>>
-@@.notmc-speech; Hm...<br>
-<i>He looked at me and thought about something</i>. <br>
-I don't think I can do it. But I could offer some part-time work for such a beautiful girl<br><i>He smiled and adjusted his belt</i><br>@@
-<</if>>
-<<if setup.Delivery.managerWillPayExtra()>>
-@@.usebtn;[[Give him a blowjob|DeliveryManagerEventStart]]@@<br>
-<<else>>@@.mc-thoughts; Is he asking me to suck him off? No fucking way!<br>@@
-@@.warningtext; (Req. <img @src="setup.ImagePath + '/img/corruption.png'" style="position: relative; top: 0.375em; width:3%; display: inline; margin: 0;"> ≥ 2)@@
-@@.mc-speech;No, I'd better go<br>@@
-<</if>>
-<</if>>
-<<else>>@@.notmc-speech; Enough for today, talk to me tomorrow@@<</if>>
-<</linkreplace>>
+	<<linkreplace "@@.usebtn;Ask about payment@@">>
+		<<if not setup.Delivery.managerBJOnCooldown()>>
+			@@.mc-speech;I wanted to talk about payment. Is there a way to increase it somehow?<br>@@
+			<<if not setup.Delivery.meetsBeautyForManagerFlirt()>>
+				@@.notmc-speech; Um... <i>He looked at me but quickly lowered his head and started flipping through his papers</i><br> I think you just need to work more<br>@@
+				@@.mc-thoughts; I need to catch his attention somehow<br>@@
+				@@.warningtext; (Req. <img @src="setup.ImagePath + '/img/beauty.png'" style="position: relative; top: 0.375em; width:3%; display: inline; margin: 0;"> ≥ 45)@@
+			<<else>>
+				<<if setup.Delivery.hasMetManagerEvent()>>
+					@@.notmc-speech;Of course, $mc.name, I think you know how I can help you@@<br>
+				<<else>>
+					@@.notmc-speech; Hm...<br>
+					<i>He looked at me and thought about something</i>. <br>
+					I don't think I can do it. But I could offer some part-time work for such a beautiful girl<br><i>He smiled and adjusted his belt</i><br>@@
+				<</if>>
+				<<if setup.Delivery.managerWillPayExtra()>>
+					@@.usebtn;[[Give him a blowjob|DeliveryManagerEventStart]]@@<br>
+				<<else>>@@.mc-thoughts; Is he asking me to suck him off? No fucking way!<br>@@
+					@@.warningtext; (Req. <img @src="setup.ImagePath + '/img/corruption.png'" style="position: relative; top: 0.375em; width:3%; display: inline; margin: 0;"> ≥ 2)@@
+					@@.mc-speech;No, I'd better go<br>@@
+				<</if>>
+			<</if>>
+		<<else>>@@.notmc-speech; Enough for today, talk to me tomorrow@@<</if>>
+	<</linkreplace>>
 
 <<elseif previous() is "DeliveryMap">>
-@@.notmc-speech; Here are your hard-earned money for the shift. Not much, but it's something at least.@@ <br>
-<<include "endShiftDelivery">>
+	@@.notmc-speech; Here are your hard-earned money for the shift. Not much, but it's something at least.@@ <br>
+	<<include "endShiftDelivery">>
 <</if>>
 <br>
 <br>
