@@ -34,247 +34,23 @@
 	@@.usebtn; [[Stay|$return][$mc.sanity -= 10]]@@ -<img @src="setup.ImagePath + '/img/sanity.png'" style="position: relative; top: 0.375em; width:3%;">
 	<<unset $cthulionAbility>>
 <<else>>
-
-	<<if $mc.lust >= 90>>
-		<<eventRandomizerText $argForRandomizer>><br>
-		<<if setup.Events.hasEnergyToRunAway()>>
-			@@.usebtn;[[Run away|$return][$mc.energy -= 1]]@@<span>-<img @src="setup.ImagePath + '/img/energy.png'" style="position: relative; top: 0.375em; width:3%;"></span>
-		<<else>>
-			@@.mc-thoughts; I'm too tired@@
-			<span>-<img @src="setup.ImagePath + '/img/energy.png'" style="position: relative; top: 0.375em; filter: grayscale(1); width:3%;"></span><</if>>
-		or @@.usebtn; [[Stay|$return][$mc.sanity -= $ghostSanityEventDecreased]]@@ <span>-<img @src="setup.ImagePath + '/img/sanity.png'" style="position: relative; top: 0.375em; width:3%;"></span>
-		<<if setup.Events.hasCompanionOnPlan1()>>
-			<<if setup.Events.companionIsAroused()>>
-				<<if $companion.name eq "Brook">>
-					or @@.usebtn;<<link `$companion.name + " helps you"`>><<set $companion.sanity -= 3>><<set $companion.lust += 10>>
-						<<replace "#videoContainer">><<include "BrookHelp">><</replace>>
-					<</link>> @@
-				<<elseif $companion.name eq "Alice">>
-					or @@.usebtn;<<link `$companion.name + " helps you"`>><<set $companion.sanity -= 3>><<set $companion.lust += 10>>
-						<<replace "#videoContainer">><<include "AliceHelp">><</replace>>
-					<</link>> @@
-				<<elseif $companion.name eq "Blake">>
-					or @@.usebtn;<<link `$companion.name + " helps you"`>><<set $companion.sanity -= 3>><<set $companion.lust += 10>>
-						<<replace "#videoContainer">><<include "BlakeHelp">><</replace>>
-					<</link>> @@
-				<<elseif $companion.name eq "Alex" or $companion.name eq "Taylor" or $companion.name eq "Casey">>
-					or @@.usebtn; [["Call "+$companion.name + " for help"|$return][$companion.sanity -= 3; $companion.lust += 10]]@@
-				<</if>>
-				- $companion.name's <img @src="setup.ImagePath + '/img/sanity.png'" style="position: relative; top: 0.375em; width:3%;"> and + $companion.name's <img @src="setup.ImagePath + '/img/hearth.png'" style="position: relative; top: 0.375em; width:3%;">
-			<<else>>
-				or @@.usebtn; [["Call "+$companion.name + " for help"|$return][$companion.sanity -= 3; $companion.lust += 10]]@@ - $companion.name's <img @src="setup.ImagePath + '/img/sanity.png'" style="position: relative; top: 0.375em; width:3%;"> and + $companion.name's <img @src="setup.ImagePath + '/img/hearth.png'" style="position: relative; top: 0.375em; width:3%;">
-			<</if>>
-		<</if>>
-
-	<<elseif ($mc.lust >= 75 and $mc.lust < 90)>>
-		<<eventRandomizerText $argForRandomizer>><br>
-
-		<<if setup.Events.hasEnergyToRunAway()>>@@.usebtn; [[Run away|$return][$mc.energy -= 1]]@@<span>-<img @src="setup.ImagePath + '/img/energy.png'" style="position: relative; top: 0.375em; width:3%;"></span> <<else>>
-			@@.mc-thoughts; I'm too tired@@
-			<span>-<img @src="setup.ImagePath + '/img/energy.png'" style="position: relative; top: 0.375em; filter: grayscale(1); width:3%;"></span><</if>>
-		or @@.usebtn; [[Stay|$return][$mc.sanity -= $ghostSanityEventDecreased]] @@<span>-<img @src="setup.ImagePath + '/img/sanity.png'" style="position: relative; top: 0.375em; width:3%;"></span>
-		<<if setup.Events.hasCompanionOnPlan1()>>
-			<<if setup.Events.companionIsAroused()>>
-				<<if $companion.name eq "Brook">>
-					or @@.usebtn;<<link `$companion.name + " helps you"`>><<set $companion.sanity -= 3>><<set $companion.lust += 10>>
-						<<replace "#videoContainer">><<include "BrookHelp">><</replace>>
-					<</link>> @@
-				<<elseif $companion.name eq "Alice">>
-					or @@.usebtn;<<link `$companion.name + " helps you"`>><<set $companion.sanity -= 3>><<set $companion.lust += 10>>
-						<<replace "#videoContainer">><<include "AliceHelp">><</replace>>
-					<</link>> @@
-				<<elseif $companion.name eq "Blake">>
-					or @@.usebtn;<<link `$companion.name + " helps you"`>><<set $companion.sanity -= 3>><<set $companion.lust += 10>>
-						<<replace "#videoContainer">><<include "BlakeHelp">><</replace>>
-					<</link>> @@
-				<<elseif $companion.name eq "Alex" or $companion.name eq "Taylor" or $companion.name eq "Casey">>
-					or @@.usebtn; [["Call "+$companion.name + " for help"|$return][$companion.sanity -= 3; $companion.lust += 10]]@@
-				<</if>>
-				- $companion.name's <img @src="setup.ImagePath + '/img/sanity.png'" style="position: relative; top: 0.375em; width:3%;"> and + $companion.name's <img @src="setup.ImagePath + '/img/hearth.png'" style="position: relative; top: 0.375em; width:3%;">
-			<<else>>
-				or @@.usebtn; [["Call "+$companion.name + " for help"|$return][$companion.sanity -= 3; $companion.lust += 10]]@@ - $companion.name's <img @src="setup.ImagePath + '/img/sanity.png'" style="position: relative; top: 0.375em; width:3%;"> and + $companion.name's <img @src="setup.ImagePath + '/img/hearth.png'" style="position: relative; top: 0.375em; width:3%;">
-			<</if>>
-		<</if>>
-	<<elseif ($mc.lust >= 60 and $mc.lust < 75)>>
-		<<eventRandomizerText $argForRandomizer>><br>
-
-		<<if setup.Events.hasEnergyToRunAway()>>@@.usebtn; [[Run away|$return][$mc.energy -= 1]]@@<span>-<img @src="setup.ImagePath + '/img/energy.png'" style="position: relative; top: 0.375em; width:3%;"></span><<else>>
-			@@.mc-thoughts; I'm too tired@@
-			<span>-<img @src="setup.ImagePath + '/img/energy.png'" style="position: relative; top: 0.375em; filter: grayscale(1); width:3%;"></span><</if>>
-		or@@.usebtn;  [[Stay|$return][$mc.sanity -= $ghostSanityEventDecreased]]@@ <span>-<img @src="setup.ImagePath + '/img/sanity.png'" style="position: relative; top: 0.375em; width:3%;"></span>
-		<<if setup.Events.hasCompanionOnPlan1()>>
-			<<if setup.Events.companionIsAroused()>>
-				<<if $companion.name eq "Brook">>
-					or @@.usebtn;<<link `$companion.name + " helps you"`>><<set $companion.sanity -= 3>><<set $companion.lust += 10>>
-						<<replace "#videoContainer">><<include "BrookHelp">><</replace>>
-					<</link>> @@
-				<<elseif $companion.name eq "Alice">>
-					or @@.usebtn;<<link `$companion.name + " helps you"`>><<set $companion.sanity -= 3>><<set $companion.lust += 10>>
-						<<replace "#videoContainer">><<include "AliceHelp">><</replace>>
-					<</link>> @@
-				<<elseif $companion.name eq "Blake">>
-					or @@.usebtn;<<link `$companion.name + " helps you"`>><<set $companion.sanity -= 3>><<set $companion.lust += 10>>
-						<<replace "#videoContainer">><<include "BlakeHelp">><</replace>>
-					<</link>> @@
-				<<elseif $companion.name eq "Alex" or $companion.name eq "Taylor" or $companion.name eq "Casey">>
-					or @@.usebtn; [["Call "+$companion.name + " for help"|$return][$companion.sanity -= 3; $companion.lust += 10]]@@
-				<</if>>
-				- $companion.name's <img @src="setup.ImagePath + '/img/sanity.png'" style="position: relative; top: 0.375em; width:3%;"> and + $companion.name's <img @src="setup.ImagePath + '/img/hearth.png'" style="position: relative; top: 0.375em; width:3%;">
-			<<else>>
-				or @@.usebtn; [["Call "+$companion.name + " for help"|$return][$companion.sanity -= 3; $companion.lust += 10]]@@ - $companion.name's <img @src="setup.ImagePath + '/img/sanity.png'" style="position: relative; top: 0.375em; width:3%;"> and + $companion.name's <img @src="setup.ImagePath + '/img/hearth.png'" style="position: relative; top: 0.375em; width:3%;">
-			<</if>>
-		<</if>>
-
-	<<elseif ($mc.lust >= 45 and $mc.lust < 60)>>
-		<<eventRandomizerText $argForRandomizer>><br>
-
-		<<if setup.Events.hasEnergyToRunAway()>>@@.usebtn; [[Run away|$return][$mc.energy -= 1]]@@<span>-<img @src="setup.ImagePath + '/img/energy.png'" style="position: relative; top: 0.375em; width:3%;"></span><<else>>
-			@@.mc-thoughts; I'm too tired@@
-			<span>-<img @src="setup.ImagePath + '/img/energy.png'" style="position: relative; top: 0.375em; filter: grayscale(1); width:3%;"></span><</if>>
-		or @@.usebtn; [[Stay |$return][$mc.sanity -=$ghostSanityEventDecreased]]@@ <span>-<img @src="setup.ImagePath + '/img/sanity.png'" style="position: relative; top: 0.375em; width:3%;"></span>
-		<<if setup.Events.hasCompanionOnPlan1()>>
-			<<if setup.Events.companionIsAroused()>>
-				<<if $companion.name eq "Brook">>
-					or @@.usebtn;<<link `$companion.name + " helps you"`>><<set $companion.sanity -= 3>><<set $companion.lust += 10>>
-						<<replace "#videoContainer">><<include "BrookHelp">><</replace>>
-					<</link>> @@
-				<<elseif $companion.name eq "Alice">>
-					or @@.usebtn;<<link `$companion.name + " helps you"`>><<set $companion.sanity -= 3>><<set $companion.lust += 10>>
-						<<replace "#videoContainer">><<include "AliceHelp">><</replace>>
-					<</link>> @@
-				<<elseif $companion.name eq "Blake">>
-					or @@.usebtn;<<link `$companion.name + " helps you"`>><<set $companion.sanity -= 3>><<set $companion.lust += 10>>
-						<<replace "#videoContainer">><<include "BlakeHelp">><</replace>>
-					<</link>> @@
-				<<elseif $companion.name eq "Alex" or $companion.name eq "Taylor" or $companion.name eq "Casey">>
-					or @@.usebtn; [["Call "+$companion.name + " for help"|$return][$companion.sanity -= 3; $companion.lust += 10]]@@
-				<</if>>
-				- $companion.name's <img @src="setup.ImagePath + '/img/sanity.png'" style="position: relative; top: 0.375em; width:3%;"> and + $companion.name's <img @src="setup.ImagePath + '/img/hearth.png'" style="position: relative; top: 0.375em; width:3%;">
-			<<else>>
-				or @@.usebtn; [["Call "+$companion.name + " for help"|$return][$companion.sanity -= 3; $companion.lust += 10]]@@ - $companion.name's <img @src="setup.ImagePath + '/img/sanity.png'" style="position: relative; top: 0.375em; width:3%;"> and + $companion.name's <img @src="setup.ImagePath + '/img/hearth.png'" style="position: relative; top: 0.375em; width:3%;">
-			<</if>>
-		<</if>>
-	<<elseif ($mc.lust >= 30 and $mc.lust < 45)>>
-		<<eventRandomizerText $argForRandomizer>><br>
-
-		<<if setup.Events.hasEnergyToRunAway()>>@@.usebtn; [[Run away|$return][$mc.energy -= 1]]@@<span>-<img @src="setup.ImagePath + '/img/energy.png'" style="position: relative; top: 0.375em; width:3%;"></span> <<else>>
-			@@.mc-thoughts; I'm too tired@@
-			<span>-<img @src="setup.ImagePath + '/img/energy.png'" style="position: relative; top: 0.375em; filter: grayscale(1); width:3%;"></span><</if>>
-		or @@.usebtn; [[Stay|$return][$mc.sanity -= $ghostSanityEventDecreased]] @@<span>-<img @src="setup.ImagePath + '/img/sanity.png'" style="position: relative; top: 0.375em; width:3%;"></span>
-		<<if setup.Events.hasCompanionOnPlan1()>>
-			<<if setup.Events.companionIsAroused()>>
-				<<if $companion.name eq "Brook">>
-					or @@.usebtn;<<link `$companion.name + " helps you"`>><<set $companion.sanity -= 3>><<set $companion.lust += 10>>
-						<<replace "#videoContainer">><<include "BrookHelp">><</replace>>
-					<</link>> @@
-				<<elseif $companion.name eq "Alice">>
-					or @@.usebtn;<<link `$companion.name + " helps you"`>><<set $companion.sanity -= 3>><<set $companion.lust += 10>>
-						<<replace "#videoContainer">><<include "AliceHelp">><</replace>>
-					<</link>> @@
-				<<elseif $companion.name eq "Blake">>
-					or @@.usebtn;<<link `$companion.name + " helps you"`>><<set $companion.sanity -= 3>><<set $companion.lust += 10>>
-						<<replace "#videoContainer">><<include "BlakeHelp">><</replace>>
-					<</link>> @@
-				<<elseif $companion.name eq "Alex" or $companion.name eq "Taylor" or $companion.name eq "Casey">>
-					or @@.usebtn; [["Call "+$companion.name + " for help"|$return][$companion.sanity -= 3; $companion.lust += 10]]@@
-				<</if>>
-				- $companion.name's <img @src="setup.ImagePath + '/img/sanity.png'" style="position: relative; top: 0.375em; width:3%;"> and + $companion.name's <img @src="setup.ImagePath + '/img/hearth.png'" style="position: relative; top: 0.375em; width:3%;">
-			<<else>>
-				or @@.usebtn; [["Call "+$companion.name + " for help"|$return][$companion.sanity -= 3; $companion.lust += 10]]@@ - $companion.name's <img @src="setup.ImagePath + '/img/sanity.png'" style="position: relative; top: 0.375em; width:3%;"> and + $companion.name's <img @src="setup.ImagePath + '/img/hearth.png'" style="position: relative; top: 0.375em; width:3%;">
-			<</if>>
-		<</if>>
-
-	<<elseif ($mc.lust >= 15 and $mc.lust < 30)>>
-		<<eventRandomizerText $argForRandomizer>><br>
-
-		<<if setup.Events.hasEnergyToRunAway()>>@@.usebtn; [[Run away|$return][$mc.energy -= 1]]@@<span>-<img @src="setup.ImagePath + '/img/energy.png'" style="position: relative; top: 0.375em; width:3%;"></span> <<else>>
-			@@.mc-thoughts; I'm too tired@@
-			<span>-<img @src="setup.ImagePath + '/img/energy.png'" style="position: relative; top: 0.375em; filter: grayscale(1); width:3%;"></span><</if>>
-		or @@.usebtn; [[Stay|$return][$mc.sanity -= $ghostSanityEventDecreased]] @@<span>-<img @src="setup.ImagePath + '/img/sanity.png'" style="position: relative; top: 0.375em; width:3%;"></span>
-		<<if setup.Events.hasCompanionOnPlan1()>>
-			<<if setup.Events.companionIsAroused()>>
-				<<if $companion.name eq "Brook">>
-					or @@.usebtn;<<link `$companion.name + " helps you"`>><<set $companion.sanity -= 3>><<set $companion.lust += 10>>
-						<<replace "#videoContainer">><<include "BrookHelp">><</replace>>
-					<</link>> @@
-				<<elseif $companion.name eq "Alice">>
-					or @@.usebtn;<<link `$companion.name + " helps you"`>><<set $companion.sanity -= 3>><<set $companion.lust += 10>>
-						<<replace "#videoContainer">><<include "AliceHelp">><</replace>>
-					<</link>> @@
-				<<elseif $companion.name eq "Blake">>
-					or @@.usebtn;<<link `$companion.name + " helps you"`>><<set $companion.sanity -= 3>><<set $companion.lust += 10>>
-						<<replace "#videoContainer">><<include "BlakeHelp">><</replace>>
-					<</link>> @@
-				<<elseif $companion.name eq "Alex" or $companion.name eq "Taylor" or $companion.name eq "Casey">>
-					or @@.usebtn; [["Call "+$companion.name + " for help"|$return][$companion.sanity -= 3; $companion.lust += 10]]@@
-
-				<</if>>
-				- $companion.name's <img @src="setup.ImagePath + '/img/sanity.png'" style="position: relative; top: 0.375em; width:3%;"> and + $companion.name's <img @src="setup.ImagePath + '/img/hearth.png'" style="position: relative; top: 0.375em; width:3%;">
-			<<else>>
-				or @@.usebtn; [["Call "+$companion.name + " for help"|$return][$companion.sanity -= 3; $companion.lust += 10]]@@ - $companion.name's <img @src="setup.ImagePath + '/img/sanity.png'" style="position: relative; top: 0.375em; width:3%;"> and + $companion.name's <img @src="setup.ImagePath + '/img/hearth.png'" style="position: relative; top: 0.375em; width:3%;">
-			<</if>>
-		<</if>>
-
-	<<elseif ($mc.lust >= 0 and $mc.lust < 15)>>
-		<<eventRandomizerText $argForRandomizer>><br>
-
-		<<if setup.Events.hasEnergyToRunAway()>>@@.usebtn; [[Run away|$return][$mc.energy -= 1]]@@<span>-<img @src="setup.ImagePath + '/img/energy.png'" style="position: relative; top: 0.375em; width:3%;"></span> <<else>>
-			@@.mc-thoughts; I'm too tired@@
-			<span>-<img @src="setup.ImagePath + '/img/energy.png'" style="position: relative; top: 0.375em; filter: grayscale(1); width:3%;"></span><</if>>
-		or @@.usebtn; [[Stay|$return][$mc.sanity -= $ghostSanityEventDecreased]] @@<span>-<img @src="setup.ImagePath + '/img/sanity.png'" style="position: relative; top: 0.375em; width:3%;"></span>
-		<<if setup.Events.hasCompanionOnPlan1()>>
-			<<if setup.Events.companionIsAroused()>>
-				<<if $companion.name eq "Brook">>
-					or @@.usebtn;<<link `$companion.name + " helps you"`>><<set $companion.sanity -= 3>><<set $companion.lust += 10>>
-						<<replace "#videoContainer">><<include "BrookHelp">><</replace>>
-					<</link>> @@
-				<<elseif $companion.name eq "Alice">>
-					or @@.usebtn;<<link `$companion.name + " helps you"`>><<set $companion.sanity -= 3>><<set $companion.lust += 10>>
-						<<replace "#videoContainer">><<include "AliceHelp">><</replace>>
-					<</link>> @@
-				<<elseif $companion.name eq "Blake">>
-					or @@.usebtn;<<link `$companion.name + " helps you"`>><<set $companion.sanity -= 3>><<set $companion.lust += 10>>
-						<<replace "#videoContainer">><<include "BlakeHelp">><</replace>>
-					<</link>> @@
-				<<elseif $companion.name eq "Alex" or $companion.name eq "Taylor" or $companion.name eq "Casey">>
-					or @@.usebtn; [["Call "+$companion.name + " for help"|$return][$companion.sanity -= 3; $companion.lust += 10]]@@
-				<</if>>
-				- $companion.name's <img @src="setup.ImagePath + '/img/sanity.png'" style="position: relative; top: 0.375em; width:3%;"> and + $companion.name's <img @src="setup.ImagePath + '/img/hearth.png'" style="position: relative; top: 0.375em; width:3%;">
-			<<else>>
-				or @@.usebtn; [["Call "+$companion.name + " for help"|$return][$companion.sanity -= 3; $companion.lust += 10]]@@ - $companion.name's <img @src="setup.ImagePath + '/img/sanity.png'" style="position: relative; top: 0.375em; width:3%;"> and + $companion.name's <img @src="setup.ImagePath + '/img/hearth.png'" style="position: relative; top: 0.375em; width:3%;">
-			<</if>>
-		<</if>>
-
-	<</if>><br>
-<</if>>
+	<<eventRandomizerText $argForRandomizer>><br>
+	<<if setup.Events.hasEnergyToRunAway()>>
+		@@.usebtn;[[Run away|$return][$mc.energy -= 1]]@@<span>-<img @src="setup.ImagePath + '/img/energy.png'" style="position: relative; top: 0.375em; width:3%;"></span>
+	<<else>>
+		@@.mc-thoughts; I'm too tired@@
+		<span>-<img @src="setup.ImagePath + '/img/energy.png'" style="position: relative; top: 0.375em; filter: grayscale(1); width:3%;"></span>
+	<</if>>
+	or @@.usebtn; [[Stay|$return][$mc.sanity -= $ghostSanityEventDecreased]]@@ <span>-<img @src="setup.ImagePath + '/img/sanity.png'" style="position: relative; top: 0.375em; width:3%;"></span>
+	<<companionHelpOption>>
+<</if>><br>
 </div>
 
 <<done>>
 	<<addclass ".linkselector" "disabled-link">>
 <</done>>
 
-<<if ((previous() is "OwaissaKitchen" or previous() is "elmKitchen") and $kitchen.background eq 2) or
-	((previous() is "OwaissaBedroom" or previous() is "elmBedroom") and $bedroom.background eq 2) or
-	((previous() is "elmBedroomTwo" and $bedroomTwo.background eq 2)) or
-	((previous() is "OwaissaHallway" or previous() is "elmHallway") and $hallway.background eq 2) or
-	((previous() is "elmHallwayUpstairs" and $hallwayUpstairs.background eq 2)) or
-	((previous() is "OwaissaLivingroom" and $livingroom.background eq 2)) or
-	((previous() is "elmNursery" and $nursery.background eq 2)) or
-	((previous() is "OwaissaBathroom" or previous() is "elmBathroom") and $bathroom.background eq 2) or
-	((previous() is "elmBathroomTwo" and $bathroomTwo.background eq 2)) or
-	((previous() is "elmBasement" and $basement.background eq 2))
-	or ((previous() is "IroncladReception" and $reception.background eq 2))
-	or ((previous() is "IroncladKitchen" and $kitchen.background eq 2))
-	or ((previous() is "IroncladHallway" and $hallway.background eq 2))
-	or ((previous() is "IroncladBlockA" and $BlockA.background eq 2))
-	or ((previous() is "IroncladBlockB" and $BlockB.background eq 2))
-	or ((previous() is "IroncladBlockACellA" and $BlockACellA.background eq 2))
-	or ((previous() is "IroncladBlockACellB" and $BlockACellB.background eq 2))
-	or ((previous() is "IroncladBlockACellC" and $BlockACellC.background eq 2))
-	or ((previous() is "IroncladBlockBCellA" and $BlockBCellA.background eq 2))
-	or ((previous() is "IroncladBlockBCellB" and $BlockBCellB.background eq 2))
-	or ((previous() is "IroncladBlockBCellC" and $BlockBCellC.background eq 2))
-	>>
+<<if setup.Events.isDarkRoom(previous())>>
 	<style>
         .eventVideo-container {
             position: relative;
@@ -283,5 +59,7 @@
         #eventVideo {
            filter: brightness(0.8) contrast(1.1) grayscale(0.95);
         }
-    </style><</if>>
+    </style>
+<</if>>
 	<<includeStyleEventMC>>
+</output>

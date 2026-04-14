@@ -18,6 +18,11 @@ sugarcube-2:
         interaction event. Args: eventKey (string, one of 'brain', 'tits',
         'ass', 'bottom', 'mouth', 'pussy', 'anal'). Uses the key to determine
         which body-part dialogue and effects to show."
+    companionHelpOption:
+      name: companionHelpOption
+      description: "Renders the companion help button for ghost events. Shows
+        a scene-replace link for Brook/Alice/Blake if aroused, or a simple
+        passage link for other companions. No args."
     CompExp:
       name: CompExp
       description: "Adds experience points to the active companion ($companion).

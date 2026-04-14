@@ -21,7 +21,10 @@
 					<<if _extraVar>><<run State.variables[_extraVar] = _extraVal>><</if>>
 				<</link>>@@<br>
 			<</capture>>
-		<<else>>@@.mc-thoughts; I don't have enough money@@<</if>><</if>>
+		<<else>>
+			@@.mc-thoughts; I don't have enough money@@
+		<</if>>
+	<</if>>
 	</div>
 <</widget>>
 

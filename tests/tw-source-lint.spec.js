@@ -450,6 +450,32 @@ test.describe('indentation', () => {
     expect(v, v.join('\n')).toHaveLength(0);
   });
 
+  test('no line should contain multiple unpaired block-macro tags (nobr passages)', () => {
+    const violations = [];
+    for (const p of allPassages) {
+      if (!p.tags.includes('nobr')) continue;
+      if (p.tags.includes('script') || p.tags.includes('stylesheet')) continue;
+      const lines = p.body.split('\n');
+      for (let i = 0; i < lines.length; i++) {
+        const trimmed = lines[i].trim();
+        if (!trimmed) continue;
+        const macros = scanBlockMacros(trimmed);
+        if (macros.length > 2) {
+          const absLine = p.headerLine + 1 + i;
+          const tags = macros.map(mc =>
+            mc.type === 'close' ? `<</${mc.name}>>` :
+            `<<${mc.name}>>`
+          ).join(', ');
+          violations.push(
+            `${loc(p)} "${p.name}": line ${absLine} has ${macros.length} ` +
+            `unpaired block macros on one line (${tags}) — add line breaks`
+          );
+        }
+      }
+    }
+    expect(violations, violations.join('\n')).toHaveLength(0);
+  });
+
 });
 
 // ── general file hygiene ─────────────────────────────────────────

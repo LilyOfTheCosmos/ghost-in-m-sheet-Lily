@@ -13,6 +13,32 @@ setup.Events = (function () {
 		return val >= lo && val < hi;
 	}
 
+	// Room-to-background-variable mapping for the dark/grayscale
+	// filter applied when the lights are off (background === 2).
+	var roomBackgrounds = {
+		OwaissaKitchen: 'kitchen',   elmKitchen: 'kitchen',
+		OwaissaBedroom: 'bedroom',   elmBedroom: 'bedroom',
+		elmBedroomTwo: 'bedroomTwo',
+		OwaissaHallway: 'hallway',   elmHallway: 'hallway',
+		elmHallwayUpstairs: 'hallwayUpstairs',
+		OwaissaLivingroom: 'livingroom',
+		elmNursery: 'nursery',
+		OwaissaBathroom: 'bathroom', elmBathroom: 'bathroom',
+		elmBathroomTwo: 'bathroomTwo',
+		elmBasement: 'basement',
+		IroncladReception: 'reception',
+		IroncladKitchen: 'kitchen',
+		IroncladHallway: 'hallway',
+		IroncladBlockA: 'BlockA',
+		IroncladBlockB: 'BlockB',
+		IroncladBlockACellA: 'BlockACellA',
+		IroncladBlockACellB: 'BlockACellB',
+		IroncladBlockACellC: 'BlockACellC',
+		IroncladBlockBCellA: 'BlockBCellA',
+		IroncladBlockBCellB: 'BlockBCellB',
+		IroncladBlockBCellC: 'BlockBCellC'
+	};
+
 	// --- Sanity thresholds by lust tier (private) ----------------
 	// Index 0 is unused; tiers 1-7 map to the decreasingSanity
 	// stage values.
@@ -131,6 +157,12 @@ setup.Events = (function () {
 		companionIsInlineFriend: function () {
 			var n = companion().name;
 			return n === 'Alex' || n === 'Taylor' || n === 'Casey';
+		},
+
+		// --- Dark-room filter ------------------------------------
+		isDarkRoom: function (passageName) {
+			var room = roomBackgrounds[passageName];
+			return room ? (v(room) && v(room).background === 2) : false;
 		},
 
 		// --- Lust tiers ------------------------------------------
