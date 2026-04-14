@@ -30,6 +30,10 @@ Specific ghost types have unique special events that occur under certain conditi
 
 The game includes a body modification system that allows you to customize your character's appearance through piercings, tattoos, and other modifications. This system is integrated with the gameplay through the exhibitionism mechanic, where your character's comfort with nudity affects certain interactions and events. The body modification plotline provides character development options and can unlock unique content based on your choices and progression.
 
+## [Cursed Home Items](cursed-home-items.md)
+
+After losing a haunted house run, there is a 20% chance a ghost follows the MC home and attaches itself to a random household object (TV, computer, bed, shower, or bathtub). The cursed item remains dormant until the MC interacts with it, triggering a unique supernatural sexual encounter. Each event costs sanity and increases corruption and lust. Only one item can be cursed at a time, and the curse is consumed when the event plays out.
+
 ## [Locations and Activities](locations.md)
 
 The game world includes several city locations the player can visit between hunts. These include delivery jobs for earning money, a gym for physical training, a library for research and social encounters, a park for jogging, a church that serves as the rescue quest hub and exorcism storyline, and a mall for shopping. Each location has its own activities, events, and companion interactions.

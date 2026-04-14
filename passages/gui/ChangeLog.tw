@@ -1,179 +1,183 @@
-:: ChangeLog [nobr] {"position":"100,700","size":"100,100"}
-v.0.4.8<br>
-- Added a task for summoning the succubus<br>
-- Added events for summoning the succubus<br>
-- Added events for summoning other ghosts (spirit, the twins, tentacles, mare)<br>
-- Added events for summoning the succubus during a ghost attack while hunting ghosts (5 events)<br>
-- Added an event with tentacles in the witch's house<br>
-<<linkappend "v.0.4.7">><br>
-	- Added content with trans characters:<br>
-	*You can now find a partner for ghost hunting online: (3 partners available)<br>
-	*(Partners are not tied to any specific porn model)<br>
-	- Added 4 events with cursed items in the MC's house<br>
-	* If cursed items are not sold for several days, an event will occur during sleep, watching TV, masturbating to porn on the PC, or during a nap.<br>
-	*Events progress gradually, starting with sleep in the bedroom<br>
-<</linkappend>><br>
-<<linkappend "v.0.4.6">><br>
-	- Succubus added to the game (currently 2 events in the house (PC and TV))<br>
-	The Succubus appears in the game when you reach 6 corruption or more
-	(in the living room (from 18 to 20 hours) the possibility to open the door will appear)
-	- Contracts added for ghost identification with 1 piece of evidence and no evidence (increased reward)<br>
-	- Some bugs fixed<br>
-<</linkappend>><br>
-
-<<linkappend "v.0.4.5">><br>
-	- New task from the witch: weaken the ghost (from level 5)<br>
-	- Added an ability for The Twins ghost<br>
-	- New Ghost: Raiju<br>
-	- Added a new location - the park<br>
-	- Added an event for the park and a possession event in the park.<br>
-<</linkappend>><br>
-<<linkappend "v.0.4.4">>
-	- New haunted location: Prison "Ironclad"<br>
-	- Now information about ghosts can only be purchased from the witch.<br>
-	- Some videos have been added when finding clothes in a haunted house.<br>
-	- Fixed some bugs<br>
-<</linkappend>><br>
-<<linkreplace "v.0.4.3">><br>
-	- The ghost hunting system has been changed: Now the frequency and type of ghost interactions depend on the MC's lust.<br>
-	- At the beginning of the game, you can choose more sensitive body parts.<br>
-	- The more sensitive the body part, the more lust the character gains from interacting with the ghost.<br>
-	- The MC's lust increases with high corruption (corruption increases with each ghost interaction and even outside of ghost hunts)<br>
-	- Now the ghost can affect the MC's mind.<br>
-	- A new location for possession has been added - a church. <br>
-	- A new girl has been added for the "Missing Girls" quest - Ash.<br>
-	- A new ability for the ghost Moroi has been added: (When using the spirit box, if the character's mind is easily influenced, there's a chance MC could become possessed) This also works if you are hunting with Brooke (if her level is 2 or higher)).<br>
-	- Several icons have been added to track the character's clothing. <br>
-	- A new location has been added - Beauty Salon (currently only with piercings).<br>
-	- Now the frequency of tool ticks will depend on the character's level (can be adjusted). <br>
-	- A new scene for Julia has been added.<br>
-<</linkreplace>><br>
-<<linkreplace "v.0.4.2">><br>
-	- Added Paranormal Detector in the witch's shop (allows you to see the correct furniture, in which cursed possessions, stolen clothes, and other items are hidden)<br>
-	- You no longer need to click on tools to find evidence (Instead, a timer is activated.)<br>
-	- The "Missing Girls" task has been updated -- now you can spy on them (While spying on the girls, you can become possessed (if they catch you))<br>
-	- Now you can take on a more challenging contract (the ghost will hide one piece of evidence) - x2 the reward. (Some ghosts are currently impossible to identify, as not all of them have unique abilities).<br>
-	- The temperature range for a room without a ghost has been adjusted, now it's between 13 and 16 degrees.<br>
-	- A choker has been added to the clothing store. <br>
-<</linkreplace>><br>
-<<linkreplace "v.0.4.1">><br>
-	- The ghost hunt has been slightly changed.<br>
-	- Tarot cards have been added to haunted houses.<br>
-	- Monkey paw have been added to haunted houses.<br>
-	- Added cursed hunt. (You can replace it with a regular hunt (at the bottom of the guide))<br>
-	- Now there is a chance to become possessed (Possessed card - very small chance, for now only this way)<br>
-	- The completion time for follower tasks has been reduced <br>
-	- Changed the possession system for missing girls (After 24:00, the chance of possession increases by about 5% for each hour)<br>
-	- Prices for some tools from the witch have been reduced<br>
-<</linkreplace>><br>
-<<linkreplace "v.0.4.0">><br>
-	Added: <br>
-	- New ghost: Banshee! (Ability)<<linkreplace "Spoiler">>During the ghost hunting, she may use her ability (it doesn't depend on anything, just a small chance of appearance)(There's currently no way to learn about her ability anywhere.)<</linkreplace>><br>
-	- The ability for Cthulion to appear during ghost hunting has been added.<br>
-	- Now the bra can be stolen.<br>
-	- Now the follower can walk home with you. <<linkreplace "Spoiler">>The Spirit ghost may follow you<</linkreplace>><br>
-	- Now, clicking the button opens the tool bar<br>
-<</linkreplace>><br>
-<<linkreplace "v.0.3.9">><br>
-	Added: <br>
-	- Now fitness level affects energy. (Every 10 fitness points grants 1 energy)<br>
-	- New Quest: Missing Girls. <<linkreplace "Spoiler">>
-		There are currently 4 missing girls. The quest begins at the witch's house and continues at the church.<br>
+:: ChangeLog {"position":"100,700","size":"100,100"}
+v.0.5.1
+- Added cursed home item events: after losing a haunted house run, there is a 20% chance a ghost curses one of your household objects (TV, computer, bed, shower, or bathtub), triggering a unique encounter when used
+- All companions can now be undressed during ghost hunts as their levels increase
+<<linkappend "v.0.4.8">>
+	- Added a task for summoning the succubus
+	- Added events for summoning the succubus
+	- Added events for summoning other ghosts (spirit, the twins, tentacles, mare)
+	- Added events for summoning the succubus during a ghost attack while hunting ghosts (5 events)
+	- Added an event with tentacles in the witch's house\
+<</linkappend>>\
+<<linkappend "v.0.4.7">>
+	- Added content with trans characters:
+	*You can now find a partner for ghost hunting online: (3 partners available)
+	*(Partners are not tied to any specific porn model)
+	- Added 4 events with cursed items in the MC's house
+	* If cursed items are not sold for several days, an event will occur during sleep, watching TV, masturbating to porn on the PC, or during a nap.
+	*Events progress gradually, starting with sleep in the bedroom\
+<</linkappend>>
+<<linkappend "v.0.4.6">>
+	- Succubus added to the game (currently 2 events in the house (PC and TV))
+	The Succubus appears in the game when you reach 6 corruption or more\
+	(in the living room (from 18 to 20 hours) the possibility to open the door will appear)\
+	- Contracts added for ghost identification with 1 piece of evidence and no evidence (increased reward)
+	- Some bugs fixed\
+<</linkappend>>
+<<linkappend "v.0.4.5">>
+	- New task from the witch: weaken the ghost (from level 5)
+	- Added an ability for The Twins ghost
+	- New Ghost: Raiju
+	- Added a new location - the park
+	- Added an event for the park and a possession event in the park.\
+<</linkappend>>
+<<linkappend "v.0.4.4">>\
+	- New haunted location: Prison "Ironclad"
+	- Now information about ghosts can only be purchased from the witch.
+	- Some videos have been added when finding clothes in a haunted house.
+	- Fixed some bugs\
+<</linkappend>>
+<<linkreplace "v.0.4.3">>
+	- The ghost hunting system has been changed: Now the frequency and type of ghost interactions depend on the MC's lust.
+	- At the beginning of the game, you can choose more sensitive body parts.
+	- The more sensitive the body part, the more lust the character gains from interacting with the ghost.
+	- The MC's lust increases with high corruption (corruption increases with each ghost interaction and even outside of ghost hunts)
+	- Now the ghost can affect the MC's mind.
+	- A new location for possession has been added - a church.
+	- A new girl has been added for the "Missing Girls" quest - Ash.
+	- A new ability for the ghost Moroi has been added: (When using the spirit box, if the character's mind is easily influenced, there's a chance MC could become possessed) This also works if you are hunting with Brooke (if her level is 2 or higher)).
+	- Several icons have been added to track the character's clothing.
+	- A new location has been added - Beauty Salon (currently only with piercings).
+	- Now the frequency of tool ticks will depend on the character's level (can be adjusted).
+	- A new scene for Julia has been added.\
+<</linkreplace>>
+<<linkreplace "v.0.4.2">>
+	- Added Paranormal Detector in the witch's shop (allows you to see the correct furniture, in which cursed possessions, stolen clothes, and other items are hidden)
+	- You no longer need to click on tools to find evidence (Instead, a timer is activated.)
+	- The "Missing Girls" task has been updated -- now you can spy on them (While spying on the girls, you can become possessed (if they catch you))
+	- Now you can take on a more challenging contract (the ghost will hide one piece of evidence) - x2 the reward. (Some ghosts are currently impossible to identify, as not all of them have unique abilities).
+	- The temperature range for a room without a ghost has been adjusted, now it's between 13 and 16 degrees.
+	- A choker has been added to the clothing store. \
+<</linkreplace>>
+<<linkreplace "v.0.4.1">>
+	- The ghost hunt has been slightly changed.
+	- Tarot cards have been added to haunted houses.
+	- Monkey paw have been added to haunted houses.
+	- Added cursed hunt. (You can replace it with a regular hunt (at the bottom of the guide))
+	- Now there is a chance to become possessed (Possessed card - very small chance, for now only this way)
+	- The completion time for follower tasks has been reduced
+	- Changed the possession system for missing girls (After 24:00, the chance of possession increases by about 5% for each hour)
+	- Prices for some tools from the witch have been reduced\
+<</linkreplace>>
+<<linkreplace "v.0.4.0">>
+	Added:
+	- New ghost: Banshee! (Ability)<<linkreplace "Spoiler">>During the ghost hunting, she may use her ability (it doesn't depend on anything, just a small chance of appearance)(There's currently no way to learn about her ability anywhere.)<</linkreplace>>
+	- The ability for Cthulion to appear during ghost hunting has been added.
+	- Now the bra can be stolen.
+	- Now the follower can walk home with you. <<linkreplace "Spoiler">>The Spirit ghost may follow you<</linkreplace>>
+	- Now, clicking the button opens the tool bar\
+<</linkreplace>>
+<<linkreplace "v.0.3.9">>
+	Added:
+	- Now fitness level affects energy. (Every 10 fitness points grants 1 energy)
+	- New Quest: Missing Girls. <<linkreplace "Spoiler">>\
+		There are currently 4 missing girls. The quest begins at the witch's house and continues at the church.
 		After speaking with the nun, a board displaying information about the missing girls appears. The board updates daily, and you can accept a quest from it after 6:00 PM.
-		<br>
-		You must complete the quest by 6:00 PM the following day. If the quest is not completed by 12:00 PM the next day, the girl will become possessed and can no longer be saved.<</linkreplace>><br>
-	- You can give sanity pills to your follower.<br>
-	- Furniture has been added to haunted houses, where stolen clothes or cursed items can now be hidden.<br>
-	- When moving between rooms or searching furniture, there's a chance for an event to occur (similar to when using tools).<br>
-<</linkreplace>><br>
-<<linkreplace "v.0.3.8">><br>
-	Added:<br>
-	- New character: Blake!<br>
-	- Now, when encountering a ghost on Elm Street, different videos are shown<br>
-	- You can buy a phone (quick access to contacts)<br>
-	- New department in the mall<br>
-	- New scenes in the webcam show<br>
-	- Fixed some bugs<br>
-<</linkreplace>><br>
-<<linkreplace "v.0.3.7">><br>
-	Added:<br>
-	-EMF reader only works when the ghost interacts with the environment (e.g., turning off the lights) <br>
-	- Some videos have been added, which are displayed during the interaction between the ghost and mc<br>
-	- The style of any video changes slightly if the light is off in any room during a ghost hunt<br>
-	- New ghost: Cthulion (Unique ability (event))<<linkreplace "Spoiler">>
-		An event will occur if you lose (0 sanity) or if Cthulion catches you during the hunt.<</linkreplace>><br>
-	- Unique ability of the Spirit has been added. (event)<<linkreplace "Spoiler">>
-		It follows the MC home (3 possible events during: watching TV/sleeping/taking a nap).<</linkreplace>><br>
-	- Unique ability of the Myling has been added. (event)<<linkreplace "Spoiler">>
-		After the ghost hunt, when returning home with clothes on, an event will occur<</linkreplace>><br>
-	- Instead of temperature rising, ghosts can now steal clothes (for now: outerwear or panties.)<br>
-	- Changed: <br>
-	- Prices for clothing have been reduced<br>
-	- Some bugs fixed<br>
-<</linkreplace>><br>
-<<linkreplace "v.0.3.6">><br>
-	Added:<br>
-	- New character: Alice!<br>
-	- You can go ghost hunting on Owaissa Street or Elm Street together with Alice<br>
-	- You can go ghost hunting on Elm Street together with Brook.<br>
-	- New event with Brook during ghost hunt.<br>
-	- Send Brook ghost hunting alone (starting from level 2).<br>
-	- Send Alice ghost hunting alone (starting from level 2).<br>
-	- Hotkeys for the different ghost hunting tools <br>
-	- The ability to click on tool icons instead of the "+" link.<br>
-	- Level 2 and 3 thermometers now display a colored result (see the guide).<br>
-	- EMF now displays a colored result.<br>
-	- Ability to earn money by performing webcam shows.<br>
-	Changed:<br>
-	- The temperature range for the "High Temperature" evidence has been adjusted to 19-24.<br>
-	- The reward for correctly identifying a ghost has been increased.<br>
-	- The reward for the delivery mini-game has been increased.<br>
-	- Delivery mini-game events are now available once a day.<br>
-	- Fixed the bug causing an infinite loop during the ghost hunt event.<br>
-	- Fixed some small bugs <br>
-<</linkreplace>><br>
-<<linkreplace "v.0.3.5">>
-	Added:<br>
-	- The ability to sneak into the witch's house (while she's sleeping) (you need to steal the key when the witch is distracted).<br>
-	- A friend for ghost hunting together (you can find her in the library):<br>
-	- You can give her tasks or tell her to follow you during ghost hunts.<br>
-	- You can level her up, which affects the chance of encountering ghosts and her sanity.<br>
-	- For now, you can only explore the first house (Owaissa Street) with her.<br>
-	- The description of the Mimic ghost can now be obtained when meeting the new friend.<br>
-	- Minor interface changes.<br>
-<</linkreplace>><br>
-<<linkreplace "v0.3.4">><br>
-	Added:<br>
-	- Unique ability of the Mimic has been added.<br>
-	- Unique ability of the Goryo has been added.<br>
-	- Unique ability of the Shade has been added.<br>
-	- Unique ability of the Phantom has been added.<br>
-	- Now a ghost can change its "favorite room". (The ghost will try to change its favorite room in the intervals: 0-19, 20-39, 40-59 minutes of each hour (35% chance to change room).<br>
-	- Witch's quest to find cursed objects (requires level 2 or higher).<br>
-	- New location: Library.<br>
-	- Some events in the library<br>
-<</linkreplace>><br>
-<<linkreplace "v0.3.3">><br>
-	Changes:<br>
-	- Decreased sanity for each use of tools in the dark: -0.35 per use.<br>
-	- Some videos in the real realm during ghost hunt have been changed.<br>
-	- The game's interface has been slightly modified (black background for text).<br>
-	- If you choose the "stay" option during the event (ghost hunt), sanity decreases randomly (by 1 to 5)<br>
-	Added:<br>
-	- New ghost: Mare.<br>
-	New department in the store (electronics): you can buy a webcamera <<linkreplace "spoiler">> (available only after the event with the Mare ghost and after researching information about this ghost on the internet).<</linkreplace>><br>
-	- New items in the clothing store.<br>
-	- New item (holy water) <<linkreplace "spoiler">>(currently only needed for the event with the Mare ghost, obtained for free at the church).<</linkreplace>><br>
-	- Item descriptions have been added (increasing beauty).<br>
-	- Special abilities for some ghosts: Mare (event), Wraith (event), Demon, Deogen, Oni, Jinn.<br>
-	- Use the internet to search for information about ghosts (random).<br>
-	- Information about ghosts is automatically added to the Ghostpedia (ghost icon) when the character encounters the ghost's special ability or finds information about that ability online.<br>
-	- Events in the gym<br>
-<</linkreplace>><br><br>
-<<if (previous() eq "WitchEndContract") or (tags(previous()).includes("event"))>>
-	@@.backbtn;<<back>>@@<br>
-<<else>>
-	@@.backbtn;<<return>>@@<br><</if>>
-<<done>>
-	<<addclass ".linkselector" "disabled-link">>
+		You must complete the quest by 6:00 PM the following day. If the quest is not completed by 12:00 PM the next day, the girl will become possessed and can no longer be saved.<</linkreplace>>
+	- You can give sanity pills to your follower.
+	- Furniture has been added to haunted houses, where stolen clothes or cursed items can now be hidden.
+	- When moving between rooms or searching furniture, there's a chance for an event to occur (similar to when using tools).\
+<</linkreplace>>
+<<linkreplace "v.0.3.8">>
+	Added:
+	- New character: Blake!
+	- Now, when encountering a ghost on Elm Street, different videos are shown
+	- You can buy a phone (quick access to contacts)
+	- New department in the mall
+	- New scenes in the webcam show
+	- Fixed some bugs\
+<</linkreplace>>
+<<linkreplace "v.0.3.7">>
+	Added:
+	-EMF reader only works when the ghost interacts with the environment (e.g., turning off the lights)
+	- Some videos have been added, which are displayed during the interaction between the ghost and mc
+	- The style of any video changes slightly if the light is off in any room during a ghost hunt
+	- New ghost: Cthulion (Unique ability (event))<<linkreplace "Spoiler">>\
+		An event will occur if you lose (0 sanity) or if Cthulion catches you during the hunt.<</linkreplace>>
+	- Unique ability of the Spirit has been added. (event)<<linkreplace "Spoiler">>\
+		It follows the MC home (3 possible events during: watching TV/sleeping/taking a nap).<</linkreplace>>
+	- Unique ability of the Myling has been added. (event)<<linkreplace "Spoiler">>\
+		After the ghost hunt, when returning home with clothes on, an event will occur<</linkreplace>>
+	- Instead of temperature rising, ghosts can now steal clothes (for now: outerwear or panties.)
+	- Changed:
+	- Prices for clothing have been reduced
+	- Some bugs fixed\
+<</linkreplace>>
+<<linkreplace "v.0.3.6">>
+	Added:
+	- New character: Alice!
+	- You can go ghost hunting on Owaissa Street or Elm Street together with Alice
+	- You can go ghost hunting on Elm Street together with Brook.
+	- New event with Brook during ghost hunt.
+	- Send Brook ghost hunting alone (starting from level 2).
+	- Send Alice ghost hunting alone (starting from level 2).
+	- Hotkeys for the different ghost hunting tools
+	- The ability to click on tool icons instead of the "+" link.
+	- Level 2 and 3 thermometers now display a colored result (see the guide).
+	- EMF now displays a colored result.
+	- Ability to earn money by performing webcam shows.
+	Changed:
+	- The temperature range for the "High Temperature" evidence has been adjusted to 19-24.
+	- The reward for correctly identifying a ghost has been increased.
+	- The reward for the delivery mini-game has been increased.
+	- Delivery mini-game events are now available once a day.
+	- Fixed the bug causing an infinite loop during the ghost hunt event.
+	- Fixed some small bugs \
+<</linkreplace>>
+<<linkreplace "v.0.3.5">>\
+	Added:
+	- The ability to sneak into the witch's house (while she's sleeping) (you need to steal the key when the witch is distracted).
+	- A friend for ghost hunting together (you can find her in the library):
+	- You can give her tasks or tell her to follow you during ghost hunts.
+	- You can level her up, which affects the chance of encountering ghosts and her sanity.
+	- For now, you can only explore the first house (Owaissa Street) with her.
+	- The description of the Mimic ghost can now be obtained when meeting the new friend.
+	- Minor interface changes.\
+<</linkreplace>>
+<<linkreplace "v0.3.4">>
+	Added:
+	- Unique ability of the Mimic has been added.
+	- Unique ability of the Goryo has been added.
+	- Unique ability of the Shade has been added.
+	- Unique ability of the Phantom has been added.
+	- Now a ghost can change its "favorite room". (The ghost will try to change its favorite room in the intervals: 0-19, 20-39, 40-59 minutes of each hour (35% chance to change room).
+	- Witch's quest to find cursed objects (requires level 2 or higher).
+	- New location: Library.
+	- Some events in the library\
+<</linkreplace>>
+<<linkreplace "v0.3.3">>
+	Changes:
+	- Decreased sanity for each use of tools in the dark: -0.35 per use.
+	- Some videos in the real realm during ghost hunt have been changed.
+	- The game's interface has been slightly modified (black background for text).
+	- If you choose the "stay" option during the event (ghost hunt), sanity decreases randomly (by 1 to 5)
+	Added:
+	- New ghost: Mare.
+	New department in the store (electronics): you can buy a webcamera <<linkreplace "spoiler">> (available only after the event with the Mare ghost and after researching information about this ghost on the internet).<</linkreplace>>
+	- New items in the clothing store.
+	- New item (holy water) <<linkreplace "spoiler">>(currently only needed for the event with the Mare ghost, obtained for free at the church).<</linkreplace>>
+	- Item descriptions have been added (increasing beauty).
+	- Special abilities for some ghosts: Mare (event), Wraith (event), Demon, Deogen, Oni, Jinn.
+	- Use the internet to search for information about ghosts (random).
+	- Information about ghosts is automatically added to the Ghostpedia (ghost icon) when the character encounters the ghost's special ability or finds information about that ability online.
+	- Events in the gym\
+<</linkreplace>>
+
+<<if (previous() eq "WitchEndContract") or (tags(previous()).includes("event"))>>\
+	@@.backbtn;<<back>>@@
+<<else>>\
+	@@.backbtn;<<return>>@@
+<</if>>\
+<<done>>\
+	<<addclass ".linkselector" "disabled-link">>\
 <</done>>
