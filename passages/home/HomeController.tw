@@ -184,6 +184,11 @@ setup.Home = (function () {
 			return beautyRoll <= mc().beauty;
 		},
 
+		// --- Cursed home items --------------------------
+		hasCursedItem: function () {
+			return v('cursedHomeItemActive') === 1;
+		},
+
 		// --- Makeup -------------------------------------
 		canApplyMakeup: function (charges) {
 			return v('makeupApplied') === 0 && v('makeupAmount') >= charges;

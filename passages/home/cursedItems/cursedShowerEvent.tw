@@ -1,0 +1,26 @@
+:: cursedShowerEvent [nobr] {"position":"1100,4900","size":"100,100"}
+<img @src="setup.ImagePath + '/cursedHome/shower1.jpg'" width="100%"><br>
+@@.location; Bathroom -- Shower@@<br>
+<br>
+@@.mc-thoughts; You step into the shower. The water runs hot, then suddenly ice cold, then scalding again. Steam thickens around you until you can barely see@@<br><br>
+<<linkreplace "@@.usebtn; Keep showering@@">>
+	<img @src="setup.ImagePath + '/cursedHome/shower2.jpg'" width="100%"><br>
+	@@.mc-thoughts; Shapes form in the steam -- hands, many hands, reaching for you. Before you can scream, spectral fingers press against your lips. Others slide across your wet skin, cupping your breasts, squeezing, pinching your nipples under the cascading water.@@<br>
+	@@.mc-speech; Mmph~!@@<br><br>
+	@@.mc-thoughts; The ghostly hands are everywhere at once. They spread your legs apart, and you feel something press against your entrance -- not solid, but warm and insistent, like concentrated pressure. It pushes inside you as the water streams down your body, and your knees nearly buckle.@@<br>
+	<<linkappend "@@.usebtn; You brace against the wall@@">>
+		<img @src="setup.ImagePath + '/cursedHome/shower3.jpg'" width="100%"><br>
+		@@.mc-thoughts; The presence fucks you against the shower wall, spectral hands holding your hips while the invisible force thrusts into you with a relentless rhythm. Water runs down your arched back as you moan openly, the sound echoing off the tiles. The steam swirls tighter, the hands grip harder, and the pleasure crests violently.@@<br>
+		@@.mc-speech; Ah~ ah~ yes... f-fuck... I'm cumming~!@@<br><br>
+		@@.mc-thoughts; Your orgasm rips through you and you slide down the wall, sitting under the shower spray, trembling and gasping. The steam clears. The hands are gone. The water is warm and steady again, as if nothing happened.@@<br>
+		<<set $mc.sanity -= 15>>
+		<<set $mc.corruption += 0.5>>
+		<<set $mc.lust to 100>>
+		<<run setup.CursedItems.clearCurse()>>
+		<br>
+		@@.mc-speech; I... oh god... I can still feel them on me...@@<br>
+		Sanity decreased. Corruption slightly increased.<br>
+		<br>
+		@@.backbtn;[[Back|Bathroom]]@@
+	<</linkappend>>
+<</linkreplace>>

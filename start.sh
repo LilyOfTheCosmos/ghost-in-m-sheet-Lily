@@ -14,22 +14,50 @@ NC='\033[0m' # No Color
 
 OUTPUT_FILE="ghost-in-msheet.html"
 STORY_INIT="passages/StoryInit.tw"
+STORY_SCRIPT="passages/StoryScript.tw"
 
-# Optional first argument: override the ImagePath used by the story.
-# When provided, temporarily rewrite StoryInit.tw and restore it on exit.
-IMAGE_PATH_OVERRIDE="${1:-}"
+# Parse arguments
+DEBUG_MODE=false
+IMAGE_PATH_OVERRIDE=""
+for arg in "$@"; do
+    if [ "$arg" = "debug" ]; then
+        DEBUG_MODE=true
+    elif [ -z "$IMAGE_PATH_OVERRIDE" ]; then
+        IMAGE_PATH_OVERRIDE="$arg"
+    fi
+done
+
+# Collect files to restore on exit
+RESTORE_FILES=()
+
 if [ -n "$IMAGE_PATH_OVERRIDE" ]; then
     if [ ! -f "$STORY_INIT" ]; then
         echo -e "${RED}Error: $STORY_INIT not found; cannot override ImagePath.${NC}"
         exit 1
     fi
     cp "$STORY_INIT" "$STORY_INIT.bak"
-    trap 'mv "$STORY_INIT.bak" "$STORY_INIT"' EXIT
+    RESTORE_FILES+=("$STORY_INIT")
     sed -i "s|setup.ImagePath = \"[^\"]*\"|setup.ImagePath = \"$IMAGE_PATH_OVERRIDE\"|" "$STORY_INIT"
     echo -e "${YELLOW}Using ImagePath override: $IMAGE_PATH_OVERRIDE${NC}"
 fi
 
-# Build the story first
+# Enable SugarCube debug mode by injecting Config.debug into StoryScript before building
+if [ "$DEBUG_MODE" = true ]; then
+    cp "$STORY_SCRIPT" "$STORY_SCRIPT.bak"
+    RESTORE_FILES+=("$STORY_SCRIPT")
+    sed -i '2i Config.debug = true;\n$(document).one(":storyready", function() { document.documentElement.removeAttribute("data-debug-view"); });' "$STORY_SCRIPT"
+    echo -e "${YELLOW}SugarCube debug mode enabled${NC}"
+fi
+
+# Restore modified files on exit
+cleanup() {
+    for f in "${RESTORE_FILES[@]}"; do
+        mv "$f.bak" "$f"
+    done
+}
+trap cleanup EXIT
+
+# Build the story
 echo -e "${YELLOW}Building story...${NC}"
 if ! ./build.sh; then
     echo -e "${RED}Error: Build failed.${NC}"

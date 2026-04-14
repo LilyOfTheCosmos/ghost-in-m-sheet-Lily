@@ -1,0 +1,26 @@
+:: cursedPCEvent [nobr] {"position":"1100,4600","size":"100,100"}
+<img @src="setup.ImagePath + '/cursedHome/pc1.jpg'" width="100%"><br>
+@@.location; Livingroom -- PC@@<br>
+<br>
+@@.mc-thoughts; You sit down at the computer. The moment you touch the keyboard, the screen glitches -- windows open on their own, filling with images that make your cheeks burn@@<br><br>
+<<linkreplace "@@.usebtn; Try to close them@@">>
+	<img @src="setup.ImagePath + '/cursedHome/pc2.jpg'" width="100%"><br>
+	@@.mc-thoughts; The images won't stop. Your hands feel glued to the desk as a tingling warmth spreads from the keyboard through your fingertips, up your arms, and straight to your chest. A ghostly presence materializes behind you, its spectral hands sliding over your shoulders and down the front of your shirt.@@<br>
+	@@.mc-speech; Nnh... what's happening to me...@@<br><br>
+	@@.mc-thoughts; The ghost's fingers phase through your clothes, caressing your breasts, teasing your nipples until they stiffen. One hand trails lower, slipping past your waistband. You can feel its breath on your ear -- cold, electric, intoxicating.@@<br>
+	<<linkappend "@@.usebtn; You can't pull away@@">>
+		<img @src="setup.ImagePath + '/cursedHome/pc3.jpg'" width="100%"><br>
+		@@.mc-thoughts; Spectral fingers slide between your folds, rubbing your clit in slow, maddening circles. The screen flashes with hypnotic patterns as the ghost works you expertly, building the pressure in your core until you can't hold back.@@<br>
+		@@.mc-speech; I'm... ah~ oh god... I'm cumming...@@<br><br>
+		@@.mc-thoughts; You convulse in the chair, waves of pleasure ripping through you as the entity draws out every last tremor. Then it fades -- the screen returns to the desktop, and you're left slumped in your chair, thighs slick and heart racing.@@<br>
+		<<set $mc.sanity -= 15>>
+		<<set $mc.corruption += 0.5>>
+		<<set $mc.lust to 100>>
+		<<run setup.CursedItems.clearCurse()>>
+		<br>
+		@@.mc-speech; Everything's... normal again. My legs are still shaking...@@<br>
+		Sanity decreased. Corruption slightly increased.<br>
+		<br>
+		@@.backbtn;[[Back|Livingroom]]@@
+	<</linkappend>>
+<</linkreplace>>

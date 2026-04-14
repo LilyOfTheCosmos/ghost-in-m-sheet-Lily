@@ -30,6 +30,15 @@
       "detail": "Build with the real assets folder and open ghost-in-msheet.html in the default browser"
     },
     {
+      "label": "Debug in Browser",
+      "type": "shell",
+      "command": "./start.sh",
+      "args": ["debug"],
+      "group": "test",
+      "problemMatcher": [],
+      "detail": "Build with placeholder assets and open ghost-in-msheet.html with SugarCube debug mode"
+    },
+    {
       "label": "Clean Build Artifacts",
       "type": "shell",
       "command": "rm",

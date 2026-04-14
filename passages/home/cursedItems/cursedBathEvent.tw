@@ -1,0 +1,26 @@
+:: cursedBathEvent [nobr] {"position":"1100,5000","size":"100,100"}
+<img @src="setup.ImagePath + '/cursedHome/bath1.jpg'" width="100%"><br>
+@@.location; Bathroom -- Bath@@<br>
+<br>
+@@.mc-thoughts; You sink into the warm bathwater. Bubbles rise from the bottom on their own. The water darkens, turning inky black despite the clean tub@@<br><br>
+<<linkreplace "@@.usebtn; Stay in@@">>
+	<img @src="setup.ImagePath + '/cursedHome/bath2.jpg'" width="100%"><br>
+	@@.mc-thoughts; Something coils around your ankles beneath the surface. Smooth, slick tendrils -- not tentacles, but currents of ghostly energy given form. They wrap around your thighs and gently pull them apart. The water itself seems to caress you, lapping against your most intimate places with unnatural precision.@@<br>
+	@@.mc-speech; Something's... touching me... under the water...@@<br><br>
+	@@.mc-thoughts; A spectral form rises from the dark water -- translucent, beautiful, and hungry. It settles between your legs, its ghostly mouth finding your pussy beneath the surface. An otherworldly tongue slides between your folds, licking you slowly, teasingly, while the water-tendrils hold you spread open.@@<br>
+	<<linkappend "@@.usebtn; You grip the edge of the tub@@">>
+		<img @src="setup.ImagePath + '/cursedHome/bath3.jpg'" width="100%"><br>
+		@@.mc-thoughts; The ghost eats you with devastating skill, its tongue swirling around your clit before plunging inside you. The warm water amplifies every sensation tenfold. Your moans bounce off the bathroom tiles as your hips buck against the spectral mouth, chasing the building crescendo.@@<br>
+		@@.mc-speech; Oh fuck~ oh god~ don't stop... please don't-- aahh~!@@<br><br>
+		@@.mc-thoughts; You cum hard, water sloshing over the edge of the tub as your body convulses. The entity drinks in your pleasure, then dissolves back into the water, which clears instantly to its normal warmth. You sit there, chest heaving, thighs quivering.@@<br>
+		<<set $mc.sanity -= 15>>
+		<<set $mc.corruption += 0.5>>
+		<<set $mc.lust to 100>>
+		<<run setup.CursedItems.clearCurse()>>
+		<br>
+		@@.mc-speech; The water's clean again... was that real? My body says yes...@@<br>
+		Sanity decreased. Corruption slightly increased.<br>
+		<br>
+		@@.backbtn;[[Back|Bathroom]]@@
+	<</linkappend>>
+<</linkreplace>>

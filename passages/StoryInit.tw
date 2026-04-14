@@ -105,6 +105,10 @@ dirty:0,
 beauty: 30,
 }>>
 
+/*CURSED HOME ITEMS*/
+<<set $cursedHomeItem to "">>
+<<set $cursedHomeItemActive to 0>>
+
 /*CLOTHES*/
 <<set $jeansState to "worn">>
 <<set $tshirtState to "worn">>

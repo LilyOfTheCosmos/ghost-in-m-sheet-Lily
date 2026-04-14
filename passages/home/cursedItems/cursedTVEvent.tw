@@ -1,0 +1,26 @@
+:: cursedTVEvent [nobr] {"position":"1100,4500","size":"100,100"}
+<img @src="setup.ImagePath + '/cursedHome/tv1.jpg'" width="100%"><br>
+@@.location; Livingroom@@<br>
+<br>
+@@.mc-thoughts; You turn on the TV, but the screen flickers with static. Shapes writhe behind the glass -- silhouettes of figures pressing against it from the inside@@<br><br>
+<<linkreplace "@@.usebtn; Keep watching@@">>
+	<img @src="setup.ImagePath + '/cursedHome/tv2.jpg'" width="100%"><br>
+	@@.mc-thoughts; The screen goes dark, then a ghostly figure pours out like smoke. It takes shape -- translucent hands, a body that shimmers in the dim light. Before you can move, it's on you, pushing you back onto the couch.@@<br>
+	@@.mc-speech; W-what are you--@@<br><br>
+	@@.mc-thoughts; Spectral fingers slide under your clothes, cold at first but growing warmer against your skin. They trace down your stomach, slipping between your thighs. Your body betrays you -- heat pools in your core despite the fear.@@<br>
+	<<linkappend "@@.usebtn; You try to resist@@">>
+		<img @src="setup.ImagePath + '/cursedHome/tv3.jpg'" width="100%"><br>
+		@@.mc-thoughts; The ghost's touch intensifies, phantom lips pressing against your neck while invisible fingers find your most sensitive spots. Waves of forced pleasure crash through you as it feeds on the lingering energy of the haunt.@@<br>
+		@@.mc-speech; Ah~ s-stop... no... don't stop...@@<br><br>
+		@@.mc-thoughts; Your back arches as the entity drives you to a shuddering climax, your body trembling uncontrollably. As the orgasm fades, so does the presence -- dissolving back into the TV screen, leaving you panting and flushed on the couch.@@<br>
+		<<set $mc.sanity -= 15>>
+		<<set $mc.corruption += 0.5>>
+		<<set $mc.lust to 100>>
+		<<run setup.CursedItems.clearCurse()>>
+		<br>
+		@@.mc-speech; The TV... it's just showing a normal channel now. But I can still feel it on my skin...@@<br>
+		Sanity decreased. Corruption slightly increased.<br>
+		<br>
+		@@.backbtn;[[Back|Livingroom]]@@
+	<</linkappend>>
+<</linkreplace>>

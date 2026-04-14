@@ -1,0 +1,26 @@
+:: cursedBedEvent [nobr] {"position":"1100,4700","size":"100,100"}
+<img @src="setup.ImagePath + '/cursedHome/bed1.jpg'" width="100%"><br>
+@@.location; Bedroom@@<br>
+<br>
+@@.mc-thoughts; You climb into bed and pull the covers up. The mattress shifts beneath you -- cold patches move across the sheets like something alive@@<br><br>
+<<linkreplace "@@.usebtn; Try to sleep@@">>
+	<img @src="setup.ImagePath + '/cursedHome/bed2.jpg'" width="100%"><br>
+	@@.mc-thoughts; The moment you close your eyes, invisible hands grip your wrists, pinning them above your head. A weight settles between your legs -- you can feel a spectral body pressing against yours, grinding slowly. The sheets coil around your ankles like restraints.@@<br>
+	@@.mc-speech; No... not again... let go of m--mmh~@@<br><br>
+	@@.mc-thoughts; The ghost's phantom mouth finds your neck, kissing and biting, while its hips roll against yours. You feel it everywhere -- cold fingers kneading your breasts, spectral lips trailing down your stomach, an otherworldly tongue lapping at your inner thighs.@@<br>
+	<<linkappend "@@.usebtn; Your body surrenders@@">>
+		<img @src="setup.ImagePath + '/cursedHome/bed3.jpg'" width="100%"><br>
+		@@.mc-thoughts; The entity enters you -- not physically, but as a wave of raw sensation flooding your core. Your pussy clenches around nothing as pleasure tears through you in pulsing waves. You moan into the pillow, hips bucking helplessly as the ghost fucks your mind and body simultaneously.@@<br>
+		@@.mc-speech; Ah~ ahh~ f-fuck... I can't... I'm...@@<br><br>
+		@@.mc-thoughts; You cum so hard your vision whites out. When you come to, you're alone in the bed, drenched in sweat, the sheets tangled around your trembling body. The mattress feels normal again -- but the ache between your legs lingers.@@<br>
+		<<set $mc.sanity -= 15>>
+		<<set $mc.corruption += 0.5>>
+		<<set $mc.lust to 100>>
+		<<run setup.CursedItems.clearCurse()>>
+		<br>
+		@@.mc-speech; It's over... I think. But I can still feel it inside me...@@<br>
+		Sanity decreased. Corruption slightly increased.<br>
+		<br>
+		@@.backbtn;[[Back|Bedroom]]@@
+	<</linkappend>>
+<</linkreplace>>

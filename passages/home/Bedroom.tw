@@ -73,7 +73,11 @@
 	<</if>>
 	@@.enterbtn;[[Wardrobe|wardrobe]]@@ <br>
 	@@.enterbtn;[[Bathroom]]@@<br>
-	@@.usebtn;[[Sleep (8 hours)|Sleep]]@@<br>
+	<<if setup.CursedItems.isItemCursed("bed")>>
+		@@.usebtn;<<link "Sleep (8 hours)" "cursedBedEvent">><</link>>@@<br>
+	<<else>>
+		@@.usebtn;[[Sleep (8 hours)|Sleep]]@@<br>
+	<</if>>
 	@@.usebtn;<<link "Take a nap(1 hour)" "Bedroom">>
 		<<addTime 60>>
 		<<if $mc.energy lt $mc.energyMax>>

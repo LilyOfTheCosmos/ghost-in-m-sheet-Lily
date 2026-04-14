@@ -1,0 +1,44 @@
+:: CursedItemsController [script]
+/*
+ * Controller for cursed home items.
+ *
+ * When the MC passes out during a haunted house run (HuntOverSanity),
+ * there is a 20% chance a random home item becomes cursed.
+ * Using that item triggers its cursed event.
+ */
+setup.CursedItems = (function () {
+	var ITEMS = ["tv", "pc", "bed", "mirror", "shower", "bath"];
+
+	function v(name) { return State.variables[name]; }
+
+	return {
+		/* Roll for a cursed item after a hunt failure.
+		 * 20% chance; picks one item at random. */
+		rollForCursedItem: function () {
+			if (Math.random() < 0.2) {
+				State.variables.cursedHomeItem = ITEMS[Math.floor(Math.random() * ITEMS.length)];
+				State.variables.cursedHomeItemActive = 1;
+			}
+		},
+
+		/* Check whether a specific item is currently cursed. */
+		isItemCursed: function (itemKey) {
+			return v('cursedHomeItemActive') === 1 && v('cursedHomeItem') === itemKey;
+		},
+
+		/* Clear the curse after the event has been triggered. */
+		clearCurse: function () {
+			State.variables.cursedHomeItem = "";
+			State.variables.cursedHomeItemActive = 0;
+		},
+
+		/* Human-readable label for UI / debug. */
+		cursedItemLabel: function () {
+			var labels = {
+				tv: "TV", pc: "Computer", bed: "Bed",
+				mirror: "Bathroom Mirror", shower: "Shower", bath: "Bathtub"
+			};
+			return labels[v('cursedHomeItem')] || "";
+		}
+	};
+})();

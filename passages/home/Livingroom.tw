@@ -17,7 +17,9 @@
 <</if>>
 @@.usebtn;<<link "Watch tv (30 min)" "Livingroom">>
 	<<addTime 30>>
-	<<if setup.Home.spiritNapEventReady()>>
+	<<if setup.CursedItems.isItemCursed("tv")>>
+		<<goto "cursedTVEvent">>
+	<<elseif setup.Home.spiritNapEventReady()>>
 		<<goto "ghostSpecialEventTVSpirit">>
 	<<elseif setup.Home.succubusTVEventReady()>>
 		<<goto "succubusEventTV">>
@@ -25,7 +27,11 @@
 		<<goto "tentaclesEventTV">>
 	<</if>>
 <</link>>@@<br>
-@@.enterbtn;[[Use PC]]@@<br>
+<<if setup.CursedItems.isItemCursed("pc")>>
+	@@.enterbtn;<<link "Use PC" "cursedPCEvent">><</link>>@@<br>
+<<else>>
+	@@.enterbtn;[[Use PC]]@@<br>
+<</if>>
 @@.enterbtn;<<link "Bedroom" "Bedroom">><<addTime 0.5>><</link>>@@<br>
 <<if $hours <= 22 and $hours >= 12>>
 	@@.usebtn;<<link "Skip time till midnight" "Livingroom">><<set $hours to 23>><<set $minutes to 0>>@@

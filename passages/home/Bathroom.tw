@@ -2,9 +2,21 @@
 <img @src="setup.ImagePath + '/img/mcbathroom.jpg'" width="100%"><br>
 @@.location; Bathroom@@<br>
 
-@@.usebtn;<<link "Take a bath (30 min)" "Bath">><<addTime 30>><</link>><br>@@
-@@.usebtn;<<link "Take a shower (5 min)" "Shower">><<addTime 5>><</link>><br>@@
-@@.enterbtn;[[Look in the mirror|Mirror]]<br>@@
+<<if setup.CursedItems.isItemCursed("bath")>>
+	@@.usebtn;<<link "Take a bath (30 min)" "cursedBathEvent">><<addTime 30>><</link>><br>@@
+<<else>>
+	@@.usebtn;<<link "Take a bath (30 min)" "Bath">><<addTime 30>><</link>><br>@@
+<</if>>
+<<if setup.CursedItems.isItemCursed("shower")>>
+	@@.usebtn;<<link "Take a shower (5 min)" "cursedShowerEvent">><<addTime 5>><</link>><br>@@
+<<else>>
+	@@.usebtn;<<link "Take a shower (5 min)" "Shower">><<addTime 5>><</link>><br>@@
+<</if>>
+<<if setup.CursedItems.isItemCursed("mirror")>>
+	@@.enterbtn;<<link "Look in the mirror" "cursedMirrorEvent">><</link>><br>@@
+<<else>>
+	@@.enterbtn;[[Look in the mirror|Mirror]]<br>@@
+<</if>>
 @@.enterbtn;[[Wash your face|WashFace]]<br>@@
 <br>
 @@.backbtn;[[Bedroom]]<br>@@
