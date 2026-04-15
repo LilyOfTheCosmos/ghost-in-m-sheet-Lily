@@ -19,7 +19,7 @@
 <</if>>
 <<set $isrealhouse to 0>><<set $isOwaissa to 1>>
 <<include "furnitureCode">>
-<<<<set _check to random (1,5)>>
+<<set _check to random (1,5)>>
 <<if _check eq 1>><<set $ghostRoom to clone($kitchen)>><</if>>
 <<if _check eq 2>><<set $ghostRoom to clone($bathroom)>><</if>>
 <<if _check eq 3>><<set $ghostRoom to clone($bedroom)>><</if>>

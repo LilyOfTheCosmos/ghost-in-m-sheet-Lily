@@ -324,6 +324,22 @@ setup.Events = (function () {
 					"ghosts/banshee/10.mp4"];
 		},
 
+		// --- Orgasm check ----------------------------------------
+		/*
+		* Returns true if the MC should orgasm during a sexual encounter.
+		* Triggers when lust is at max (100) and the body part is
+		* mouth, pussy, or anal.
+		*/
+		shouldOrgasm: function (bodyPart) {
+			if (mc().lust < 100) return false;
+			return bodyPart === 'mouth' || bodyPart === 'pussy' || bodyPart === 'anal';
+		},
+
+		/*
+		* Orgasm sanity penalty.
+		*/
+		orgasmSanityLoss: -10,
+
 		/*
 		* Pick a random body-part event based on lust tier and
 		* a sanity-chance roll.  Returns a body-part key string

@@ -478,6 +478,33 @@ test.describe('indentation', () => {
 
 });
 
+// ── stray macro delimiters ───────────────────────────────────────
+
+test.describe('macro delimiters', () => {
+
+  test('no tripled << or >> (stray macro delimiters)', () => {
+    const violations = [];
+    for (const p of allPassages) {
+      if (p.tags.includes('script') || p.tags.includes('stylesheet')) continue;
+      const lines = p.body.split('\n');
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+        const absLine = p.headerLine + 1 + i;
+        // Match 3+ consecutive < or > which indicate a doubled << or >>
+        // e.g. <<<<set  or  >>>>  or  <<<<<
+        if (/<<</.test(line) || />>>/.test(line)) {
+          violations.push(
+            `${loc(p)} "${p.name}": line ${absLine} contains stray ` +
+            `macro delimiters (<<< or >>>)`
+          );
+        }
+      }
+    }
+    expect(violations, violations.join('\n')).toHaveLength(0);
+  });
+
+});
+
 // ── general file hygiene ─────────────────────────────────────────
 
 test.describe('file hygiene', () => {
