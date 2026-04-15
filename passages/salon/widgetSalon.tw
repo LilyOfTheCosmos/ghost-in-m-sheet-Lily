@@ -6,18 +6,20 @@
 	<<set _price to _args[2]>>
 	<<set _returnPassage to _args[3]>>
 	<<set _bonusText to _args[4]>>
-	<<set _extraVar to (typeof _args[5] !== "undefined") ? _args[5] : "">>
-	<<set _extraVal to (typeof _args[6] !== "undefined") ? _args[6] : 0>>
+	<<set _beautyBonus to (typeof _args[5] !== "undefined") ? _args[5] : 0>>
+	<<set _extraVar to (typeof _args[6] !== "undefined") ? _args[6] : "">>
+	<<set _extraVal to (typeof _args[7] !== "undefined") ? _args[7] : 0>>
 	<div class="housecard">
 	<<if ndef State.variables[_varName]>>
 		<img @src="setup.ImagePath + '/' + _img" class="iconPx"><br>
 		<span class="priceAmount"><<= _price>>$</span><br>
 		<span class="mc-thoughts">_bonusText</span><br>
 		<<if $mc.money gte _price>>
-			<<capture _varName, _price, _returnPassage, _extraVar, _extraVal>>
+			<<capture _varName, _price, _returnPassage, _beautyBonus, _extraVar, _extraVal>>
 				@@.buyItemLink;<<link "Buy" _returnPassage>>
 					<<run State.variables[_varName] = "worn">>
 					<<set $mc.money -= _price>>
+					<<if _beautyBonus>><<set $mc.beauty += _beautyBonus>><</if>>
 					<<if _extraVar>><<run State.variables[_extraVar] = _extraVal>><</if>>
 				<</link>>@@<br>
 			<</capture>>
@@ -35,8 +37,9 @@
 	<<set _returnPassage to _args[3]>>
 	<<set _bonusText to _args[4]>>
 	<<set _reqCorruption to _args[5]>>
-	<<set _extraVar to (typeof _args[6] !== "undefined") ? _args[6] : "">>
-	<<set _extraVal to (typeof _args[7] !== "undefined") ? _args[7] : 0>>
+	<<set _beautyBonus to (typeof _args[6] !== "undefined") ? _args[6] : 0>>
+	<<set _extraVar to (typeof _args[7] !== "undefined") ? _args[7] : "">>
+	<<set _extraVal to (typeof _args[8] !== "undefined") ? _args[8] : 0>>
 	<div class="housecard">
 	<<if ndef State.variables[_varName]>>
 		<img @src="setup.ImagePath + '/' + _img" class="iconPx"><br>
@@ -44,10 +47,11 @@
 			<span class="priceAmount"><<= _price>>$</span><br>
 			<span class="mc-thoughts">_bonusText</span><br>
 			<<if $mc.money gte _price>>
-				<<capture _varName, _price, _returnPassage, _extraVar, _extraVal>>
+				<<capture _varName, _price, _returnPassage, _beautyBonus, _extraVar, _extraVal>>
 					@@.buyItemLink;<<link "Buy" _returnPassage>>
 						<<run State.variables[_varName] = "worn">>
 						<<set $mc.money -= _price>>
+						<<if _beautyBonus>><<set $mc.beauty += _beautyBonus>><</if>>
 						<<if _extraVar>><<run State.variables[_extraVar] = _extraVal>><</if>>
 					<</link>>@@<br>
 				<</capture>>

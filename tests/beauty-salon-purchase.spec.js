@@ -33,10 +33,7 @@ test.describe('Beauty Salon — Piercing Purchase', () => {
     expect(piercingBefore).toBeUndefined();
     expect(await getVar(page, 'mc.money')).toBe(startingMoney - 50);
     expect(await getVar(page, 'earsPiercing')).toBe('worn');
-    const beautyBonus = await page.evaluate(
-      () => SugarCube.State.variables['mc.beauty']
-    );
-    expect(beautyBonus).toBe(32); // 30 (base) + 2 from ears piercing
+    expect(await getVar(page, 'mc.beauty')).toBe(32); // 30 (base) + 2 from ears piercing
   });
 
   test('purchasing nose piercing deducts $70 and adds +3 beauty', async () => {
@@ -53,10 +50,7 @@ test.describe('Beauty Salon — Piercing Purchase', () => {
     // assert
     expect(await getVar(page, 'mc.money')).toBe(200 - 70);
     expect(await getVar(page, 'nosePiercing')).toBe('worn');
-    const beautyBonus = await page.evaluate(
-      () => SugarCube.State.variables['mc.beauty']
-    );
-    expect(beautyBonus).toBe(startBeauty + 3);
+    expect(await getVar(page, 'mc.beauty')).toBe(startBeauty + 3);
   });
 
   test('cannot purchase when money is insufficient', async () => {

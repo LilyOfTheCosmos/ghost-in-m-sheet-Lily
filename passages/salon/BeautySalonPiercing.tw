@@ -1,10 +1,10 @@
 :: BeautySalonPiercing [nobr] {"position":"2700,2200","size":"100,100"}
 <div class="flexwrapper backgroundForText">
-<<salonItem "earsPiercing" "img/piercing/earspiercing.jpg" 50 "BeautySalonPiercing" "+2 beauty" "mc.beauty" `$mc.beauty + 2`>>
-<<salonItem "nosePiercing" "img/piercing/nosepiercing.jpg" 70 "BeautySalonPiercing" "+3 beauty" "mc.beauty" `$mc.beauty + 3`>>
-<<salonItem "tonguePiercing" "img/piercing/tonguepiercing.jpg" 100 "BeautySalonPiercing" "Becomes more sensitive" "piercingTongueAddSens" 0.1>>
-<<salonItem "titsPiercing" "img/piercing/titspiercing.jpg" 130 "BeautySalonPiercing" "Becomes more sensitive" "piercingTitsAddSens" 0.1>>
-<<salonItem "pussyPiercing" "img/piercing/pussypiercing.jpg" 150 "BeautySalonPiercing" "Becomes more sensitive" "piercingPussyAddSens" 0.1>>
+<<salonItem "earsPiercing" "img/piercing/earspiercing.jpg" 50 "BeautySalonPiercing" "+2 beauty" 2>>
+<<salonItem "nosePiercing" "img/piercing/nosepiercing.jpg" 70 "BeautySalonPiercing" "+3 beauty" 3>>
+<<salonItem "tonguePiercing" "img/piercing/tonguepiercing.jpg" 100 "BeautySalonPiercing" "Becomes more sensitive" 0 "piercingTongueAddSens" 0.1>>
+<<salonItem "titsPiercing" "img/piercing/titspiercing.jpg" 130 "BeautySalonPiercing" "Becomes more sensitive" 0 "piercingTitsAddSens" 0.1>>
+<<salonItem "pussyPiercing" "img/piercing/pussypiercing.jpg" 150 "BeautySalonPiercing" "Becomes more sensitive" 0 "piercingPussyAddSens" 0.1>>
 </div>
 <br>
 
