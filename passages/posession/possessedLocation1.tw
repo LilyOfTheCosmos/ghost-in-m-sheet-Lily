@@ -228,4 +228,7 @@
 		<</if>>
 	<</linkreplace>>
 
+<<else>>
+	@@.mc-thoughts; You feel the possession fading, your senses returning to normal.@@<br>
+	@@.enterbtn; [[Next|possessed]]@@<br>
 <</if>>

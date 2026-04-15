@@ -344,6 +344,11 @@
 							$@@.usebtn; [[fading into darkness|Sleep]]@@<</if>><br>
 					<</linkappend>>
 				<</if>>
+			<<else>>
+				&emsp;&emsp; Your mind was hazy, but your body responded to its movements. You became a puppet in unyielding embrace.
+				Time lost all meaning. Each touch sent shivers of pleasure throughout your body.
+				Finally, having had its fill of playing with you, the ghost left, leaving you exhausted. <br>&emsp;&emsp; Slipping into a deep sleep, you felt the remnants of pleasure <<if $highpriestess eq 1>>@@.usebtn; [[fading into darkness|$return][$highpriestess to 0; $mc.sanity to 25]]@@<<else>>
+					@@.usebtn; [[fading into darkness|Sleep]]@@<</if>><br>
 			<</if>>
 
 		<</if>>

@@ -51,5 +51,8 @@ Your instincts screamed that this place was dangerous, and you found yourself to
 		@@.mc-speech; $currentRescueGirl, let's get out of here, I came to save you.@@<br>
 		@@.notmc-speech;Save me... of course, let's get out of here. Help me get up...@@<br>
 		@@.usebtn; <<link "Come closer to her." "rescueAshPossessed">><</link>>@@<br>
+	<<else>>
+		@@.mc-thoughts; Something feels wrong... you should leave this place.@@<br>
+		@@.backbtn; [[Leave|rescueMap]]@@
 	<</if>>
 <</linkreplace>>

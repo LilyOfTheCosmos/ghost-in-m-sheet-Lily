@@ -62,6 +62,8 @@
 				<<goto "rescueEvent">>
 			<<elseif setup.MissingWomen.questFailed()>>
 				@@.mc-speech; The nun said that after 6 p.m. it's pointless to keep searching. It seems I'm too late. I should go back to her and tell her I failed.@@<br>
+			<<else>>
+				@@.mc-thoughts; You search around but can't find anything yet. Maybe you should come back later.@@
 			<</if>>
 		<</linkreplace>><<else>>
 		@@.mc-speech;I'm too tired to search the house.@@<br><</if>>
