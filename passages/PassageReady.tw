@@ -18,9 +18,7 @@
 <<goto "compEvent">>
 <</if>>
 
-<<if $changeToolsActivated eq 1>>
 <<include "changeTimer">>
-<</if>>
 
 <<set $stealChance to (1 + (Math.log(101 - $mc.sanity) / Math.log(101)) * 1) * $stealChanceMult>>
 

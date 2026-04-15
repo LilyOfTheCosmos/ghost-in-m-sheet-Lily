@@ -96,26 +96,3 @@
 
 <br>Ghost in M'Sheet 0.5.0
 <a class="linkselector" data-passage="ChangeLog">ChangeLog</a><br>
-<<linkreplace "@@color:red;<em>Change Tools Timer</em>@@">>
-	<<linkreplace "Set according to the MC's level(by default)">>
-		<<set $changeToolsActivated to 1>>
-	<</linkreplace>><br>
-	<<linkreplace "1000ms">><<set $changeToolsActivated to 0>><<set $timerToolsDecreased to "1s">>
-		Timer changed: $timerToolsDecreased now!
-	<</linkreplace>><br>
-	<<linkreplace "800ms">><<set $changeToolsActivated to 0>><<set $timerToolsDecreased to "800ms">>
-		Timer changed: $timerToolsDecreased now!
-	<</linkreplace>><br>
-	<<linkreplace "600ms">><<set $changeToolsActivated to 0>><<set $timerToolsDecreased to "600ms">>
-		Timer changed: $timerToolsDecreased now!
-	<</linkreplace>><br>
-	<<linkreplace "400ms">><<set $changeToolsActivated to 0>><<set $timerToolsDecreased to "400ms">>
-		Timer changed: $timerToolsDecreased now!
-	<</linkreplace>><br>
-	<<linkreplace "200ms">><<set $changeToolsActivated to 0>><<set $timerToolsDecreased to "200ms">>
-		Timer changed: $timerToolsDecreased now!
-	<</linkreplace>><br>
-	<<linkreplace "100ms">><<set $changeToolsActivated to 0>><<set $timerToolsDecreased to "100ms">>
-		Timer changed: $timerToolsDecreased now!
-	<</linkreplace>><br>
-<</linkreplace>>
