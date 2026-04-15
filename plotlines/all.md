@@ -32,7 +32,7 @@ The game includes a body modification system that allows you to customize your c
 
 ## [Cursed Home Items](cursed-home-items.md)
 
-After losing a haunted house run, there is a 20% chance a ghost follows the MC home and attaches itself to a random household object (TV, computer, bed, shower, or bathtub). The cursed item remains dormant until the MC interacts with it, triggering a unique supernatural sexual encounter. Each event costs sanity and increases corruption and lust. Only one item can be cursed at a time, and the curse is consumed when the event plays out.
+After losing a haunted house run, there is a 40% chance a ghost follows the MC home and attaches itself to a random household object (TV, computer, bed, shower, or bathtub). The cursed item remains dormant until the MC interacts with it, triggering a unique supernatural sexual encounter. Each event costs sanity and increases corruption and lust. Only one item can be cursed at a time, and the curse is consumed when the event plays out.
 
 ## [Locations and Activities](locations.md)
 

@@ -1,5 +1,5 @@
 :: cursedBedEvent [nobr] {"position":"1100,4700","size":"100,100"}
-<video autoplay controls muted loop>
+<video autoplay controls loop>
 <source @src="setup.ImagePath + '/cursedHome/bed1.webm'" type="video/webm">
 </video><br>
 @@.location; Bedroom@@<br>
@@ -11,7 +11,7 @@
 	@@.mc-thoughts; You lean over the edge, squinting into the light. Before you can process what you're seeing, hands -- cold, slick, impossibly strong -- shoot up from under the bed and clamp around your ankles.@@<br>
 	@@.mc-speech; WHAT-- NO! LET GO!@@<br>
 	@@.mc-thoughts; You scream as you're yanked off the mattress and dragged under the bed frame. The world flips, the light swallows you, and your bedroom vanishes.@@<br><br>
-	<video autoplay controls muted loop>
+	<video autoplay controls loop>
 	<source @src="setup.ImagePath + '/cursedHome/bed2.webm'" type="video/webm">
 	</video><br>
 	@@.mc-thoughts; You're on your back, pinned to something cold and flat. Ghostly tendrils hold your wrists above your head and your legs are splayed wide. You twist your neck frantically, searching for an exit -- a seam, a crack, anything. There's nothing. Just dim, pulsing light and the wet sound of something moving closer.@@<br>
@@ -19,7 +19,7 @@
 	@@.mc-thoughts; A thick tendril presses against your pussy and pushes inside without warning. You gasp, back arching off the surface as it fills you, thrusting deep with slow, deliberate strokes. It's terrifying and overwhelming, but a small, shameful part of you breathes a sigh of relief.@@<br>
 	@@.mc-thoughts; At least it's not my ass...@@<br>
 	<<linkappend "@@.usebtn; It doesn't stop@@">>
-		<video autoplay controls muted loop>
+		<video autoplay controls loop>
 		<source @src="setup.ImagePath + '/cursedHome/bed3.webm'" type="video/webm">
 		</video><br>
 		@@.mc-thoughts; The orgasms come in waves -- one rolling into the next, each more intense, each melting away a little more of your resistance. Your eyes are glazed, your mouth slack, drool running down your chin. You've stopped struggling. You've stopped thinking.@@<br><br>

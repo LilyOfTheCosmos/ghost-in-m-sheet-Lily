@@ -1,17 +1,17 @@
 :: cursedPCEvent [nobr] {"position":"1100,4600","size":"100,100"}
-<video autoplay controls muted loop>
+<video autoplay controls loop>
 <source @src="setup.ImagePath + '/cursedHome/pc1.webm'" type="video/webm">
 </video><br>
 @@.location; Livingroom -- PC@@<br>
 <br>
 @@.mc-thoughts; You sit down at the computer and reach for the mouse. Mid-click, your body locks up. Every muscle seizes -- your fingers hover over the keyboard, your back rigid in the chair. You can't blink. You can't breathe. But the world keeps going -- the screen saver drifts lazily, dust motes float through the lamplight.@@<br>
-@@.mc-thoughts; A shimmer forms in the corner of the room. You recognize it immediately -- the faint outline of the old man who used to live here. You've sensed his presence before, a harmless echo too weak to even rattle a window.@@<br>
-@@.mc-thoughts; You'd breathe a sigh of relief if you could. He's far too feeble to interact with the living. Nothing to worry about.@@<br><br>
-@@.mc-thoughts; The ghost drifts closer, studying you with milky, curious eyes. He extends one translucent finger and taps you on the top of your head.@@<br>
+@@.mc-thoughts; A shimmer forms in the corner of the room. You recognize it immediately -- the old man who used to live here. You've sensed his presence before, a harmless echo too weak to even rattle a window. But something is different this time. He looks... younger. Stronger. His outline is sharper, his features more defined -- less like a fading memory and more like a man with purpose.@@<br>
+@@.mc-thoughts; You'd breathe a sigh of relief if you could. He's always been far too feeble to interact with the living. Nothing to worry about... right?@@<br><br>
+@@.mc-thoughts; The ghost drifts closer, studying you with eyes that are clearer than you've ever seen them. He extends one translucent finger and taps you on the top of your head.@@<br>
 @@.mc-thoughts; You feel it. He feels it. You both freeze -- him from shock, you from something far worse than the paralysis already gripping you. Pure terror floods your veins.@@<br>
 @@.mc-thoughts; He can touch me. He can touch me.@@<br><br>
 <<linkreplace "@@.usebtn; ...@@">>
-	<video autoplay controls muted loop>
+	<video autoplay controls loop>
 	<source @src="setup.ImagePath + '/cursedHome/pc2.webm'" type="video/webm">
 	</video><br>
 	@@.mc-thoughts; The ghost doesn't hesitate. It's as if he's been waiting years for exactly this moment. His spectral hands grip the sides of your face, tilting your frozen head back, and he slides his ghostly cock into your open mouth.@@<br>
@@ -20,7 +20,7 @@
 	@@.mc-thoughts; He pulls out and spins your chair to face the desk, positioning you like a mannequin. You're left staring at the monitor, mouth full of ectoplasm, unable to swallow, unable to spit.@@<br>
 	@@.mc-thoughts; And beneath the horror, a shameful heat -- you can feel your panties soaked through, your pussy drooling without your permission.@@<br>
 	<<linkappend "@@.usebtn; Minutes pass@@">>
-		<video autoplay controls muted loop>
+		<video autoplay controls loop>
 		<source @src="setup.ImagePath + '/cursedHome/pc3.webm'" type="video/webm">
 		</video><br>
 		@@.mc-thoughts; Minutes crawl by. You sit motionless, ghost cum still pooled in your mouth, staring at the screensaver. Then you feel him again -- that faint shimmer returning, drawn back like an addict to the warmth of living flesh.@@<br><br>

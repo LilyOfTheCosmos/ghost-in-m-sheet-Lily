@@ -1,10 +1,10 @@
 # Cursed Home Items
 
-After losing a haunted house run (passing out from sanity loss), there is a 20% chance that a ghost follows the MC home and attaches itself to a random household object. The cursed item remains dormant until the MC interacts with it, at which point a unique supernatural encounter is triggered.
+After losing a haunted house run (passing out from sanity loss), there is a 40% chance that a ghost follows the MC home and attaches itself to a random household object. The cursed item remains dormant until the MC interacts with it, at which point a unique supernatural encounter is triggered.
 
 ## Mechanics
 
-- **Trigger**: `HuntOverSanity` calls `setup.CursedItems.rollForCursedItem()` — 20% chance, one random item selected
+- **Trigger**: `HuntOverSanity` calls `setup.CursedItems.rollForCursedItem()` — 40% chance, one random item selected
 - **Eligible items**: TV, Computer, Bed, Shower, Bathtub (5 total)
 - **One at a time**: Only one home item can be cursed at any given time
 - **Consumed on use**: The curse clears after the event plays out (`setup.CursedItems.clearCurse()`)

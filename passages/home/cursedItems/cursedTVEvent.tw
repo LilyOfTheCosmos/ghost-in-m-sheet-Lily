@@ -1,5 +1,5 @@
 :: cursedTVEvent [nobr] {"position":"1100,4500","size":"100,100"}
-<video autoplay controls muted loop>
+<video autoplay controls loop>
 <source @src="setup.ImagePath + '/cursedHome/tv1.webm'" type="video/webm">
 </video><br>
 @@.location; Livingroom@@<br>
@@ -8,14 +8,14 @@
 @@.mc-speech; What the fuck?! That's... that's me!@@<br>
 @@.mc-thoughts; The image is unmistakable -- your face, your livingroom, your couch. The you on the screen looks up at the camera with glazed, hungry eyes as she works the shaft deeper into her mouth.@@<br><br>
 <<linkreplace "@@.usebtn; You can't look away@@">>
-	<video autoplay controls muted loop>
+	<video autoplay controls loop>
 	<source @src="setup.ImagePath + '/cursedHome/tv2.webm'" type="video/webm">
 	</video><br>
 	@@.mc-thoughts; A wave of dizziness hits you. When your vision clears, you're no longer sitting on the couch -- you're kneeling in front of it. Something shimmers in the air before you, a spectral presence taking shape. You can feel it against your lips -- warm, solid, impossibly real.@@<br>
 	@@.mc-speech; How did I-- mmph~@@<br><br>
 	@@.mc-thoughts; Your mouth opens on its own, your tongue sliding along the ghostly shaft as if your body already knows what to do. It's thick and warm despite being translucent, pulsing with otherworldly energy. Your head bobs forward, taking it deeper, and a low moan escapes around it.@@<br>
 	<<linkappend "@@.usebtn; You keep going@@">>
-		<video autoplay controls muted loop>
+		<video autoplay controls loop>
 		<source @src="setup.ImagePath + '/cursedHome/tv3.webm'" type="video/webm">
 		</video><br>
 		@@.mc-thoughts; The spectral presence grips the back of your head, thrusting against your mouth. You gag, eyes watering, but your body refuses to pull away -- the taste of it is intoxicating, electric. Then the ghost tenses and finishes, flooding your mouth with something warm and tingling that dissolves on your tongue like static.@@<br>
