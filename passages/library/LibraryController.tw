@@ -46,7 +46,7 @@ setup.Library = (function () {
 			if (!this.hasFoundComics()) out.push('comics');
 			if (!this.hasFoundGirl()) out.push('girl');
 			if (!this.hasFoundGuy()) out.push('guy');
-			if (!this.hasFoundBrook()) out.push('brook');
+			if (!this.hasFoundBrook() && this.canMeetBrookAtLibrary()) out.push('brook');
 			return out;
 		},
 
