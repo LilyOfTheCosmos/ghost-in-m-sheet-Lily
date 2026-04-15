@@ -65,6 +65,9 @@
       "label": "Build Story",
       "type": "shell",
       "command": "./build.sh",
+      "windows": {
+        "command": ".\\build.bat"
+      },
       "group": {
         "kind": "build",
         "isDefault": true
@@ -76,6 +79,9 @@
       "label": "Open in Browser",
       "type": "shell",
       "command": "./start.sh",
+      "windows": {
+        "command": ".\\start.bat"
+      },
       "group": "test",
       "problemMatcher": [],
       "detail": "Build the story and open ghost-in-msheet.html in the default browser"
@@ -85,6 +91,10 @@
       "type": "shell",
       "command": "./start.sh",
       "args": ["assets"],
+      "windows": {
+        "command": ".\\start.bat",
+        "args": ["assets"]
+      },
       "group": "test",
       "problemMatcher": [],
       "detail": "Build with the real assets folder and open ghost-in-msheet.html in the default browser"
@@ -94,6 +104,10 @@
       "type": "shell",
       "command": "./start.sh",
       "args": ["debug"],
+      "windows": {
+        "command": ".\\start.bat",
+        "args": ["debug"]
+      },
       "group": "test",
       "problemMatcher": [],
       "detail": "Build with placeholder assets and open ghost-in-msheet.html with SugarCube debug mode"
@@ -103,6 +117,10 @@
       "type": "shell",
       "command": "rm",
       "args": ["-f", "ghost-in-msheet.html"],
+      "windows": {
+        "command": "del",
+        "args": ["/q", "ghost-in-msheet.html"]
+      },
       "group": "none",
       "problemMatcher": [],
       "detail": "Remove the generated HTML file"
@@ -111,6 +129,9 @@
       "label": "Rebuild Story",
       "type": "shell",
       "command": "./build.sh",
+      "windows": {
+        "command": ".\\build.bat"
+      },
       "dependsOn": "Clean Build Artifacts",
       "group": "build",
       "problemMatcher": [],
