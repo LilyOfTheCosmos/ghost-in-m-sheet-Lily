@@ -10,4 +10,4 @@
 	</div>
 <</for>>
 </div>
-<<include "StyleBodyMod">>
+<<include "StyleStatusContainer">>

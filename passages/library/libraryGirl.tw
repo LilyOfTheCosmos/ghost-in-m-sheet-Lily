@@ -15,4 +15,4 @@ You wander from shelf to shelf, searching for something interesting. Suddenly, y
 <<addclass ".linkselector" "disabled-link">>
 <</done>>
 <</nobr>>
-<<include "StyleLibraryGirl">>
+<<include "StyleLibraryCenteredImg">>

@@ -79,7 +79,6 @@
 
 </div>
 <br>
-<<include "StylePhone">>
 <div>
 @@.enterbtn;[[Ghostopedia]]@@
 </div>
