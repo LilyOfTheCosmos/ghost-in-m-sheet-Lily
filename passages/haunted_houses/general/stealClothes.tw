@@ -45,11 +45,7 @@
 
 <<includeStyle>>
 <<includeStyle2>>
-<style>
- body {
- padding-bottom: 100px;
- }
-</style>
+<<include "StyleStealClothes">>
 
 <<done>>
 	<<addclass ".linkselector" "disabled-link">>

@@ -1,0 +1,8 @@
+:: StyleMallClothing
+<style>
+body {
+    background-image: url('assets/img/clothingSection.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+</style>

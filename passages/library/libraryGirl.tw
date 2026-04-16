@@ -15,11 +15,4 @@ You wander from shelf to shelf, searching for something interesting. Suddenly, y
 <<addclass ".linkselector" "disabled-link">>
 <</done>>
 <</nobr>>
-<style>
-.libraryGirlImg {
-	width:50%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-</style>
+<<include "StyleLibraryGirl">>

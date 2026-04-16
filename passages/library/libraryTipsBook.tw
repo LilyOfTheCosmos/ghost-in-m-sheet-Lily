@@ -22,10 +22,4 @@ Every ghost has the ability to start a hunt. Depending on the type of ghost, the
 <<addclass ".linkselector" "disabled-link">>
 <</done>>
 <</nobr>>
-<style>
-.libraryTipsBookImg {
-	width:50%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-</style>
+<<include "StyleLibraryTipsBook">>

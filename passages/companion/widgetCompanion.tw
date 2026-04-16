@@ -15,16 +15,7 @@
 		</div>
 	<</if>>
 
-	<style>
-        .containerMini {
-            display: flex;
-            align-items: center;
-        }
-        .containerMini img {
-           width: 30%;
-           margin-right: 5%;
-        }
-    </style>
+	<<include "StyleCompanionMini">>
 <</widget>>
 
 <<widget "sanityPills">>

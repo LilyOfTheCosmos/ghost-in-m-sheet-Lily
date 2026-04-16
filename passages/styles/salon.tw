@@ -1,0 +1,8 @@
+:: StyleSalon
+<style>
+body {
+    background-image: url('assets/img/beautySalonInside.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+</style>

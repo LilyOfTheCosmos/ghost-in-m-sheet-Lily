@@ -1,0 +1,6 @@
+:: StyleVideoHeight
+<style>
+video {
+height: 500px;
+}
+</style>

@@ -63,23 +63,7 @@
 <<if $rememberTopOuter eq "tshirt">><<set $rememberTopOuter to "tshirt0">><</if>>
 <<if $rememberBottomOuter eq "jeans">><<set $rememberBottomOuter to "jeans0">><</if>>
 
-<style>
-  #availableClothes img,
-  #availableOuterwear img,
-  #currentOuterwearTop img,
-  #currentOuterwearBottom img,
-  #currentUnderwearTop img,
-  #currentUnderwearBottom img {
-    width: 100px;
-    height: 100px;
-    margin: 1%;
-  }
-
-  .itemwrapperWardrobe {
-  	display: flex;
-    gap: 1%;
-  }
-</style>
+<<include "StyleWardrobe">>
 <</nobr>>
 
 @@.backbtn;[[Back|Bedroom]]@@

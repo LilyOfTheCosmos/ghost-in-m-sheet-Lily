@@ -11,49 +11,8 @@
 <</capture>>
 <</for>>
 </div>
-<style>
-	body {
-    background-image: url('assets/rescue/house/rescueMap.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-.iconRescuePx {
-	width: 80px;
-    height: auto;
-  	border-radius: 30%;
-}
-.rescuehousecard {
-	display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.cheatRescueHighlight {
-	outline: 3px solid #ff3b3b;
-	outline-offset: 2px;
-	border-radius: 30%;
-	box-shadow: 0 0 12px 4px rgba(255, 59, 59, 0.8);
-	animation: cheatRescuePulse 1.2s ease-in-out infinite;
-}
-@keyframes cheatRescuePulse {
-	0%, 100% { box-shadow: 0 0 8px 2px rgba(255, 59, 59, 0.6); }
-	50%      { box-shadow: 0 0 18px 6px rgba(255, 59, 59, 1); }
-}
-</style>
+<<include "StyleRescueMap">>
 
 <<if ($hours gte 22) or ($hours gte 0 and $hours lte 5)>>
- <style>
- body:before {
- content: '';
-	display: block;
-	width: 100vw;
-	height: 100vh;
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background-color:rgba(0, 0, 0, .4);
-    z-index: 1;
- }
- </style>
+<<include "StyleRescueNightOverlay">>
 		<</if>>

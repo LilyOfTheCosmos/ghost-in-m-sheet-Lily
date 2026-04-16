@@ -34,11 +34,7 @@
 	<</if>><<updatemeter 'sanity' `$mc.sanity / $mc.sanityMax`>>
 
 <</if>>
-<style>
-video {
-height: 500px;
-}
-</style>
+<<include "StyleVideoHeight">>
 <br>
 @@.backbtn; [[Back|previous()]]@@
 <<done>>

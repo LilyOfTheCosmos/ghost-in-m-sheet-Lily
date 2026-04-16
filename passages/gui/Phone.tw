@@ -79,18 +79,7 @@
 
 </div>
 <br>
-<style>
-.contactsImages {
-  border: 4px solid #fff;
-  border-radius: 8px;
-  margin: 5px;
-  max-width: 100%;
-}
-
-.addGap5 {
-	gap: 5%;
-}
-</style>
+<<include "StylePhone">>
 <div>
 @@.enterbtn;[[Ghostopedia]]@@
 </div>

@@ -1,0 +1,17 @@
+:: StyleMC
+<style>
+#statusContainer {
+	display: flex;
+	align-items: center;
+	gap: 5%;
+	justify-content: center;
+}
+#statusContainer div {
+	text-align: center;
+}
+#statusContainer img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+</style>

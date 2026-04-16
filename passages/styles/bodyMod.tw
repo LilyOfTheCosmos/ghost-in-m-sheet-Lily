@@ -1,0 +1,17 @@
+:: StyleBodyMod
+<style>
+#statusContainerPiercing {
+	display: flex;
+	align-items: center;
+	gap: 5%;
+	justify-content: center;
+}
+#statusContainerPiercing div {
+	text-align: center;
+}
+#statusContainerPiercing img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+</style>

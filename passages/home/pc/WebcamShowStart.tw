@@ -80,8 +80,4 @@
 <br>
 @@.backbtn; [[Back|WebcamShow]]@@<br>
 
-<style>
-video {
-height: 500px;
-}
-</style>
+<<include "StyleVideoHeight">>

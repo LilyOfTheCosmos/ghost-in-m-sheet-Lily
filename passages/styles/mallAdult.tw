@@ -1,0 +1,8 @@
+:: StyleMallAdult
+<style>
+body {
+    background-image: url('assets/img/adultSection.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+</style>

@@ -5,167 +5,59 @@
 <<set $ghostSanityEventDecreased to random(1,5)>><</if>>
 <<if previous() is "enigmaHallway" or previous() is "Notebook" or previous() is "Bag" or previous() is "guide">>
 	<<if $hallway.background eq 1>>
-		<style>
-	body {
-    background-image: url('assets/room/enigma/hallway.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-</style>
+		<<include "StyleEnigmaHallwayLight">>
 	<<elseif $hallway.background eq 2>>
-		<style>
-	body {
-    background-image: url('assets/room/enigma/hallway-dark.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-</style>
+		<<include "StyleEnigmaHallwayDark">>
 	<</if>>
 
 <<elseif previous() is "enigmaBedroom" or previous() is "Notebook" or previous() is "Bag" or previous() is "guide">>
 	<<if $bedroom.background eq 1>>
-		<style>
-	body {
-    background-image: url('assets/room/enigma/bedroom.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-</style>
+		<<include "StyleEnigmaBedroomLight">>
 	<<elseif $bedroom.background eq 2>>
-		<style>
-	body {
-    background-image: url('assets/room/enigma/bedroom-dark.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-</style>
+		<<include "StyleEnigmaBedroomDark">>
 	<</if>>
 <<elseif previous() is "enigmaLivingroom" or previous() is "Notebook" or previous() is "Bag" or previous() is "guide">>
 	<<if $livingroom.background eq 1>>
-		<style>
-	body {
-    background-image: url('assets/room/enigma/livingroom.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-</style>
+		<<include "StyleEnigmaLivingroomLight">>
 	<<elseif $livingroom.background eq 2>>
-		<style>
-	body {
-    background-image: url('assets/room/enigma/livingroom-dark.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-</style>
+		<<include "StyleEnigmaLivingroomDark">>
 	<</if>>
 <<elseif previous() is "enigmaKitchen" or previous() is "Notebook" or previous() is "Bag" or previous() is "guide">>
 	<<if $kitchen.background eq 1>>
-		<style>
-	body {
-    background-image: url('assets/room/enigma/kitchen.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-</style>
+		<<include "StyleEnigmaKitchenLight">>
 	<<elseif $kitchen.background eq 2>>
-		<style>
-	body {
-    background-image: url('assets/room/enigma/kitchen-dark.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-</style>
+		<<include "StyleEnigmaKitchenDark">>
 	<</if>>
 
 <<elseif previous() is "enigmaBathroom" or previous() is "Notebook" or previous() is "Bag" or previous() is "guide">>
 	<<if $bathroom.background eq 1>>
-		<style>
-	body {
-    background-image: url('assets/room/enigma/bathroom.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-</style>
+		<<include "StyleEnigmaBathroomLight">>
 	<<elseif $bathroom.background eq 2>>
-		<style>
-	body {
-    background-image: url('assets/room/enigma/bathroom-dark.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-</style>
+		<<include "StyleEnigmaBathroomDark">>
 	<</if>>
 <<elseif previous() is "enigmaBasement" or previous() is "Notebook" or previous() is "Bag" or previous() is "guide">>
 	<<if $basement.background eq 1>>
-		<style>
-	body {
-    background-image: url('assets/room/enigma/basement.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-</style>
+		<<include "StyleEnigmaBasementLight">>
 	<<elseif $basement.background eq 2>>
-		<style>
-	body {
-    background-image: url('assets/room/enigma/basement-dark.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-</style>
+		<<include "StyleEnigmaBasementDark">>
 	<</if>>
 <<elseif previous() is "enigmaRoomA" or previous() is "Notebook" or previous() is "Bag" or previous() is "guide">>
 	<<if $roomA.background eq 1>>
-		<style>
-	body {
-    background-image: url('assets/room/enigma/roomA.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-</style>
+		<<include "StyleEnigmaRoomALight">>
 	<<elseif $roomA.background eq 2>>
-		<style>
-	body {
-    background-image: url('assets/room/enigma/roomA-dark.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-</style>
+		<<include "StyleEnigmaRoomADark">>
 	<</if>>
 <<elseif previous() is "enigmaRoomB" or previous() is "Notebook" or previous() is "Bag" or previous() is "guide">>
 	<<if $roomB.background eq 1>>
-		<style>
-	body {
-    background-image: url('assets/room/enigma/roomB.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-</style>
+		<<include "StyleEnigmaRoomBLight">>
 	<<elseif $roomB.background eq 2>>
-		<style>
-	body {
-    background-image: url('assets/room/enigma/roomB-dark.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-</style>
+		<<include "StyleEnigmaRoomBDark">>
 	<</if>>
 <<elseif previous() is "enigmaRoomC" or previous() is "Notebook" or previous() is "Bag" or previous() is "guide">>
 	<<if $roomC.background eq 1>>
-		<style>
-	body {
-    background-image: url('assets/room/enigma/roomC.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-</style>
+		<<include "StyleEnigmaRoomCLight">>
 	<<elseif $roomC.background eq 2>>
-		<style>
-	body {
-    background-image: url('assets/room/enigma/roomC-dark.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-</style>
+		<<include "StyleEnigmaRoomCDark">>
 	<</if>>
 <</if>>
 
