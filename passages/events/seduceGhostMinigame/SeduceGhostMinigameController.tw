@@ -13,6 +13,21 @@ setup.SeduceGhostMinigame = (function () {
 	function img(src) { return { type: "image", src: src }; }
 	function vid(src) { return { type: "video", src: src }; }
 
+	function imgRange(prefix, start, end) {
+		var arr = [];
+		for (var i = start; i <= end; i++) arr.push(img(prefix + i + ".webp"));
+		return arr;
+	}
+	function vidRange(prefix, start, end, ext) {
+		ext = ext || ".mp4";
+		var arr = [];
+		for (var i = start; i <= end; i++) arr.push(vid(prefix + i + ext));
+		return arr;
+	}
+	function imgList(prefix, nums) {
+		return nums.map(function (n) { return img(prefix + n + ".webp"); });
+	}
+
 	function pickRandom(arr) {
 		return arr[random(0, arr.length - 1)];
 	}
@@ -35,15 +50,13 @@ setup.SeduceGhostMinigame = (function () {
 	// Video data -- keyed by state, each entry has ghostWin/mcWin/normal
 	// ----------------------------------------------------------------
 
+	var TEASE = "minigame/tease/";
+	var BLOWJOB = "minigame/blowjob/";
+	var PENETRATE = "minigame/penetrate/";
+	var SEX = "minigame/sex/";
+
 	// Shared video pools reused across multiple states
-	var TEASE_NORMAL = [
-		img("minigame/tease/1.webp"), vid("minigame/tease/1.mp4"),
-		vid("minigame/tease/2.mp4"), vid("minigame/tease/3.mp4"),
-		img("minigame/tease/4.webp"), vid("minigame/tease/5.mp4"),
-		vid("minigame/tease/6.mp4"), vid("minigame/tease/7.mp4"),
-		vid("minigame/tease/8.mp4"), vid("minigame/tease/9.mp4"),
-		img("minigame/tease/10.webp")
-	];
+	var TEASE_NORMAL = vidRange(TEASE, 1, 9).concat(imgList(TEASE, [1, 4, 10]));
 	var TEASE_MC_WIN_A = [
 		img("minigame/tease/end1.webp"), img("minigame/tease/end2.webp"),
 		vid("minigame/tease/end9.mp4")
@@ -60,195 +73,87 @@ setup.SeduceGhostMinigame = (function () {
 	var VIDEOS = {
 		seduceFailed: { normal: TEASE_NORMAL },
 		seduce: {
-			ghostWin: [
-				img("minigame/tease/slapend1.webp"), img("minigame/tease/slapend2.webp"),
-				img("minigame/tease/end4.webp"), img("minigame/tease/end5.webp"),
-				img("minigame/tease/end6.webp"), img("minigame/tease/end7.webp")],
+			ghostWin: imgRange(TEASE + "slapend", 1, 2).concat(imgRange(TEASE + "end", 4, 7)),
 			mcWin: TEASE_MC_WIN_A,
 			normal: TEASE_NORMAL
 		},
 		slapface: {
-			ghostWin: [img("minigame/tease/slapend1.webp"), img("minigame/tease/slapend2.webp")],
+			ghostWin: imgRange(TEASE + "slapend", 1, 2),
 			mcWin: TEASE_MC_WIN_A,
-			normal: [
-				img("minigame/tease/70.webp"), img("minigame/tease/71.webp"),
-				img("minigame/tease/72.webp"), img("minigame/tease/73.webp"),
-				img("minigame/tease/74.webp"), img("minigame/tease/75.webp"),
-				img("minigame/tease/76.webp"), img("minigame/tease/77.webp")]
+			normal: imgRange(TEASE, 70, 77)
 		},
 		subdueslapface: {
-			ghostWin: [img("minigame/tease/slapend3.webp"), img("minigame/tease/slapend4.webp")],
+			ghostWin: imgRange(TEASE + "slapend", 3, 4),
 			mcWin: TEASE_MC_WIN_A,
-			normal: [
-				img("minigame/tease/80.webp"), img("minigame/tease/81.webp"),
-				img("minigame/tease/82.webp"), img("minigame/tease/83.webp"),
-				img("minigame/tease/84.webp")]
+			normal: imgRange(TEASE, 80, 84)
 		},
 		assjob: {
-			ghostWin: [
-				img("minigame/tease/end4.webp"), img("minigame/tease/end6.webp"),
-				img("minigame/tease/end7.webp")],
+			ghostWin: imgList(TEASE + "end", [4, 6, 7]),
 			mcWin: TEASE_MC_WIN_B,
-			normal: [
-				img("minigame/tease/11.webp"), vid("minigame/tease/12.mp4"),
-				vid("minigame/tease/13.mp4"), vid("minigame/tease/14.mp4"),
-				vid("minigame/tease/15.mp4"), vid("minigame/tease/16.mp4"),
-				img("minigame/tease/17.webp"), img("minigame/tease/18.webp"),
-				vid("minigame/tease/19.mp4")]
+			normal: imgList(TEASE, [11, 17, 18])
+				.concat(vidRange(TEASE, 12, 16))
+				.concat([vid(TEASE + "19.mp4")])
 		},
 		subdueassjob: {
-			ghostWin: [
-				img("minigame/tease/end6.webp"), img("minigame/tease/end7.webp"),
-				img("minigame/tease/end8.webp")],
+			ghostWin: imgRange(TEASE + "end", 6, 8),
 			mcWin: TEASE_MC_WIN_B,
-			normal: [
-				img("minigame/tease/20.webp"), vid("minigame/tease/21.webm"),
-				img("minigame/tease/22.webp"), img("minigame/tease/23.webp"),
-				vid("minigame/tease/24.mp4"), img("minigame/tease/25.webp"),
-				img("minigame/tease/26.webp"), vid("minigame/tease/27.mp4")]
+			normal: imgList(TEASE, [20, 22, 23, 25, 26]).concat([
+				vid(TEASE + "21.webm"),
+				vid(TEASE + "24.mp4"),
+				vid(TEASE + "27.mp4")
+			])
 		},
 		titjob: {
-			ghostWin: [img("minigame/tease/30end1.webp"), img("minigame/tease/30end2.webp")],
-			mcWin: [
-				img("minigame/tease/end2.webp"), img("minigame/tease/end1.webp"),
-				vid("minigame/tease/end9.mp4")],
-			normal: [
-				img("minigame/tease/30.webp"), img("minigame/tease/31.webp"),
-				img("minigame/tease/32.webp"), img("minigame/tease/33.webp"),
-				img("minigame/tease/34.webp"), img("minigame/tease/35.webp"),
-				img("minigame/tease/36.webp"), img("minigame/tease/37.webp"),
-				img("minigame/tease/38.webp")]
+			ghostWin: imgRange(TEASE + "30end", 1, 2),
+			mcWin: TEASE_MC_WIN_A,
+			normal: imgRange(TEASE, 30, 38)
 		},
 		subduetitjob: {
-			ghostWin: [
-				img("minigame/tease/30end3.webp"), img("minigame/tease/30end4.webp"),
-				img("minigame/tease/30end5.webp")],
-			mcWin: [
-				img("minigame/tease/end2.webp"), img("minigame/tease/end1.webp"),
-				vid("minigame/tease/end9.mp4")],
-			normal: [
-				img("minigame/tease/40.webp"), img("minigame/tease/41.webp"),
-				img("minigame/tease/42.webp"), img("minigame/tease/43.webp"),
-				img("minigame/tease/44.webp"), img("minigame/tease/45.webp"),
-				img("minigame/tease/46.webp"), img("minigame/tease/47.webp"),
-				img("minigame/tease/48.webp"), img("minigame/tease/49.webp")]
+			ghostWin: imgRange(TEASE + "30end", 3, 5),
+			mcWin: TEASE_MC_WIN_A,
+			normal: imgRange(TEASE, 40, 49)
 		},
 		rimjob: {
-			ghostWin: [img("minigame/tease/60end1.webp")],
-			mcWin: [
-				img("minigame/tease/end2.webp"), img("minigame/tease/end1.webp"),
-				vid("minigame/tease/end9.mp4")],
-			normal: [
-				img("minigame/tease/50.webp"), img("minigame/tease/51.webp"),
-				img("minigame/tease/52.webp"), img("minigame/tease/53.webp"),
-				img("minigame/tease/54.webp"), img("minigame/tease/55.webp"),
-				img("minigame/tease/56.webp")]
+			ghostWin: [img(TEASE + "60end1.webp")],
+			mcWin: TEASE_MC_WIN_A,
+			normal: imgRange(TEASE, 50, 56)
 		},
 		subduerimjob: {
-			ghostWin: [img("minigame/tease/60end1.webp")],
-			mcWin: [
-				img("minigame/tease/end2.webp"), img("minigame/tease/end1.webp"),
-				vid("minigame/tease/end9.mp4")],
-			normal: [
-				img("minigame/tease/60.webp"), img("minigame/tease/61.webp"),
-				img("minigame/tease/62.webp"), img("minigame/tease/63.webp"),
-				img("minigame/tease/64.webp"), img("minigame/tease/65.webp")]
+			ghostWin: [img(TEASE + "60end1.webp")],
+			mcWin: TEASE_MC_WIN_A,
+			normal: imgRange(TEASE, 60, 65)
 		},
 		blowjob: {
-			ghostWin: [
-				vid("minigame/blowjob/bjend5.mp4"), vid("minigame/blowjob/bjend6.mp4"),
-				img("minigame/blowjob/bjend7.webp"), img("minigame/blowjob/bjend8.webp")],
+			ghostWin: vidRange(BLOWJOB + "bjend", 5, 6).concat(imgRange(BLOWJOB + "bjend", 7, 8)),
 			mcWin: BJ_MC_WIN,
-			normal: [
-				img("minigame/blowjob/30.webp"), img("minigame/blowjob/31.webp"),
-				img("minigame/blowjob/32.webp"), img("minigame/blowjob/33.webp"),
-				img("minigame/blowjob/34.webp"), img("minigame/blowjob/35.webp"),
-				img("minigame/blowjob/36.webp"), img("minigame/blowjob/37.webp"),
-				img("minigame/blowjob/38.webp"), img("minigame/blowjob/39.webp"),
-				img("minigame/blowjob/40.webp"), img("minigame/blowjob/41.webp"),
-				vid("minigame/blowjob/42.mp4"), vid("minigame/blowjob/43.mp4"),
-				vid("minigame/blowjob/44.mp4"), vid("minigame/blowjob/45.mp4"),
-				vid("minigame/blowjob/46.mp4"), vid("minigame/blowjob/47.mp4")]
+			normal: imgRange(BLOWJOB, 30, 41).concat(vidRange(BLOWJOB, 42, 47))
 		},
 		subdueblowjob: {
-			ghostWin: [
-				img("minigame/blowjob/bjend1.webp"), img("minigame/blowjob/bjend2.webp"),
-				img("minigame/blowjob/bjend3.webp")],
+			ghostWin: imgRange(BLOWJOB + "bjend", 1, 3),
 			mcWin: BJ_MC_WIN,
-			normal: [
-				img("minigame/blowjob/50.webp"), img("minigame/blowjob/51.webp"),
-				img("minigame/blowjob/52.webp"), img("minigame/blowjob/53.webp"),
-				img("minigame/blowjob/54.webp"), img("minigame/blowjob/55.webp"),
-				img("minigame/blowjob/56.webp"), img("minigame/blowjob/57.webp"),
-				img("minigame/blowjob/58.webp"), vid("minigame/blowjob/59.mp4")]
+			normal: imgRange(BLOWJOB, 50, 58).concat([vid(BLOWJOB + "59.mp4")])
 		},
 		penetratepussy: {
-			ghostWin: [
-				img("minigame/penetrate/end1.webp"), img("minigame/penetrate/end2.webp"),
-				img("minigame/penetrate/end5.webp")],
-			mcWin: [img("minigame/penetrate/end3.webp"), img("minigame/penetrate/end4.webp")],
-			normal: [
-				img("minigame/penetrate/1.webp"), img("minigame/penetrate/2.webp"),
-				img("minigame/penetrate/3.webp"), img("minigame/penetrate/4.webp"),
-				img("minigame/penetrate/5.webp"), img("minigame/penetrate/6.webp"),
-				vid("minigame/penetrate/7.mp4"), vid("minigame/penetrate/8.mp4"),
-				vid("minigame/penetrate/9.mp4"), vid("minigame/penetrate/10.mp4"),
-				vid("minigame/penetrate/11.mp4"), vid("minigame/penetrate/12.mp4"),
-				vid("minigame/penetrate/13.mp4"), vid("minigame/penetrate/14.mp4")]
+			ghostWin: imgList(PENETRATE + "end", [1, 2, 5]),
+			mcWin: imgRange(PENETRATE + "end", 3, 4),
+			normal: imgRange(PENETRATE, 1, 6).concat(vidRange(PENETRATE, 7, 14))
 		},
 		penetrateanal: {
-			ghostWin: [
-				img("minigame/penetrate/end8.webp"), img("minigame/penetrate/end9.webp"),
-				vid("minigame/penetrate/end11.mp4")],
-			mcWin: [
-				img("minigame/penetrate/end6.webp"), img("minigame/penetrate/end7.webp"),
-				img("minigame/penetrate/end10.webp")],
-			normal: [
-				img("minigame/penetrate/20.webp"), img("minigame/penetrate/21.webp"),
-				img("minigame/penetrate/22.webp"), img("minigame/penetrate/23.webp"),
-				img("minigame/penetrate/24.webp"), img("minigame/penetrate/25.webp"),
-				vid("minigame/penetrate/26.mp4"), img("minigame/penetrate/27.webp"),
-				img("minigame/penetrate/28.webp"), img("minigame/penetrate/29.webp"),
-				img("minigame/penetrate/30.webp"), img("minigame/penetrate/31.webp")]
+			ghostWin: imgRange(PENETRATE + "end", 8, 9).concat([vid(PENETRATE + "end11.mp4")]),
+			mcWin: imgList(PENETRATE + "end", [6, 7, 10]),
+			normal: imgRange(PENETRATE, 20, 25)
+				.concat([vid(PENETRATE + "26.mp4")])
+				.concat(imgRange(PENETRATE, 27, 31))
 		},
 		fuckpussy: {
-			ghostWin: [
-				img("minigame/sex/end5.webp"), img("minigame/sex/end6.webp"),
-				img("minigame/sex/end7.webp"), img("minigame/sex/end9.webp")],
-			mcWin: [
-				img("minigame/sex/end1.webp"), img("minigame/sex/end2.webp"),
-				img("minigame/sex/end3.webp"), img("minigame/sex/end4.webp")],
-			normal: [
-				img("minigame/sex/1.webp"), img("minigame/sex/2.webp"),
-				img("minigame/sex/3.webp"), img("minigame/sex/4.webp"),
-				img("minigame/sex/5.webp"), img("minigame/sex/6.webp"),
-				img("minigame/sex/7.webp"), img("minigame/sex/8.webp"),
-				img("minigame/sex/9.webp"), img("minigame/sex/10.webp"),
-				vid("minigame/sex/11.mp4"), vid("minigame/sex/12.mp4"),
-				vid("minigame/sex/13.mp4"), vid("minigame/sex/14.mp4"),
-				vid("minigame/sex/15.mp4"), vid("minigame/sex/16.mp4"),
-				vid("minigame/sex/17.mp4")]
+			ghostWin: imgList(SEX + "end", [5, 6, 7, 9]),
+			mcWin: imgRange(SEX + "end", 1, 4),
+			normal: imgRange(SEX, 1, 10).concat(vidRange(SEX, 11, 17))
 		},
 		fuckanal: {
-			ghostWin: [
-				img("minigame/sex/end17.webp"), img("minigame/sex/end18.webp"),
-				img("minigame/sex/end19.webp"), img("minigame/sex/end20.webp"),
-				img("minigame/sex/end21.webp"), img("minigame/sex/end22.webp")],
-			mcWin: [
-				img("minigame/sex/end10.webp"), img("minigame/sex/end11.webp"),
-				img("minigame/sex/end12.webp"), img("minigame/sex/end13.webp"),
-				img("minigame/sex/end14.webp"), img("minigame/sex/end15.webp"),
-				img("minigame/sex/end16.webp")],
-			normal: [
-				img("minigame/sex/20.webp"), img("minigame/sex/21.webp"),
-				img("minigame/sex/22.webp"), img("minigame/sex/23.webp"),
-				img("minigame/sex/24.webp"), img("minigame/sex/25.webp"),
-				img("minigame/sex/26.webp"), img("minigame/sex/27.webp"),
-				img("minigame/sex/28.webp"), img("minigame/sex/29.webp"),
-				img("minigame/sex/30.webp"), img("minigame/sex/31.webp"),
-				img("minigame/sex/32.webp"), img("minigame/sex/33.webp"),
-				img("minigame/sex/34.webp"), img("minigame/sex/35.webp"),
-				img("minigame/sex/36.webp")]
+			ghostWin: imgRange(SEX + "end", 17, 22),
+			mcWin: imgRange(SEX + "end", 10, 16),
+			normal: imgRange(SEX, 20, 36)
 		}
 	};
 
