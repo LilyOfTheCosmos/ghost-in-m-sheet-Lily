@@ -136,6 +136,17 @@
       "group": "build",
       "problemMatcher": [],
       "detail": "Clean and rebuild the story"
+    },
+    {
+      "label": "npm: test",
+      "type": "npm",
+      "script": "test",
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "problemMatcher": [],
+      "detail": "Run the Twee lint check and the Playwright test suite"
     }
   ]
 }
