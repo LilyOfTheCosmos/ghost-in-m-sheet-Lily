@@ -1,7 +1,7 @@
 :: StyleMallGeneral
 <style>
 body {
-	background-image: url('assets/img/generalSection.jpg');
+	background-image: url('assets/img/general-section.jpg');
 	background-size: cover;
 	background-repeat: no-repeat;
 }

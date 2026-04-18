@@ -20,7 +20,7 @@
 		Now the main thing is to act cautiously and not reveal yourself again.
 	<<else>>
 		<video autoplay muted>
-		<source @src="setup.ImagePath + '/hunting/huntEnd.mp4'" type="video/mp4">
+		<source @src="setup.ImagePath + '/hunting/hunt-end.mp4'" type="video/mp4">
 		</video>
 		&emsp;&emsp; You slowly peek out from your hiding place, hoping the ghost has left. But your eyes meet its hollow sockets.
 		A chill grips your body, and you realize you've made a fatal mistake.<br>

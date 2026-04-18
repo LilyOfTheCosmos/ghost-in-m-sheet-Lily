@@ -1,7 +1,7 @@
 :: CityMap [city] {"position":"1125,300","size":"100,100"}
 <div class="flexwrapper">
 <div class="housecard">
-<img @src="setup.ImagePath + '/img/gymIcon.png'" class="icon">
+<img @src="setup.ImagePath + '/img/gym-icon.png'" class="icon">
 @@.icontextcity; [[Gym|Gym]]@@
 </div>
 <div class="housecard">
@@ -38,7 +38,7 @@
 
 </div>
 <div class="housecard">
-<img @src="setup.ImagePath + '/img/libraryIcon.png'" class="icon">
+<img @src="setup.ImagePath + '/img/library-icon.png'" class="icon">
 @@.icontextcity; [[Library|Library]]@@
 </div>
 <div class="housecard">
@@ -52,7 +52,7 @@
 
 </div>
 <div class="housecard">
-<img @src="setup.ImagePath + '/img/churchIco.png'" class="icon">
+<img @src="setup.ImagePath + '/img/church-ico.png'" class="icon">
 @@.icontextcity; [[Church|Church]]@@
 </div>
 <div class="housecard">
@@ -70,7 +70,7 @@
 <div class="housecard">
 </div>
 <div class="housecard">
-<img @src="setup.ImagePath + '/img/beautySalon.png'" class="icon">
+<img @src="setup.ImagePath + '/img/beauty-salon.png'" class="icon">
 @@.icontextcity; [[Beauty Salon|BeautySalon]]@@
 </div>
 <div class="housecard">

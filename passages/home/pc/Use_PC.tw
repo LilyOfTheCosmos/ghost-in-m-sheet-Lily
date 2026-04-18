@@ -3,8 +3,8 @@
 <img @src="setup.ImagePath + '/img/pc.jpg'" id="bgPC"><br>
 <div class="iconContainer">
 <a data-passage="Ghostopedia"><img @src="setup.ImagePath + '/img/ghostopedia.png'" class=" iconPC"><br></a><br>
-<a data-passage="Evidence"><img @src="setup.ImagePath + '/img/evidenceIcon.jpg'" class=" iconPC"><br></a>
-<a data-passage="PornCore"><img @src="setup.ImagePath + '/img/pornLab.jpg'" class="iconPC"></a>
+<a data-passage="Evidence"><img @src="setup.ImagePath + '/img/evidence-icon.jpg'" class=" iconPC"><br></a>
+<a data-passage="PornCore"><img @src="setup.ImagePath + '/img/porn-lab.jpg'" class="iconPC"></a>
 <a data-passage="Internet"><img @src="setup.ImagePath + '/img/browser.png'" class="iconPC"></a>
 <a data-passage="Contacts"><img @src="setup.ImagePath + '/img/contacts.jpg'" class="iconPC"></a>
 <<if $aliceWorkDone eq 1>><a data-passage="DocumentsForAlice"><img @src="setup.ImagePath + '/img/documents.jpg'" class="iconPC"></a>

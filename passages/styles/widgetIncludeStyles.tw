@@ -323,7 +323,7 @@
 		<<if $BlockA.background eq 1>>
 			<style>
 	body {
-    background-image: url('assets/room/ironclad/blockA.webp');
+    background-image: url('assets/room/ironclad/block-a.webp');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -331,7 +331,7 @@
 		<<elseif $BlockA.background eq 2>>
 			<style>
 	body {
-    background-image: url('assets/room/ironclad/blockA-dark.webp');
+    background-image: url('assets/room/ironclad/block-a-dark.webp');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -342,7 +342,7 @@
 		<<if $BlockB.background eq 1>>
 			<style>
 	body {
-    background-image: url('assets/room/ironclad/blockB.webp');
+    background-image: url('assets/room/ironclad/block-b.webp');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -350,7 +350,7 @@
 		<<elseif $BlockB.background eq 2>>
 			<style>
 	body {
-    background-image: url('assets/room/ironclad/blockB-dark.webp');
+    background-image: url('assets/room/ironclad/block-b-dark.webp');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -361,7 +361,7 @@
 		<<if $BlockACellA.background eq 1>>
 			<style>
 	body {
-    background-image: url('assets/room/ironclad/blockACellA.webp');
+    background-image: url('assets/room/ironclad/block-a-cell-a.webp');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -369,7 +369,7 @@
 		<<elseif $BlockACellA.background eq 2>>
 			<style>
 	body {
-    background-image: url('assets/room/ironclad/blockACellA-dark.webp');
+    background-image: url('assets/room/ironclad/block-a-cell-a-dark.webp');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -380,7 +380,7 @@
 		<<if $BlockACellB.background eq 1>>
 			<style>
 	body {
-    background-image: url('assets/room/ironclad/blockACellB.webp');
+    background-image: url('assets/room/ironclad/block-a-cell-b.webp');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -388,7 +388,7 @@
 		<<elseif $BlockACellB.background eq 2>>
 			<style>
 	body {
-    background-image: url('assets/room/ironclad/blockACellB-dark.webp');
+    background-image: url('assets/room/ironclad/block-a-cell-b-dark.webp');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -399,7 +399,7 @@
 		<<if $BlockACellC.background eq 1>>
 			<style>
 	body {
-    background-image: url('assets/room/ironclad/blockACellC.webp');
+    background-image: url('assets/room/ironclad/block-a-cell-c.webp');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -407,7 +407,7 @@
 		<<elseif $BlockACellC.background eq 2>>
 			<style>
 	body {
-    background-image: url('assets/room/ironclad/blockACellC-dark.webp');
+    background-image: url('assets/room/ironclad/block-a-cell-c-dark.webp');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -418,7 +418,7 @@
 		<<if $BlockBCellA.background eq 1>>
 			<style>
 	body {
-    background-image: url('assets/room/ironclad/blockBCellA.webp');
+    background-image: url('assets/room/ironclad/block-b-cell-a.webp');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -426,7 +426,7 @@
 		<<elseif $BlockBCellA.background eq 2>>
 			<style>
 	body {
-    background-image: url('assets/room/ironclad/blockBCellA-dark.webp');
+    background-image: url('assets/room/ironclad/block-b-cell-a-dark.webp');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -437,7 +437,7 @@
 		<<if $BlockBCellB.background eq 1>>
 			<style>
 	body {
-    background-image: url('assets/room/ironclad/blockBCellB.webp');
+    background-image: url('assets/room/ironclad/block-b-cell-b.webp');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -445,7 +445,7 @@
 		<<elseif $BlockBCellB.background eq 2>>
 			<style>
 	body {
-    background-image: url('assets/room/ironclad/blockBCellB-dark.webp');
+    background-image: url('assets/room/ironclad/block-b-cell-b-dark.webp');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -456,7 +456,7 @@
 		<<if $BlockBCellC.background eq 1>>
 			<style>
 	body {
-    background-image: url('assets/room/ironclad/blockBCellC.webp');
+    background-image: url('assets/room/ironclad/block-b-cell-c.webp');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -464,7 +464,7 @@
 		<<elseif $BlockBCellC.background eq 2>>
 			<style>
 	body {
-    background-image: url('assets/room/ironclad/blockBCellC-dark.webp');
+    background-image: url('assets/room/ironclad/block-b-cell-c-dark.webp');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -798,7 +798,7 @@
 			<<if $BlockA.background eq 1>>
 				<style>
 	body {
-    background-image: url('assets/room/ironclad/blockA.webp');
+    background-image: url('assets/room/ironclad/block-a.webp');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -806,7 +806,7 @@
 			<<elseif $BlockA.background eq 2>>
 				<style>
 	body {
-    background-image: url('assets/room/ironclad/blockA-dark.webp');
+    background-image: url('assets/room/ironclad/block-a-dark.webp');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -817,7 +817,7 @@
 			<<if $BlockB.background eq 1>>
 				<style>
 	body {
-    background-image: url('assets/room/ironclad/blockB.webp');
+    background-image: url('assets/room/ironclad/block-b.webp');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -825,7 +825,7 @@
 			<<elseif $BlockB.background eq 2>>
 				<style>
 	body {
-    background-image: url('assets/room/ironclad/blockB-dark.webp');
+    background-image: url('assets/room/ironclad/block-b-dark.webp');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -836,7 +836,7 @@
 			<<if $BlockACellA.background eq 1>>
 				<style>
 	body {
-    background-image: url('assets/room/ironclad/blockACellA.webp');
+    background-image: url('assets/room/ironclad/block-a-cell-a.webp');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -844,7 +844,7 @@
 			<<elseif $BlockACellA.background eq 2>>
 				<style>
 	body {
-    background-image: url('assets/room/ironclad/blockACellA-dark.webp');
+    background-image: url('assets/room/ironclad/block-a-cell-a-dark.webp');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -855,7 +855,7 @@
 			<<if $BlockACellB.background eq 1>>
 				<style>
 	body {
-    background-image: url('assets/room/ironclad/blockACellB.webp');
+    background-image: url('assets/room/ironclad/block-a-cell-b.webp');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -863,7 +863,7 @@
 			<<elseif $BlockACellB.background eq 2>>
 				<style>
 	body {
-    background-image: url('assets/room/ironclad/blockACellB-dark.webp');
+    background-image: url('assets/room/ironclad/block-a-cell-b-dark.webp');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -874,7 +874,7 @@
 			<<if $BlockACellC.background eq 1>>
 				<style>
 	body {
-    background-image: url('assets/room/ironclad/blockACellC.webp');
+    background-image: url('assets/room/ironclad/block-a-cell-c.webp');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -882,7 +882,7 @@
 			<<elseif $BlockACellC.background eq 2>>
 				<style>
 	body {
-    background-image: url('assets/room/ironclad/blockACellC-dark.webp');
+    background-image: url('assets/room/ironclad/block-a-cell-c-dark.webp');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -893,7 +893,7 @@
 			<<if $BlockBCellA.background eq 1>>
 				<style>
 	body {
-    background-image: url('assets/room/ironclad/blockBCellA.webp');
+    background-image: url('assets/room/ironclad/block-b-cell-a.webp');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -901,7 +901,7 @@
 			<<elseif $BlockBCellA.background eq 2>>
 				<style>
 	body {
-    background-image: url('assets/room/ironclad/blockBCellA-dark.webp');
+    background-image: url('assets/room/ironclad/block-b-cell-a-dark.webp');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -912,7 +912,7 @@
 			<<if $BlockBCellB.background eq 1>>
 				<style>
 	body {
-    background-image: url('assets/room/ironclad/blockBCellB.webp');
+    background-image: url('assets/room/ironclad/block-b-cell-b.webp');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -920,7 +920,7 @@
 			<<elseif $BlockBCellB.background eq 2>>
 				<style>
 	body {
-    background-image: url('assets/room/ironclad/blockBCellB-dark.webp');
+    background-image: url('assets/room/ironclad/block-b-cell-b-dark.webp');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -931,7 +931,7 @@
 			<<if $BlockBCellC.background eq 1>>
 				<style>
 	body {
-    background-image: url('assets/room/ironclad/blockBCellC.webp');
+    background-image: url('assets/room/ironclad/block-b-cell-c.webp');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -939,7 +939,7 @@
 			<<elseif $BlockBCellC.background eq 2>>
 				<style>
 	body {
-    background-image: url('assets/room/ironclad/blockBCellC-dark.webp');
+    background-image: url('assets/room/ironclad/block-b-cell-c-dark.webp');
     background-size: cover;
     background-repeat: no-repeat;
 }

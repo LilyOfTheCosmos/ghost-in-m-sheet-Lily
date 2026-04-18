@@ -1,7 +1,7 @@
 :: CityMapPossessed [city] {"position":"1225,350","size":"100,100"}
 <div class="flexwrapper">
 <div class="housecard">
-<img @src="setup.ImagePath + '/img/gymIcon.png'" class="icon">
+<img @src="setup.ImagePath + '/img/gym-icon.png'" class="icon">
 <<if $mc.fit gte 30>>
 @@.icontextcity; [[Gym|PossessedLocation][$checkChoosenLocation to "gym"]]@@
 <<else>>
@@ -38,7 +38,7 @@
 
 </div>
 <div class="housecard">
-<img @src="setup.ImagePath + '/img/libraryIcon.png'" class="icon">
+<img @src="setup.ImagePath + '/img/library-icon.png'" class="icon">
 @@.icontextcity; [[Library|PossessedLocation][$checkChoosenLocation to "library"]]@@
 </div>
 <div class="housecard">
@@ -52,7 +52,7 @@
 
 </div>
 <div class="housecard">
-<img @src="setup.ImagePath + '/img/churchIco.png'" class="icon">
+<img @src="setup.ImagePath + '/img/church-ico.png'" class="icon">
 <<if $mcpossession gte 5>>
 @@.icontextcity; [[Church|PossessedLocation][$checkChoosenLocation to "church"]]@@
 <<else>>

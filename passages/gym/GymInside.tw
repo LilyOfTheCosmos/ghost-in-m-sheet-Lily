@@ -1,6 +1,6 @@
 :: GymInside [nobr] {"position":"3050,1325","size":"100,100"}
 <<set $trainingCost to setup.Gym.computeTrainingCost()>>
-<img @src="setup.ImagePath + '/img/gymInside.jpg'" width="100%">
+<img @src="setup.ImagePath + '/img/gym-inside.jpg'" width="100%">
 <br>
 <<if not setup.Gym.isOpen()>>
 	@@.mc-thoughts; It's time to go, there's no one here<br>

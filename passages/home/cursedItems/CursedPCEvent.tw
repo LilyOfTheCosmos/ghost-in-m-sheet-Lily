@@ -1,6 +1,6 @@
 :: CursedPCEvent [nobr] {"position":"1100,4600","size":"100,100"}
 <video autoplay controls loop>
-<source @src="setup.ImagePath + '/cursedHome/pc1.webm'" type="video/webm">
+<source @src="setup.ImagePath + '/cursed-home/pc1.webm'" type="video/webm">
 </video><br>
 @@.location; Livingroom -- PC@@<br>
 <br>
@@ -12,7 +12,7 @@
 @@.mc-thoughts; He can touch me. He can touch me.@@<br><br>
 <<linkreplace "@@.usebtn; ...@@">>
 	<video autoplay controls loop>
-	<source @src="setup.ImagePath + '/cursedHome/pc2.webm'" type="video/webm">
+	<source @src="setup.ImagePath + '/cursed-home/pc2.webm'" type="video/webm">
 	</video><br>
 	@@.mc-thoughts; The ghost doesn't hesitate. It's as if he's been waiting years for exactly this moment. His spectral hands grip the sides of your face, tilting your frozen head back, and he slides his ghostly cock into your open mouth.@@<br>
 	@@.mc-speech; ...!@@<br><br>
@@ -21,7 +21,7 @@
 	@@.mc-thoughts; And beneath the horror, a shameful heat -- you can feel your panties soaked through, your pussy drooling without your permission.@@<br>
 	<<linkappend "@@.usebtn; Minutes pass@@">>
 		<video autoplay controls loop>
-		<source @src="setup.ImagePath + '/cursedHome/pc3.webm'" type="video/webm">
+		<source @src="setup.ImagePath + '/cursed-home/pc3.webm'" type="video/webm">
 		</video><br>
 		@@.mc-thoughts; Minutes crawl by. You sit motionless, ghost cum still pooled in your mouth, staring at the screensaver. Then you feel him again -- that faint shimmer returning, drawn back like an addict to the warmth of living flesh.@@<br><br>
 		@@.mc-thoughts; Gentle hands lift you from the chair. He sits down in your place and carefully lowers you onto his lap, your back against his translucent chest. You feel his cock press against your entrance, then slide inside -- slowly, almost tenderly.@@<br>

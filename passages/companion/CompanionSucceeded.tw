@@ -2,11 +2,11 @@
 <<set _checkChance to random(1,100)>>
 <<if _checkChance gte $chanceToSuccess>>
 	<<if $companion.name eq "Brook">>
-		<img @src="setup.ImagePath + '/brook/BrookSad.png'" width="50%"><br>
+		<img @src="setup.ImagePath + '/brook/brook-sad.png'" width="50%"><br>
 	<<elseif $companion.name eq "Alice">>
-		<img @src="setup.ImagePath + '/alice/aliceSad.png'" width="50%"><br>
+		<img @src="setup.ImagePath + '/alice/alice-sad.png'" width="50%"><br>
 	<<elseif $companion.name eq "Blake">>
-		<img @src="setup.ImagePath + '/blake/blakeSad.png'" width="50%"><br>
+		<img @src="setup.ImagePath + '/blake/blake-sad.png'" width="50%"><br>
 	<<elseif $companion.name eq "Alex" or $companion.name eq "Taylor" or $companion.name eq "Casey">>
 		<img @src="setup.ImagePath+`/trans/`+$transPicture+`.jpg`" class="displayCentredImgs"><br>
 	<</if>>
@@ -17,11 +17,11 @@
 	@@.mc-speech; Let's [[keep going.|$return]]@@<br>
 <<else>>
 	<<if $companion.name eq "Brook">>
-		<img @src="setup.ImagePath + '/brook/BrookHappy.png'" width="40%"><br>
+		<img @src="setup.ImagePath + '/brook/brook-happy.png'" width="40%"><br>
 	<<elseif $companion.name eq "Alice">>
-		<img @src="setup.ImagePath + '/alice/aliceHappy.png'" width="50%"><br>
+		<img @src="setup.ImagePath + '/alice/alice-happy.png'" width="50%"><br>
 	<<elseif $companion.name eq "Blake">>
-		<img @src="setup.ImagePath + '/blake/blakeHappy.png'" width="50%"><br>
+		<img @src="setup.ImagePath + '/blake/blake-happy.png'" width="50%"><br>
 	<<elseif $companion.name eq "Alex">>
 		<img @src="setup.ImagePath+`/trans/`+$transPicture+`.jpg`" class="displayCentredImgs"><br>
 	<<elseif $companion.name eq "Taylor">>

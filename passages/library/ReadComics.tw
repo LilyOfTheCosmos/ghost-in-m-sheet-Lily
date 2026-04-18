@@ -6,97 +6,97 @@
 	<<set $comics4 to 0>>
 	<div class="slide-container">
 	<div class="slide active">
-	<img @src="setup.ImagePath + '/library/getting-in-shape-001.jpg'" alt="Image 1" style="width:100%">
+	<img @src="setup.ImagePath + '/library/getting-in-shape001.jpg'" alt="Image 1" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/getting-in-shape-002.jpg'" alt="Image 2" style="width:100%">
+	<img @src="setup.ImagePath + '/library/getting-in-shape002.jpg'" alt="Image 2" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/getting-in-shape-003.jpg'" alt="Image 3" style="width:100%">
+	<img @src="setup.ImagePath + '/library/getting-in-shape003.jpg'" alt="Image 3" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/getting-in-shape-004.jpg'" alt="Image 4" style="width:100%">
+	<img @src="setup.ImagePath + '/library/getting-in-shape004.jpg'" alt="Image 4" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/getting-in-shape-005.jpg'" alt="Image 5" style="width:100%">
+	<img @src="setup.ImagePath + '/library/getting-in-shape005.jpg'" alt="Image 5" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/getting-in-shape-006.jpg'" alt="Image 6" style="width:100%">
+	<img @src="setup.ImagePath + '/library/getting-in-shape006.jpg'" alt="Image 6" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/getting-in-shape-007.jpg'" alt="Image 7" style="width:100%">
+	<img @src="setup.ImagePath + '/library/getting-in-shape007.jpg'" alt="Image 7" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/getting-in-shape-008.jpg'" alt="Image 8" style="width:100%">
+	<img @src="setup.ImagePath + '/library/getting-in-shape008.jpg'" alt="Image 8" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/getting-in-shape-009.jpg'" alt="Image 9" style="width:100%">
+	<img @src="setup.ImagePath + '/library/getting-in-shape009.jpg'" alt="Image 9" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/getting-in-shape-010.jpg'" alt="Image 10" style="width:100%">
+	<img @src="setup.ImagePath + '/library/getting-in-shape010.jpg'" alt="Image 10" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/getting-in-shape-011.jpg'" alt="Image 11" style="width:100%">
+	<img @src="setup.ImagePath + '/library/getting-in-shape011.jpg'" alt="Image 11" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/getting-in-shape-012.jpg'" alt="Image 12" style="width:100%">
+	<img @src="setup.ImagePath + '/library/getting-in-shape012.jpg'" alt="Image 12" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/getting-in-shape-013.jpg'" alt="Image 13" style="width:100%">
+	<img @src="setup.ImagePath + '/library/getting-in-shape013.jpg'" alt="Image 13" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/getting-in-shape-014.jpg'" alt="Image 14" style="width:100%">
+	<img @src="setup.ImagePath + '/library/getting-in-shape014.jpg'" alt="Image 14" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/getting-in-shape-015.jpg'" alt="Image 15" style="width:100%">
+	<img @src="setup.ImagePath + '/library/getting-in-shape015.jpg'" alt="Image 15" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/getting-in-shape-016.jpg'" alt="Image 16" style="width:100%">
+	<img @src="setup.ImagePath + '/library/getting-in-shape016.jpg'" alt="Image 16" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/getting-in-shape-017.jpg'" alt="Image 17" style="width:100%">
+	<img @src="setup.ImagePath + '/library/getting-in-shape017.jpg'" alt="Image 17" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/getting-in-shape-018.jpg'" alt="Image 18" style="width:100%">
+	<img @src="setup.ImagePath + '/library/getting-in-shape018.jpg'" alt="Image 18" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/getting-in-shape-019.jpg'" alt="Image 19" style="width:100%">
+	<img @src="setup.ImagePath + '/library/getting-in-shape019.jpg'" alt="Image 19" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/getting-in-shape-020.jpg'" alt="Image 20" style="width:100%">
+	<img @src="setup.ImagePath + '/library/getting-in-shape020.jpg'" alt="Image 20" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/getting-in-shape-021.jpg'" alt="Image 21" style="width:100%">
+	<img @src="setup.ImagePath + '/library/getting-in-shape021.jpg'" alt="Image 21" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/getting-in-shape-022.jpg'" alt="Image 22" style="width:100%">
+	<img @src="setup.ImagePath + '/library/getting-in-shape022.jpg'" alt="Image 22" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/getting-in-shape-023.jpg'" alt="Image 23" style="width:100%">
+	<img @src="setup.ImagePath + '/library/getting-in-shape023.jpg'" alt="Image 23" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/getting-in-shape-024.jpg'" alt="Image 24" style="width:100%">
+	<img @src="setup.ImagePath + '/library/getting-in-shape024.jpg'" alt="Image 24" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/getting-in-shape-025.jpg'" alt="Image 25" style="width:100%">
+	<img @src="setup.ImagePath + '/library/getting-in-shape025.jpg'" alt="Image 25" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/getting-in-shape-026.jpg'" alt="Image 26" style="width:100%">
+	<img @src="setup.ImagePath + '/library/getting-in-shape026.jpg'" alt="Image 26" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/getting-in-shape-027.jpg'" alt="Image 27" style="width:100%">
+	<img @src="setup.ImagePath + '/library/getting-in-shape027.jpg'" alt="Image 27" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/getting-in-shape-028.jpg'" alt="Image 28" style="width:100%">
+	<img @src="setup.ImagePath + '/library/getting-in-shape028.jpg'" alt="Image 28" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/getting-in-shape-029.jpg'" alt="Image 29" style="width:100%">
+	<img @src="setup.ImagePath + '/library/getting-in-shape029.jpg'" alt="Image 29" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/getting-in-shape-030.jpg'" alt="Image 30" style="width:100%">
+	<img @src="setup.ImagePath + '/library/getting-in-shape030.jpg'" alt="Image 30" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/getting-in-shape-031.jpg'" alt="Image 31" style="width:100%">
+	<img @src="setup.ImagePath + '/library/getting-in-shape031.jpg'" alt="Image 31" style="width:100%">
 	</div>
 	<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
 	<a class="next" onclick="plusSlides(1)">&#10095;</a>
@@ -109,97 +109,97 @@
 	<<set $comics4 to 0>>
 	<div class="slide-container">
 	<div class="slide active">
-	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized-001.jpg'" alt="Image 1" style="width:100%">
+	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized001.jpg'" alt="Image 1" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized-002.jpg'" alt="Image 2" style="width:100%">
+	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized002.jpg'" alt="Image 2" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized-003.jpg'" alt="Image 3" style="width:100%">
+	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized003.jpg'" alt="Image 3" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized-004.jpg'" alt="Image 4" style="width:100%">
+	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized004.jpg'" alt="Image 4" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized-005.jpg'" alt="Image 5" style="width:100%">
+	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized005.jpg'" alt="Image 5" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized-006.jpg'" alt="Image 6" style="width:100%">
+	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized006.jpg'" alt="Image 6" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized-007.jpg'" alt="Image 7" style="width:100%">
+	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized007.jpg'" alt="Image 7" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized-008.jpg'" alt="Image 8" style="width:100%">
+	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized008.jpg'" alt="Image 8" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized-009.jpg'" alt="Image 9" style="width:100%">
+	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized009.jpg'" alt="Image 9" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized-010.jpg'" alt="Image 10" style="width:100%">
+	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized010.jpg'" alt="Image 10" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized-011.jpg'" alt="Image 11" style="width:100%">
+	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized011.jpg'" alt="Image 11" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized-012.jpg'" alt="Image 12" style="width:100%">
+	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized012.jpg'" alt="Image 12" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized-013.jpg'" alt="Image 13" style="width:100%">
+	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized013.jpg'" alt="Image 13" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized-014.jpg'" alt="Image 14" style="width:100%">
+	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized014.jpg'" alt="Image 14" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized-015.jpg'" alt="Image 15" style="width:100%">
+	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized015.jpg'" alt="Image 15" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized-016.jpg'" alt="Image 16" style="width:100%">
+	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized016.jpg'" alt="Image 16" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized-017.jpg'" alt="Image 17" style="width:100%">
+	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized017.jpg'" alt="Image 17" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized-018.jpg'" alt="Image 18" style="width:100%">
+	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized018.jpg'" alt="Image 18" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized-019.jpg'" alt="Image 19" style="width:100%">
+	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized019.jpg'" alt="Image 19" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized-020.jpg'" alt="Image 20" style="width:100%">
+	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized020.jpg'" alt="Image 20" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized-021.jpg'" alt="Image 21" style="width:100%">
+	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized021.jpg'" alt="Image 21" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized-022.jpg'" alt="Image 22" style="width:100%">
+	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized022.jpg'" alt="Image 22" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized-023.jpg'" alt="Image 23" style="width:100%">
+	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized023.jpg'" alt="Image 23" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized-024.jpg'" alt="Image 24" style="width:100%">
+	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized024.jpg'" alt="Image 24" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized-025.jpg'" alt="Image 25" style="width:100%">
+	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized025.jpg'" alt="Image 25" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized-026.jpg'" alt="Image 26" style="width:100%">
+	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized026.jpg'" alt="Image 26" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized-027.jpg'" alt="Image 27" style="width:100%">
+	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized027.jpg'" alt="Image 27" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized-028.jpg'" alt="Image 28" style="width:100%">
+	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized028.jpg'" alt="Image 28" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized-029.jpg'" alt="Image 29" style="width:100%">
+	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized029.jpg'" alt="Image 29" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized-030.jpg'" alt="Image 30" style="width:100%">
+	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized030.jpg'" alt="Image 30" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized-031.jpg'" alt="Image 31" style="width:100%">
+	<img @src="setup.ImagePath + '/library/closed-investigation-journal-colorized031.jpg'" alt="Image 31" style="width:100%">
 	</div>
 	<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
 	<a class="next" onclick="plusSlides(1)">&#10095;</a>
@@ -212,97 +212,97 @@
 	<<set $comics4 to 0>>
 	<div class="slide-container">
 	<div class="slide active">
-	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero-001.jpg'" alt="Image 1" style="width:100%">
+	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero001.jpg'" alt="Image 1" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero-002.jpg'" alt="Image 2" style="width:100%">
+	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero002.jpg'" alt="Image 2" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero-003.jpg'" alt="Image 3" style="width:100%">
+	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero003.jpg'" alt="Image 3" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero-004.jpg'" alt="Image 4" style="width:100%">
+	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero004.jpg'" alt="Image 4" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero-005.jpg'" alt="Image 5" style="width:100%">
+	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero005.jpg'" alt="Image 5" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero-006.jpg'" alt="Image 6" style="width:100%">
+	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero006.jpg'" alt="Image 6" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero-007.jpg'" alt="Image 7" style="width:100%">
+	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero007.jpg'" alt="Image 7" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero-008.jpg'" alt="Image 8" style="width:100%">
+	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero008.jpg'" alt="Image 8" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero-009.jpg'" alt="Image 9" style="width:100%">
+	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero009.jpg'" alt="Image 9" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero-010.jpg'" alt="Image 10" style="width:100%">
+	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero010.jpg'" alt="Image 10" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero-011.jpg'" alt="Image 11" style="width:100%">
+	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero011.jpg'" alt="Image 11" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero-012.jpg'" alt="Image 12" style="width:100%">
+	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero012.jpg'" alt="Image 12" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero-013.jpg'" alt="Image 13" style="width:100%">
+	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero013.jpg'" alt="Image 13" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero-014.jpg'" alt="Image 14" style="width:100%">
+	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero014.jpg'" alt="Image 14" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero-015.jpg'" alt="Image 15" style="width:100%">
+	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero015.jpg'" alt="Image 15" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero-016.jpg'" alt="Image 16" style="width:100%">
+	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero016.jpg'" alt="Image 16" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero-017.jpg'" alt="Image 17" style="width:100%">
+	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero017.jpg'" alt="Image 17" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero-018.jpg'" alt="Image 18" style="width:100%">
+	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero018.jpg'" alt="Image 18" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero-019.jpg'" alt="Image 19" style="width:100%">
+	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero019.jpg'" alt="Image 19" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero-020.jpg'" alt="Image 20" style="width:100%">
+	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero020.jpg'" alt="Image 20" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero-021.jpg'" alt="Image 21" style="width:100%">
+	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero021.jpg'" alt="Image 21" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero-022.jpg'" alt="Image 22" style="width:100%">
+	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero022.jpg'" alt="Image 22" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero-023.jpg'" alt="Image 23" style="width:100%">
+	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero023.jpg'" alt="Image 23" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero-024.jpg'" alt="Image 24" style="width:100%">
+	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero024.jpg'" alt="Image 24" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero-025.jpg'" alt="Image 25" style="width:100%">
+	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero025.jpg'" alt="Image 25" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero-026.jpg'" alt="Image 26" style="width:100%">
+	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero026.jpg'" alt="Image 26" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero-027.jpg'" alt="Image 27" style="width:100%">
+	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero027.jpg'" alt="Image 27" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero-028.jpg'" alt="Image 28" style="width:100%">
+	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero028.jpg'" alt="Image 28" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero-029.jpg'" alt="Image 29" style="width:100%">
+	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero029.jpg'" alt="Image 29" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero-030.jpg'" alt="Image 30" style="width:100%">
+	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero030.jpg'" alt="Image 30" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero-031.jpg'" alt="Image 31" style="width:100%">
+	<img @src="setup.ImagePath + '/library/the-naughty-in-law-1-zero031.jpg'" alt="Image 31" style="width:100%">
 	</div>
 	<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
 	<a class="next" onclick="plusSlides(1)">&#10095;</a>
@@ -315,100 +315,100 @@
 	<<set $comics4 to 0>>
 	<div class="slide-container">
 	<div class="slide active">
-	<img @src="setup.ImagePath + '/library/a-dumb-comic-001.jpg'" alt="Image 1" style="width:100%">
+	<img @src="setup.ImagePath + '/library/a-dumb-comic001.jpg'" alt="Image 1" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/a-dumb-comic-002.jpg'" alt="Image 2" style="width:100%">
+	<img @src="setup.ImagePath + '/library/a-dumb-comic002.jpg'" alt="Image 2" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/a-dumb-comic-003.jpg'" alt="Image 3" style="width:100%">
+	<img @src="setup.ImagePath + '/library/a-dumb-comic003.jpg'" alt="Image 3" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/a-dumb-comic-004.jpg'" alt="Image 4" style="width:100%">
+	<img @src="setup.ImagePath + '/library/a-dumb-comic004.jpg'" alt="Image 4" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/a-dumb-comic-005.jpg'" alt="Image 5" style="width:100%">
+	<img @src="setup.ImagePath + '/library/a-dumb-comic005.jpg'" alt="Image 5" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/a-dumb-comic-006.jpg'" alt="Image 6" style="width:100%">
+	<img @src="setup.ImagePath + '/library/a-dumb-comic006.jpg'" alt="Image 6" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/a-dumb-comic-007.jpg'" alt="Image 7" style="width:100%">
+	<img @src="setup.ImagePath + '/library/a-dumb-comic007.jpg'" alt="Image 7" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/a-dumb-comic-008.jpg'" alt="Image 8" style="width:100%">
+	<img @src="setup.ImagePath + '/library/a-dumb-comic008.jpg'" alt="Image 8" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/a-dumb-comic-009.jpg'" alt="Image 9" style="width:100%">
+	<img @src="setup.ImagePath + '/library/a-dumb-comic009.jpg'" alt="Image 9" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/a-dumb-comic-010.jpg'" alt="Image 10" style="width:100%">
+	<img @src="setup.ImagePath + '/library/a-dumb-comic010.jpg'" alt="Image 10" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/a-dumb-comic-011.jpg'" alt="Image 11" style="width:100%">
+	<img @src="setup.ImagePath + '/library/a-dumb-comic011.jpg'" alt="Image 11" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/a-dumb-comic-012.jpg'" alt="Image 12" style="width:100%">
+	<img @src="setup.ImagePath + '/library/a-dumb-comic012.jpg'" alt="Image 12" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/a-dumb-comic-013.jpg'" alt="Image 13" style="width:100%">
+	<img @src="setup.ImagePath + '/library/a-dumb-comic013.jpg'" alt="Image 13" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/a-dumb-comic-014.jpg'" alt="Image 14" style="width:100%">
+	<img @src="setup.ImagePath + '/library/a-dumb-comic014.jpg'" alt="Image 14" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/a-dumb-comic-015.jpg'" alt="Image 15" style="width:100%">
+	<img @src="setup.ImagePath + '/library/a-dumb-comic015.jpg'" alt="Image 15" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/a-dumb-comic-016.jpg'" alt="Image 16" style="width:100%">
+	<img @src="setup.ImagePath + '/library/a-dumb-comic016.jpg'" alt="Image 16" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/a-dumb-comic-017.jpg'" alt="Image 17" style="width:100%">
+	<img @src="setup.ImagePath + '/library/a-dumb-comic017.jpg'" alt="Image 17" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/a-dumb-comic-018.jpg'" alt="Image 18" style="width:100%">
+	<img @src="setup.ImagePath + '/library/a-dumb-comic018.jpg'" alt="Image 18" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/a-dumb-comic-019.jpg'" alt="Image 19" style="width:100%">
+	<img @src="setup.ImagePath + '/library/a-dumb-comic019.jpg'" alt="Image 19" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/a-dumb-comic-020.jpg'" alt="Image 20" style="width:100%">
+	<img @src="setup.ImagePath + '/library/a-dumb-comic020.jpg'" alt="Image 20" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/a-dumb-comic-021.jpg'" alt="Image 21" style="width:100%">
+	<img @src="setup.ImagePath + '/library/a-dumb-comic021.jpg'" alt="Image 21" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/a-dumb-comic-022.jpg'" alt="Image 22" style="width:100%">
+	<img @src="setup.ImagePath + '/library/a-dumb-comic022.jpg'" alt="Image 22" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/a-dumb-comic-023.jpg'" alt="Image 23" style="width:100%">
+	<img @src="setup.ImagePath + '/library/a-dumb-comic023.jpg'" alt="Image 23" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/a-dumb-comic-024.jpg'" alt="Image 24" style="width:100%">
+	<img @src="setup.ImagePath + '/library/a-dumb-comic024.jpg'" alt="Image 24" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/a-dumb-comic-025.jpg'" alt="Image 25" style="width:100%">
+	<img @src="setup.ImagePath + '/library/a-dumb-comic025.jpg'" alt="Image 25" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/a-dumb-comic-026.jpg'" alt="Image 26" style="width:100%">
+	<img @src="setup.ImagePath + '/library/a-dumb-comic026.jpg'" alt="Image 26" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/a-dumb-comic-027.jpg'" alt="Image 27" style="width:100%">
+	<img @src="setup.ImagePath + '/library/a-dumb-comic027.jpg'" alt="Image 27" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/a-dumb-comic-028.jpg'" alt="Image 28" style="width:100%">
+	<img @src="setup.ImagePath + '/library/a-dumb-comic028.jpg'" alt="Image 28" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/a-dumb-comic-029.jpg'" alt="Image 29" style="width:100%">
+	<img @src="setup.ImagePath + '/library/a-dumb-comic029.jpg'" alt="Image 29" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/a-dumb-comic-030.jpg'" alt="Image 30" style="width:100%">
+	<img @src="setup.ImagePath + '/library/a-dumb-comic030.jpg'" alt="Image 30" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/a-dumb-comic-031.jpg'" alt="Image 31" style="width:100%">
+	<img @src="setup.ImagePath + '/library/a-dumb-comic031.jpg'" alt="Image 31" style="width:100%">
 	</div>
 	<div class="slide">
-	<img @src="setup.ImagePath + '/library/a-dumb-comic-032.jpg'" alt="Image 32" style="width:100%">
+	<img @src="setup.ImagePath + '/library/a-dumb-comic032.jpg'" alt="Image 32" style="width:100%">
 	</div>
 	<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
 	<a class="next" onclick="plusSlides(1)">&#10095;</a>

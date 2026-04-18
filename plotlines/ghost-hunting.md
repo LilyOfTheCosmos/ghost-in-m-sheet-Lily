@@ -38,8 +38,8 @@ The core gameplay revolves around investigating haunted locations to identify an
   * [lightPassageManual.tw](../passages/haunted_houses/general/lightPassageManual.tw) - Manual lighting control
 
 * **Clothing and nudity events** - Ghosts can steal clothing during hunts, creating nudity events that affect the exhibitionism system.
-  * [stealClothesEvent.tw](../passages/haunted_houses/general/stealClothesEvent.tw) - Ghost stealing clothes event trigger
-  * [stealClothes.tw](../passages/haunted_houses/general/stealClothes.tw) - Clothes-stealing mechanics
+  * [stealClothesEvent.tw](../passages/haunted_houses/general/steal-clothesEvent.tw) - Ghost stealing clothes event trigger
+  * [stealClothes.tw](../passages/haunted_houses/general/steal-clothes.tw) - Clothes-stealing mechanics
   * [stealBra.tw](../passages/haunted_houses/general/stealBra.tw) - Bra stolen event
   * [stealPanties.tw](../passages/haunted_houses/general/stealPanties.tw) - Panties stolen event
   * [stealShirt.tw](../passages/haunted_houses/general/stealShirt.tw) - Shirt stolen event

@@ -20,7 +20,7 @@
 
 <div class="flexwrapper">
 <div class="housecard">
-<img @src="setup.ImagePath + '/img/energyDrink.png'" class="icon"><br>
+<img @src="setup.ImagePath + '/img/energy-drink.png'" class="icon"><br>
 <<if $energyDrinkAmount gte 1>>
 @@.usebtn;<<link "Drink (+3 energy) - $energyDrinkAmount left" "Bag">><<set $mc.energy += 3>><<if $mc.energy gt $mc.energyMax>><<set $mc.energy to $mc.energyMax>>
 <</if>><<set $energyDrinkAmount -= 1>><</link>>@@
@@ -34,7 +34,7 @@
 <</if>>
 </div>
 <div class="housecard">
-<img @src="setup.ImagePath + '/img/sanityPills.png'" class="iconPx"><br>
+<img @src="setup.ImagePath + '/img/sanity-pills.png'" class="iconPx"><br>
 <<if $sanityPillsAmount gte 1>>You have $sanityPillsAmount sanity pills<br>
 <<if $ghostHuntingMode eq 2>>
 @@.usebtn;<<link "Use sanity pills" "Bag">>
@@ -74,7 +74,7 @@
 </div>
 <div class="housecard">
 <<if $hasRescueClue eq 1>>
-<img @src="setup.ImagePath + '/rescue/rescueClue.png'" class="iconPx"><br>
+<img @src="setup.ImagePath + '/rescue/rescue-clue.png'" class="iconPx"><br>
 <<link "@@.usebtn;Look at the photo@@">><<replace ".flexwrapper">><img @src="setup.ImagePath+`/`+'rescue/house/'+$randomRescuePhotoNumber+`.jpg`" @class="$tornStyleRandom" width="100%">
 <</replace>>
 <</link>>
@@ -82,13 +82,13 @@
 </div>
 <div class="housecard">
 <<if $tarotCardsStage eq 1 and (previous(1) neq "Owaissa Street" and previous(1) neq "Elm Street")>>
-<img @src="setup.ImagePath + '/cursedpossessions/tarotCards/tarot.png'" class="iconsOnMap"><br>
+<img @src="setup.ImagePath + '/cursedpossessions/tarot-cards/tarot.png'" class="iconsOnMap"><br>
 <<link "@@.usebtn; Look at the deck@@" "TarotCards">><</link>>
 <</if>>
 </div>
 <div class="housecard">
 <<if $MonkeyPawStage eq 1 and (previous(1) neq "Owaissa Street" and previous(1) neq "Elm Street")>>
-<img @src="setup.ImagePath + '/cursedpossessions/monkeyPaw/monkeypaw.jpg'" class="icon"><br>
+<img @src="setup.ImagePath + '/cursedpossessions/monkey-paw/monkeypaw.jpg'" class="icon"><br>
 <<link "@@.usebtn; Look at the paw@@" "MonkeyPaw">><</link>>
 <</if>>
 </div>
@@ -103,8 +103,8 @@ Pepper spray ($hasPSprayCharges charges left)
 </div>
 <div class="housecard">
 <<if $boughtMonkeyPawGuide eq 2>>
-<img @src="setup.ImagePath + '/cursedpossessions/monkeyPaw/monkeypawPage.jpg'" class="icon"><br>
-<<link "@@.usebtn;Inspect@@">><<replace ".flexwrapper">><img @src="setup.ImagePath + '/cursedpossessions/monkeyPaw/monkeypawPage.jpg'" class="displayCentredImgs">
+<img @src="setup.ImagePath + '/cursedpossessions/monkey-paw/monkeypaw-page.jpg'" class="icon"><br>
+<<link "@@.usebtn;Inspect@@">><<replace ".flexwrapper">><img @src="setup.ImagePath + '/cursedpossessions/monkey-paw/monkeypaw-page.jpg'" class="displayCentredImgs">
 <</replace>>
 <</link>>
 <</if>>

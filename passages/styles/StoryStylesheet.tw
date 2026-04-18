@@ -213,14 +213,14 @@ body.city {
 .enigmaKitchenDark      { background-image: url('assets/room/enigma/kitchen-dark.jpg'); }
 .enigmaBathroomLight    { background-image: url('assets/room/enigma/bathroom.jpg'); }
 .enigmaBathroomDark     { background-image: url('assets/room/enigma/bathroom-dark.jpg'); }
-.enigmaRoomALight       { background-image: url('assets/room/enigma/roomA.jpg'); }
-.enigmaRoomADark        { background-image: url('assets/room/enigma/roomA-dark.jpg'); }
+.enigmaRoomALight       { background-image: url('assets/room/enigma/room-a.jpg'); }
+.enigmaRoomADark        { background-image: url('assets/room/enigma/room-a-dark.jpg'); }
 .enigmaBedroomLight     { background-image: url('assets/room/enigma/bedroom.jpg'); }
 .enigmaBedroomDark      { background-image: url('assets/room/enigma/bedroom-dark.jpg'); }
-.enigmaRoomBLight       { background-image: url('assets/room/enigma/roomB.jpg'); }
-.enigmaRoomBDark        { background-image: url('assets/room/enigma/roomB-dark.jpg'); }
-.enigmaRoomCLight       { background-image: url('assets/room/enigma/roomC.jpg'); }
-.enigmaRoomCDark        { background-image: url('assets/room/enigma/roomC-dark.jpg'); }
+.enigmaRoomBLight       { background-image: url('assets/room/enigma/room-b.jpg'); }
+.enigmaRoomBDark        { background-image: url('assets/room/enigma/room-b-dark.jpg'); }
+.enigmaRoomCLight       { background-image: url('assets/room/enigma/room-c.jpg'); }
+.enigmaRoomCDark        { background-image: url('assets/room/enigma/room-c-dark.jpg'); }
 .enigmaHallwayLight     { background-image: url('assets/room/enigma/hallway.jpg'); }
 .enigmaHallwayDark      { background-image: url('assets/room/enigma/hallway-dark.jpg'); }
 .enigmaLivingroomLight  { background-image: url('assets/room/enigma/livingroom.jpg'); }
@@ -233,22 +233,22 @@ body.city {
 .IroncladKitchenDark      { background-image: url('assets/room/ironclad/kitchen-dark.webp'); }
 .IroncladHallwayLight     { background-image: url('assets/room/ironclad/entrance.webp'); }
 .IroncladHallwayDark      { background-image: url('assets/room/ironclad/entrance-dark.webp'); }
-.IroncladBlockALight      { background-image: url('assets/room/ironclad/blockA.webp'); }
-.IroncladBlockADark       { background-image: url('assets/room/ironclad/blockA-dark.webp'); }
-.IroncladBlockBLight      { background-image: url('assets/room/ironclad/blockB.webp'); }
-.IroncladBlockBDark       { background-image: url('assets/room/ironclad/blockB-dark.webp'); }
-.IroncladBlockACellALight { background-image: url('assets/room/ironclad/blockACellA.webp'); }
-.IroncladBlockACellADark  { background-image: url('assets/room/ironclad/blockACellA-dark.webp'); }
-.IroncladBlockACellBLight { background-image: url('assets/room/ironclad/blockACellB.webp'); }
-.IroncladBlockACellBDark  { background-image: url('assets/room/ironclad/blockACellB-dark.webp'); }
-.IroncladBlockACellCLight { background-image: url('assets/room/ironclad/blockACellC.webp'); }
-.IroncladBlockACellCDark  { background-image: url('assets/room/ironclad/blockACellC-dark.webp'); }
-.IroncladBlockBCellALight { background-image: url('assets/room/ironclad/blockBCellA.webp'); }
-.IroncladBlockBCellADark  { background-image: url('assets/room/ironclad/blockBCellA-dark.webp'); }
-.IroncladBlockBCellBLight { background-image: url('assets/room/ironclad/blockBCellB.webp'); }
-.IroncladBlockBCellBDark  { background-image: url('assets/room/ironclad/blockBCellB-dark.webp'); }
-.IroncladBlockBCellCLight { background-image: url('assets/room/ironclad/blockBCellC.webp'); }
-.IroncladBlockBCellCDark  { background-image: url('assets/room/ironclad/blockBCellC-dark.webp'); }
+.IroncladBlockALight      { background-image: url('assets/room/ironclad/block-a.webp'); }
+.IroncladBlockADark       { background-image: url('assets/room/ironclad/block-a-dark.webp'); }
+.IroncladBlockBLight      { background-image: url('assets/room/ironclad/block-b.webp'); }
+.IroncladBlockBDark       { background-image: url('assets/room/ironclad/block-b-dark.webp'); }
+.IroncladBlockACellALight { background-image: url('assets/room/ironclad/block-a-cell-a.webp'); }
+.IroncladBlockACellADark  { background-image: url('assets/room/ironclad/block-a-cell-a-dark.webp'); }
+.IroncladBlockACellBLight { background-image: url('assets/room/ironclad/block-a-cell-b.webp'); }
+.IroncladBlockACellBDark  { background-image: url('assets/room/ironclad/block-a-cell-b-dark.webp'); }
+.IroncladBlockACellCLight { background-image: url('assets/room/ironclad/block-a-cell-c.webp'); }
+.IroncladBlockACellCDark  { background-image: url('assets/room/ironclad/block-a-cell-c-dark.webp'); }
+.IroncladBlockBCellALight { background-image: url('assets/room/ironclad/block-b-cell-a.webp'); }
+.IroncladBlockBCellADark  { background-image: url('assets/room/ironclad/block-b-cell-a-dark.webp'); }
+.IroncladBlockBCellBLight { background-image: url('assets/room/ironclad/block-b-cell-b.webp'); }
+.IroncladBlockBCellBDark  { background-image: url('assets/room/ironclad/block-b-cell-b-dark.webp'); }
+.IroncladBlockBCellCLight { background-image: url('assets/room/ironclad/block-b-cell-c.webp'); }
+.IroncladBlockBCellCDark  { background-image: url('assets/room/ironclad/block-b-cell-c-dark.webp'); }
 
 /* ===== Room Layout ===== */
 .room {
@@ -803,7 +803,7 @@ body.city {
 	position: relative;
 	padding-bottom: 66.67%;
 	width: 100%;
-	background-image: url('assets/img/hotelRoom.jpeg');
+	background-image: url('assets/img/hotel-room.jpeg');
 	background-size: cover;
 	background-position: center;
 	overflow: hidden;

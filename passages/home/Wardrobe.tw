@@ -17,7 +17,7 @@
     </div>
   <div>
       <div id="currentUnderwearTop">
-        <<link "<img @src='setup.ImagePath + \"/img/wardrobe/Slip1.png\"'>" "Wardrobe">><<set $braState0 to "not worn">>
+        <<link "<img @src='setup.ImagePath + \"/img/wardrobe/slip1.png\"'>" "Wardrobe">><<set $braState0 to "not worn">>
         <</link>>
       </div>
       <div id="currentUnderwearBottom">
@@ -25,7 +25,7 @@
         <</link>>
       </div>
       <div id="currentUnderwearStockings">
-        <img @src="setup.ImagePath + '/img/wardrobe/Stocking0.png'">
+        <img @src="setup.ImagePath + '/img/wardrobe/stocking0.png'">
       </div>
   </div>
   <div id="wardrobeAccessories">

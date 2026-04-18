@@ -1,6 +1,6 @@
 :: CursedHuntStart [nobr noreturn] {"position":"2700,1100","size":"100,100"}
 <video autoplay muted class="displayCentredImgs">
-<source @src="setup.ImagePath + '/hunting/huntEnd.mp4'" type="video/mp4">
+<source @src="setup.ImagePath + '/hunting/hunt-end.mp4'" type="video/mp4">
 </video>
 @@.mc-thoughts;You couldn't find a hiding spot, and before you even realize what's happening, you're@@<<linkappend "@@.usebtn; grabbed by him.@@">>
 	<<set _videoList to ["hunting/cursed/1.mp4", "hunting/cursed/2.mp4", "hunting/cursed/3.mp4", "hunting/cursed/4.mp4", "hunting/cursed/5.mp4", "hunting/cursed/6.mp4", "hunting/cursed/7.mp4", "hunting/cursed/8.mp4", "hunting/cursed/9.mp4", "hunting/cursed/10.mp4"]>>

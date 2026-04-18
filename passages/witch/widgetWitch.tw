@@ -6,7 +6,7 @@
 	<<set _price to (typeof _args[2] !== "undefined") ? _args[2] : 200>>
 	<div class="housecard">
 	<<if State.variables[_infoVar] neq 1>>
-		<img @src="setup.ImagePath + '/ghosts/' + _ghostName + '.webp'" class="iconPx">
+		<img @src="setup.ImagePath + '/ghosts/' + _ghostName.toLowerCase() + '.webp'" class="iconPx">
 		@@.mc-thoughts; Information about _ghostName@@<br>
 		<span class="priceAmount"><<= _price>>$</span><br>
 		<<if $mc.money gte _price>>

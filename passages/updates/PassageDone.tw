@@ -9,12 +9,12 @@
 
 <<switch $neckChokerState1>>
 	<<case "worn">>
-		<<replace "#currentNeck">><<link "<img @src='setup.ImagePath + \"/img/wardrobe/neckChoker1.png\"'>" "Wardrobe">><<set $neckChokerState1 to "not worn">>
+		<<replace "#currentNeck">><<link "<img @src='setup.ImagePath + \"/img/wardrobe/neck-choker1.png\"'>" "Wardrobe">><<set $neckChokerState1 to "not worn">>
         <</link>>
         <</replace>>
 	<<case "not worn">>
 <<append "#availableAccessories">>
-<<link "<img @src='setup.ImagePath + \"/img/wardrobe/neckChoker1.png\"'>" "Wardrobe">><<set $neckChokerState1 to "worn">>
+<<link "<img @src='setup.ImagePath + \"/img/wardrobe/neck-choker1.png\"'>" "Wardrobe">><<set $neckChokerState1 to "worn">>
 		<<if $mc.lust lte 15>><<set $mc.lust to 15>>
 		<<set $mc.lust to Number($mc.lust.toFixed(2))>>
 <<updatemeter 'mclust' `$mc.lust / 100`>><</if>>
@@ -24,7 +24,7 @@
 
 <<switch $stockingsState1>>
 	<<case "worn">>
-		<<replace "#currentUnderwearStockings">><<link "<img @src='setup.ImagePath + \"/img/wardrobe/Stockings1.png\"'>" "Wardrobe">><<set $stockingsState1 to "not worn">>
+		<<replace "#currentUnderwearStockings">><<link "<img @src='setup.ImagePath + \"/img/wardrobe/stockings1.png\"'>" "Wardrobe">><<set $stockingsState1 to "not worn">>
          <<set $rememberBottomStockings to "nostockings1">>
             <<set $mc.beauty -= 2>>
 
@@ -32,7 +32,7 @@
         <</replace>>
 	<<case "not worn">>
 
-<<append "#availableClothes">><<link "<img @src='setup.ImagePath + \"/img/wardrobe/Stockings1.png\"'>" "Wardrobe">><<set $stockingsState1 to "worn">>
+<<append "#availableClothes">><<link "<img @src='setup.ImagePath + \"/img/wardrobe/stockings1.png\"'>" "Wardrobe">><<set $stockingsState1 to "worn">>
 
 <<set $mc.beauty += 2>>
 <<if $rememberBottomStockings eq "stockings2">><<set $mc.beauty -=4>><</if>>
@@ -47,7 +47,7 @@
 
 <<switch $stockingsState2>>
 	<<case "worn">>
-		<<replace "#currentUnderwearStockings">><<link "<img @src='setup.ImagePath + \"/img/wardrobe/Stockings2.png\"'>" "Wardrobe">><<set $stockingsState2 to "not worn">>
+		<<replace "#currentUnderwearStockings">><<link "<img @src='setup.ImagePath + \"/img/wardrobe/stockings2.png\"'>" "Wardrobe">><<set $stockingsState2 to "not worn">>
          <<set $rememberBottomStockings to "nostockings2">>
             <<set $mc.beauty -= 4>>
 
@@ -55,7 +55,7 @@
         <</replace>>
 	<<case "not worn">>
 
-<<append "#availableClothes">><<link "<img @src='setup.ImagePath + \"/img/wardrobe/Stockings2.png\"'>" "Wardrobe">>
+<<append "#availableClothes">><<link "<img @src='setup.ImagePath + \"/img/wardrobe/stockings2.png\"'>" "Wardrobe">>
 <<set $stockingsState2 to "worn">>
 <<set $mc.beauty += 4>>
 <<if $rememberBottomStockings eq "stockings1">><<set $mc.beauty -=2>><</if>>
@@ -71,7 +71,7 @@
 
 <<switch $stockingsState3>>
 	<<case "worn">>
-		<<replace "#currentUnderwearStockings">><<link "<img @src='setup.ImagePath + \"/img/wardrobe/Stockings3.png\"'>" "Wardrobe">><<set $stockingsState3 to "not worn">>
+		<<replace "#currentUnderwearStockings">><<link "<img @src='setup.ImagePath + \"/img/wardrobe/stockings3.png\"'>" "Wardrobe">><<set $stockingsState3 to "not worn">>
          <<set $rememberBottomStockings to "nostockings3">>
             <<set $mc.beauty -= 6>>
 
@@ -79,7 +79,7 @@
         <</replace>>
 	<<case "not worn">>
 
-<<append "#availableClothes">><<link "<img @src='setup.ImagePath + \"/img/wardrobe/Stockings3.png\"'>" "Wardrobe">>
+<<append "#availableClothes">><<link "<img @src='setup.ImagePath + \"/img/wardrobe/stockings3.png\"'>" "Wardrobe">>
 <<set $stockingsState3 to "worn">>
 <<set $mc.beauty += 6>>
 <<if $rememberBottomStockings eq "stockings1">><<set $mc.beauty -=2>><</if>>
@@ -95,7 +95,7 @@
 
 <<switch $braState0>>
 	<<case "worn">>
-		<<replace "#currentUnderwearTop">><<link "<img @src='setup.ImagePath + \"/img/wardrobe/Slip1.png\"'>" "Wardrobe">><<set $braState0 to "not worn">>
+		<<replace "#currentUnderwearTop">><<link "<img @src='setup.ImagePath + \"/img/wardrobe/slip1.png\"'>" "Wardrobe">><<set $braState0 to "not worn">>
          <<set $rememberTopUnder to "nobra0">>
 
         <</link>>
@@ -103,7 +103,7 @@
 	<<case "not worn">>
     <<replace "#currentUnderwearTop">><img @src="setup.ImagePath + '/img/wardrobe/underweartop.png'">
     <</replace>>
-<<append "#availableClothes">><<link "<img @src='setup.ImagePath + \"/img/wardrobe/Slip1.png\"'>" "Wardrobe">><<set $braState0 to "worn">>
+<<append "#availableClothes">><<link "<img @src='setup.ImagePath + \"/img/wardrobe/slip1.png\"'>" "Wardrobe">><<set $braState0 to "worn">>
 <<if $rememberTopUnder eq "bra1">><<set $mc.beauty -=2>><</if>>
 <<if $rememberTopUnder eq "bra2">><<set $mc.beauty -=4>><</if>>
 <<if $rememberTopUnder eq "bra3">><<set $mc.beauty -=6>><</if>>
@@ -577,7 +577,7 @@
 <<switch $shortsState2>>
 			<<case "worn">>
 
-		<<replace "#currentOuterwearBottom">><<link "<img @src='setup.ImagePath + \"/img/wardrobe/Shorts2.png\"'>" "Wardrobe">>
+		<<replace "#currentOuterwearBottom">><<link "<img @src='setup.ImagePath + \"/img/wardrobe/shorts2.png\"'>" "Wardrobe">>
         <<set $mc.beauty -= 9>>
         <<set $rememberBottomOuter to "noshorts2">>
 
@@ -586,7 +586,7 @@
         <</replace>>
 	<<case "not worn">>
 
-<<append "#availableOuterwear">><<link "<img @src='setup.ImagePath + \"/img/wardrobe/Shorts2.png\"'>" "Wardrobe">><<set $shortsState2 to "worn">>
+<<append "#availableOuterwear">><<link "<img @src='setup.ImagePath + \"/img/wardrobe/shorts2.png\"'>" "Wardrobe">><<set $shortsState2 to "worn">>
 <<set $mc.beauty +=9>>
 
 <<if $rememberBottomOuter eq "jeans1">><<set $mc.beauty -=5>><</if>>
@@ -617,7 +617,7 @@
 <<switch $shortsState3>>
 			<<case "worn">>
 
-		<<replace "#currentOuterwearBottom">><<link "<img @src='setup.ImagePath + \"/img/wardrobe/Shorts3.png\"'>" "Wardrobe">>
+		<<replace "#currentOuterwearBottom">><<link "<img @src='setup.ImagePath + \"/img/wardrobe/shorts3.png\"'>" "Wardrobe">>
         <<set $mc.beauty -= 12>>
         <<set $rememberBottomOuter to "noshorts3">>
 
@@ -625,7 +625,7 @@
         <</link>>
         <</replace>>
 	<<case "not worn">>
-<<append "#availableOuterwear">><<link "<img @src='setup.ImagePath + \"/img/wardrobe/Shorts3.png\"'>" "Wardrobe">><<set $shortsState3 to "worn">>
+<<append "#availableOuterwear">><<link "<img @src='setup.ImagePath + \"/img/wardrobe/shorts3.png\"'>" "Wardrobe">><<set $shortsState3 to "worn">>
 
 <<set $mc.beauty +=12>>
 

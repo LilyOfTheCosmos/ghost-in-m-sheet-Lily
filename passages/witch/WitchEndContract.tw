@@ -1,5 +1,5 @@
 :: WitchEndContract [nobr] {"position":"1450,25","size":"100,100"}
-<img @src="setup.ImagePath + '/img/witchGirl.jpg'" width="100%">
+<img @src="setup.ImagePath + '/img/witch-girl.jpg'" width="100%">
 <br>
 @@.notmc-speech;Tell me the type of ghost:@@<br>
 <<if $saveMimic eq 1>>
@@ -15,7 +15,7 @@
 		<<addclass ".linkselector" "disabled-link">>
 	<</done>>
 	<video autoplay muted>
-	<source @src="setup.ImagePath + '/witch/witchResult.mp4'" type="video/mp4" width="100%">
+	<source @src="setup.ImagePath + '/witch/witch-result.mp4'" type="video/mp4" width="100%">
 	</video>
 	@@.notmc-speech;Let's find out, give me some time...@@
 	<<timed 6s>>

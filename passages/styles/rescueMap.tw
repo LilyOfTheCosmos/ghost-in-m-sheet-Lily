@@ -1,7 +1,7 @@
 :: StyleRescueMap
 <style>
 	body {
-    background-image: url('assets/rescue/house/rescueMap.jpg');
+    background-image: url('assets/rescue/house/rescue-map.jpg');
     background-size: cover;
     background-repeat: no-repeat;
 }

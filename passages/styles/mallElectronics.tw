@@ -1,7 +1,7 @@
 :: StyleMallElectronics
 <style>
 body {
-    background-image: url('assets/img/electronicsSection.jpg');
+    background-image: url('assets/img/electronics-section.jpg');
     background-size: cover;
     background-repeat: no-repeat;
 }

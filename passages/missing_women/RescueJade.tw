@@ -2,23 +2,23 @@
 <<set _videoList to []>>
 <<set _randomChance to random(1, 100)>>
 <<set _videoList10 to [
-{type: "video", src: "rescue/Jade/10.0.mp4"},
-{type: "video", src: "rescue/Jade/10.1.mp4"},
-{type: "video", src: "rescue/Jade/10.2.mp4"},
-{type: "video", src: "rescue/Jade/10.3.mp4"},
-{type: "video", src: "rescue/Jade/10.4.mp4"}
+{type: "video", src: "rescue/jade/10.0.mp4"},
+{type: "video", src: "rescue/jade/10.1.mp4"},
+{type: "video", src: "rescue/jade/10.2.mp4"},
+{type: "video", src: "rescue/jade/10.3.mp4"},
+{type: "video", src: "rescue/jade/10.4.mp4"}
 ]>>
 <<set _videoList11 to [
-{type: "video", src: "rescue/Jade/11.0.mp4"},
-{type: "video", src: "rescue/Jade/11.1.mp4"},
-{type: "video", src: "rescue/Jade/11.2.mp4"},
-{type: "video", src: "rescue/Jade/11.3.mp4"}
+{type: "video", src: "rescue/jade/11.0.mp4"},
+{type: "video", src: "rescue/jade/11.1.mp4"},
+{type: "video", src: "rescue/jade/11.2.mp4"},
+{type: "video", src: "rescue/jade/11.3.mp4"}
 ]>>
 <<set _videoList12 to [
-{type: "video", src: "rescue/Jade/12.0.mp4"},
-{type: "video", src: "rescue/Jade/12.1.mp4"},
-{type: "video", src: "rescue/Jade/12.2.mp4"},
-{type: "video", src: "rescue/Jade/12.3.mp4"}
+{type: "video", src: "rescue/jade/12.0.mp4"},
+{type: "video", src: "rescue/jade/12.1.mp4"},
+{type: "video", src: "rescue/jade/12.2.mp4"},
+{type: "video", src: "rescue/jade/12.3.mp4"}
 ]>>
 
 <<set _allLists to [_videoList10, _videoList11, _videoList12]>>
@@ -69,11 +69,11 @@ I could watch a little longer and then help her... but I might get noticed. @@<b
 	<</if>>
 	<<if _clickCount == 4>>
 		<<if _chosenList is _videoList10>>
-			<<set $videoRescueEvent to "rescue/Jade/10End.mp4">>
+			<<set $videoRescueEvent to "rescue/jade/10-end.mp4">>
 		<<elseif _chosenList is _videoList11>>
-			<<set $videoRescueEvent to "rescue/Jade/11End.mp4">>
+			<<set $videoRescueEvent to "rescue/jade/11-end.mp4">>
 		<<elseif _chosenList is _videoList12>>
-			<<set $videoRescueEvent to "rescue/Jade/12End.mp4">>
+			<<set $videoRescueEvent to "rescue/jade/12-end.mp4">>
 		<</if>>
 		<<replace "#videoContainer">>
 			<video autoplay controls muted loop>

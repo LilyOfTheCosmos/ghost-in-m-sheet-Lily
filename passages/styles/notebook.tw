@@ -1,7 +1,7 @@
 :: StyleNotebook
 <style>
 body {
-    background-image: url('assets/img/journalInside.webp');
+    background-image: url('assets/img/journal-inside.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

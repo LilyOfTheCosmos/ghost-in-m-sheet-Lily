@@ -109,7 +109,7 @@
 :: StyleEnigmaRoomALight
 <style>
 	body {
-    background-image: url('assets/room/enigma/roomA.jpg');
+    background-image: url('assets/room/enigma/room-a.jpg');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -118,7 +118,7 @@
 :: StyleEnigmaRoomADark
 <style>
 	body {
-    background-image: url('assets/room/enigma/roomA-dark.jpg');
+    background-image: url('assets/room/enigma/room-a-dark.jpg');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -127,7 +127,7 @@
 :: StyleEnigmaRoomBLight
 <style>
 	body {
-    background-image: url('assets/room/enigma/roomB.jpg');
+    background-image: url('assets/room/enigma/room-b.jpg');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -136,7 +136,7 @@
 :: StyleEnigmaRoomBDark
 <style>
 	body {
-    background-image: url('assets/room/enigma/roomB-dark.jpg');
+    background-image: url('assets/room/enigma/room-b-dark.jpg');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -145,7 +145,7 @@
 :: StyleEnigmaRoomCLight
 <style>
 	body {
-    background-image: url('assets/room/enigma/roomC.jpg');
+    background-image: url('assets/room/enigma/room-c.jpg');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -154,7 +154,7 @@
 :: StyleEnigmaRoomCDark
 <style>
 	body {
-    background-image: url('assets/room/enigma/roomC-dark.jpg');
+    background-image: url('assets/room/enigma/room-c-dark.jpg');
     background-size: cover;
     background-repeat: no-repeat;
 }

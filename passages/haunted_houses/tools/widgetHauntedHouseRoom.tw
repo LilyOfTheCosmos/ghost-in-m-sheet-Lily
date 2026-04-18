@@ -221,7 +221,7 @@ All you can do now is wait and hope it doesn't find you.@@
 <div class="footer-card">
 <div class="cardimg">
 <a data-passage="CompanionFailed">
-<img @src="setup.ImagePath + '/img/questionMark.png'" class="companion-image"> </a>
+<img @src="setup.ImagePath + '/img/question-mark.png'" class="companion-image"> </a>
 </div>
 </div>
 <<elseif $showComp eq 3>>

@@ -1,7 +1,7 @@
 :: WitchSale [nobr] {"position":"1350,150","size":"100,100"}
 <div class="flexwrapper">
 <div class="housecard">
-<img @src="setup.ImagePath + '/img/sanityPills.png'" class="iconPx"><br>
+<img @src="setup.ImagePath + '/img/sanity-pills.png'" class="iconPx"><br>
 <span class="priceAmount">10$</span><br>
 <<if $mc.money gte 10>>
 	@@.buyItemLink;<<link "Buy" "WitchSale">>
@@ -105,7 +105,7 @@
 </div>
 <div class="housecard">
 <<if $boughtMonkeyPawGuide eq 1>>
-	<img @src="setup.ImagePath + '/cursedpossessions/monkeyPaw/monkeypawPage.jpg'" class="iconPx"><br>
+	<img @src="setup.ImagePath + '/cursedpossessions/monkey-paw/monkeypaw-page.jpg'" class="iconPx"><br>
 	<span class="priceAmount">400$</span><br>
 	<<if $mc.money gte 400>>
 		@@.buyItemLink;<<link "Buy" "WitchSale">>

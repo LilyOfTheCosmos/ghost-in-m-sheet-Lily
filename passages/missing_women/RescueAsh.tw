@@ -2,16 +2,16 @@
 <<set _videoList to []>>
 <<set _randomChance to random(1, 100)>>
 <<set _videoList10 to [
-{type: "video", src: "rescue/Ash/10.1.mp4"},
-{type: "video", src: "rescue/Ash/10.2.mp4"},
-{type: "video", src: "rescue/Ash/10.3.mp4"},
-{type: "video", src: "rescue/Ash/10.4.mp4"}
+{type: "video", src: "rescue/ash/10.1.mp4"},
+{type: "video", src: "rescue/ash/10.2.mp4"},
+{type: "video", src: "rescue/ash/10.3.mp4"},
+{type: "video", src: "rescue/ash/10.4.mp4"}
 ]>>
 <<set _videoList11 to [
-{type: "video", src: "rescue/Ash/11.1.mp4"},
-{type: "video", src: "rescue/Ash/11.2.mp4"},
-{type: "video", src: "rescue/Ash/11.3.mp4"},
-{type: "video", src: "rescue/Ash/11.4.mp4"}
+{type: "video", src: "rescue/ash/11.1.mp4"},
+{type: "video", src: "rescue/ash/11.2.mp4"},
+{type: "video", src: "rescue/ash/11.3.mp4"},
+{type: "video", src: "rescue/ash/11.4.mp4"}
 ]>>
 
 <<set _allLists to [_videoList10, _videoList11]>>
@@ -61,7 +61,7 @@ I could watch a little longer and then help her... but I might get noticed. @@<b
 		<<redo "chanceRescue">>
 	<</if>>
 	<<if _clickCount == 4>>
-		<<set $videoRescueEvent to "rescue/Ash/11end.mp4">>
+		<<set $videoRescueEvent to "rescue/ash/11end.mp4">>
 		<<replace "#videoContainer">>
 			<video autoplay controls muted loop>
 			<source @src="setup.ImagePath+`/`+$videoRescueEvent" type="video/mp4">

@@ -30,7 +30,7 @@
 <<else>>
 
 	@@.mc-thoughts; Need to search in the library@@<br>
-	<img @src="setup.ImagePath + '/img/questionMark.png'" class="contactsImages">
+	<img @src="setup.ImagePath + '/img/question-mark.png'" class="contactsImages">
 <</if>>
 </div>
 
@@ -53,7 +53,7 @@
 <<else>>
 
 	@@.mc-thoughts; Deliver books to the correct address@@<br>
-	<img @src="setup.ImagePath + '/img/questionMark.png'" class="contactsImages">
+	<img @src="setup.ImagePath + '/img/question-mark.png'" class="contactsImages">
 <</if>>
 </div>
 
@@ -76,7 +76,7 @@
 <<else>>
 
 	@@.mc-thoughts; Befriend the assistant at the sex shop <br>(Relationship 5+)@@<br>
-	<img @src="setup.ImagePath + '/img/questionMark.png'" class="contactsImages">
+	<img @src="setup.ImagePath + '/img/question-mark.png'" class="contactsImages">
 <</if>>
 </div>
 

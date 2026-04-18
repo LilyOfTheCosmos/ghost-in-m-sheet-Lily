@@ -1,5 +1,5 @@
 :: WitchInside [nobr] {"position":"1350,25","size":"100,100"}
-<img @src="setup.ImagePath + '/img/witchGirl.jpg'" width="100%">
+<img @src="setup.ImagePath + '/img/witch-girl.jpg'" width="100%">
 <br>
 
 <<if setup.Witch.isFirstVisit()>>

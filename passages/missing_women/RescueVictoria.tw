@@ -2,35 +2,35 @@
 <<set _videoList to []>>
 <<set _randomChance to random(1, 100)>>
 <<set _videoList10 to [
-{type: "video", src: "rescue/Victoria/10.0.mp4"},
-{type: "video", src: "rescue/Victoria/10.1.mp4"},
-{type: "video", src: "rescue/Victoria/10.2.mp4"},
-{type: "video", src: "rescue/Victoria/10.3.mp4"},
-{type: "video", src: "rescue/Victoria/10.4.mp4"},
-{type: "video", src: "rescue/Victoria/10.5.mp4"},
-{type: "video", src: "rescue/Victoria/10.6.mp4"}
+{type: "video", src: "rescue/victoria/10.0.mp4"},
+{type: "video", src: "rescue/victoria/10.1.mp4"},
+{type: "video", src: "rescue/victoria/10.2.mp4"},
+{type: "video", src: "rescue/victoria/10.3.mp4"},
+{type: "video", src: "rescue/victoria/10.4.mp4"},
+{type: "video", src: "rescue/victoria/10.5.mp4"},
+{type: "video", src: "rescue/victoria/10.6.mp4"}
 ]>>
 <<set _videoList11 to [
-{type: "video", src: "rescue/Victoria/11.0.mp4"},
-{type: "video", src: "rescue/Victoria/11.1.mp4"},
-{type: "video", src: "rescue/Victoria/11.2.mp4"},
-{type: "video", src: "rescue/Victoria/11.3.mp4"}
+{type: "video", src: "rescue/victoria/11.0.mp4"},
+{type: "video", src: "rescue/victoria/11.1.mp4"},
+{type: "video", src: "rescue/victoria/11.2.mp4"},
+{type: "video", src: "rescue/victoria/11.3.mp4"}
 ]>>
 <<set _videoList12 to [
-{type: "video", src: "rescue/Victoria/12.0.mp4"},
-{type: "video", src: "rescue/Victoria/12.1.mp4"},
-{type: "video", src: "rescue/Victoria/12.2.mp4"},
-{type: "video", src: "rescue/Victoria/12.3.mp4"},
-{type: "video", src: "rescue/Victoria/12.4.mp4"},
-{type: "video", src: "rescue/Victoria/12.5.mp4"},
-{type: "video", src: "rescue/Victoria/12.6.mp4"}
+{type: "video", src: "rescue/victoria/12.0.mp4"},
+{type: "video", src: "rescue/victoria/12.1.mp4"},
+{type: "video", src: "rescue/victoria/12.2.mp4"},
+{type: "video", src: "rescue/victoria/12.3.mp4"},
+{type: "video", src: "rescue/victoria/12.4.mp4"},
+{type: "video", src: "rescue/victoria/12.5.mp4"},
+{type: "video", src: "rescue/victoria/12.6.mp4"}
 ]>>
 <<set _videoList13 to [
-{type: "video", src: "rescue/Victoria/13.0.mp4"},
-{type: "video", src: "rescue/Victoria/13.1.mp4"},
-{type: "video", src: "rescue/Victoria/13.2.mp4"},
-{type: "video", src: "rescue/Victoria/13.3.mp4"},
-{type: "video", src: "rescue/Victoria/13.4.mp4"}
+{type: "video", src: "rescue/victoria/13.0.mp4"},
+{type: "video", src: "rescue/victoria/13.1.mp4"},
+{type: "video", src: "rescue/victoria/13.2.mp4"},
+{type: "video", src: "rescue/victoria/13.3.mp4"},
+{type: "video", src: "rescue/victoria/13.4.mp4"}
 ]>>
 
 <<set _allLists to [_videoList10, _videoList11, _videoList12,  _videoList13]>>
@@ -81,13 +81,13 @@ I could watch a little longer and then help her... but I might get noticed. @@<b
 	<</if>>
 	<<if _clickCount == 4>>
 		<<if _chosenList is _videoList10>>
-			<<set $videoRescueEvent to "rescue/Victoria/10End.mp4">>
+			<<set $videoRescueEvent to "rescue/victoria/10-end.mp4">>
 		<<elseif _chosenList is _videoList11>>
-			<<set $videoRescueEvent to "rescue/Victoria/11End.mp4">>
+			<<set $videoRescueEvent to "rescue/victoria/11-end.mp4">>
 		<<elseif _chosenList is _videoList12>>
-			<<set $videoRescueEvent to "rescue/Victoria/12End.mp4">>
+			<<set $videoRescueEvent to "rescue/victoria/12-end.mp4">>
 		<<elseif _chosenList is _videoList13>>
-			<<set $videoRescueEvent to "rescue/Victoria/13End.mp4">>
+			<<set $videoRescueEvent to "rescue/victoria/13-end.mp4">>
 		<</if>>
 		<<replace "#videoContainer">>
 			<video autoplay controls muted loop>

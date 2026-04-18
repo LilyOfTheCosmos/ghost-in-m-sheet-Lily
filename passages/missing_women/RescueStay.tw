@@ -2,18 +2,18 @@
 <<if previous() eq "RescueNadia">>
 	<span id="rescueStayNadia">
 	<video autoplay controls muted loop>
-	<source @src="setup.ImagePath + '/rescue/Nadia/Nadiaboth1.mp4'" type="video/mp4">
+	<source @src="setup.ImagePath + '/rescue/nadia/nadiaboth1.mp4'" type="video/mp4">
 	</video></span>
 	@@.mc-thoughts; You don't even try to resist.@@<br>
 	@@.mc-speech; Let it be what it will be.@@<br>
 	@@.mc-thoughts; The ghost dragged you to the missing girl and began to have fun with you, using <<link "@@.usebtn; one after the other@@">>.
 		<<replace "#rescueStayNadia">>
-			<<videoToggle "rescueStayNadia" "rescue/Nadia/Nadiaboth2.mp4" "rescue/Nadia/Nadiaboth1.mp4">>
+			<<videoToggle "rescueStayNadia" "rescue/nadia/nadiaboth2.mp4" "rescue/nadia/nadiaboth1.mp4">>
 		<</replace>>
 	<</link>>
 	His cock, hot and huge, beat inside you, taking up all your attention. You did not pay attention to the fact that $currentRescueGirl sometimes licked your tits and pussy. But all this soon@@ <<linkappend "@@.enterbtn; ended@@">><br>
 		<video autoplay controls muted loop>
-		<source @src="setup.ImagePath + '/rescue/Nadia/Nadiaend.mp4'" type="video/mp4">
+		<source @src="setup.ImagePath + '/rescue/nadia/nadiaend.mp4'" type="video/mp4">
 		</video>
 
 		@@.mc-thoughts; He finished, but you were shaking all over. From excitement, nerves... from fear, probably. Tired, you@@ @@[[passed out|CityMapPossessed]]@@<br>
@@ -22,18 +22,18 @@
 <<elseif previous() eq "RescueJulia">>
 	<span id="rescueStayJulia">
 	<video autoplay controls muted loop>
-	<source @src="setup.ImagePath + '/rescue/Julia/Juliaboth1.mp4'" type="video/mp4">
+	<source @src="setup.ImagePath + '/rescue/julia/juliaboth1.mp4'" type="video/mp4">
 	</video></span>
 	@@.mc-thoughts; You don't even try to resist.@@<br>
 	@@.mc-speech; Let it be what it will be.@@<br>
 	@@.mc-thoughts; The ghost dragged you to the missing girl and began to have fun with you, using <<link "@@.usebtn; one after the other@@">>.
 		<<replace "#rescueStayJulia">>
-			<<videoToggle "rescueStayJulia" "rescue/Julia/Juliaboth2.mp4" "rescue/Julia/Juliaboth1.mp4">>
+			<<videoToggle "rescueStayJulia" "rescue/julia/juliaboth2.mp4" "rescue/julia/juliaboth1.mp4">>
 		<</replace>>
 	<</link>>
 	His cock, hot and huge, beat inside you, taking up all your attention. You did not pay attention to the fact that $currentRescueGirl sometimes licked your tits and pussy. But all this soon@@ <<linkappend "@@.enterbtn; ended@@">><br>
 		<video autoplay controls muted loop>
-		<source @src="setup.ImagePath + '/rescue/Julia/Juliaend.mp4'" type="video/mp4">
+		<source @src="setup.ImagePath + '/rescue/julia/juliaend.mp4'" type="video/mp4">
 		</video>
 
 		@@.mc-thoughts; He finished, but you were shaking all over. From excitement, nerves... from fear, probably. Tired, you@@ @@[[passed out|CityMapPossessed]]@@<br>
@@ -42,18 +42,18 @@
 <<elseif previous() eq "RescueVictoria">>
 	<span id="rescueStayVictoria">
 	<video autoplay controls muted loop>
-	<source @src="setup.ImagePath + '/rescue/Victoria/Victoriaboth1.mp4'" type="video/mp4">
+	<source @src="setup.ImagePath + '/rescue/victoria/victoriaboth1.mp4'" type="video/mp4">
 	</video></span>
 	@@.mc-thoughts; You don't even try to resist.@@<br>
 	@@.mc-speech; Let it be what it will be.@@<br>
 	@@.mc-thoughts; The ghost dragged you to the missing girl and began to have fun with you, using <<link "@@.usebtn; one after the other@@">>.
 		<<replace "#rescueStayVictoria">>
-			<<videoToggle "rescueStayVictoria" "rescue/Victoria/Victoriaboth2.mp4" "rescue/Victoria/Victoriaboth1.mp4">>
+			<<videoToggle "rescueStayVictoria" "rescue/victoria/victoriaboth2.mp4" "rescue/victoria/victoriaboth1.mp4">>
 		<</replace>>
 	<</link>>
 	His cock, hot and huge, beat inside you, taking up all your attention. You did not pay attention to the fact that $currentRescueGirl sometimes licked your tits and pussy. But all this soon@@ <<linkappend "@@.enterbtn; ended@@">><br>
 		<video autoplay controls muted loop>
-		<source @src="setup.ImagePath + '/rescue/Victoria/Victoriaend.mp4'" type="video/mp4">
+		<source @src="setup.ImagePath + '/rescue/victoria/victoriaend.mp4'" type="video/mp4">
 		</video>
 
 		@@.mc-thoughts; He finished, but you were shaking all over. From excitement, nerves... from fear, probably. Tired, you@@ @@[[passed out|CityMapPossessed]]@@<br>
@@ -62,18 +62,18 @@
 <<elseif previous() eq "RescueJade">>
 	<span id="rescueStayJade">
 	<video autoplay controls muted loop>
-	<source @src="setup.ImagePath + '/rescue/Jade/Jadeboth1.mp4'" type="video/mp4">
+	<source @src="setup.ImagePath + '/rescue/jade/jadeboth1.mp4'" type="video/mp4">
 	</video></span>
 	@@.mc-thoughts; You don't even try to resist.@@<br>
 	@@.mc-speech; Let it be what it will be.@@<br>
 	@@.mc-thoughts; The ghost dragged you to the missing girl and began to have fun with you, using <<link "@@.usebtn; one after the other@@">>.
 		<<replace "#rescueStayJade">>
-			<<videoToggle "rescueStayJade" "rescue/Jade/Jadeboth2.mp4" "rescue/Jade/Jadeboth1.mp4">>
+			<<videoToggle "rescueStayJade" "rescue/jade/jadeboth2.mp4" "rescue/jade/jadeboth1.mp4">>
 		<</replace>>
 	<</link>>
 	His cock, hot and huge, beat inside you, taking up all your attention. You did not pay attention to the fact that $currentRescueGirl sometimes licked your tits and pussy. But all this soon@@ <<linkappend "@@.enterbtn; ended@@">><br>
 		<video autoplay controls muted loop>
-		<source @src="setup.ImagePath + '/rescue/Jade/Jadeend.mp4'" type="video/mp4">
+		<source @src="setup.ImagePath + '/rescue/jade/jadeend.mp4'" type="video/mp4">
 		</video>
 
 		@@.mc-thoughts; He finished, but you were shaking all over. From excitement, nerves... from fear, probably. Tired, you@@ @@[[passed out|CityMapPossessed]]@@<br>
@@ -81,7 +81,7 @@
 <<elseif previous() eq "RescueAsh">>
 	<span id="rescueStayAsh">
 	<video autoplay controls muted loop>
-	<source @src="setup.ImagePath + '/rescue/Ash/AshBoth0.mp4'" type="video/mp4">
+	<source @src="setup.ImagePath + '/rescue/ash/ash-both0.mp4'" type="video/mp4">
 	</video></span>
 	@@.mc-thoughts; You don't even try to resist.@@<br>
 	@@.mc-speech; Let it be what it will be.@@<br>
@@ -91,13 +91,13 @@
 		<<replace "#rescueStayAsh">>
 
 			<video autoplay controls muted loop>
-			<source @src="setup.ImagePath+`/rescue/Ash/AshBoth`+_videoIndex+`.mp4`" type="video/mp4">
+			<source @src="setup.ImagePath+`/rescue/ash/AshBoth`+_videoIndex+`.mp4`" type="video/mp4">
 			</video>
 		<</replace>>
 	<</link>>
 	His cock, hot and huge, beat inside you, taking up all your attention. You did not pay attention to the fact that $currentRescueGirl sometimes licked your tits and pussy. But all this soon@@ <<linkappend "@@.enterbtn; ended@@">><br>
 		<video autoplay controls muted loop>
-		<source @src="setup.ImagePath + '/rescue/Ash/AshBothEnd.mp4'" type="video/mp4">
+		<source @src="setup.ImagePath + '/rescue/ash/ash-both-end.mp4'" type="video/mp4">
 		</video>
 
 		@@.mc-thoughts; He finished, but you were shaking all over. From excitement, nerves... from fear, probably. Tired, you@@ @@[[passed out|CityMapPossessed]]@@<br>

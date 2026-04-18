@@ -27,7 +27,7 @@
 <<= $mc.corruption.toFixed(2)>>
 <b><img @src="setup.ImagePath + '/img/beauty.png'" style="position: relative; top: 0.375em; width:11%; display: inline; margin: 0;">$mc.beauty</b>
 <b><img @src="setup.ImagePath + '/img/icons/lvl.png'" style="position: relative; top: 0.375em; width:11%; display: inline; margin: 0;">$mc.lvl</b> <br>
-<a class="linkselector" data-passage="Bag"><img @src="setup.ImagePath + '/img/bag.png'" width="30%"></a><a class="linkselector" data-passage="Notebook"><img @src="setup.ImagePath + '/img/notebook.png'" width="30%"></a><a class="linkselector" data-passage="Evidence"><img @src="setup.ImagePath + '/img/evidenceIcon.png'" width="30%"></a><br>
+<a class="linkselector" data-passage="Bag"><img @src="setup.ImagePath + '/img/bag.png'" width="30%"></a><a class="linkselector" data-passage="Notebook"><img @src="setup.ImagePath + '/img/notebook.png'" width="30%"></a><a class="linkselector" data-passage="Evidence"><img @src="setup.ImagePath + '/img/evidence-icon.png'" width="30%"></a><br>
 <<if def $isPhoneBought>><a class="linkselector" data-passage="Phone"><img @src="setup.ImagePath + '/img/phone.png'" width="30%"></a>
 <</if>>
 <div class="linkselector enterbtn"> Game [[Guide|Guide]] </div><br>

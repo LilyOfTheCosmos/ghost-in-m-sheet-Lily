@@ -114,12 +114,12 @@
 
 	<<if $isCompChosen eq 1 and $companion.name eq "Alice">>
 		<video autoplay controls muted loop>
-		<source @src="setup.ImagePath + '/alice/huntEnd1.mp4'" type="video/mp4">
+		<source @src="setup.ImagePath + '/alice/hunt-end1.mp4'" type="video/mp4">
 		</video>
 		The last thing you remember is you and your friend sitting on the floor in front of the ghost, choking on his cock one after the other.<br>
 		It's unclear how long <<linkreplace "@@.usebtn; this went on@@">>
 			<video autoplay controls muted loop>
-			<source @src="setup.ImagePath + '/alice/huntEnd2.mp4'" type="video/mp4">
+			<source @src="setup.ImagePath + '/alice/hunt-end2.mp4'" type="video/mp4">
 			</video>
 			Darkness overwhelms your senses as your vision fades, and then...
 			<<if $highpriestess eq 1>>@@.usebtn; [[nothing|$return][$highpriestess to 0; $mc.sanity to 25]]@@<<else>>
@@ -380,7 +380,7 @@
 					<</if>>
 					It wasn't even just one ghost, but you didn't care. They fucked you and you liked it. At the end they started cumming on your pretty face, <<linkappend "@@.usebtn; covering it with their cum@@">>
 						<video autoplay controls muted loop>
-						<source @src="setup.ImagePath + '/hunting/naked4End.mp4'" type="video/mp4">
+						<source @src="setup.ImagePath + '/hunting/naked4-end.mp4'" type="video/mp4">
 						</video>
 						Finally, having had its fill of playing with you, the ghost left, leaving you exhausted. <br>&emsp;&emsp; Slipping into a deep sleep, you felt the remnants of pleasure <<if $highpriestess eq 1>>@@.usebtn; [[fading into darkness|$return][$highpriestess to 0; $mc.sanity to 25]]@@
 						<<else>>

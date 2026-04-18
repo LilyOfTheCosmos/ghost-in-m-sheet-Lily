@@ -8,7 +8,7 @@
 	<<set $witchNightCD to 1>>
 	<<if $hours lte 5>>
 		<video autoplay controls muted loop>
-		<source @src="setup.ImagePath + '/witch/lickSleeping2.mp4'" type="video/mp4">
+		<source @src="setup.ImagePath + '/witch/lick-sleeping2.mp4'" type="video/mp4">
 		</video>
 		@@.mc-thoughts; You can no longer restrain yourself. <br>You pressed your face to her juicy peach and begin to gently lick her pussy and ass.@@<br>
 		@@.notmc-speech; Ah~$mc.name, don't stop... @@<br>
@@ -17,7 +17,7 @@
 		@@.notmc-speech; Thank you, $mc.name.@@<br>
 	<<else>>
 		<video autoplay controls muted loop>
-		<source @src="setup.ImagePath + '/witch/lickSleeping1.mp4'" type="video/mp4">
+		<source @src="setup.ImagePath + '/witch/lick-sleeping1.mp4'" type="video/mp4">
 		</video>
 		@@.mc-thoughts; You can no longer restrain yourself. <br>You pressed your face to her juicy peach and begin to gently lick her pussy and ass. Her pussy becomes wet, and sighs are heavy. After playing with her sweet butt, you prepare to leave. <br>
 		Before you go, you hear her say in a quiet, satisfied voice: @@<br>

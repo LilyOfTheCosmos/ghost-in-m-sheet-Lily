@@ -1,17 +1,17 @@
 :: TarotCards [nobr noreturn] {"position":"800,3200","size":"100,100"}
 <<set $tarotDeck to [
-{ name: "passion", chance: 20, image: "cursedpossessions/tarotCards/passion.jpg" },
-{ name: "pulse", chance: 20, image: "cursedpossessions/tarotCards/pulse.jpg" },
-{ name: "oblivion", chance: 1, image: "cursedpossessions/tarotCards/oblivion.jpg" } ,
-{ name: "knowledge", chance: 10, image: "cursedpossessions/tarotCards/knowledge.jpg" },
-{ name: "power", chance: 12, image: "cursedpossessions/tarotCards/power.jpg" },
-{ name: "whore", chance: 10, image: "cursedpossessions/tarotCards/whore.jpg" },
-{ name: "death", chance: 5, image: "cursedpossessions/tarotCards/death.jpg" },
-{ name: "possession", chance: 1, image: "cursedpossessions/tarotCards/possession.jpg" },
-{ name: "highpriestess", chance: 2, image: "cursedpossessions/tarotCards/highpriestess.jpg" },
-{ name: "fool", chance: 19, image: "cursedpossessions/tarotCards/fool.jpg" }
+{ name: "passion", chance: 20, image: "cursedpossessions/tarot-cards/passion.jpg" },
+{ name: "pulse", chance: 20, image: "cursedpossessions/tarot-cards/pulse.jpg" },
+{ name: "oblivion", chance: 1, image: "cursedpossessions/tarot-cards/oblivion.jpg" } ,
+{ name: "knowledge", chance: 10, image: "cursedpossessions/tarot-cards/knowledge.jpg" },
+{ name: "power", chance: 12, image: "cursedpossessions/tarot-cards/power.jpg" },
+{ name: "whore", chance: 10, image: "cursedpossessions/tarot-cards/whore.jpg" },
+{ name: "death", chance: 5, image: "cursedpossessions/tarot-cards/death.jpg" },
+{ name: "possession", chance: 1, image: "cursedpossessions/tarot-cards/possession.jpg" },
+{ name: "highpriestess", chance: 2, image: "cursedpossessions/tarot-cards/highpriestess.jpg" },
+{ name: "fool", chance: 19, image: "cursedpossessions/tarot-cards/fool.jpg" }
 ]>>
-<div id="tarotCard"><img @src="setup.ImagePath + '/cursedpossessions/tarotCards/tarot.png'" class="displayCentredImgs"></div>
+<div id="tarotCard"><img @src="setup.ImagePath + '/cursedpossessions/tarot-cards/tarot.png'" class="displayCentredImgs"></div>
 
 <div id="tarotCardsEnd" class="tarotCardHidden"><<link "@@.usebtn;Pull a card@@">>
 	<<replace "#tarotCard">>

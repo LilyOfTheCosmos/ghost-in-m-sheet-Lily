@@ -1,5 +1,5 @@
 :: ChurchNunQuest [nobr] {"position":"2075,1500","size":"100,100"}
-<img @src="setup.ImagePath + '/rescue/Rain.jpg'" width="50%" class="displayCentredImgs"><br>
+<img @src="setup.ImagePath + '/rescue/rain.jpg'" width="50%" class="displayCentredImgs"><br>
 <<if ndef $relationshipWithRain>>
 	<<set $relationshipWithRain to 0>>
 	@@.notmc-speech; $mc.name, hey. I'm Rain. The witch told me about you. Thanks for agreeing to help.@@<br>

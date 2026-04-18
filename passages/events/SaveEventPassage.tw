@@ -66,9 +66,9 @@
 					<</if>>
 				<<else>>
 					<<if $isOwaissa eq 1>>
-						<<set _videoList to ["skirtNP1/1.mp4", "skirtNP1/2.mp4", "skirtNP1/3.mp4", "skirtNP1/4.mp4", "skirtNP1/5.mp4", "skirtNP1/6.mp4", "skirtNP1/7.mp4", "skirtNP1/8.mp4", "skirtNP1/9.mp4", "skirtNP1/10.mp4", "skirtNP1/11.mp4", "skirtNP1/12.mp4", "skirtNP1/13.mp4"]>>
+						<<set _videoList to ["skirt-np1/1.mp4", "skirt-np1/2.mp4", "skirt-np1/3.mp4", "skirt-np1/4.mp4", "skirt-np1/5.mp4", "skirt-np1/6.mp4", "skirt-np1/7.mp4", "skirt-np1/8.mp4", "skirt-np1/9.mp4", "skirt-np1/10.mp4", "skirt-np1/11.mp4", "skirt-np1/12.mp4", "skirt-np1/13.mp4"]>>
 					<<elseif $isElm eq 1>>
-						<<set _videoList to ["skirtNP1/20.mp4", "skirtNP1/21.mp4", "skirtNP1/22.mp4", "skirtNP1/23.mp4", "skirtNP1/24.mp4", "skirtNP1/25.mp4", "skirtNP1/26.mp4", "skirtNP1/27.mp4", "skirtNP1/28.mp4", "skirtNP1/29.mp4", "skirtNP1/30.mp4"]>>
+						<<set _videoList to ["skirt-np1/20.mp4", "skirt-np1/21.mp4", "skirt-np1/22.mp4", "skirt-np1/23.mp4", "skirt-np1/24.mp4", "skirt-np1/25.mp4", "skirt-np1/26.mp4", "skirt-np1/27.mp4", "skirt-np1/28.mp4", "skirt-np1/29.mp4", "skirt-np1/30.mp4"]>>
 					<</if>>
 				<</if>>
 
@@ -160,9 +160,9 @@
 				<</if>>
 			<<else>>
 				<<if $isOwaissa eq 1>>
-					<<set _videoList to ["skirtNP2/1.mp4", "skirtNP2/2.mp4", "skirtNP2/3.mp4", "skirtNP2/4.mp4", "skirtNP2/5.mp4", "skirtNP2/6.mp4"]>>
+					<<set _videoList to ["skirt-np2/1.mp4", "skirt-np2/2.mp4", "skirt-np2/3.mp4", "skirt-np2/4.mp4", "skirt-np2/5.mp4", "skirt-np2/6.mp4"]>>
 				<<elseif $isElm eq 1>>
-					<<set _videoList to ["skirtNP2/20.mp4", "skirtNP2/21.mp4", "skirtNP2/22.mp4", "skirtNP2/23.mp4", "skirtNP2/24.mp4", "skirtNP2/25.mp4", "skirtNP2/26.mp4", "skirtNP2/27.mp4"]>>
+					<<set _videoList to ["skirt-np2/20.mp4", "skirt-np2/21.mp4", "skirt-np2/22.mp4", "skirt-np2/23.mp4", "skirt-np2/24.mp4", "skirt-np2/25.mp4", "skirt-np2/26.mp4", "skirt-np2/27.mp4"]>>
 				<</if>>
 			<</if>>
 
@@ -244,9 +244,9 @@
 				<</if>>
 			<<else>>
 				<<if $isOwaissa eq 1>>
-					<<set _videoList to ["skirtNP3/1.mp4", "skirtNP3/2.mp4", "skirtNP3/3.mp4", "skirtNP3/4.mp4", "skirtNP3/5.mp4", "skirtNP3/6.mp4", "skirtNP3/7.mp4", "skirtNP3/8.mp4", "skirtNP3/9.mp4", "skirtNP3/10.mp4", "skirtNP3/11.mp4", "skirtNP3/12.mp4", "skirtNP3/13.mp4", "skirtNP3/14.mp4", "skirtNP3/15.mp4", "skirtNP3/16.mp4"]>>
+					<<set _videoList to ["skirt-np3/1.mp4", "skirt-np3/2.mp4", "skirt-np3/3.mp4", "skirt-np3/4.mp4", "skirt-np3/5.mp4", "skirt-np3/6.mp4", "skirt-np3/7.mp4", "skirt-np3/8.mp4", "skirt-np3/9.mp4", "skirt-np3/10.mp4", "skirt-np3/11.mp4", "skirt-np3/12.mp4", "skirt-np3/13.mp4", "skirt-np3/14.mp4", "skirt-np3/15.mp4", "skirt-np3/16.mp4"]>>
 				<<elseif $isElm eq 1>>
-					<<set _videoList to ["skirtNP3/20.mp4", "skirtNP3/21.mp4", "skirtNP3/22.mp4", "skirtNP3/23.mp4", "skirtNP3/24.mp4", "skirtNP3/25.mp4", "skirtNP3/26.mp4", "skirtNP3/27.mp4", "skirtNP3/28.mp4", "skirtNP3/29.mp4", "skirtNP3/30.mp4"]>>
+					<<set _videoList to ["skirt-np3/20.mp4", "skirt-np3/21.mp4", "skirt-np3/22.mp4", "skirt-np3/23.mp4", "skirt-np3/24.mp4", "skirt-np3/25.mp4", "skirt-np3/26.mp4", "skirt-np3/27.mp4", "skirt-np3/28.mp4", "skirt-np3/29.mp4", "skirt-np3/30.mp4"]>>
 				<</if>>
 			<</if>>
 
