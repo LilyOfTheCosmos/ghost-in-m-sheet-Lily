@@ -561,6 +561,108 @@ test.describe('macro delimiters', () => {
 
 });
 
+// ── DOM-mutation selector targets ────────────────────────────────
+
+test.describe('replace/append/prepend selector targets', () => {
+
+  /**
+   * Collect every id defined by a static `id="foo"` / `id='foo'` HTML
+   * attribute anywhere in the project. Attributes whose value contains
+   * interpolation markers (e.g. `id="foo<<= $x>>"`) are skipped — those
+   * are computed at render time and can't be validated statically.
+   *
+   * Returns a Set<string> of case-sensitive id values.
+   */
+  function collectDefinedIds() {
+    const ids = new Set();
+    const attrRe = /\bid\s*=\s*(?:"([^"<>$`]*?)"|'([^'<>$`]*?)')/g;
+    for (const p of allPassages) {
+      let m;
+      while ((m = attrRe.exec(p.body)) !== null) {
+        const val = (m[1] ?? m[2]).trim();
+        // Skip empty, whitespace-containing, or interpolation-marker values.
+        if (val && !/\s/.test(val) && !/[+_`]/.test(val)) {
+          ids.add(val);
+        }
+      }
+    }
+    return ids;
+  }
+
+  /**
+   * Extract the leading id from a CSS selector string — the characters
+   * after '#' up to the first space, '.', '#', '>', '[', ',' or ':'.
+   * Returns null if the selector doesn't start with '#' or the id is
+   * built from interpolation.
+   */
+  function extractLeadingId(selector) {
+    if (!selector.startsWith('#')) return null;
+    const id = selector.slice(1).split(/[\s.#>\[,:]/)[0];
+    if (!id) return null;
+    // Skip computed ids like "#' + meterId + '" (already excluded by the
+    // outer static-only filter, but be defensive).
+    if (/[+`$]/.test(id)) return null;
+    return id;
+  }
+
+  /**
+   * Find every static `<<replace|append|prepend "selector">>` call in
+   * every passage. "Static" = the argument uses plain single or double
+   * quotes with no $variable, _temp, backtick, or + concatenation.
+   *
+   * Returns [{ passage, line, macro, selector }].
+   */
+  function collectSelectorUsages() {
+    const usages = [];
+    // Matches <<replace "..."> / <<append '...'>> etc., only when the
+    // argument is a single quoted literal with no interpolation inside.
+    const macroRe = /<<(replace|append|prepend)\s+(?:"([^"$`+_<>]*)"|'([^'$`+_<>]*)')\s*>>/g;
+    for (const p of allPassages) {
+      if (p.tags.includes('script') || p.tags.includes('stylesheet')) continue;
+      const lines = p.body.split('\n');
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+        let m;
+        macroRe.lastIndex = 0;
+        while ((m = macroRe.exec(line)) !== null) {
+          usages.push({
+            passage: p,
+            line: p.headerLine + 1 + i,
+            macro: m[1],
+            selector: (m[2] ?? m[3]).trim(),
+          });
+        }
+      }
+    }
+    return usages;
+  }
+
+  const definedIds = collectDefinedIds();
+  const usages = collectSelectorUsages();
+
+  test('every <<replace/append/prepend "#id">> must reference an existing id (case-sensitive)', () => {
+    const violations = [];
+    for (const u of usages) {
+      const id = extractLeadingId(u.selector);
+      if (id === null) continue;
+      if (definedIds.has(id)) continue;
+
+      // Report with a case-insensitive hint so typical PascalCase vs.
+      // camelCase mismatches (the class of bug that motivated this test)
+      // are obvious at a glance.
+      const lower = id.toLowerCase();
+      const hint = [...definedIds].find(d => d.toLowerCase() === lower);
+      const hintMsg = hint ? ` — did you mean "#${hint}"?` : '';
+      violations.push(
+        `${rel(u.passage.file)}:${u.line} <<${u.macro} "#${id}">> ` +
+        `references an id that is not defined anywhere${hintMsg}`
+      );
+    }
+    expect(violations, violations.join('\n')).toHaveLength(0);
+  });
+
+});
+
 // ── general file hygiene ─────────────────────────────────────────
 
 test.describe('file hygiene', () => {

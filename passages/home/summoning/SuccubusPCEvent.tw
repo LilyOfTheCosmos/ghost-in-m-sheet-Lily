@@ -61,7 +61,7 @@
 
 							<<else>>
 
-								<span id ="SuccubusPCEvent">
+								<span id ="succubusPCEvent">
 								<video autoplay controls muted loop>
 								<source @src="setup.ImagePath + '/succubus/pc5.mp4'" type="video/mp4">
 								</video></span>

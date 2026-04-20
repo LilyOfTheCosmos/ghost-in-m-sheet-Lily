@@ -21,7 +21,7 @@
 				<<set $tentaclesTextAfterSleep to 2>>
 				<<goto "Bedroom">>
 			<<else>>
-				<span id ="TentaclesEventSleep">
+				<span id ="tentaclesEventSleep">
 				<video autoplay controls muted loop>
 				<source @src="setup.ImagePath + '/tentacles/sleep3.mp4'" type="video/mp4">
 				</video></span>
