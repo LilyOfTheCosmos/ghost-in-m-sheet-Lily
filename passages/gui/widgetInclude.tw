@@ -2,13 +2,19 @@
 <<widget "includeTimeEventClothesHunt">>
 	<<if $cursedHuntActive eq 1>>
 	<<else>>
-		<<addTime 0.5>>
-		<<include "Event">>
-		<<if _eventTriggered is false>>
-			<<include "StealClothesEvent">>
-		<</if>>
-		<<if _stealClothesTriggered is false and _eventTriggered is false>>
-			<<include "CheckHuntStart">>
+		<<run setup.HauntConditions.applyTickEffects()>>
+		<<updatemeter 'sanity' `$mc.sanity / $mc.sanityMax`>>
+		<<updatemeter 'energy' `$mc.energy / $mc.energyMax`>>
+		<<if $exhausted eq 1>>
+			<<goto "HuntOverExhaustion">>
+		<<else>>
+			<<include "Event">>
+			<<if _eventTriggered is false>>
+				<<include "StealClothesEvent">>
+			<</if>>
+			<<if _stealClothesTriggered is false and _eventTriggered is false>>
+				<<include "CheckHuntStart">>
+			<</if>>
 		<</if>>
 	<</if>>
 <</widget>>
@@ -16,10 +22,16 @@
 <<widget "includeTimeEventHunt">>
 	<<if $cursedHuntActive eq 1>>
 	<<else>>
-		<<addTime 0.5>>
-		<<include "Event">>
-		<<if _eventTriggered is false>>
-			<<include "CheckHuntStart">>
+		<<run setup.HauntConditions.applyTickEffects()>>
+		<<updatemeter 'sanity' `$mc.sanity / $mc.sanityMax`>>
+		<<updatemeter 'energy' `$mc.energy / $mc.energyMax`>>
+		<<if $exhausted eq 1>>
+			<<goto "HuntOverExhaustion">>
+		<<else>>
+			<<include "Event">>
+			<<if _eventTriggered is false>>
+				<<include "CheckHuntStart">>
+			<</if>>
 		<</if>>
 	<</if>>
 <</widget>>

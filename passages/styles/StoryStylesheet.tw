@@ -38,6 +38,18 @@ a:hover {
 	text-decoration: none;
 }
 
+/*
+ * SugarCube's debug mode (Config.debug = true) wraps every macro invocation in
+ * a <span class="debug">, which inserts a layout box between a flex/grid parent
+ * and its intended flex/grid items and breaks alignment (e.g. sidebar clothing
+ * icons stacking vertically). When the visible debug view is disabled, make
+ * those wrapper spans transparent to layout so children become direct items of
+ * the real parent again.
+ */
+html:not([data-debug-view]) .debug:not(.hidden) {
+	display: contents;
+}
+
 /* ===== Hovertip v2.0 ===== */
 .hoverTip {
 	display: inline-block;
@@ -277,8 +289,67 @@ body.city {
 }
 .footer {
 	display: flex;
-	align-items: flex-end;
+	flex-direction: column;
 	max-height: 20%;
+}
+.footer-row {
+	display: flex;
+	align-items: flex-end;
+	flex: 1 1 auto;
+	min-height: 0;
+}
+.hunt-conditions {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 0.5em;
+	padding: 0.1em 0;
+	font-size: 80%;
+	opacity: 0.85;
+	flex: 0 0 auto;
+	/* Align with .footertools (80% left-aligned) so the HUD centers
+	   over the tool row instead of over the full footer (which
+	   includes the 20% .footeraction column on the right). */
+	width: 80%;
+	/* Keep the HUD on a single line so it can never grow tall enough
+	   to steal vertical space from the .footer-row holding the tool
+	   cards. Excess badges scroll horizontally instead of wrapping
+	   and pushing the toolbar down. */
+	flex-wrap: nowrap;
+	white-space: nowrap;
+	overflow-x: auto;
+	overflow-y: hidden;
+	scrollbar-width: thin;
+}
+.hunt-conditions-icon {
+	width: 14px;
+	height: 14px;
+	vertical-align: middle;
+}
+.hunt-actions-note {
+	opacity: 0.7;
+	font-style: italic;
+}
+.huntActionLink a {
+	color: #ffd166;
+	font-weight: bold;
+	text-decoration: none;
+}
+.huntActionLink a:hover {
+	color: #ffe49b;
+	text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+}
+.pressThroughLink a {
+	color: #b39ddb;
+	font-style: italic;
+	font-size: 0.9em;
+	text-decoration: none;
+	margin-top: 0.25em;
+	display: inline-block;
+}
+.pressThroughLink a:hover {
+	color: #d1c4e9;
+	text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
 }
 .footer-card {
 	display: flex;
@@ -290,6 +361,34 @@ body.city {
 	display: flex;
 	width: 80%;
 	align-items: center;
+}
+/* Cards in .footertools share the row evenly regardless of how many
+ * children appear -- 6 tools + light = 7 slots; +companion = 8 slots.
+ * Originally the hovertip wrapper got a fixed calc(100%/7) share while
+ * the bare .footer-card siblings (companion, light) used flex: 0 1 auto
+ * and shrank to half-width when both were present. Switching to
+ * `flex: 1 1 0` on every "slot" makes the row auto-distribute width to
+ * N equal slots without us hardcoding N. The hovertip macro inserts a
+ * span.hoverTipTxt between .footertools and the .footer-card for tool
+ * slots, so the same rule has to apply to that wrapper too.
+ *
+ * Descendant selectors (no `>`) on purpose: SugarCube's debug build
+ * wraps every macro/widget invocation in <span class="debug">. The
+ * styles refactor on main makes those spans `display: contents` so
+ * they're layout-transparent, but CSS selector matching is purely
+ * DOM-based -- direct-child combinators do NOT see through them. The
+ * companion/light/tool cards are widget outputs, so in debug mode
+ * `.footertools > X` never matches; descendant selectors do. There are
+ * no nested .hoverTipTxt or .footer-card inside .footertools, so this
+ * is safe (.footer-card inside .hoverTipTxt does pick up the rule too,
+ * but its parent isn't flex so the extra `flex` declaration is inert). */
+.footertools .hoverTipTxt,
+.footertools .footer-card {
+	flex: 1 1 0;
+	min-width: 0;
+}
+.footertools .hoverTipTxt .footer-card {
+	width: 100%;
 }
 .footeraction {
 	line-height: 1.6;
@@ -303,10 +402,13 @@ body.city {
 	font-size: 80%;
 }
 .footer-light {
-	display: inline-block;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
 }
 .footer-light img {
-	width: 30%;
+	width: 40%;
 	margin: 1px;
 }
 
@@ -928,7 +1030,10 @@ body.city {
 	display: flex;
 	justify-content: center;
 	gap: 10%;
-	margin-left: -20%;
+	/* Match the .footertools column (80% left-aligned) so the
+	   furniture strip sits visually over the tools instead of
+	   being centered across the whole room. */
+	width: 80%;
 }
 .furnitureSearch a {
 	width: 2.5vw;

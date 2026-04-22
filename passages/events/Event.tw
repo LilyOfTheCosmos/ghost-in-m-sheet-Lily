@@ -7,12 +7,10 @@
 
 <<if _hg and _hg.canKiss and _bansheeRoll eq 1 and _chance <= 5>>
 	<<set $bansheeAbility to 1>>
-	<<set $tempCorr += 0.015>>
 	<<set _videoList to setup.Events.bansheeVideos()>>
 
 <<elseif _hg and _hg.canTentacles and _cthulionRoll eq 1 and _chance <= 5>>
 	<<set $cthulionAbility to 1>>
-	<<set $tempCorr += 0.015>>
 	<<set _lt to setup.Events.lustTier()>>
 	<<if _lt eq 5>>
 		<<cthulionAbility 1>>
@@ -25,7 +23,6 @@
 <<else>>
 	<<set _eventKey to setup.Events.rollBodyPartEvent(_chance)>>
 	<<if _eventKey>>
-		<<set $tempCorr += 0.015>>
 		<<set _videoList to setup.Events.videoListForEvent(_eventKey)>>
 	<</if>>
 <</if>>

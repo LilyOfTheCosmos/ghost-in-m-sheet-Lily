@@ -24,8 +24,6 @@
 <<if _chance <= $decreasingSanity.stage2 and _checkRandomBanshee eq 1 and _hg and _hg.canKiss>>
 
 	<<set $bansheeAbility to 1>>
-	<<set $tempCorr += 0.05>>
-	<<addLust 15>>
 	<<set _videoList to setup.Events.bansheeVideos()>>
 
 <<elseif _chance <= $decreasingSanity.stage2 and _checkRandomCthulion eq 1 and _hg and _hg.canTentacles>>
@@ -41,31 +39,22 @@
 	/* Stage 1 -- "touching and slapping". Roll splits top/bottom. */
 	<<set _chanceInside to random(1, 5)>>
 	<<if _chanceInside lte 3>>
-		<<addLustByPart>>
 		<<set _videoList to setup.Events.saveEventBottomVideos(1)>>
 	<<else>>
-		<<addLustTits 3>>
 		<<set _videoList to setup.Events.saveEventTopVideos(1)>>
 	<</if>>
-	<<set $tempCorr += 0.01>>
 
 <<elseif $mc.sanity gte 50 and $mc.sanity lt 75 and _chance lte $decreasingSanity.stage2>>
 	/* Stage 2 -- "grinding" -- clothing-aware bottom-body videos. */
 	<<set _videoList to setup.Events.saveEventBottomVideos(2)>>
-	<<addLust 5>>
-	<<set $tempCorr += 0.02>>
 
 <<elseif $mc.sanity gte 30 and $mc.sanity lt 50 and _chance lte $decreasingSanity.stage3>>
 	/* Stage 3 -- "blowjob" -- top-body videos by top/bra state. */
 	<<set _videoList to setup.Events.saveEventTopVideos(3)>>
-	<<addLust 7>>
-	<<set $tempCorr += 0.04>>
 
 <<elseif $mc.sanity gte 1 and $mc.sanity lt 30 and _chance lte $decreasingSanity.stage4>>
 	/* Stage 4 -- "explicit" -- pussy + anal lists combined. */
 	<<set _videoList to setup.Events.saveEventBottomVideos(4)>>
-	<<addLustPussy 9>>
-	<<set $tempCorr += 0.05>>
 
 <</if>>
 

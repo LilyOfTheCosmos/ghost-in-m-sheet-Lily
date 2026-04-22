@@ -13,15 +13,18 @@
 <</if>>
 @@.mc-thoughts; Suddenly, you hear the dull sound of footsteps approaching you. It's starting. The ghost is on the hunt. Time is running out. Looking around, you see shadows closing in on you. It's time to act before it's too late.@@<br>
 
-<<if $mc.energy gte 1>>
-	@@.usebtn; [[Run away|RunFast][$mc.energy -= 1]]@@<span><<image "img/energy.png" { style: "position: relative; top: 0.375em; width:3%;" }>></span>
-<<else>>
-	@@.mc-thoughts; I'm too tired to run@@
-	<span><<image "img/energy.png" { style: "position: relative; top: 0.375em; filter: grayscale(1); width:3%;" }>></span>
-<</if>>
-or @@.usebtn; [[Try to hide|Hide]]@@ <span><<image "img/sanity.png" { style: "position: relative; top: 0.375em; width:3%;" }>></span>
+@@.usebtn; [[Run away|RunFast]]@@
+or @@.usebtn; [[Try to hide|Hide]]@@
 <<if $succubusEventTimer gte 1>>
 	or @@.usebtn; [[Summon the succubus|HuntEventSuccubus]]@@<br>
+<</if>>
+<<if setup.HauntConditions.canPray()>>
+	or @@.usebtn;<<link `"Pray it passes (−10 sanity, −" + setup.HauntConditions.ENERGY_COST_PRAY + " energy)"` "PrayHunt">>
+	<</link>>@@
+<</if>>
+<<if setup.HauntedHouses.hasBottomWorn() or setup.HauntedHouses.hasTopWorn() or $pantiesState eq "worn" or $braState eq "worn">>
+	or @@.usebtn;<<link "Freeze and let it pass (lose a garment)" "FreezeHunt">>
+	<</link>>@@
 <</if>>
 <<done>>
 	<<addclass ".linkselector" "disabled-link">>

@@ -24,21 +24,96 @@ scaffolding and wikifies its contents (which should include an optional
 <</widget>>
 
 /* furnitureRow -- container widget. Wraps its contents in
-<div class="FurnitureSearch">. Use it inside <<roomShell>> for the small
-set of <<furnitureItem>>/<<hideSpot>> calls each room exposes. Omit it
+<div class="furnitureSearch">, which matches the sizing rules in
+StoryStylesheet. Use it inside <<roomShell>> for the small set of
+<<furnitureItem>>/<<hideSpot>> calls each room exposes. Omit it
 entirely for rooms with no furniture (e.g. enigma). */
 <<widget "furnitureRow" container>>
-	<div class="FurnitureSearch"><<= _contents>></div>
+	<div class="furnitureSearch"><<= _contents>></div>
+<</widget>>
+
+/* huntConditions -- single-row HUD above the tool bar. Renders the live
+per-step deltas, contributor chips, and the spendable-action buttons
+(bait the ghost, toggle overcharged tools) on ONE row. Originally the
+buttons were on a second row, but adding a row to the height-capped
+.footer column stole vertical space from the tool bar and shrank icons.
+Numbers come from setup.HauntConditions.snapshot() so the HUD, the
+tool-card hovertip, and the actual tool/hunt rolls all read the same
+source. Renders contents only -- the .hunt-conditions wrapper lives on
+roomFooter so re-renders via <<replace ".hunt-conditions">> don't
+double-nest the wrapper class (which compounds its 80% font-size). */
+<<widget "huntConditions">>
+	<<set _hc to setup.HauntConditions.snapshot()>>
+	<<set _sanity to (_hc.sanityPerStep gt 0 ? "+" : "") + _hc.sanityPerStep>>
+	<<set _lust to (_hc.lustPerStep gt 0 ? "+" : "") + _hc.lustPerStep>>
+	<<set _energy to (_hc.energyPerStep gt 0 ? "+" : "") + _hc.energyPerStep>>
+	<<set _corrShown to Math.round(_hc.corruptionPending * 100) / 100>>
+	<<image "img/sanity.png" { class: "hunt-conditions-icon" }>> _sanity/step
+	· <<image "img/hearth.png" { class: "hunt-conditions-icon" }>> _lust/step
+	· <<image "img/energy.png" { class: "hunt-conditions-icon" }>> _energy/step
+	· <<image "img/corruption.png" { class: "hunt-conditions-icon" }>> <<= _corrShown>>/step
+	· Time <<= _hc.timeLabel>>
+	<<if _hc.toolChanceBonus gt 0 or _hc.toolWindowBonus gt 0 or _hc.huntChanceBonus gt 0>>
+		· tools +<<= _hc.toolChanceBonus>>%
+		<<if _hc.toolWindowBonus gt 0>>
+			/+<<= _hc.toolWindowBonus>>min
+		<</if>>
+		· hunt +<<= _hc.huntChanceBonus>>%
+	<</if>>
+	<<for _c range _hc.contributors>>
+		<<capture _c>>
+			· <span @style="'color:' + _c.color + ';font-weight:bold;'" @title="_c.detail">[<<= _c.label>>]</span>
+		<</capture>>
+	<</for>>
+	<<huntActionBar>>
+<</widget>>
+
+/* huntActionBar -- spendable-resource action buttons rendered inline at
+the end of <<huntConditions>>: bait the ghost (lust spend) and toggle
+overcharged tools on/off. Each click re-renders <<huntConditions>> as a
+whole (which contains the action bar), so we only need the one
+<<replace ".hunt-conditions">> per callback. Only renders in-house. */
+<<widget "huntActionBar">>
+	<<if setup.HauntedHouses.isInsideHouse()>>
+		<<if setup.HauntConditions.canBait()>>
+			· @@.huntActionLink;<<link `"Bait ghost (−" + setup.HauntConditions.BAIT_LUST_COST + " lust, −" + setup.HauntConditions.ENERGY_COST_BAIT + " energy)"`>>
+				<<run setup.HauntConditions.startBait()>>
+				<<updatemeter 'sanity' `$mc.sanity / $mc.sanityMax`>>
+				<<updatemeter 'energy' `$mc.energy / $mc.energyMax`>>
+				<<if $exhausted eq 1>>
+					<<goto "HuntOverExhaustion">>
+				<<else>>
+					<<replace ".hunt-conditions">><<huntConditions>><</replace>>
+				<</if>>
+			<</link>>@@
+		<<elseif setup.HauntConditions.snapshot().baitActive>>
+			· <span class="hunt-actions-note">Baiting: <<= setup.HauntConditions.snapshot().baitStepsRemain>> left</span>
+		<</if>>
+		<<if setup.HauntConditions.isOverchargedMode()>>
+			· @@.huntActionLink;<<link "Tools: Overcharged (revert)">>
+				<<run setup.HauntConditions.toggleOverchargedTools()>>
+				<<replace ".hunt-conditions">><<huntConditions>><</replace>>
+			<</link>>@@
+		<<else>>
+			· @@.huntActionLink;<<link "Tools: Standard (overcharge)">>
+				<<run setup.HauntConditions.toggleOverchargedTools()>>
+				<<replace ".hunt-conditions">><<huntConditions>><</replace>>
+			<</link>>@@
+		<</if>>
+	<</if>>
 <</widget>>
 
 /* roomFooter -- container widget. Reads the _shell* temp vars set by the
-enclosing <<roomShell>> and emits the full .footer block: a .footertools
-div with <<roomToolBar>> + the appropriate light widget, plus a
-.footeraction div whose body comes from _contents (the per-room links).
-Picks roomFooterLight vs roomFooterLightBasic and toggles companion
-visibility based on _shellVariant. */
+enclosing <<roomShell>> and emits the full .footer block: a .hunt-conditions
+HUD row on top, and below it a .footer-row with a .footertools div that
+holds <<roomToolBar>> + the appropriate light widget, plus a .footeraction
+div whose body comes from _contents (the per-room links). Picks
+roomFooterLight vs roomFooterLightBasic and toggles companion visibility
+based on _shellVariant. */
 <<widget "roomFooter" container>>
 	<div class="footer">
+	<div class="hunt-conditions"><<huntConditions>></div>
+	<div class="footer-row">
 	<div class="footertools">
 	<<if _shellVariant eq "basic">>
 		<<roomToolBar _shellPrefix "noCompanion">>
@@ -49,6 +124,7 @@ visibility based on _shellVariant. */
 	<</if>>
 	</div>
 	<div class="footeraction"><<= _contents>></div>
+	</div>
 	</div>
 <</widget>>
 
@@ -75,8 +151,11 @@ non-enigma navigation link in the haunted houses does. */
 
 	/* roomToolCard -- args: tool key (e.g. "emf"), room prefix (e.g. "ElmBedroom").
 	Renders one tool slot using metadata from setup.searchToolDefs and
-	setup.searchPrefixIndex, with the searchTool macro inlined directly. */
+	setup.searchPrefixIndex, with the searchTool macro inlined directly. Wraps
+	the slot in <<hovertip>> so hovering surfaces the tool's current tier and
+	per-check/window success summary from setup.toolSuccessRate. */
 	<<widget "roomToolCard">>
+		<<hovertip setup.toolSuccessRate(_args[0])>>
 		<div class="footer-card">
 		<div class="cardimg">
 		<<image "img/" + setup.searchToolDefs[_args[0]].iconFile { class: "icon", id: _args[1] + setup.searchToolDefs[_args[0]].picSuffix }>>
@@ -85,6 +164,7 @@ non-enigma navigation link in the haunted houses does. */
 		<<searchTool _args[0] _args[1]>>
 		</div>
 		</div>
+		<</hovertip>>
 	<</widget>>
 
 	/* roomToolBar -- arg: room prefix. Emits the canonical six tool slots in
@@ -193,12 +273,34 @@ non-enigma navigation link in the haunted houses does. */
 	<<video _args[0] + _n + _args[3] "displayCentredImgs">>
 <</widget>>
 
-/* notFound -- args: message. Canonical "I didn't find anything" block used
-   by every evidence-check passage when the roll fails or the ghost isn't
-   in the current room. */
+/* notFound -- args: message, [retryPassage].
+   Canonical "I didn't find anything" block. When a retryPassage is passed
+   AND a hunt is active AND the player can afford the press-through cost
+   (5 sanity + ENERGY_COST_PRESS energy via setup.HauntConditions), surfaces
+   a "Press through" link that re-runs the same check in place. Sanity-as-
+   currency + energy gate: burn mental health AND stamina to force a second
+   roll. The energy spend can also tip the player into HuntOverExhaustion. */
 <<widget "notFound">>
 	<<set _msg to _args[0]>>
-	<div class="notFound-container"><div class="mc-thoughts">_msg</div></div>
+	<<set _retryPassage to (_args.length gt 1 ? _args[1] : "")>>
+	<div class="notFound-container">
+	<div class="mc-thoughts">_msg</div>
+	<<if _retryPassage neq "" and setup.HauntConditions.canPressThrough()>>
+		<<capture _retryPassage>>
+			@@.pressThroughLink;<<linkreplace `"Press through (−5 sanity, −" + setup.HauntConditions.ENERGY_COST_PRESS + " energy)"`>>
+				<<set $mc.sanity -= 5>>
+				<<run setup.HauntConditions.spendEnergy(setup.HauntConditions.ENERGY_COST_PRESS)>>
+				<<updatemeter 'sanity' `$mc.sanity / $mc.sanityMax`>>
+				<<updatemeter 'energy' `$mc.energy / $mc.energyMax`>>
+				<<if $exhausted eq 1>>
+					<<goto "HuntOverExhaustion">>
+				<<else>>
+					<<include _retryPassage>>
+				<</if>>
+			<</linkreplace>>@@
+		<</capture>>
+	<</if>>
+	</div>
 <</widget>>
 
 /* coloredText -- args: color, content. Wraps content in the evidence
