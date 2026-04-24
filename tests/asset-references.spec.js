@@ -134,6 +134,65 @@ function relFile(file) {
   return path.relative(REPO_ROOT, file);
 }
 
+// Detect the class of typo where an author migrating from raw
+// `<img @src="setup.ImagePath + '/foo/' + _v + '/bar.png'">` to the
+// `<<image>>/<<video>>` macro preserves the inner single-quoted concat
+// inside the outer double-quoted macro argument, e.g.
+//   <<image "ghosts/' + _ghostName + '.webp" "iconPx">>
+// SugarCube reads this as the single literal string
+// "ghosts/' + _ghostName + '.webp", so the URL resolves to a missing
+// asset. Real asset paths never contain "+", so any "+" inside the
+// first-arg string literal of <<image>>/<<video>> is a bug marker.
+// The correct form is a JS concat across separate string literals:
+//   <<image "ghosts/" + _ghostName + ".webp" "iconPx">>
+function extractBrokenConcatRefs(filePath) {
+  const bad = [];
+  const content = fs.readFileSync(filePath, 'utf-8');
+  const lines = content.split('\n');
+  const patterns = [
+    /<<(?:image|video)\s+"([^"\n]*\+[^"\n]*)"/g,
+    /<<(?:image|video)\s+'([^'\n]*\+[^'\n]*)'/g,
+  ];
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    for (const re of patterns) {
+      for (const m of line.matchAll(re)) {
+        // Skip matches embedded inside a backtick template literal (e.g.
+        // `<<link \`'<<image "' + _path + '">>'\` "target">>`, which builds
+        // markup dynamically -- the concat is correct JS, not a typo).
+        const before = line.slice(0, m.index);
+        const backtickCount = (before.match(/`/g) || []).length;
+        if (backtickCount % 2 === 1) continue;
+        bad.push({ file: filePath, lineno: i + 1, text: m[0] });
+      }
+    }
+  }
+  return bad;
+}
+
+// Detect backtick-wrapped first arguments on <<image>>/<<video>>, e.g.
+//   <<image `_c.imagePath(State.variables[_chanceVar])` { width: "100%" }>>
+// SugarCube does NOT reliably evaluate backtick expressions as the first
+// arg of these macros when the expression contains brackets/parens
+// (observed: companion-portrait regression where the URL rendered as the
+// literal string "_c.imagePath(State.variables[_chanceVar])"). The raw-
+// expression form is always supported and is what other sites use:
+//   <<image _c.imagePath(State.variables[_chanceVar]) { width: "100%" }>>
+//   <<image _ac.portraitPath() "companion-image">>
+//   <<image "img/wardrobe/" + _grp.bareImage>>
+function extractBacktickFirstArg(filePath) {
+  const bad = [];
+  const content = fs.readFileSync(filePath, 'utf-8');
+  const lines = content.split('\n');
+  const re = /<<(?:image|video)\s+`[^`\n]*`/g;
+  for (let i = 0; i < lines.length; i++) {
+    for (const m of lines[i].matchAll(re)) {
+      bad.push({ file: filePath, lineno: i + 1, text: m[0] });
+    }
+  }
+  return bad;
+}
+
 test.describe('asset references', () => {
   // Gather once — reused across the per-root assertions below.
   const allFiles = collectTwFiles(PASSAGES_DIR);
@@ -163,4 +222,30 @@ test.describe('asset references', () => {
       ).toHaveLength(0);
     });
   }
+
+  test('no broken-concat typos in <<image>>/<<video>> first argument', () => {
+    const bad = allFiles.flatMap(extractBrokenConcatRefs);
+    const report = bad.map(b => `  ${relFile(b.file)}:${b.lineno}  ${b.text}`);
+    expect(
+      bad,
+      `${bad.length} <<image>>/<<video>> call(s) have "+" inside the quoted ` +
+      `first argument — this is almost certainly a concat typo like ` +
+      `<<image "foo/' + _v + '.png">> (rewrite as "foo/" + _v + ".png"):\n` +
+      report.join('\n')
+    ).toHaveLength(0);
+  });
+
+  test('no backtick-wrapped first argument on <<image>>/<<video>>', () => {
+    const bad = allFiles.flatMap(extractBacktickFirstArg);
+    const report = bad.map(b => `  ${relFile(b.file)}:${b.lineno}  ${b.text}`);
+    expect(
+      bad,
+      `${bad.length} <<image>>/<<video>> call(s) use backticks around the ` +
+      `first argument — SugarCube does not reliably evaluate these when the ` +
+      `expression contains brackets/parens (the URL renders as the literal ` +
+      `template text). Drop the backticks; the raw-expression form (e.g. ` +
+      `<<image _c.imagePath(x) ...>> or <<image "foo/" + _v>>) works:\n` +
+      report.join('\n')
+    ).toHaveLength(0);
+  });
 });

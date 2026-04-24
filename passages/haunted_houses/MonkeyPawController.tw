@@ -1,0 +1,595 @@
+:: MonkeyPawController [script]
+/*
+ * Centralized state and behavior for the Monkey Paw cursed item.
+ * Passages call into setup.MonkeyPaw instead of poking the underlying
+ * $MonkeyPawStage / $wishesCount / $wish* flags directly, so the
+ * invariants live in one place.
+ *
+ * Owns the canonical wish catalogue (WISHES) -- each entry declares
+ * its id, the keyword that matches textbox input, the button label,
+ * the effect widget name (in widgetText.tw), a description shown
+ * once the player has "learned" the wish, and an activate() function
+ * that applies the gameplay state mutations and returns presentation
+ * hints for the calling widget to render.
+ *
+ * Severity scaling: activate() reads $wishesCount BEFORE spending and
+ * derives a tier in [1..3] -- tier 1 with 3 wishes left is the
+ * baseline cost, tier 3 with 1 wish left is the catastrophic finale.
+ * Each wish's escalation is defined inline in its activate(); the
+ * shape of the return is { tier, video?, narrative?, goto?,
+ * gotoDelay?, <statDelta>?, alreadyUsed? } and the widget renders
+ * off those hints.
+ *
+ * Design note on hidden effects: by default a wish is unknown -- the
+ * player sees nothing in the menu except what they can type into the
+ * textbox. Firing a wish (either by typing its keyword or via the
+ * witch's guide) flips its `learned` bit, which unlocks both a button
+ * and the description for subsequent visits. This is what makes the
+ * 400-coin guide actually valuable: it buys the spoilers up front
+ * rather than just a UI shortcut.
+ */
+setup.MonkeyPaw = (function () {
+	function v(name) { return State.variables[name]; }
+
+	// --- Private state mutators (shared by activate() and the
+	// public API so there is exactly one implementation per op). ---
+
+	function spendWish() {
+		var s = State.variables;
+		s.wishesCount = (s.wishesCount || 0) - 1;
+		if (s.wishesCount < 0) s.wishesCount = 0;
+	}
+
+	function wishesLeft() { return State.variables.wishesCount || 0; }
+
+	/* Severity tier derived from wishes-remaining before activation.
+	   3 left -> tier 1 (baseline), 2 -> 2 (bite), 1 -> 3 (catastrophe).
+	   Clamped so unexpected state (e.g. cheats) still returns a valid
+	   tier and never indexes out of the per-tier tables below. */
+	function currentTier() {
+		return Math.max(1, Math.min(3, 4 - wishesLeft()));
+	}
+
+	function applySanity(delta) {
+		var mc = State.variables.mc;
+		var max = mc.sanityMax || 100;
+		mc.sanity = Math.max(1, Math.min(max, mc.sanity + delta));
+	}
+
+	function applyEnergy(delta) {
+		var mc = State.variables.mc;
+		var max = mc.energyMax || 100;
+		mc.energy = Math.max(0, Math.min(max, mc.energy + delta));
+	}
+
+	function addTempCorr(amount) {
+		var s = State.variables;
+		s.tempCorr = (s.tempCorr || 0) + amount;
+	}
+
+	/* The MC's actual room when a wish fires. The wish widgets run
+	   inside the MonkeyPaw menu passage (and the player reaches it
+	   via Bag), both tagged `noreturn`, so passage() here returns
+	   "MonkeyPaw" -- useless for gating room exits. $return is
+	   updated on every :passagestart for non-noreturn passages, so
+	   it holds the last real haunted-house room the MC stood in. */
+	function currentRoomPassage() {
+		return State.variables.return || passage();
+	}
+
+	/* Front-door lock is hunt-scoped state set by trapTheGhost. The
+	   unlockBy field drives the FrontDoorLocked passage's branching:
+	   'cursedItem' requires a sacrifice, 'dawn' waits for 6 AM.
+	   sealedRoom captures the passage the MC was in when a tier-3
+	   wish was cast -- the "stuck in one room" beat. The scream
+	   option only surfaces in that passage; it is not a front-door
+	   action. Cleared on resetHunt() and on any explicit unlock. */
+	function lockFrontDoor(unlockBy) {
+		State.variables.monkeyPawDoorLock = {
+			locked: true,
+			unlockBy: unlockBy,
+			sealedRoom: currentTier() >= 3 ? currentRoomPassage() : null
+		};
+	}
+
+	function doorLockState() {
+		return State.variables.monkeyPawDoorLock || null;
+	}
+
+	/* Snap the ghost's room to the player's current haunted passage.
+	   No-op if the player isn't on a registered haunted passage -- the
+	   activity wish just wasted its draw in that case. */
+	function snapHuntRoomToCurrent() {
+		var s = State.variables;
+		if (!s.hunt || !s.hunt.room) return;
+		var current = currentRoomPassage();
+		var hp = setup.hauntedPassages || [];
+		for (var i = 0; i < hp.length; i++) {
+			if (hp[i].passage === current) {
+				s.hunt.room.name = hp[i].bgRoom;
+				return;
+			}
+		}
+	}
+
+	function pickActivityVideo() {
+		var base = [
+			'cursedpossessions/slap1.mp4', 'cursedpossessions/slap2.mp4',
+			'cursedpossessions/slap3.mp4', 'cursedpossessions/slap4.mp4',
+			'cursedpossessions/passion1.mp4', 'cursedpossessions/passion2.mp4',
+			'cursedpossessions/passion3.mp4', 'cursedpossessions/passion4.mp4',
+			'cursedpossessions/pulse1.mp4', 'cursedpossessions/pulse2.mp4',
+			'cursedpossessions/pulse3.mp4', 'cursedpossessions/pulse4.mp4'
+		];
+		var g = setup.Ghosts && setup.Ghosts.active && setup.Ghosts.active();
+		if (g && g.cursedActivityVideos) base = base.concat(g.cursedActivityVideos);
+		return base[Math.floor(Math.random() * base.length)];
+	}
+
+	function streetPassageForCurrentHunt() {
+		var s = State.variables;
+		if (s.isElm === 1) return 'Elm Street';
+		if (s.isOwaissa === 1) return 'Owaissa Street';
+		return null;
+	}
+
+	var CURSED_ITEM_TYPE_FLAGS = ['isCIDildo', 'isCIButtplug', 'isCIBeads', 'isCIHDildo'];
+
+	function hasCursedItem() {
+		return State.variables.gotCursedItem === 1;
+	}
+
+	/* Consume the cursed item the player is carrying: clears the
+	   witch-quest flag and whichever type flag is set. Used by the
+	   FrontDoorLocked sacrifice branch. Safe to call when the player
+	   has no item (no-op). Returns the type flag that was cleared,
+	   or null, for flavor. */
+	function consumeCursedItem() {
+		var s = State.variables;
+		if (!hasCursedItem()) return null;
+		var cleared = null;
+		for (var i = 0; i < CURSED_ITEM_TYPE_FLAGS.length; i++) {
+			var flag = CURSED_ITEM_TYPE_FLAGS[i];
+			if (s[flag] === 1) {
+				s[flag] = 0;
+				cleared = flag;
+				break;
+			}
+		}
+		s.gotCursedItem = 0;
+		return cleared;
+	}
+
+	function dawnHasBroken() {
+		return (State.variables.hours || 0) >= 6;
+	}
+
+function bannedHouses() {
+		var s = State.variables;
+		if (!Array.isArray(s.monkeyPawBannedHouses)) s.monkeyPawBannedHouses = [];
+		return s.monkeyPawBannedHouses;
+	}
+
+	/* Ban the currently-active haunted house from re-entry for the
+	   remainder of this contract. Cleared on resetHunt(). No-op if
+	   no house is active (defensive; the leave wish is always used
+	   from inside a house). */
+	function banActiveHouse() {
+		var h = setup.HauntedHouses && setup.HauntedHouses.activeHouse
+			? setup.HauntedHouses.activeHouse() : null;
+		if (!h || !h.id) return null;
+		var list = bannedHouses();
+		if (list.indexOf(h.id) === -1) list.push(h.id);
+		return h.id;
+	}
+
+	function learnedMap() {
+		var s = State.variables;
+		if (!s.monkeyPawLearned) s.monkeyPawLearned = {};
+		return s.monkeyPawLearned;
+	}
+
+	// --- Wish catalogue -------------------------------------------
+
+	var WISHES = [
+		{
+			id: 'activity',
+			input: 'activity',
+			label: 'I wish for activity',
+			widget: 'activity',
+			description: "The paw grants motion -- not the kind you wanted. Sanity falls, lust climbs.",
+			/* Scaling:
+			   t1: +15 lust, -15 sanity
+			   t2: +25 lust, -25 sanity, +0.2 tempCorr
+			   t3: +40 lust, -40 sanity, +0.4 tempCorr, ghost lands on you */
+			activate: function () {
+				var t = currentTier();
+				var lust   = [15, 25, 40][t - 1];
+				var sanity = -[15, 25, 40][t - 1];
+				var corr   = [0, 0.2, 0.4][t - 1];
+
+				setup.addLust(lust);
+				applySanity(sanity);
+				if (corr) addTempCorr(corr);
+				var drewGhost = false;
+				if (t >= 3) {
+					snapHuntRoomToCurrent();
+					drewGhost = true;
+				}
+
+				spendWish();
+
+				return {
+					tier: t,
+					video: pickActivityVideo(),
+					narrative: [
+						"Shit! I shouldn't have asked this....",
+						"God, it's even worse this time. I shouldn't have asked again....",
+						"Something in the room just... noticed me. It's here. It's here."
+					][t - 1],
+					lustDelta: lust,
+					sanityDelta: sanity,
+					corrDelta: corr,
+					drewGhost: drewGhost
+				};
+			}
+		},
+		{
+			id: 'trapTheGhost',
+			input: 'trap the ghost',
+			label: 'I wish to trap the ghost',
+			widget: 'trapTheGhost',
+			description: "The ghost is bound to one room -- and the front door seals behind the wish.",
+			/* Scaling (all tiers pin the ghost to one room and lock the
+			   front door; unlock condition and ghost placement escalate):
+			   t1: -15 sanity, door unlocks only for a cursed-item sacrifice
+			   t2: -25 sanity, +0.2 tempCorr, door unlocks at dawn
+			   t3: -40 sanity, +0.4 tempCorr, ghost snapped to player's room,
+			       door wants a cursed item but the player can also scream
+			       for help (companion fetches, or noise draws the ghost) */
+			activate: function () {
+				var t = currentTier();
+				var s = State.variables;
+				var sanity = -[15, 25, 40][t - 1];
+				var corr   = [0, 0.2, 0.4][t - 1];
+				var unlockBy = t === 2 ? 'dawn' : 'cursedItem';
+
+				if (s.hunt) s.hunt.trapped = true;
+				applySanity(sanity);
+				if (corr) addTempCorr(corr);
+				lockFrontDoor(unlockBy);
+				var drewGhost = false;
+				if (t >= 3) {
+					snapHuntRoomToCurrent();
+					drewGhost = true;
+				}
+
+				spendWish();
+
+				return {
+					tier: t,
+					narrative: [
+						"The ghost is pinned to one room.<br>The front door seals itself behind the wish -- only a cursed offering will open it.",
+						"The ghost is bound. The front door sinks into the frame until dawn.<br>I'll have to wait out the dark.",
+						"I nailed the ghost in place -- here, with me. The doors around me thunk shut.<br>I'll need a cursed offering, or a loud voice."
+					][t - 1],
+					sanityDelta: sanity,
+					corrDelta: corr,
+					doorUnlockBy: unlockBy,
+					drewGhost: drewGhost
+				};
+			}
+		},
+		{
+			id: 'sanity',
+			input: 'be sane',
+			label: 'I wish to be sane',
+			widget: 'sanity',
+			description: "Your mind is set to exactly fifty. No higher. No lower.",
+			/* Scaling:
+			   t1: sanity = 50
+			   t2: sanity = 50, +10 lust, +0.2 tempCorr
+			   t3: sanity = 50, +20 lust, +0.4 tempCorr */
+			activate: function () {
+				var t = currentTier();
+				var lust = [0, 10, 20][t - 1];
+				var corr = [0, 0.2, 0.4][t - 1];
+
+				State.variables.mc.sanity = 50;
+				if (lust) setup.addLust(lust);
+				if (corr) addTempCorr(corr);
+
+				spendWish();
+
+				return {
+					tier: t,
+					narrative: [
+						"I shouldn't have expected anything better...",
+						"My mind is quiet. Too quiet. My body isn't.",
+						"Clarity, bought in full. Something else in me is paying it down."
+					][t - 1],
+					sanitySet: 50,
+					lustDelta: lust,
+					corrDelta: corr
+				};
+			}
+		},
+		{
+			id: 'leave',
+			input: 'leave',
+			label: 'I wish to leave',
+			widget: 'leave',
+			description: "You are cast out of the house -- but not the way you came in.",
+			/* Scaling (every tier strips clothes via the leave widget,
+			   which <<include>>s the canonical Steal* passages so the
+			   $is*Stolen flags, numbered sub-states, and $remember*
+			   markers all line up with a normal theft):
+			   t1: exit + clothes stolen
+			   t2: exit + clothes stolen + guaranteed cursed home item
+			   t3: exit + clothes stolen + cursed home item
+			       + this haunted house is sealed for the rest of the contract */
+			activate: function () {
+				var t = currentTier();
+				var cursedItem = null;
+				var bannedHouse = null;
+
+				if (t >= 2) cursedItem = setup.CursedItems.forceCursedItem();
+				if (t >= 3) bannedHouse = banActiveHouse();
+
+				State.variables.cursedHuntActive = 0;
+				delete State.variables.cursedHuntEndTime;
+
+				spendWish();
+
+				return {
+					tier: t,
+					goto: streetPassageForCurrentHunt(),
+					clothesStolen: true,
+					cursedItem: cursedItem,
+					bannedHouse: bannedHouse
+				};
+			}
+		},
+		{
+			id: 'knowledge',
+			input: 'knowledge',
+			label: 'I wish for knowledge',
+			widget: 'knowledge',
+			description: "One entry is struck from your diary. Once only -- and something hears.",
+			/* Scaling:
+			   t1: remove evidence, ghost event on click
+			   t2: remove evidence, ghost event on click, -15 sanity
+			   t3: remove evidence, ghost event on click, -30 sanity
+			   No-ops if the wish has already been used this hunt. */
+			activate: function () {
+				var s = State.variables;
+				if (s.knowledgeUsed === 1) {
+					return { tier: 0, alreadyUsed: true };
+				}
+
+				var t = currentTier();
+				var sanity = [0, -15, -30][t - 1];
+
+				var all = ['emf', 'spiritbox', 'gwb', 'uvl', 'glass', 'temperature'];
+				var missing = all.filter(function (e) {
+					return s.hunt && !s.hunt.evidence.includes(e)
+						&& e !== s.hiddenEvidence
+						&& e !== s.hiddenEvidence1
+						&& e !== s.hiddenEvidence2;
+				});
+				s.chosenEvidence = missing.length
+					? missing[Math.floor(Math.random() * missing.length)]
+					: null;
+				s.knowledgeUsed = 1;
+				if (sanity) applySanity(sanity);
+
+				spendWish();
+
+				return {
+					tier: t,
+					narrative: [
+						"It worked! One evidence has been removed from my diary!<br>Wait...I hear someone's footsteps...",
+						"The knowledge comes with a voice. It's already in the hallway.",
+						"The paw takes my memory and gives me its tenant in trade."
+					][t - 1],
+					sanityDelta: sanity,
+					goto: 'GhostHuntEvent'
+				};
+			}
+		},
+		{
+			id: 'dawn',
+			input: 'dawn',
+			label: 'I wish for dawn',
+			widget: 'dawn',
+			description: "Morning comes, ready or not. The hunt ends.",
+			/* Scaling:
+			   t1: jump to 6 AM, end hunt
+			   t2: jump to 6 AM, end hunt, +0.2 tempCorr
+			   t3: jump to 6 AM, end hunt, +0.4 tempCorr */
+			activate: function () {
+				var t = currentTier();
+				var s = State.variables;
+				var corr = [0, 0.2, 0.4][t - 1];
+
+				s.hours = 6;
+				s.cursedHuntActive = 0;
+				delete s.cursedHuntEndTime;
+				if (corr) addTempCorr(corr);
+
+				spendWish();
+
+				return {
+					tier: t,
+					goto: 'HuntOverTime',
+					corrDelta: corr
+				};
+			}
+		}
+	];
+
+	return {
+		// --- Catalogue --------------------------------------------
+		list: function () { return WISHES.slice(); },
+		byId: function (id) {
+			for (var i = 0; i < WISHES.length; i++) {
+				if (WISHES[i].id === id) return WISHES[i];
+			}
+			return null;
+		},
+		/* Match a textbox entry to a canonical wish by keyword.
+		   Case- and whitespace-insensitive. Returns null on miss. */
+		byInput: function (text) {
+			var q = (text || '').toString().toLowerCase().trim();
+			for (var i = 0; i < WISHES.length; i++) {
+				if (WISHES[i].input === q) return WISHES[i];
+			}
+			return null;
+		},
+		/* Pick one of the real wishes uniformly -- used by the
+		   "I wish for anything" meta-button. */
+		rollAnything: function () {
+			return WISHES[Math.floor(Math.random() * WISHES.length)];
+		},
+		/* Apply a wish's effect by id and return the presentation
+		   hints for the widget to render. Convenience wrapper around
+		   byId(id).activate() so callers don't need to null-check. */
+		activate: function (id) {
+			var w = this.byId(id);
+			return w && w.activate ? w.activate() : null;
+		},
+
+		// --- Hunt-scoped lifecycle --------------------------------
+		/* Reset hunt-scoped paw state. Called from GhostRandomize at
+		   the start of every new contract. Does NOT touch `learned`
+		   or guide flags -- those persist across hunts. */
+		resetHunt: function () {
+			var s = State.variables;
+			s.MonkeyPawStage = 0;
+			s.wishesCount = 3;
+			s.knowledgeUsed = undefined;
+			s.monkeyPawDoorLock = null;
+			s.monkeyPawBannedHouses = [];
+		},
+		/* Furniture search calls this when the paw is discovered. */
+		markFound: function () { State.variables.MonkeyPawStage = 1; },
+		/* Hunt-end cleanup. The paw is consumed for the session. */
+		retire: function () { State.variables.MonkeyPawStage = 2; },
+		isFound: function () { return v('MonkeyPawStage') === 1; },
+		/* Stage 0: paw is still sitting in a furniture slot waiting
+		   to be discovered this hunt. FurnitureSearch and the map
+		   highlight logic gate on this. */
+		isDiscoverable: function () { return (v('MonkeyPawStage') || 0) === 0; },
+		/* The Bag icon shows only when carrying the paw AND not on a
+		   street (the player must be inside the house to use it). */
+		isCarrying: function () {
+			if (!this.isFound()) return false;
+			var prev = previous(1);
+			return prev !== 'Owaissa Street' && prev !== 'Elm Street';
+		},
+
+		// --- Wish economy -----------------------------------------
+		wishesLeft: wishesLeft,
+		hasWishes: function () { return wishesLeft() > 0; },
+		spendWish: spendWish,
+		/* Severity tier the next activate() would use, for UIs that
+		   want to warn the player before they click. */
+		tier: currentTier,
+
+		// --- Front-door lock (trapTheGhost wish side effect) -----
+		isFrontDoorLocked: function () {
+			var lock = doorLockState();
+			return !!(lock && lock.locked);
+		},
+		doorUnlockBy: function () {
+			var lock = doorLockState();
+			return lock ? lock.unlockBy : null;
+		},
+		/* True iff the current passage is the room the MC was in when
+		   a tier-3 trapTheGhost wish was cast, and the lock is still
+		   active. The <<roomFooter>> widget uses this to decide
+		   whether to render the scream link. */
+		canScreamHere: function () {
+			var lock = doorLockState();
+			if (!lock || !lock.locked || !lock.sealedRoom) return false;
+			return passage() === lock.sealedRoom;
+		},
+		sealedRoom: function () {
+			var lock = doorLockState();
+			return lock ? lock.sealedRoom : null;
+		},
+
+		// --- Paw-banned houses (leave wish, tier 3) --------------
+		/* True iff the "leave" wish at tier 3 has sealed this house
+		   against re-entry for the current contract. Cleared by
+		   resetHunt() when the witch hands out a new contract. */
+		isHouseBanned: function (id) {
+			return bannedHouses().indexOf(id) !== -1;
+		},
+		unlockFrontDoor: function () {
+			State.variables.monkeyPawDoorLock = null;
+		},
+		hasCursedItem: hasCursedItem,
+		/* Sacrifice the player's carried cursed item to unlock the
+		   door. Returns the cleared type flag for flavor text, or
+		   null if the player had no item (in which case the door
+		   stays locked and the caller should show the alternate
+		   branch). */
+		sacrificeCursedItemForDoor: function () {
+			var cleared = consumeCursedItem();
+			if (cleared) this.unlockFrontDoor();
+			return cleared;
+		},
+		/* Called from PassageReady after time advances. Clears a
+		   dawn-conditioned lock once $hours >= 6. No-op otherwise. */
+		maybeAutoUnlockAtDawn: function () {
+			var lock = doorLockState();
+			if (!lock || !lock.locked) return;
+			if (lock.unlockBy === 'dawn' && dawnHasBroken()) {
+				this.unlockFrontDoor();
+			}
+		},
+
+		// --- Learned state ----------------------------------------
+		isLearned: function (id) { return learnedMap()[id] === true; },
+		markLearned: function (id) { learnedMap()[id] = true; },
+		learnAll: function () {
+			for (var i = 0; i < WISHES.length; i++) {
+				learnedMap()[WISHES[i].id] = true;
+			}
+		},
+		/* Short description of what a wish does, or null when the
+		   player hasn't learned it yet. Menu code renders the
+		   description next to the button iff this returns non-null. */
+		describe: function (id) {
+			if (!this.isLearned(id)) return null;
+			var w = this.byId(id);
+			return w ? w.description : null;
+		},
+
+		// --- "Anything" meta-wish ---------------------------------
+		hasAnything: function () { return v('wishAnything') === 1; },
+		grantAnything: function () { State.variables.wishAnything = 1; },
+
+		// --- Witch's guide ----------------------------------------
+		/* Guide states: undefined/0 = not asked, 1 = asked about but
+		   not bought, 2 = purchased (everything revealed). */
+		guideStage: function () {
+			var g = v('boughtMonkeyPawGuide');
+			return g === undefined ? 0 : g;
+		},
+		ensureGuideInit: function () {
+			if (State.variables.boughtMonkeyPawGuide === undefined) {
+				State.variables.boughtMonkeyPawGuide = 0;
+			}
+		},
+		hasGuide: function () { return this.guideStage() === 2; },
+		/* Witch-side purchase effect: reveal everything. Money is
+		   deducted by the caller (WitchSale). */
+		purchaseGuide: function () {
+			State.variables.boughtMonkeyPawGuide = 2;
+			this.learnAll();
+			this.grantAnything();
+		}
+	};
+})();
