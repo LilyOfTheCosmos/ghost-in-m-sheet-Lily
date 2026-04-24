@@ -14,15 +14,15 @@ The game includes a body modification system that allows you to customize your c
   * [BeautySalonPiercing.tw](../passages/salon/BeautySalonPiercing.tw) - Getting piercings at the salon
   * [BeautySalonTattoos.tw](../passages/salon/BeautySalonTattoos.tw) - Getting tattoos at the salon
   * [SalonController.tw](../passages/salon/SalonController.tw) - Shared salon state, pricing, and helpers
+  * [widgetSalon.tw](../passages/salon/widgetSalon.tw) - Shared salon widgets
 
 * **Mirror and appearance** - The mirror at home lets you review your current appearance and modifications.
   * [Mirror.tw](../passages/home/Mirror.tw) - Home mirror for checking appearance
 
-* **Clothing and wardrobe** - Clothing choices interact with the exhibitionism and body modification systems.
+* **Clothing and wardrobe** - Clothing choices interact with the exhibitionism and body modification systems. Clothing state changes are now driven entirely by `setup.Wardrobe` helpers in the controller (no standalone state-change passage).
   * [Wardrobe.tw](../passages/home/Wardrobe.tw) - Wardrobe and clothing selection
   * [WardrobeSlots.tw](../passages/home/WardrobeSlots.tw) - Wardrobe slot layout and outfit slots
-  * [WardrobeController.tw](../passages/home/WardrobeController.tw) - Wardrobe state and outfit switching logic
-  * [ClothesChanges.tw](../passages/home/ClothesChanges.tw) - Clothing state change mechanics
+  * [WardrobeController.tw](../passages/home/WardrobeController.tw) - Wardrobe state and outfit switching logic (hosts `setup.Wardrobe.stealWornInGroup` / `restoreStolenInGroup` used by hunt events)
 
 * **Exhibitionism in hunts** - Nudity events during ghost hunts are tied to the exhibitionism level unlocked through body mod progression.
   * [NudityEvent.tw](../passages/haunted_houses/general/NudityEvent.tw) - Nudity event during hunts

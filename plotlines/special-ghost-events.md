@@ -1,50 +1,48 @@
 # Special Ghost Events Plotline
 
-Specific ghost types have unique special events that occur under certain conditions. These include the Mare (sleep paralysis), Myling (cry for help), Nap Spirit (energy drain), Sleep Spirit, TV Spirit, Wraith, and other ghost types. These events often have multiple stages and can involve unique gameplay mechanics, dialogue options, and outcomes. Some special events require specific companions or items to resolve successfully, adding strategic depth to ghost identification and handling.
+Specific ghost types have unique special events that fire outside the normal hunt loop — typically during or after a hunt against that ghost type, or later at home when a ghost-specific flag is set. Each event has its own trigger (a ghost identity + a game-state condition like time-of-day, sleep, nap, walk-home, sanity/corruption threshold, or a set cooldown). The per-ghost pointers (`walkHomePassage`, `sleepPassage`, `goHomePassage`, `companionHuntPassage`, `huntEventFlag`) live on the `Ghost` class in [GhostController.tw](../passages/ghosts/GhostController.tw); the branching predicates live in [SpecialEventController.tw](../passages/special_event/SpecialEventController.tw) and [HomeController.tw](../passages/home/HomeController.tw).
 
-* **Mare events** - The Mare causes sleep paralysis during hunts. You wake up unable to move while the ghost sits on your chest. Events have multiple stages and can lead to sexual or sensual content depending on choices.
-  * [GhostSpecialEventMare.tw](../passages/special_event/GhostSpecialEventMare.tw) - Mare sleep paralysis event entry
-  * [GhostSpecialEventMare0.tw](../passages/special_event/GhostSpecialEventMare0.tw) - Mare event opening stage
-  * [GhostSpecialEvent1Mare.tw](../passages/special_event/GhostSpecialEvent1Mare.tw) - Mare event stage 1
-  * [GhostSpecialEventMareEnd.tw](../passages/special_event/GhostSpecialEventMareEnd.tw) - Mare event conclusion
+* **Mare events** - The Mare visits the MC while she sleeps at home. Progression is driven by two flags: `ghostMareEventStart` (bumped to 1 the first time the MC enters a Mare's haunted house via the ghost's `onEnterHouse` hook; jumped to 4 if the MC has already played `GhostSpecialEventMare`) and `ghostMareEventStage` (incremented once per in-game day in `resetCooldowns()` while `ghostMareEventStart >= 1`). Sleeping in the Bedroom calls `advanceMareStageOnWake()` and `applyMareWake()`, which inflict increasingly severe sanity/lust penalties as the stage rises. Using holy water in the Bedroom (`setup.Home.canUseHolyWaterOnMare()`) clears both flags. The PC's webcam icon in [Use PC](../passages/home/pc/Use_PC.tw) surfaces the recorded footage (camera must be bought and the MC must have slept with it on).
+  * [GhostSpecialEventMare0.tw](../passages/special_event/GhostSpecialEventMare0.tw) - Empty placeholder video on the PC webcam (shown when `ghostMareEventStart < 2`, i.e. before the Mare has actually visited)
+  * [GhostSpecialEventMare.tw](../passages/special_event/GhostSpecialEventMare.tw) - Initial webcam footage (`ghostMareEventStart >= 2 && mareStageLow()`, stage ≤ 2); viewing it bumps `ghostMareEventStart` to 4
+  * [GhostSpecialEvent1Mare.tw](../passages/special_event/GhostSpecialEvent1Mare.tw) - Later-stage webcam footage with the Mare's possession whisper (`ghostMareEventStart >= 2 && !mareStageLow()`, stage > 2)
+  * [GhostSpecialEventMareEnd.tw](../passages/special_event/GhostSpecialEventMareEnd.tw) - Paralysis-on-the-floor event; fires from [Sleep.tw](../passages/home/Sleep.tw) when the MC tries to sleep with `mareStageAtLeast(4)`. Clears `ghostMareEventStart` / `ghostMareEventStage` afterward.
 
-* **Myling events** - The Myling cries for help, often leading you to dangerous situations. The crying can be heard from different locations and may lead to traps or ghost encounters.
-  * [GhostSpecialEventMyling.tw](../passages/special_event/GhostSpecialEventMyling.tw) - Myling crying event
-  * [GhostSpecialEventMylingTwo.tw](../passages/special_event/GhostSpecialEventMylingTwo.tw) - Myling second stage / follow-up event
+* **Myling events** - The Myling doesn't confront the MC directly. After a hunt against a Myling, passersby see the MC (and any companion) in unusual clothing — or naked — even though she's fully dressed, making the walk home an involuntary exhibitionism scene. Wired through the ghost's `goHomePassage` (solo) and `companionHuntPassage` (with a companion).
+  * [GhostSpecialEventMyling.tw](../passages/special_event/GhostSpecialEventMyling.tw) - Solo walk-home event; triggered from [HuntOverManual.tw](../passages/haunted_houses/hunt/HuntOverManual.tw)'s "Go home" link when the active ghost's `goHomePassage` is set (Myling). Passersby stare and whistle at the MC as she walks home alone.
+  * [GhostSpecialEventMylingTwo.tw](../passages/special_event/GhostSpecialEventMylingTwo.tw) - Companion walk-home variant; triggered from [CompanionMain.tw](../passages/companion/CompanionMain.tw) via the ghost's `companionHuntPassage`. MC and companion both draw stares on the way back. Calls `resetHuntPlansAfterMyling()` to clear per-hunt companion state before handing off to [WalkHomeTogether.tw](../passages/companion/WalkHomeTogether.tw).
 
-* **Nap Spirit events** - The Nap Spirit drains your energy, causing fatigue and hallucinations. Events involve falling asleep during hunts and experiencing dream sequences.
-  * [GhostSpecialEventNapSpirit.tw](../passages/special_event/GhostSpecialEventNapSpirit.tw) - Nap Spirit energy drain event
-  * [GhostSpecialEventNapSpirit1.tw](../passages/special_event/GhostSpecialEventNapSpirit1.tw) - Nap Spirit event stage 1 / dream sequence
+* **Nap Spirit events** - Post-hunt side-effect of the Spirit ghost: after a Spirit hunt ends, the ghost's `onHuntEnd` hook resets `ghostSpiritEventStage` to 0, which (combined with the daily cooldown `ghostSpecialEventSpiritCD === 0` — reset by [ResetCooldowns.tw](../passages/updates/ResetCooldowns.tw)) opens the `spiritNapEventReady()` gate. Taking a 1-hour nap in the Bedroom fires the event; `markSpiritEventSeen()` then sets both stage and CD so the nap variant fires at most once per Spirit hunt.
+  * [GhostSpecialEventNapSpirit.tw](../passages/special_event/GhostSpecialEventNapSpirit.tw) - Triggered from the "Take a nap(1 hour)" link in [Bedroom.tw](../passages/home/Bedroom.tw) when `spiritNapEventReady()` is true
+  * [GhostSpecialEventNapSpirit1.tw](../passages/special_event/GhostSpecialEventNapSpirit1.tw) - Continuation scene
 
-* **Sleep Spirit events** - Sleep Spirit puts you to sleep and takes control of your body. Events involve waking up in strange locations or positions, with possible sexual or sensual content.
-  * [GhostSpecialEventSleepSpirit.tw](../passages/special_event/GhostSpecialEventSleepSpirit.tw) - Sleep Spirit sleep event entry
-  * [GhostSpecialEventSleepSpirit1.tw](../passages/special_event/GhostSpecialEventSleepSpirit1.tw) - Sleep Spirit stage 1
-  * [GhostSpecialEventSleepSpirit2.tw](../passages/special_event/GhostSpecialEventSleepSpirit2.tw) - Sleep Spirit stage 2
+* **Sleep Spirit events** - 8-hour-sleep variant of the Spirit post-hunt event. Same `spiritNapEventReady()` gate as the nap version, but fires from the "Wake up" link in [Sleep.tw](../passages/home/Sleep.tw) when the MC sleeps after a normal hunt end. Branches on corruption and energy: needs `mc.corruption >= 5` for the consummated branch and `mc.energy >= 5` for the full version (otherwise the low-energy exhausted-blowjob branch plays).
+  * [GhostSpecialEventSleepSpirit.tw](../passages/special_event/GhostSpecialEventSleepSpirit.tw) - Entry; branches on `hasEnergyForSleepSpirit()` and `hasMinCorruptionForSleepSpirit()`
+  * [GhostSpecialEventSleepSpirit1.tw](../passages/special_event/GhostSpecialEventSleepSpirit1.tw) - High-energy / high-corruption continuation
+  * [GhostSpecialEventSleepSpirit2.tw](../passages/special_event/GhostSpecialEventSleepSpirit2.tw) - Low-energy continuation
 
-* **TV Spirit events** - TV Spirit appears on screens and can transport you to different locations. Events involve strange broadcasts and potential dimensional shifts.
-  * [GhostSpecialEventTVSpirit.tw](../passages/special_event/GhostSpecialEventTVSpirit.tw) - TV Spirit screen event entry
-  * [GhostSpecialEventTVSpirit1.tw](../passages/special_event/GhostSpecialEventTVSpirit1.tw) - TV Spirit stage 1
+* **TV Spirit events** - Watch-TV variant of the Spirit post-hunt event. Triggered from the "Watch tv (30 min)" link in [Livingroom.tw](../passages/home/Livingroom.tw) when `spiritNapEventReady()` is true. Branches on corruption: needs `mc.corruption >= 3` to continue into the consummated scene; otherwise the MC jolts awake as the spirit vanishes.
+  * [GhostSpecialEventTVSpirit.tw](../passages/special_event/GhostSpecialEventTVSpirit.tw) - Entry; branches on `hasMinCorruptionForTVSpirit()`
+  * [GhostSpecialEventTVSpirit1.tw](../passages/special_event/GhostSpecialEventTVSpirit1.tw) - Corruption ≥ 3 continuation
 
-* **Wraith events** - Wraiths can phase through walls and cause sudden temperature drops. Events involve sudden appearances and disappearances with potential for intense ghost encounters.
-  * [GhostSpecialEventWraith.tw](../passages/special_event/GhostSpecialEventWraith.tw) - Wraith appearance event
-  * [GhostSpecialEventWraithStart.tw](../passages/special_event/GhostSpecialEventWraithStart.tw) - Wraith event start
-  * [GhostSpecialEventWraithEnd.tw](../passages/special_event/GhostSpecialEventWraithEnd.tw) - Wraith event conclusion
+* **Wraith events** - Triggered via the Wraith's `sleepPassage` after a hunt: the MC wakes up bound in a forest. Fires from [Sleep.tw](../passages/home/Sleep.tw) when `previous()` is `HuntOverSanity`, `HuntEnd`, or `CursedHuntStart` and the active ghost has a `sleepPassage` (Wraith). Entry branches on energy: if `canTryEscape()` (energy ≥ 1) the MC can roll to free herself (5% per energy point, spending all energy on success). Failure triggers a fake-rescue scene.
+  * [GhostSpecialEventWraith.tw](../passages/special_event/GhostSpecialEventWraith.tw) - Entry / escape attempt
+  * [GhostSpecialEventWraithStart.tw](../passages/special_event/GhostSpecialEventWraithStart.tw) - Fake-rescuers assault scene
+  * [GhostSpecialEventWraithEnd.tw](../passages/special_event/GhostSpecialEventWraithEnd.tw) - Event conclusion
 
-* **The Twins events** - The Twins can interact with the player during sleep at home. These events involve dual-entity encounters with unique mechanics.
-  * [TheTwinsEvent.tw](../passages/home/TheTwinsEvent.tw) - The Twins home event
-  * [SleepTwins.tw](../passages/home/SleepTwins.tw) - Sleeping encounter with The Twins
+* **The Twins events** - After a hunt where the active ghost was The Twins, the ghost's `huntEventFlag` hook sets `$thetwinsevent = 1`. Back at home, while the event is armed and its daily cooldown `thetwinseventCD === 0` (see `twinsEventAvailable()` in [HomeController.tw](../passages/home/HomeController.tw)), visiting the bathroom mirror rolls a beauty check (random 30–100 vs `mc.beauty`): a low roll shows two figures watching through the mirror and disappearing; a high roll (beauty passes) has them step through and pull the MC into the TheTwinsEvent scene. The mirror branch that doesn't fire the sex scene still consumes the event via `consumeTwinsEvent()`. There is also an alternate path: summoning the wrong ghost in the Bedroom can trigger the Twins via [SummonTwins.tw](../passages/home/summoning/SummonTwins.tw), which hands off to [SleepTwins.tw](../passages/home/SleepTwins.tw).
+  * [Mirror.tw](../passages/home/Mirror.tw) - Bathroom mirror; beauty-roll branch into the Twins scene
+  * [TheTwinsEvent.tw](../passages/home/TheTwinsEvent.tw) - Main Twins scene (from Mirror)
+  * [SleepTwins.tw](../passages/home/SleepTwins.tw) - Post-summoning wake-up variant (from SummonTwins)
 
-* **General spirit event** - Shared event logic used by multiple ghost types.
-  * [GhostSpecialEventSpirit.tw](../passages/special_event/GhostSpecialEventSpirit.tw) - Generic spirit event handler
-  * [SpecialEventController.tw](../passages/special_event/SpecialEventController.tw) - Shared special-event state and helpers
+* **Spirit walk-home event** - Companion walk-home variant of the Spirit side-effect. Fires from [WalkHomeTogether.tw](../passages/companion/WalkHomeTogether.tw) when the active ghost has `walkHomePassage` set (Spirit) — i.e. the MC walked home together with a companion after a Spirit hunt. Different CG depending on which companion (Brook / Alice / Blake) came home.
+  * [GhostSpecialEventSpirit.tw](../passages/special_event/GhostSpecialEventSpirit.tw) - Companion-branched walk-home scene
+  * [SpecialEventController.tw](../passages/special_event/SpecialEventController.tw) - Shared special-event state and helpers (corruption/energy gates, mare stage, Wraith escape rolls, companion identity checks)
 
-* **Home summoning events** - Some ghost types can be summoned at home, triggering possession-adjacent special events.
-  * [SuccubusEventTV.tw](../passages/home/summoning/SuccubusEventTV.tw) - Succubus TV event
-  * [SuccubusPCEvent.tw](../passages/home/summoning/SuccubusPCEvent.tw) - Succubus PC event
-  * [TentaclesEventSleep.tw](../passages/home/tentacles/TentaclesEventSleep.tw) - Tentacles sleep event
-  * [TentaclesEventSleep1.tw](../passages/home/tentacles/TentaclesEventSleep1.tw) - Tentacles sleep event stage 2
-  * [TentaclesEventTV.tw](../passages/home/tentacles/TentaclesEventTV.tw) - Tentacles TV event
-  * [TentaclesEventTV1.tw](../passages/home/tentacles/TentaclesEventTV1.tw) - Tentacles TV event stage 2
-  * [TentaclesEventNap.tw](../passages/home/tentacles/TentaclesEventNap.tw) - Tentacles nap event
-  * [TentaclesEventPC.tw](../passages/home/tentacles/TentaclesEventPC.tw) - Tentacles PC event
-  * [TentaclesEventPC1.tw](../passages/home/tentacles/TentaclesEventPC1.tw) - Tentacles PC event stage 2
+* **Home summoning events** - Some ghost types can be summoned or triggered at home via the summoning ritual or a lingering cursed presence. Succubus events are gated by `succubusCanKnock()` / `succubusTVEventReady()` / `isSuccubusPCEventReady()` (time-of-day 18–23 + corruption ≥ 6 + `$succubus` flag state); tentacles events are gated by the `gotCursedItem` flag and per-event cooldown counters (`tentaclesNapEventReady`, `tentaclesTVEventReady`, `tentaclesSleepEventReady`) — see [HomeController.tw](../passages/home/HomeController.tw).
+  * [SuccubusEventTV.tw](../passages/home/summoning/SuccubusEventTV.tw) - Watch-TV Succubus event (Livingroom, evening hours, post-summoning)
+  * [SuccubusPCEvent.tw](../passages/home/summoning/SuccubusPCEvent.tw) - PC-use Succubus event
+  * [TentaclesEventSleep.tw](../passages/home/tentacles/TentaclesEventSleep.tw) / [TentaclesEventSleep1.tw](../passages/home/tentacles/TentaclesEventSleep1.tw) - Sleep tentacles event (Bedroom, evening hours, cursed-item flag)
+  * [TentaclesEventTV.tw](../passages/home/tentacles/TentaclesEventTV.tw) / [TentaclesEventTV1.tw](../passages/home/tentacles/TentaclesEventTV1.tw) - Watch-TV tentacles event
+  * [TentaclesEventNap.tw](../passages/home/tentacles/TentaclesEventNap.tw) - Nap tentacles event
+  * [TentaclesEventPC.tw](../passages/home/tentacles/TentaclesEventPC.tw) / [TentaclesEventPC1.tw](../passages/home/tentacles/TentaclesEventPC1.tw) - PC tentacles event

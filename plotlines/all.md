@@ -24,7 +24,7 @@ Ghost possession is a dangerous mechanic that can occur during hunts. When posse
 
 ## [Special Ghost Events Plotline](special-ghost-events.md)
 
-Specific ghost types have unique special events that occur under certain conditions. These include the Mare (sleep paralysis), Myling (cry for help), Nap Spirit (energy drain), Sleep Spirit, TV Spirit, Wraith, and other ghost types. These events often have multiple stages and can involve unique gameplay mechanics, dialogue options, and outcomes. Some special events require specific companions or items to resolve successfully, adding strategic depth to ghost identification and handling.
+Specific ghost types have unique special events that fire outside the normal hunt loop. Each is tied to a ghost identity plus a game-state condition: the Mare escalates over nights of sleep and culminates in a paralysis scene; the Myling makes passersby see the MC as nude during the walk home after a hunt; the Spirit leaves the MC vulnerable to a post-hunt encounter that fires in nap / sleep / TV / walk-home variants (each branching on corruption and energy); the Wraith dumps the MC bound in a forest after a failed hunt; and The Twins return via the bathroom mirror on a beauty roll once they've been encountered in a hunt. Triggers, flags, and stage progression are documented per-event in [special-ghost-events.md](special-ghost-events.md).
 
 ## [Body Modification and Personalization Plotline](body-mods.md)
 
