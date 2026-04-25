@@ -168,10 +168,10 @@
       "label": "Clean Build Artifacts",
       "type": "shell",
       "command": "rm",
-      "args": ["-f", "dist/ghost-in-msheet.html"],
+      "args": ["-f", "ghost-in-msheet.html"],
       "windows": {
         "command": "del",
-        "args": ["/q", "dist\\ghost-in-msheet.html"]
+        "args": ["/q", "ghost-in-msheet.html"]
       },
       "group": "none",
       "problemMatcher": [],
@@ -203,10 +203,10 @@
     {
       "label": "Package Placeholder Release",
       "type": "shell",
-      "command": "V=$(sed -n \"s/.*Ghost in M'Sheet \\([0-9][0-9.]*\\).*/\\1/p\" passages/StoryCaption.tw | head -1 | tr . -); : \"${V:?version not found in passages/StoryCaption.tw}\"; zip -j \"dist/ghost-in-m-sheet-v${V}-placeholder-release.zip\" dist/ghost-in-msheet.html && zip -r \"dist/ghost-in-m-sheet-v${V}-placeholder-release.zip\" asset-placeholders",
+      "command": "V=$(sed -n \"s/.*Ghost in M'Sheet \\([0-9][0-9.]*\\).*/\\1/p\" passages/StoryCaption.tw | head -1 | tr . -); : \"${V:?version not found in passages/StoryCaption.tw}\"; zip -r \"ghost-in-m-sheet-v${V}-placeholder-release.zip\" ghost-in-msheet.html asset-placeholders",
       "windows": {
         "command": "powershell",
-        "args": ["-NoProfile", "-Command", "$m = Select-String -Path passages/StoryCaption.tw -Pattern \"Ghost in M'Sheet (\\d[\\d.]*)\" | Select-Object -First 1; if (-not $m) { throw 'version not found in passages/StoryCaption.tw' }; $v = $m.Matches[0].Groups[1].Value -replace '\\.','-'; Compress-Archive -Path dist\\ghost-in-msheet.html,asset-placeholders -DestinationPath \"dist\\ghost-in-m-sheet-v$v-placeholder-release.zip\" -Force"]
+        "args": ["-NoProfile", "-Command", "$m = Select-String -Path passages/StoryCaption.tw -Pattern \"Ghost in M'Sheet (\\d[\\d.]*)\" | Select-Object -First 1; if (-not $m) { throw 'version not found in passages/StoryCaption.tw' }; $v = $m.Matches[0].Groups[1].Value -replace '\\.','-'; Compress-Archive -Path ghost-in-msheet.html,asset-placeholders -DestinationPath \"ghost-in-m-sheet-v$v-placeholder-release.zip\" -Force"]
       },
       "dependsOn": "Build Story",
       "group": "none",
@@ -216,10 +216,10 @@
     {
       "label": "Package Release",
       "type": "shell",
-      "command": "V=$(sed -n \"s/.*Ghost in M'Sheet \\([0-9][0-9.]*\\).*/\\1/p\" passages/StoryCaption.tw | head -1 | tr . -); : \"${V:?version not found in passages/StoryCaption.tw}\"; trap 'mv -f passages/StoryInit.tw.bak passages/StoryInit.tw 2>/dev/null' EXIT; cp passages/StoryInit.tw passages/StoryInit.tw.bak && sed -i 's|setup.ImagePath = \"[^\"]*\"|setup.ImagePath = \"assets\"|' passages/StoryInit.tw && ./scripts/build.sh && zip -j \"dist/ghost-in-m-sheet-v${V}-release.zip\" dist/ghost-in-msheet.html && zip -r \"dist/ghost-in-m-sheet-v${V}-release.zip\" assets",
+      "command": "V=$(sed -n \"s/.*Ghost in M'Sheet \\([0-9][0-9.]*\\).*/\\1/p\" passages/StoryCaption.tw | head -1 | tr . -); : \"${V:?version not found in passages/StoryCaption.tw}\"; trap 'mv -f passages/StoryInit.tw.bak passages/StoryInit.tw 2>/dev/null' EXIT; cp passages/StoryInit.tw passages/StoryInit.tw.bak && sed -i 's|setup.ImagePath = \"[^\"]*\"|setup.ImagePath = \"assets\"|' passages/StoryInit.tw && ./scripts/build.sh && zip -r \"ghost-in-m-sheet-v${V}-release.zip\" ghost-in-msheet.html assets",
       "windows": {
         "command": "powershell",
-        "args": ["-NoProfile", "-Command", "$m = Select-String -Path passages/StoryCaption.tw -Pattern \"Ghost in M'Sheet (\\d[\\d.]*)\" | Select-Object -First 1; if (-not $m) { throw 'version not found in passages/StoryCaption.tw' }; $v = $m.Matches[0].Groups[1].Value -replace '\\.','-'; Copy-Item passages/StoryInit.tw passages/StoryInit.tw.bak; try { (Get-Content passages/StoryInit.tw) -replace 'setup.ImagePath = \"[^\"]*\"', 'setup.ImagePath = \"assets\"' | Set-Content passages/StoryInit.tw; & .\\scripts\\build.bat; if ($LASTEXITCODE -ne 0) { throw 'build failed' }; Compress-Archive -Path dist\\ghost-in-msheet.html,assets -DestinationPath \"dist\\ghost-in-m-sheet-v$v-release.zip\" -Force } finally { Move-Item -Force passages/StoryInit.tw.bak passages/StoryInit.tw }"]
+        "args": ["-NoProfile", "-Command", "$m = Select-String -Path passages/StoryCaption.tw -Pattern \"Ghost in M'Sheet (\\d[\\d.]*)\" | Select-Object -First 1; if (-not $m) { throw 'version not found in passages/StoryCaption.tw' }; $v = $m.Matches[0].Groups[1].Value -replace '\\.','-'; Copy-Item passages/StoryInit.tw passages/StoryInit.tw.bak; try { (Get-Content passages/StoryInit.tw) -replace 'setup.ImagePath = \"[^\"]*\"', 'setup.ImagePath = \"assets\"' | Set-Content passages/StoryInit.tw; & .\\scripts\\build.bat; if ($LASTEXITCODE -ne 0) { throw 'build failed' }; Compress-Archive -Path ghost-in-msheet.html,assets -DestinationPath \"ghost-in-m-sheet-v$v-release.zip\" -Force } finally { Move-Item -Force passages/StoryInit.tw.bak passages/StoryInit.tw }"]
       },
       "group": "none",
       "problemMatcher": [],

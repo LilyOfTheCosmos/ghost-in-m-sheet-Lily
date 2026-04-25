@@ -79,7 +79,7 @@ scripts\build.bat
 scripts\start.bat
 ```
 
-The build produces `dist/ghost-in-msheet.html`, which can be opened directly in any browser — no server required.
+The build produces `ghost-in-msheet.html`, which can be opened directly in any browser — no server required.
 
 ## VS Code Integration
 
@@ -162,7 +162,7 @@ npm run watch
 
 ## Output
 
-The build process creates `dist/ghost-in-msheet.html`. Open it directly in any web browser — no server needed.
+The build process creates `ghost-in-msheet.html`. Open it directly in any web browser — no server needed.
 
 ## Customization
 

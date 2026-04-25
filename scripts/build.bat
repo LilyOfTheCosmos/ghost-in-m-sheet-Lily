@@ -7,10 +7,9 @@ setlocal enabledelayedexpansion
 cd /d "%~dp0\.."
 
 :: Configuration
-set OUTPUT_FILE=dist\ghost-in-msheet.html
+set OUTPUT_FILE=ghost-in-msheet.html
 set PASSAGES_DIR=passages
 set TWEEGO_EXE=tweego-2.1.1-windows-x64\tweego.exe
-if not exist "dist" mkdir "dist"
 
 echo Starting build process...
 

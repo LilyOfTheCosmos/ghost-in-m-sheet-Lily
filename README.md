@@ -69,7 +69,7 @@ VS Code tasks automatically detect your OS and run the correct script.
 ./scripts/start.sh
 
 # Clean build artifacts
-rm -f dist/ghost-in-msheet.html
+rm -f ghost-in-msheet.html
 ```
 
 **Windows:**
@@ -82,7 +82,7 @@ scripts\build.bat
 scripts\start.bat
 
 :: Clean build artifacts
-del dist\ghost-in-msheet.html
+del ghost-in-msheet.html
 ```
 
 ## VS Code Integration
@@ -168,7 +168,7 @@ npm run rebuild
 
 ## Output
 
-The build process creates `dist/ghost-in-msheet.html`, which can be:
+The build process creates `ghost-in-msheet.html`, which can be:
 
 - Opened directly in a web browser
 - Served using a local development server

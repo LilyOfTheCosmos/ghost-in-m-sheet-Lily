@@ -13,7 +13,7 @@ GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
-OUTPUT_FILE="dist/ghost-in-msheet.html"
+OUTPUT_FILE="ghost-in-msheet.html"
 STORY_INIT="passages/StoryInit.tw"
 STORY_SCRIPT="passages/StoryScript.tw"
 

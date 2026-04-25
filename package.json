@@ -8,7 +8,7 @@
     "start": "node -e \"require('child_process').execSync(process.platform==='win32'?'scripts\\\\start.bat':'./scripts/start.sh',{stdio:'inherit'})\"",
     "setup": "node -e \"require('child_process').execSync(process.platform==='win32'?'scripts\\\\setup.bat':'./scripts/setup.sh',{stdio:'inherit'})\"",
     "watch": "while inotifywait -e modify -e create -e delete passages/*.tw; do ./scripts/build.sh; done",
-    "clean": "node -e \"try{require('fs').unlinkSync('dist/ghost-in-msheet.html')}catch(e){}\"",
+    "clean": "node -e \"try{require('fs').unlinkSync('ghost-in-msheet.html')}catch(e){}\"",
     "rebuild": "npm run clean && npm run build",
     "lint": "python3 tools/check_format.py",
     "test": "python3 tools/check_format.py && npx playwright test --config=config/playwright.config.js",

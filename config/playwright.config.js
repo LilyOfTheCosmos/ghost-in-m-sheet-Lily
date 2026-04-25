@@ -15,7 +15,7 @@ module.exports = defineConfig({
   fullyParallel: false,
   workers: process.env.CI ? 2 : Math.max(1, Math.floor(require('os').cpus().length * 0.75)),
   use: {
-    baseURL: `file://${__dirname}/../dist/ghost-in-msheet.html`,
+    baseURL: `file://${__dirname}/../ghost-in-msheet.html`,
     /* Run headless so the browser never steals focus from the editor. */
     headless: true,
     /* Skip unnecessary assets — the game is a local HTML file. */

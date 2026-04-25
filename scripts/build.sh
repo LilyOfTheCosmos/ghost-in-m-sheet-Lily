@@ -8,10 +8,9 @@ REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 cd "$REPO_ROOT"
 
 # Configuration
-OUTPUT_FILE="dist/ghost-in-msheet.html"
+OUTPUT_FILE="ghost-in-msheet.html"
 PASSAGES_DIR="passages"
 TWEEGO_PATH="tweego-2.1.1-linux-x64/tweego"
-mkdir -p dist
 
 # Colors for output
 RED='\033[0;31m'

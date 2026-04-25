@@ -6,7 +6,7 @@ setlocal enabledelayedexpansion
 
 cd /d "%~dp0\.."
 
-set OUTPUT_FILE=dist\ghost-in-msheet.html
+set OUTPUT_FILE=ghost-in-msheet.html
 set STORY_INIT=passages\StoryInit.tw
 set STORY_SCRIPT=passages\StoryScript.tw
 
