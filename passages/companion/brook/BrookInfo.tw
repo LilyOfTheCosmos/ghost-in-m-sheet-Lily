@@ -3,7 +3,7 @@
 <<set _brook to setup.Companion.stateFor("brook")>>
 <div class="flexwrapperCompanionMainInfo">
 <div class="companionImageMain">
-<<image "brook/brook.png">>
+<<image "characters/brook/brook.png">>
 </div>
 <div class="companionTextMain">
 <span style="color: yellow; font-weight: bold; font-size: 1.2em;"><<= _brook.name>> :</span> <<= _brook.lvl>> lvl <<if _brook.lvl gte 5>> (max. lvl)

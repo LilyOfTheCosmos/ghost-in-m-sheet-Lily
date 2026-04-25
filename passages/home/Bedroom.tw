@@ -1,5 +1,5 @@
 :: Bedroom [nobr] {"position":"600,900","size":"100,100"}
-<<image "img/bedroom.jpg" { width: "100%" }>><br>
+<<image "ui/img/bedroom.jpg" { width: "100%" }>><br>
 @@.location; Bedroom@@<br>
 <br>
 <<if setup.Home.succubusChoiceText() eq 1>>
@@ -45,7 +45,7 @@
 <</if>>
 <<if setup.Home.returningFromHuntDefeat()>>
 	@@.mc-speech; Am I home? I don't remember how I got back here. My whole body aches and is <<linkappend "covered with something">>
-		<<randomImage "mc/1.webp" "mc/2.webp" "mc/3.webp" "40%">><br>
+		<<randomImage "characters/mc/1.webp" "characters/mc/2.webp" "characters/mc/3.webp" "40%">><br>
 		It seems like I'm starting to remember... I lost the battle, but not the war. Next time, I'll be more careful. <br>
 		I don't feel well, my whole body aches... I need to buy some medicine from the store, as hunting ghosts will be much harder without it. <br>
 		<<if setup.Home.hasCursedItem()>>
@@ -57,7 +57,7 @@
 
 <<elseif setup.Home.returningFromMareEnd()>>
 	@@.mc-thoughts; You wake up and see the@@ <<linkappend "@@.mc-thoughtsLink;aftermath of last night on yourself...@@">><br>
-		<<randomImage "mc/4.webp" "mc/5.webp" "mc/6.webp" "40%">><br>
+		<<randomImage "characters/mc/4.webp" "characters/mc/5.webp" "characters/mc/6.webp" "40%">><br>
 		<<run setup.Home.clearPenaltyOnMareWake()>>
 		@@.mc-speech; Weirdly enough, I feel great, maybe even a bit better than usual, hehe. I suppose I should still head to the [[bathroom|Bathroom]].@@
 	<</linkappend>>
@@ -88,7 +88,7 @@
 		<<elseif setup.Home.tentaclesNapEventReady()>>
 			<<goto "TentaclesEventNap">>
 		<</if>>
-	<</link>>@@<span><<image "img/energy.png" { style: "position: relative; top: 0.375em; width:3%;" }>></span><br>
+	<</link>>@@<span><<image "ui/img/energy.png" { style: "position: relative; top: 0.375em; width:3%;" }>></span><br>
 	<<if setup.Home.canUseHolyWaterOnMare()>>
 		<<linkreplace "@@.usebtn; Use holy water@@">><<run setup.Home.useHolyWaterOnMare()>>
 			@@.mc-speech; This should help. Now I can sleep peacefully.@@

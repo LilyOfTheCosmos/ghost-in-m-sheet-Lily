@@ -1,14 +1,14 @@
 :: BeautySalonTattoos [nobr] {"position":"2600,2200","size":"100,100"}
 <div class="flexwrapper backgroundForText">
-<<salonItem "tattooFace" "img/tattoos/tattoo-face.jpg" 100 "BeautySalonTattoos" "+2 beauty" 2>>
-<<salonItem "tattooNeck" "img/tattoos/tattoo-neck.webp" 80 "BeautySalonTattoos" "+2 beauty" 2>>
-<<salonItem "tattooHand" "img/tattoos/tattoo-hand.jpg" 50 "BeautySalonTattoos" "+1 beauty" 1>>
-<<salonItemCorruption "tattooChest" "img/tattoos/tattoo-chest.jpg" 150 "BeautySalonTattoos" "+3 beauty" 5 3>>
-<<salonItemCorruption "tattooPussy" "img/tattoos/tattoo-pussy.webp" 200 "BeautySalonTattoos" "+3 beauty" 5 3>>
-<<salonItemCorruption "tattooAss" "img/tattoos/tattoo-ass.jpg" 350 "BeautySalonTattoos" "+3 beauty" 5 3>>
+<<salonItem "tattooFace" "characters/mc/tattoos/tattoo-face.jpg" 100 "BeautySalonTattoos" "+2 beauty" 2>>
+<<salonItem "tattooNeck" "characters/mc/tattoos/tattoo-neck.webp" 80 "BeautySalonTattoos" "+2 beauty" 2>>
+<<salonItem "tattooHand" "characters/mc/tattoos/tattoo-hand.jpg" 50 "BeautySalonTattoos" "+1 beauty" 1>>
+<<salonItemCorruption "tattooChest" "characters/mc/tattoos/tattoo-chest.jpg" 150 "BeautySalonTattoos" "+3 beauty" 5 3>>
+<<salonItemCorruption "tattooPussy" "characters/mc/tattoos/tattoo-pussy.webp" 200 "BeautySalonTattoos" "+3 beauty" 5 3>>
+<<salonItemCorruption "tattooAss" "characters/mc/tattoos/tattoo-ass.jpg" 350 "BeautySalonTattoos" "+3 beauty" 5 3>>
 
 </div>
 <br>
 
 @@.backbtn;[[Leave|BeautySalonInside]] @@<br>
-<<bodyBackground "assets/img/beauty-salon-inside.jpg">>
+<<bodyBackground "assets/ui/img/beauty-salon-inside.jpg">>

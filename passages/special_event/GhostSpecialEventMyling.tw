@@ -1,5 +1,5 @@
 :: GhostSpecialEventMyling [nobr] {"position":"1400,2450","size":"100,100"}
-<<set _videoList to ["myling/1.mp4", "myling/2.mp4", "myling/3.mp4", "myling/4.mp4", "myling/5.mp4", "myling/6.mp4", "myling/7.mp4", "myling/8.mp4", "myling/9.mp4", "myling/10.mp4", "myling/11.mp4"]>>
+<<set _videoList to ["characters/ghosts/myling/1.mp4", "characters/ghosts/myling/2.mp4", "characters/ghosts/myling/3.mp4", "characters/ghosts/myling/4.mp4", "characters/ghosts/myling/5.mp4", "characters/ghosts/myling/6.mp4", "characters/ghosts/myling/7.mp4", "characters/ghosts/myling/8.mp4", "characters/ghosts/myling/9.mp4", "characters/ghosts/myling/10.mp4", "characters/ghosts/myling/11.mp4"]>>
 <<set _randomIndex to random(0, _videoList.length - 1)>>
 <<run setup.SpecialEvent.recordMylingVideo(_videoList[_randomIndex])>>
 <<randomVideoFromList _videoList>>

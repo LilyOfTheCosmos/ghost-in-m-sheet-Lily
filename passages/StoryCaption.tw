@@ -4,24 +4,24 @@
 <<if setup.Companion.shouldRenderMini()>>
 	<<set _comp to setup.Companion.active()>>
 	<<if _comp.isTrans>>
-		<<companionMini `"trans/" + setup.Companion.transPicture() + ".jpg"` _comp.name>>
+		<<companionMini `"characters/trans/" + setup.Companion.transPicture() + ".jpg"` _comp.name>>
 	<<else>>
 		<<companionMini _comp.portraitPath() _comp.name>>
 	<</if>>
 <</if>>
 <br>
 <span id="time"><<= setup.Time.display()>></span><br>
-<b><<image "img/energy.png" { style: "position: relative; top: 0.375em; width:10%;" }>>Energy:</b> <<showmeter 'energy' `setup.Mc.energy() / setup.Mc.energyMax()`>>
+<b><<image "ui/img/energy.png" { style: "position: relative; top: 0.375em; width:10%;" }>>Energy:</b> <<showmeter 'energy' `setup.Mc.energy() / setup.Mc.energyMax()`>>
 <<run setup.Mc.setSanityUp(setup.Mc.sanity().toFixed(2))>>
-<b><<image "img/sanity.png" { style: "position: relative; top: 0.375em; width:10%;" }>>Sanity:</b> <<showmeter 'sanity' `setup.Mc.sanity() / setup.Mc.sanityMax()`>>
-<b><<image "img/hearth.png" { style: "position: relative; top: 0.375em; width:10%;" }>>Lust:</b><<showmeter 'mclust' `setup.Mc.lust().toFixed(2) / 100`>>
-<b><<image "img/icons/money.png" { style: "position: relative; top: 0.375em; width:13%; display: inline; margin: 0;" }>><<= setup.Mc.money()>> </b>
-<b><<image "img/corruption.png" { style: "position: relative; top: 0.375em; width:13%; display: inline; margin: 0;" }>>
+<b><<image "ui/img/sanity.png" { style: "position: relative; top: 0.375em; width:10%;" }>>Sanity:</b> <<showmeter 'sanity' `setup.Mc.sanity() / setup.Mc.sanityMax()`>>
+<b><<image "ui/img/hearth.png" { style: "position: relative; top: 0.375em; width:10%;" }>>Lust:</b><<showmeter 'mclust' `setup.Mc.lust().toFixed(2) / 100`>>
+<b><<image "ui/icons/money.png" { style: "position: relative; top: 0.375em; width:13%; display: inline; margin: 0;" }>><<= setup.Mc.money()>> </b>
+<b><<image "ui/img/corruption.png" { style: "position: relative; top: 0.375em; width:13%; display: inline; margin: 0;" }>>
 <<= setup.Mc.corruption().toFixed(2)>>
-<b><<image "img/beauty.png" { style: "position: relative; top: 0.375em; width:11%; display: inline; margin: 0;" }>><<= setup.Mc.beauty()>></b>
-<b><<image "img/icons/lvl.png" { style: "position: relative; top: 0.375em; width:11%; display: inline; margin: 0;" }>><<= setup.Mc.lvl()>></b> <br>
-<a class="linkselector" data-passage="Bag"><<image "img/bag.png" { width: "30%" }>></a><a class="linkselector" data-passage="Notebook"><<image "img/notebook.png" { width: "30%" }>></a><a class="linkselector" data-passage="Evidence"><<image "img/evidence-icon.png" { width: "30%" }>></a><br>
-<<if setup.Gui.phoneBought()>><a class="linkselector" data-passage="Phone"><<image "img/phone.png" { width: "30%" }>></a>
+<b><<image "ui/img/beauty.png" { style: "position: relative; top: 0.375em; width:11%; display: inline; margin: 0;" }>><<= setup.Mc.beauty()>></b>
+<b><<image "ui/icons/lvl.png" { style: "position: relative; top: 0.375em; width:11%; display: inline; margin: 0;" }>><<= setup.Mc.lvl()>></b> <br>
+<a class="linkselector" data-passage="Bag"><<image "ui/img/bag.png" { width: "30%" }>></a><a class="linkselector" data-passage="Notebook"><<image "ui/img/notebook.png" { width: "30%" }>></a><a class="linkselector" data-passage="Evidence"><<image "ui/img/evidence-icon.png" { width: "30%" }>></a><br>
+<<if setup.Gui.phoneBought()>><a class="linkselector" data-passage="Phone"><<image "ui/img/phone.png" { width: "30%" }>></a>
 <</if>>
 <div class="linkselector enterbtn"> Game [[Guide|Guide]] </div><br>
 

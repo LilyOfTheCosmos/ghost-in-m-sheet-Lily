@@ -1,9 +1,9 @@
 :: AdultSectionPurchase [nobr] {"position":"3000,1850","size":"100,100"}
 <div class="flexwrapper backgroundForText">
-<<shopCardCorruption "dildoPurchased" "img/dildo.jpg" 30 "AdultSectionPurchase" 3 1>>
+<<shopCardCorruption "dildoPurchased" "ui/img/dildo.jpg" 30 "AdultSectionPurchase" 3 1>>
 <div class="housecard">
 <<if setup.Mall.canBuyWardenOutfit()>>
-	<<image "img/wardrobe/warden.webp" "iconPx">><br>
+	<<image "outfits/wardrobe/warden.webp" "iconPx">><br>
 	<span class="priceAmount">500$</span><br>
 	<<if setup.Mall.meetsCorruptionForWarden()>>
 		<<if setup.Mc.money() gte 500>>
@@ -13,7 +13,7 @@
 		<<else>>@@.mc-thoughts; I don't have enough money@@
 		<</if>>
 	<<else>>
-		@@.mc-thoughts; I don't think I can wear this...@@@@.warningtext; (Req. <<image "img/corruption.png" { style: "position: relative; top: 0.375em; width:20%; display: inline; margin: 0;" }>> ≥ 3)@@
+		@@.mc-thoughts; I don't think I can wear this...@@@@.warningtext; (Req. <<image "ui/img/corruption.png" { style: "position: relative; top: 0.375em; width:20%; display: inline; margin: 0;" }>> ≥ 3)@@
 	<</if>>
 <</if>>
 </div>
@@ -23,4 +23,4 @@
 </div>
 <br>
 @@.backbtn;[[Leave|AdultSection]] @@<br>
-<<bodyBackground "assets/img/adult-section.jpeg">>
+<<bodyBackground "assets/ui/img/adult-section.jpeg">>

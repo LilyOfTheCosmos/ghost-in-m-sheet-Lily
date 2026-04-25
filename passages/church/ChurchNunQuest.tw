@@ -1,5 +1,5 @@
 :: ChurchNunQuest [nobr] {"position":"2075,1500","size":"100,100"}
-<<image "rescue/rain.jpg" { class: "displayCentredImgs", width: "50%" }>><br>
+<<image "characters/rescue/rain.jpg" { class: "displayCentredImgs", width: "50%" }>><br>
 <<if not setup.Church.hasMetRain()>>
 	<<run setup.Church.initRainIfNeeded()>>
 	@@.notmc-speech; <<= setup.Mc.name()>>, hey. I'm Rain. The witch told me about you. Thanks for agreeing to help.@@<br>
@@ -33,7 +33,7 @@
 	<<if setup.Church.upgradeSpiritboxReward()>>
 		@@.notmc-speech;I hope you'll be able to keep helping us. <br>
 		I don't have anything to give you in return for your help right now, but maybe I can repay you somehow later.@@<br>
-		@@.mc-action; You get a lvl 3 Spiritbox @@<<image "img/spiritbox.png" { style: "max-width:5%" }>><br><br>
+		@@.mc-action; You get a lvl 3 Spiritbox @@<<image "ui/img/spiritbox.png" { style: "max-width:5%" }>><br><br>
 	<</if>>
 	<<run setup.Church.adjustRainRelationship(1)>>
 	@@.mc-thoughts; Your relationship with Rain has increased - <<= setup.Church.relationshipWithRain()>> now!@@<br>

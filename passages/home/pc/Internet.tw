@@ -1,5 +1,5 @@
 :: Internet [nobr] {"position":"400,800","size":"100,100"}
-<<image "img/browser-search.png" { width: "100%" }>><br>
+<<image "ui/img/browser-search.png" { width: "100%" }>><br>
 @@.mc-speech; What should I look for on the internet?@@<br>
 <br>
 <<include "FindGhostInfo">>
@@ -10,7 +10,7 @@
 	<<set _alex to setup.Companion.stateFor("alex")>>
 	<div class="flexwrapper">
 	<div class="housecard">
-	<<image "trans/alex.jpg" { width: "100px" }>><br>
+	<<image "characters/trans/alex.jpg" { width: "100px" }>><br>
 	</div>
 	<div>
 	<b><<= _alex.name>></b>:<br>
@@ -32,7 +32,7 @@
 		<<set _taylor to setup.Companion.stateFor("taylor")>>
 		<div class="flexwrapper">
 		<div class="housecard">
-		<<image "trans/taylor.jpg" { width: "100px" }>><br>
+		<<image "characters/trans/taylor.jpg" { width: "100px" }>><br>
 		</div>
 		<div>
 		<b><<= _taylor.name>></b>:<br>
@@ -55,7 +55,7 @@
 		<<set _casey to setup.Companion.stateFor("casey")>>
 		<div class="flexwrapper">
 		<div class="housecard">
-		<<image "trans/casey.jpg" { width: "100px" }>><br>
+		<<image "characters/trans/casey.jpg" { width: "100px" }>><br>
 		</div>
 		<div>
 		<b><<= _casey.name>></b>:<br>

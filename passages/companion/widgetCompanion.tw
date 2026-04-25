@@ -6,8 +6,8 @@
 		<div class="containerMini">
 		<<image _compImg>>
 		<div class="scaleMini">
-		<<image "img/sanity.png" { style: "position: relative; top: 0.375em; width:13%;" }>>_compName's Sanity: <<showmeter 'companionsanity' `setup.Companion.sanityPercent()`>>
-		<<image "img/hearth.png" { style: "position: relative; top: 0.375em; width:13%;" }>>
+		<<image "ui/img/sanity.png" { style: "position: relative; top: 0.375em; width:13%;" }>>_compName's Sanity: <<showmeter 'companionsanity' `setup.Companion.sanityPercent()`>>
+		<<image "ui/img/hearth.png" { style: "position: relative; top: 0.375em; width:13%;" }>>
 		_compName's Lust: <<showmeter 'companionlust' `setup.Companion.lust() / 100`>>
 		</div>
 

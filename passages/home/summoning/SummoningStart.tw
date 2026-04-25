@@ -1,13 +1,13 @@
 :: SummoningStart [nobr] {"position":"600,2800","size":"100,100"}
 <<if setup.Home.spiritEventStage() eq 0>>
-	<<image "exorcism/spirit.jpg" { class: "displayCentredImgs", width: "100%" }>><br>
+	<<image "mechanics/exorcism/spirit.jpg" { class: "displayCentredImgs", width: "100%" }>><br>
 	@@.mc-thoughts; You start reading the words from the ancient book, your lips slowly forming each sound, each word like a whisper filling the room. You feel the energy growing around you, each syllable resonating in the air,@@ <<linkappend "@@.usebtn; calling something invisible@@">>
-		<<image "exorcism/spirit1.jpg" { class: "displayCentredImgs", width: "100%" }>>
+		<<image "mechanics/exorcism/spirit1.jpg" { class: "displayCentredImgs", width: "100%" }>>
 		@@.mc-thoughts; You notice a figure appearing right behind you in the mirror reflection, its eyes filled with@@ @@.enterbtn;[[unnatural lust|SummonSpirit]]@@<br>
 	<</linkappend>>
 
 <<elseif setup.Home.twinsEventActive()>>
-	<<image "succubus/succubus.jpg" { class: "displayCentredImgs", width: "100%" }>>
+	<<image "characters/succubus/succubus.jpg" { class: "displayCentredImgs", width: "100%" }>>
 	@@.mc-thoughts; You start reading the words from the ancient book, your lips slowly forming each sound, each word like a whisper filling the room. You feel the energy growing around you, each syllable resonating in the air,@@ <<linkappend "@@.usebtn; calling something invisible@@">><br>
 		@@.mc-thoughts; But nothing happens@@<br>
 		@@.mc-speech; Did I do something wrong?@@<br>
@@ -15,7 +15,7 @@
 	<</linkappend>>
 
 <<elseif setup.Home.mareEventStart() neq 0>>
-	<<image "succubus/succubus.jpg" { class: "displayCentredImgs", width: "100%" }>>
+	<<image "characters/succubus/succubus.jpg" { class: "displayCentredImgs", width: "100%" }>>
 	@@.mc-thoughts; You start reading the words from the ancient book, your lips slowly forming each sound, each word like a whisper filling the room. You feel the energy growing around you, each syllable resonating in the air,@@ <<linkappend "@@.usebtn; calling something invisible@@">><br>
 		@@.mc-thoughts; But nothing happens@@<br>
 		@@.mc-speech; Did I do something wrong?@@<br>
@@ -23,14 +23,14 @@
 	<</linkappend>>
 
 <<elseif setup.Home.gotCursedItemFlag() eq 1>>
-	<<image "exorcism/tentacles.jpg" { class: "displayCentredImgs", width: "100%" }>>
+	<<image "mechanics/exorcism/tentacles.jpg" { class: "displayCentredImgs", width: "100%" }>>
 	@@.mc-thoughts; You start reading the words from the ancient book, your lips slowly forming each sound, each word like a whisper filling the room. You feel the energy growing around you, each syllable resonating in the air,@@ <<linkappend "@@.usebtn; calling something invisible@@">><br>
 		@@.mc-thoughts; But nothing happens@@<br>
 		@@.mc-speech; Did I do something wrong?@@<br>
 		@@.mc-thoughts; Suddenly, you feel a growing sense of weakness and fatigue. Barely reaching your bed, you fall into a deep@@ @@.enterbtn;[[sleep|SummonTentacles]]@@
 	<</linkappend>>
 <<elseif setup.Home.exorcismQuestStage() eq 1>>
-	<<image "succubus/succubus0.jpg" { class: "displayCentredImgs", width: "100%" }>>
+	<<image "characters/succubus/succubus0.jpg" { class: "displayCentredImgs", width: "100%" }>>
 	@@.mc-thoughts; You speak the words of the summoning, and the air around you grows denser. From the darkness, the succubus emerges, her smile dripping with mockery and pleasure.@@<br>
 	@@color:red; Finally, you've reached me, my sweet. Decided to play the hunter, have you?@@<br>
 	@@.mc-thoughts; You begin to read the lines from the book, hoping to banish her, but nothing happens. The succubus just laughs, seeing your futile attempts.@@<br>
@@ -73,7 +73,7 @@
 	</span>
 	</b>
 <<elseif setup.Home.exorcismQuestStage() eq 2>>
-	<<image "succubus/succubus0.jpg" { class: "displayCentredImgs", width: "100%" }>><br>
+	<<image "characters/succubus/succubus0.jpg" { class: "displayCentredImgs", width: "100%" }>><br>
 	@@.mc-thoughts; You utter the spell, and the air around you begins to pulse. Out of nowhere, the succubus appears, her eyes gleaming with pleasure.@@<br>
 	@@color:red; What a good little slut you are, calling me again. Well, let's do something fun. Here's your choice: <br>@@
 	@@.usebtn; [[Change your body temporarily|SuccubusChoice][setup.Home.setSummoningChoice(1)]]@@<br>

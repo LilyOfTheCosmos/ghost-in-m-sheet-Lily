@@ -16,7 +16,7 @@
 		<br>@@.mc-speech; Well, we'll have to take this to the witch.@@<br>
 		@@.mc-thoughts; She definitely took longer than expected finding that item... I think I know what kept her for so long...<br>
 		As soon as I thought about it, I started to feel more... aroused<br>@@
-		+30 <<image "img/hearth.png" { style: "position: relative; top: 0.375em; width:3%;" }>><br><<addLust 30>>
+		+30 <<image "ui/img/hearth.png" { style: "position: relative; top: 0.375em; width:3%;" }>><br><<addLust 30>>
 		<br>
 		@@.mc-action; <<= _cName>> found the cursed item!@@<br>
 		<br>
@@ -27,7 +27,7 @@
 <<elseif State.variables.chosenPlan eq "Plan3">>
 	<<set _randomEvidence to setup.Companion.pickRandomHuntEvidence()>>
 	<<if _randomEvidence eq "emf">>
-		@@.notmc-speech; evidence - EMF 5 @@ <<image "img/emf.png" { style: "position: relative; top: 0.375em; width:5%;" }>><br>
+		@@.notmc-speech; evidence - EMF 5 @@ <<image "ui/img/emf.png" { style: "position: relative; top: 0.375em; width:5%;" }>><br>
 		<br>
 		@@.mc-action; <<= _cName>> found the evidence! @@<br>
 		<br>
@@ -35,7 +35,7 @@
 		<<companionExp 5>>
 
 	<<elseif _randomEvidence eq "gwb">>
-		@@.notmc-speech; evidence - Ghost Writing Book @@ <<image "img/gwb.png" { style: "position: relative; top: 0.375em; width:5%;" }>><br>
+		@@.notmc-speech; evidence - Ghost Writing Book @@ <<image "ui/img/gwb.png" { style: "position: relative; top: 0.375em; width:5%;" }>><br>
 		@@.notmc-speech; Do you want to see this?@@<br>
 		<<image setup.Companion.pickGwbImage() "evidenceImgs">>
 		<br>
@@ -46,7 +46,7 @@
 		<<companionExp 5>>
 
 	<<elseif _randomEvidence eq "temperature">>
-		@@.notmc-speech; evidence - High Temperature @@ <<image "img/thermometr.png" { style: "position: relative; top: 0.375em; width:5%;" }>><br>
+		@@.notmc-speech; evidence - High Temperature @@ <<image "ui/img/thermometr.png" { style: "position: relative; top: 0.375em; width:5%;" }>><br>
 		<br>
 		@@.mc-action; <<= _cName>> found the evidence!@@<br>
 		<br>
@@ -54,7 +54,7 @@
 		<<companionExp 5>>
 
 	<<elseif _randomEvidence eq "spiritbox">>
-		@@.notmc-speech; evidence - Spirit Box @@ <<image "img/spiritbox.png" { style: "position: relative; top: 0.375em; width:5%;" }>><br>
+		@@.notmc-speech; evidence - Spirit Box @@ <<image "ui/img/spiritbox.png" { style: "position: relative; top: 0.375em; width:5%;" }>><br>
 		<br>
 
 		@@.mc-action; <<= _cName>> found the evidence!@@<br>
@@ -63,7 +63,7 @@
 		<<companionExp 5>>
 
 	<<elseif _randomEvidence eq "uvl">>
-		@@.notmc-speech; evidence - UVL @@ <<image "img/uvl.png" { style: "position: relative; top: 0.375em; width:3%;" }>><br>
+		@@.notmc-speech; evidence - UVL @@ <<image "ui/img/uvl.png" { style: "position: relative; top: 0.375em; width:3%;" }>><br>
 		<br><br>
 		@@.mc-action; <<= _cName>> found the evidence!@@<br>
 		<br>
@@ -71,7 +71,7 @@
 		<<companionExp 5>>
 
 	<<elseif _randomEvidence eq "glass">>
-		@@.notmc-speech; evidence - Ectoglass@@ <<image "img/glass.png" { style: "position: relative; top: 0.375em; width:5%;" }>><br>
+		@@.notmc-speech; evidence - Ectoglass@@ <<image "ui/img/glass.png" { style: "position: relative; top: 0.375em; width:5%;" }>><br>
 		<br>
 		@@.mc-action; <<= _cName>> found the evidence!@@<br>
 		<br>

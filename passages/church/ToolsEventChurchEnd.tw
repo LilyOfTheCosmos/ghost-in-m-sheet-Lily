@@ -1,12 +1,12 @@
 :: ToolsEventChurchEnd [event nobr] {"position":"1975,1800","size":"100,100"}
-<<video "church/8.mp4">>
+<<video "scenes/church/8.mp4">>
 @@.mc-speech; Holy~ so much cum@@<br>
 
 <<if not setup.Church.priestToolEventStarted()>>
 	@@.notmc-speech; I think you deserve it, here you go. If you want, you can come to me sometimes for special confessions@@<br>
 	@@.mc-speech; Thanks, i'll think about that@@<br>
 	<<run setup.Church.startPriestToolEvent()>>
-	@@.mc-action; You get a lvl 3 Thermometr @@<<image "img/thermometr.png" { style: "max-width:5%" }>>
+	@@.mc-action; You get a lvl 3 Thermometr @@<<image "ui/img/thermometr.png" { style: "max-width:5%" }>>
 	<br>
 	<br>
 <<else>>

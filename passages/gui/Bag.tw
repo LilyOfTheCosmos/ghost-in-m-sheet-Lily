@@ -20,7 +20,7 @@
 
 <div class="flexwrapper">
 <div class="housecard">
-<<image "img/energy-drink.png" "icon">><br>
+<<image "ui/img/energy-drink.png" "icon">><br>
 <<if setup.Mc.energyDrinkAmount() gte 1>>
 @@.usebtn;<<link `"Drink (+3 energy) - " + setup.Mc.energyDrinkAmount() + " left"` "Bag">><<run setup.Mc.useEnergyDrink()>>
 <</link>>@@
@@ -28,13 +28,13 @@
 <</if>>
 </div>
 <div class="housecard">
-<<image "img/cosmetics.png" "iconPx">><br>
+<<image "ui/img/cosmetics.png" "iconPx">><br>
 <<if setup.Mc.makeupAmount() gte 1>>You have <<= setup.Mc.makeupAmount()>> makeup charges left.
 <<else>>You don't have cosmetics
 <</if>>
 </div>
 <div class="housecard">
-<<image "img/sanity-pills.png" "iconPx">><br>
+<<image "ui/img/sanity-pills.png" "iconPx">><br>
 <<if setup.Mc.sanityPillsAmount() gte 1>>You have <<= setup.Mc.sanityPillsAmount()>> sanity pills<br>
 <<if setup.Ghosts.isHunting()>>
 @@.usebtn;<<link "Use sanity pills" "Bag">>
@@ -46,13 +46,13 @@
 <</if>>
 </div>
 <div class="housecard">
-<<image "img/crucifix.webp" "iconPx">><br>
+<<image "ui/img/crucifix.webp" "iconPx">><br>
 <<if setup.Witch.crucifixAmount() gte 1>>You have <<= setup.Witch.crucifixAmount()>> crucifix.
 <<else>>You don't have a crucifix
 <</if>>
 </div>
 <div class="housecard">
-<<image "img/medicine.png" "iconPx">><br>
+<<image "ui/img/medicine.png" "iconPx">><br>
 <<if setup.Mc.medicineAmount() gte 1>>You have <<= setup.Mc.medicineAmount()>> health pill<<if setup.Mc.medicineAmount() gte 1>><<print "s">>
 <</if>><br>
 <<if setup.Mc.isPenalized()>>
@@ -66,34 +66,34 @@
 <</if>>
 </div>
 <div class="housecard">
-<<image "img/holywater.png" "iconPx">><br>
+<<image "ui/img/holywater.png" "iconPx">><br>
 <<if setup.MissingWomen.hasHolyWater()>>You have holy water
 <<else>>You don't have holy water
 <</if>>
 </div>
 <div class="housecard">
 <<if setup.MissingWomen.hasRescueClue()>>
-<<image "rescue/rescue-clue.png" "iconPx">><br>
-<<link "@@.usebtn;Look at the photo@@">><<replace ".flexwrapper">><<image 'rescue/house/' + setup.MissingWomen.randomRescuePhotoNumber() + '.jpg' { class: setup.MissingWomen.tornStyleRandom(), width: "100%" }>>
+<<image "characters/rescue/rescue-clue.png" "iconPx">><br>
+<<link "@@.usebtn;Look at the photo@@">><<replace ".flexwrapper">><<image 'characters/rescue/house/' + setup.MissingWomen.randomRescuePhotoNumber() + '.jpg' { class: setup.MissingWomen.tornStyleRandom(), width: "100%" }>>
 <</replace>>
 <</link>>
 <</if>>
 </div>
 <div class="housecard">
 <<if setup.MonkeyPaw.tarotCarryStage() eq 1 and (previous(1) neq "Owaissa Street" and previous(1) neq "Elm Street")>>
-<<image "cursedpossessions/tarot-cards/tarot.png" "iconsOnMap">><br>
+<<image "mechanics/cursedpossessions/tarot-cards/tarot.png" "iconsOnMap">><br>
 <<link "@@.usebtn; Look at the deck@@" "TarotCards">><</link>>
 <</if>>
 </div>
 <div class="housecard">
 <<if setup.MonkeyPaw.isCarrying()>>
-<<image "cursedpossessions/monkey-paw/monkeypaw.jpg" "icon">><br>
+<<image "mechanics/cursedpossessions/monkey-paw/monkeypaw.jpg" "icon">><br>
 <<link "@@.usebtn; Look at the paw@@" "MonkeyPaw">><</link>>
 <</if>>
 </div>
 <div class="housecard">
 <<if setup.Mall.hasPepperSpray()>>
-<<image "img/spray.png" "iconPx">><br>
+<<image "ui/img/spray.png" "iconPx">><br>
 Pepper spray (<<= setup.Mall.pepperSprayCharges()>> charges left)
 <</if>>
 </div>
@@ -102,8 +102,8 @@ Pepper spray (<<= setup.Mall.pepperSprayCharges()>> charges left)
 </div>
 <div class="housecard">
 <<if setup.MonkeyPaw.guideStage() eq 2>>
-<<image "cursedpossessions/monkey-paw/monkeypaw-page.jpg" "icon">><br>
-<<link "@@.usebtn;Inspect@@">><<replace ".flexwrapper">><<image "cursedpossessions/monkey-paw/monkeypaw-page.jpg" "displayCentredImgs">>
+<<image "mechanics/cursedpossessions/monkey-paw/monkeypaw-page.jpg" "icon">><br>
+<<link "@@.usebtn;Inspect@@">><<replace ".flexwrapper">><<image "mechanics/cursedpossessions/monkey-paw/monkeypaw-page.jpg" "displayCentredImgs">>
 <</replace>>
 <</link>>
 <</if>>

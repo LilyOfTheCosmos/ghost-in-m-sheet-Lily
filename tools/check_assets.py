@@ -24,9 +24,9 @@ if _STORY_INIT.is_file():
 # 2. Legacy src="assets/..." or href="assets/..." (if any remain)
 # 3. url('assets/...') in CSS
 # 4. <<furnitureItem "FILE.png" "id">> — first arg is a filename under
-#    img/furniture/ (the haunted-house furniture widget)
+#    scenes/furniture/ (the haunted-house furniture widget)
 # 5. <<hideSpot "passage" "FILE.png" "id">> — second arg is a filename under
-#    img/furniture/ (the cursed-hunt hide-spot widget)
+#    scenes/furniture/ (the cursed-hunt hide-spot widget)
 ASSET_PATTERNS = [
     # Only match when the path arg is a lone string literal — a trailing
     # space + quote, "{" (options object) or ">>" (macro close). A trailing
@@ -67,7 +67,7 @@ def main():
                     if "${" in raw:
                         continue
                     if pi in FURNITURE_WIDGET_PATTERN_INDICES:
-                        raw = "/img/furniture/" + raw
+                        raw = "/scenes/furniture/" + raw
                     # Normalise: map every reference to ASSET_BASE/…
                     if raw.startswith("assets/"):
                         # CSS url() and legacy src= use literal "assets/";

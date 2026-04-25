@@ -34,7 +34,7 @@
 <<set _showBottom     to not _forceCover or _canCoverBottom>>
 <<set _showTop        to not _forceCover or _canCoverTop>>
 
-<<image "img/dawn.jpg" { width: "100%" }>>
+<<image "ui/img/dawn.jpg" { width: "100%" }>>
 <br>
 @@.mc-thoughts; My legs are shaking. I can barely keep my eyes open. I have to leave this place — I'm running on empty.@@<br>
 

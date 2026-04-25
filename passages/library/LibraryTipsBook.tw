@@ -1,6 +1,6 @@
 :: LibraryTipsBook {"position":"2925,2100","size":"100,100"}
 <<nobr>>
-<<image "library/book.jpg" "libraryCenteredImg">><br>
+<<image "scenes/library/book.jpg" "libraryCenteredImg">><br>
 @@.mc-thoughts;You pull out a book titled "A Brief Guide to Ghost Hunting".@@ <br>
 <<run setup.Library.markTipsBookFound()>>
 <<set _check to random(1,3)>>

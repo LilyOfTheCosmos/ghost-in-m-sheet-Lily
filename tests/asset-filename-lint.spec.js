@@ -34,12 +34,21 @@ function toKebab(name) {
   return stem + ext;
 }
 
+// Asset extensions the kebab-case rule applies to. Docs, manifests, and
+// other dev metadata at the asset-tree root (README.md, index.json,
+// todo.txt, timestamps.txt) are exempt.
+const ASSET_EXT_RE = /\.(jpg|jpeg|png|webp|gif|mp4|webm)$/i;
+
 function walk(dir) {
   const out = [];
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
     const full = path.join(dir, entry.name);
-    out.push({ full, name: entry.name, isDir: entry.isDirectory() });
-    if (entry.isDirectory()) out.push(...walk(full));
+    if (entry.isDirectory()) {
+      out.push({ full, name: entry.name, isDir: true });
+      out.push(...walk(full));
+    } else if (ASSET_EXT_RE.test(entry.name)) {
+      out.push({ full, name: entry.name, isDir: false });
+    }
   }
   return out;
 }

@@ -28,53 +28,53 @@
 		At first, things went well, of course, sometimes the ghost tried to...@@<<linkappend "@@.notmc-speechLink; scare me@@">>
 			<<set _checkR to random(1,5)>>
 			<<if _checkR eq 1>>
-				<<video "blake/2.0.mp4">>
+				<<video "characters/blake/2.0.mp4">>
 			<<elseif _checkR eq 2>>
-				<<video "blake/2.2.mp4">>
+				<<video "characters/blake/2.2.mp4">>
 			<<elseif _checkR eq 3>>
-				<<video "blake/2.3.mp4">>
+				<<video "characters/blake/2.3.mp4">>
 			<<elseif _checkR eq 4>>
-				<<video "blake/2.4.mp4">>
+				<<video "characters/blake/2.4.mp4">>
 			<<elseif _checkR eq 5>>
-				<<video "blake/2.5.mp4">>
+				<<video "characters/blake/2.5.mp4">>
 			<</if>>
 			@@.notmc-speech;But I'm not easily frightened! <br>
 			I continued searching for evidence.<br>
 			The ghost became more aggressive... Sometimes it tried to @@<<linkappend "@@.notmc-speechLink;chocke me@@">>
 				<<set _checkR to random(1,8)>>
 				<<if _checkR eq 1>>
-					<<video "blake/alone2.1.mp4">>
+					<<video "characters/blake/alone2.1.mp4">>
 				<<elseif _checkR eq 2>>
-					<<video "blake/alone2.2.mp4">>
+					<<video "characters/blake/alone2.2.mp4">>
 				<<elseif _checkR eq 3>>
-					<<video "blake/alone2.3.mp4">>
+					<<video "characters/blake/alone2.3.mp4">>
 				<<elseif _checkR eq 4>>
-					<<video "blake/3.0.mp4">>
+					<<video "characters/blake/3.0.mp4">>
 				<<elseif _checkR eq 5>>
-					<<video "blake/3.1.mp4">>
+					<<video "characters/blake/3.1.mp4">>
 				<<elseif _checkR eq 6>>
-					<<video "blake/3.2.mp4">>
+					<<video "characters/blake/3.2.mp4">>
 				<<elseif _checkR eq 7>>
-					<<video "blake/3.3.mp4">>
+					<<video "characters/blake/3.3.mp4">>
 				<<elseif _checkR eq 8>>
-					<<video "blake/3.4.mp4">>
+					<<video "characters/blake/3.4.mp4">>
 				<</if>>
 				@@.notmc-speech;But I was stronger than it...<br>
 				I was about to find the last piece of evidence when suddenly@@ <<linkappend
 					"@@.notmc-speechLink;it appeared right in front of me.@@">>
 					<<set _checkR to random(1,6)>>
 					<<if _checkR eq 1>>
-						<<video "blake/alone3.1.mp4">>
+						<<video "characters/blake/alone3.1.mp4">>
 					<<elseif _checkR eq 2>>
-						<<video "blake/alone3.2.mp4">>
+						<<video "characters/blake/alone3.2.mp4">>
 					<<elseif _checkR eq 3>>
-						<<video "blake/alone3.3.mp4">>
+						<<video "characters/blake/alone3.3.mp4">>
 					<<elseif _checkR eq 4>>
-						<<video "blake/alone3.4.mp4">>
+						<<video "characters/blake/alone3.4.mp4">>
 					<<elseif _checkR eq 5>>
-						<<video "blake/alone3.5.mp4">>
+						<<video "characters/blake/alone3.5.mp4">>
 					<<elseif _checkR eq 6>>
-						<<video "blake/alone3.6.mp4">>
+						<<video "characters/blake/alone3.6.mp4">>
 					<</if>>
 					@@.notmc-speech;I lost control... and I might have given it what it had been after from the beginning...@@<br>
 					<<if _resultBlakeAlone eq 1>>@@.notmc-speech; After it cu... weakened, I ran away. That's it. @@<br>

@@ -3,10 +3,10 @@
 <<set _img to setup.deliveryHouses[_house]>>
 <<set _sp to _house.lastIndexOf(" ")>>
 <<set _address to _house.substr(0, _sp) + ", " + _house.substr(_sp + 1)>>
-<<image "img/" + _img { width: "90%" }>><br>
+<<image "ui/img/" + _img { width: "90%" }>><br>
 @@.location; _address@@<br><br>
 <<if setup.Delivery.specialOrderType() is "safe">>
-	<<image "img/deliverygirlhappy.jpg" { style: "max-width: 100%; height: auto; display: block; margin: 0 auto;" }>>
+	<<image "ui/img/deliverygirlhappy.jpg" { style: "max-width: 100%; height: auto; display: block; margin: 0 auto;" }>>
 	@@.notmc-speech; You're a lifesaver! I've been waiting for this all day. Here, keep the change.@@<br>
 	<<run setup.Delivery.bankSafeSpecialOrder()>>
 	<<deliveryTrackCorrect>>
@@ -15,7 +15,7 @@
 	<br>
 	@@.backbtn;[[Back|DeliveryMap]]@@
 <<else>>
-	<<image "deliveryhub/specialevent/1.jpg" { style: "max-width: 100%; height: auto; display: block; margin: 0 auto;" }>>
+	<<image "scenes/deliveryhub/specialevent/1.jpg" { style: "max-width: 100%; height: auto; display: block; margin: 0 auto;" }>>
 	@@.notmc-speech; Finally! Get in here, I need to check the package before I pay.@@<br>
 	@@.mc-thoughts; Why can't he just check it at the door?@@<br>
 	<<if setup.Mc.corruption() gte 3>>
@@ -29,7 +29,7 @@
 <<addTime `setup.Delivery.getDeliveryTime()`>>
 
 :: DeliverySpecialCoerced [event nobr] {"position":"1500,1650","size":"100,100"}
-<<image "deliveryhub/specialevent/2.jpg" { style: "max-width: 100%; height: auto; display: block; margin: 0 auto;" }>>
+<<image "scenes/deliveryhub/specialevent/2.jpg" { style: "max-width: 100%; height: auto; display: block; margin: 0 auto;" }>>
 @@.mc-thoughts; He locks the door behind me. Shit.@@<br>
 @@.notmc-speech; You want to get paid? Earn it.@@<br>
 @@.mc-thoughts; Oh fuck. No. I'm not doing that — not for a few bucks.@@<br>
@@ -47,16 +47,16 @@
 
 :: DeliverySpecialUnsafe [event nobr] {"position":"1500,1700","size":"100,100"}
 <<run setup.Delivery.addLust(45)>>
-<<image "deliveryhub/specialevent/2.jpg" { style: "max-width: 100%; height: auto; display: block; margin: 0 auto;" }>>
+<<image "scenes/deliveryhub/specialevent/2.jpg" { style: "max-width: 100%; height: auto; display: block; margin: 0 auto;" }>>
 @@.mc-thoughts; He locks the door behind me. Shit.@@<br>
 @@.notmc-speech; You want to get paid? Earn it.@@<br>
 @@.mc-speech;<<linkreplace " I... I need the money">>
-	<<video "deliveryhub/specialevent/1.webm" { muted: false }>>
+	<<video "scenes/deliveryhub/specialevent/1.webm" { muted: false }>>
 	@@.notmc-speech; Good girl. On your knees.@@<br>
 	@@.mc-speech; ~Mm~@@<br>
 	<<linkreplace "@@.mc-speechLink; Get on your knees@@">>
 		<<set _pick to random(2, 4)>>
-		<<video "deliveryhub/specialevent/" + _pick + ".webm" { muted: false }>>
+		<<video "scenes/deliveryhub/specialevent/" + _pick + ".webm" { muted: false }>>
 		@@.notmc-speech; Turn around@@<br>
 		@@.mc-speech; ~Ah~ just be quick@@<br>
 		@@.mc-speechLink;[[Let him continue|DeliverySpecialUnsafe2]]@@<br>
@@ -65,12 +65,12 @@
 
 :: DeliverySpecialUnsafe2 [event nobr] {"position":"1500,1800","size":"100,100"}
 <<set _pick2 to random(5, 6)>>
-<<video "deliveryhub/specialevent/" + _pick2 + ".webm" { muted: false }>>
+<<video "scenes/deliveryhub/specialevent/" + _pick2 + ".webm" { muted: false }>>
 @@.mc-speech; ~Ah~ God...@@<br>
 @@.notmc-speech; Fuck, you're tight. I'm going to cum@@<br>
 <<linkreplace "@@.mc-speechLink; Please not inside...@@">>
 	<<set _pick3 to random(7, 8)>>
-	<<video "deliveryhub/specialevent/" + _pick3 + ".webm" { muted: false }>>
+	<<video "scenes/deliveryhub/specialevent/" + _pick3 + ".webm" { muted: false }>>
 	<<run setup.Delivery.clearLust()>>
 	@@.notmc-speech; Too late for that. Here's your money, now get out.@@<br>
 	@@.mc-thoughts; Fuck... I can feel it dripping out of me@@<br>

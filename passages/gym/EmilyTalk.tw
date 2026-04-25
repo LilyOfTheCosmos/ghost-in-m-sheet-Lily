@@ -1,5 +1,5 @@
 :: EmilyTalk [nobr] {"position":"3325,1600","size":"100,100"}
-<<image "gym/emily-talks.jpg" { width: "100%" }>><br>
+<<image "scenes/gym/emily-talks.jpg" { width: "100%" }>><br>
 <<if not setup.Gym.hasMetEmily()>>
 
 	@@.mc-speech; Hi, you look really fit. You must work out a lot. Oh, I forgot to introduce myself: I'm <<= setup.Mc.name()>>.@@<br>

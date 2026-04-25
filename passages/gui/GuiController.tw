@@ -41,7 +41,7 @@ setup.Gui = (function () {
 			{
 				key:           'brook',
 				stateKey:      'brook',
-				portrait:      'brook/brook.png',
+				portrait:      'characters/brook/brook.png',
 				infoPassage:   'BrookInfo',
 				lockedHint:    'Need to search in the library',
 				isUnlocked:    function () { return meetFlag('Brook'); },
@@ -58,7 +58,7 @@ setup.Gui = (function () {
 			{
 				key:           'alice',
 				stateKey:      'alice',
-				portrait:      'alice/alice.png',
+				portrait:      'characters/alice/alice.png',
 				infoPassage:   'AliceInfo',
 				lockedHint:    'Deliver books to the correct address',
 				isUnlocked:    function () { return meetFlag('Alice'); },
@@ -72,7 +72,7 @@ setup.Gui = (function () {
 			{
 				key:           'blake',
 				stateKey:      'blake',
-				portrait:      'blake/blake.png',
+				portrait:      'characters/blake/blake.png',
 				infoPassage:   'BlakeInfo',
 				lockedHint:    'Befriend the assistant at the sex shop <br>(Relationship 5+)',
 				isUnlocked:    function () { return (sv.relationshipBlake || 0) >= 5; },

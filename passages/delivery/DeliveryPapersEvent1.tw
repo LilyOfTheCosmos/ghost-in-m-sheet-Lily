@@ -2,7 +2,7 @@
 <<run setup.Delivery.markPapersEvent()>>
 <<addLust 45>>
 <<deliveryVideo "papersevent" 4 5>>
-+45 <<image "img/hearth.png" { style: "position: relative; top: 0.375em; width:3%;" }>><br>
++45 <<image "ui/img/hearth.png" { style: "position: relative; top: 0.375em; width:3%;" }>><br>
 @@.mc-speech; Oh~i'm cumming~@@<br>
 @@.notmc-speech; On your knees bitch,@@ <<linkappend "@@.notmc-speechLink; quickly@@">><br>
 	<<deliveryVideo "papersevent" 6>>

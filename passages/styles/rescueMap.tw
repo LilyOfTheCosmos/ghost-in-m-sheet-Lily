@@ -1,5 +1,5 @@
 :: StyleRescueMap
-<<bodyBackground "assets/rescue/house/rescue-map.jpg">>
+<<bodyBackground "assets/characters/rescue/house/rescue-map.jpg">>
 <style>
 .iconRescuePx {
 	width: 80px;

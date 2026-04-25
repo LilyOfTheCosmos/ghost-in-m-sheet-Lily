@@ -1,7 +1,7 @@
 :: WitchSale [nobr] {"position":"1350,150","size":"100,100"}
 <div class="flexwrapper">
 <div class="housecard">
-<<image "img/sanity-pills.png" "iconPx">><br>
+<<image "ui/img/sanity-pills.png" "iconPx">><br>
 <span class="priceAmount">10$</span><br>
 <<if setup.Mc.money() gte 10>>
 	@@.buyItemLink;<<link "Buy" "WitchSale">>
@@ -14,7 +14,7 @@
 </div>
 <div class="housecard">
 <<run setup.Witch.initCrucifixIfNeeded()>>
-<<image "img/crucifix.webp" "iconPx">><br>
+<<image "ui/img/crucifix.webp" "iconPx">><br>
 <span class="priceAmount">10$</span><br>
 <<if setup.Mc.money() gte 10>>
 	@@.buyItemLink;<<link "Buy" "WitchSale">>
@@ -27,7 +27,7 @@
 </div>
 <div class="housecard">
 <<if setup.Witch.toolLevel("emf") eq 5>>
-	<<image "img/emf.png" "iconPx">><br>
+	<<image "ui/img/emf.png" "iconPx">><br>
 	<span class="priceAmount">200$</span><br>
 	<<if setup.Mc.money() gte 200>>
 		@@.buyItemLink;<<link "Buy (lvl 2)" "WitchSale">>
@@ -39,7 +39,7 @@
 </div>
 <div class="housecard">
 <<if setup.Witch.toolLevel("temperature") eq 5>>
-	<<image "img/thermometr.png" "iconPx">><br>
+	<<image "ui/img/thermometr.png" "iconPx">><br>
 	<span class="priceAmount">100$</span><br>
 	<<if setup.Mc.money() gte 100>>
 		@@.buyItemLink;<<link "Buy (lvl 2)" "WitchSale">>
@@ -51,7 +51,7 @@
 </div>
 <div class="housecard">
 <<if setup.Witch.toolLevel("spiritbox") eq 5>>
-	<<image "img/spiritbox.png" "iconPx">><br>
+	<<image "ui/img/spiritbox.png" "iconPx">><br>
 	<span class="priceAmount">500$</span><br>
 	<<if setup.Mc.money() gte 500>>
 		@@.buyItemLink;<<link "Buy (lvl 2)" "WitchSale">>
@@ -63,7 +63,7 @@
 </div>
 <div class="housecard">
 <<if setup.Witch.toolLevel("gwb") eq 5>>
-	<<image "img/gwb.png" "iconPx">><br>
+	<<image "ui/img/gwb.png" "iconPx">><br>
 	<span class="priceAmount">400$</span><br>
 	<<if setup.Mc.money() gte 400>>
 		@@.buyItemLink;<<link "Buy (lvl 2)" "WitchSale">>
@@ -75,7 +75,7 @@
 </div>
 <div class="housecard">
 <<if setup.Witch.toolLevel("glass") eq 5>>
-	<<image "img/glass.png" "iconPx">><br>
+	<<image "ui/img/glass.png" "iconPx">><br>
 	<span class="priceAmount">300$</span><br>
 	<<if setup.Mc.money() gte 300>>
 		@@.buyItemLink;<<link "Buy (lvl 2)" "WitchSale">>
@@ -87,7 +87,7 @@
 </div>
 <div class="housecard">
 <<if setup.Witch.toolLevel("uvl") eq 5>>
-	<<image "img/uvl.png" "iconPx">><br>
+	<<image "ui/img/uvl.png" "iconPx">><br>
 	<span class="priceAmount">400$</span><br>
 	<<if setup.Mc.money() gte 400>>
 		@@.buyItemLink;<<link "Buy (lvl 2)" "WitchSale">>
@@ -99,7 +99,7 @@
 </div>
 <div class="housecard">
 <<if setup.Witch.monkeyPawGuideAvailable()>>
-	<<image "cursedpossessions/monkey-paw/monkeypaw-page.jpg" "iconPx">><br>
+	<<image "mechanics/cursedpossessions/monkey-paw/monkeypaw-page.jpg" "iconPx">><br>
 	<span class="priceAmount">400$</span><br>
 	<<if setup.Mc.money() gte 400>>
 		@@.buyItemLink;<<link "Buy" "WitchSale">>
@@ -111,7 +111,7 @@
 </div>
 <div class="housecard">
 <<if not setup.Witch.detectorBought()>>
-	<<image "img/detector.png" "iconPx">><br>
+	<<image "ui/img/detector.png" "iconPx">><br>
 	<span class="priceAmount">200$</span><br>
 	<<if setup.Mc.money() gte 200>>
 		@@.buyItemLink;<<link "Buy" "WitchSale">>

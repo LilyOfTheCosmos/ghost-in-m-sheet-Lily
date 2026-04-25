@@ -2,15 +2,15 @@
 <<set _check to random(1,2)>>
 <<if setup.Wardrobe.topShirtWorn()>>
 	<<if _check eq 1>>
-		<<video "steal-clothes/3.mp4" "displayCentredImgs">>
+		<<video "mechanics/steal-clothes/3.mp4" "displayCentredImgs">>
 	<</if>>
-	<<if _check eq 2>><<video "steal-clothes/4.mp4" "displayCentredImgs">>
+	<<if _check eq 2>><<video "mechanics/steal-clothes/4.mp4" "displayCentredImgs">>
 	<</if>>
 <<else>>
 	<<if _check eq 1>>
-		<<video "steal-clothes/1.mp4" "displayCentredImgs">>
+		<<video "mechanics/steal-clothes/1.mp4" "displayCentredImgs">>
 	<</if>>
-	<<if _check eq 2>><<video "steal-clothes/2.mp4" "displayCentredImgs">>
+	<<if _check eq 2>><<video "mechanics/steal-clothes/2.mp4" "displayCentredImgs">>
 	<</if>>
 <</if>>
 

@@ -1,8 +1,8 @@
 :: Summoning [nobr] {"position":"600,2700","size":"100,100"}
 <<if setup.Home.spiritEventStage() eq 0 or setup.Home.twinsEventActive() or setup.Home.mareEventStart() neq 0 or setup.Home.gotCursedItemFlag() eq 1>>
-	<<image "img/amulet1.png" "displayCentredImgs">>
+	<<image "ui/img/amulet1.png" "displayCentredImgs">>
 <<else>>
-	<<image "img/amulet0.png" "displayCentredImgs">>
+	<<image "ui/img/amulet0.png" "displayCentredImgs">>
 <</if>>
 @@.mc-speech; Rain talked about the amulet and how it reacts to the presence of ghosts... <br>
 <<if setup.Home.exorcismQuestStage() eq 2>>

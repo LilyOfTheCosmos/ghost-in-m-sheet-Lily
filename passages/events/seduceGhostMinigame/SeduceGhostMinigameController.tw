@@ -44,24 +44,24 @@ setup.SeduceGhostMinigame = (function () {
 	// Video data -- keyed by state, each entry has ghostWin/mcWin/normal
 	// ----------------------------------------------------------------
 
-	var TEASE = "minigame/tease/";
-	var BLOWJOB = "minigame/blowjob/";
-	var PENETRATE = "minigame/penetrate/";
-	var SEX = "minigame/sex/";
+	var TEASE = "mechanics/minigame/tease/";
+	var BLOWJOB = "mechanics/minigame/blowjob/";
+	var PENETRATE = "mechanics/minigame/penetrate/";
+	var SEX = "mechanics/minigame/sex/";
 
 	// Shared video pools reused across multiple states
 	var TEASE_NORMAL = vidRange(TEASE, 1, 9).concat(imgList(TEASE, [1, 4, 10]));
 	var TEASE_MC_WIN_A = [
-		img("minigame/tease/end1.webp"), img("minigame/tease/end2.webp"),
-		vid("minigame/tease/end9.mp4")
+		img("mechanics/minigame/tease/end1.webp"), img("mechanics/minigame/tease/end2.webp"),
+		vid("mechanics/minigame/tease/end9.mp4")
 	];
 	var TEASE_MC_WIN_B = [
-		img("minigame/tease/end3.webp"), img("minigame/tease/end2.webp"),
-		img("minigame/tease/end5.webp"), vid("minigame/tease/end9.mp4")
+		img("mechanics/minigame/tease/end3.webp"), img("mechanics/minigame/tease/end2.webp"),
+		img("mechanics/minigame/tease/end5.webp"), vid("mechanics/minigame/tease/end9.mp4")
 	];
 	var BJ_MC_WIN = [
-		img("minigame/blowjob/bjend10.webp"), img("minigame/blowjob/bjend11.webp"),
-		img("minigame/blowjob/bjend12.webp"), img("minigame/blowjob/bjend13.webp")
+		img("mechanics/minigame/blowjob/bjend10.webp"), img("mechanics/minigame/blowjob/bjend11.webp"),
+		img("mechanics/minigame/blowjob/bjend12.webp"), img("mechanics/minigame/blowjob/bjend13.webp")
 	];
 
 	var VIDEOS = {
@@ -275,14 +275,14 @@ setup.SeduceGhostMinigame = (function () {
 			var state = v("minigameVideo");
 			if (state === "start") {
 				var mi = mc().makeupImg;
-				var src = mi === 1 ? "img/makeup1.jpg"
-						: mi === 2 ? "img/makeup2.jpg"
-						: mi === 3 ? "img/makeup3.jpg"
-						: "img/mc.jpg";
+				var src = mi === 1 ? "ui/img/makeup1.jpg"
+						: mi === 2 ? "ui/img/makeup2.jpg"
+						: mi === 3 ? "ui/img/makeup3.jpg"
+						: "ui/img/mc.jpg";
 				return [img(src)];
 			}
 			var data = VIDEOS[state];
-			if (!data) return [img("img/mc.jpg")];
+			if (!data) return [img("ui/img/mc.jpg")];
 			if (ghostWin() && data.ghostWin) return data.ghostWin;
 			if (mcWin() && data.mcWin) return data.mcWin;
 			return data.normal || [];

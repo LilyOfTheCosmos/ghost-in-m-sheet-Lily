@@ -123,7 +123,7 @@ test.describe('Events controller — video resolvers', () => {
     const list = await page.evaluate(() =>
       SugarCube.setup.Events.videoListForEvent('tits'));
     expect(list.length).toBeGreaterThan(0);
-    expect(list[0]).toContain('nobra/');
+    expect(list[0]).toContain('/no-bra/');
   });
 
   test('videoListForEvent for ass with jeans + panties picks jeans set', async () => {
@@ -134,7 +134,7 @@ test.describe('Events controller — video resolvers', () => {
     await setVar(page, 'skirtState', 'not worn');
     const list = await page.evaluate(() =>
       SugarCube.setup.Events.videoListForEvent('ass'));
-    expect(list[0]).toContain('jeans1/');
+    expect(list[0]).toContain('/jeans/s1/');
   });
 
   test('videoListForEvent for ass with skirt + no panties picks skirtNP', async () => {
@@ -145,7 +145,7 @@ test.describe('Events controller — video resolvers', () => {
     await setVar(page, 'pantiesState', 'not worn');
     const list = await page.evaluate(() =>
       SugarCube.setup.Events.videoListForEvent('ass'));
-    expect(list[0]).toContain('skirt-np1/');
+    expect(list[0]).toContain('/skirt-no-panties/s1/');
   });
 
   test('videoListForEvent on ironclad always picks prison list', async () => {
@@ -335,10 +335,10 @@ test.describe('Events controller — save-event video aliases', () => {
     await setVar(page, 'skirtState', 'not worn');
 
     const stage1 = await page.evaluate(() => SugarCube.setup.Events.saveEventBottomVideos(1));
-    expect(stage1[0]).toContain('jeans1/');
+    expect(stage1[0]).toContain('/jeans/s1/');
 
     const stage2 = await page.evaluate(() => SugarCube.setup.Events.saveEventBottomVideos(2));
-    expect(stage2[0]).toContain('jeans2/');
+    expect(stage2[0]).toContain('/jeans/s2/');
 
     const stage4 = await page.evaluate(() => SugarCube.setup.Events.saveEventBottomVideos(4));
     expect(stage4.length).toBeGreaterThan(0);

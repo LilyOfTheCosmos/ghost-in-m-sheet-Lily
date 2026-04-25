@@ -1,14 +1,14 @@
 :: PossessedLocation2 [nobr] {"position":"1125,600","size":"100,100"}
 <<if setup.Posession.locationChoice() eq "library">>
 	<span id ="possessedLocationLibrary1">
-	<<video "possessed/1.7.mp4">></span>
+	<<video "mechanics/possessed/1.7.mp4">></span>
 	@@.mc-thoughts; They cum all over your face,@@ <<link "@@.usebtn; one after the other@@">>
 		<<set _videoToggle to !_videoToggle>>
 		<<replace "#possessedLocationLibrary1">>
 			<<if _videoToggle>>
-				<<video "possessed/1.8.mp4">>
+				<<video "mechanics/possessed/1.8.mp4">>
 			<<else>>
-				<<video "possessed/1.7.mp4">>
+				<<video "mechanics/possessed/1.7.mp4">>
 			<</if>>
 		<</replace>>
 	<</link>>

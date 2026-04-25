@@ -14,7 +14,7 @@
 <<elseif setup.Mc.isExhausted()>>
 	<<goto "HuntOverExhaustion">>
 <</if>>
-<<image "img/crucifix.webp" { class: "displayCentredImgs", width: "60%" }>>
+<<image "ui/img/crucifix.webp" { class: "displayCentredImgs", width: "60%" }>>
 <br>
 &emsp;&emsp;You squeeze your eyes shut and pour everything you have into a silent prayer. Your thoughts fracture; the air gets heavier; for a moment you can't tell which way is up. Then the footsteps fade, and the cold pressure on your neck lifts.
 <br><br>

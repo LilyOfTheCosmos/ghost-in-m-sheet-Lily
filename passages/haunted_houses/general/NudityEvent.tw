@@ -4,40 +4,40 @@
 <<if setup.HauntedHouses.nudityNakedNoBottoms()>>
 	<<if setup.Mc.exhibitionism() lte 4>>
 		<<set _videoList to [
-		{type: "video", src: "naked/1.mp4"},
-		{type: "image", src: "naked/2.png"}]>>
+		{type: "video", src: "outfits/bottoms/naked/1.mp4"},
+		{type: "image", src: "outfits/bottoms/naked/2.png"}]>>
 	<<else>>
 		<<set _videoList to [
-		{type: "video", src: "naked/10.mp4"},
-		{type: "video", src: "naked/11.mp4"},
-		{type: "video", src: "naked/12.mp4"},
-		{type: "video", src: "naked/13.mp4"},
-		{type: "video", src: "naked/14.mp4"},
-		{type: "video", src: "naked/15.mp4"}]>>
+		{type: "video", src: "outfits/bottoms/naked/10.mp4"},
+		{type: "video", src: "outfits/bottoms/naked/11.mp4"},
+		{type: "video", src: "outfits/bottoms/naked/12.mp4"},
+		{type: "video", src: "outfits/bottoms/naked/13.mp4"},
+		{type: "video", src: "outfits/bottoms/naked/14.mp4"},
+		{type: "video", src: "outfits/bottoms/naked/15.mp4"}]>>
 	<</if>>
 <<elseif setup.HauntedHouses.nudityToplessWithPanties()>>
 	<<if setup.Mc.exhibitionism() lte 4>>
 		<<if setup.Wardrobe.braWorn()>>
 			<<set _videoList to [
-			{type: "image", src: "naked/5.png"},
-			{type: "image", src: "naked/6.png"},
-			{type: "image", src: "naked/7.png"}]>>
+			{type: "image", src: "outfits/bottoms/naked/5.png"},
+			{type: "image", src: "outfits/bottoms/naked/6.png"},
+			{type: "image", src: "outfits/bottoms/naked/7.png"}]>>
 		<<else>>
 			<<set _videoList to [
-			{type: "image", src: "naked/3.png"},
-			{type: "image", src: "naked/4.png"}]>>
+			{type: "image", src: "outfits/bottoms/naked/3.png"},
+			{type: "image", src: "outfits/bottoms/naked/4.png"}]>>
 		<</if>>
 	<<else>>
 		<<set _videoList to [
-		{type: "video", src: "naked/30.mp4"},
-		{type: "video", src: "naked/31.mp4"},
-		{type: "video", src: "naked/32.mp4"}]>>
+		{type: "video", src: "outfits/bottoms/naked/30.mp4"},
+		{type: "video", src: "outfits/bottoms/naked/31.mp4"},
+		{type: "video", src: "outfits/bottoms/naked/32.mp4"}]>>
 	<</if>>
 <<elseif setup.HauntedHouses.isTopless()>>
 	<<set _videoList to [
-	{type: "video", src: "naked/20.mp4"},
-	{type: "video", src: "naked/21.mp4"},
-	{type: "video", src: "naked/22.mp4"}]>>
+	{type: "video", src: "outfits/bottoms/naked/20.mp4"},
+	{type: "video", src: "outfits/bottoms/naked/21.mp4"},
+	{type: "video", src: "outfits/bottoms/naked/22.mp4"}]>>
 <<elseif setup.HauntedHouses.isFullyDressed()>>
 	<<goto "Livingroom">>
 <</if>>

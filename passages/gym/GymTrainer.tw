@@ -1,7 +1,7 @@
 :: GymTrainer [nobr] {"position":"3225,1600","size":"100,100"}
 <<addLust 15>>
 <<if setup.Gym.soloSlotMorning()>>
-	<<video "gym/trainer1.mp4">>
+	<<video "scenes/gym/trainer1.mp4">>
 	You spent about an hour at the gym, diligently working on improving your physical fitness. Each workout makes you stronger and more resilient, helping you reach new heights.<br><br>
 	<<if setup.Gym.trainer1GaveTip()>>
 		@@.mc-thoughts; Emily said that he likes girls in sexy lingerie...@@<br>
@@ -13,7 +13,7 @@
 		@@.mc-speech;[[Go to him in sexy lingerie|GymTrainerEvent1Start]]@@
 	<</if>>
 <<elseif setup.Gym.soloSlotAfternoon()>>
-	<<video "gym/trainer2.mp4">>
+	<<video "scenes/gym/trainer2.mp4">>
 	You spent about an hour at the gym, diligently working on improving your physical fitness. Each workout makes you stronger and more resilient, helping you reach new heights.<br><br>
 	<<if setup.Gym.meetsFitForTrainer2Event()>>
 		@@.mc-thoughts; While you're squatting with him, you feel his cock pressing directly@@ <<linkappend "@@.mc-thoughtsLink;  into your butt.@@">><br>
@@ -27,7 +27,7 @@
 		<</linkappend>>
 	<</if>>
 <<elseif setup.Gym.soloSlotEvening()>>
-	<<video "gym/trainer3.mp4">>
+	<<video "scenes/gym/trainer3.mp4">>
 	You spent about an hour at the gym, diligently working on improving your physical fitness. Each workout makes you stronger and more resilient, helping you reach new heights.<br><br>
 
 	<<if not setup.Gym.hasMetEmily()>>

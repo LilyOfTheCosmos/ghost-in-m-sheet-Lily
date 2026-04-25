@@ -5,7 +5,7 @@
 	<div class="housecard">
 	<<if !_contact.isUnlocked()>>
 		@@.mc-thoughts; _contact.lockedHint @@<br>
-		<<image "img/question-mark.png" "contactsImages">>
+		<<image "ui/img/question-mark.png" "contactsImages">>
 	<<else>>
 		@@.notmc-speech; _stats.name @@<br>
 		_stats.lvl lvl

@@ -1,7 +1,7 @@
 :: MonkeyPaw [nobr noreturn] {"position":"900,3200","size":"100,100"}
 <<run setup.MonkeyPaw.ensureGuideInit()>>
 <div class="MonkeyPawShow">
-<<image "cursedpossessions/monkey-paw/monkeypaw.jpg" "displayCentredImgs">>
+<<image "mechanics/cursedpossessions/monkey-paw/monkeypaw.jpg" "displayCentredImgs">>
 
 <span id="wishesCount">
 <<if not setup.MonkeyPaw.hasWishes()>>

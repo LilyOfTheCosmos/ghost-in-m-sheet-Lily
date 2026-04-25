@@ -55,8 +55,8 @@
 		<<run setup.Companion.markTransFirstStage()>>
 	<</if>>
 	<<run setup.Companion.applyEventStatDeltas(_companionLustIncreased)>>
-	<<= _cName>>'s lust: + _companionLustIncreased <<image "img/hearth.png" { style: "position: relative; top: 0.375em; width:3%;" }>><br>
-	<<= _cName>>'s sanity: - <<= setup.Companion.decreaseSanity()>><<image "img/sanity.png" { style: "position: relative; top: 0.375em; width:3%;" }>><br>
+	<<= _cName>>'s lust: + _companionLustIncreased <<image "ui/img/hearth.png" { style: "position: relative; top: 0.375em; width:3%;" }>><br>
+	<<= _cName>>'s sanity: - <<= setup.Companion.decreaseSanity()>><<image "ui/img/sanity.png" { style: "position: relative; top: 0.375em; width:3%;" }>><br>
 
 <</widget>>
 
@@ -90,9 +90,9 @@
 		<<run setup.Companion.markTransFirstStage()>>
 	<</if>>
 	<<run setup.Companion.applyEventStatDeltas(_companionLustIncreased)>>
-	<<= _cName>>'s lust: + _companionLustIncreased <<image "img/hearth.png" { style: "position: relative; top: 0.375em; width:3%;" }>><br>
-	<<= _cName>>'s sanity: - <<= setup.Companion.decreaseSanity()>><<image "img/sanity.png" { style: "position: relative; top: 0.375em; width:3%;" }>><br>
-	Your <<image "img/hearth.png" { style: "position: relative; top: 0.375em; width:3%;" }>> +15<br>
+	<<= _cName>>'s lust: + _companionLustIncreased <<image "ui/img/hearth.png" { style: "position: relative; top: 0.375em; width:3%;" }>><br>
+	<<= _cName>>'s sanity: - <<= setup.Companion.decreaseSanity()>><<image "ui/img/sanity.png" { style: "position: relative; top: 0.375em; width:3%;" }>><br>
+	Your <<image "ui/img/hearth.png" { style: "position: relative; top: 0.375em; width:3%;" }>> +15<br>
 	<<addLust 15>>
 <</widget>>
 
@@ -126,9 +126,9 @@
 		<<run setup.Companion.markTransFirstStage()>>
 	<</if>>
 	<<run setup.Companion.applyEventStatDeltas(_companionLustIncreased)>>
-	<<= _cName>>'s lust: + _companionLustIncreased <<image "img/hearth.png" { style: "position: relative; top: 0.375em; width:3%;" }>><br>
-	<<= _cName>>'s sanity: - <<= setup.Companion.decreaseSanity()>><<image "img/sanity.png" { style: "position: relative; top: 0.375em; width:3%;" }>><br>
-	Your <<image "img/hearth.png" { style: "position: relative; top: 0.375em; width:3%;" }>> +15<br>
+	<<= _cName>>'s lust: + _companionLustIncreased <<image "ui/img/hearth.png" { style: "position: relative; top: 0.375em; width:3%;" }>><br>
+	<<= _cName>>'s sanity: - <<= setup.Companion.decreaseSanity()>><<image "ui/img/sanity.png" { style: "position: relative; top: 0.375em; width:3%;" }>><br>
+	Your <<image "ui/img/hearth.png" { style: "position: relative; top: 0.375em; width:3%;" }>> +15<br>
 	<<addLust 15>>
 <</widget>>
 
@@ -160,9 +160,9 @@
 		<<run setup.Companion.markTransFirstStage()>>
 	<</if>>
 	<<run setup.Companion.applyEventStatDeltas(_companionLustIncreased)>>
-	<<= _cName>>'s lust: + _companionLustIncreased <<image "img/hearth.png" { style: "position: relative; top: 0.375em; width:3%;" }>><br>
-	<<= _cName>>'s sanity: - <<= setup.Companion.decreaseSanity()>><<image "img/sanity.png" { style: "position: relative; top: 0.375em; width:3%;" }>><br>
-	Your <<image "img/hearth.png" { style: "position: relative; top: 0.375em; width:3%;" }>> +15<br>
+	<<= _cName>>'s lust: + _companionLustIncreased <<image "ui/img/hearth.png" { style: "position: relative; top: 0.375em; width:3%;" }>><br>
+	<<= _cName>>'s sanity: - <<= setup.Companion.decreaseSanity()>><<image "ui/img/sanity.png" { style: "position: relative; top: 0.375em; width:3%;" }>><br>
+	Your <<image "ui/img/hearth.png" { style: "position: relative; top: 0.375em; width:3%;" }>> +15<br>
 	<<addLust 15>>
 <</widget>>
 
@@ -214,5 +214,5 @@
 	<<set _cName to setup.Companion.name()>>
 	or @@.usebtn;<<link `_cName + " helps you"`>><<run setup.Companion.drainSanity(3)>>
 		<<replace "#eventVideo">><<include "AliceHelp">><</replace>>
-	<</link>> @@ - <<= _cName>>'s <<image "img/sanity.png" { style: "position: relative; top: 0.375em; width:3%;" }>>
+	<</link>> @@ - <<= _cName>>'s <<image "ui/img/sanity.png" { style: "position: relative; top: 0.375em; width:3%;" }>>
 <</widget>>

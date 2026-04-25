@@ -1,5 +1,5 @@
 :: StyleNotebook
-<<bodyBackground "assets/img/journal-inside.webp">>
+<<bodyBackground "assets/ui/img/journal-inside.webp">>
 <style>
 .blackColor {
 	background-color: rgba(0, 0, 0, 0.5);

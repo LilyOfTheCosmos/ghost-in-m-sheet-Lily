@@ -229,11 +229,11 @@ setup.Delivery = (function () {
 		initShift: function () {
 			var s = State.variables;
 			s.itemImages = {
-				pizza:      "img/pizza.jpg",
-				package:    "img/package.jpg",
-				newspapers: "img/newspapers.jpg",
-				burgers:    "img/burger.jpg",
-				books:      "img/books.jpg"
+				pizza:      "ui/img/pizza.jpg",
+				package:    "ui/img/package.jpg",
+				newspapers: "ui/img/newspapers.jpg",
+				burgers:    "ui/img/burger.jpg",
+				books:      "ui/img/books.jpg"
 			};
 			s.items = ["pizza", "package", "newspapers", "books", "burgers"];
 			s.streets = setup.deliveryStreets.slice();

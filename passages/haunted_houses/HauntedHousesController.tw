@@ -26,7 +26,7 @@ setup.HauntedHouses = (function () {
 			flag: 'isOwaissa',
 			streetPassage: 'Owaissa Street',
 			hallwayPassage: 'OwaissaHallway',
-			image: 'img/owaissa-house.jpg',
+			image: 'ui/img/owaissa-house.jpg',
 			levelGate: 0,
 			isRealHouse: false,
 			runsFurnitureCode: true,
@@ -43,7 +43,7 @@ setup.HauntedHouses = (function () {
 			flag: 'isElm',
 			streetPassage: 'Elm Street',
 			hallwayPassage: 'ElmHallway',
-			image: 'img/elm-house.jpg',
+			image: 'ui/img/elm-house.jpg',
 			levelGate: 3,
 			isRealHouse: false,
 			runsFurnitureCode: true,
@@ -63,7 +63,7 @@ setup.HauntedHouses = (function () {
 			flag: 'isEnigma',
 			streetPassage: 'Enigma Street',
 			hallwayPassage: 'EnigmaHallway',
-			image: 'img/enigma-house.jpg',
+			image: 'ui/img/enigma-house.jpg',
 			levelGate: 2,
 			isRealHouse: true,
 			runsFurnitureCode: false,
@@ -83,7 +83,7 @@ setup.HauntedHouses = (function () {
 			flag: 'isIronclad',
 			streetPassage: 'Ironclad Prison',
 			hallwayPassage: 'IroncladHallway',
-			image: 'room/ironclad/ironclad.webp',
+			image: 'scenes/room/ironclad/ironclad.webp',
 			levelGate: 4,
 			isRealHouse: false,
 			runsFurnitureCode: true,
@@ -450,14 +450,14 @@ setup.HauntedHouses = (function () {
 			var list;
 			if (t === 'dildo') {
 				list = v('tshirtState') === 'worn'
-					? ["curseditems/1.0.mp4", "curseditems/1.1.mp4", "curseditems/1.2.mp4", "curseditems/1.3.mp4"]
-					: ["curseditems/1.0.mp4", "curseditems/1.1.mp4"];
+					? ["mechanics/curseditems/1.0.mp4", "mechanics/curseditems/1.1.mp4", "mechanics/curseditems/1.2.mp4", "mechanics/curseditems/1.3.mp4"]
+					: ["mechanics/curseditems/1.0.mp4", "mechanics/curseditems/1.1.mp4"];
 			} else if (t === 'buttplug') {
-				list = ["curseditems/2.0.mp4", "curseditems/2.1.mp4", "curseditems/2.2.mp4", "curseditems/2.3.mp4"];
+				list = ["mechanics/curseditems/2.0.mp4", "mechanics/curseditems/2.1.mp4", "mechanics/curseditems/2.2.mp4", "mechanics/curseditems/2.3.mp4"];
 			} else if (t === 'beads') {
-				list = ["curseditems/3.0.mp4", "curseditems/3.1.mp4", "curseditems/3.2.mp4", "curseditems/3.3.mp4"];
+				list = ["mechanics/curseditems/3.0.mp4", "mechanics/curseditems/3.1.mp4", "mechanics/curseditems/3.2.mp4", "mechanics/curseditems/3.3.mp4"];
 			} else if (t === 'hdildo') {
-				list = ["curseditems/4.0.mp4", "curseditems/4.1.mp4", "curseditems/4.2.mp4"];
+				list = ["mechanics/curseditems/4.0.mp4", "mechanics/curseditems/4.1.mp4", "mechanics/curseditems/4.2.mp4"];
 			} else {
 				return null;
 			}
@@ -559,11 +559,11 @@ setup.HauntedHouses = (function () {
 			function isSkirt(k) { return typeof k === "string" && k.indexOf("noskirt") === 0; }
 			function hasPanties(k) { return typeof k === "string" && k.indexOf("panties") === 0; }
 			function noPanties(k) { return typeof k === "string" && k.indexOf("nopanties") === 0; }
-			if (isJeans(ro) && hasPanties(ru))  return "mc/jeansp.mp4";
-			if (isJeans(ro) && noPanties(ru))   return "mc/jeansnp.mp4";
-			if (isShorts(ro))                   return "mc/shorts.mp4";
-			if (isSkirt(ro) && hasPanties(ru))  return "mc/skirtp.mp4";
-			if (isSkirt(ro) && noPanties(ru))   return "mc/skirtnp.mp4";
+			if (isJeans(ro) && hasPanties(ru))  return "characters/mc/jeansp.mp4";
+			if (isJeans(ro) && noPanties(ru))   return "characters/mc/jeansnp.mp4";
+			if (isShorts(ro))                   return "characters/mc/shorts.mp4";
+			if (isSkirt(ro) && hasPanties(ru))  return "characters/mc/skirtp.mp4";
+			if (isSkirt(ro) && noPanties(ru))   return "characters/mc/skirtnp.mp4";
 			return null;
 		},
 		isPantiesStolen: function () { return v('isPantiesStolen') === 1; },

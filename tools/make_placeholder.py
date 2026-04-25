@@ -4,6 +4,7 @@ Dev helper: generate a placeholder image or video with a label drawn on it.
 
 Usage:
     python3 make_placeholder.py TEXT PATH WIDTH HEIGHT
+    python3 make_placeholder.py --rebuild-manifest
 
 PATH is resolved relative to ./asset-placeholders (when not absolute) so the
 defaults line up with how build.sh swaps in real assets. The file extension
@@ -13,15 +14,22 @@ decides the output format:
     .webm                -> 3-second looping video (VP8 + Opus, with audio track)
 
 Examples:
-    python3 make_placeholder.py "Alice 1" alice/alice1.png 640 360
-    python3 make_placeholder.py "Trans Alex 3" trans/alex3.jpg 640 360
-    python3 make_placeholder.py "Blake intro" blake/home/1.mp4 640 360
+    python3 make_placeholder.py "Alice 1" characters/alice/1.png 640 360
+    python3 make_placeholder.py "Trans Alex 3" characters/trans/alex/3.jpg 640 360
+    python3 make_placeholder.py "Blake intro" characters/blake/home/1.mp4 640 360
+
+Each successful generation also adds/updates an entry in
+asset-placeholders/index.json. Run with --rebuild-manifest to regenerate the
+manifest from scratch by scanning every placeholder under asset-placeholders/
+(uses ffprobe for dimensions; labels stay empty unless you regenerate via the
+normal mode).
 
 Requires ffmpeg on PATH.
 """
 
 from __future__ import annotations
 
+import json
 import shutil
 import subprocess
 import sys
@@ -29,6 +37,7 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_BASE = REPO_ROOT / "asset-placeholders"
+MANIFEST_PATH = DEFAULT_BASE / "index.json"
 IMAGE_EXTS = {".png", ".jpg", ".jpeg"}
 VIDEO_EXTS = {".mp4", ".webm"}
 VIDEO_DURATION = "3"
@@ -142,10 +151,102 @@ def resolve_out(name: str) -> Path:
     return DEFAULT_BASE / p
 
 
+def kind_for(ext: str) -> str:
+    return "image" if ext in IMAGE_EXTS else "video"
+
+
+def load_manifest() -> dict:
+    if not MANIFEST_PATH.is_file():
+        return {"entries": {}}
+    try:
+        data = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return {"entries": {}}
+    if "entries" not in data or not isinstance(data["entries"], dict):
+        data["entries"] = {}
+    return data
+
+
+def save_manifest(data: dict) -> None:
+    data["entries"] = dict(sorted(data["entries"].items()))
+    MANIFEST_PATH.write_text(
+        json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
+    )
+
+
+def update_manifest_entry(out_path: Path, label: str, width: int, height: int) -> None:
+    """Record this placeholder in asset-placeholders/index.json.
+    Skips silently if `out_path` lives outside DEFAULT_BASE."""
+    try:
+        rel = out_path.resolve().relative_to(DEFAULT_BASE)
+    except ValueError:
+        return
+    data = load_manifest()
+    data["entries"][str(rel)] = {
+        "label": label,
+        "width": width,
+        "height": height,
+        "kind": kind_for(out_path.suffix.lower()),
+    }
+    save_manifest(data)
+
+
+def probe_dimensions(path: Path) -> tuple[int, int] | None:
+    """Read width/height of an image or video using ffprobe."""
+    if not shutil.which("ffprobe"):
+        return None
+    try:
+        out = subprocess.check_output(
+            [
+                "ffprobe", "-v", "error",
+                "-select_streams", "v:0",
+                "-show_entries", "stream=width,height",
+                "-of", "csv=p=0:s=x",
+                str(path),
+            ],
+            text=True,
+            stderr=subprocess.DEVNULL,
+        ).strip()
+    except (OSError, subprocess.CalledProcessError):
+        return None
+    parts = out.split("x")
+    if len(parts) != 2:
+        return None
+    try:
+        return int(parts[0]), int(parts[1])
+    except ValueError:
+        return None
+
+
+def rebuild_manifest() -> None:
+    """Scan asset-placeholders/ from scratch. Dimensions come from ffprobe;
+    label is left empty for files we didn't generate this run."""
+    print(f"scanning {DEFAULT_BASE}/ ...")
+    entries: dict[str, dict] = {}
+    valid_exts = IMAGE_EXTS | VIDEO_EXTS
+    for path in sorted(DEFAULT_BASE.rglob("*")):
+        if not path.is_file() or path.suffix.lower() not in valid_exts:
+            continue
+        rel = str(path.relative_to(DEFAULT_BASE))
+        dims = probe_dimensions(path)
+        entries[rel] = {
+            "label": "",
+            "width": dims[0] if dims else None,
+            "height": dims[1] if dims else None,
+            "kind": kind_for(path.suffix.lower()),
+        }
+    save_manifest({"entries": entries})
+    print(f"wrote {MANIFEST_PATH} ({len(entries)} entries)")
+
+
 def main(argv: list[str]) -> None:
+    if len(argv) == 2 and argv[1] == "--rebuild-manifest":
+        rebuild_manifest()
+        return
     if len(argv) != 5:
         sys.exit(
             "usage: make_placeholder.py TEXT PATH WIDTH HEIGHT\n"
+            "       make_placeholder.py --rebuild-manifest\n"
             "       (PATH is relative to ./asset-placeholders unless absolute)"
         )
     text, name, width_s, height_s = argv[1:]
@@ -158,7 +259,9 @@ def main(argv: list[str]) -> None:
         sys.exit("error: WIDTH and HEIGHT must be positive")
     if not shutil.which("ffmpeg"):
         sys.exit("error: ffmpeg not found on PATH")
-    generate(text, resolve_out(name), width, height)
+    out_path = resolve_out(name)
+    generate(text, out_path, width, height)
+    update_manifest_entry(out_path, text, width, height)
 
 
 if __name__ == "__main__":

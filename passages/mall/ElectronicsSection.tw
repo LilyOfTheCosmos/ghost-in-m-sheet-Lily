@@ -1,8 +1,8 @@
 :: ElectronicsSection {"position":"2800,1800","size":"100,100"}
 <<nobr>>
 <div class="flexwrapper backgroundForText">
-<<shopCardConditional `setup.Mall.canBuyCamera()` "isCameraBought" "img/webcamera.png" 100 "ElectronicsSection" 1>>
-<<shopCard "isPhoneBought" "img/phone.png" 200 "ElectronicsSection" "" 1>>
+<<shopCardConditional `setup.Mall.canBuyCamera()` "isCameraBought" "ui/img/webcamera.png" 100 "ElectronicsSection" 1>>
+<<shopCard "isPhoneBought" "ui/img/phone.png" 200 "ElectronicsSection" "" 1>>
 <div class="housecard">
 
 </div>
@@ -10,4 +10,4 @@
 <br>
 @@.backbtn;[[Leave|Mall]] @@<br>
 <</nobr>>
-<<bodyBackground "assets/img/electronics-section.jpg">>
+<<bodyBackground "assets/ui/img/electronics-section.jpg">>

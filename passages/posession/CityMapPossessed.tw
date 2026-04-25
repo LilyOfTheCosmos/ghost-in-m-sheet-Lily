@@ -1,7 +1,7 @@
 :: CityMapPossessed [city] {"position":"1225,350","size":"100,100"}
 <div class="flexwrapper">
 <div class="housecard">
-<<image "img/gym-icon.png" "icon">>
+<<image "ui/img/gym-icon.png" "icon">>
 <<if setup.Mc.fit() gte 30>>
 @@.icontextcity; [[Gym|PossessedLocation][setup.Posession.setLocationChoice("gym")]]@@
 <<else>>
@@ -12,7 +12,7 @@
 
 </div>
 <div class="housecard">
-<<image "img/home.png" "icon">>
+<<image "ui/img/home.png" "icon">>
 @@.icontextcity; [[Home|PossessedLocation][setup.Posession.setLocationChoice("home")]]@@
 </div>
 <div class="housecard">
@@ -38,21 +38,21 @@
 
 </div>
 <div class="housecard">
-<<image "img/library-icon.png" "icon">>
+<<image "ui/img/library-icon.png" "icon">>
 @@.icontextcity; [[Library|PossessedLocation][setup.Posession.setLocationChoice("library")]]@@
 </div>
 <div class="housecard">
 
 </div>
 <div class="housecard">
-<<image "img/park.png" "icon">>
+<<image "ui/img/park.png" "icon">>
 @@.icontextcity; [[Park|PossessedLocation][setup.Posession.setLocationChoice("park")]]@@
 </div>
 <div class="housecard">
 
 </div>
 <div class="housecard">
-<<image "img/church-ico.png" "icon">>
+<<image "ui/img/church-ico.png" "icon">>
 <<if setup.Posession.meterAtLeast(5)>>
 @@.icontextcity; [[Church|PossessedLocation][setup.Posession.setLocationChoice("church")]]@@
 <<else>>

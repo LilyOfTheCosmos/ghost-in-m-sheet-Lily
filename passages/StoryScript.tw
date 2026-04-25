@@ -1887,12 +1887,12 @@ $(document).on('click.searchToolPic', '.footer-card .cardimg img.icon[id]', func
  * Thin wrappers that resolve `setup.ImagePath` and emit the HTML that
  * authors would otherwise hand-write ~1300 times across the passages.
  *
- *   <<video "tentacles/2.0.mp4">>                  autoplay controls muted loop, mp4/webm by ext
- *   <<video "mc/bra-off.webm" "displayCentredImgs">>   string 2nd arg = class
- *   <<video "mc/bra-off.webm" { controls: false, width: "40%" }>>
- *   <<image "img/corruption.png">>
- *   <<image "alice/alice.png" "companion-image">>
- *   <<image "img/trash1.png" { id: "trash1", class: "trash", onclick: "..." }>>
+ *   <<video "mechanics/tentacles/2.0.mp4">>                  autoplay controls muted loop, mp4/webm by ext
+ *   <<video "characters/mc/bra-off.webm" "displayCentredImgs">>   string 2nd arg = class
+ *   <<video "characters/mc/bra-off.webm" { controls: false, width: "40%" }>>
+ *   <<image "ui/img/corruption.png">>
+ *   <<image "characters/alice/alice.png" "companion-image">>
+ *   <<image "ui/img/trash1.png" { id: "trash1", class: "trash", onclick: "..." }>>
  */
 (function () {
     'use strict';

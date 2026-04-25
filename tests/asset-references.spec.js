@@ -31,10 +31,17 @@ const ASSET_ROOTS = ['assets', 'asset-placeholders'];
 const EXT_RE = /\.(jpg|jpeg|png|webp|gif|mp4|webm)$/i;
 
 // Different callers prepend different path stems to the same literal
-// ("pizzaevent/1.jpg" is consumed as "deliveryhub/pizzaevent/1.jpg" in one
-// widget, "img/pizzaevent/1.jpg" wouldn't be valid — the consumer dictates
-// the stem). Accept any reference that exists under one of these candidates.
-const CANDIDATE_PREFIXES = ['', 'img/', 'deliveryhub/', 'ghosts/', 'img/piercing/', 'img/furniture/'];
+// ("pizzaevent/1.jpg" is consumed as "scenes/deliveryhub/pizzaevent/1.jpg" in
+// one widget, "ui/img/pizzaevent/1.jpg" wouldn't be valid — the consumer
+// dictates the stem). Accept any reference that exists under one of these.
+const CANDIDATE_PREFIXES = [
+  '',
+  'ui/img/',
+  'scenes/deliveryhub/',
+  'characters/ghosts/',
+  'characters/mc/piercing/',
+  'scenes/furniture/',
+];
 
 function collectTwFiles(dir) {
   const out = [];
@@ -82,11 +89,11 @@ function extractRefs(filePath) {
     }
     // <<furnitureItem "FILE" "id">>
     for (const m of line.matchAll(/<<furnitureItem\s+["']([^"'\n]+)["']/g)) {
-      push('img/furniture/' + m[1], lineno);
+      push('scenes/furniture/' + m[1], lineno);
     }
     // <<hideSpot "passage" "FILE" "id">>
     for (const m of line.matchAll(/<<hideSpot\s+["'][^"'\n]+["']\s+["']([^"'\n]+)["']/g)) {
-      push('img/furniture/' + m[1], lineno);
+      push('scenes/furniture/' + m[1], lineno);
     }
     // <<randRangeImg "prefix" START END ".ext">>
     for (const m of line.matchAll(/<<randRangeImg\s+["']([^"'\n]+)["']\s+(\d+)\s+(\d+)\s+["']([^"'\n]+)["']/g)) {
@@ -103,7 +110,7 @@ function extractRefs(filePath) {
       const [, cat, s, e] = m;
       const start = parseInt(s);
       const end = e !== undefined ? parseInt(e) : start;
-      for (let n = start; n <= end; n++) push('deliveryhub/' + cat + '/' + n + '.mp4', lineno);
+      for (let n = start; n <= end; n++) push('scenes/deliveryhub/' + cat + '/' + n + '.mp4', lineno);
     }
     // Any string literal that contains a "/" and ends in a media extension:
     // catches { src: "trans/pics/1.0.jpg" }, ["skirt1/1.mp4", ...], and

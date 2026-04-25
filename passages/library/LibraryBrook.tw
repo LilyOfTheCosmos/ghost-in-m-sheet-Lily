@@ -1,17 +1,17 @@
 :: LibraryBrook [nobr] {"position":"3125,2100","size":"100,100"}
 <<if setup.Library.brookIsPossessed()>>
-	<<image "img/library-inside.jpg" { width: "100%" }>>
+	<<image "ui/img/library-inside.jpg" { width: "100%" }>>
 	@@.mc-speech; She's not there... strange...@@<br><br>
 	@@.backbtn; [[Leave|LibraryInside]] @@<br>
 <<else>>
 	<<if setup.Library.brookIsWithRain()>>
-		<<image "img/library-inside.jpg" { width: "100%" }>>
+		<<image "ui/img/library-inside.jpg" { width: "100%" }>>
 		@@.mc-thoughts;She's probably still with Rain. Maybe it's worth waiting a couple of days. @@<br><br>
 		@@.backbtn; [[Leave|LibraryInside]] @@<br>
 	<<else>>
 
 		<<run setup.Library.refreshBrookSoloChances()>>
-		<<image "brook/brook-library.jpg" { width: "30%" }>>
+		<<image "characters/brook/brook-library.jpg" { width: "30%" }>>
 		<br>
 		<<if not setup.Library.hasMetBrook()>>
 			<<run setup.Library.meetBrookFirstTime()>>

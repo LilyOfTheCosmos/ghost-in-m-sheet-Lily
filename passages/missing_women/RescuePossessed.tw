@@ -9,7 +9,7 @@ Your instincts screamed that this place was dangerous, and you found yourself to
 	<<run setup.MissingWomen.setQuestStage(2)>>
 	<<set _girl to setup.MissingWomen.currentRescueGirl()>>
 	<<if _girl eq "Victoria">>
-		<<video "rescue/victoria/victoriapossessed.mp4">>
+		<<video "characters/rescue/victoria/victoriapossessed.mp4">>
 		@@.mc-speech; Oh my god, are you okay?@@<br>
 		@@.notmc-speech; Hmm~ what are you doing here?@@<br>
 		@@.mc-speech; <<= setup.MissingWomen.currentRescueGirl()>>, let's get out of here, I came to save you.@@<br>
@@ -19,7 +19,7 @@ Your instincts screamed that this place was dangerous, and you found yourself to
 		@@.backbtn; <<link "Wake up " "RescueVictoriaPossessed">>
 		<</link>>@@
 	<<elseif _girl eq "Jade">>
-		<<image "rescue/jade/jadepossessed.png" "displayCentredImgs">>
+		<<image "characters/rescue/jade/jadepossessed.png" "displayCentredImgs">>
 		@@.mc-speech; Oh my god, are you okay?@@<br>
 		@@.notmc-speech; Hmm~ what are you doing here?@@<br>
 		@@.mc-speech; <<= setup.MissingWomen.currentRescueGirl()>>, let's get out of here, I came to save you.@@<br>
@@ -29,7 +29,7 @@ Your instincts screamed that this place was dangerous, and you found yourself to
 		@@.backbtn;<<link "Wake up" "RescueJadePossessed">>
 		<</link>>@@
 	<<elseif _girl eq "Julia">>
-		<<image "rescue/julia/juliapossessed.jpg" { class: "displayCentredImgs", width: "35%" }>><br>
+		<<image "characters/rescue/julia/juliapossessed.jpg" { class: "displayCentredImgs", width: "35%" }>><br>
 		@@.mc-speech; Oh my god, are you okay?@@<br>
 		@@.notmc-speech; Hmm~ what are you doing here?@@<br>
 		@@.mc-speech; <<= setup.MissingWomen.currentRescueGirl()>>, let's get out of here, I came to save you.@@<br>
@@ -37,7 +37,7 @@ Your instincts screamed that this place was dangerous, and you found yourself to
 		@@.usebtn; <<link "Come closer to her." "RescueJuliaPossessed">>
 		<</link>>@@<br>
 	<<elseif _girl eq "Nadia">>
-		<<video "rescue/nadia/nadiapossessed.mp4">>
+		<<video "characters/rescue/nadia/nadiapossessed.mp4">>
 		@@.mc-speech; Oh my god, are you okay?@@<br>
 		@@.notmc-speech; Hmm~ what are you doing here?@@<br>
 		@@.mc-speech; <<= setup.MissingWomen.currentRescueGirl()>>, let's get out of here, I came to save you.@@<br>
@@ -46,7 +46,7 @@ Your instincts screamed that this place was dangerous, and you found yourself to
 		@@.notmc-speech; Of course, <<link "follow me" "RescueNadiaPossessed">>
 		<</link>>.@@<br>
 	<<elseif _girl eq "Ash">>
-		<<image "rescue/ash/ashpossessed.jpg" { class: "displayCentredImgs", width: "35%" }>><br>
+		<<image "characters/rescue/ash/ashpossessed.jpg" { class: "displayCentredImgs", width: "35%" }>><br>
 		@@.mc-speech; Oh my god, are you okay?@@<br>
 		@@.notmc-speech; Hmm~ what are you doing here?@@<br>
 		@@.mc-speech; <<= setup.MissingWomen.currentRescueGirl()>>, let's get out of here, I came to save you.@@<br>

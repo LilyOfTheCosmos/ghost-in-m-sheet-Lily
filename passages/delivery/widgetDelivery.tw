@@ -17,7 +17,7 @@ integer in [start, end]. Replaces the 4-10 line <<if>> ladders each
 		<<set _start to _args[1]>>
 		<<set _end to (_args.length gt 2 ? _args[2] : _args[1])>>
 		<<set _n to random(_start, _end)>>
-		<<video "deliveryhub/" + _args[0] + "/" + _n + ".mp4">>
+		<<video "scenes/deliveryhub/" + _args[0] + "/" + _n + ".mp4">>
 	<</widget>>
 
 	/* Shared "thank-you" randomised one-liner for successful deliveries. */
@@ -49,7 +49,7 @@ integer in [start, end]. Replaces the 4-10 line <<if>> ladders each
 		<<run setup.Mc.addMoney(_amt)>>
 		<<if setup.Mc.corruption() lt 10>>
 			<<run setup.Mc.addCorruption(_corr)>>
-			+<<= _corr>> <<image "img/corruption.png" { style: "position: relative; top: 0.375em; width:3%; display: inline; margin: 0;" }>><br>
+			+<<= _corr>> <<image "ui/img/corruption.png" { style: "position: relative; top: 0.375em; width:3%; display: inline; margin: 0;" }>><br>
 		<</if>>
 	<</widget>>
 
@@ -75,7 +75,7 @@ integer in [start, end]. Replaces the 4-10 line <<if>> ladders each
 		<<set _varName to _cfg.varName>>
 		<<if ndef State.variables[_varName]>><<set State.variables[_varName] to 0>><</if>>
 		<<if _cfg.payMode eq "always">><<run setup.Delivery.addJobSuccessEarnings()>><<deliveryTrackCorrect>><</if>>
-		<<image "deliveryhub/" + _cfg.img { style: "max-width: 100%; height: auto; display: block; margin: 0 auto;" }>>
+		<<image "scenes/deliveryhub/" + _cfg.img { style: "max-width: 100%; height: auto; display: block; margin: 0 auto;" }>>
 		<<if State.variables[_varName] eq 1>>
 			@@.notmc-speech; Great, thank you so much!@@<br>
 			<<if _cfg.payMode eq "done">><<run setup.Delivery.addJobSuccessEarnings()>><<deliveryTrackCorrect>><</if>>
@@ -89,11 +89,11 @@ integer in [start, end]. Replaces the 4-10 line <<if>> ladders each
 
 	/* Emit a "corruption required" gate line -- shared by the Choose gates. */
 	<<widget "deliveryCorrReq">>
-		@@.warningtext; (Req. <<image "img/corruption.png" { style: "position: relative; top: 0.375em; width:3%; display: inline; margin: 0;" }>> ≥ <<= _args[0]>>)@@
+		@@.warningtext; (Req. <<image "ui/img/corruption.png" { style: "position: relative; top: 0.375em; width:3%; display: inline; margin: 0;" }>> ≥ <<= _args[0]>>)@@
 	<</widget>>
 
 	<<widget "deliveryLustReq">>
-		@@.warningtext; (Req. <<image "img/hearth.png" { style: "position: relative; top: 0.375em; width:3%; display: inline; margin: 0;" }>> ≥ <<= _args[0]>>)@@
+		@@.warningtext; (Req. <<image "ui/img/hearth.png" { style: "position: relative; top: 0.375em; width:3%; display: inline; margin: 0;" }>> ≥ <<= _args[0]>>)@@
 	<</widget>>
 
 	/* Random tip on correct deliveries (30% chance, $2-$5). */
@@ -115,7 +115,7 @@ integer in [start, end]. Replaces the 4-10 line <<if>> ladders each
 	/* Generic successful-delivery block: used when the matched item has no
 	custom encounter. */
 	<<widget "deliveryGenericSuccess">>
-		<<image "img/deliverygirlhappy.jpg" { style: "max-width: 100%; height: auto; display: block; margin: 0 auto;" }>>
+		<<image "ui/img/deliverygirlhappy.jpg" { style: "max-width: 100%; height: auto; display: block; margin: 0 auto;" }>>
 		<<run setup.Delivery.addJobSuccessEarnings()>>
 		<<deliveryTrackCorrect>>
 		<<deliveryThanks>>

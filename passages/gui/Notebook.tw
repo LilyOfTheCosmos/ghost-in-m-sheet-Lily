@@ -27,7 +27,7 @@
 <br>* <span class="uvl"><<evidenceCheckbox "UVLCheck">> UVL Fingerprints</span><br>
 </b>
 </div>
-<a data-passage="Ghostopedia"><<image "img/ghostopedia.png" " iconPC">><br></a>
+<a data-passage="Ghostopedia"><<image "ui/img/ghostopedia.png" " iconPC">><br></a>
 </div>
 <br>
 <div class="journal-container">

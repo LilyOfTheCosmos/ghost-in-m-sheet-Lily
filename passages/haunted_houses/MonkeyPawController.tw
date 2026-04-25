@@ -114,12 +114,12 @@ setup.MonkeyPaw = (function () {
 
 	function pickActivityVideo() {
 		var base = [
-			'cursedpossessions/slap1.mp4', 'cursedpossessions/slap2.mp4',
-			'cursedpossessions/slap3.mp4', 'cursedpossessions/slap4.mp4',
-			'cursedpossessions/passion1.mp4', 'cursedpossessions/passion2.mp4',
-			'cursedpossessions/passion3.mp4', 'cursedpossessions/passion4.mp4',
-			'cursedpossessions/pulse1.mp4', 'cursedpossessions/pulse2.mp4',
-			'cursedpossessions/pulse3.mp4', 'cursedpossessions/pulse4.mp4'
+			'mechanics/cursedpossessions/slap1.mp4', 'mechanics/cursedpossessions/slap2.mp4',
+			'mechanics/cursedpossessions/slap3.mp4', 'mechanics/cursedpossessions/slap4.mp4',
+			'mechanics/cursedpossessions/passion1.mp4', 'mechanics/cursedpossessions/passion2.mp4',
+			'mechanics/cursedpossessions/passion3.mp4', 'mechanics/cursedpossessions/passion4.mp4',
+			'mechanics/cursedpossessions/pulse1.mp4', 'mechanics/cursedpossessions/pulse2.mp4',
+			'mechanics/cursedpossessions/pulse3.mp4', 'mechanics/cursedpossessions/pulse4.mp4'
 		];
 		var g = setup.Ghosts && setup.Ghosts.active && setup.Ghosts.active();
 		if (g && g.cursedActivityVideos) base = base.concat(g.cursedActivityVideos);

@@ -1,11 +1,11 @@
 :: RescueTaskBoard [nobr] {"position":"2075,1700","size":"100,100"}
 <<run setup.MissingWomen.ensureBoardCooldowns()>>
 <<run setup.MissingWomen.initRescueGirlPool([
-	{ name: "Victoria", img: "rescue/victoria.jpg" },
-	{ name: "Julia",    img: "rescue/julia.jpg"    },
-	{ name: "Jade",     img: "rescue/jade.jpg"     },
-	{ name: "Nadia",    img: "rescue/nadia.jpg"    },
-	{ name: "Ash",      img: "rescue/ash.jpg"      }
+	{ name: "Victoria", img: "characters/rescue/victoria.jpg" },
+	{ name: "Julia",    img: "characters/rescue/julia.jpg"    },
+	{ name: "Jade",     img: "characters/rescue/jade.jpg"     },
+	{ name: "Nadia",    img: "characters/rescue/nadia.jpg"    },
+	{ name: "Ash",      img: "characters/rescue/ash.jpg"      }
 ])>>
 <<if not setup.MissingWomen.boardOnCooldown()>>
 	<<if setup.MissingWomen.rescueCooldown() eq 0>>

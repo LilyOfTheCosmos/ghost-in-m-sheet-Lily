@@ -8,7 +8,7 @@
 	<<= _brook.lvl>> lvl <<if _brook.lvl gte 5>> (max. lvl)
 	<<else>>(<<= _brook.exp>> / <<= _brook.expForNextLvl>>)
 	<</if>><br>
-	<<image "brook/brook.png" "contactsImages">><br>
+	<<image "characters/brook/brook.png" "contactsImages">><br>
 	<<if setup.Time.hours() lte 5>>
 		<<if setup.Companion.isCompanionFinishedSoloHunting("Brook")>>
 			@@.mc-thoughts; She is currently on a ghost hunt.@@
@@ -31,7 +31,7 @@
 <<else>>
 
 	@@.mc-thoughts; Need to search in the library@@<br>
-	<<image "img/question-mark.png" "contactsImages">>
+	<<image "ui/img/question-mark.png" "contactsImages">>
 <</if>>
 </div>
 
@@ -42,7 +42,7 @@
 	<<= _alice.lvl>> lvl <<if _alice.lvl gte 5>> (max. lvl)
 	<<else>>(<<= _alice.exp>> / <<= _alice.expForNextLvl>>)
 	<</if>><br>
-	<<image "alice/alice.png" "contactsImages">><br>
+	<<image "characters/alice/alice.png" "contactsImages">><br>
 	<<if setup.Time.hours() lte 5>>
 		<<if setup.Companion.isCompanionFinishedSoloHunting("Alice")>>
 			@@.mc-thoughts; She is currently on a ghost hunt.@@
@@ -55,7 +55,7 @@
 <<else>>
 
 	@@.mc-thoughts; Deliver books to the correct address@@<br>
-	<<image "img/question-mark.png" "contactsImages">>
+	<<image "ui/img/question-mark.png" "contactsImages">>
 <</if>>
 </div>
 
@@ -66,7 +66,7 @@
 	<<= _blake.lvl>> lvl <<if _blake.lvl gte 5>> (max. lvl)
 	<<else>>(<<= _blake.exp>> / <<= _blake.expForNextLvl>>)
 	<</if>><br>
-	<<image "blake/blake.png" "contactsImages">><br>
+	<<image "characters/blake/blake.png" "contactsImages">><br>
 	<<if setup.Time.hours() lte 5>>
 		<<if setup.Companion.isCompanionFinishedSoloHunting("Blake")>>
 			@@.mc-thoughts; She is currently on a ghost hunt.@@
@@ -79,7 +79,7 @@
 <<else>>
 
 	@@.mc-thoughts; Befriend the assistant at the sex shop <br>(Relationship 5+)@@<br>
-	<<image "img/question-mark.png" "contactsImages">>
+	<<image "ui/img/question-mark.png" "contactsImages">>
 <</if>>
 </div>
 

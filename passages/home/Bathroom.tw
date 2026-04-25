@@ -1,5 +1,5 @@
 :: Bathroom [nobr] {"position":"700,1100","size":"100,100"}
-<<image "img/mcbathroom.jpg" { width: "100%" }>><br>
+<<image "ui/img/mcbathroom.jpg" { width: "100%" }>><br>
 @@.location; Bathroom@@<br>
 
 <<if setup.CursedItems.isItemCursed("bath")>>
@@ -22,9 +22,9 @@
 @@.backbtn;[[Bedroom]]<br>@@
 
 :: Bath [nobr] {"position":"600,1100","size":"100,100"}
-<<randomImage "bath/1.jpg" "bath/2.jpg" "60%">><br>
+<<randomImage "scenes/bath/1.jpg" "scenes/bath/2.jpg" "60%">><br>
 <<washClean "60%" 5>>
 
 :: Shower [nobr] {"position":"800,1100","size":"100,100"}
-<<randomImage "shower/1.jpg" "shower/2.jpg" "50%">><br>
+<<randomImage "scenes/shower/1.jpg" "scenes/shower/2.jpg" "50%">><br>
 <<washClean "50%" 10>>

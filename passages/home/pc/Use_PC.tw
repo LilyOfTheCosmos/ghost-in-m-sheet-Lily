@@ -1,26 +1,26 @@
 :: Use PC [nobr] {"position":"400,900","size":"100,100"}
 <div class="wrapperPC">
-<<image "img/pc.jpg" { id: "bgPC" }>><br>
+<<image "ui/img/pc.jpg" { id: "bgPC" }>><br>
 <div class="iconContainer">
-<a data-passage="Ghostopedia"><<image "img/ghostopedia.png" " iconPC">><br></a><br>
-<a data-passage="Evidence"><<image "img/evidence-icon.jpg" " iconPC">><br></a>
-<a data-passage="PornCore"><<image "img/porn-lab.jpg" "iconPC">></a>
-<a data-passage="Internet"><<image "img/browser.png" "iconPC">></a>
-<a data-passage="Contacts"><<image "img/contacts.jpg" "iconPC">></a>
-<<if setup.Home.aliceWorkDone()>><a data-passage="DocumentsForAlice"><<image "img/documents.jpg" "iconPC">></a>
+<a data-passage="Ghostopedia"><<image "ui/img/ghostopedia.png" " iconPC">><br></a><br>
+<a data-passage="Evidence"><<image "ui/img/evidence-icon.jpg" " iconPC">><br></a>
+<a data-passage="PornCore"><<image "ui/img/porn-lab.jpg" "iconPC">></a>
+<a data-passage="Internet"><<image "ui/img/browser.png" "iconPC">></a>
+<a data-passage="Contacts"><<image "ui/img/contacts.jpg" "iconPC">></a>
+<<if setup.Home.aliceWorkDone()>><a data-passage="DocumentsForAlice"><<image "ui/img/documents.jpg" "iconPC">></a>
 <</if>>
 <<if setup.Home.cameraBought() and setup.Home.sleptWithCameraOn()>>
 	<<if setup.Home.mareEventStart() gte 2>>
 		<<if setup.Home.mareStageLow()>>
-			<a data-passage="GhostSpecialEventMare" onclick="$.wiki('<<run setup.Home.setMareStart(4)>>')"><<image "img/webcamera.png" "iconPC">></a>
+			<a data-passage="GhostSpecialEventMare" onclick="$.wiki('<<run setup.Home.setMareStart(4)>>')"><<image "ui/img/webcamera.png" "iconPC">></a>
 		<<else>>
-			<a data-passage="GhostSpecialEvent1Mare" onclick="$.wiki('<<run setup.Home.setMareStart(4)>>')"><<image "img/webcamera.png" "iconPC">></a>
+			<a data-passage="GhostSpecialEvent1Mare" onclick="$.wiki('<<run setup.Home.setMareStart(4)>>')"><<image "ui/img/webcamera.png" "iconPC">></a>
 		<</if>>
 	<<else>>
-		<a data-passage="GhostSpecialEventMare0"><<image "img/webcamera.png" "iconPC">></a>
+		<a data-passage="GhostSpecialEventMare0"><<image "ui/img/webcamera.png" "iconPC">></a>
 	<</if>>
 <</if>>
-<<if setup.Home.webcamAccountCreated()>><a data-passage="WebcamShow"><<image "img/wb.jpg" "iconPC">></a>
+<<if setup.Home.webcamAccountCreated()>><a data-passage="WebcamShow"><<image "ui/img/wb.jpg" "iconPC">></a>
 <</if>>
 </div>
 </div>

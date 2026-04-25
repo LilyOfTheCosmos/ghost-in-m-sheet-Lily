@@ -48,10 +48,10 @@ double-nest the wrapper class (which compounds its 80% font-size). */
 	<<set _lust to (_hc.lustPerStep gt 0 ? "+" : "") + _hc.lustPerStep>>
 	<<set _energy to (_hc.energyPerStep gt 0 ? "+" : "") + _hc.energyPerStep>>
 	<<set _corrShown to Math.round(_hc.corruptionPending * 100) / 100>>
-	<<image "img/sanity.png" { class: "hunt-conditions-icon" }>> _sanity/step
-	· <<image "img/hearth.png" { class: "hunt-conditions-icon" }>> _lust/step
-	· <<image "img/energy.png" { class: "hunt-conditions-icon" }>> _energy/step
-	· <<image "img/corruption.png" { class: "hunt-conditions-icon" }>> <<= _corrShown>>/step
+	<<image "ui/img/sanity.png" { class: "hunt-conditions-icon" }>> _sanity/step
+	· <<image "ui/img/hearth.png" { class: "hunt-conditions-icon" }>> _lust/step
+	· <<image "ui/img/energy.png" { class: "hunt-conditions-icon" }>> _energy/step
+	· <<image "ui/img/corruption.png" { class: "hunt-conditions-icon" }>> <<= _corrShown>>/step
 	· Time <<= _hc.timeLabel>>
 	<<if _hc.toolChanceBonus gt 0 or _hc.toolWindowBonus gt 0 or _hc.huntChanceBonus gt 0>>
 		· tools +<<= _hc.toolChanceBonus>>%
@@ -188,7 +188,7 @@ the only ways out are the scream link or a cursed-item sacrifice. */
 		<<hovertip setup.toolSuccessRate(_args[0])>>
 		<div class="footer-card">
 		<div class="cardimg">
-		<<image "img/" + setup.searchToolDefs[_args[0]].iconFile { class: "icon", id: _args[1] + setup.searchToolDefs[_args[0]].picSuffix }>>
+		<<image "ui/img/" + setup.searchToolDefs[_args[0]].iconFile { class: "icon", id: _args[1] + setup.searchToolDefs[_args[0]].picSuffix }>>
 		</div>
 		<div class="cardlink">
 		<<searchTool _args[0] _args[1]>>
@@ -215,12 +215,12 @@ the only ways out are the scream link or a cursed-item sacrifice. */
    owaissa, and ironclad rooms. */
 <<widget "roomFooterLight">>
 	<div class="footer-card footer-light">
-	<span class="cursedHuntLinkDisable"><<link "<<image \"img/lighton.png\">>" _args[0]>><<set State.variables[_args[1]].background = 1>>
+	<span class="cursedHuntLinkDisable"><<link "<<image \"ui/img/lighton.png\">>" _args[0]>><<set State.variables[_args[1]].background = 1>>
 	<</link>>
-	<<link "<<image \"img/lightoff.png\">>" _args[0]>><<set State.variables[_args[1]].background = 2>>
+	<<link "<<image \"ui/img/lightoff.png\">>" _args[0]>><<set State.variables[_args[1]].background = 2>>
 	<</link>>
 	<<if setup.Mc.lust() gte 80 and setup.Witch.hasWeakenTheGhostQuest() and not setup.Witch.isGhostWeakened()>>
-		<<link "<<image \"img/hearth.png\">>" "SeduceGhostMinigame">>
+		<<link "<<image \"ui/img/hearth.png\">>" "SeduceGhostMinigame">>
 		<<run setup.SeduceGhostMinigame.init()>><</link>>
 	<</if>></span>
 	</div>
@@ -231,27 +231,27 @@ the only ways out are the scream link or a cursed-item sacrifice. */
    no minigame trigger. */
 <<widget "roomFooterLightBasic">>
 	<div class="footer-card footer-light">
-	<<link "<<image \"img/lighton.png\">>" _args[0]>><<set State.variables[_args[1]].background = 1>>
+	<<link "<<image \"ui/img/lighton.png\">>" _args[0]>><<set State.variables[_args[1]].background = 1>>
 	<</link>>
-	<<link "<<image \"img/lightoff.png\">>" _args[0]>><<set State.variables[_args[1]].background = 2>>
+	<<link "<<image \"ui/img/lightoff.png\">>" _args[0]>><<set State.variables[_args[1]].background = 2>>
 	<</link>>
 	</div>
 <</widget>>
 
 /* hideSpot -- args: passage name (link target), furniture image filename
-   under img/furniture/, furniture span id (e.g. "bedroom_bed1").
+   under scenes/furniture/, furniture span id (e.g. "bedroom_bed1").
    Renders one furniture item that doubles as a hide spot during cursed
    hunts: when $cursedHuntActive is 1 the image highlights and clicking it
    replaces the room with the hide-spot scene; otherwise it behaves as a
    normal furniture span that opens furnitureSearch. */
 <<widget "hideSpot">>
-	<<set _imgPath to 'img/furniture/' + _args[1]>>
+	<<set _imgPath to 'scenes/furniture/' + _args[1]>>
 	<<set _hideTarget to _args[0]>>
 	<<set _hideId to _args[2]>>
 	<<if setup.HauntedHouses.isCursedHuntActive()>>
 		<<capture _hideTarget>>
 			<span><<link `'<<image "' + _imgPath + '" "highlighted-furniture">>'` _hideTarget>>
-				<<replace ".room-wrapper">><<run setup.HauntedHouses.setInHideSpot(true)>><<image "hunting/hid1.jpg" { class: "fadeInScale", width: "80%" }>><br>
+				<<replace ".room-wrapper">><<run setup.HauntedHouses.setInHideSpot(true)>><<image "mechanics/hunting/hid1.jpg" { class: "fadeInScale", width: "80%" }>><br>
 					<<done>>
 					<<run $(".fadeInScale").addClass("tarotCardsShow")>><</done>>
 					@@.mc-thoughts;You press yourself against the cold floor, feeling your heart racing in your chest. The screams and rustling outside make you hold your breath. The ghost, filled with rage, prowls the room, and each of its steps echoes dully in your ears.<br>
@@ -272,11 +272,11 @@ the only ways out are the scream link or a cursed-item sacrifice. */
 	<</if>>
 <</widget>>
 
-/* furnitureItem -- args: furniture image filename under img/furniture/,
+/* furnitureItem -- args: furniture image filename under scenes/furniture/,
    furniture span id (e.g. "bedroom_table"). The image span that opens
    furnitureSearch on click. */
 <<widget "furnitureItem">>
-	<<set _imgPath to 'img/furniture/' + _args[0]>>
+	<<set _imgPath to 'scenes/furniture/' + _args[0]>>
 	<<set _furnId to _args[1]>>
 	<<capture _furnId>>
 		<span @id="_furnId"><<link `'<<image "' + _imgPath + '">>'` "FurnitureSearch">><<run setup.HauntedHouses.setCurrentFurniture(_furnId)>><<includeTimeEventClothesHunt>>
@@ -332,7 +332,7 @@ the only ways out are the scream link or a cursed-item sacrifice. */
 		<div class="footer-card">
 		<div class="cardimg">
 		<a data-passage="CompanionFailed">
-		<<image "img/question-mark.png" "companion-image">> </a>
+		<<image "ui/img/question-mark.png" "companion-image">> </a>
 		</div>
 		</div>
 	<<elseif setup.Companion.showComp() eq 3>>

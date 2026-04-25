@@ -251,7 +251,7 @@ setup.Companion = (function () {
 	// hunt-event stages advance ($transPicture is set by companionTextEvent*).
 	Companion.prototype.portraitPath = function () {
 		if (this.isTrans) {
-			return "trans/" + (State.variables.transPicture || 1) + ".jpg";
+			return "characters/trans/" + (State.variables.transPicture || 1) + ".jpg";
 		}
 		return this.imageFolder + "/" + this.imagePrefix + ".png";
 	};
@@ -596,37 +596,37 @@ setup.Companion = (function () {
 			var inElm = previous() === 'ElmBasement';
 			var BROOK = {
 				high: inElm
-					? [{type:"image",src:"brook/1.6.jpg"},{type:"image",src:"brook/1.7.jpg"},{type:"video",src:"brook/1.8.mp4"}]
-					: [{type:"image",src:"brook/1.0.jpg"},{type:"image",src:"brook/1.1.jpg"},{type:"video",src:"brook/1.2.mp4"},{type:"video",src:"brook/1.3.mp4"},{type:"video",src:"brook/1.4.mp4"},{type:"video",src:"brook/1.5.mp4"}],
+					? [{type:"image",src:"characters/brook/1.6.jpg"},{type:"image",src:"characters/brook/1.7.jpg"},{type:"video",src:"characters/brook/1.8.mp4"}]
+					: [{type:"image",src:"characters/brook/1.0.jpg"},{type:"image",src:"characters/brook/1.1.jpg"},{type:"video",src:"characters/brook/1.2.mp4"},{type:"video",src:"characters/brook/1.3.mp4"},{type:"video",src:"characters/brook/1.4.mp4"},{type:"video",src:"characters/brook/1.5.mp4"}],
 				mid: inElm
-					? [{type:"video",src:"brook/2.5.mp4"},{type:"video",src:"brook/2.6.mp4"},{type:"video",src:"brook/2.7.mp4"},{type:"video",src:"brook/2.8.mp4"}]
-					: [{type:"video",src:"brook/2.0.mp4"},{type:"video",src:"brook/2.1.mp4"},{type:"video",src:"brook/2.2.mp4"},{type:"video",src:"brook/2.3.mp4"},{type:"image",src:"brook/2.4.jpg"}],
+					? [{type:"video",src:"characters/brook/2.5.mp4"},{type:"video",src:"characters/brook/2.6.mp4"},{type:"video",src:"characters/brook/2.7.mp4"},{type:"video",src:"characters/brook/2.8.mp4"}]
+					: [{type:"video",src:"characters/brook/2.0.mp4"},{type:"video",src:"characters/brook/2.1.mp4"},{type:"video",src:"characters/brook/2.2.mp4"},{type:"video",src:"characters/brook/2.3.mp4"},{type:"image",src:"characters/brook/2.4.jpg"}],
 				low: inElm
-					? [{type:"video",src:"brook/3.6.mp4"},{type:"video",src:"brook/3.7.mp4"}]
-					: [{type:"video",src:"brook/3.0.mp4"},{type:"video",src:"brook/3.1.mp4"},{type:"video",src:"brook/3.2.mp4"},{type:"video",src:"brook/3.3.mp4"}],
+					? [{type:"video",src:"characters/brook/3.6.mp4"},{type:"video",src:"characters/brook/3.7.mp4"}]
+					: [{type:"video",src:"characters/brook/3.0.mp4"},{type:"video",src:"characters/brook/3.1.mp4"},{type:"video",src:"characters/brook/3.2.mp4"},{type:"video",src:"characters/brook/3.3.mp4"}],
 				crit: inElm
-					? [{type:"video",src:"brook/4.4.mp4"},{type:"video",src:"brook/4.5.mp4"},{type:"video",src:"brook/4.6.mp4"},{type:"video",src:"brook/4.7.mp4"}]
-					: [{type:"video",src:"brook/4.0.mp4"},{type:"video",src:"brook/4.1.mp4"},{type:"video",src:"brook/4.2.mp4"},{type:"video",src:"brook/4.3.mp4"}]
+					? [{type:"video",src:"characters/brook/4.4.mp4"},{type:"video",src:"characters/brook/4.5.mp4"},{type:"video",src:"characters/brook/4.6.mp4"},{type:"video",src:"characters/brook/4.7.mp4"}]
+					: [{type:"video",src:"characters/brook/4.0.mp4"},{type:"video",src:"characters/brook/4.1.mp4"},{type:"video",src:"characters/brook/4.2.mp4"},{type:"video",src:"characters/brook/4.3.mp4"}]
 			};
 			var ALICE = {
-				high: [{type:"image",src:"alice/1.0.jpg"},{type:"video",src:"alice/1.1.mp4"},{type:"video",src:"alice/1.2.mp4"},{type:"video",src:"alice/1.3.mp4"},{type:"image",src:"alice/1.4.jpg"},{type:"video",src:"alice/1.5.mp4"}],
+				high: [{type:"image",src:"characters/alice/1.0.jpg"},{type:"video",src:"characters/alice/1.1.mp4"},{type:"video",src:"characters/alice/1.2.mp4"},{type:"video",src:"characters/alice/1.3.mp4"},{type:"image",src:"characters/alice/1.4.jpg"},{type:"video",src:"characters/alice/1.5.mp4"}],
 				mid: lust < 50
-					? [{type:"video",src:"alice/2.0.mp4"},{type:"video",src:"alice/2.1.mp4"},{type:"video",src:"alice/2.2.mp4"},{type:"video",src:"alice/2.3.mp4"},{type:"video",src:"alice/2.4.mp4"},{type:"video",src:"alice/2.5.mp4"}]
-					: [{type:"video",src:"alice/2.6.mp4"},{type:"video",src:"alice/2.7.mp4"},{type:"video",src:"alice/2.8.mp4"},{type:"video",src:"alice/2.9.mp4"},{type:"video",src:"alice/2.10.mp4"},{type:"video",src:"alice/2.11.mp4"},{type:"video",src:"alice/2.12.mp4"}],
+					? [{type:"video",src:"characters/alice/2.0.mp4"},{type:"video",src:"characters/alice/2.1.mp4"},{type:"video",src:"characters/alice/2.2.mp4"},{type:"video",src:"characters/alice/2.3.mp4"},{type:"video",src:"characters/alice/2.4.mp4"},{type:"video",src:"characters/alice/2.5.mp4"}]
+					: [{type:"video",src:"characters/alice/2.6.mp4"},{type:"video",src:"characters/alice/2.7.mp4"},{type:"video",src:"characters/alice/2.8.mp4"},{type:"video",src:"characters/alice/2.9.mp4"},{type:"video",src:"characters/alice/2.10.mp4"},{type:"video",src:"characters/alice/2.11.mp4"},{type:"video",src:"characters/alice/2.12.mp4"}],
 				low: lust < 50
 					? (inElm
-						? [{type:"video",src:"alice/3.5.mp4"},{type:"video",src:"alice/3.6.mp4"},{type:"video",src:"alice/3.7.mp4"}]
-						: [{type:"video",src:"alice/3.0.mp4"},{type:"video",src:"alice/3.1.mp4"},{type:"video",src:"alice/3.2.mp4"},{type:"video",src:"alice/3.3.mp4"},{type:"video",src:"alice/3.4.mp4"}])
-					: [{type:"video",src:"alice/3.8.mp4"},{type:"video",src:"alice/3.9.mp4"},{type:"video",src:"alice/3.10.mp4"},{type:"video",src:"alice/3.11.mp4"},{type:"video",src:"alice/3.12.mp4"}],
+						? [{type:"video",src:"characters/alice/3.5.mp4"},{type:"video",src:"characters/alice/3.6.mp4"},{type:"video",src:"characters/alice/3.7.mp4"}]
+						: [{type:"video",src:"characters/alice/3.0.mp4"},{type:"video",src:"characters/alice/3.1.mp4"},{type:"video",src:"characters/alice/3.2.mp4"},{type:"video",src:"characters/alice/3.3.mp4"},{type:"video",src:"characters/alice/3.4.mp4"}])
+					: [{type:"video",src:"characters/alice/3.8.mp4"},{type:"video",src:"characters/alice/3.9.mp4"},{type:"video",src:"characters/alice/3.10.mp4"},{type:"video",src:"characters/alice/3.11.mp4"},{type:"video",src:"characters/alice/3.12.mp4"}],
 				crit: lust < 50
-					? [{type:"video",src:"alice/4.0.mp4"},{type:"video",src:"alice/4.1.mp4"},{type:"video",src:"alice/4.2.mp4"},{type:"video",src:"alice/4.3.mp4"},{type:"video",src:"alice/4.4.mp4"},{type:"video",src:"alice/4.5.mp4"}]
-					: [{type:"video",src:"alice/4.6.mp4"},{type:"video",src:"alice/4.7.mp4"},{type:"video",src:"alice/4.8.mp4"},{type:"video",src:"alice/4.9.mp4"},{type:"video",src:"alice/4.10.mp4"},{type:"video",src:"alice/4.11.mp4"}]
+					? [{type:"video",src:"characters/alice/4.0.mp4"},{type:"video",src:"characters/alice/4.1.mp4"},{type:"video",src:"characters/alice/4.2.mp4"},{type:"video",src:"characters/alice/4.3.mp4"},{type:"video",src:"characters/alice/4.4.mp4"},{type:"video",src:"characters/alice/4.5.mp4"}]
+					: [{type:"video",src:"characters/alice/4.6.mp4"},{type:"video",src:"characters/alice/4.7.mp4"},{type:"video",src:"characters/alice/4.8.mp4"},{type:"video",src:"characters/alice/4.9.mp4"},{type:"video",src:"characters/alice/4.10.mp4"},{type:"video",src:"characters/alice/4.11.mp4"}]
 			};
 			var BLAKE = {
-				high: [{type:"video",src:"blake/1.1.mp4"},{type:"video",src:"blake/1.2.mp4"},{type:"video",src:"blake/1.3.mp4"},{type:"video",src:"blake/1.4.mp4"},{type:"video",src:"blake/1.5.mp4"}],
-				mid:  [{type:"video",src:"blake/2.0.mp4"},{type:"video",src:"blake/2.1.mp4"},{type:"video",src:"blake/2.2.mp4"},{type:"video",src:"blake/2.3.mp4"},{type:"video",src:"blake/2.4.mp4"},{type:"video",src:"blake/2.5.mp4"}],
-				low:  [{type:"video",src:"blake/3.0.mp4"},{type:"video",src:"blake/3.1.mp4"},{type:"video",src:"blake/3.2.mp4"},{type:"video",src:"blake/3.3.mp4"},{type:"video",src:"blake/3.4.mp4"}],
-				crit: [{type:"video",src:"blake/4.0.mp4"},{type:"video",src:"blake/4.1.mp4"},{type:"video",src:"blake/4.2.mp4"},{type:"video",src:"blake/4.3.mp4"},{type:"video",src:"blake/4.4.mp4"},{type:"video",src:"blake/4.5.mp4"},{type:"video",src:"blake/4.6.mp4"},{type:"video",src:"blake/4.7.mp4"},{type:"video",src:"blake/4.8.mp4"}]
+				high: [{type:"video",src:"characters/blake/1.1.mp4"},{type:"video",src:"characters/blake/1.2.mp4"},{type:"video",src:"characters/blake/1.3.mp4"},{type:"video",src:"characters/blake/1.4.mp4"},{type:"video",src:"characters/blake/1.5.mp4"}],
+				mid:  [{type:"video",src:"characters/blake/2.0.mp4"},{type:"video",src:"characters/blake/2.1.mp4"},{type:"video",src:"characters/blake/2.2.mp4"},{type:"video",src:"characters/blake/2.3.mp4"},{type:"video",src:"characters/blake/2.4.mp4"},{type:"video",src:"characters/blake/2.5.mp4"}],
+				low:  [{type:"video",src:"characters/blake/3.0.mp4"},{type:"video",src:"characters/blake/3.1.mp4"},{type:"video",src:"characters/blake/3.2.mp4"},{type:"video",src:"characters/blake/3.3.mp4"},{type:"video",src:"characters/blake/3.4.mp4"}],
+				crit: [{type:"video",src:"characters/blake/4.0.mp4"},{type:"video",src:"characters/blake/4.1.mp4"},{type:"video",src:"characters/blake/4.2.mp4"},{type:"video",src:"characters/blake/4.3.mp4"},{type:"video",src:"characters/blake/4.4.mp4"},{type:"video",src:"characters/blake/4.5.mp4"},{type:"video",src:"characters/blake/4.6.mp4"},{type:"video",src:"characters/blake/4.7.mp4"},{type:"video",src:"characters/blake/4.8.mp4"}]
 			};
 			// Trans companions share a tease/bj/sex video directory
 			// structure with per-index variants (1=Alex, 2=Taylor,
@@ -635,15 +635,15 @@ setup.Companion = (function () {
 			function transVids(base, dir, maxIndex) {
 				var out = [];
 				for (var i = 0; i <= maxIndex; i++) {
-					out.push({type:"video",src:"trans/"+dir+"/"+base+"."+i+".mp4"});
+					out.push({type:"video",src:"characters/trans/"+dir+"/"+base+"."+i+".mp4"});
 				}
 				return out;
 			}
 			function transStills(name, firstStage) {
 				if (firstStage) {
-					return [{type:"image",src:"trans/"+name+"4.png"},{type:"image",src:"trans/"+name+"5.png"}];
+					return [{type:"image",src:"characters/trans/"+name+"4.png"},{type:"image",src:"characters/trans/"+name+"5.png"}];
 				}
-				return [{type:"image",src:"trans/"+name+"1.png"},{type:"image",src:"trans/"+name+"2.png"},{type:"image",src:"trans/"+name+"3.png"}];
+				return [{type:"image",src:"characters/trans/"+name+"1.png"},{type:"image",src:"characters/trans/"+name+"2.png"},{type:"image",src:"characters/trans/"+name+"3.png"}];
 			}
 			var firstStage = this.isTransFirstStageSet();
 			var TRANS_MAP = {
@@ -703,10 +703,10 @@ setup.Companion = (function () {
 		   item's info so the passage can render the image + speech.
 		   Keyed by the existing $isCI<Type> save flags. */
 		TYPES_CURSED_ITEM: [
-			{key:"isCIDildo",     speech:"Dildo???",        img:"curseditems/dildo.png"},
-			{key:"isCIButtplug",  speech:"Buttplug???",     img:"curseditems/buttplug.png"},
-			{key:"isCIBeads",     speech:"Anal beads???",   img:"curseditems/beads.png"},
-			{key:"isCIHDildo",    speech:"Huge dildo???",   img:"curseditems/monsterdildo.png"}
+			{key:"isCIDildo",     speech:"Dildo???",        img:"mechanics/curseditems/dildo.png"},
+			{key:"isCIButtplug",  speech:"Buttplug???",     img:"mechanics/curseditems/buttplug.png"},
+			{key:"isCIBeads",     speech:"Anal beads???",   img:"mechanics/curseditems/beads.png"},
+			{key:"isCIHDildo",    speech:"Huge dildo???",   img:"mechanics/curseditems/monsterdildo.png"}
 		],
 		rollFoundCursedItem: function () {
 			var list = this.TYPES_CURSED_ITEM;
@@ -716,9 +716,9 @@ setup.Companion = (function () {
 			return pick;
 		},
 		/* Random GWB evidence image (for Plan3 GWB result). Returns
-		   "gwb/<1..18>.jpg". */
+		   "mechanics/gwb/<1..18>.jpg". */
 		pickGwbImage: function () {
-			return "gwb/" + (Math.floor(Math.random() * 18) + 1) + ".jpg";
+			return "mechanics/gwb/" + (Math.floor(Math.random() * 18) + 1) + ".jpg";
 		},
 		/* Pick a random evidence type id from the current hunt.
 		   Used by the Plan3 "look for evidence" result. */
@@ -755,7 +755,7 @@ setup.Companion = (function () {
 			if (c.name === "Brook" || c.name === "Alice" || c.name === "Blake") {
 				return c.name.toLowerCase() + "/" + c.name.toLowerCase() + (success ? "-happy" : "-sad") + ".png";
 			}
-			return "trans/" + (v('transPicture') || 1) + ".jpg";
+			return "characters/trans/" + (v('transPicture') || 1) + ".jpg";
 		},
 		/* Completed-hunt cleanup: restore Plan1 / clear per-turn
 		   hunt scratch flags. Used at the end of CompanionSucceeded. */

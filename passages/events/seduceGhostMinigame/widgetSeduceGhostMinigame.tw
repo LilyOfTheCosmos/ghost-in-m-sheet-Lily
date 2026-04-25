@@ -36,7 +36,7 @@
 	<<elseif setup.Events.minigameVideo() eq "seduce">>
 		<<link "Continue" "SeduceGhostMinigame">>
 			<<run setup.SeduceGhostMinigame.continueSeduce()>>
-		<</link>><b><<image "img/hearth.png" { style: "position: relative; top: 0.375em; width:25px;" }>></b> |
+		<</link>><b><<image "ui/img/hearth.png" { style: "position: relative; top: 0.375em; width:25px;" }>></b> |
 		<<link "@@color:red; Try to leave@@" "SeduceGhostMinigame">>
 			<<run setup.SeduceGhostMinigame.tryLeave()>>
 			<<if ndef setup.Events.minigameVideo()>><<goto `$return`>><</if>>
@@ -52,7 +52,7 @@
 		<</if>>
 		<<link "Submit" "SeduceGhostMinigame">>
 			<<run setup.SeduceGhostMinigame.submit()>>
-		<</link>> <b><<image "img/hearth.png" { style: "position: relative; top: 0.375em; width:25px;" }>></b> |
+		<</link>> <b><<image "ui/img/hearth.png" { style: "position: relative; top: 0.375em; width:25px;" }>></b> |
 		<<if setup.Mc.energy() lt 1>>
 			@@.mc-thoughts; Not enough energy@@
 		<<else>>
@@ -71,7 +71,7 @@
 		<</if>>
 		<<link "Submit" "SeduceGhostMinigame">>
 			<<run setup.SeduceGhostMinigame.submit()>>
-		<</link>> <b><<image "img/hearth.png" { style: "position: relative; top: 0.375em; width:25px;" }>></b>
+		<</link>> <b><<image "ui/img/hearth.png" { style: "position: relative; top: 0.375em; width:25px;" }>></b>
 
 	<</if>>
 <</widget>>

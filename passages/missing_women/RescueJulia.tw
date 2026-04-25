@@ -2,16 +2,16 @@
 <<set _videoList to []>>
 <<set _randomChance to random(1, 100)>>
 <<set _videoList10 to [
-{type: "video", src: "rescue/julia/10.0.mp4"},
-{type: "video", src: "rescue/julia/10.1.mp4"},
-{type: "video", src: "rescue/julia/10.2.mp4"},
-{type: "video", src: "rescue/julia/10.3.mp4"}
+{type: "video", src: "characters/rescue/julia/10.0.mp4"},
+{type: "video", src: "characters/rescue/julia/10.1.mp4"},
+{type: "video", src: "characters/rescue/julia/10.2.mp4"},
+{type: "video", src: "characters/rescue/julia/10.3.mp4"}
 ]>>
 <<set _videoList11 to [
-{type: "video", src: "rescue/julia/11.0.mp4"},
-{type: "video", src: "rescue/julia/11.1.mp4"},
-{type: "video", src: "rescue/julia/11.2.mp4"},
-{type: "video", src: "rescue/julia/11.3.mp4"}
+{type: "video", src: "characters/rescue/julia/11.0.mp4"},
+{type: "video", src: "characters/rescue/julia/11.1.mp4"},
+{type: "video", src: "characters/rescue/julia/11.2.mp4"},
+{type: "video", src: "characters/rescue/julia/11.3.mp4"}
 ]>>
 
 <<set _allLists to [_videoList10, _videoList11]>>
@@ -47,7 +47,7 @@ I could watch a little longer and then help her... but I might get noticed. @@<b
 				<br>
 				<span class="rescueStayCorruptionCheck">
 				@@.mc-speech;Or...@@  @@.usebtn;[[Stay|RescueStay][setup.MissingWomen.setQuestStage(2)]]@@.@@.mc-speech; I guess I'm already used to losing...@@</span>
-				<<if not setup.MissingWomen.canStaySubmissive()>>@@.warningtext; (Req. <<image "img/corruption.png" { style: "position: relative; top: 0.375em; width:3%; display: inline; margin: 0;" }>> ≥ 6)@@
+				<<if not setup.MissingWomen.canStaySubmissive()>>@@.warningtext; (Req. <<image "ui/img/corruption.png" { style: "position: relative; top: 0.375em; width:3%; display: inline; margin: 0;" }>> ≥ 6)@@
 				<</if>>
 
 				<br><br>
@@ -60,9 +60,9 @@ I could watch a little longer and then help her... but I might get noticed. @@<b
 	<</if>>
 	<<if _clickCount == 4>>
 		<<if _chosenList is _videoList10>>
-			<<run setup.MissingWomen.setRescueVideo("rescue/julia/10-end.mp4")>>
+			<<run setup.MissingWomen.setRescueVideo("characters/rescue/julia/10-end.mp4")>>
 		<<elseif _chosenList is _videoList11>>
-			<<run setup.MissingWomen.setRescueVideo("rescue/julia/11-end.mp4")>>
+			<<run setup.MissingWomen.setRescueVideo("characters/rescue/julia/11-end.mp4")>>
 		<</if>>
 		<<replace "#videoContainer">>
 			<<video setup.MissingWomen.rescueVideo()>>

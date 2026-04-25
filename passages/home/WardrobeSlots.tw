@@ -3,7 +3,7 @@
 	<<for _item range _grp.items>>
 		<<capture _grp, _item>>
 			<<set _state to State.variables[_item.var]>>
-			<<set _linkImg to `<<image "img/wardrobe/${_item.img}">>`>>
+			<<set _linkImg to `<<image "outfits/wardrobe/${_item.img}">>`>>
 			<<if _state eq "worn">>
 				<<replace _grp.replaceTarget>>
 					<<link _linkImg "Wardrobe">>
@@ -14,7 +14,7 @@
 			<<if _state eq "not worn">>
 				<<if _item.slot eq 0 and def _grp.bareImage>>
 					<<replace _grp.replaceTarget>>
-						<<image "img/wardrobe/" + _grp.bareImage>>
+						<<image "outfits/wardrobe/" + _grp.bareImage>>
 					<</replace>>
 				<</if>>
 				<<append _grp.appendTarget>>

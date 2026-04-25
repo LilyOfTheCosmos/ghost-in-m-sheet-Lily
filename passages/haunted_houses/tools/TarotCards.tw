@@ -5,16 +5,16 @@
    single line that wikifies <<effectName>>. Fool has no effect widget --
    its reveal-then-swap flow is handled directly by the draw logic. */
 setup.tarotDeck = setup.tarotDeck || [
-	{ name: "passion",       chance: 20, image: "cursedpossessions/tarot-cards/passion.jpg",       effect: "tarotPassion" },
-	{ name: "pulse",         chance: 20, image: "cursedpossessions/tarot-cards/pulse.jpg",         effect: "tarotPulse" },
-	{ name: "oblivion",      chance:  1, image: "cursedpossessions/tarot-cards/oblivion.jpg",      effect: "tarotOblivion" },
-	{ name: "knowledge",     chance: 10, image: "cursedpossessions/tarot-cards/knowledge.jpg",     effect: "tarotKnowledge" },
-	{ name: "power",         chance: 12, image: "cursedpossessions/tarot-cards/power.jpg",         effect: "tarotPower" },
-	{ name: "whore",         chance: 10, image: "cursedpossessions/tarot-cards/whore.jpg",         effect: "tarotWhore" },
-	{ name: "death",         chance:  5, image: "cursedpossessions/tarot-cards/death.jpg",         effect: "tarotDeath" },
-	{ name: "possession",    chance:  1, image: "cursedpossessions/tarot-cards/possession.jpg",    effect: "tarotPossession" },
-	{ name: "highpriestess", chance:  2, image: "cursedpossessions/tarot-cards/highpriestess.jpg", effect: "tarotHighpriestess" },
-	{ name: "fool",          chance: 19, image: "cursedpossessions/tarot-cards/fool.jpg" }
+	{ name: "passion",       chance: 20, image: "mechanics/cursedpossessions/tarot-cards/passion.jpg",       effect: "tarotPassion" },
+	{ name: "pulse",         chance: 20, image: "mechanics/cursedpossessions/tarot-cards/pulse.jpg",         effect: "tarotPulse" },
+	{ name: "oblivion",      chance:  1, image: "mechanics/cursedpossessions/tarot-cards/oblivion.jpg",      effect: "tarotOblivion" },
+	{ name: "knowledge",     chance: 10, image: "mechanics/cursedpossessions/tarot-cards/knowledge.jpg",     effect: "tarotKnowledge" },
+	{ name: "power",         chance: 12, image: "mechanics/cursedpossessions/tarot-cards/power.jpg",         effect: "tarotPower" },
+	{ name: "whore",         chance: 10, image: "mechanics/cursedpossessions/tarot-cards/whore.jpg",         effect: "tarotWhore" },
+	{ name: "death",         chance:  5, image: "mechanics/cursedpossessions/tarot-cards/death.jpg",         effect: "tarotDeath" },
+	{ name: "possession",    chance:  1, image: "mechanics/cursedpossessions/tarot-cards/possession.jpg",    effect: "tarotPossession" },
+	{ name: "highpriestess", chance:  2, image: "mechanics/cursedpossessions/tarot-cards/highpriestess.jpg", effect: "tarotHighpriestess" },
+	{ name: "fool",          chance: 19, image: "mechanics/cursedpossessions/tarot-cards/fool.jpg" }
 ];
 
 /* Weighted pick: roll once against the accumulated chances, return the
@@ -29,7 +29,7 @@ setup.drawTarotCard = function (deck) {
 	return deck[deck.length - 1];
 };
 <</script>>
-<div id="tarotCard"><<image "cursedpossessions/tarot-cards/tarot.png" "displayCentredImgs">></div>
+<div id="tarotCard"><<image "mechanics/cursedpossessions/tarot-cards/tarot.png" "displayCentredImgs">></div>
 
 <div id="tarotCardsEnd" class="tarotCardHidden"><<link "@@.usebtn;Pull a card@@">>
 	<<replace "#tarotCard">>

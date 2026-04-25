@@ -1,14 +1,14 @@
 :: CityMap [city] {"position":"1125,300","size":"100,100"}
 <div class="flexwrapper">
 <div class="housecard">
-<<image "img/gym-icon.png" "icon">>
+<<image "ui/img/gym-icon.png" "icon">>
 @@.icontextcity; [[Gym|Gym]]@@
 </div>
 <div class="housecard">
 
 </div>
 <div class="housecard">
-<<image "img/home.png" "icon">>
+<<image "ui/img/home.png" "icon">>
 @@.icontextcity; [[Home|Home]]@@
 </div>
 <div class="housecard">
@@ -18,7 +18,7 @@
 
 </div>
 <div class="housecard">
-<<image "img/mall.png" "icon">>
+<<image "ui/img/mall.png" "icon">>
 @@.icontextcity; [[Mall|Mall]]@@
 </div>
 <div class="housecard">
@@ -28,7 +28,7 @@
 
 </div>
 <div class="housecard">
-<<image "img/witchhouse.png" "icon">>
+<<image "ui/img/witchhouse.png" "icon">>
 @@.icontextcity; [[Witch's House|Witch]]@@
 </div>
 <div class="housecard">
@@ -38,21 +38,21 @@
 
 </div>
 <div class="housecard">
-<<image "img/library-icon.png" "icon">>
+<<image "ui/img/library-icon.png" "icon">>
 @@.icontextcity; [[Library|Library]]@@
 </div>
 <div class="housecard">
 
 </div>
 <div class="housecard">
-<<image "img/park.png" "icon">>
+<<image "ui/img/park.png" "icon">>
 @@.icontextcity; [[Park|Park]]@@
 </div>
 <div class="housecard">
 
 </div>
 <div class="housecard">
-<<image "img/church-ico.png" "icon">>
+<<image "ui/img/church-ico.png" "icon">>
 @@.icontextcity; [[Church|Church]]@@
 </div>
 <div class="housecard">
@@ -62,7 +62,7 @@
 
 </div>
 <div class="housecard">
-<<image "img/deliveryhub.png" "icon">>
+<<image "ui/img/deliveryhub.png" "icon">>
 @@.icontextcity; [[Delivery Hub|DeliveryHub]]@@
 </div>
 <div class="housecard">
@@ -70,14 +70,14 @@
 <div class="housecard">
 </div>
 <div class="housecard">
-<<image "img/beauty-salon.png" "icon">>
+<<image "ui/img/beauty-salon.png" "icon">>
 @@.icontextcity; [[Beauty Salon|BeautySalon]]@@
 </div>
 <div class="housecard">
 </div>
 <div class="housecard">
 </div>
-<<if setup.MissingWomen.hasActiveQuest()>><<image "rescue/down.png" { class: "downPointer clickable", onclick: "SugarCube.Engine.play('RescueMap');" }>>
+<<if setup.MissingWomen.hasActiveQuest()>><<image "characters/rescue/down.png" { class: "downPointer clickable", onclick: "SugarCube.Engine.play('RescueMap');" }>>
 <</if>>
 </div>
 

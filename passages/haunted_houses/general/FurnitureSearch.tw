@@ -1,5 +1,5 @@
 :: FurnitureSearch [nobr noreturn] {"position":"1850,200","size":"100,100"}
-<<video "curseditems/lfci.mp4">>
+<<video "mechanics/curseditems/lfci.mp4">>
 <<set _cur to setup.HauntedHouses.currentFurniture()>>
 <<if setup.HauntedHouses.hasClothesStolen() and _cur eq setup.HauntedHouses.clothesStashRoom()>>
 	<<include "FindStolenClothes">>
@@ -12,7 +12,7 @@
 	<<include "RescueClueFound">>
 <<elseif _cur eq setup.HauntedHouses.activeHousePlace("TarotCards") and setup.HauntedHouses.tarotCardsStage() eq 0>>
 	@@.mc-thoughts; You come across a strange@@ <<linkappend "@@.usebtn; deck of cards.@@">><br>
-		<<image "cursedpossessions/tarot-cards/tarot.png" "displayCentredImgs">>
+		<<image "mechanics/cursedpossessions/tarot-cards/tarot.png" "displayCentredImgs">>
 
 		@@.mc-speech; Hmm... are these... tarot cards? <br>
 		This deck looks so unusual... They say it can predict the future.<br>
@@ -26,7 +26,7 @@
 	@@.backbtn; [[Back|$return]]@@
 <<elseif _cur eq setup.HauntedHouses.activeHousePlace("MonkeyPaw") and setup.MonkeyPaw.isDiscoverable()>>
 	@@.mc-thoughts; You come across a strange@@ <<linkappend "@@.usebtn; paw.@@">><br>
-		<<image "cursedpossessions/monkey-paw/monkeypaw.jpg" "displayCentredImgs">>
+		<<image "mechanics/cursedpossessions/monkey-paw/monkeypaw.jpg" "displayCentredImgs">>
 
 		@@.mc-speech; Is this... the Monkey Paw? <br>
 		I think I read something about it when I was younger.<br>

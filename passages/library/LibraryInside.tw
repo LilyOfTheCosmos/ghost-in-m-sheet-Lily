@@ -1,10 +1,10 @@
 :: LibraryInside [nobr] {"position":"2500,1800","size":"100,100"}
-<<image "img/library-inside.jpg" { width: "100%" }>>
+<<image "ui/img/library-inside.jpg" { width: "100%" }>>
 <br>
 <<if setup.Library.hasEnergyToSearch()>>
-	@@.usebtn; [[Search for information about ghosts in books|LibrarySearchResult][setup.Library.spendEnergyToSearch()]] @@<<image "img/energy.png" { style: "position: relative; top: 0.375em; width:3%;" }>>
+	@@.usebtn; [[Search for information about ghosts in books|LibrarySearchResult][setup.Library.spendEnergyToSearch()]] @@<<image "ui/img/energy.png" { style: "position: relative; top: 0.375em; width:3%;" }>>
 <<else>>@@.mc-thoughts; I'm too tired@@
-	<span><<image "img/energy.png" { style: "position: relative; top: 0.375em; filter: grayscale(1); width:3%;" }>></span>
+	<span><<image "ui/img/energy.png" { style: "position: relative; top: 0.375em; filter: grayscale(1); width:3%;" }>></span>
 <</if>>
 <br>
 <<if hasVisited("Comics")>>

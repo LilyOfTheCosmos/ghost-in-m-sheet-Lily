@@ -80,13 +80,13 @@ setup.addLust = function(amount) {
 	<<set _delta to _args[0]>>
 	<<set _fitDelta to setup.Mc.applyFitnessDelta(_delta)>>
 	<<if _fitDelta.beautyIncrease gt 0>>
-		@@.mc-speech; <span class="evidenceText">Your <<image "img/beauty.png" { style: "position: relative; top: 0.375em; width:3%; display: inline; margin: 0;" }>> has improved (+1): <<= _fitDelta.beauty>> now!</span>@@<br>
+		@@.mc-speech; <span class="evidenceText">Your <<image "ui/img/beauty.png" { style: "position: relative; top: 0.375em; width:3%; display: inline; margin: 0;" }>> has improved (+1): <<= _fitDelta.beauty>> now!</span>@@<br>
 	<</if>>
 	<<if _fitDelta.energyMaxDelta gt 0 and not _fitDelta.hitEnergyCap>>
-		@@.mc-speech; <span class="evidenceText">Your <<image "img/energy.png" { style: "position: relative; top: 0.375em; width:3%; display: inline; margin: 0;" }>> has increased (+<<= _fitDelta.energyMaxDelta>>): <<= _fitDelta.energyMax>> now!</span>@@<br>
+		@@.mc-speech; <span class="evidenceText">Your <<image "ui/img/energy.png" { style: "position: relative; top: 0.375em; width:3%; display: inline; margin: 0;" }>> has increased (+<<= _fitDelta.energyMaxDelta>>): <<= _fitDelta.energyMax>> now!</span>@@<br>
 	<</if>>
 	<<if _fitDelta.hitEnergyCap>>
-		@@.mc-speech; <span class="evidenceText">Your <<image "img/energy.png" { style: "position: relative; top: 0.375em; width:3%; display: inline; margin: 0;" }>> has reached the maximum of 20!</span>@@<br>
+		@@.mc-speech; <span class="evidenceText">Your <<image "ui/img/energy.png" { style: "position: relative; top: 0.375em; width:3%; display: inline; margin: 0;" }>> has reached the maximum of 20!</span>@@<br>
 	<</if>>
 	<<if _fitDelta.reachedFitCap>>
 		@@.mc-thoughts; <span class="evidenceText">Your fitness level is perfect - 100</span>@@

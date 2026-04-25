@@ -15,7 +15,7 @@
 <</for>>
 <<if setup.Delivery.specialOrderActive()>>
 <div class="order-container special-order">
-<span class="address-item"><<= setup.Delivery.specialOrderAddress()>> -- RUSH</span> <<image "img/package.jpg" "iconPx">> <span class="rush-pay">$<<= setup.Delivery.specialOrderPay()>></span>
+<span class="address-item"><<= setup.Delivery.specialOrderAddress()>> -- RUSH</span> <<image "ui/img/package.jpg" "iconPx">> <span class="rush-pay">$<<= setup.Delivery.specialOrderPay()>></span>
 </div><br>
 <</if>>
 <</nobr>>

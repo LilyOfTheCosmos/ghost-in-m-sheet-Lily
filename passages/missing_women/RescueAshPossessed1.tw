@@ -1,20 +1,20 @@
 :: RescueAshPossessed1 [nobr] {"position":"2325,2200","size":"100,100"}
 <span id="rescueAshPossessed1">
-<<video "rescue/ash/1.3.mp4">></span>
+<<video "characters/rescue/ash/1.3.mp4">></span>
 @@.mc-thoughts; She keeps fucking you@@
 
 <<link "@@.usebtn; for a while.@@">>
 	<<replace "#rescueAshPossessed1">>
-		<<videoToggle "RescueAshPossessed1" "rescue/ash/1.4.mp4" "rescue/ash/1.3.mp4">>
+		<<videoToggle "RescueAshPossessed1" "characters/rescue/ash/1.4.mp4" "characters/rescue/ash/1.3.mp4">>
 	<</replace>>
 <</link>>
 @@.mc-speech; Nooo this is not right...~ But feels sooo good~@@<br>
 @@.mc-thoughts; Then she grabs your hair and makes you@@ <<linkappend "@@.usebtn; lick her pussy.@@">>
-	<<video "rescue/ash/1.5.mp4">>
+	<<video "characters/rescue/ash/1.5.mp4">>
 	@@.notmc-speech; Now I want to cum, use your tongue, slut@@<br>
 	@@.mc-thoughts; After playing with your body, @@
 	<<linkappend "@@.usebtn; she lets you go@@">>
-		<<video "rescue/ash/1.6.mp4">>
+		<<video "characters/rescue/ash/1.6.mp4">>
 		@@.notmc-speech; You are free, but next time you might not be so lucky@@<br>
 		@@.mc-thoughts; She kisses you again, and everything goes black.@@<br>
 		<br>

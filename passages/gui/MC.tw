@@ -2,46 +2,46 @@
 <div id="statusContainer">
 <div id="inPainImg">
 <<hovertip "Need to buy medicine">><<if setup.Mc.isPenalized()>>
-	<<image "img/icons/pain.jpg">>
+	<<image "ui/icons/pain.jpg">>
 <</if>>
 <</hovertip>>
 </div>
 <<if setup.HauntedHouses.isIronclad() and setup.Ghosts.isHunting()>>
-	<<hovertip "Wearing a sexy warden costume">><<image "img/icons/warden1.png">>
+	<<hovertip "Wearing a sexy warden costume">><<image "ui/icons/warden1.png">>
 	<</hovertip>>
 <<else>>
 	<div id="statusOuterTop">
 	<<if setup.Wardrobe.topShirtWorn()>>
-		<<hovertip "Wearing t-shirt">><<image "img/icons/top.jpg">>
+		<<hovertip "Wearing t-shirt">><<image "ui/icons/top.jpg">>
 		<</hovertip>>
 	<<else>>
-		<<image "img/icons/empty.jpg">>
+		<<image "ui/icons/empty.jpg">>
 	<</if>>
 	</div>
 	<div id="statusOuterBottom">
 	<<set _bottom to setup.Wardrobe.currentBottomDescriptor()>>
 	<<if _bottom>>
-		<<hovertip _bottom.tip>><<image "img/icons/" + _bottom.icon>>
+		<<hovertip _bottom.tip>><<image "ui/icons/" + _bottom.icon>>
 		<</hovertip>>
 	<<else>>
-		<<image "img/icons/empty.jpg">>
+		<<image "ui/icons/empty.jpg">>
 	<</if>>
 	</div>
 	<div id="statusUnderTop">
 	<<if setup.Wardrobe.braWorn()>>
-		<<hovertip "Wearing bra.">><<image "img/icons/bra.jpg">>
+		<<hovertip "Wearing bra.">><<image "ui/icons/bra.jpg">>
 		<</hovertip>>
 	<<else>>
-		<<hovertip "No bra on!">><<image "img/icons/tits.jpg">>
+		<<hovertip "No bra on!">><<image "ui/icons/tits.jpg">>
 		<</hovertip>>
 	<</if>>
 	</div>
 	<div id="statusUnderBottom">
 	<<if setup.Wardrobe.pantiesWorn()>>
-		<<hovertip "Wearing panties">><<image "img/icons/panties.jpg">>
+		<<hovertip "Wearing panties">><<image "ui/icons/panties.jpg">>
 		<</hovertip>>
 	<<else>>
-		<<hovertip "No panties on!">><<image "img/icons/nude.jpg">>
+		<<hovertip "No panties on!">><<image "ui/icons/nude.jpg">>
 		<</hovertip>>
 	<</if>>
 	</div>

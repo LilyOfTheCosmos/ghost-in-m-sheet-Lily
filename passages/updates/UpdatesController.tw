@@ -162,10 +162,10 @@ setup.Updates = (function () {
 	}
 	function mirrorMakeupImagePath() {
 		switch (makeupImg()) {
-			case 1: return "img/makeup1.jpg";
-			case 2: return "img/makeup2.jpg";
-			case 3: return "img/makeup3.jpg";
-			default: return "img/mc.jpg";
+			case 1: return "ui/img/makeup1.jpg";
+			case 2: return "ui/img/makeup2.jpg";
+			case 3: return "ui/img/makeup3.jpg";
+			default: return "ui/img/mc.jpg";
 		}
 	}
 	function mirrorMakeupHasWidth() {

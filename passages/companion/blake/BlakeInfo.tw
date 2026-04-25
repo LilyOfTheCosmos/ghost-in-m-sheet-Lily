@@ -3,7 +3,7 @@
 <<set _blake to setup.Companion.stateFor("blake")>>
 <div class="flexwrapperCompanionMainInfo">
 <div class="companionImageMain">
-<<image "blake/blake.png">>
+<<image "characters/blake/blake.png">>
 </div>
 <div class="companionTextMain">
 <span style="color: yellow; font-weight: bold; font-size: 1.2em;"><<= _blake.name>> :</span> <<= _blake.lvl>> lvl <<if _blake.lvl gte 5>> (max. lvl)

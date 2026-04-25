@@ -30,11 +30,11 @@ $(document).one(':passageend', function() {
 <<nobr>>
 <<run setup.Events.setCleanedUp(false)>>
 <div class="room-container">
-  <<image "img/trash1.png" { class: "trash", id: "trash1", onclick: "window.messyRoom.removeTrash('#trash1')" }>>
-  <<image "img/trash2.png" { class: "trash", id: "trash2", onclick: "window.messyRoom.removeTrash('#trash2')" }>>
-  <<image "img/trash3.png" { class: "trash", id: "trash3", onclick: "window.messyRoom.removeTrash('#trash3')" }>>
-  <<image "img/trash4.png" { class: "trash", id: "trash4", onclick: "window.messyRoom.removeTrash('#trash4')" }>>
-  <<image "img/trash5.png" { class: "trash", id: "trash5", onclick: "window.messyRoom.removeTrash('#trash5')" }>>
+  <<image "ui/img/trash1.png" { class: "trash", id: "trash1", onclick: "window.messyRoom.removeTrash('#trash1')" }>>
+  <<image "ui/img/trash2.png" { class: "trash", id: "trash2", onclick: "window.messyRoom.removeTrash('#trash2')" }>>
+  <<image "ui/img/trash3.png" { class: "trash", id: "trash3", onclick: "window.messyRoom.removeTrash('#trash3')" }>>
+  <<image "ui/img/trash4.png" { class: "trash", id: "trash4", onclick: "window.messyRoom.removeTrash('#trash4')" }>>
+  <<image "ui/img/trash5.png" { class: "trash", id: "trash5", onclick: "window.messyRoom.removeTrash('#trash5')" }>>
 </div>
 <div id="cleanup-message" style="display: none;">Done!</div>
 <</nobr>>

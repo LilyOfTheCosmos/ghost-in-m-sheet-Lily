@@ -1,6 +1,6 @@
 :: GhostSpecialEventMylingTwo [nobr] {"position":"1500,2450","size":"100,100"}
 <<set _videoList to []>>
-<<set _videoList to ["myling/duo1.mp4", "myling/duo2.mp4", "myling/duo3.mp4", "myling/duo4.mp4", "myling/duo5.mp4", "myling/duo6.mp4", "myling/duo7.mp4", "myling/duo8.mp4"]>>
+<<set _videoList to ["characters/ghosts/myling/duo1.mp4", "characters/ghosts/myling/duo2.mp4", "characters/ghosts/myling/duo3.mp4", "characters/ghosts/myling/duo4.mp4", "characters/ghosts/myling/duo5.mp4", "characters/ghosts/myling/duo6.mp4", "characters/ghosts/myling/duo7.mp4", "characters/ghosts/myling/duo8.mp4"]>>
 <<set _randomIndex to random(0, _videoList.length - 1)>>
 <<set _selectedVideo to _videoList[_randomIndex]>>
 <<video _selectedVideo>>
