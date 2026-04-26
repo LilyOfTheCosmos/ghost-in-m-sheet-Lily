@@ -228,7 +228,7 @@ setup.Companion = (function () {
 	Companion.prototype.imagePath = function (chance) {
 		var idx = TIER_CHANCES.indexOf(chance);
 		var tier = idx === -1 ? 1 : idx + 2;
-		return this.imageFolder + "/" + this.imagePrefix + tier + ".png";
+		return "characters/" + this.imageFolder + "/" + this.imagePrefix + tier + ".png";
 	};
 
 	// Companion response for the currently-chosen attack chance. Returns
@@ -246,14 +246,14 @@ setup.Companion = (function () {
 	Companion.prototype.tierCount  = function ()    { return TIER_CHANCES.length; };
 
 	// Small thumbnail portrait (contacts list / inline companion links /
-	// success banner). Cis companions have a single {folder}/{prefix}.png;
-	// trans companions rotate through trans/{$transPicture}.jpg as the
+	// success banner). Cis companions have a single characters/{folder}/{prefix}.png;
+	// trans companions rotate through characters/trans/{$transPicture}.jpg as the
 	// hunt-event stages advance ($transPicture is set by companionTextEvent*).
 	Companion.prototype.portraitPath = function () {
 		if (this.isTrans) {
 			return "characters/trans/" + (State.variables.transPicture || 1) + ".jpg";
 		}
-		return this.imageFolder + "/" + this.imagePrefix + ".png";
+		return "characters/" + this.imageFolder + "/" + this.imagePrefix + ".png";
 	};
 
 	var COMPANIONS = COMPANION_CONFIG.map(function (cfg) { return new Companion(cfg); });
@@ -753,7 +753,7 @@ setup.Companion = (function () {
 		outcomePortrait: function (success) {
 			var c = comp(); if (!c) return null;
 			if (c.name === "Brook" || c.name === "Alice" || c.name === "Blake") {
-				return c.name.toLowerCase() + "/" + c.name.toLowerCase() + (success ? "-happy" : "-sad") + ".png";
+				return "characters/" + c.name.toLowerCase() + "/" + c.name.toLowerCase() + (success ? "-happy" : "-sad") + ".png";
 			}
 			return "characters/trans/" + (v('transPicture') || 1) + ".jpg";
 		},
