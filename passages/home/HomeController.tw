@@ -322,13 +322,16 @@ setup.Home = (function () {
 			// <<removeMakeup N>> widget. Each tier gets a stacked
 			// penalty (tier+0 / +5 / +10) on top of the base penalty,
 			// then clears the applied flag and portrait.
+			// Clamp at 0: shower (penalty 10) deducts more than the
+			// matching apply added, so repeated shower→reapply cycles
+			// would otherwise drift beauty into the negatives.
 			var s = State.variables;
 			var tier = s.mc.makeupImg;
 			var stacked = tier === 1 ? penalty
 				: tier === 2 ? penalty + 5
 				: tier === 3 ? penalty + 10
 				: 0;
-			s.mc.beauty -= stacked;
+			s.mc.beauty = Math.max(0, s.mc.beauty - stacked);
 			s.makeupApplied = 0;
 			s.mc.makeupImg = 0;
 		},
@@ -338,7 +341,7 @@ setup.Home = (function () {
 			// (delta becomes 0).
 			var s = State.variables;
 			var delta = { 1: 5, 2: 10, 3: 15 }[s.mc.makeupImg] || 0;
-			s.mc.beauty -= delta;
+			s.mc.beauty = Math.max(0, s.mc.beauty - delta);
 			s.makeupApplied = 0;
 			s.mc.makeupImg = 0;
 		},
