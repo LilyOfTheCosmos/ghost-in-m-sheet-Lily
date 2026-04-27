@@ -497,4 +497,45 @@ test.describe('Haunted Houses Controller', () => {
     // assert
     expect(snap.sanityPerStep).toBeCloseTo(-0.2, 5);
   });
+
+  // --- HauntConditions energy costs ---
+  //
+  // Energy is the pacing gate for a hunt: each nav step drains energyPerStep,
+  // and bait/pray each charge a fixed energy cost on top. These constants
+  // were halved to soften the exhaustion ceiling. Lock them in so a revert
+  // to the pre-change values is caught here.
+
+  test('energyPerStep is -0.125 inside a house', async () => {
+    await setHuntMode(page, 2);
+
+    const snap = await callSetup(page, 'setup.HauntConditions.snapshot()');
+
+    expect(snap.energyPerStep).toBeCloseTo(-0.125, 5);
+  });
+
+  test('energyPerStep is 0 outside a house', async () => {
+    await setHuntMode(page, 0);
+
+    const snap = await callSetup(page, 'setup.HauntConditions.snapshot()');
+
+    expect(snap.energyPerStep).toBe(0);
+  });
+
+  test('ENERGY_COST_BAIT is 0.5', async () => {
+    expect(await callSetup(page, 'setup.HauntConditions.ENERGY_COST_BAIT')).toBe(0.5);
+  });
+
+  test('ENERGY_COST_PRAY is 0.5', async () => {
+    expect(await callSetup(page, 'setup.HauntConditions.ENERGY_COST_PRAY')).toBe(0.5);
+  });
+
+  test('orgasm aftershock adds -0.125 energy/step on top of base drain', async () => {
+    await setHuntMode(page, 2);
+    await setVar(page, 'orgasmCooldownSteps', 3);
+
+    const snap = await callSetup(page, 'setup.HauntConditions.snapshot()');
+
+    // base in-house -0.125 + aftershock -0.125 = -0.25
+    expect(snap.energyPerStep).toBeCloseTo(-0.25, 5);
+  });
 });

@@ -1204,9 +1204,9 @@ setup.HauntConditions = (function () {
      * contract. Spendable actions (bait, pray) charge their own energy
      * on top of their named cost. Energy at 0 kicks the player out via
      * HuntOverExhaustion. */
-    var ENERGY_PER_STEP    = 0.25;
-    var ENERGY_COST_BAIT   = 1;
-    var ENERGY_COST_PRAY   = 1;
+    var ENERGY_PER_STEP    = 0.125;
+    var ENERGY_COST_BAIT   = 0.5;
+    var ENERGY_COST_PRAY   = 0.5;
 
     var passageBgIndex = null;
     function bgIndex() {
@@ -1344,11 +1344,11 @@ setup.HauntConditions = (function () {
         var cooldown = V.orgasmCooldownSteps || 0;
         if (cooldown > 0) {
             snap.sanityPerStep -= 1;
-            snap.energyPerStep -= 0.25;
+            snap.energyPerStep -= 0.125;
             snap.contributors.push({
                 label: "Aftershock (" + cooldown + ")",
                 color: "#aa4477",
-                detail: "sanity -1/step · energy -0.25/step"
+                detail: "sanity -1/step · energy -0.125/step"
             });
         }
 
