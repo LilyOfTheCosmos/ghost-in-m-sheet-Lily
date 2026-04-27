@@ -74,7 +74,7 @@
 <div class="housecard">
 <<if setup.MissingWomen.hasRescueClue()>>
 <<image "characters/rescue/rescue-clue.png" "iconPx">><br>
-<<link "@@.usebtn;Look at the photo@@">><<replace ".flexwrapper">><<image 'characters/rescue/house/' + setup.MissingWomen.randomRescuePhotoNumber() + '.jpg' { class: setup.MissingWomen.tornStyleRandom(), width: "100%" }>>
+<<link "@@.usebtn;Look at the photo@@">><<replace ".flexwrapper">><<set _photoClass = setup.MissingWomen.tornStyleRandom()>><<image 'characters/rescue/house/' + setup.MissingWomen.randomRescuePhotoNumber() + '.jpg' { class: _photoClass, width: "100%" }>>
 <</replace>>
 <</link>>
 <</if>>

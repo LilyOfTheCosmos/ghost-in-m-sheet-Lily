@@ -251,6 +251,41 @@ test.describe('Missing Women — RescueSuccess and RescueMap rendering', () => {
   });
 });
 
+test.describe('Missing Women — Bag rescue clue photo viewer', () => {
+  let page;
+
+  test.beforeAll(async ({ browser }) => { page = await openGame(browser); });
+  test.afterAll(async () => { await page.close(); });
+  test.beforeEach(async () => { await resetGame(page); });
+
+  test('Bag renders cleanly when the rescue clue is held', async () => {
+    await setupActiveQuest(page, 'Victoria');
+    await page.evaluate(() => SugarCube.setup.MissingWomen.setRescueClueFound());
+    await goToPassage(page, 'Bag');
+    await expectCleanPassage(page);
+    await expect(page.locator('a:has-text("Look at the photo")')).toHaveCount(1);
+  });
+
+  test('clicking "Look at the photo" reveals the photo without errors', async () => {
+    await setupActiveQuest(page, 'Victoria');
+    await page.evaluate(() => SugarCube.setup.MissingWomen.setRescueClueFound());
+    await goToPassage(page, 'Bag');
+    await page.locator('a:has-text("Look at the photo")').first().click();
+    await expectCleanPassage(page);
+    const imgCount = await page.locator('.flexwrapper img[src*="rescue/house"]').count();
+    expect(imgCount).toBeGreaterThan(0);
+  });
+
+  test('photo viewer still works when $tornStyleRandom is unset', async () => {
+    await setupActiveQuest(page, 'Victoria');
+    await page.evaluate(() => SugarCube.setup.MissingWomen.setRescueClueFound());
+    await page.evaluate(() => { delete SugarCube.State.variables.tornStyleRandom; });
+    await goToPassage(page, 'Bag');
+    await page.locator('a:has-text("Look at the photo")').first().click();
+    await expectCleanPassage(page);
+  });
+});
+
 test.describe('Missing Women — multi-stage possession passages', () => {
   let page;
 
