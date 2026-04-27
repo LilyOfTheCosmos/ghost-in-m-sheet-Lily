@@ -44,7 +44,7 @@
 	<<set _cName to _args[0]>>
 	<<set _cLvl to setup.Companion.companionLvl(_cName)>>
 	<<if setup.Companion.isCompanionFinishedSoloHunting(_cName)>>
-		@@.mc-speech; [[Ask <<= _cName>> how <<= _args[1]>> ghost hunt went.|<<= _cName>>HuntEndAlone]]@@<br>
+		@@.mc-speech; [[Ask <<= _cName>> how <<= _args[1]>> ghost hunt went.|`_cName + "HuntEndAlone"`]]@@<br>
 	<<else>>
 		@@.mc-speech;<<link `"Ask " + _cName + " to join you for ghost hunting tonight."`>>
 			<<run setup.Companion.pickCisCompanion(_cName)>>
