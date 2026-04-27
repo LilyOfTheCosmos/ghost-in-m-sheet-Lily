@@ -171,6 +171,42 @@
 		delete vars.uvlTimeRemain;
 		delete vars.elapsedTime;
 		delete vars.elapsedTimeUvl;
+
+		// 0.5.1 stored each Monkey Paw wish unlock as a flat $wish<Name>
+		// flag; the post-overhaul code reads $monkeyPawLearned[<id>]
+		// instead. Buying the witch's guide ($boughtMonkeyPawGuide===2)
+		// historically set every per-wish flag at once, so a save in
+		// that state otherwise loads with only the "anything" button
+		// (which kept its $wishAnything flag across the rename).
+		var WISH_FLAG_TO_ID = {
+			wishActivity:     'activity',
+			wishTraptheghost: 'trapTheGhost',
+			wishSanity:       'sanity',
+			wishLeave:        'leave',
+			wishKnowledge:    'knowledge',
+			wishDawn:         'dawn'
+		};
+		var hasLegacyWishFlag = Object.keys(WISH_FLAG_TO_ID).some(function (k) {
+			return vars[k] !== undefined;
+		});
+		if (vars.boughtMonkeyPawGuide === 2 || hasLegacyWishFlag) {
+			if (!vars.monkeyPawLearned || typeof vars.monkeyPawLearned !== 'object') {
+				vars.monkeyPawLearned = {};
+			}
+			Object.keys(WISH_FLAG_TO_ID).forEach(function (flag) {
+				if (vars[flag] === 1) vars.monkeyPawLearned[WISH_FLAG_TO_ID[flag]] = true;
+			});
+			// Buying the guide unlocked everything, including the
+			// "anything" meta-wish; some 0.5.1 paths set the per-wish
+			// flags but not $wishAnything when the guide was bought.
+			if (vars.boughtMonkeyPawGuide === 2) {
+				Object.keys(WISH_FLAG_TO_ID).forEach(function (flag) {
+					vars.monkeyPawLearned[WISH_FLAG_TO_ID[flag]] = true;
+				});
+				if (vars.wishAnything !== 1) vars.wishAnything = 1;
+			}
+		}
+		Object.keys(WISH_FLAG_TO_ID).forEach(function (flag) { delete vars[flag]; });
 	}
 
 	// Expose for use from Twine (PassageReady belt-and-braces call).

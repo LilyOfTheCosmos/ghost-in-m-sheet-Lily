@@ -253,4 +253,132 @@ test.describe('Save/load round-trip', () => {
     expect(migrated.name).toBe('Shade');
     expect(migrated.realName).toBe('Mimic');
   });
+
+  test('legacy $wish<Name> flags migrate into $monkeyPawLearned', async () => {
+    // 0.5.1 stored each Monkey Paw wish unlock as a separate flat flag
+    // ($wishActivity, $wishKnowledge, ...). The post-overhaul code reads
+    // $monkeyPawLearned[<id>] instead. Without migration, a player who
+    // had learned individual wishes pre-overhaul loses access to them.
+    await goToPassage(page, 'CityMap');
+
+    const migrated = await page.evaluate(() => {
+      const legacy = {
+        wishActivity:     1,
+        wishTraptheghost: 1,
+        wishKnowledge:    1,
+        // wishSanity / wishLeave / wishDawn were never learned in this save.
+      };
+      SugarCube.setup.applySaveDefaults(legacy);
+      return legacy;
+    });
+
+    expect(migrated.monkeyPawLearned).toEqual({
+      activity:     true,
+      trapTheGhost: true,
+      knowledge:    true,
+    });
+
+    // Legacy flags are dropped so they can't shadow future writes.
+    for (const key of [
+      'wishActivity', 'wishTraptheghost', 'wishSanity',
+      'wishLeave', 'wishKnowledge', 'wishDawn',
+    ]) {
+      expect(migrated[key], `legacy flag "${key}" should be deleted`).toBeUndefined();
+    }
+  });
+
+  test('boughtMonkeyPawGuide===2 marks every wish learned (the F95 0.5.1 bug)', async () => {
+    // The exact reported bug: a 0.5.1 save where the Monkey Paw guide had
+    // already been purchased loaded with no wish buttons except "I wish
+    // for anything". The guide-bought flag survived the migration, but
+    // none of the legacy per-wish flags translated to monkeyPawLearned,
+    // so the MonkeyPaw passage's <<for setup.MonkeyPaw.list()>> loop
+    // skipped every entry.
+    await goToPassage(page, 'CityMap');
+
+    const migrated = await page.evaluate(() => {
+      const legacy = {
+        boughtMonkeyPawGuide: 2,
+        // Mimics the 0.5.1 WitchController.unlockMonkeyPawWishes side
+        // effects: every per-wish flag set together with $wishAnything.
+        wishActivity:     1,
+        wishTraptheghost: 1,
+        wishSanity:       1,
+        wishLeave:        1,
+        wishKnowledge:    1,
+        wishDawn:         1,
+        wishAnything:     1,
+      };
+      SugarCube.setup.applySaveDefaults(legacy);
+      return legacy;
+    });
+
+    expect(migrated.monkeyPawLearned).toEqual({
+      activity:     true,
+      trapTheGhost: true,
+      sanity:       true,
+      leave:        true,
+      knowledge:    true,
+      dawn:         true,
+    });
+    expect(migrated.wishAnything).toBe(1);
+    expect(migrated.boughtMonkeyPawGuide).toBe(2);
+  });
+
+  test('boughtMonkeyPawGuide===2 alone (no per-wish flags) still unlocks every wish', async () => {
+    // Defensive: a save shape that lost the $wish<Name> scatter (e.g.
+    // already partially migrated, or a custom export) but kept the guide
+    // flag must still expose every wish. The guide is the source of truth
+    // for "every spell is unlocked".
+    await goToPassage(page, 'CityMap');
+
+    const migrated = await page.evaluate(() => {
+      const legacy = { boughtMonkeyPawGuide: 2 };
+      SugarCube.setup.applySaveDefaults(legacy);
+      return legacy;
+    });
+
+    expect(migrated.monkeyPawLearned).toEqual({
+      activity:     true,
+      trapTheGhost: true,
+      sanity:       true,
+      leave:        true,
+      knowledge:    true,
+      dawn:         true,
+    });
+    expect(migrated.wishAnything).toBe(1);
+  });
+
+  test('after migration, every wish in the catalogue reports as learned', async () => {
+    // End-to-end check against the live setup.MonkeyPaw API, so a future
+    // catalogue rename (e.g. renaming the 'trapTheGhost' id) would fail
+    // this test alongside the migration itself.
+    await goToPassage(page, 'CityMap');
+
+    const allLearned = await page.evaluate(() => {
+      // Apply migration to the live State, then ask the controller.
+      Object.assign(SugarCube.State.variables, { boughtMonkeyPawGuide: 2 });
+      SugarCube.setup.applySaveDefaults(SugarCube.State.variables);
+      return SugarCube.setup.MonkeyPaw.list().every(function (w) {
+        return SugarCube.setup.MonkeyPaw.isLearned(w.id);
+      });
+    });
+
+    expect(allLearned).toBe(true);
+  });
+
+  test('migration is a no-op when no legacy wish flags or guide are present', async () => {
+    // A fresh save without any Monkey Paw history should keep its empty
+    // (or absent) monkeyPawLearned map and never gain a stray wishAnything.
+    await goToPassage(page, 'CityMap');
+
+    const migrated = await page.evaluate(() => {
+      const legacy = {};
+      SugarCube.setup.applySaveDefaults(legacy);
+      return legacy;
+    });
+
+    expect(migrated.monkeyPawLearned).toBeUndefined();
+    expect(migrated.wishAnything).toBeUndefined();
+  });
 });
