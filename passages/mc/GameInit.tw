@@ -95,7 +95,7 @@ setup.Game = (function () {
 			lust: 0,
 			energy: 10,
 			energyMax: 10,
-			lvl: 0,
+			lvl: 1,
 			exp: 0,
 			dirty: 0,
 			beauty: 30
