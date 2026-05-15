@@ -217,18 +217,7 @@ test.describe('Home Controller', () => {
     expect(result).toBe(false);
   });
 
-  test('hasHuntContract true when ghostHuntingMode is 1', async ({ game: page }) => {
-    // arrange
-    await setHuntMode(page, 1);
-
-    // act
-    const result = await callSetup(page, 'setup.Ghosts.hasContract()');
-
-    // assert
-    expect(result).toBe(true);
-  });
-
-  test('needsWitch true when ghostHuntingMode is 3', async ({ game: page }) => {
+  test('isPossessed true when ghostHuntingMode is 3', async ({ game: page }) => {
     // arrange
     await setHuntMode(page, 3);
 
@@ -237,28 +226,6 @@ test.describe('Home Controller', () => {
 
     // assert
     expect(result).toBe(true);
-  });
-
-  test('canGoHunting requires contract and dressed', async ({ game: page }) => {
-    // arrange
-    await setHuntMode(page, 1);
-
-    // act
-    const result = await callSetup(page, 'setup.Home.canGoHunting()');
-
-    // assert
-    expect(result).toBe(true);
-  });
-
-  test('canGoHunting false without contract', async ({ game: page }) => {
-    // arrange
-    await setHuntMode(page, 0);
-
-    // act
-    const result = await callSetup(page, 'setup.Home.canGoHunting()');
-
-    // assert
-    expect(result).toBe(false);
   });
 
   // --- Succubus events ---
@@ -694,7 +661,16 @@ test.describe('Home Controller', () => {
     // sleeps cut short by the event, not full nights. Wraith is the only
     // catalogue ghost with a sleepPassage, so it's the branch we can
     // exercise here.
-    await page.evaluate(() => SugarCube.setup.Ghosts.startHunt('Wraith'));
+    // resolveSleepWake reads setup.Ghosts.active(), which in the unified hunt
+    // mode comes from $run.ghostName -- a bare $hunt isn't enough, so we
+    // start a real hunt with Wraith pinned.
+    await page.evaluate(() => {
+      SugarCube.setup.HuntController.startHunt({ seed: 1 });
+      SugarCube.setup.HuntController.setField('ghostName', 'Wraith');
+      const g = SugarCube.setup.Ghosts.getByName('Wraith');
+      SugarCube.setup.HuntController.setField('evidence', g.evidence.map(e => e.id));
+      SugarCube.setup.Ghosts.startHunt('Wraith');
+    });
     await setVar(page, 'hours', 22);
     await page.evaluate(() => SugarCube.setup.Home.setAlarm(7));
     const fromDefeat = await page.evaluate(
@@ -702,6 +678,7 @@ test.describe('Home Controller', () => {
     );
     expect(fromDefeat.hours).toBe(3);
     expect(fromDefeat.postWake).toBe('huntDefeat');
+    await page.evaluate(() => SugarCube.setup.HuntController.end());
   });
 
   test('sleepAdvance to alarm wakes the MC at the configured hour', async ({ game: page }) => {

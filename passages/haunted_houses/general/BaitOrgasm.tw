@@ -1,4 +1,4 @@
-:: BaitOrgasm [nobr] {"position":"2800,1100","size":"100,100"}
+:: BaitOrgasm [nobr noreturn] {"position":"2800,1100","size":"100,100"}
 /* Triggered when the bait mechanic stamps lust onto an MC who was already
  * at 100. consumeBaitOrgasm zeros lust and bleeds 10 sanity but
  * intentionally leaves $baitActive / $baitStepsRemain alone — the ghost
@@ -10,7 +10,7 @@
 <<updatemeter 'sanity' `setup.Mc.sanityPct()`>>
 <<updatemeter 'mclust' `setup.Mc.lust() / 100`>>
 <<if setup.Mc.isSanityCollapsed() or setup.Mc.sanity() lte 0>>
-	<<goto "HuntOverSanity">>
+	<<goto setup.HuntController.huntOverPassage("sanity")>>
 <</if>>
 
 <<randRangeVideo "mechanics/orgasm/solo" 1 12 ".mp4">>
@@ -20,7 +20,7 @@
 	@@.mc-speech; A-ahh~ I can't — I can't stop —!@@<br>
 	<<randRangeVideo "mechanics/cum-covered/laying-down" 1 5 ".mp4">>
 	<br>
-	@@.mc-thoughts; Above you, the air thickens. Something cold and slick spatters across your skin in long, sticky ropes. Your face burns with desire. Your head swims in ecstasy. You lose a piece of yourself in the haze.@@<br>
+	@@.mc-thoughts; As you lay lost in yourself, above you, the air thickens. Something cold and slick spatters across your skin in long, sticky ropes. Your face burns with desire. Your head swims in ecstasy. You lose a piece of your mind in the haze.@@<br>
 	<br>
 	@@.backbtn;[[Pull yourself up|$return]]@@
 <</linkreplace>>

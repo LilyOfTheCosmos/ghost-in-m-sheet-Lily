@@ -38,10 +38,15 @@ test.describe('Events controller — tier classification', () => {
 
 test.describe('Events controller — video resolvers', () => {
   async function setLocation(p, location) {
-    await setVar(p, 'hauntedHouse', location || null);
+    await p.evaluate((loc) => {
+      if (SugarCube.setup.HuntController.active()) SugarCube.setup.HuntController.end();
+      if (loc) {
+        SugarCube.setup.HuntController.startHunt({ seed: 1, staticHouseId: `${loc}` });
+      }
+    }, location || null);
   }
 
-  test('pickByLocation switches by $hauntedHouse', async ({ game: page }) => {
+  test('pickByLocation switches by active hunt house', async ({ game: page }) => {
     await setLocation(page, 'owaissa');
     let result = await page.evaluate(() =>
       SugarCube.setup.Events.pickByLocation(['o1'], ['e1']));
@@ -50,10 +55,12 @@ test.describe('Events controller — video resolvers', () => {
     result = await page.evaluate(() =>
       SugarCube.setup.Events.pickByLocation(['o1'], ['e1']));
     expect(result).toEqual(['e1']);
+    /* Ironclad uses its own prison resolver path; pickByLocation itself
+     * just picks owaissa-vs-elm and defaults to owaissa otherwise. */
     await setLocation(page, 'ironclad');
     result = await page.evaluate(() =>
       SugarCube.setup.Events.pickByLocation(['o1'], ['e1']));
-    expect(result).toEqual([]);
+    expect(result).toEqual(['o1']);
   });
 
   test('videoListForEvent("brain") returns the flat mind list', async ({ game: page }) => {
@@ -124,16 +131,16 @@ test.describe('Events controller — video resolvers', () => {
 });
 
 test.describe('Events controller — orgasm and body-part roll', () => {
-  test('shouldOrgasm fires only at lust 100 for mouth/pussy/anal', async ({ game: page }) => {
+  test('shouldOrgasm fires only at lust 100 for pussy/anal', async ({ game: page }) => {
     await setVar(page, 'mc.lust', 100);
-    expect(await callSetup(page, 'setup.Events.shouldOrgasm("mouth")')).toBe(true);
+    expect(await callSetup(page, 'setup.Events.shouldOrgasm("mouth")')).toBe(false);
     expect(await callSetup(page, 'setup.Events.shouldOrgasm("pussy")')).toBe(true);
     expect(await callSetup(page, 'setup.Events.shouldOrgasm("anal")')).toBe(true);
     expect(await callSetup(page, 'setup.Events.shouldOrgasm("brain")')).toBe(false);
     expect(await callSetup(page, 'setup.Events.shouldOrgasm("tits")')).toBe(false);
 
     await setVar(page, 'mc.lust', 99);
-    expect(await callSetup(page, 'setup.Events.shouldOrgasm("mouth")')).toBe(false);
+    expect(await callSetup(page, 'setup.Events.shouldOrgasm("pussy")')).toBe(false);
   });
 
   test('orgasmSanityLoss is -10', async ({ game: page }) => {

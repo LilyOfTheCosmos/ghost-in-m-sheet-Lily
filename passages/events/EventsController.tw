@@ -82,13 +82,18 @@ setup.Events = (function () {
 		},
 		/* :: LightPassageGhost entry: 1-in-65 chance per tick that a
 		   light-capable ghost activates EMF and darkens the room.
-		   Returns the destination passage to <<goto>>, or null. */
+		   Returns the destination passage to <<goto>>, or null.
+		   EMF only arms when a lit hunt room was actually flipped to
+		   dark — otherwise the player saw no in-world cause for the
+		   reading and the window appeared to open on its own. */
 		maybeTurnOffLights: function () {
 			var g = setup.Ghosts.active();
 			if (!g || !g.canTurnOffLights) return null;
 			if (Math.floor(Math.random() * 65) !== 0) return null;
+			var dest = this.turnOffLightHere();
+			if (!dest) return null;
 			setup.activateTool("emf");
-			return this.turnOffLightHere() || null;
+			return dest;
 		},
 
 		// --- Lust tiers ------------------------------------------
@@ -157,12 +162,13 @@ setup.Events = (function () {
 		},
 
 		/*
-		* Pick from an { owaissa, elm } pair based on location.
+		* Pick from an { owaissa, elm } pair based on the active
+		* static hunt-house id ('owaissa' / 'elm').
+		* Procedural runs default to owaissa art.
 		*/
 		pickByLocation: function (owaissaList, elmList) {
-			if (setup.HauntedHouses.isOwaissa()) return owaissaList || [];
-			if (setup.HauntedHouses.isElm())     return elmList || [];
-			return [];
+			if (setup.HauntedHouses.isElm()) return elmList || [];
+			return owaissaList || [];
 		},
 
 		/*
@@ -265,11 +271,11 @@ setup.Events = (function () {
 		/*
 		* Returns true if the MC should orgasm during a sexual encounter.
 		* Triggers when lust is at max (100) and the body part is
-		* mouth, pussy, or anal.
+		* pussy or anal.
 		*/
 		shouldOrgasm: function (bodyPart) {
 			if (setup.Mc.lust() < 100) return false;
-			return bodyPart === 'mouth' || bodyPart === 'pussy' || bodyPart === 'anal';
+			return bodyPart === 'pussy' || bodyPart === 'anal';
 		},
 
 		/*
@@ -347,7 +353,7 @@ setup.Events = (function () {
 		   "EventMC">>. Body-part fallback delegates to
 		   videoListForEvent() so the clothing-aware resolvers stay
 		   the single source. */
-		rollHuntEvent: function () {
+		rollProwlEvent: function () {
 			var g           = setup.Ghosts.active();
 			var chance      = Math.floor(Math.random() * 101);
 			var bansheeRoll = 1 + Math.floor(Math.random() * 10);

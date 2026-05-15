@@ -1,21 +1,17 @@
 :: GhostStreet [ghoststreet] {"position":"1950,350","size":"100,100"}
 <div class="flexwrapper">
 <<huntHouseCard "owaissa">>
-<div class="housecard"></div>
-<div class="housecard"></div>
-<<huntHouseCard "ironclad">>
-<div class="housecard"></div>
-<div class="housecard"></div>
 <<huntHouseCard "elm">>
-<div class="housecard"></div>
+<<huntHouseCard "ironclad">>
+</div>
+<div class="flexwrapper">
+<<huntCard>>
 </div>
 <<nobr>>
 <<run setup.Ghosts.fireActiveOnEnterHouse()>>
-<<run setup.HuntJournal.recordHuntStart()>>
 <<run setup.Time.resetToMidnight()>><<run setup.Tick.resetCooldowns()>>
 <<done>>
 <<replace "#time">><<= setup.Time.display()>><</replace>>
 <</done>>
-<<run setup.HauntedHouses.clearHouseFlags()>>
 <<if setup.Companion.anyCompanionSelected()>><<run setup.Companion.markCompanionFlagActive()>><</if>>
 <</nobr>>

@@ -1,79 +1,61 @@
 :: widgetHauntedHouseStreet [widget nobr] {"position":"800,3300","size":"100,100"}
-/* huntHouseCard -- arg: house id from setup.HauntedHouses.list() (e.g.
-   "owaissa"). Renders one .housecard entry on GhostStreet: the
-   thumbnail, a level-gated <<link>> to the matching street passage, and
-   the <<set>> side-effects that used to be inlined per-house (contract
-   reward, $is<House> flag, optional FurnitureCode include, starting
-   room roll). */
+/* huntCard -- arg-less. Drops a procedural-hunt entry into the
+   GhostStreet flexgrid. Always routes to HuntStart for a fresh
+   haunt -- there is no resume from this entry point; clicking the
+   card while a hunt is already in flight forfeits the previous one
+   (counts as failure, pays the failure ectoplasm payout) before
+   the new one rolls. The forfeit fires on the click rather than
+   on HuntStart entry so save/reload paths landing back on the
+   lobby resume the existing hunt instead of accidentally rotating
+   $nextHuntSeed. */
+<<widget "huntCard">>
+	<<set _huntAddr to setup.HuntController.addressFromSeed(setup.HuntController.nextSeed()).formatted>>
+	<div class="housecard">
+		<<image "ui/img/hunt-house.jpg" "iconPx">>
+		<<if setup.Mc.lvl() gte 4>>
+			@@.icontext;<<link _huntAddr "HuntStart">>
+				<<if setup.HuntController.isActive()>><<run setup.HuntController.endHunt(false)>><</if>>
+			<</link>>@@
+		<<else>>
+			@@.mc-thoughts; Level 4+ required@@
+		<</if>>
+	</div>
+<</widget>>
+
+/* huntHouseCard -- arg: static hunt-house id from
+   setup.HuntHouses.list() (e.g. "owaissa"). Drops a
+   GhostStreet card that routes to HuntStart with the house's
+   catalogue id stashed on $pendingHuntHouseId; HuntStart
+   reads + clears it before invoking startHunt, so the hunt
+   lifecycle stays in charge of the run. The data is the
+   catalogue, so adding a new static hunt house is one entry in
+   setup.HuntHouses + a card per house here. */
 <<widget "huntHouseCard">>
-	<<set _hc to setup.HauntedHouses.byId(_args[0])>>
-	<<if _hc>>
+	<<set _rsh to setup.HuntHouses and setup.HuntHouses.byId(_args[0])>>
+	<<if _rsh>>
 		<div class="housecard">
-		<<image _hc.image "iconPx">>
-			<<if setup.Mc.lvl() gte _hc.levelGate>>
-				<<capture _hc>>
-					@@.icontext;<<link _hc.streetPassage _hc.streetPassage>>
-						<<set _reward to setup.HauntedHouses.contractReward(_hc.id)>>
-						<<run setup.HauntedHouses.setContractReward(_reward.money, _reward.xp)>>
-						<<run setup.HauntedHouses.activate(_hc.id)>>
-						<<if _hc.runsFurnitureCode>><<run setup.HauntedHouses.distributeFurnitureStashes()>><</if>>
-						<<run setup.HauntedHouses.setHuntRoom(setup.HauntedHouses.rollStartingRoom(_hc.id))>>
+			<<image _rsh.image "iconPx">>
+			<<if setup.Mc.lvl() lt _rsh.levelGate>>
+				<<set _rshGate to _rsh.levelGate>>
+				@@.mc-thoughts; Level _rshGate+ required@@
+			<<elseif typeof _rsh.gate eq "function" and not _rsh.gate()>>
+				@@.mc-thoughts; <<= _rsh.gateMessage or "Locked">>@@
+			<<else>>
+				<<capture _rsh>>
+					@@.icontext;<<link _rsh.label "HuntStart">>
+						<<if setup.HuntController.isActive()>><<run setup.HuntController.endHunt(false)>><</if>>
+						<<set $pendingHuntHouseId to _rsh.id>>
 					<</link>>@@
 				<</capture>>
-			<<else>>
-				<<set _hcGate to _hc.levelGate>>
-				@@.mc-thoughts; Level _hcGate+ required@@
 			<</if>>
 		</div>
 	<</if>>
 <</widget>>
 
-/* huntHouseStreet -- arg: house id. Renders the shared body of the
-   per-house street passage (Owaissa/Elm/Ironclad): the header
-   image, the location block, optional companion "talk to them" branch,
-   the "Go inside" link (or whatever _contents block the caller provides
-   -- Ironclad overrides it with the wardenClothesStage gate), and the
-   "End the hunt" link while inside a hunt. `_contents` replaces the
-   default Go-inside link when the caller needs custom behaviour. */
-<<widget "huntHouseStreet" container>>
-	<<set _hs to setup.HauntedHouses.byId(_args[0])>>
-	<<set _hsLabel to _args[1]>>
-	<<set _hsDescription to _args[2]>>
-	<<if _hs and setup.Companion.active() and setup.Companion.companionAtStreet()>>
-		<<run setup.Companion.clearCompanionSelection()>>
-	<</if>>
-	<<if _hs>>
-		<<image _hs.image { width: "90%" }>><br>
-		@@.location; _hsLabel@@<br>
-		@@.mc-thoughts; _hsDescription@@<br>
-		<br>
-		<<set _streetBody to _contents ? _contents.trim() : "">>
-		<<if setup.Companion.companionAtStreet()>>
-			You see <<= setup.Companion.name()>>.
-			<<companionStreetTalk>>
-		<<elseif setup.MonkeyPaw.isHouseBanned(_hs.id)>>
-			@@.mc-thoughts; The front door won't open. The paw's price was one contract's worth of this house.@@<br>
-		<<elseif _streetBody neq "">>
-			<<= _contents>>
-		<<else>>
-			<<capture _hs>>
-				@@.movebtn;<<link "Go inside" _hs.hallwayPassage>>
-					<<run setup.HauntedHouses.setHuntMode(setup.Ghosts.HuntMode.ACTIVE)>>
-				<</link>>@@<br>
-			<</capture>>
-		<</if>>
-		<br><br>
-		<<if setup.Ghosts.isHunting()>>
-			<span class="movebtn">[[End the hunt|HuntOverManual][setup.HauntedHouses.setHuntMode(setup.Ghosts.HuntMode.POSSESSED)]]</span>
-		<</if>>
-	<</if>>
-<</widget>>
-
-/* companionStreetTalk -- arg-less. The "@@.usebtn; Talk to her"
-   link that Owaissa_Street / Elm_Street used to inline for each of
-   the six companion names. Pulls the objective pronoun off the
-   active companion catalogue entry and routes to the shared
-   CompanionMain passage. */
+/* companionStreetTalk -- arg-less. Pulls the objective pronoun off
+   the active companion catalogue entry and routes to the shared
+   CompanionMain passage. Surfaced inside hunt-street contexts where
+   the companion is waiting at the entrance. */
 <<widget "companionStreetTalk">>
 	<<set _ac to setup.Companion.active()>>
 	<<if _ac>>

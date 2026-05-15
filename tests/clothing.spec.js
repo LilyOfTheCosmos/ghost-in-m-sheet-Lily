@@ -452,6 +452,96 @@ test.describe('Clothing — Hunt-mode quick undress/redress', () => {
     await setVar(page, 'shortsState', 'not worn');
     expect(await callSetup(page, 'setup.Wardrobe.currentBottomSlotName()')).toBe(null);
   });
+
+  test('redressAfterHunt re-equips slots the MC voluntarily took off', async ({ game: page }) => {
+    /* MC took her tier-1 jeans and tier-2 bra off mid-hunt and never
+     * put them back on. End-of-hunt cleanup should restore them. */
+    await setVar(page, 'jeansState0', 'not worn');
+    await setVar(page, 'jeansState1', 'not worn');
+    await setVar(page, 'jeansState',  'not worn');
+    await setVar(page, 'rememberBottomOuter', 'nojeans1');
+    await setVar(page, 'isBottomStolen', 0);
+
+    await setVar(page, 'braState0', 'not worn');
+    await setVar(page, 'braState2', 'not worn');
+    await setVar(page, 'braState',  'not worn');
+    await setVar(page, 'rememberTopUnder', 'nobra2');
+    await setVar(page, 'isBraStolen', 0);
+
+    const restored = await callSetup(page, 'setup.Wardrobe.redressAfterHunt()');
+    expect(restored.sort()).toEqual(['bottomOuter', 'bra']);
+    expect(await getVar(page, 'jeansState1')).toBe('worn');
+    expect(await getVar(page, 'jeansState')).toBe('worn');
+    expect(await getVar(page, 'braState2')).toBe('worn');
+    expect(await getVar(page, 'braState')).toBe('worn');
+  });
+
+  test('redressAfterHunt skips slots flagged as stolen', async ({ game: page }) => {
+    /* The ghost stole the tier-1 tshirt during the hunt
+     * (isShirtStolen=1) — auto-redress must not put it back on, the
+     * recovery has to go through FindStolenClothes / loseAllStolen. */
+    await setVar(page, 'tshirtState0', 'not worn');
+    await setVar(page, 'tshirtState1', 'not worn');
+    await setVar(page, 'tshirtState',  'not worn');
+    await setVar(page, 'rememberTopOuter', 'notshirt1');
+    await setVar(page, 'isShirtStolen', 1);
+
+    const restored = await callSetup(page, 'setup.Wardrobe.redressAfterHunt()');
+    expect(restored).toEqual([]);
+    expect(await getVar(page, 'tshirtState1')).toBe('not worn');
+    expect(await getVar(page, 'isShirtStolen')).toBe(1);
+  });
+
+  test('redressAfterHunt skips slots whose item is now NOT_BOUGHT (lost)', async ({ game: page }) => {
+    /* loseAllStolen runs first in cleanupAfterHunt and flips a stolen
+     * tier to NOT_BOUGHT. Even after isXxxStolen is cleared, the
+     * NOT_BOUGHT filter in _rememberedItem keeps redress from putting
+     * a no-longer-owned garment back on. */
+    await setVar(page, 'pantiesState0', 'not worn');
+    await setVar(page, 'pantiesState2', 'not bought');
+    await setVar(page, 'pantiesState',  'not worn');
+    await setVar(page, 'rememberBottomUnder', 'nopanties2');
+    await setVar(page, 'isPantiesStolen', 0);
+
+    const restored = await callSetup(page, 'setup.Wardrobe.redressAfterHunt()');
+    expect(restored).toEqual([]);
+    expect(await getVar(page, 'pantiesState2')).toBe('not bought');
+  });
+
+  test('redressAfterHunt is a no-op when nothing was undressed', async ({ game: page }) => {
+    await setVar(page, 'tshirtState0', 'worn');
+    await setVar(page, 'tshirtState',  'worn');
+    await setVar(page, 'rememberTopOuter', 'tshirt0');
+
+    const restored = await callSetup(page, 'setup.Wardrobe.redressAfterHunt()');
+    expect(restored).toEqual([]);
+    expect(await getVar(page, 'tshirtState0')).toBe('worn');
+  });
+
+  test('cleanupAfterHunt redresses voluntary removals and skips ghost-stolen ones', async ({ game: page }) => {
+    /* Mixed end-of-hunt state: MC took off her own jeans, ghost
+     * stole her tier-1 tshirt. After cleanupAfterHunt({loseStolen:true}):
+     * - jeans back on (voluntary removal),
+     * - tshirt permanently lost (NOT_BOUGHT, on $lostClothing). */
+    await setVar(page, 'jeansState0', 'not worn');
+    await setVar(page, 'jeansState1', 'not worn');
+    await setVar(page, 'jeansState',  'not worn');
+    await setVar(page, 'rememberBottomOuter', 'nojeans1');
+    await setVar(page, 'isBottomStolen', 0);
+
+    await setVar(page, 'tshirtState0', 'not worn');
+    await setVar(page, 'tshirtState1', 'not worn');
+    await setVar(page, 'tshirtState',  'not worn');
+    await setVar(page, 'rememberTopOuter', 'notshirt1');
+    await setVar(page, 'isShirtStolen', 1);
+    await setVar(page, 'lostClothing', []);
+
+    await callSetup(page, 'setup.HauntedHouses.cleanupAfterHunt({ loseStolen: true })');
+
+    expect(await getVar(page, 'jeansState1')).toBe('worn');
+    expect(await getVar(page, 'tshirtState1')).toBe('not bought');
+    expect(await getVar(page, 'lostClothing')).toEqual(['tshirtState1']);
+  });
 });
 
 test.describe('MC HUD — Hunt-mode click handlers', () => {
@@ -463,6 +553,16 @@ test.describe('MC HUD — Hunt-mode click handlers', () => {
   test.beforeEach(async ({ game: page }) => {
     await setVar(page, 'hours', 2);
   });
+
+  /* HuntController.isHuntActive() requires both an active hunt and
+   * the current passage to be HuntRun, so the in-hunt HUD branch fires.
+   * `house` is one of 'owaissa' (default) / 'elm' / 'ironclad'. */
+  async function startActiveHunt(page, house = 'owaissa') {
+    await page.evaluate((staticHouseId) => {
+      SugarCube.setup.HuntController.startHunt({ seed: 1, staticHouseId });
+    }, house);
+    await goToPassage(page, 'HuntRun');
+  }
 
   /* The MC clothing strip lives in StoryCaption (sidebar). To verify
    * a specific state actually drives the right output we render the
@@ -488,11 +588,11 @@ test.describe('MC HUD — Hunt-mode click handlers', () => {
   });
 
   test('during a hunt the t-shirt slot becomes a take-off link', async ({ game: page }) => {
-    await setHuntMode(page, 2);
     await setVar(page, 'tshirtState0', 'not worn');
     await setVar(page, 'tshirtState1', 'worn');
     await setVar(page, 'tshirtState',  'worn');
     await setVar(page, 'rememberTopOuter', 'tshirt1');
+    await startActiveHunt(page);
 
     const html = await renderStrip(page);
     expect(html).toContain('take it off');
@@ -500,11 +600,11 @@ test.describe('MC HUD — Hunt-mode click handlers', () => {
   });
 
   test('during a hunt with a remembered item the empty bra slot becomes a put-back-on link', async ({ game: page }) => {
-    await setHuntMode(page, 2);
     await setVar(page, 'braState0', 'not worn');
     await setVar(page, 'braState2', 'not worn');
     await setVar(page, 'braState',  'not worn');
     await setVar(page, 'rememberTopUnder', 'nobra2');
+    await startActiveHunt(page);
 
     const html = await renderStrip(page);
     expect(html).toContain('put it back on');
@@ -512,10 +612,10 @@ test.describe('MC HUD — Hunt-mode click handlers', () => {
   });
 
   test('during a hunt with no remembered item the empty bra slot stays a plain image', async ({ game: page }) => {
-    await setHuntMode(page, 2);
     await setVar(page, 'braState0', 'not worn');
     await setVar(page, 'braState',  'not worn');
     await setVar(page, 'rememberTopUnder', 'bra0');
+    await startActiveHunt(page);
 
     const html = await renderStrip(page);
     expect(html).toContain('id="statusUnderTop"');
@@ -526,12 +626,12 @@ test.describe('MC HUD — Hunt-mode click handlers', () => {
     /* Even though the tier is still purchased and the rememberVar
      * still points at "notshirt1", the in-hunt steal flag must
      * suppress the put-back-on shortcut. */
-    await setHuntMode(page, 2);
     await setVar(page, 'tshirtState0', 'not worn');
     await setVar(page, 'tshirtState1', 'not worn');
     await setVar(page, 'tshirtState',  'not worn');
     await setVar(page, 'rememberTopOuter', 'notshirt1');
     await setVar(page, 'isShirtStolen', 1);
+    await startActiveHunt(page);
 
     const html = await renderStrip(page);
     /* Pull just the tshirt slot out of the strip so anchors in
@@ -543,8 +643,8 @@ test.describe('MC HUD — Hunt-mode click handlers', () => {
   });
 
   test('Ironclad warden costume mode shows no clothing slots', async ({ game: page }) => {
-    await setHuntMode(page, 2);
-    await setVar(page, 'hauntedHouse', 'ironclad');
+    await setVar(page, 'wardenClothesStage', 2);
+    await startActiveHunt(page, 'ironclad');
 
     const html = await renderStrip(page);
     expect(html).not.toContain('id="statusOuterTop"');
@@ -559,13 +659,12 @@ test.describe('MC HUD — Hunt-mode click handlers', () => {
    * <img> child + force-click trips the visibility check because
    * test mode aborts the icon image request). */
   test('clicking the worn t-shirt icon in the sidebar takes it off and re-renders', async ({ game: page }) => {
-    await setHuntMode(page, 2);
     await setVar(page, 'tshirtState0', 'not worn');
     await setVar(page, 'tshirtState1', 'worn');
     await setVar(page, 'tshirtState',  'worn');
     await setVar(page, 'rememberTopOuter', 'tshirt1');
     await setVar(page, 'mc.beauty', 30);
-    await goToPassage(page, 'Bedroom');
+    await startActiveHunt(page);
 
     await page.evaluate(() => jQuery('#statusOuterTop a').trigger('click'));
 
@@ -582,13 +681,12 @@ test.describe('MC HUD — Hunt-mode click handlers', () => {
   });
 
   test('clicking the empty t-shirt icon puts the remembered tier back on', async ({ game: page }) => {
-    await setHuntMode(page, 2);
     await setVar(page, 'tshirtState0', 'not worn');
     await setVar(page, 'tshirtState1', 'not worn');
     await setVar(page, 'tshirtState',  'not worn');
     await setVar(page, 'rememberTopOuter', 'notshirt1');
     await setVar(page, 'mc.beauty', 25);
-    await goToPassage(page, 'Bedroom');
+    await startActiveHunt(page);
 
     await page.evaluate(() => jQuery('#statusOuterTop a').trigger('click'));
 
@@ -603,13 +701,12 @@ test.describe('MC HUD — Hunt-mode click handlers', () => {
   });
 
   test('toggle round-trip: take off → put back on lands on the original state', async ({ game: page }) => {
-    await setHuntMode(page, 2);
     await setVar(page, 'tshirtState0', 'not worn');
     await setVar(page, 'tshirtState1', 'worn');
     await setVar(page, 'tshirtState',  'worn');
     await setVar(page, 'rememberTopOuter', 'tshirt1');
     await setVar(page, 'mc.beauty', 30);
-    await goToPassage(page, 'Bedroom');
+    await startActiveHunt(page);
 
     // First click: take off
     await page.evaluate(() => jQuery('#statusOuterTop a').trigger('click'));
@@ -622,6 +719,29 @@ test.describe('MC HUD — Hunt-mode click handlers', () => {
     expect(await getVar(page, 'tshirtState')).toBe('worn');
     expect(await getVar(page, 'rememberTopOuter')).toBe('tshirt1');
     expect(await getVar(page, 'mc.beauty')).toBe(30);
+  });
+
+  /* The HUD shortcut gates on HuntController.isHuntActive() so it
+     fires whenever a hunt is in flight on the HuntRun passage.
+     Without this, the click-to-undress feature would silently no-op
+     during a hunt. */
+  test('active hunt: t-shirt slot becomes a take-off link on the HuntRun passage', async ({ game: page }) => {
+    await setHuntMode(page, 0);
+    await setVar(page, 'tshirtState0', 'not worn');
+    await setVar(page, 'tshirtState1', 'worn');
+    await setVar(page, 'tshirtState',  'worn');
+    await setVar(page, 'rememberTopOuter', 'tshirt1');
+    await page.evaluate(() => SugarCube.setup.HuntController.startHunt({ seed: 1 }));
+    await page.evaluate(() => SugarCube.Engine.play('HuntRun'));
+    await page.waitForFunction(() => SugarCube.State.passage === 'HuntRun');
+
+    const html = await page.evaluate(() => {
+      const $div = jQuery('<div></div>');
+      $div.wiki('<<mcStatusBody>>');
+      return $div.html();
+    });
+    expect(html).toContain('take it off');
+    expect(html).toMatch(/id="statusOuterTop"[\s\S]*?<a /);
   });
 });
 

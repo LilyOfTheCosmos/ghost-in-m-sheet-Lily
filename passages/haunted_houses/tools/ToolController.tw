@@ -63,14 +63,25 @@
         return '<<coloredText "green" 0>>';
     }
 
-    /* GWB: shared tier-gated evidence check. Also opens the EMF window. */
-    function renderGwb() {
+    /* GWB: shared tier-gated evidence check. Hits also open the EMF
+       activation window as a side effect. Split into find/render the
+       same way as plasm so the two modes can share the navigating
+       renderer below. */
+    function findGwb() {
         if (!setup.evidenceAvailable("gwb", State.variables.equipment.gwb, EVIDENCE_HOUSES)) {
-            return notFoundMarkup("gwb");
+            return null;
         }
         setup.activateTool("emf");
-        return packMarkup({ prefix: "mechanics/gwb/", start: 1, end: 18, ext: ".jpg" })
-            + '\n' + MESSAGES.gwb;
+        return {
+            pack:    { prefix: "mechanics/gwb/", start: 1, end: 18, ext: ".jpg" },
+            message: MESSAGES.gwb
+        };
+    }
+
+    function renderGwb() {
+        var r = setup.ToolController.findGwb();
+        if (!r) return notFoundMarkup("gwb");
+        return foundPassageMarkup("gwb", "GwbFound", r);
     }
 
     /* Plasm: 50/50 clean vs mess. Mess image range keys off whether the
@@ -89,12 +100,43 @@
         };
     }
 
-    function renderPlasm() {
+    /* Roll an ectoplasm find. Returns the {pack, message} the renderer
+       would emit, or null when the evidence/tier/room gate fails. The
+       find/render split lets renderPlasm route a hit to the shared
+       EctoglassFound passage via foundPassageMarkup while keeping the
+       gate roll a single call. */
+    function findPlasm() {
         if (!setup.evidenceAvailable("glass", State.variables.equipment.glass, EVIDENCE_HOUSES)) {
-            return notFoundMarkup("plasm");
+            return null;
         }
-        var r = plasmPack();
-        return packMarkup(r.pack) + '<br>\n' + r.message + '<br>';
+        return plasmPack();
+    }
+
+    function renderPlasm() {
+        /* Route through setup.ToolController.findPlasm rather than the
+           closure so tests can stub the find without monkey-patching
+           internals. */
+        var r = setup.ToolController.findPlasm();
+        if (!r) return notFoundMarkup("plasm");
+        return foundPassageMarkup("plasm", "EctoglassFound", r);
+    }
+
+    /* Both renderPlasm and renderGwb share the same hit shape: stash
+       the pack + message on $evidenceFind for the destination passage
+       to read, then emit a deferred <<goto>>. The defer is critical
+       in the classic flow -- the surrounding <<replace>> / <<repeat>>
+       cleanup (meter zero, removeclass, applyTickEffects) runs
+       synchronously after this markup is wikified, and a synchronous
+       <<goto>> here would interrupt it. <<deferGoto>> schedules
+       Engine.play for the next event-loop tick so the cleanup
+       completes first. */
+    function foundPassageMarkup(toolKey, dest, hit) {
+        State.variables.evidenceFind = {
+            tool:    toolKey,
+            pack:    hit.pack,
+            message: hit.message
+        };
+        return '<<deferGoto "' + dest + '">>';
     }
 
     /* UVL image packs: lower-body clothing ladder and upper-body fallback.
@@ -265,7 +307,9 @@
         'tools',
         'spiritboxLvl',
         'crucifixAmount',
-        'boughtDetector'
+        'boughtDetector',
+        'evidenceFind',
+        'currentsearchHunt'
     ]);
 
     setup.ToolController = {
@@ -274,12 +318,14 @@
         NotFoundCopy:   NOT_FOUND_COPY,
         EvidenceHouses: EVIDENCE_HOUSES,
         render:         render,
+        findPlasm:      findPlasm,
+        findGwb:        findGwb,
 
         /* Crucifix consume: one shared place for the decrement + hunt-start
            trio so the passage is pure presentation. */
         consumeCrucifix: function () {
             State.variables.crucifixAmount -= 1;
-            setup.Ghosts.activateHunt();
+            setup.Ghosts.activateProwl();
         },
         crucifixAmount: function () { return State.variables.crucifixAmount; },
         addCrucifix:    function () { State.variables.crucifixAmount += 1; },
@@ -318,6 +364,19 @@
             }
         }
     });
+
+    /* <<deferGoto "PassageName">> -- schedule Engine.play for the next
+       event-loop tick. Used by renderPlasm / renderGwb so the
+       surrounding meter-completion cleanup runs synchronously before
+       the navigation. Synchronous <<goto>> would interrupt that
+       cleanup mid-stream and leave the meter stuck full + the cardlink
+       disabled for the player on return. */
+    Macro.add("deferGoto", {
+        handler: function () {
+            var dest = this.args[0];
+            setTimeout(function () { Engine.play(dest); }, 0);
+        }
+    });
 }());
 
 /* ------------------------------------------------------------------
@@ -328,7 +387,11 @@
  * ------------------------------------------------------------------ */
 
 /* Every room id that gets a per-hunt $currentsearch<Room> bag.
- * The variable name is always "currentsearch" + room. */
+ * The variable name is always "currentsearch" + room.
+ *
+ * "Hunt" is a synthetic entry that auto-registers the searchHunt<Tool>
+ * meters used by the hunt toolbar. The toolbar widget lazy-inits the
+ * $currentsearchHunt bag itself rather than relying on per-room init. */
 setup.searchableRooms = [
     // standard houses
     "Kitchen", "Hallway", "Livingroom", "Bedroom", "Bathroom", "Basement",
@@ -338,7 +401,9 @@ setup.searchableRooms = [
     "HallwayIronclad", "ReceptionIronclad", "KitchenIronclad",
     "BlockAIronclad", "BlockBIronclad",
     "BlockACellAIronclad", "BlockACellBIronclad", "BlockACellCIronclad",
-    "BlockBCellAIronclad", "BlockBCellBIronclad", "BlockBCellCIronclad"
+    "BlockBCellAIronclad", "BlockBCellBIronclad", "BlockBCellCIronclad",
+    // Hunt toolbar (single shared bag)
+    "Hunt"
 ];
 
 /* $-variable names of every room object that has a `.background` field
@@ -518,11 +583,14 @@ setup.searchableRooms.forEach(function (room) {
 (function () {
     'use strict';
 
-    /* setup.isGhostHere([houses]) -- true iff the current passage belongs to
-     * one of the listed houses AND $hunt.room.name matches that passage's
-     * bgRoom. Pass a house-filter array to scope the check. Omit the filter
-     * to accept any house. */
+    /* setup.isGhostHere([houses]) -- true iff the player is currently
+     * standing in the active ghost's room. Mode-specific dispatch lives
+     * in setup.HuntController; this thin wrapper preserves the public
+     * signature every haunted-house tool / event passage already calls. */
     setup.isGhostHere = function (houses) {
+        return setup.HuntController.isGhostHere(houses);
+    };
+    setup._isGhostHereInClassic = function (houses) {
         var h = setup.Ghosts.hunt();
         if (!h || !h.room || !h.room.name) return false;
         var cur = passage();
@@ -734,29 +802,12 @@ setup.searchableRooms.forEach(function (room) {
 
     /* Markup for the side-effects that run on every iteration WITHOUT
      * filling the meter (light-passage check + the appropriate event
-     * pipeline + start-of-hunt roll). One block per event-chain. */
-    var EVENT_CHAINS = {
-        ironclad:
-            '<<if $cursedHuntActive eq 1>><<else>>' +
-                '<<include "LightPassageGhost">><<include "Event">>' +
-                '<<if not setup.Events.eventTriggered()>>' +
-                    '<<include "CheckHuntStart">>' +
-                '<</if>>' +
-            '<</if>>',
-        standard:
-            '<<if $cursedHuntActive eq 1>><<else>>' +
-                '<<include "LightPassageGhost">><<include "Event">>' +
-                '<<if not setup.Events.eventTriggered()>>' +
-                    '<<include "StealClothesEvent">>' +
-                '<</if>>' +
-                '<<if not setup.HauntedHouses.stealClothesTriggered() and not setup.Events.eventTriggered()>>' +
-                    '<<include "CheckHuntStart">>' +
-                '<</if>>' +
-            '<</if>>'
-    };
-
+     * pipeline + start-of-hunt roll). All chains delegate to
+     * <<huntTickEventChain>>, which dispatches via setup.HuntController.
+     * Per-house opt-outs (e.g. ironclad skipping the steal step) live
+     * on HOUSE_CONFIG flags read by the controller. */
     function eventChainFor(name) {
-        return EVENT_CHAINS[name] || EVENT_CHAINS.standard;
+        return '<<huntTickEventChain>>';
     }
 
     function checkMarkupFor(cfg, def) {
@@ -904,6 +955,18 @@ setup.searchableRooms.forEach(function (room) {
         }
     });
 
+    /* Lazy-init the $currentsearchHunt counter bag. The classic
+     * per-room bags are seeded from GhostRandomize; hunts skip
+     * that passage entirely, so the toolbar widget invokes this once
+     * on render. Idempotent. */
+    setup.ensureHuntSearchBag = function () {
+        var V = State.variables;
+        if (!V.currentsearchHunt) {
+            V.currentsearchHunt = setup.makeEmptySearchState();
+        }
+        return V.currentsearchHunt;
+    };
+
     /* Keyboard shortcut: map each key to the tool it activates, then click
      * the canonical button for every room in setup.searchRoomPrefixes. */
     setup.searchToolKeyMap = {
@@ -924,6 +987,20 @@ setup.searchableRooms.forEach(function (room) {
         });
     };
 
+    /* Hunt toolbar counterpart to clickAllSearchTools. The hunt
+     * widget renders a single .hunt-tool-card-label[data-tool=...]
+     * span per slot and toggles the .disabled-link class on it
+     * during the meter cycle (widgetHuntToolBar). Programmatic
+     * .click() bypasses CSS pointer-events, so we have to gate the
+     * click on the class explicitly -- otherwise re-pressing the
+     * shortcut key mid-tick would re-enter <<link>> and double-fire
+     * the meter. No-op outside HuntRun (selector matches nothing). */
+    setup.clickHuntSearchTool = function (tool) {
+        var $slot = $('.hunt-tool-card-label[data-tool="' + tool + '"]');
+        if (!$slot.length || $slot.hasClass('disabled-link')) return;
+        $slot.find('a').first().click();
+    };
+
     function debounce(func, wait) {
         var timeout;
         return function () {
@@ -937,7 +1014,9 @@ setup.searchableRooms.forEach(function (room) {
     $(document).off('keydown.searchToolKeys').on('keydown.searchToolKeys',
         debounce(function (event) {
             var tool = setup.searchToolKeyMap[event.key];
-            if (tool) setup.clickAllSearchTools(tool);
+            if (!tool) return;
+            setup.clickAllSearchTools(tool);
+            setup.clickHuntSearchTool(tool);
         }, 50));
 
     /* Global delegation: when any toolCard image is clicked, dispatch the

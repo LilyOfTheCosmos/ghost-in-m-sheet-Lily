@@ -354,37 +354,115 @@ test.describe('Companion Controller', () => {
 
   // --- Haunted house location ---
 
-  test('inHauntedHouseLocation true for Owaissa', async ({ game: page }) => {
-    // arrange
-    await setVar(page, 'hauntedHouse', 'owaissa');
-
-    // act
+  test('inHauntedHouseLocation true for owaissa', async ({ game: page }) => {
+    await page.evaluate(() => SugarCube.setup.HuntController.startHunt({ seed: 1, staticHouseId: 'owaissa' }));
     const result = await callSetup(page, 'setup.Companion.inHauntedHouseLocation()');
-
-    // assert
+    await page.evaluate(() => SugarCube.setup.HuntController.end());
     expect(result).toBe(true);
   });
 
-  test('inHauntedHouseLocation true for Elm', async ({ game: page }) => {
-    // arrange
-    await setVar(page, 'hauntedHouse', 'elm');
-
-    // act
+  test('inHauntedHouseLocation true for elm', async ({ game: page }) => {
+    await page.evaluate(() => SugarCube.setup.HuntController.startHunt({ seed: 1, staticHouseId: 'elm' }));
     const result = await callSetup(page, 'setup.Companion.inHauntedHouseLocation()');
-
-    // assert
+    await page.evaluate(() => SugarCube.setup.HuntController.end());
     expect(result).toBe(true);
   });
 
-  test('inHauntedHouseLocation false when not in either house', async ({ game: page }) => {
-    // arrange
-    await setVar(page, 'hauntedHouse', null);
-
-    // act
+  test('inHauntedHouseLocation false when no hunt is active', async ({ game: page }) => {
+    await page.evaluate(() => { if (SugarCube.setup.HuntController.active()) SugarCube.setup.HuntController.end(); });
     const result = await callSetup(page, 'setup.Companion.inHauntedHouseLocation()');
-
-    // assert
     expect(result).toBe(false);
+  });
+
+  test('inHauntedHouseLocation false for ironclad (opts out)', async ({ game: page }) => {
+    await page.evaluate(() => SugarCube.setup.HuntController.startHunt({ seed: 1, staticHouseId: 'ironclad' }));
+    const result = await callSetup(page, 'setup.Companion.inHauntedHouseLocation()');
+    await page.evaluate(() => SugarCube.setup.HuntController.end());
+    expect(result).toBe(false);
+  });
+
+  test('inHauntedHouseLocation true for procedural (random) hunt', async ({ game: page }) => {
+    await page.evaluate(() => SugarCube.setup.HuntController.startHunt({ seed: 1 }));
+    const result = await callSetup(page, 'setup.Companion.inHauntedHouseLocation()');
+    await page.evaluate(() => SugarCube.setup.HuntController.end());
+    expect(result).toBe(true);
+  });
+
+  // --- huntAllowsCompanions (HuntController predicate behind the gate) ---
+
+  test('huntAllowsCompanions false when no hunt is active', async ({ game: page }) => {
+    await page.evaluate(() => { if (SugarCube.setup.HuntController.active()) SugarCube.setup.HuntController.end(); });
+    const result = await callSetup(page, 'setup.HuntController.huntAllowsCompanions()');
+    expect(result).toBe(false);
+  });
+
+  test('huntAllowsCompanions true for procedural runs', async ({ game: page }) => {
+    await page.evaluate(() => SugarCube.setup.HuntController.startHunt({ seed: 1 }));
+    const result = await callSetup(page, 'setup.HuntController.huntAllowsCompanions()');
+    await page.evaluate(() => SugarCube.setup.HuntController.end());
+    expect(result).toBe(true);
+  });
+
+  test('huntAllowsCompanions true for owaissa/elm and false for ironclad', async ({ game: page }) => {
+    await page.evaluate(() => SugarCube.setup.HuntController.startHunt({ seed: 1, staticHouseId: 'owaissa' }));
+    expect(await callSetup(page, 'setup.HuntController.huntAllowsCompanions()')).toBe(true);
+    await page.evaluate(() => SugarCube.setup.HuntController.end());
+
+    await page.evaluate(() => SugarCube.setup.HuntController.startHunt({ seed: 1, staticHouseId: 'elm' }));
+    expect(await callSetup(page, 'setup.HuntController.huntAllowsCompanions()')).toBe(true);
+    await page.evaluate(() => SugarCube.setup.HuntController.end());
+
+    await page.evaluate(() => SugarCube.setup.HuntController.startHunt({ seed: 1, staticHouseId: 'ironclad' }));
+    expect(await callSetup(page, 'setup.HuntController.huntAllowsCompanions()')).toBe(false);
+    await page.evaluate(() => SugarCube.setup.HuntController.end());
+  });
+
+  // --- autoAttachOnHuntStart (auto-follow + HUD card when player skips Talk) ---
+
+  test('autoAttachOnHuntStart defaults to Plan1 + visible card when no plan picked', async ({ game: page }) => {
+    await page.evaluate(() => SugarCube.setup.Companion.selectCompanion('Alice'));
+    await setVar(page, 'companion', { name: 'Alice' });
+    await setVar(page, 'chosenPlan', 0);
+    await page.evaluate(() => SugarCube.setup.HuntController.startHunt({ seed: 1 }));
+    const attached = await callSetup(page, 'setup.Companion.autoAttachOnHuntStart()');
+    expect(attached).toBe(true);
+    expect(await getVar(page, 'isCompChosen')).toBe(1);
+    expect(await getVar(page, 'chosenPlan')).toBe('Plan1');
+    expect(await getVar(page, 'showComp')).toBe(1); // CompanionShow.VISIBLE
+    await page.evaluate(() => SugarCube.setup.HuntController.end());
+  });
+
+  test('autoAttachOnHuntStart preserves a player-picked plan (Plan2)', async ({ game: page }) => {
+    await page.evaluate(() => SugarCube.setup.Companion.selectCompanion('Alice'));
+    await setVar(page, 'companion', { name: 'Alice' });
+    await setVar(page, 'chosenPlan', 'Plan2');
+    await page.evaluate(() => SugarCube.setup.HuntController.startHunt({ seed: 1, staticHouseId: 'owaissa' }));
+    await callSetup(page, 'setup.Companion.autoAttachOnHuntStart()');
+    expect(await getVar(page, 'chosenPlan')).toBe('Plan2');
+    await page.evaluate(() => SugarCube.setup.HuntController.end());
+  });
+
+  test('autoAttachOnHuntStart is a no-op for ironclad (opts out)', async ({ game: page }) => {
+    await page.evaluate(() => SugarCube.setup.Companion.selectCompanion('Alice'));
+    await setVar(page, 'companion', { name: 'Alice' });
+    await setVar(page, 'chosenPlan', 0);
+    await setVar(page, 'showComp', 0);
+    await page.evaluate(() => SugarCube.setup.HuntController.startHunt({ seed: 1, staticHouseId: 'ironclad' }));
+    const attached = await callSetup(page, 'setup.Companion.autoAttachOnHuntStart()');
+    expect(attached).toBe(false);
+    expect(await getVar(page, 'chosenPlan')).toBe(0);
+    await page.evaluate(() => SugarCube.setup.HuntController.end());
+  });
+
+  test('autoAttachOnHuntStart is a no-op when no companion is selected', async ({ game: page }) => {
+    await page.evaluate(() => SugarCube.setup.Companion.clearCompanionSelection());
+    await setVar(page, 'companion', null);
+    await setVar(page, 'chosenPlan', 0);
+    await page.evaluate(() => SugarCube.setup.HuntController.startHunt({ seed: 1 }));
+    const attached = await callSetup(page, 'setup.Companion.autoAttachOnHuntStart()');
+    expect(attached).toBe(false);
+    expect(await getVar(page, 'chosenPlan')).toBe(0);
+    await page.evaluate(() => SugarCube.setup.HuntController.end());
   });
 
   // --- CompanionEvent dialog catalogue ---

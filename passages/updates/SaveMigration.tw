@@ -22,7 +22,20 @@
 
 	// Bump this when you add a new required top-level variable and want old
 	// saves to pick up its default on next load.
-	var SAVE_VERSION = 2;
+	//   v1: pre-bundle shape (flat $ghost*, $is<House>, etc.)
+	//   v2: hunt/tools bundles, $hauntedHouse, $monkeyPawLearned map.
+	//   v3: per-run state introduced -- $run / $ectoplasm / $runsStarted
+	//       defaults seeded for legacy saves; $houseSlots collapses
+	//       the per-house slot forest.
+	//   v4: classic mode removed; only the unified hunt mode remains.
+	//       Legacy $hauntedHouse / $houseSlots / $isClassicHouse flags
+	//       are dropped.
+	//   v5: "rogue" terminology dropped. $nextRogueSeed →
+	//       $nextHuntSeed, $pendingRogueStaticHouseId →
+	//       $pendingHuntHouseId, $currentsearchRogue →
+	//       $currentsearchHunt, and the "rogue-" prefix is stripped
+	//       from static house ids ('rogue-owaissa' → 'owaissa', etc.).
+	var SAVE_VERSION = 5;
 	setup.SAVE_VERSION = SAVE_VERSION;
 
 	/*
@@ -74,7 +87,32 @@
 		webcam:        function () { return {}; },
 		summoning:     function () { return {}; },
 		alarm:         function () { return { enabled: false, hour: 7 }; },
-		hauntedHouse:  function () { return null; },
+
+		// Hunt-mode state: pre-hunt saves don't have these
+		// fields. $run is null when no hunt is active
+		// (classic mode). $ectoplasm starts at 0 mL. $runsStarted
+		// is the lifetime attempt counter, also 0 by default.
+		// $meta holds permanent meta-shop unlocks: per-id owned
+		// counts, the modifier banlist, and stockpiled reroll
+		// charges. Saves predating the meta-shop default to none.
+		run:           function () { return null; },
+		ectoplasm:     function () { return 0; },
+		runsStarted:   function () { return 0; },
+		meta:          function () { return { unlocks: {}, bannedModifiers: [], rerollCharges: 0 }; },
+		// Seed for the *next* hunt. Rotated after each run end so
+		// the GhostStreet card / HuntStart lobby preview a fresh
+		// address every attempt.
+		nextHuntSeed: function () { return Math.floor(Math.random() * 0x100000000); },
+		// Static-hunt-house id staged from a GhostStreet card.
+		// HuntStart consumes it once and clears it; null on saves
+		// predating static-plan hunt houses.
+		pendingHuntHouseId: function () { return null; },
+
+		// Per-day seed; regenerated on every 24h rollover.
+		dailySeed:     function () { return Math.floor(Math.random() * 0x100000000); },
+
+		// Buyback for clothes lost during a hunt. Older saves
+		// have no array; default to empty.
 		lostClothing:  function () { return []; },
 		tornPagesFound: function () { return []; }
 	};
@@ -82,7 +120,8 @@
 	// mc sub-fields added after launch -- missing on very old saves
 	var MC_DEFAULTS = {
 		fit:           0,
-		exhibitionism: 0
+		exhibitionism: 0,
+		lustMax:       100
 	};
 
 	function applyDefaults (vars) {
@@ -177,10 +216,31 @@
 			vars.hasPSpray = 0;
 		}
 
+		// One-time rename: the random-ghost-attack timer vars were
+		// renamed from "hunt*" to "prowl*" to mirror the player/ghost
+		// terminology split (the player goes on a "ghost hunt"; what
+		// the ghost does mid-session is a "ghost prowl"). Carry old
+		// values forward when only the legacy keys are defined.
+		[
+			['huntActivated',      'prowlActivated'],
+			['huntActivationTime', 'prowlActivationTime'],
+			['huntTimeRemain',     'prowlTimeRemain'],
+			['elapsedTimeHunt',    'elapsedTimeProwl']
+		].forEach(function (pair) {
+			var oldKey = pair[0];
+			var newKey = pair[1];
+			if (vars[newKey] === undefined && vars[oldKey] !== undefined) {
+				vars[newKey] = vars[oldKey];
+			}
+			delete vars[oldKey];
+		});
+
 		// Older saves stored hunt state as a scatter of variables
 		// ($ghost, $ghostName, $ghostEvidence, $ghostRoom, $ghostIsTrapped,
 		// $ghostHuntingMode, $saveMimic). Consolidate into $hunt so
 		// setup.Ghosts.active()/hunt() can read a single object.
+		// Legacy mode 1 (CONTRACT) is dropped — contracts no longer
+		// gate hunts, so any pre-entry contract collapses to "no hunt".
 		if (vars.hunt === undefined) {
 			var legacyName = undefined;
 			var legacyEvidence = undefined;
@@ -191,14 +251,16 @@
 			}
 			if (legacyName === undefined && typeof vars.ghostName === 'string') legacyName = vars.ghostName;
 			if (legacyEvidence === undefined && Array.isArray(vars.ghostEvidence)) legacyEvidence = vars.ghostEvidence.slice();
-			if (legacyName) {
+			var legacyMode = typeof vars.ghostHuntingMode === 'number' ? vars.ghostHuntingMode : 0;
+			if (legacyMode === 1) legacyMode = 0;
+			if (legacyName && legacyMode !== 0) {
 				vars.hunt = {
 					name:     legacyName,
 					realName: vars.saveMimic === 1 ? 'Mimic' : legacyName,
 					evidence: legacyEvidence || [],
 					room:     vars.ghostRoom || null,
 					trapped:  vars.ghostIsTrapped === 1,
-					mode:     typeof vars.ghostHuntingMode === 'number' ? vars.ghostHuntingMode : 0
+					mode:     legacyMode
 				};
 			} else {
 				vars.hunt = null;
@@ -349,7 +411,12 @@
 			masturbationCD:            'masturbation',
 			exorcismCD:                'exorcism',
 			rescueCD:                  'rescue',
-			rescueQuestCD:             'rescueQuest'
+			rescueQuestCD:             'rescueQuest',
+			// v5: "rogue" terminology dropped. Carry old values
+			// forward to their new keys.
+			nextRogueSeed:             'nextHuntSeed',
+			pendingRogueStaticHouseId: 'pendingHuntHouseId',
+			currentsearchRogue:        'currentsearchHunt'
 		};
 		Object.keys(FLAT_RENAMES).forEach(function (oldKey) {
 			var newKey = FLAT_RENAMES[oldKey];
@@ -359,24 +426,48 @@
 			delete vars[oldKey];
 		});
 
-		// Active-house id: collapse the legacy $is<House> flags onto a
-		// single $hauntedHouse string ('owaissa' | 'elm' | 'ironclad' |
-		// null). Migrate by finding whichever flag was raised; default
-		// to null when none was set. The retired Enigma flag and its
-		// derived $isrealhouse bit are dropped silently — a save mid-
-		// Enigma reverts to no active house.
-		if (vars.hauntedHouse === undefined) {
-			vars.hauntedHouse =
-				vars.isOwaissa  === 1 ? 'owaissa'  :
-				vars.isElm      === 1 ? 'elm'      :
-				vars.isIronclad === 1 ? 'ironclad' :
-				null;
+		// v5: static-plan house ids lost their "rogue-" prefix
+		// ('rogue-owaissa' → 'owaissa', etc.). Strip the prefix
+		// from any place a save could be carrying a stale id —
+		// the pending-house staging slot and the active $run.
+		function stripRoguePrefix(id) {
+			return typeof id === 'string' && id.indexOf('rogue-') === 0
+				? id.slice('rogue-'.length)
+				: id;
 		}
+		if (typeof vars.pendingHuntHouseId === 'string') {
+			vars.pendingHuntHouseId = stripRoguePrefix(vars.pendingHuntHouseId);
+		}
+		if (vars.run && typeof vars.run === 'object'
+			&& typeof vars.run.staticHouseId === 'string') {
+			vars.run.staticHouseId = stripRoguePrefix(vars.run.staticHouseId);
+		}
+
+		// Classic-house flags + per-house slot maps were removed
+		// when the game collapsed to a single unified hunt mode.
+		// Drop whatever legacy fields the save is carrying so they
+		// don't bloat downstream state walks.
+		delete vars.hauntedHouse;
 		delete vars.isOwaissa;
 		delete vars.isElm;
 		delete vars.isEnigma;
 		delete vars.isIronclad;
 		delete vars.isrealhouse;
+		delete vars.houseSlots;
+		delete vars.cursedHuntActive;
+		delete vars.cursedHuntEndTime;
+		delete vars.currentFurniture;
+		delete vars.isInHideSpot;
+		delete vars.moneyFromContract;
+		delete vars.expFromContract;
+		delete vars.monkeyPawDoorLock;
+		['Owaissa', 'Elm', 'Ironclad'].forEach(function (suffix) {
+			delete vars['furnitureList' + suffix];
+			delete vars['tempList' + suffix];
+			['CursedItem', 'RescueClue', 'TarotCards', 'MonkeyPaw', 'Curse', 'ClothesStolen'].forEach(function (kind) {
+				delete vars['placeFor' + kind + suffix];
+			});
+		});
 
 		// Back-fill $lostClothing for saves created before the lost-
 		// clothing tracking shipped. loseAllStolen used to just mark

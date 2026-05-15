@@ -58,6 +58,53 @@ setup.Styles = (function () {
 		IroncladBlockBCellC: { stateKey: 'BlockBCellC', light: 'assets/scenes/room/ironclad/block-b-cell-c.webp', dark: 'assets/scenes/room/ironclad/block-b-cell-c-dark.webp', cls: 'IroncladBlockBCellC' }
 	};
 
+	/* Hunt rooms render through the single HuntRun passage, so they
+	   can't share the passage-name → room map above. Keyed by
+	   setup.Templates id instead; setup.Styles.bgUrlForTemplate is the
+	   sole reader. Adding a new procedurally-eligible template means
+	   adding it here AND in setup.Templates. */
+	var huntRooms = {
+		// Hallway is the backbone (room_0).
+		hallway:          { light: 'assets/scenes/room/hallway.jpg',             dark: 'assets/scenes/room/hallway-dark.jpg' },
+		// Templates eligible for procedural plans; they reuse the
+		// Owaissa/Elm scene art rather than ship procedural variants.
+		kitchen:          { light: 'assets/scenes/room/kitchen.jpg',             dark: 'assets/scenes/room/kitchen-dark.jpg' },
+		bathroom:         { light: 'assets/scenes/room/bathroom.jpg',            dark: 'assets/scenes/room/bathroom-dark.jpg' },
+		bedroom:          { light: 'assets/scenes/room/bedroom.jpg',             dark: 'assets/scenes/room/bedroom-dark.jpg' },
+		livingroom:       { light: 'assets/scenes/room/livingroom.jpg',          dark: 'assets/scenes/room/livingroom-dark.jpg' },
+		nursery:          { light: 'assets/scenes/room/elm/nursery.jpg',         dark: 'assets/scenes/room/elm/nursery-dark.jpg' },
+		basement:         { light: 'assets/scenes/room/elm/basement.jpg',        dark: 'assets/scenes/room/elm/basement-dark.jpg' },
+		// Upstairs Elm templates -- not procedurally eligible
+		// (procedural plans use a single hallway as the backbone), but
+		// reachable via the static-plan 'elm' catalogue, which pins the
+		// same hub-and-spoke layout the Elm passages use.
+		hallwayUpstairs:  { light: 'assets/scenes/room/elm/hallway1.jpg',        dark: 'assets/scenes/room/elm/hallway1-dark.jpg' },
+		bathroomTwo:      { light: 'assets/scenes/room/elm/bathroom1.jpg',       dark: 'assets/scenes/room/elm/bathroom1-dark.jpg' },
+		bedroomTwo:       { light: 'assets/scenes/room/elm/bedroom1.jpg',        dark: 'assets/scenes/room/elm/bedroom1-dark.jpg' },
+		// Ironclad templates -- not procedurally eligible (cellblock
+		// layout is uniquely structural), but reachable via the
+		// static-plan 'ironclad' catalogue. Reception, the two
+		// cellblock hubs, and the six cells each get the same prison
+		// art the IroncladReception / IroncladBlockA / etc. passages
+		// use, so the body-background pipeline renders identical
+		// scenery.
+		reception:        { light: 'assets/scenes/room/ironclad/reception.webp',     dark: 'assets/scenes/room/ironclad/reception-dark.webp' },
+		BlockA:           { light: 'assets/scenes/room/ironclad/block-a.webp',       dark: 'assets/scenes/room/ironclad/block-a-dark.webp' },
+		BlockB:           { light: 'assets/scenes/room/ironclad/block-b.webp',       dark: 'assets/scenes/room/ironclad/block-b-dark.webp' },
+		BlockACellA:      { light: 'assets/scenes/room/ironclad/block-a-cell-a.webp', dark: 'assets/scenes/room/ironclad/block-a-cell-a-dark.webp' },
+		BlockACellB:      { light: 'assets/scenes/room/ironclad/block-a-cell-b.webp', dark: 'assets/scenes/room/ironclad/block-a-cell-b-dark.webp' },
+		BlockACellC:      { light: 'assets/scenes/room/ironclad/block-a-cell-c.webp', dark: 'assets/scenes/room/ironclad/block-a-cell-c-dark.webp' },
+		BlockBCellA:      { light: 'assets/scenes/room/ironclad/block-b-cell-a.webp', dark: 'assets/scenes/room/ironclad/block-b-cell-a-dark.webp' },
+		BlockBCellB:      { light: 'assets/scenes/room/ironclad/block-b-cell-b.webp', dark: 'assets/scenes/room/ironclad/block-b-cell-b-dark.webp' },
+		BlockBCellC:      { light: 'assets/scenes/room/ironclad/block-b-cell-c.webp', dark: 'assets/scenes/room/ironclad/block-b-cell-c-dark.webp' },
+		// Procedural-only templates with dedicated backgrounds.
+		attic:            { light: 'assets/scenes/room/attic-lit.jpg',           dark: 'assets/scenes/room/attic-dark.jpg' },
+		'dining-room':    { light: 'assets/scenes/room/dining-room-lit.jpg',     dark: 'assets/scenes/room/dining-room-dark.jpg' },
+		sauna:            { light: 'assets/scenes/room/sauna-lit.jpg',           dark: 'assets/scenes/room/sauna-dark.jpg' },
+		'sex-dungeon':    { light: 'assets/scenes/room/sex-dungeon-lit.jpg',     dark: 'assets/scenes/room/sex-dungeon-dark.jpg' },
+		'walk-in-closet': { light: 'assets/scenes/room/walk-in-closet-lit.jpg',  dark: 'assets/scenes/room/walk-in-closet-dark.jpg' }
+	};
+
 	function roomOf(passageName) {
 		return rooms[passageName] || null;
 	}
@@ -65,12 +112,12 @@ setup.Styles = (function () {
 	function isDark(passageName) {
 		var r = rooms[passageName];
 		if (!r) return false;
-		var s = State.variables[r.stateKey];
-		return !!(s && s.background === setup.RoomLight.DARK);
+		return setup.Rooms.isDark(r.stateKey);
 	}
 
 	return {
 		rooms: rooms,
+		huntRooms: huntRooms,
 		roomOf: roomOf,
 		isDarkRoom: isDark,
 
@@ -82,6 +129,29 @@ setup.Styles = (function () {
 			var r = rooms[passageName];
 			if (!r) return null;
 			return isDark(passageName) ? r.dark : r.light;
+		},
+
+		/*
+		 * Background image URL for a hunt-room template.  Hunt rooms
+		 * have no per-room light state, so callers pass `dark = true`
+		 * explicitly when they want the dark variant. Returns null
+		 * for templates without art.
+		 *
+		 * Optional `staticHouseId` lets a static-plan hunt house
+		 * (setup.HuntHouses) override the global default with its
+		 * own house art -- so 'elm's hallway pulls Elm's hallway.jpg
+		 * instead of the Owaissa default and 'ironclad's hallway
+		 * pulls the prison entrance.
+		 */
+		bgUrlForTemplate: function (templateId, dark, staticHouseId) {
+			if (staticHouseId && setup.HuntHouses
+					&& typeof setup.HuntHouses.backgroundOverride === 'function') {
+				var override = setup.HuntHouses.backgroundOverride(staticHouseId, templateId);
+				if (override) return dark ? override.dark : override.light;
+			}
+			var r = huntRooms[templateId];
+			if (!r) return null;
+			return dark ? r.dark : r.light;
 		},
 
 		/*
@@ -109,6 +179,7 @@ setup.Styles = (function () {
 				+ "background-size: cover;"
 				+ "background-repeat: no-repeat;"
 				+ "background-position: center;"
+				+ "background-attachment: fixed;"
 				+ "height: 100vh;"
 				+ "}";
 		},
@@ -123,7 +194,7 @@ setup.Styles = (function () {
 			var p = passage();
 			var r = rooms[p];
 			if (!r) return null;
-			var s = State.variables[r.stateKey];
+			var s = setup.Rooms.byId(r.stateKey);
 			if (!s || s.background !== setup.RoomLight.LIT) return null;
 			s.background = setup.RoomLight.DARK;
 			return p;

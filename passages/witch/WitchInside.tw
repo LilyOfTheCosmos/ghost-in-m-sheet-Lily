@@ -37,12 +37,11 @@
 			<<run setup.Witch.resetExorcismQuestStage()>>
 		<</linkreplace>><br>
 	<</if>>
-	<<done>>
-		<<if setup.Mc.lvl() lt 4>>
-			<<addclass ".rescueGirlsDisabled" "disabled-link">>
-		<</if>>
-	<</done>>
-	<<if setup.Witch.canOfferRescueQuest()>><span class="rescueGirlsDisabled">
+	<<if setup.Witch.canOfferRescueQuest()>>
+		<span class="rescueGirlsDisabled
+		<<if !setup.Witch.rescueQuestUnlocked()>>
+			disabled-link
+		<</if>>">
 		<<linkreplace "@@.usebtn; Missing girls@@">>
 			<<run setup.MissingWomen.resetQuestToAvailable()>>
 			@@.notmc-speech; Oh, <<= setup.Mc.name()>>, you've come at just the right time. I can see you're getting more and more experienced with each passing day, and I've got an important task for you. My old friend, a nun named Rain from the church, needs some help<br>
@@ -51,24 +50,9 @@
 			@@.notmc-speech; Great! I'll let her know you're on board. Head to the church -- I'm sure she'll find you and explain what to do next.@@<br>
 			<br>
 			@@.mc-action; You need to talk to Sister Rain at the church.@@<br>
-		<</linkreplace>><<if setup.Mc.lvl() lt 4>>@@.warningtext; (Req. lvl 4+)@@
+		<</linkreplace>><<if !setup.Witch.rescueQuestUnlocked()>>@@.warningtext; (Req. lvl 4+)@@
 		<</if>><br></span>
 	<</if>>
-	<<if setup.Ghosts.isInactive()>>
-		<<if setup.Witch.canAffordContract()>>
-			@@.usebtn;[[I want to get a contract|GhostRandomize]]@@<br>
-			<br>
-			@@.usebtn; [[I want to get a challenging contract(Ghost will hide one piece of evidence)|GhostRandomize][setup.Ghosts.scheduleHideEvidence(1)]]@@<br>
-
-			@@.usebtn; [[I want to get a challenging contract(Ghost will hide two pieces of evidence)|GhostRandomize][setup.Ghosts.scheduleHideEvidence(2)]]@@<br>
-
-			@@.usebtn; [[I want to get a challenging contract(No evidence)|GhostRandomize][setup.Ghosts.scheduleHideEvidence(3)]]@@<br>
-
-		<<else>>@@.mc-thoughts; I don't have enough money@@
-		<</if>>
-	<<elseif setup.Ghosts.hasContract()>>@@.mc-thoughts; I already have a contract@@
-	<<elseif setup.Ghosts.isPossessed()>>@@.usebtn;[[End the contract|WitchEndContract]]@@
-	<</if>><br>
 
 	<<if setup.Mc.lvl() lte 1>>
 		@@.mc-speech; I just need to correctly identify the ghost, right?@@<br>
@@ -114,6 +98,9 @@
 	@@.mc-speech;<<linkreplace "Do you have anything for sale?">>
 		<<goto "WitchSale">>
 	<</linkreplace>>@@<br>
+	@@.mc-speech;<<linkreplace "What can I get for ectoplasm?">>
+		<<goto "WitchEctoplasm">>
+	<</linkreplace>>@@<br>
 	<<if setup.Witch.canAskAboutLevel3Tools()>>
 		@@.mc-speech;<<linkreplace "Do you sell level 3 tools?">>
 			@@.notmc-speech; <<if setup.Witch.ownsLevel3Gwb()>>
@@ -136,7 +123,11 @@
 <</if>>
 <<if setup.Witch.canAskAboutIronclad()>>
 	<<linkreplace "@@.usebtn; Ask about Prison 'Ironclad'@@">>
-		@@.mc-speech; I went there, but I didn't find any paranormal activity. @@<br>
+		<<if hasVisited("Ironclad Prison")>>
+			@@.mc-speech; I went there, but I didn't find any paranormal activity. @@<br>
+		<<else>>
+			@@.mc-speech; What can you tell me about Ironclad prison? I've heard it's haunted, but I haven't been there yet. @@<br>
+		<</if>>
 		@@.notmc-speech; The thing is, some places have a special influence on ghosts. This includes the "Ironclad" prison. You won't be able to catch their attention unless you... fit in with the place. Perhaps you should think about how to become a part of this environment, how to make them notice you.@@<br>
 		@@.mc-thoughts; It seems like the ghosts are drawn to those who belong to this place... A specific outfit might help me blend in. Perhaps I could find something suitable at the Mall. @@<br>
 		<<run setup.Witch.markWardenOutfitHintOpened()>>

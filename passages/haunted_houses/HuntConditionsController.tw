@@ -45,8 +45,7 @@ setup.HauntConditions = (function () {
 	function isCurrentRoomDark() {
 		var name = currentBgVar();
 		if (!name) return false;
-		var room = State.variables[name];
-		return !!(room && room.background === setup.RoomLight.DARK);
+		return setup.Rooms.isDark(name);
 	}
 
 	/* Clothing buckets. Fully dressed = tshirt + any bottom. Topless = no
@@ -72,7 +71,8 @@ setup.HauntConditions = (function () {
 	 * array used by the HUD widget to show "why". */
 	function snapshot() {
 		var V = State.variables;
-		var inHouse = !!(setup.Ghosts && setup.Ghosts.isHunting && setup.Ghosts.isHunting());
+		var inHouse = !!(setup.HuntController && setup.HuntController.isHuntActive
+			&& setup.HuntController.isHuntActive());
 		var snap = {
 			dark:              false,
 			clothing:          clothingState(),
@@ -84,7 +84,7 @@ setup.HauntConditions = (function () {
 			energyPerStep:     inHouse ? -ENERGY_PER_STEP : 0,
 			corruptionPending: 0,
 			timeLabel:         "paused",
-			huntChanceBonus:   0,
+			prowlChanceBonus:   0,
 			toolChanceBonus:   0,
 			toolWindowBonus:   0,
 			contributors:      []
@@ -95,52 +95,70 @@ setup.HauntConditions = (function () {
 			var hasCompanion = V.isCompChosen === 1;
 			var contractDrain = hasCompanion ? 0.2 : 0.4;
 			snap.sanityPerStep -= contractDrain;
+
+			/* Hunt modifiers fold into the aggregated readouts
+			   (lust/step, prowl%, etc.) but do NOT push their own
+			   contributor chip — the modifier name already shows in
+			   the Active Modifiers panel with a hover tooltip
+			   describing the effect, so a chip here would duplicate. */
+			if (setup.HuntController && setup.HuntController.hasModifier
+				&& setup.HuntController.hasModifier(setup.Modifiers.PHEROMONES)) {
+				snap.lustPerStep += 1;
+			}
+			if (setup.HuntController && setup.HuntController.hasModifier
+				&& setup.HuntController.hasModifier(setup.Modifiers.COLD_SWEAT)) {
+				snap.prowlChanceBonus += 4;
+			}
+			if (setup.HuntController && setup.HuntController.hasModifier
+				&& setup.HuntController.hasModifier(setup.Modifiers.OH_BUGGER)) {
+				snap.prowlChanceBonus += 15;
+			}
 		}
 
 		if (isCurrentRoomDark()) {
 			snap.dark = true;
 			snap.sanityPerStep   -= 1;
-			snap.huntChanceBonus += 6;
+			snap.prowlChanceBonus += 6;
 			snap.toolChanceBonus += 10;
 			snap.toolWindowBonus += 5;
 			snap.contributors.push({
 				label: "Dark",
 				color: "#ff7777",
-				detail: "tools +10%, +5 min · hunt +6%"
+				detail: "tools +10%, +5 min · prowl +6%"
 			});
 		}
 
 		if (snap.clothing === "topless") {
 			snap.toolChanceBonus += 5;
 			snap.lustPerStep     += 1;
-			snap.huntChanceBonus += 3;
+			snap.prowlChanceBonus += 3;
 			snap.contributors.push({
 				label: "Topless",
 				color: "#ff99cc",
-				detail: "tools +5% · lust +1/step · hunt +3%"
+				detail: "tools +5% · lust +1/step · prowl +3%"
 			});
 		} else if (snap.clothing === "nude") {
 			snap.toolChanceBonus   += 10;
 			snap.lustPerStep       += 2;
 			snap.corruptionPending += 0.1;
-			snap.huntChanceBonus   += 5;
+			snap.prowlChanceBonus   += 5;
 			snap.contributors.push({
 				label: "Nude",
 				color: "#ff66aa",
-				detail: "tools +10% · lust +2/step · hunt +5% · corr banking"
+				detail: "tools +10% · lust +2/step · prowl +5% · corr banking"
 			});
 		}
 
 		var mc = V.mc;
 		if (mc && mc.lust >= LUST_FUEL_THRESHOLD) {
 			snap.toolChanceBonus   += 5;
-			snap.huntChanceBonus   += 3;
+			snap.prowlChanceBonus   += 3;
 			snap.corruptionPending += 0.05;
 			snap.sanityPerStep     -= 0.2;
 			snap.contributors.push({
 				label: "Lust ≥ " + LUST_FUEL_THRESHOLD,
 				color: "#e84aa4",
-				detail: "tools +5% · hunt +3% · sanity -0.2/step · corr banking"
+				detail: "tools +5% · prowl +3% · sanity -0.2/step · corr banking"
 			});
 		}
 
@@ -175,24 +193,24 @@ setup.HauntConditions = (function () {
 		if (snap.overchargedTools) {
 			snap.toolChanceBonus += 10;
 			snap.toolWindowBonus += 5;
-			snap.huntChanceBonus += 5;
+			snap.prowlChanceBonus += 5;
 			snap.sanityPerStep   -= 1;
 			snap.contributors.push({
 				label: "Overcharged",
 				color: "#ffaa33",
-				detail: "tools +10%, +5 min · hunt +5% · sanity -1/step"
+				detail: "tools +10%, +5 min · prowl +5% · sanity -1/step"
 			});
 		}
 
 		if (snap.baitActive) {
 			snap.toolChanceBonus += 20;
-			snap.huntChanceBonus += 20;
+			snap.prowlChanceBonus += 20;
 			snap.sanityPerStep   -= 1;
 			snap.lustPerStep     += BAIT_LUST_PER_STEP;
 			snap.contributors.push({
 				label: "Baiting (" + snap.baitStepsRemain + ")",
 				color: "#cc66ff",
-				detail: "ghost pinned here · tools +20% · hunt +20% · lust +"
+				detail: "ghost pinned here · tools +20% · prowl +20% · lust +"
 					+ BAIT_LUST_PER_STEP + "/step"
 			});
 		}
@@ -211,7 +229,8 @@ setup.HauntConditions = (function () {
 		var V = State.variables;
 		var mc = V.mc;
 		if (!mc) return;
-		var inHouse = !!(setup.Ghosts && setup.Ghosts.isHunting && setup.Ghosts.isHunting());
+		var inHouse = !!(setup.HuntController && setup.HuntController.isHuntActive
+			&& setup.HuntController.isHuntActive());
 		var snap = snapshot();
 
 		if (snap.sanityPerStep !== 0) {
@@ -223,11 +242,11 @@ setup.HauntConditions = (function () {
 			/* Cap-overflow during bait routes to BaitOrgasm — see
 			 * consumeBaitOrgasm. Only the bait flow flags this; other
 			 * lust sources (topless/nude clothing tick) just clamp. */
-			var baitAtCap = snap.baitActive && mc.lust >= 100;
-			setup.Mc.applyLustDelta(snap.lustPerStep);
+			var baitAtCap = snap.baitActive && (mc.lust + snap.lustPerStep) >= 100;
 			if (baitAtCap) {
 				V.baitOrgasmPending = 1;
 			}
+			setup.Mc.applyLustDelta(snap.lustPerStep);
 		}
 		if (snap.energyPerStep !== 0) {
 			setup.Mc.applyEnergyDelta(snap.energyPerStep);
@@ -247,7 +266,12 @@ setup.HauntConditions = (function () {
 			}
 		}
 		if ((V.orgasmCooldownSteps || 0) > 0) {
-			V.orgasmCooldownSteps -= 1;
+			/* Glass Bones modifier halves the per-tick decrement so the
+			   aftershock window lasts twice as long. */
+			var dec = (setup.HuntController && setup.HuntController.hasModifier
+				&& setup.HuntController.hasModifier(setup.Modifiers.GLASS_BONES))
+				? 0.5 : 1;
+			V.orgasmCooldownSteps -= dec;
 			if (V.orgasmCooldownSteps < 0) V.orgasmCooldownSteps = 0;
 		}
 		if (inHouse && typeof setup.addTime === 'function') {
@@ -304,11 +328,11 @@ setup.HauntConditions = (function () {
 		var mc = V.mc;
 		if (!mc) return false;
 		if ((mc.energy || 0) < ENERGY_COST_BAIT) return false;
-		var bg = currentBgVar();
-		if (!bg) return false;
-		if (!V.hunt || !V.hunt.room) return false;
+		if (!setup.HuntController || !setup.HuntController.snapGhostToCurrentRoom
+			|| !setup.HuntController.snapGhostToCurrentRoom()) {
+			return false;
+		}
 		removeEnergy(ENERGY_COST_BAIT);
-		V.hunt.room.name = bg;
 		V.baitActive = 1;
 		V.baitStepsRemain = BAIT_STEPS;
 		var atCap = mc.lust >= 100;
@@ -321,10 +345,16 @@ setup.HauntConditions = (function () {
 
 	function canBait() {
 		var V = State.variables;
+		if (setup.HuntController && setup.HuntController.hasModifier
+			&& setup.HuntController.hasModifier(setup.Modifiers.NOT_THEIR_TYPE)) {
+			return false;
+		}
+		if (!setup.HuntController || !setup.HuntController.isHuntActive
+			|| !setup.HuntController.isHuntActive()) {
+			return false;
+		}
 		return !!(V.mc
 			&& (V.mc.energy || 0) >= ENERGY_COST_BAIT
-			&& V.hunt && V.hunt.room
-			&& currentBgVar()
 			&& V.baitActive !== 1);
 	}
 
@@ -350,6 +380,10 @@ setup.HauntConditions = (function () {
 		var mult = 1;
 		if (isCurrentRoomDark())  mult += 0.5;
 		if (isOverchargedMode())  mult += 0.25;
+		if (setup.HuntController && setup.HuntController.hasModifier
+			&& setup.HuntController.hasModifier(setup.Modifiers.BRITTLE_MIND)) {
+			mult += 0.5;
+		}
 		return mult;
 	}
 
@@ -382,6 +416,7 @@ setup.HauntConditions = (function () {
 		snapshot:               snapshot,
 		applyTickEffects:       applyTickEffects,
 		removeEnergy:           removeEnergy,
+		isBaitActive:           isBaitActive,
 		startBait:              startBait,
 		canBait:                canBait,
 		canPray:                canPray,

@@ -4,7 +4,7 @@
  *
  * Two flavours live here:
  *   1. Big shape-change patches that rewrite multiple variables
- *      (migrateRoomsAndHuntTimer, migrateStockingsFootBought, etc.).
+ *      (migrateRoomsAndProwlTimer, migrateStockingsFootBought, etc.).
  *      These run from passages (Update1.tw, updatePatches.tw, FixSaveFile.tw)
  *      gated by a save-version flag and stamp the flag when done.
  *   2. "ensure" helpers run from PassageReady that backfill defaults
@@ -19,7 +19,7 @@
 setup.Migrations = (function () {
 	var OWNED_VARS = Object.freeze([
 		'update22', 'update0909', 'update2707', 'update4',
-		'updatePiercingBodyPartSens', 'updateIronclad', 'fixSave'
+		'updatePiercingBodyPartSens', 'fixSave'
 	]);
 
 	function sv() { return State.variables; }
@@ -28,31 +28,27 @@ setup.Migrations = (function () {
 	function update22Applied()   { return sv().update22  !== undefined; }
 	function update0909Applied() { return sv().update0909 !== undefined; }
 	function update2707Applied() { return sv().update2707 !== undefined; }
-	function ironcladPatchNeeded() { return sv().updateIronclad !== 2; }
-	function saveFixNeeded() { return sv().fixSave === undefined; }
-
-	function markIroncladMigrated() { sv().updateIronclad = 2; }
 
 	// --- Big shape-change patches --------------------------------
 
 	/* Pre-0.4 saves: seed new rooms, init hunt timer fields, set
 	   sanity caps and pre-overhaul wardrobe defaults. Stamps
 	   $update22 = 0.4 so this runs once. */
-	function migrateRoomsAndHuntTimer() {
+	function migrateRoomsAndProwlTimer() {
 		var s = sv();
 		var rooms = ['basement', 'bedroomTwo', 'nursery', 'bathroomTwo', 'hallwayUpstairs'];
-		rooms.forEach(function (name) {
-			s[name] = { name: name, background: setup.RoomLight.DARK };
+		rooms.forEach(function (id) {
+			setup.Rooms.seed(id);
 		});
 
 		if (setup.initWardrobe) { setup.initWardrobe(s); }
 
-		s.huntActivated       = 0;
-		s.rememberTopOuter    = 'tshirt0';
-		s.rememberBottomOuter = 'jeans0';
-		s.huntTimeRemain      = 60;
-		s.huntActivationTime  = 0;
-		s.elapsedTimeHunt     = 0;
+		s.prowlActivated       = 0;
+		s.rememberTopOuter     = 'tshirt0';
+		s.rememberBottomOuter  = 'jeans0';
+		s.prowlTimeRemain      = 60;
+		s.prowlActivationTime  = 0;
+		s.elapsedTimeProwl     = 0;
 
 		s.sanityIfHot = 0.1;
 		s.sanityInTheDark = 0.35;
@@ -100,24 +96,6 @@ setup.Migrations = (function () {
 			s.brook.plan3TimeReq = 10;
 		}
 		s.update4 = 1;
-	}
-
-	/* FixSaveFile patch: seed Ironclad search-state objects so
-	   FurnitureSearch overlays render. Stamps $fixSave = 1. */
-	function migrateIroncladSearchMaps() {
-		var s = sv();
-		var rooms = [
-			'Hallway', 'Reception', 'Kitchen',
-			'BlockA', 'BlockB',
-			'BlockACellA', 'BlockACellB', 'BlockACellC',
-			'BlockBCellA', 'BlockBCellB', 'BlockBCellC'
-		];
-		rooms.forEach(function (room) {
-			s['currentsearch' + room + 'Ironclad'] = {
-				emf: 0, plasm: 0, uvl: 0, temperature: 0, spiritbox: 0, gwb: 0
-			};
-		});
-		s.fixSave = 1;
 	}
 
 	// --- "ensure" defaults -------------------------------------
@@ -191,6 +169,22 @@ setup.Migrations = (function () {
 		}
 	}
 
+	/* Legacy room state objects predate the `template` field that
+	   setup.Rooms.templateOf() consults. For existing rooms the
+	   template equals the id, so backfill that on any room state
+	   that's missing it. */
+	function ensureRoomTemplates() {
+		var s = sv();
+		setup.Rooms.OWNED_VARS.forEach(function (id) {
+			var r = s[id];
+			if (r && typeof r === 'object' && r.template === undefined) {
+				r.template = id;
+				if (r.id === undefined) r.id = id;
+			}
+		});
+	}
+
+
 	return {
 		OWNED_VARS: OWNED_VARS,
 
@@ -198,16 +192,12 @@ setup.Migrations = (function () {
 		update22Applied:   update22Applied,
 		update0909Applied: update0909Applied,
 		update2707Applied: update2707Applied,
-		ironcladPatchNeeded: ironcladPatchNeeded,
-		saveFixNeeded: saveFixNeeded,
-		markIroncladMigrated: markIroncladMigrated,
 
 		// big patches
-		migrateRoomsAndHuntTimer: migrateRoomsAndHuntTimer,
+		migrateRoomsAndProwlTimer: migrateRoomsAndProwlTimer,
 		migrateStockingsFootBought: migrateStockingsFootBought,
 		migrateDeliveryAndCompanionReset: migrateDeliveryAndCompanionReset,
 		migrateCompanionPlanTimes: migrateCompanionPlanTimes,
-		migrateIroncladSearchMaps: migrateIroncladSearchMaps,
 
 		// ensure-defaults
 		ensureUnderwearMemory: ensureUnderwearMemory,
@@ -217,6 +207,7 @@ setup.Migrations = (function () {
 		ensurePSprayInventory: ensurePSprayInventory,
 		applyPiercingSensitivityPatch: applyPiercingSensitivityPatch,
 		ensureSuccubusCooldown: ensureSuccubusCooldown,
-		ensureCursedItemCooldown: ensureCursedItemCooldown
+		ensureCursedItemCooldown: ensureCursedItemCooldown,
+		ensureRoomTemplates: ensureRoomTemplates
 	};
 })();

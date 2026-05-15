@@ -104,31 +104,6 @@ test.describe('Witch — weaken ghost quest', () => {
     expect(await callSetup(page, 'setup.Witch.isGhostWeakened()')).toBe(true);
   });
 
-  test('payForContract pays contract + weaken rewards', async ({ game: page }) => {
-    await setVar(page, 'mc.money', 100);
-    await setVar(page, 'moneyFromContract', 50);
-    await setVar(page, 'moneyFromWeakenTheGhost', 30);
-    await page.evaluate(() => SugarCube.setup.Witch.payForContract());
-    expect(await getVar(page, 'mc.money')).toBe(180);
-  });
-
-  test('payForWeakenOnly pays only weaken reward, not contract', async ({ game: page }) => {
-    await setVar(page, 'mc.money', 100);
-    await setVar(page, 'moneyFromContract', 50);
-    await setVar(page, 'moneyFromWeakenTheGhost', 30);
-    await page.evaluate(() => SugarCube.setup.Witch.payForWeakenOnly());
-    expect(await getVar(page, 'mc.money')).toBe(130);
-  });
-
-  test('payForWeakenOnly handles undefined weaken reward as 0', async ({ game: page }) => {
-    await setVar(page, 'mc.money', 100);
-    await page.evaluate(() => {
-      delete SugarCube.State.variables.moneyFromWeakenTheGhost;
-      delete SugarCube.State.variables.moneyFromContract;
-    });
-    await page.evaluate(() => SugarCube.setup.Witch.payForWeakenOnly());
-    expect(await getVar(page, 'mc.money')).toBe(100);
-  });
 });
 
 test.describe('Witch — tool upgrades and crucifix', () => {
@@ -251,10 +226,10 @@ test.describe('Witch — passage rendering with mixed state', () => {
     await expectCleanPassage(page);
   });
 
-  test('WitchInside renders without error after contract turn-in', async ({ game: page }) => {
+  test('WitchInside renders without error when no hunt is active', async ({ game: page }) => {
     await setVar(page, 'hours', 12);
     await setVar(page, 'firstVisitWitchShop', false);
-    await page.evaluate(() => { SugarCube.setup.Ghosts.endContract(); });
+    await page.evaluate(() => { SugarCube.State.variables.hunt = null; });
     await goToPassage(page, 'WitchInside');
     await expectCleanPassage(page);
   });

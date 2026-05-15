@@ -1,5 +1,5 @@
 const { test, expect } = require('./fixtures');
-const { goToPassage, setVar, resetGame } = require('./helpers');
+const { goToPassage, setVar, getVar, resetGame } = require('./helpers');
 
 /*
  * Save/load round-trip tests.
@@ -25,19 +25,29 @@ const { goToPassage, setVar, resetGame } = require('./helpers');
  * SugarCube touches during serialize but isn't player-visible.
  */
 
-const TRACKED_VARS = [
-  'mc.money',
-  'mc.energy',
-  'mc.sanity',
-  'mc.lust',
-  'mc.corruption',
-  'hours',
-  'minutes',
-  'firstVisitDeliveryHub',
-  'firstVisitWitchShop',
-  'jeansState',
-  'tshirtState',
-];
+/* Every tracked field is paired with the non-default value its test
+   should write before saving. Round-trip tests are only meaningful when
+   the saved value differs from the GameInit default -- otherwise
+   "before == after" passes vacuously even if the field never made it
+   into (or out of) the blob. Every entry's value MUST differ from the
+   GameInit/SaveMigration default for that field. */
+const NON_DEFAULTS = {
+  'mc.money':              257,
+  'mc.energy':             7,
+  'mc.sanity':             42,
+  'mc.lust':               55,
+  'mc.corruption':         13,
+  'mc.lvl':                7,
+  'mc.exp':                23,
+  'hours':                 14,
+  'minutes':               30,
+  'dailySeed':             12345,
+  'firstVisitDeliveryHub': false,
+  'firstVisitWitchShop':   false,
+  'jeansState':            'in wardrobe',
+  'tshirtState':           'in laundry',
+};
+const TRACKED_VARS = Object.keys(NON_DEFAULTS);
 
 function snapshot(page) {
   return page.evaluate((paths) => {
@@ -54,6 +64,16 @@ function snapshot(page) {
     for (const p of paths) out[p] = get(p);
     return out;
   }, TRACKED_VARS);
+}
+
+/* Stamp every TRACKED_VARS field with its NON_DEFAULTS value, so the
+   subsequent save captures a state that is recognisably distinct from
+   a fresh-game reset. Tests that need "before-save" non-default values
+   should call this before commitToSave. */
+async function setAllNonDefault(page) {
+  for (const k of TRACKED_VARS) {
+    await setVar(page, k, NON_DEFAULTS[k]);
+  }
 }
 
 /*
@@ -89,37 +109,29 @@ test.describe('Save/load round-trip', () => {
     expect(blob.length).toBeGreaterThan(0);
   });
 
-  test('round-trip preserves CityMap state with custom stats', async ({ game: page }) => {
+  test('round-trip preserves every tracked field at non-default values', async ({ game: page }) => {
+    /* Every TRACKED_VARS entry is set to its NON_DEFAULTS value before
+       save, so the round-trip exercises real persistence (not just
+       "default == default"). After a full game reset clears everything
+       back to GameInit defaults, deserialise must restore every tracked
+       field to the saved non-default value. */
     await goToPassage(page, 'CityMap');
-    await setVar(page, 'mc.money', 257);
-    await setVar(page, 'mc.energy', 7);
-    await setVar(page, 'mc.lust', 42);
-    await setVar(page, 'hours', 14);
-    await setVar(page, 'minutes', 30);
-    await setVar(page, 'firstVisitWitchShop', false);
+    await setAllNonDefault(page);
     await commitToSave(page);
 
     const before = await snapshot(page);
+    // Every saved field is genuinely distinct from the GameInit default.
+    for (const k of TRACKED_VARS) {
+      expect(before[k]).toEqual(NON_DEFAULTS[k]);
+    }
 
     const blob = await page.evaluate(() => SugarCube.Save.serialize());
     await resetGame(page);
-    await page.evaluate((b) => SugarCube.Save.deserialize(b), blob);
+    // Reset wiped at least one tracked field back to default; otherwise
+    // the deserialise step below could pass as a no-op.
+    expect(await getVar(page, 'mc.lvl')).toBe(0);
+    expect(await getVar(page, 'dailySeed')).not.toBe(NON_DEFAULTS.dailySeed);
 
-    const after = await snapshot(page);
-    expect(after).toEqual(before);
-  });
-
-  test('round-trip preserves wardrobe + delivery flags', async ({ game: page }) => {
-    await goToPassage(page, 'CityMap');
-    await setVar(page, 'jeansState', 'in wardrobe');
-    await setVar(page, 'tshirtState', 'in laundry');
-    await setVar(page, 'firstVisitDeliveryHub', false);
-    await commitToSave(page);
-
-    const before = await snapshot(page);
-
-    const blob = await page.evaluate(() => SugarCube.Save.serialize());
-    await resetGame(page);
     await page.evaluate((b) => SugarCube.Save.deserialize(b), blob);
 
     expect(await snapshot(page)).toEqual(before);
@@ -134,7 +146,13 @@ test.describe('Save/load round-trip', () => {
     // setup.Ghosts.active() returns a working Ghost instance with the
     // same observable behaviour.
     await goToPassage(page, 'CityMap');
-    await page.evaluate(() => SugarCube.setup.Ghosts.startHunt('Shade'));
+    await page.evaluate(() => {
+      SugarCube.setup.HuntController.startHunt({ seed: 1 });
+      SugarCube.setup.HuntController.setField('ghostName', 'Shade');
+      const g = SugarCube.setup.Ghosts.getByName('Shade');
+      SugarCube.setup.HuntController.setField('evidence', g.evidence.map(e => e.id));
+      SugarCube.setup.Ghosts.startHunt('Shade');
+    });
     await commitToSave(page);
 
     // The Ghost constructor isn't exposed on setup.Ghosts, so we infer
@@ -229,7 +247,7 @@ test.describe('Save/load round-trip', () => {
       const legacy = {
         ghostName:        'Shade',          // what the player saw
         ghostEvidence:    ['emf', 'gwb', 'glass'],
-        ghostHuntingMode: 1,
+        ghostHuntingMode: 2,                // active hunt
         saveMimic:        1,                // it's actually a Mimic
       };
       SugarCube.setup.applySaveDefaults(legacy);
@@ -366,5 +384,114 @@ test.describe('Save/load round-trip', () => {
 
     expect(migrated.monkeyPawLearned).toBeUndefined();
     expect(migrated.wishAnything).toBeUndefined();
+  });
+
+  // --- Hunt-mode migration --------------------------------------
+
+  test('legacy save (pre-hunt) gets $run/$ectoplasm/$runsStarted defaults', async ({ game: page }) => {
+    // A v1/v2 save predates the hunt subsystem entirely. Loading
+    // should populate the three hunt-mode state vars with their
+    // safe-default classic-mode values.
+    await goToPassage(page, 'CityMap');
+
+    const migrated = await page.evaluate(() => {
+      const legacy = {};
+      SugarCube.setup.applySaveDefaults(legacy);
+      return legacy;
+    });
+
+    expect(migrated.run).toBeNull();
+    expect(migrated.ectoplasm).toBe(0);
+    expect(migrated.runsStarted).toBe(0);
+  });
+
+  test('migration preserves a mid-hunt $run object', async ({ game: page }) => {
+    // If a save is taken mid-hunt, the $run object survives
+    // applySaveDefaults intact (the defaulter only fills undefined
+    // / null fields).
+    await goToPassage(page, 'CityMap');
+
+    const liveRun = {
+      seed: 42,
+      number: 3,
+      modifiers: ['pheromones'],
+      loadout: { tools: ['emf'] },
+      objective: 'rescue',
+      floorplan: { seed: 42, rooms: [], edges: [], spawnRoomId: null, loot: {}, bossRoomId: null }
+    };
+    const migrated = await page.evaluate((run) => {
+      const save = { run: run, ectoplasm: 7, runsStarted: 3 };
+      SugarCube.setup.applySaveDefaults(save);
+      return save;
+    }, liveRun);
+
+    expect(migrated.run).toEqual(liveRun);
+    expect(migrated.ectoplasm).toBe(7);
+    expect(migrated.runsStarted).toBe(3);
+  });
+
+  test('round-trip preserves a mid-hunt save', async ({ game: page }) => {
+    // Full Save.serialize() / deserialize() cycle in a live
+    // session. Catches any subtle scrub-on-save behavior that
+    // applySaveDefaults can't reproduce on its own.
+    await goToPassage(page, 'CityMap');
+    await page.evaluate(() => SugarCube.setup.HuntController.startHunt({ seed: 12345 }));
+    await commitToSave(page);
+
+    const blob = await page.evaluate(() => SugarCube.Save.serialize());
+    await resetGame(page);
+    await page.evaluate((b) => SugarCube.Save.deserialize(b), blob);
+
+    const after = await page.evaluate(() => ({
+      run: SugarCube.State.variables.run,
+      ectoplasm: SugarCube.State.variables.ectoplasm,
+      runsStarted: SugarCube.State.variables.runsStarted,
+    }));
+    expect(after.run.seed).toBe(12345);
+    expect(after.run.number).toBe(1);
+    expect(after.run.modifiers.length).toBe(2);
+    expect(Array.isArray(after.run.floorplan.rooms)).toBe(true);
+    expect(after.runsStarted).toBe(1);
+  });
+
+  test('ectoplasm and runsStarted survive across ended runs in a save', async ({ game: page }) => {
+    // Lifetime counters persist across run boundaries. A serialize
+    // taken after end() must still know how many runs have been
+    // attempted and how many mL of ectoplasm the player has banked.
+    await goToPassage(page, 'CityMap');
+    await page.evaluate(() => {
+      SugarCube.setup.HuntController.startHunt({ seed: 1 });
+      SugarCube.setup.HuntController.endHunt(true);
+      SugarCube.setup.HuntController.startHunt({ seed: 2 });
+      SugarCube.setup.HuntController.endHunt(false);
+    });
+    await commitToSave(page);
+
+    const before = await page.evaluate(() => ({
+      run: SugarCube.State.variables.run,
+      ectoplasm: SugarCube.State.variables.ectoplasm,
+      runsStarted: SugarCube.State.variables.runsStarted,
+    }));
+    expect(before.run).toBeNull();
+    expect(before.runsStarted).toBe(2);
+
+    const blob = await page.evaluate(() => SugarCube.Save.serialize());
+    await resetGame(page);
+    await page.evaluate((b) => SugarCube.Save.deserialize(b), blob);
+
+    const after = await page.evaluate(() => ({
+      run: SugarCube.State.variables.run,
+      ectoplasm: SugarCube.State.variables.ectoplasm,
+      runsStarted: SugarCube.State.variables.runsStarted,
+    }));
+    expect(after).toEqual(before);
+  });
+
+  test('SAVE_VERSION marker is at the hunt-aware schema version', async ({ game: page }) => {
+    // Bumped to 3 when the hunt-mode subsystem landed. Future
+    // downstream tooling can read this off save.metadata.version.
+    await goToPassage(page, 'CityMap');
+    const v = await page.evaluate(() => SugarCube.setup.SAVE_VERSION);
+    expect(v).toBeGreaterThanOrEqual(3);
   });
 });

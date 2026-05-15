@@ -9,65 +9,66 @@
 	<<updatemeter 'sanity' `setup.Mc.sanity() / setup.Mc.sanityMax()`>>
 	<<updatemeter 'energy' `setup.Mc.energy() / setup.Mc.energyMax()`>>
 	<<updatemeter 'mclust' `setup.Mc.lust() / 100`>>
-	<<replace "#time">><<= setup.updateTimeDisplay()>><</replace>>
+	<<replace "#time">><<= setup.Time.display()>><</replace>>
 	<<replace "#tool-timers">><<= setup.toolTimerHudMarkup()>><</replace>>
 	<<if setup.HauntConditions.isBaitOrgasmPending()>>
 		<<goto "BaitOrgasm">>
 	<</if>>
 <</widget>>
 
-<<widget "includeTimeEventClothesHunt">>
-	<<if not setup.HauntedHouses.isCursedHuntActive()>>
-		<<applyTickEffects>>
-		<<if setup.Mc.isSanityCollapsed() or setup.Mc.sanity() lte 0>>
-			<<goto "HuntOverSanity">>
-		<<elseif setup.Mc.isExhausted()>>
-			<<goto "HuntOverExhaustion">>
-		<<else>>
-			<<include "Event">>
-			<<if setup.Mc.sanity() lte 0>>
-				<<goto "HuntOverSanity">>
-			<</if>>
-			<<if not setup.Events.eventTriggered()>>
-				<<include "StealClothesEvent">>
-			<</if>>
-			<<if not setup.HauntedHouses.stealClothesTriggered() and not setup.Events.eventTriggered()>>
-				<<include "CheckHuntStart">>
-			<</if>>
-		<</if>>
+/* huntTickEventChain -- arg-less. The shared "what happens between
+   tool/nav ticks during a hunt" inner chain: lights flicker, a ghost
+   event may roll, a steal-clothes event may roll, and a random hunt
+   may start. */
+<<widget "huntTickEventChain">>
+	<<include "LightPassageGhost">>
+	<<include "Event">>
+	<<if not setup.Events.eventTriggered() and setup.HuntController.shouldTriggerSteal()>>
+		<<run setup.HauntedHouses.markStealClothesTriggered()>>
+		<<goto "StealClothes">>
+	<</if>>
+	<<if not setup.HauntedHouses.stealClothesTriggered()
+			and not setup.Events.eventTriggered()
+			and setup.HuntController.shouldStartRandomProwl()>>
+		<<goto "GhostHuntEvent">>
 	<</if>>
 <</widget>>
+
+/* huntTickStep -- arg-less. The shared per-nav-step chain: applies
+   per-tick stat drains, routes to a hunt-over passage when sanity /
+   energy / time gives out, and otherwise fires the inner event
+   chain. */
+<<widget "huntTickStep">>
+	<<applyTickEffects>>
+	<<if setup.Mc.isSanityCollapsed() or setup.Mc.sanity() lte 0>>
+		<<goto setup.HuntController.huntOverPassage("sanity")>>
+	<<elseif setup.Mc.isExhausted()>>
+		<<goto setup.HuntController.huntOverPassage("exhaustion")>>
+	<<else>>
+		<<huntTickEventChain>>
+	<</if>>
+<</widget>>
+
+/* Backwards-compat aliases. Old call sites in widgetHauntedHouseRoom
+   still emit <<includeTimeEventClothesHunt>> / <<includeTimeEventHunt>>
+   for the two nav-link variants (ironclad's "hunt" style and the
+   default clothes-hunt style). With the steal-clothes step now gated
+   inside <<huntTickEventChain>> via HuntController.shouldTriggerSteal,
+   both variants resolve to the same shared widget. */
+<<widget "includeTimeEventClothesHunt">><<huntTickStep>><</widget>>
+<<widget "includeTimeEventHunt">><<huntTickStep>><</widget>>
 
 <<widget "toolTick">>
 	/* Tools burn 1 in-game minute per tick. Fired from inside the
 	<<repeat>> loop in setup.searchToolMarkup so every meter increment
 	advances the clock. Updates the clock display and tool-timer strip
 	(linkreplace doesn't trigger StoryCaption re-render) and routes to
-	HuntOverTime if the tick pushed dawn past 6am. */
+	the mode-aware hunt-over-time passage if the tick pushed dawn past 6am. */
 	<<run setup.addTime(1)>>
-	<<replace "#time">><<= setup.updateTimeDisplay()>><</replace>>
+	<<replace "#time">><<= setup.Time.display()>><</replace>>
 	<<replace "#tool-timers">><<= setup.toolTimerHudMarkup()>><</replace>>
-	<<if setup.Time.hours() gte 6 and setup.Ghosts.isHunting()>>
-		<<goto "HuntOverTime">>
-	<</if>>
-<</widget>>
-
-<<widget "includeTimeEventHunt">>
-	<<if not setup.HauntedHouses.isCursedHuntActive()>>
-		<<applyTickEffects>>
-		<<if setup.Mc.isSanityCollapsed() or setup.Mc.sanity() lte 0>>
-			<<goto "HuntOverSanity">>
-		<<elseif setup.Mc.isExhausted()>>
-			<<goto "HuntOverExhaustion">>
-		<<else>>
-			<<include "Event">>
-			<<if setup.Mc.sanity() lte 0>>
-				<<goto "HuntOverSanity">>
-			<</if>>
-			<<if not setup.Events.eventTriggered()>>
-				<<include "CheckHuntStart">>
-			<</if>>
-		<</if>>
+	<<if setup.Time.hours() gte 6 and setup.HuntController.isHuntActive()>>
+		<<goto setup.HuntController.huntOverPassage("time")>>
 	<</if>>
 <</widget>>
 

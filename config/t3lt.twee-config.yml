@@ -56,11 +56,11 @@ sugarcube-2:
         image.
     companionTextEvent:
       name: companionTextEvent
-      description: 'Sanity-tier dispatcher for the CompanionEvent passage.
-        Renders companion-specific dialog from the catalogue (eventCopy /
-        transEventCopy) and applies the standard sanity/lust deltas; tiers
-        2-4 also grant +15 MC lust. Trans companions stamp transFirstStage
-        on every render. Args: tier (1..4).'
+      description: "Sanity-tier dispatcher for the CompanionEvent passage. Renders
+        companion-specific dialog from the catalogue (eventCopy /
+        transEventCopy) and applies the standard sanity/lust deltas; tiers 2-4
+        also grant +15 MC lust. Trans companions stamp transFirstStage on every
+        render. Args: tier (1..4)."
     isCompanionContinue:
       name: isCompanionContinue
       description: 'Renders a linkappend asking whether the companion can continue the
@@ -77,16 +77,28 @@ sugarcube-2:
       name: applyTickEffects
       description: Applies the current tick's stat modifiers to the MC and updates the
         UI for the relevant meters.
+    huntTickStep:
+      name: huntTickStep
+      description: Per-nav-step / per-tool-click chain. Applies per-tick stat
+        drains, routes to HuntController.huntOverPassage() on sanity / energy /
+        time runout, and otherwise dispatches to <<huntTickEventChain>>.
+        Replaces the previous includeTimeEvent* widgets; steal-clothes is gated
+        by HuntController.shouldTriggerSteal.
+    huntTickEventChain:
+      name: huntTickEventChain
+      description: Inner per-tick chain run from <<huntTickStep>> and from
+        searchToolMarkup's repeat body. Includes LightPassageGhost + Event, then
+        conditionally StealClothes (HuntController.shouldTriggerSteal) and
+        GhostHuntEvent (HuntController.shouldStartRandomHunt). All branching is
+        dispatched via HuntController.
     includeTimeEventClothesHunt:
       name: includeTimeEventClothesHunt
-      description: Advances time by 1 hour, runs the event check, then attempts a
-        clothes-steal event. Falls through to CheckHuntStart if no event fires.
-        Does nothing during an active cursed hunt ($cursedHuntActive eq 1).
+      description: Backwards-compat alias for <<huntTickStep>>; preserved so existing
+        call sites in widgetHauntedHouseRoom keep linting clean.
     includeTimeEventHunt:
       name: includeTimeEventHunt
-      description: Advances time by 1 hour, runs the event check, then falls through
-        to CheckHuntStart if no event fires. Does nothing during an active
-        cursed hunt ($cursedHuntActive eq 1).
+      description: Backwards-compat alias for <<huntTickStep>>; preserved so existing
+        ironclad-flavour call sites keep linting clean.
     includeStyle:
       name: includeStyle
       description: Injects a body background-image <style> block for the room in
@@ -121,10 +133,10 @@ sugarcube-2:
     energyGate:
       name: energyGate
       container: true
-      description: "Energy-gated link. Renders a grey 'Not enough energy' line when
-        MC energy is < 1; otherwise renders a <<link>> to the given passage with
-        the given label. The body is the action(s) to run on click. Args: passage
-        (string), label (string)."
+      description: "Energy-gated link. Renders a grey 'Not enough energy' line when MC
+        energy is < 1; otherwise renders a <<link>> to the given passage with
+        the given label. The body is the action(s) to run on click. Args:
+        passage (string), label (string)."
     seduceGhostMinigameVideo:
       name: seduceGhostMinigameVideo
       description: Renders the media (image or video) for the current seduce-ghost
@@ -326,6 +338,35 @@ sugarcube-2:
         $stepCount. Args: label (string), targetPassage (string), [mode (string,
         'hunt' for ironclad's includeTimeEventHunt; default = elm/owaissa
         includeTimeEventClothesHunt)]."
+    navExits:
+      name: navExits
+      description: Reads the active house's exits map (HOUSE_CONFIG.exits[passage()])
+        and emits one <<navLink>> per outgoing exit using the house's default
+        navMode (e.g. ironclad's 'hunt'). Lets each room declare its outgoing
+        nav links in HOUSE_CONFIG instead of hardcoding a column of <<navLink>>
+        calls. Returns nothing for houses without an exits map (enigma) or
+        passages not listed. No args.
+    huntMinimap:
+      name: huntMinimap
+      description: Renders the active hunt's floor plan as a compact room list
+        with spawn / boss / stash annotations. Reads from
+        setup.HuntController.minimapData(); emits nothing when no hunt is active. No
+        args.
+    huntToolBar:
+      name: huntToolBar
+      description: Renders the six canonical investigation tool slots (EMF, Ectoglass,
+        GWB, Spiritbox, Thermometr, UVL) inside the HuntRun toolbar. Pulls
+        icons + labels from setup.searchToolDefs in setup.searchToolOrder so the
+        hunt's placeholder stays in sync with the tool catalogue.
+        Visual-only until the hunt room renderer wires up search bags / meters.
+        No args.
+    huntLobbyRerollControl:
+      name: huntLobbyRerollControl
+      description: Renders the lobby's reroll-charge button when the player has at
+        least one charge stockpiled, and nothing otherwise. Clicking the button
+        consumes a charge, redrafts the run's modifiers, repaints the modifier
+        list, and re-invokes itself so the button's visibility and "(you have
+        N)" label stay current. No args.
     leaveLink:
       name: leaveLink
       description: "Wraps a plain @@.adaptiveLink;<<link>> in the
@@ -373,13 +414,22 @@ sugarcube-2:
         and $currentFurniture value, e.g. 'bedroom_table')."
     companionCard:
       name: companionCard
+    huntCard:
+      name: huntCard
+      description: Drops a hunt entry into the GhostStreet flexgrid. Same
+        iconPx-sized .housecard style as huntHouseCard. Always routes to
+        HuntStart for a fresh haunt -- there is no resume; an in-flight run is
+        treated as a failure if the player walks back in. No contract reward, no
+        $hauntedHouse activation -- the hunt subsystem owns its own state on
+        $run. Arg-less.
     huntHouseCard:
       name: huntHouseCard
-      description: "Renders one .housecard tile on GhostStreet using the
-        setup.HauntedHouses catalogue. Handles the level gate, the
-        street-passage link, and the per-click contract/flag/furniture/room side
-        effects. Args: houseId (string, 'owaissa' | 'elm' | 'enigma' |
-        'ironclad')."
+      description: "GhostStreet card for a named static-plan hunt house. Renders the
+        catalogue entry's image + label, gates on Mc.lvl >= levelGate, and on
+        click stages the house id on $pendingHuntHouseId before routing
+        to HuntStart -- the lifecycle reads + clears the staging slot and
+        forwards staticHouseId to setup.HuntController.startHunt. Args: houseId (string
+        from setup.HuntHouses.list(), e.g. 'owaissa')."
     huntHouseStreet:
       name: huntHouseStreet
       container: true
@@ -588,25 +638,31 @@ sugarcube-2:
         for a hunt or send her solo to Owaissa/Elm Street. Args: companionName
         (string, 'Brook'/'Alice'/'Blake'), possessivePronoun (string, e.g.
         'her')."
+    huntToolSlot:
+      name: huntToolSlot
     statIcon:
       name: statIcon
     mcStatusBody:
       name: mcStatusBody
-      description: "Inner contents of the sidebar #statusContainer (MC clothing
-        HUD). Split out of MC.tw so per-slot click handlers in hunt mode can
-        re-render the strip via <<replace \"#statusContainer\">> without
-        rebuilding the surrounding container div. No args."
+      description: 'Inner contents of the sidebar #statusContainer (MC clothing HUD).
+        Split out of MC.tw so per-slot click handlers in hunt mode can re-render
+        the strip via <<replace "#statusContainer">> without rebuilding the
+        surrounding container div. No args.'
     mcUndressIcon:
       name: mcUndressIcon
-      description: "Sidebar HUD icon for a worn clothing slot. During a hunt the
-        icon becomes a click target that takes the garment off and re-renders
-        the strip; outside hunts it falls back to the original hovertip + image.
+      description: "Sidebar HUD icon for a worn clothing slot. During a hunt the icon
+        becomes a click target that takes the garment off and re-renders the
+        strip; outside hunts it falls back to the original hovertip + image.
         Args: hunting (bool), slotName (string), hoverText (string), iconFile
         (string, e.g. 'top.jpg')."
     mcRedressIcon:
       name: mcRedressIcon
-      description: "Sidebar HUD icon for a not-worn clothing slot. Mirrors
+      description: 'Sidebar HUD icon for a not-worn clothing slot. Mirrors
         mcUndressIcon, but only becomes a link when the slot has a remembered
-        last-worn item to put back on. tipText \"\" suppresses the hovertip
+        last-worn item to put back on. tipText "" suppresses the hovertip
         (preserves the existing tshirt/bottom empty cells). Args: hunting
-        (bool), slotName (string), tipText (string), iconFile (string)."
+        (bool), slotName (string), tipText (string), iconFile (string).'
+    huntFooterLight:
+      name: huntFooterLight
+    huntLootBeat:
+      name: huntLootBeat

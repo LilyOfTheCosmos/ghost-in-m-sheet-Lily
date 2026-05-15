@@ -1,5 +1,5 @@
 const { test, expect } = require('../fixtures');
-const { setVar, getVar, callSetup, goToPassage } = require('../helpers');
+const { setVar, getVar, callSetup, goToPassage, seedRandom } = require('../helpers');
 const { expectCleanPassage, setupHunt } = require('./e2e-helpers');
 
 test.describe('Ghost abilities — Oni, Raiju, Mimic', () => {
@@ -8,13 +8,16 @@ test.describe('Ghost abilities — Oni, Raiju, Mimic', () => {
   // worker load, so the cumulative budget must cover the full loop.
   // NB: Playwright's per-test `{ timeout }` details arg is NOT honored
   // (TestDetails only accepts tag/annotation). Set the budget here instead.
-  test.describe.configure({ timeout: 90_000, retries: 2 });
+  // Each sampling test seeds Math.random via seedRandom so the sequence is
+  // deterministic — no `retries` needed.
+  test.describe.configure({ timeout: 90_000 });
   // ── Oni ────────────────────────────────────────────────────────
 
   test('Oni: sanity drain is 3-8 (faster than normal 1-5)', async ({ game: page }) => {
     await setupHunt(page, 'Oni');
-    await goToPassage(page, 'OwaissaKitchen');
+    await goToPassage(page, 'HuntRun');
     await expectCleanPassage(page);
+    await seedRandom(page, 0xA1);
 
     const drains = [];
     for (let i = 0; i < 30; i++) {
@@ -31,6 +34,7 @@ test.describe('Ghost abilities — Oni, Raiju, Mimic', () => {
 
   test('Oni: non-Oni ghost drains sanity at 1-5 (control test)', async ({ game: page }) => {
     await setupHunt(page, 'Spirit');
+    await seedRandom(page, 0xA2);
 
     const drains = [];
     for (let i = 0; i < 30; i++) {
@@ -65,6 +69,7 @@ test.describe('Ghost abilities — Oni, Raiju, Mimic', () => {
     await setupHunt(page, 'Raiju');
     await setVar(page, 'tools', { emf: { activated: 1, activationTime: 0 }, uvl: { activated: 0, activationTime: 0 } });
     await setVar(page, 'equipment.emf', 3);
+    await seedRandom(page, 0xB1);
 
     const readings = await sampleEmfReadings(page, 30);
 
@@ -76,6 +81,7 @@ test.describe('Ghost abilities — Oni, Raiju, Mimic', () => {
     await setupHunt(page, 'Spirit');
     await setVar(page, 'tools', { emf: { activated: 1, activationTime: 0 }, uvl: { activated: 0, activationTime: 0 } });
     await setVar(page, 'equipment.emf', 3);
+    await seedRandom(page, 0xB2);
 
     const readings = await sampleEmfReadings(page, 10);
     for (const num of readings) expect(num).toBe(5);
@@ -89,6 +95,7 @@ test.describe('Ghost abilities — Oni, Raiju, Mimic', () => {
     });
     await setVar(page, 'equipment.temperature', 3);
     await setVar(page, 'temperature', 0);
+    await seedRandom(page, 0xB3);
 
     // TemperatureHigh's base reading depends on setup.isGhostHere(), which
     // reads the CURRENT passage. That's why we re-enter OwaissaKitchen before
@@ -96,7 +103,7 @@ test.describe('Ghost abilities — Oni, Raiju, Mimic', () => {
     // readings drop to 13-16, which would be indistinguishable from glitches.
     const readings = [];
     for (let i = 0; i < 25; i++) {
-      await goToPassage(page, 'OwaissaKitchen');
+      await goToPassage(page, 'HuntRun');
       await goToPassage(page, 'TemperatureHigh');
       const num = parseInt(await page.locator('.passage').textContent(), 10);
       if (!isNaN(num)) readings.push(num);
@@ -116,7 +123,7 @@ test.describe('Ghost abilities — Oni, Raiju, Mimic', () => {
     )).toBe(true);
     expect(await callSetup(page, 'setup.Ghosts.isMimicHunt()')).toBe(true);
 
-    await goToPassage(page, 'OwaissaHallway');
+    await goToPassage(page, 'HuntRun');
     await expectCleanPassage(page);
   });
 
@@ -147,7 +154,7 @@ test.describe('Ghost abilities — Oni, Raiju, Mimic', () => {
     expect(evidence).toContain('uvl');
     expect(await callSetup(page, 'setup.Ghosts.isMimicHunt()')).toBe(true);
 
-    await goToPassage(page, 'OwaissaKitchen');
+    await goToPassage(page, 'HuntRun');
     await expectCleanPassage(page);
   });
 });

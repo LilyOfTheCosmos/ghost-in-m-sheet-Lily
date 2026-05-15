@@ -528,12 +528,13 @@ async function walkPassages(browser, passages, label) {
       // once the search bags above are in place.
       V.hauntedHouse = 'owaissa';
 
-      // Rescue-quest girl. RescueScene reads $currentRescueGirl via
-      // setup.MissingWomen.currentRescueGirl() and calls initRescueScene
-      // on the result; left unset, the scene object comes back null and
-      // <<video _scene.current>> errors with "non-empty path string".
-      // Pick any catalogued girl — Victoria has the largest variant pool.
-      V.currentRescueGirl = 'Victoria';
+      // RescueScene's <<rescueScene>> widget bottoms out on
+      // setup.MissingWomen.currentRescueGirl(); without a seeded girl
+      // initRescueScene returns null and the cold render trips on
+      // <<video _scene.current>>. Pick the first catalogue girl so the
+      // widget has a real chapter pool to draw from.
+      const girls = setup.MissingWomen.rescueGirlNames();
+      if (girls.length) setup.MissingWomen.setCurrentRescueGirl(girls[0]);
     });
   }
 

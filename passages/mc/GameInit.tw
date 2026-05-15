@@ -62,6 +62,7 @@ setup.Game = (function () {
 		s.meridiem = 'AM';
 		s.hours = 12;
 		s.minutes = 0;
+		s.dailySeed = Math.floor(Math.random() * 0x100000000);
 
 		// --- Equipment ----------------------------------------
 		s.spiritboxLvl = 1;
@@ -99,6 +100,7 @@ setup.Game = (function () {
 			sanity: 100,
 			corruption: 0,
 			lust: 0,
+			lustMax: 100,
 			energy: 10,
 			energyMax: 10,
 			lvl: 0,
@@ -121,14 +123,34 @@ setup.Game = (function () {
 		s.lostClothing = [];
 
 		// --- Hunt-room state objects --------------------------
-		['kitchen', 'bathroom', 'bedroom', 'hallway', 'livingroom'].forEach(function (name) {
-			s[name] = {
-				name: name,
-				emf: '', glass: '', uvl: '',
-				temperature: '', spiritbox: '', gwb: '',
-				background: setup.RoomLight.DARK
-			};
+		['kitchen', 'bathroom', 'bedroom', 'hallway', 'livingroom'].forEach(function (id) {
+			setup.Rooms.seed(id);
 		});
+
+		// --- Hunt-mode run state -----------------------------
+		// $run is null in classic mode (witch-contract loop); a
+		// fresh hunt replaces it via setup.HuntController.start().
+		// $ectoplasm is the persistent meta-progression currency
+		// (measured in mL). $runsStarted is the lifetime attempt
+		// counter that stamps each run's `number` field. $meta
+		// holds permanent meta-shop unlocks: per-id owned counts
+		// in unlocks{}, the player's modifier banlist, and any
+		// stockpiled per-run reroll charges.
+		s.run = null;
+		s.ectoplasm = 0;
+		s.runsStarted = 0;
+		s.meta = {
+			unlocks: {},
+			bannedModifiers: [],
+			rerollCharges: 0
+		};
+		// Seed the GhostStreet hunt card / HuntStart lobby read for
+		// the *next* run. Rotates after each run so addresses change
+		// between visits without waiting for the in-game day to flip.
+		s.nextHuntSeed = Math.floor(Math.random() * 0x100000000);
+		// Static hunt-house id staged by a GhostStreet card (e.g.
+		// 'owaissa'). HuntStart consumes it once and clears it.
+		s.pendingHuntHouseId = null;
 	}
 
 	return { initState: initState };

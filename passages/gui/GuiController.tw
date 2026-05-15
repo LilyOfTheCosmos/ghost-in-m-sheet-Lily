@@ -17,7 +17,6 @@ setup.Gui = (function () {
 	   query these only through the API methods below. */
 	var OWNED_VARS = Object.freeze([
 		'guideReturnPassage',
-		'cursedHuntOption',
 		'timerToolsDecreased',
 		'inputWish'
 	]);
@@ -107,14 +106,6 @@ setup.Gui = (function () {
 	function guideReturnPassage() { return sv().guideReturnPassage; }
 	function setGuideReturnPassage(n) { sv().guideReturnPassage = n; }
 
-	// --- Cursed hunt toggle --------------------------------------
-	function cursedHuntOptionOff() { return sv().cursedHuntOption === 1; }
-	function isCursedHuntOptionOn() {
-		var val = sv().cursedHuntOption;
-		return val === 0 || val === undefined;
-	}
-	function setCursedHuntOption(val) { sv().cursedHuntOption = val; }
-
 	// --- Tool speed (based on MC lvl) ----------------------------
 	// $timerToolsDecreased is the "tick" duration passed to the
 	// <<repeat>> macros that drive tool meters; it shortens as the
@@ -166,9 +157,6 @@ setup.Gui = (function () {
 		},
 		guideReturnPassage: guideReturnPassage,
 		setGuideReturnPassage: setGuideReturnPassage,
-		cursedHuntOptionOff: cursedHuntOptionOff,
-		isCursedHuntOptionOn: isCursedHuntOptionOn,
-		setCursedHuntOption: setCursedHuntOption,
 		refreshToolTimer: refreshToolTimer,
 		timerToolsInitialized: timerToolsInitialized,
 		mirrorMakeupImagePath: mirrorMakeupImagePath,
@@ -282,7 +270,7 @@ $(document).one(":storyready", function () {
 	}
 
 	function appendRevealGroup($root) {
-		var inMode = setup.Ghosts.isAnyMode();
+		var inMode = setup.HuntController.isActive();
 		var $group = $('<div class="cheat-actions-group"></div>');
 		$group.append($('<h3 class="cheat-actions-gh"></h3>').text("Reveal (current contract / hunt)"));
 		if (!inMode) {
@@ -302,10 +290,10 @@ $(document).one(":storyready", function () {
 		}
 
 		$group.append(reveal("Ghost name", function () {
-			return setup.Ghosts.huntName() + (setup.Ghosts.isMimicHunt() ? " (Mimic)" : "");
+			return setup.HuntController.realGhostName();
 		}));
 		$group.append(reveal("Ghost room", function () {
-			return setup.Ghosts.huntRoomName();
+			return setup.HuntController.ghostRoomLabel();
 		}));
 		$root.append($group);
 	}
@@ -340,12 +328,11 @@ $(document).one(":storyready", function () {
 			{ label: "Sanity pills (+30)",            fire: function () { setup.Mc.addSanity(30); } },
 			{ label: "Drain companion sanity (-10)",  fire: function () { setup.Companion.drainSanity(10); } },
 			{ label: "Trigger possession card",       fire: function () {
-				setup.Ghosts.setHuntMode(setup.Ghosts.HuntMode.POSSESSED);
-				setup.Time.setHours(12 + Math.floor(Math.random() * 9));
+				var target = setup.HuntController.possessionPassage();
 				Dialog.close();
-				Engine.play("CityMapPossessed");
+				if (target) Engine.play(target);
 			} }
-		], { enabled: setup.Ghosts.isHunting(), disabledMsg: "Available only during a hunt." });
+		], { enabled: setup.HuntController.isHuntActive(), disabledMsg: "Available only during a hunt." });
 
 		appendRevealGroup($root);
 		return $root;

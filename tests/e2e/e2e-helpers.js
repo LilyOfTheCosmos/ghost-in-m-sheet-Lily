@@ -89,14 +89,33 @@ async function expectCleanPassage(page) {
 }
 
 /**
- * Assign a specific ghost by name and set up a house for hunting.
- * `house` is one of 'owaissa' (default), 'elm', 'ironclad'.
+ * Bootstrap an active hunt pinned to a specific ghost.
+ *
+ * `house` is one of 'owaissa' (default), 'elm', 'ironclad' -- the
+ * static hunt house used to seed the floor plan. `setup.HauntedHouses`
+ * helpers (`isOwaissa`/`isElm`/`isIronclad`) resolve off the active
+ * run's `staticHouseId`.
+ *
+ * The function leaves $hunt in HuntMode.ACTIVE with the requested ghost
+ * pinned so shared ghost helpers (canProwl, hasEvidence, etc.) resolve
+ * against a real catalogue entry.
  */
 async function setupHunt(page, ghostName, house = 'owaissa') {
-  await page.evaluate((name) => {
+  if (!['owaissa', 'elm', 'ironclad'].includes(house)) {
+    throw new Error(`Unknown house "${house}"`);
+  }
+
+  await page.evaluate(({ name, staticHouseId }) => {
+    // Roll a hunt with the requested static house plan so the
+    // location helpers resolve.
+    SugarCube.setup.HuntController.startHunt({ seed: 1, staticHouseId: staticHouseId });
+    // Pin the hunt ghost to the requested catalogue entry.
+    SugarCube.setup.HuntController.setField('ghostName', name);
+    // Mirror the catalogue evidence onto $hunt so shared callers
+    // (canProwl, hasEvidence) work without depending on hunt internals.
     SugarCube.setup.Ghosts.startHunt(name);
     SugarCube.setup.Ghosts.setHuntMode(SugarCube.setup.Ghosts.HuntMode.ACTIVE);
-  }, ghostName);
+  }, { name: ghostName, staticHouseId: house });
 
   const assigned = await page.evaluate(() => {
     const h = SugarCube.State.variables.hunt;
@@ -106,48 +125,25 @@ async function setupHunt(page, ghostName, house = 'owaissa') {
     throw new Error(`Failed to assign ghost "${ghostName}", got "${assigned}"`);
   }
 
-  if (!['owaissa', 'elm', 'ironclad'].includes(house)) {
-    throw new Error(`Unknown house "${house}"`);
-  }
-  await setVar(page, 'hauntedHouse', house);
-
-  // Pick a ghost-room that actually exists in the chosen house so that
-  // light/evidence widgets that read $hunt.room.name don't trip on a
-  // room name that isn't initialised in State.
-  const ghostRoomName = {
-    owaissa: 'kitchen',
-    elm: 'kitchen',
-    ironclad: 'hallway',
-  }[house];
+  // Give the hunt a sensible room name so any classic widget that
+  // still reads $hunt.room.name doesn't blow up.
   await page.evaluate((n) => {
     SugarCube.State.variables.hunt.room = { name: n };
-  }, ghostRoomName);
+  }, house === 'ironclad' ? 'hallway' : 'kitchen');
 
   if (house === 'ironclad') {
-    // Needed for the "Go inside" link on Ironclad Prison and for any
-    // passages that gate on whether the warden outfit is ready.
     await setVar(page, 'wardenClothesStage', 2);
   }
 
-  // Navigation links run <<includeTimeEventClothesHunt>>, which both rolls
-  // StealClothesEvent (against $stealChance) and includes <<Event>> (which
-  // can redirect to a body-part event via setup.Events.rollBodyPartEvent).
-  // Pin stealChance to 0 and zero out sensualBodyPart so neither fires —
-  // tests need deterministic room navigation. Also seed the per-house
-  // furniture lists (populated at GhostStreet time via FurnitureCode) so
-  // any stray StealClothes trigger can't crash on .random() of undefined.
+  // Navigation links run <<includeTimeEventClothesHunt>>, which can roll
+  // StealClothesEvent and <<Event>> body-part events. Pin both to no-op
+  // so tests get deterministic navigation.
   await setVar(page, 'stealChance', 0);
   await page.evaluate(() => {
-    const V = SugarCube.State.variables;
-    V.sensualBodyPart = {
+    SugarCube.State.variables.sensualBodyPart = {
       brain: 0, tits: 0, ass: 0, bottom: 0,
       mouth: 0, pussy: 0, anal: 0,
     };
-    const seed = ['hallway_carpet', 'kitchen_table', 'bedroom_table'];
-    if (!V.furnitureListOwaissa) V.furnitureListOwaissa = seed.slice();
-    if (!V.tempListOwaissa)      V.tempListOwaissa      = seed.slice();
-    if (!V.furnitureListElm)     V.furnitureListElm     = seed.slice();
-    if (!V.tempListElm)          V.tempListElm          = seed.slice();
   });
 
   await setVar(page, 'hours', 0);
