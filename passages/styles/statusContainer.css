@@ -1,0 +1,17 @@
+#statusContainer,
+#statusContainerPiercing {
+	display: flex;
+	align-items: center;
+	gap: 5%;
+	justify-content: center;
+}
+#statusContainer div,
+#statusContainerPiercing div {
+	text-align: center;
+}
+#statusContainer img,
+#statusContainerPiercing img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
