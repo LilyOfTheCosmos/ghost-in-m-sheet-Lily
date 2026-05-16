@@ -265,6 +265,82 @@ setup.HuntHouses = (function () {
 		return h.roomBackgrounds[templateId] || null;
 	}
 
+	/* Catalogue lookup helper for the active run. Returns the static
+	   house entry (or null) without each subscriber having to reach
+	   into HuntController + byId itself. */
+	function activeHouse() {
+		var id = setup.HuntController && setup.HuntController.staticHouseId
+			? setup.HuntController.staticHouseId() : null;
+		return id ? byId(id) : null;
+	}
+
+	/* Static-house filter wiring. Each per-house override that previously
+	   lived as a branch in HuntController is registered here against the
+	   relevant filter event, so adding a new override = one catalogue
+	   field + one subscriber, no HuntController edit. */
+	setup.Hunt.filter(setup.Hunt.Event.STEAL_CHECK, function (ctx) {
+		/* Houses with runsStealClothes:false (Ironclad) skip the
+		   steal-clothes per-tick roll entirely. Wins over modifier
+		   forceTrigger -- a house that doesn't run clothes-stealing
+		   shouldn't have Swiper bypass that. */
+		var h = activeHouse();
+		if (h && h.runsStealClothes === false) ctx.suppress = true;
+	});
+
+	setup.Hunt.filter(setup.Hunt.Event.COMPANION_ALLOWED, function (ctx) {
+		/* Static houses opt in/out of the companion plan flow via the
+		   allowsCompanions catalogue flag. Procedural runs leave
+		   ctx.allowed untouched (default true). */
+		var h = activeHouse();
+		if (h && !h.allowsCompanions) ctx.allowed = false;
+	});
+
+	setup.Hunt.filter(setup.Hunt.Event.FLOORPLAN_OPTIONS, function (ctx) {
+		/* Static houses freeze the topology to a catalogue blueprint --
+		   same rooms, same edges every run, regardless of seed or
+		   modifiers. Spawn / loot / boss still roll off the seed; the
+		   room set + edge graph come from the catalogue. The frozen
+		   plan is deep-cloned by planFor so downstream mutations
+		   (FloorPlan.generate stamps spawn/loot/boss) don't trample the
+		   catalogue. ctx.staticHouseId is set by startHunt at the time
+		   FLOORPLAN_OPTIONS fires -- $run.staticHouseId isn't stamped
+		   yet, so we read from ctx, not activeHouse(). */
+		if (!ctx || !ctx.fpOpts || !ctx.staticHouseId) return;
+		var plan = planFor(ctx.staticHouseId);
+		if (plan) ctx.fpOpts.staticPlan = plan;
+	});
+
+	setup.Hunt.filter(setup.Hunt.Event.MODIFIER_COUNT, function (ctx) {
+		/* Per-house modifier-count override. Caller's opts.modifierCount
+		   wins (ctx.count is non-null on entry then); only when the
+		   caller didn't pin a value do we consult the catalogue. The
+		   ctx.staticHouseId comes from startHunt -- $run isn't stamped
+		   yet at this point in the lifecycle. */
+		if (!ctx || ctx.count != null || !ctx.staticHouseId) return;
+		var h = byId(ctx.staticHouseId);
+		if (h && typeof h.modifierCount === 'number') ctx.count = h.modifierCount;
+	});
+
+	setup.Hunt.filter(setup.Hunt.Event.SIDEBAR_OUTFIT, function (ctx) {
+		/* Static house catalogue may carry a { image, tip } override
+		   for the MC sidebar wardrobe strip (Ironclad's warden outfit).
+		   Procedural runs and houses without an override leave
+		   ctx.outfit null. */
+		if (!ctx || !ctx.staticHouseId) return;
+		var h = byId(ctx.staticHouseId);
+		if (h && h.sidebarOutfit) ctx.outfit = h.sidebarOutfit;
+	});
+
+	setup.Hunt.filter(setup.Hunt.Event.ADDRESS, function (ctx) {
+		/* Static houses override the seed-derived `formatted` label
+		   with their catalogue label so the HUD reads the house name
+		   ("Owaissa") instead of a generated street address. Other
+		   fields (number/road/suffix) stay untouched. */
+		if (!ctx || !ctx.addr || !ctx.staticHouseId) return;
+		var h = byId(ctx.staticHouseId);
+		if (h && h.label) ctx.addr.formatted = h.label;
+	});
+
 	return {
 		OWNED_VARS:        Object.freeze([]),
 		CATALOGUE:         CATALOGUE,

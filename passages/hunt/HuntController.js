@@ -479,6 +479,7 @@ setup.HuntController = (function () {
 		if (!Array.isArray(run.collectedLoot)) run.collectedLoot = [];
 		if (run.collectedLoot.indexOf(kind) !== -1) return false;
 		run.collectedLoot.push(kind);
+		setup.Hunt.emit(setup.Hunt.Event.LOOT_TAKEN, { kind: kind, roomId: run.currentRoomId || null });
 		return true;
 	}
 	/* All (uncollected) loot kinds hidden in `roomId`'s `suffix`
@@ -621,7 +622,11 @@ setup.HuntController = (function () {
 		if (!run || !run.floorplan) return false;
 		var found = run.floorplan.rooms.some(function (r) { return r.id === roomId; });
 		if (!found) return false;
+		var prev = run.currentRoomId || null;
 		run.currentRoomId = roomId;
+		if (prev !== roomId) {
+			setup.Hunt.emit(setup.Hunt.Event.ROOM_ENTER, { roomId: roomId, fromRoomId: prev });
+		}
 		return true;
 	}
 
@@ -656,11 +661,14 @@ setup.HuntController = (function () {
 
 	/* Tool keys the hunt toolbar should render this run, in canonical
 	   setup.searchToolOrder. Resolution order:
-	     1. Build the "starting" base set:
-	        a. Empty Bag modifier (Modifiers.LOCKED_TOOLS) -> [].
-	        b. loadout.tools array -> intersection with searchToolOrder.
-	        c. Default -> all six tools.
-	     2. Union with any tool the player has picked up from
+	     1. Build the "starting" base set: loadout.tools intersected
+	        with searchToolOrder, or all six tools when loadout.tools
+	        is unset.
+	     2. Run the base through the STARTING_TOOLS filter so
+	        modifiers (Empty Bag clears to []) and static-house quirks
+	        can mutate the set without HuntController branching on
+	        each one.
+	     3. Union with any tool the player has picked up from
 	        furniture this run ($run.collectedLoot entries shaped as
 	        'tool_<id>'). Tools placed in the floor plan and clicked
 	        through FurnitureSearch land in collectedLoot via takeLoot,
@@ -673,16 +681,7 @@ setup.HuntController = (function () {
 		var run = sv().run;
 		if (!run) return [];
 		var order = (setup.searchToolOrder || []).slice();
-		var base;
-		if (hasModifier(setup.Modifiers.LOCKED_TOOLS)) {
-			base = [];
-		} else if (Array.isArray((run.loadout || {}).tools)) {
-			base = order.filter(function (t) {
-				return run.loadout.tools.indexOf(t) !== -1;
-			});
-		} else {
-			base = order.slice();
-		}
+		var base = startingToolsBase(run.modifiers || [], run.loadout || null);
 		var collected = Array.isArray(run.collectedLoot) ? run.collectedLoot : [];
 		return order.filter(function (t) {
 			if (base.indexOf(t) !== -1) return true;
@@ -692,21 +691,27 @@ setup.HuntController = (function () {
 
 	/* Compute the tool-pickup loot kinds the floor-plan generator
 	   should place this run -- exactly the tools the player would
-	   otherwise be missing from the toolbar. Reads from the same
-	   modifiers / loadout the toolbar resolution does, so the player
-	   can always recover a full kit by exploring the house.
-	   Returns an array of tool ids (not loot keys); the FloorPlan
+	   otherwise be missing from the toolbar. The base set is the
+	   loadout intersection (or full kit), then the STARTING_TOOLS
+	   filter runs so modifier / static-house subscribers can mutate
+	   it. Returns an array of tool ids (not loot keys); the FloorPlan
 	   generator wraps them with the 'tool_' prefix. */
 	function startingToolsBase(modifierIds, loadout) {
 		var order = (setup.searchToolOrder || []).slice();
-		var ids = Array.isArray(modifierIds) ? modifierIds : [];
-		if (ids.indexOf(setup.Modifiers.LOCKED_TOOLS) !== -1) return [];
+		var base;
 		if (loadout && Array.isArray(loadout.tools)) {
-			return order.filter(function (t) {
+			base = order.filter(function (t) {
 				return loadout.tools.indexOf(t) !== -1;
 			});
+		} else {
+			base = order.slice();
 		}
-		return order;
+		var ctx = setup.Hunt.applyFilter(setup.Hunt.Event.STARTING_TOOLS, {
+			tools: base,
+			modifierIds: Array.isArray(modifierIds) ? modifierIds : [],
+			loadout: loadout || null
+		});
+		return Array.isArray(ctx.tools) ? ctx.tools : [];
 	}
 	function missingToolsToPlace(modifierIds, loadout) {
 		var order = (setup.searchToolOrder || []).slice();
@@ -802,22 +807,17 @@ setup.HuntController = (function () {
 	function startHunt(opts) {
 		opts = opts || {};
 		var seed = opts.seed != null ? opts.seed : Math.floor(Math.random() * 1e9);
-		/* Resolve modifierCount through the catalogue when a static
-		   house is in play and the caller didn't pin a value
-		   explicitly -- keeps "this house has no modifier deck" as
-		   data on the catalogue entry instead of a per-house branch
-		   in the lifecycle. */
-		var staticHouseEntry = (opts.staticHouseId && setup.HuntHouses)
-			? setup.HuntHouses.byId(opts.staticHouseId)
-			: null;
-		var modifierCount;
-		if (opts.modifierCount != null) {
-			modifierCount = opts.modifierCount;
-		} else if (staticHouseEntry && typeof staticHouseEntry.modifierCount === 'number') {
-			modifierCount = staticHouseEntry.modifierCount;
-		} else {
-			modifierCount = 2;
-		}
+		/* Resolve modifierCount through the MODIFIER_COUNT filter so
+		   per-house overrides ("this house has no modifier deck") live
+		   on the catalogue entry, not as a branch here. Caller's
+		   opts.modifierCount wins unconditionally; otherwise the
+		   subscriber may set ctx.count from the static-house entry;
+		   otherwise the procedural default (2) applies. */
+		var mcCtx = setup.Hunt.applyFilter(setup.Hunt.Event.MODIFIER_COUNT, {
+			count:         opts.modifierCount != null ? opts.modifierCount : null,
+			staticHouseId: opts.staticHouseId || null
+		});
+		var modifierCount = (mcCtx.count != null) ? mcCtx.count : 2;
 
 		/* Modifier draft honors the player's banlist. Banned ids are
 		   stripped from the draft pool before weighting; banlist slots
@@ -846,30 +846,20 @@ setup.HuntController = (function () {
 		if (fpOpts.toolKinds && fpOpts.toolKinds.length && fpOpts.roomCount == null) {
 			fpOpts.roomCount = Math.max(5, 4 + Math.ceil(fpOpts.toolKinds.length / 2));
 		}
-		/* Maze: three extra rooms on top of whatever the base
-		   plan would have rolled. */
-		if (modifierIds.indexOf(setup.Modifiers.MAZE) !== -1) {
-			fpOpts.roomCount = (fpOpts.roomCount || 5) + 3;
-		}
-		/* Smaller House meta-unlock shaves one room off the haunt.
-		   Applied last so it composes with Maze (still net +2) and the
-		   tool-loot expansion (still keeps a slot per missing tool).
-		   Floor floor at the generator's hard min of 2 (hallway + 1). */
-		if (hasUnlock(ShopItem.SMALLER_HOUSE)) {
-			fpOpts.roomCount = Math.max(2, (fpOpts.roomCount || 5) - 1);
-		}
-		/* Static houses (setup.HuntHouses) freeze the topology to
-		   a catalogue blueprint -- same rooms, same edges every run,
-		   regardless of seed or modifiers. Spawn / loot / boss still
-		   roll off the seed because they're local concerns; the room
-		   set + edge graph come from the catalogue. Procedural runs
-		   leave staticHouseId null and behave exactly as before. */
-		if (opts.staticHouseId && setup.HuntHouses) {
-			var staticPlan = setup.HuntHouses.planFor(opts.staticHouseId);
-			if (staticPlan) {
-				fpOpts.staticPlan = staticPlan;
-			}
-		}
+		/* Hand the floor-plan options to the filter bus so modifiers
+		   (Maze), meta-unlocks (Smaller House), and static houses
+		   (frozen plan injection) can mutate fpOpts without
+		   HuntController branching on their ids. Subscribers live in
+		   ModifiersController, HuntHousesController, and the meta-unlock
+		   subscriber registered below. */
+		var fpCtx = setup.Hunt.applyFilter(setup.Hunt.Event.FLOORPLAN_OPTIONS, {
+			fpOpts:        fpOpts,
+			modifierIds:   modifierIds,
+			seed:          seed,
+			loadout:       opts.loadout || null,
+			staticHouseId: opts.staticHouseId || null
+		});
+		fpOpts = fpCtx.fpOpts || fpOpts;
 		var floorplan = setup.FloorPlan.generate(seed, fpOpts);
 		/* Snapshot the spawn room id for Reliable Recon. driftGhostRoom
 		   mutates floorplan.spawnRoomId; comparing against this snapshot
@@ -895,11 +885,13 @@ setup.HuntController = (function () {
 		var evidenceIds = (ghostCat && Array.isArray(ghostCat.evidence))
 			? ghostCat.evidence.map(function (e) { return e.id; })
 			: [];
-		if (modifierIds.indexOf(setup.Modifiers.FOG_OF_WAR) !== -1
-			&& evidenceIds.length > 0) {
-			var dropIdx = ((seed ^ 0xdeadbeef) >>> 0) % evidenceIds.length;
-			evidenceIds.splice(dropIdx, 1);
-		}
+		var evCtx = setup.Hunt.applyFilter(setup.Hunt.Event.EVIDENCE_POOL, {
+			evidence: evidenceIds,
+			modifierIds: modifierIds,
+			seed: seed,
+			ghostName: ghostName
+		});
+		evidenceIds = Array.isArray(evCtx.evidence) ? evCtx.evidence : evidenceIds;
 
 		start({
 			seed: seed,
@@ -943,6 +935,7 @@ setup.HuntController = (function () {
 			setup.Ghosts.resetEvidenceChecks();
 		}
 		applyMetaUnlocksAtStart(floorplan, seed, evidenceIds);
+		setup.Hunt.emit(setup.Hunt.Event.START, { ghostName: ghostName, seed: seed });
 		return active();
 	}
 
@@ -1021,30 +1014,19 @@ setup.HuntController = (function () {
 		var run = sv().run;
 		return run ? (run.staticHouseId || null) : null;
 	}
-	function staticHouse() {
-		var id = staticHouseId();
-		return id && setup.HuntHouses ? setup.HuntHouses.byId(id) : null;
-	}
-	/* True when the active run is bound to a static-plan house
-	   that opts into companions. Procedural runs return false.
-	   Drives Companion.inHauntedHouseLocation through a data-driven
-	   catalogue lookup so adding new houses (or flipping the flag on
-	   an existing one) doesn't require touching the predicate. */
-	function staticHouseAllowsCompanions() {
-		var id = staticHouseId();
-		return !!(id && setup.HuntHouses
-			&& setup.HuntHouses.allowsCompanions(id));
-	}
 	/* True when companions are eligible for the active hunt at all.
-	   Procedural runs (no staticHouseId) are companion-eligible by
-	   default; static-plan houses opt in or out via the catalogue's
-	   allowsCompanions flag. Drives both the HuntStart "Talk to her"
-	   gate and the in-hunt HUD via Companion.inHauntedHouseLocation. */
+	   Procedural runs default to allowed; static-plan houses opt in
+	   or out via the catalogue's allowsCompanions flag, surfaced by
+	   the COMPANION_ALLOWED filter subscriber in HuntHousesController.
+	   Drives both the HuntStart "Talk to her" gate and the in-hunt
+	   HUD via Companion.inHauntedHouseLocation. */
 	function huntAllowsCompanions() {
 		if (!isActive()) return false;
-		var id = staticHouseId();
-		if (!id) return true;
-		return !!(setup.HuntHouses && setup.HuntHouses.allowsCompanions(id));
+		var ctx = setup.Hunt.applyFilter(setup.Hunt.Event.COMPANION_ALLOWED, {
+			allowed:       true,
+			staticHouseId: staticHouseId()
+		});
+		return !!ctx.allowed;
 	}
 	/* Evidence id list for the active ghost. Returns the
 	   per-run override stamped at startHunt (so Fog of War's spliced
@@ -1060,26 +1042,20 @@ setup.HuntController = (function () {
 	   the raw seed. Returns null off-run; callers that need a label
 	   for an arbitrary seed can call addressFromSeed() directly.
 
-	   Static-plan houses (setup.HuntHouses) override the `formatted`
-	   label with their catalogue label so the HUD reads the house
-	   name ("Owaissa") instead of a generated street address. The
-	   seed-derived number/road/suffix fields stay so callers that
-	   want the underlying address (rng-seed displays, diagnostics)
-	   can still read them. */
+	   Per-house label overrides (Owaissa, Elm, Ironclad) ride the
+	   ADDRESS filter -- HuntHousesController stamps `addr.formatted`
+	   off its catalogue label. The seed-derived number/road/suffix
+	   fields stay so callers that want the underlying address
+	   (rng-seed displays, diagnostics) can still read them. */
 	function address() {
 		var run = sv().run;
 		if (!run) return null;
 		var addr = addressFromSeed(run.seed);
-		var house = staticHouse();
-		if (house && house.label) {
-			return {
-				number: addr.number,
-				road: addr.road,
-				suffix: addr.suffix,
-				formatted: house.label
-			};
-		}
-		return addr;
+		var ctx = setup.Hunt.applyFilter(setup.Hunt.Event.ADDRESS, {
+			addr:          addr,
+			staticHouseId: staticHouseId()
+		});
+		return ctx.addr;
 	}
 	function ghostRoomId() {
 		var run = sv().run;
@@ -1109,7 +1085,9 @@ setup.HuntController = (function () {
 		// when there's only one room in the plan.
 		var others = allIds.filter(function (id) { return id !== fp.spawnRoomId; });
 		var pool = others.length ? others : allIds;
+		var fromRoom = fp.spawnRoomId;
 		fp.spawnRoomId = pool[Math.floor(Math.random() * pool.length)];
+		setup.Hunt.emit(setup.Hunt.Event.DRIFT, { fromRoom: fromRoom, toRoom: fp.spawnRoomId });
 	}
 
 	/* View-layer summary of the active run's floor plan, denormalised
@@ -1422,9 +1400,12 @@ setup.HuntController = (function () {
 		var run = active();
 		if (!run) return null;
 		var base = success ? 10 : 3;
-		var mult = (setup.Modifiers && setup.Modifiers.payoutMultiplier)
-			? setup.Modifiers.payoutMultiplier()
-			: 1;
+		var payCtx = setup.Hunt.applyFilter(setup.Hunt.Event.PAYOUT, {
+			multiplier: 1,
+			modifierIds: (run.modifiers || []).slice(),
+			success: !!success
+		});
+		var mult = (typeof payCtx.multiplier === 'number') ? payCtx.multiplier : 1;
 		var payout = Math.round(base * mult);
 		addEctoplasm(payout);
 		var summary = {
@@ -1499,6 +1480,14 @@ setup.HuntController = (function () {
 		   the player slept. */
 		rollNextSeed();
 		minimapCollapsed = false;
+		setup.Hunt.emit(setup.Hunt.Event.END, {
+			success: !!success,
+			payout: payout,
+			failureReason: summary.failureReason,
+			ghostName: run.ghostName || null,
+			seed: run.seed,
+			number: run.number
+		});
 		return summary;
 	}
 
@@ -1529,17 +1518,32 @@ setup.HuntController = (function () {
 		return passage() === "HuntRun";
 	}
 
+	/* Hunt tick entry point. Called from the <<huntTickStep>> widget
+	   once per nav-step / tool-tick during a hunt. Fires Event.TICK so
+	   subscribers (per-tick stat drains, event-roll modifiers, etc.)
+	   can hook in without HuntController having to know about them.
+	   No-op when no run is active so widget-side guards stay simple. */
+	function tick() {
+		if (!isActive()) return;
+		var minutes = (setup.Time && typeof setup.Time.minutes === 'function')
+			? setup.Time.minutes()
+			: null;
+		setup.Hunt.emit(setup.Hunt.Event.TICK, { roomId: currentRoomId(), minutes: minutes });
+	}
+
 	/* { image, tip } override for the MC sidebar wardrobe strip,
-	   sourced from the active static house's catalogue entry. Returns
-	   null when no run is active or the catalogue entry doesn't carry
-	   a sidebarOutfit override. Drives widgetMcStatus's fixed-outfit
-	   tile branch. */
+	   sourced through the SIDEBAR_OUTFIT filter so per-house overrides
+	   live on the catalogue entry (HuntHousesController subscriber)
+	   instead of branching here. Returns null when no run is active or
+	   no subscriber stamps an outfit. Drives widgetMcStatus's
+	   fixed-outfit tile branch. */
 	function sidebarOutfit() {
 		if (!isActive()) return null;
-		var rid = staticHouseId();
-		if (!rid || !setup.HuntHouses) return null;
-		var rh = setup.HuntHouses.byId(rid);
-		return (rh && rh.sidebarOutfit) || null;
+		var ctx = setup.Hunt.applyFilter(setup.Hunt.Event.SIDEBAR_OUTFIT, {
+			outfit:        null,
+			staticHouseId: staticHouseId()
+		});
+		return ctx.outfit || null;
 	}
 
 	/* Random hunt-event roll. Uses the shared threshold + ghost.canProwl
@@ -1556,15 +1560,11 @@ setup.HuntController = (function () {
 
 	/* Steal-clothes roll. The wardrobe / stash side-effects are
 	   shared, so once a steal fires the StealClothes cascade works.
-	   Ironclad opts out via the static catalogue's runsStealClothes
-	   flag, so the prison hunt skips the steal step. */
+	   Per-house opt-outs (Ironclad's runsStealClothes=false) and
+	   modifier overrides (Swiper) live as STEAL_CHECK filter
+	   subscribers applied inside HauntedHouses.shouldTriggerSteal. */
 	function shouldTriggerSteal() {
 		if (!isActive()) return false;
-		var rid = staticHouseId();
-		if (rid && setup.HuntHouses) {
-			var rh = setup.HuntHouses.byId(rid);
-			if (rh && rh.runsStealClothes === false) return false;
-		}
 		return setup.HauntedHouses.shouldTriggerSteal();
 	}
 
@@ -1610,6 +1610,7 @@ setup.HuntController = (function () {
 	   routes to HuntSummary. */
 	function huntCaughtPassage() {
 		if (isActive()) {
+			setup.Hunt.emit(setup.Hunt.Event.CAUGHT, { ghostName: ghostName() });
 			markFailure(FailureReason.CAUGHT);
 			return "HuntSummary";
 		}
@@ -1684,6 +1685,7 @@ setup.HuntController = (function () {
 		if (!run) return false;
 		run.trapped = true;
 		run.exitLock = { unlockBy: unlockBy };
+		setup.Hunt.emit(setup.Hunt.Event.TRAP, { unlockBy: unlockBy, roomId: run.floorplan && run.floorplan.spawnRoomId });
 		return true;
 	}
 
@@ -1718,6 +1720,7 @@ setup.HuntController = (function () {
 	   the imperative side effects fire as part of the link click. */
 	function possessionPassage() {
 		if (!isActive()) return null;
+		setup.Hunt.emit(setup.Hunt.Event.POSSESS, { ghostName: ghostName() });
 		markFailure(FailureReason.POSSESSED);
 		endHunt(false);
 		setup.Time.setHours(Math.floor(Math.random() * (20 - 12 + 1)) + 12);
@@ -1747,6 +1750,20 @@ setup.HuntController = (function () {
 			: null);
 	}
 
+	/* Meta-shop unlock effects wire into the same filter bus the
+	   modifiers use. The buildHunt path stays agnostic; each unlock
+	   that mutates a lifecycle ctx registers its own subscriber. */
+	setup.Hunt.filter(setup.Hunt.Event.FLOORPLAN_OPTIONS, function (ctx) {
+		/* Smaller House meta-unlock shaves one room off the haunt.
+		   Applied after any modifier room-count bumps so it composes
+		   with Maze (still net +2) and the tool-loot expansion (still
+		   keeps a slot per missing tool). Floor at the generator's
+		   hard min of 2 (hallway + 1). */
+		if (!hasUnlock(ShopItem.SMALLER_HOUSE)) return;
+		if (!ctx || !ctx.fpOpts) return;
+		ctx.fpOpts.roomCount = Math.max(2, (ctx.fpOpts.roomCount || 5) - 1);
+	});
+
 	/* True iff the Bag was just opened from inside a hunt-context
 	   passage -- gates the carry links for the tarot deck and the
 	   monkey paw. Accepts the HuntRun passage. */
@@ -1772,6 +1789,8 @@ setup.HuntController = (function () {
 		addModifier: addModifier,
 		loadout: loadout,
 		startingTools: startingTools,
+		startingToolsBase: startingToolsBase,
+		missingToolsToPlace: missingToolsToPlace,
 		objective: objective,
 		objectiveDescription: objectiveDescription,
 		setObjective: setObjective,
@@ -1812,8 +1831,6 @@ setup.HuntController = (function () {
 		humanizeLootKind: humanizeLootKind,
 		ghostName: ghostName,
 		staticHouseId: staticHouseId,
-		staticHouse: staticHouse,
-		staticHouseAllowsCompanions: staticHouseAllowsCompanions,
 		huntAllowsCompanions: huntAllowsCompanions,
 		runEvidence: runEvidence,
 		ghostRoomId: ghostRoomId,
@@ -1841,6 +1858,7 @@ setup.HuntController = (function () {
 		activeGhost: activeGhost,
 		isGhostHere: isGhostHere,
 		isHuntActive: isHuntActive,
+		tick: tick,
 		sidebarOutfit: sidebarOutfit,
 		shouldStartRandomProwl: shouldStartRandomProwl,
 		shouldTriggerSteal: shouldTriggerSteal,
