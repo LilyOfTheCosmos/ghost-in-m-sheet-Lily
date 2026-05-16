@@ -39,13 +39,16 @@ setup.KeyboardNav = (function () {
 
 	// Sidebar letter bindings. Letters were picked to avoid clashing with
 	// any reasonable in-game typing context (we already skip when focus
-	// is in an input). 'v' for Evidence — 'e' is reserved for future use.
+	// is in an input) AND with the in-hunt search-tool keys defined in
+	// ToolController (setup.searchToolKeyMap: t/f/g/u/e/s). 'v' for
+	// Evidence — 'e' would collide with the Plasmometer; 'a' for Guide —
+	// 'g' would collide with GWB.
 	var SIDEBAR_BINDINGS = [
 		{ passage: "Bag",       key: "b" },
 		{ passage: "Notebook",  key: "n" },
 		{ passage: "Evidence",  key: "v" },
 		{ passage: "Phone",     key: "p" },
-		{ passage: "Guide",     key: "g" },
+		{ passage: "Guide",     key: "a" },
 		{ passage: "ChangeLog", key: "l" }
 	];
 

@@ -178,6 +178,51 @@ test.describe('KeyboardNav', () => {
     expect(byPassage.Evidence).toBe('v');
   });
 
+  /* Regression guard: sidebar HUD letter shortcuts and the hunt search-tool
+   * key handler are two independent keydown listeners. If their keymaps
+   * overlap, pressing the shared key both activates the tool everywhere
+   * AND navigates away from the hunt screen — confusing and destructive.
+   * This test pins them as disjoint sets. */
+  test('sidebar letter shortcuts never overlap with search-tool keys', async ({ game: page }) => {
+    // arrange
+    await goToPassage(page, 'Home');
+    // act
+    const { sidebarKeys, toolKeys } = await page.evaluate(() => {
+      const letters = SugarCube.setup.KeyboardNav._letterHotkeys();
+      return {
+        sidebarKeys: letters.map(l => l.key),
+        toolKeys: Object.keys(SugarCube.setup.searchToolKeyMap || {}),
+      };
+    });
+    // assert
+    const overlap = sidebarKeys.filter(k => toolKeys.includes(k));
+    expect(overlap).toEqual([]);
+  });
+
+  test('sidebar letter shortcuts are unique among themselves', async ({ game: page }) => {
+    // arrange
+    await goToPassage(page, 'Home');
+    // act
+    const keys = await page.evaluate(() =>
+      SugarCube.setup.KeyboardNav._letterHotkeys().map(l => l.key)
+    );
+    // assert — no duplicates
+    expect(keys.length).toBe(new Set(keys).size);
+  });
+
+  test('search-tool keys are unique among themselves', async ({ game: page }) => {
+    // arrange
+    await goToPassage(page, 'Home');
+    // act — the values are the tool names; the keys are the letters.
+    // A duplicate would mean two tools both claim the same hotkey.
+    const map = await page.evaluate(() => SugarCube.setup.searchToolKeyMap);
+    const keys = Object.keys(map);
+    const tools = Object.values(map);
+    // assert
+    expect(keys.length).toBe(new Set(keys).size);
+    expect(tools.length).toBe(new Set(tools).size);
+  });
+
   test('letter key navigates to the sidebar target', async ({ game: page }) => {
     // arrange
     await goToPassage(page, 'Home');
