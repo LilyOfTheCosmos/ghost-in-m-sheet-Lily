@@ -1,14 +1,32 @@
 :: ChangeLog {"position":"100,700","size":"100,100"}
-v.0.5.2
-- Major ghost hunt rework: new HUD shows live status, lights-off has tactical use, and ghosts now respond to lust, clothing, overcharged tools, and bait
-- Hunt difficulty tuned so a naiive strategy with no purchased equipment will win about 85% of the time (reduced from 99.9%).
-- New endings: sanity collapse, and a haunt failure when caught with no clothes
-- Monkey Paw rework: cleaner wishes and clearer consequences
-- New event: park mugging
-- Fixed a softlock during The Twins event
-- Fixed Elm and Owaissa Street videos not turning grayscale when lights were off
-- Fixed a bug in the Freeze hunt and removed its forced auto-advance
-- Fixed a missing message in the special-delivery low-corruption path
+v.0.5.3
+- New "rogue-like" houses with new rooms and mechanics. Will be greatly expanded in future.
+- Keyboard navigation shortcuts added (hold ALT/CMD to get key hints)
+- Removed the Enigma haunted house (coming back in 2 or 3 updates)
+- Ectoplasm is collected during hunts, and the witch and no longer requires an active contract
+- Ghost movement now scales with MC prettiness
+- Baiting reworked: it ramps lust with orgasm risk and a duration limit, plus new bait videos
+- Random hunt events are now weighted by what the MC is wearing
+- Hornier spirit box responses
+- Body-part sensitivity now shown in the UI and drives lust gain; sensitivities grow during play and soft-cap around 20
+- Alarm clock in the bedroom, EMF/UVL timers under the clock
+- Autosave when the MC sleeps; energy regained on the midnight skip
+- Settings menu, with a "mute all videos" toggle (videos now default to unmuted)
+- Option to buy back clothing lost during a hunt
+- Click the side panel icons to undress during hunts; clothes removed mid-hunt are restored on exit
+- Cheats moved to the Settings menu and persist between saves; added a tarot-card cheat
+- Library tips added
+<<linkappend "v.0.5.2">>
+	- Major ghost hunt rework: new HUD shows live status, lights-off has tactical use, and ghosts now respond to lust, clothing, overcharged tools, and bait
+	- Hunt difficulty tuned so a naiive strategy with no purchased equipment will win about 85% of the time (reduced from 99.9%).
+	- New endings: sanity collapse, and a haunt failure when caught with no clothes
+	- Monkey Paw rework: cleaner wishes and clearer consequences
+	- New event: park mugging
+	- Fixed a softlock during The Twins event
+	- Fixed Elm and Owaissa Street videos not turning grayscale when lights were off
+	- Fixed a bug in the Freeze hunt and removed its forced auto-advance
+	- Fixed a missing message in the special-delivery low-corruption path\
+<</linkappend>>
 <<linkappend "v.0.5.1">>
 	- Added cursed home item events: after losing a haunted house run, there is a 40% chance a ghost curses one of your household objects (TV, computer, bed, shower, or bathtub), triggering a unique encounter when used
 	- All companions can now be undressed during ghost hunts as their levels increase
